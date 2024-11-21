@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from "@/lib/utils";
 import { Twitter, Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
-import { DotPattern, GlowEffect } from '@/components/ui/background-patterns';
+
 
 
 interface FooterProps {

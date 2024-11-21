@@ -42,7 +42,7 @@ const SubMenuItem = ({ item }: { item: NavigationItem }) => (
 export const DesktopNavigation = ({ active, setActive, isScrolled }: DesktopNavigationProps) => {
   return (
     <div className="hidden md:flex items-center space-x-1">
-      {navigationData.primary.map((item) => (
+      {navigationData.primary.map((item: NavigationItem) => (
         <div 
             key={item.name} 
             className="relative group"
@@ -104,7 +104,7 @@ export const DesktopNavigation = ({ active, setActive, isScrolled }: DesktopNavi
 
       {/* Secondary Navigation */}
       <div className="flex items-center pl-6 ml-6 border-l border-primary-200/20 dark:border-primary-800/20">
-        {navigationData.secondary.map((item) => (
+        {navigationData.secondary.map((item: NavigationItem) => (
           <motion.button
             key={item.name}
             whileHover={{ scale: 1.05 }}

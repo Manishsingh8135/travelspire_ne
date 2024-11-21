@@ -1,14 +1,14 @@
-// app/tours/[slug]/page.tsx
-import { TourDetail } from "@/components/tours/tour-details/tour-detail";  // Updated import path
+import { TourDetail } from "@/components/tours/tour-details/tour-detail";
 import { getTourBySlug } from "@/data/tours/tour-helper";
 import { notFound } from "next/navigation";
 
-export default async function TourPage({ 
-  params 
-}: { 
-  params: { slug: string } 
-}) {
-  const tour = getTourBySlug(params.slug);
+interface Params {
+  slug: string;
+}
+
+export default async function TourPage({ params }: { params: Promise<Params> }) {
+  const { slug } = await params;
+  const tour = getTourBySlug(slug);
 
   if (!tour) {
     notFound();

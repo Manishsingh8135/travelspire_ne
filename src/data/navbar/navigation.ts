@@ -1,4 +1,5 @@
 // src/data/navigation.ts
+import { NavigationData } from "@/types/navbar/navigation";
 import { 
     Compass, 
     Map, 
