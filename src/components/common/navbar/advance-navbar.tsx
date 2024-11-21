@@ -66,7 +66,7 @@ export const AdvancedNavbar = () => {
           }}
         >
           {/* Navbar content */}
-          <div className="h-16 flex items-center justify-between">
+          <div className="h-16 flex items-center justify-between sm:px-4">
             {/* Logo */}
             <motion.div
               className="flex-shrink-0"

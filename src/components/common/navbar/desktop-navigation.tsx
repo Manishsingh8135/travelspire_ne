@@ -43,7 +43,12 @@ export const DesktopNavigation = ({ active, setActive, isScrolled }: DesktopNavi
   return (
     <div className="hidden md:flex items-center space-x-1">
       {navigationData.primary.map((item) => (
-        <div key={item.name} className="relative group">
+        <div 
+            key={item.name} 
+            className="relative group"
+            onMouseEnter={() => setActive(item.name)}
+            onMouseLeave={() => setActive(null)}
+            >
           <motion.button
             className={cn(
               "px-4 py-2 rounded-full text-base font-medium",
@@ -53,8 +58,6 @@ export const DesktopNavigation = ({ active, setActive, isScrolled }: DesktopNavi
               "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
               "relative overflow-hidden"
             )}
-            onHoverStart={() => setActive(item.name)}
-            onHoverEnd={() => setActive(null)}
           >
             <span className="flex items-center gap-1">
               {item.icon && <item.icon className="h-4 w-4" />}
