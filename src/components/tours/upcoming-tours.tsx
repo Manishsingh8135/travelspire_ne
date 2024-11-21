@@ -7,7 +7,7 @@ import {
   TourCard,
   TourGrid 
 } from "@/components/tours/tour-showcase";
-import { upcomingTours } from "@/data/tours/tour-data"; // Updated import path
+import { upcomingTours } from "@/data/tours/tour-data";
 
 export function UpcomingTours() {
   return (
