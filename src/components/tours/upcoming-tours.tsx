@@ -1,4 +1,4 @@
-// components/sections/upcoming-tours.tsx
+// components/tours/upcoming-tours.tsx
 "use client";
 
 import { 

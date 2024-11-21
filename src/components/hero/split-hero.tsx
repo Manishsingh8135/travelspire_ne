@@ -56,9 +56,9 @@ export function HeroContent({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="space-y-8"
+        className="space-y-6 sm:space-y-8"
       >
-        <h1 className="heading-2">
+        <h1 className="heading-2 text-center lg:text-left">
           <span className="block text-foreground dark:text-white">
             {title}
           </span>
@@ -68,13 +68,13 @@ export function HeroContent({
         </h1>
         
         <div className="relative">
-          <div className="absolute -left-8 top-0 h-full w-1 bg-gradient-to-b from-primary-500/0 via-primary-500 to-secondary-500/0" />
-          <p className="text-xl md:text-xl text-muted-foreground dark:text-neutral-300 max-w-xl pl-8">
+          <div className="absolute -left-4 top-0 h-full w-1 bg-gradient-to-b from-primary-500 to-secondary-500 hidden sm:block" />
+          <p className="text-lg sm:text-xl text-center md:text-left text-muted-foreground dark:text-neutral-300 max-w-full sm:max-w-xl pl-0 sm:pl-8 text-center lg:text-left">
             {description}
           </p>
         </div>
 
-        <div className="pl-8">
+        <div className="flex justify-center lg:justify-start">
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -84,8 +84,10 @@ export function HeroContent({
               href={cta.href}
               className={cn(
                 "group relative inline-flex items-center gap-2",
-                "px-8 py-4 rounded-full",
-                "text-xl font-medium",
+                "px-4 sm:px-6 lg:px-8",
+                "py-2 sm:py-3 lg:py-4",
+                "rounded-full",
+                "text-lg sm:text-xl font-medium",
                 "bg-gradient-to-r from-primary-500 to-secondary-500",
                 "hover:from-primary-400 hover:to-secondary-400",
                 "text-white",
@@ -105,7 +107,7 @@ export function HeroContent({
 
 export function HeroStats({ stats }: { stats: { value: string; label: string; }[] }) {
   return (
-    <div className="mt-16 grid grid-cols-2 gap-8 pl-8">
+    <div className="mt-16 grid grid-cols-2 gap-8 pl-0 md:pl-8 text-center md:text-left">
       {stats.map((stat, index) => (
         <motion.div
           key={stat.label}
@@ -116,14 +118,26 @@ export function HeroStats({ stats }: { stats: { value: string; label: string; }[
             delay: 0.2 + index * 0.1,
             ease: [0.16, 1, 0.3, 1]
           }}
-          className="relative"
+          className="relative animate-smooth-fade-in"
         >
-          <div className="absolute -top-2 left-0 h-1 w-12 bg-gradient-to-r from-primary-500 to-secondary-500" />
+          {/* Gradient line with proper positioning */}
+          <div 
+            className={cn(
+              "absolute -top-2 h-1 w-12",
+              "left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0",
+              "gradient-primary" // Using your custom gradient utility
+            )} 
+          />
+          
           <div className="pt-4">
-            <div className="text-xl font-bold text-foreground dark:text-white/90">
+            <div className={cn(
+              "text-2xl font-bold", // Using your font size vars
+              "bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent",
+              "dark:from-white dark:to-white/90"
+            )}>
               {stat.value}
             </div>
-            <div className="text-muted-foreground dark:text-neutral-400">
+            <div className="text-muted-foreground text-base">
               {stat.label}
             </div>
           </div>

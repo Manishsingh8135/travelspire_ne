@@ -15,8 +15,8 @@ export default async function TourPage({ params }: { params: Promise<Params> }) 
   }
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <TourDetail tour={tour} />
-    </main>
+    </div>
   );
 }
