@@ -23,7 +23,7 @@ export function TourCard({ tour, index }: TourCardProps) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ 
+      transition={{
         duration: 1,
         delay: index * 0.1,
         ease: [0.16, 1, 0.3, 1]
@@ -52,7 +52,7 @@ export function TourCard({ tour, index }: TourCardProps) {
           )}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/60" />
-        
+
         {/* Dot Pattern Overlay */}
         <DotPattern className="opacity-20" />
       </div>
@@ -98,18 +98,27 @@ export function TourCard({ tour, index }: TourCardProps) {
               <div className="text-sm text-white/60">Starting from</div>
               <div className="text-2xl font-bold text-white">₹{tour.price.toLocaleString()}</div>
             </div>
-            
-            <Link 
+
+            <Link
               href={`/tours/${tour.slug}`}
               className={cn(
-                "group/btn flex items-center gap-2 px-6 py-3 rounded-xl",
-                "bg-white/10 backdrop-blur-md",
-                "hover:bg-white/20 transition-colors duration-300",
-                "text-white font-medium"
+                "group/btn relative inline-flex items-center justify-center gap-2",
+                // Mobile baseline
+                "px-4 py-2 rounded-lg",
+                "text-sm",
+                // Desktop scaling
+                "md:px-8 md:py-4 md:rounded-full",
+                "md:text-xl",
+                // Consistent styling
+                "bg-gradient-to-r from-primary-500 to-secondary-500",
+                "hover:from-primary-400 hover:to-secondary-400",
+                "text-white font-medium",
+                "shadow-xl shadow-primary-500/25 dark:shadow-primary-500/10",
+                "transition-all duration-300"
               )}
             >
               View Details
-              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+              <ArrowUpRight className="w-3 h-3 md:w-5 md:h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
             </Link>
           </div>
         </div>

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from "@/lib/utils";
 import { Twitter, Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
-import { DotPattern, GlowEffect } from '@/components/ui/background-patterns';
+
 
 
 interface FooterProps {
@@ -75,41 +75,43 @@ function MainSection({ data }: { data: FooterProps['data']['mainSection'] }) {
         viewport={{ once: true }}
         className="space-y-8"
       >
-        <h2 className="heading-1">
-          <span className="block text-foreground dark:text-white">
+        <h2 className="heading-2 md:heading-1">
+          <span className="block text-center md:text-left text-foreground dark:text-white">
             {data.title}
           </span>
-          <span className="block bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 dark:from-primary-400 dark:via-primary-500 dark:to-secondary-400 bg-clip-text text-transparent">
+          <span className="block text-center md:text-left bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 dark:from-primary-400 dark:via-primary-500 dark:to-secondary-400 bg-clip-text text-transparent">
             {data.highlightedTitle}
           </span>
         </h2>
         
-        <p className="text-xl md:text-2xl text-muted-foreground dark:text-neutral-300 max-w-3xl">
+        <p className="text-xl md:text-2xl text-center md:text-left text-muted-foreground dark:text-neutral-300 max-w-3xl">
           {data.description}
         </p>
 
         <motion.div
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="inline-block"
+          className="inline-block flex justify-center md:justify-start"
         >
-          <Link 
+          <Link
             href={data.ctaButton.href}
             className={cn(
-              "group relative inline-flex items-center gap-2",
-              "px-8 py-4 rounded-full",
-              "text-xl font-medium",
+              "group relative inline-flex items-center justify-center gap-2",
+              "px-4 py-2 text-sm rounded-lg", // Default (mobile) size
+              "md:px-8 md:py-4 md:text-xl md:rounded-full", // Desktop size
               "bg-gradient-to-r from-primary-500 to-secondary-500",
               "hover:from-primary-400 hover:to-secondary-400",
-              "text-white",
+              "text-white font-medium",
               "shadow-xl shadow-primary-500/25 dark:shadow-primary-500/10",
               "transition-all duration-300"
             )}
           >
             {data.ctaButton.text}
-            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            <ArrowUpRight className="w-3 h-3 md:w-5 md:h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </Link>
         </motion.div>
+
+
       </motion.div>
     </GradientCard>
   );
@@ -161,39 +163,68 @@ function QuickLinks({ data }: { data: FooterProps['data']['quickLinks'] }) {
   );
 }
 
-function Newsletter({ data }: { data: FooterProps['data']['newsletter'] }) {
+
+function Newsletter({ data }: { data: { title: string; description: string; placeholder: string; buttonText: string; } }) {
   return (
-    <GradientCard className="p-8 md:p-10" interactive>
-      <div className="space-y-4">
+    <div className={cn(
+      "relative p-8 md:p-10 rounded-[2.5rem] overflow-hidden",
+      "border border-primary-100/20 dark:border-white/10",
+      "bg-gradient-to-b from-white/90 via-white/90 to-white/90",
+      "dark:from-accent-900/90 dark:via-accent-900/90 dark:to-accent-900/90",
+      "shadow-2xl shadow-primary-500/10 dark:shadow-black/20",
+      "backdrop-blur-xl",
+      "hover:scale-[1.01] hover:shadow-primary-500/20",
+      "transition-all duration-300"
+    )}>
+      {/* Background pattern with lower z-index */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(
+              rgb(var(--primary-400) / 0.15) 1px, 
+              transparent 1px
+            )`,
+            backgroundSize: '24px 24px',
+          }}
+        />
+      </div>
+
+      {/* Content with higher z-index */}
+      <div className="relative z-10 space-y-4 text-center md:text-left">
         <h3 className="text-2xl md:text-3xl font-bold text-foreground dark:text-white">
           {data.title}
         </h3>
         <p className="text-lg text-muted-foreground dark:text-neutral-300">
           {data.description}
         </p>
-        <form className="flex gap-4 mt-6">
+        <form className="flex flex-col md:flex-row gap-4 mt-6">
           <input
             type="email"
             placeholder={data.placeholder}
             className={cn(
-              "flex-1 rounded-xl px-6 py-4",
-              "bg-primary-50/50 dark:bg-white/5",
-              "border border-primary-100/20 dark:border-white/10",
+              "w-full rounded-xl px-6 py-4",
+              "bg-white/50 dark:bg-white/5",
+              "border border-primary-200/50 dark:border-white/10",
               "text-foreground dark:text-white",
               "placeholder:text-muted-foreground dark:placeholder:text-neutral-500",
               "focus:outline-none focus:ring-2 focus:ring-primary-500",
-              "transition-all duration-200"
+              "hover:border-primary-300 dark:hover:border-white/20",
+              "relative z-10", // Ensure input is above background
+              "transition-all duration-300"
             )}
           />
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className={cn(
-              "px-6 py-4 rounded-xl whitespace-nowrap",
+              "w-full md:w-auto px-6 py-4 rounded-xl whitespace-nowrap",
               "bg-gradient-to-r from-primary-500 to-secondary-500",
-              "hover:from-primary-400 hover:to-secondary-400",
               "text-white font-medium",
-              "shadow-lg shadow-primary-500/25 dark:shadow-primary-500/10",
+              "shadow-lg shadow-primary-500/25",
+              "hover:shadow-xl hover:shadow-primary-500/30",
+              "hover:from-primary-400 hover:to-secondary-400",
+              "relative z-10",
+              "cursor-pointer", // Ensure button is above background
               "transition-all duration-300"
             )}
             type="submit"
@@ -202,9 +233,15 @@ function Newsletter({ data }: { data: FooterProps['data']['newsletter'] }) {
           </motion.button>
         </form>
       </div>
-    </GradientCard>
+
+      {/* Glow effects */}
+      <div className="absolute -right-[40%] top-0 h-[500px] w-[500px] rounded-full bg-primary-500/20 dark:bg-primary-400/10 blur-[120px] animate-pulse -z-10" />
+      <div className="absolute -left-[40%] bottom-0 h-[500px] w-[500px] rounded-full bg-secondary-500/20 dark:bg-secondary-400/10 blur-[120px] animate-pulse -z-10" />
+    </div>
   );
 }
+
+
 
 function SocialLinks({ links }: { links: FooterProps['data']['socialLinks'] }) {
   const socialIcons = {
@@ -252,11 +289,11 @@ function SocialLinks({ links }: { links: FooterProps['data']['socialLinks'] }) {
 function ContactCard({ data }: { data: FooterProps['data']['contactInfo'] }) {
   return (
     <GradientCard className="p-8 md:p-10" interactive>
-      <div className="space-y-4">
+      <div className="space-y-4 text-center md:text-left">
         <h3 className="text-2xl md:text-3xl font-bold text-foreground dark:text-white">
           Get in touch
         </h3>
-        <address className="not-italic text-lg space-y-2 text-muted-foreground dark:text-neutral-300">
+        <address className="not-italic text-lg space-y-2 text-muted-foreground dark:text-neutral-300 mx-auto md:mx-0">
           <p>{data.email}</p>
           <p>{data.phone}</p>
           <p className="text-muted-foreground dark:text-neutral-400">{data.address}</p>
@@ -264,7 +301,7 @@ function ContactCard({ data }: { data: FooterProps['data']['contactInfo'] }) {
       </div>
     </GradientCard>
   );
-}
+ }
 
 function BottomSection({ data, className }: Pick<FooterProps, 'data' | 'className'>) {
   return (

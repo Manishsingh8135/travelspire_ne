@@ -16,12 +16,12 @@ export function TourShowcaseHeader({
   className 
 }: TourShowcaseHeaderProps) {
   return (
-    <div className={cn("text-center space-y-6 mb-20", className)}>
+    <div className={cn("text-center  space-y-6 mb-20", className)}>
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="heading-1"
+        className="heading-2"
       >
         <span className="block text-gradient-primary dark:bg-gradient-to-r dark:from-white dark:via-white dark:to-white/70 dark:bg-clip-text dark:text-transparent">
           {title}

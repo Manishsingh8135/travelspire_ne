@@ -167,6 +167,37 @@
   .text-gradient-secondary {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary-500 to-primary-500;
   }
+  /* Button Hover Effect */
+   /* Add to your existing utilities */
+   .interactive {
+    @apply cursor-pointer;
+  }
+
+  /* Interactive Element Styles */
+  button, 
+  [role="button"],
+  .button,
+  a {
+    @apply cursor-pointer;
+  }
+
+  /* Enhanced Link Styles */
+  .link {
+    @apply cursor-pointer
+    hover:text-primary-600
+    dark:hover:text-primary-400
+    transition-colors
+    duration-200;
+  }
+
+  /* Enhanced Button Styles */
+  .btn {
+    @apply cursor-pointer
+    transition-all
+    duration-200
+    active:scale-95;
+  }
+
 }
 
 @layer components {
@@ -204,4 +235,5 @@
   .btn-outline-gradient {
     @apply border-2 border-transparent bg-clip-border hover:border-primary-500 transition-all duration-300;
   }
+  
 }

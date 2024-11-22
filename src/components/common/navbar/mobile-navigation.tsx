@@ -46,7 +46,7 @@ const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNaviga
         )}
       >
         <div className="py-4 space-y-1 px-2">
-          {navigationData.primary.map((item) => (
+          {navigationData.primary.map((item: NavigationItem) => (
             <div key={item.name} className="px-2">
               <motion.button
                 whileTap={{ scale: 0.98 }}
@@ -121,7 +121,7 @@ const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNaviga
           {/* Mobile Secondary Navigation */}
           <div className="px-4 py-4 mt-4 border-t border-primary-200/20 dark:border-primary-800/20">
             <div className="grid grid-cols-3 gap-4">
-              {navigationData.secondary.map((item) => (
+              {navigationData.secondary.map((item: NavigationItem) => (
                 <motion.button
                   key={item.name}
                   whileTap={{ scale: 0.95 }}

@@ -1,4 +1,3 @@
-import DesignSystem from "@/components/design-system/Design";
 import { SplitHeroHome } from "@/components/hero/split-hero-home";
 import { UpcomingTours } from "@/components/tours/upcoming-tours";
 import Image from "next/image";
