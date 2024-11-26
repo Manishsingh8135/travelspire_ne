@@ -43,7 +43,7 @@ export function ContactHero() {
                 Get in touch
               </span>
               <span className="block bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500 dark:from-primary-400 dark:via-primary-500 dark:to-secondary-400 bg-clip-text text-transparent">
-                We'd love to hear from you
+                We&apos;d love to hear from you
               </span>
             </h1>
 
