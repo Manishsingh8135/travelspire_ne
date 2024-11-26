@@ -1,5 +1,8 @@
+import FAQSection from "@/components/faqs/faq-home";
 import { SplitHeroHome } from "@/components/hero/split-hero-home";
+import { TestimonialCarousel } from "@/components/testimonials/testimonial-section";
 import { UpcomingTours } from "@/components/tours/upcoming-tours";
+import { testimonialData } from "@/data/testimonials/testimonial-data";
 import Image from "next/image";
 
 export default function Home() {
@@ -8,6 +11,8 @@ export default function Home() {
       <div>
         <SplitHeroHome/>
         <UpcomingTours/>
+        <TestimonialCarousel data = {testimonialData}/>
+        <FAQSection/>
         
       
     </div>
