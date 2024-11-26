@@ -1,4 +1,3 @@
-// src/components/layout/desktop-navigation.tsx
 "use client"
 
 import React from "react";
@@ -21,7 +20,7 @@ const SubMenuItem = ({ item }: { item: NavigationItem }) => (
     href={item.href}
     className={cn(
       "block w-full px-4 py-3",
-      "text-base",
+      "text-sm",
       "text-foreground/80 hover:text-foreground",
       "hover:bg-primary-50 dark:hover:bg-primary-950/50",
       "transition-all duration-200"
@@ -39,34 +38,65 @@ const SubMenuItem = ({ item }: { item: NavigationItem }) => (
   </Link>
 );
 
+const NavItem = ({ item, active, setActive }: {
+  item: NavigationItem;
+  active: string | null;
+  setActive: (name: string | null) => void;
+}) => {
+  const content = (
+    <span className="flex items-center gap-2">
+      {item.icon && <item.icon className="h-4 w-4" />}
+      {item.name}
+      {item.submenu && (
+        <ChevronDown className="h-4 w-4 text-muted-foreground" />
+      )}
+    </span>
+  );
+
+  const wrapperClassName = "relative block"; // Add this to maintain consistent spacing
+  
+  const buttonClassName = cn(
+    "px-5 py-2.5 rounded-full text-sm font-medium min-w-[100px]", // Added min-width
+    "text-foreground/80 hover:text-foreground",
+    "hover:bg-primary-50 dark:hover:bg-primary-950/50",
+    "transition-all duration-200",
+    "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
+    "inline-flex items-center justify-center", // Center content
+    "mx-1" // Add horizontal margin
+  );
+
+  // If there's a submenu, render as a button
+  if (item.submenu) {
+    return (
+      <div className={wrapperClassName}>
+        <motion.button className={buttonClassName}>
+          {content}
+        </motion.button>
+      </div>
+    );
+  }
+
+  // If no submenu, render as a Link
+  return (
+    <div className={wrapperClassName}>
+      <Link href={item.href} className={buttonClassName}>
+        {content}
+      </Link>
+    </div>
+  );
+};
+
 export const DesktopNavigation = ({ active, setActive, isScrolled }: DesktopNavigationProps) => {
   return (
-    <div className="hidden md:flex items-center space-x-1">
-      {navigationData.primary.map((item: NavigationItem) => (
+    <div className="hidden md:flex items-center space-x-4">
+      {navigationData.primary.map((item) => (
         <div 
-            key={item.name} 
-            className="relative group"
-            onMouseEnter={() => setActive(item.name)}
-            onMouseLeave={() => setActive(null)}
-            >
-          <motion.button
-            className={cn(
-              "px-4 py-2 rounded-full text-base font-medium",
-              "text-foreground/80 hover:text-foreground",
-              "hover:bg-primary-50 dark:hover:bg-primary-950/50",
-              "transition-all duration-200",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
-              "relative overflow-hidden"
-            )}
-          >
-            <span className="flex items-center gap-1">
-              {item.icon && <item.icon className="h-4 w-4" />}
-              {item.name}
-              {item.submenu && (
-                <ChevronDown className="h-4 w-4 text-muted-foreground" />
-              )}
-            </span>
-          </motion.button>
+          key={item.name} 
+          className="relative group"
+          onMouseEnter={() => setActive(item.name)}
+          onMouseLeave={() => setActive(null)}
+        >
+          <NavItem item={item} active={active} setActive={setActive} />
 
           {/* Dropdown Menu */}
           {item.submenu && (
@@ -104,21 +134,25 @@ export const DesktopNavigation = ({ active, setActive, isScrolled }: DesktopNavi
 
       {/* Secondary Navigation */}
       <div className="flex items-center pl-6 ml-6 border-l border-primary-200/20 dark:border-primary-800/20">
-        {navigationData.secondary.map((item: NavigationItem) => (
-          <motion.button
+        {navigationData.secondary.map((item) => (
+          <Link
             key={item.name}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={cn(
-              "p-2 rounded-full",
-              "text-foreground/80 hover:text-foreground",
-              "hover:bg-primary-50 dark:hover:bg-primary-950/50",
-              "transition-all duration-200",
-              "mx-1"
-            )}
+            href={item.href}
           >
-            {item.icon && <item.icon className="h-5 w-5" />}
-          </motion.button>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={cn(
+                "p-2 rounded-full",
+                "text-foreground/80 hover:text-foreground",
+                "hover:bg-primary-50 dark:hover:bg-primary-950/50",
+                "transition-all duration-200",
+                "mx-1"
+              )}
+            >
+              {item.icon && <item.icon className="h-5 w-5" />}
+            </motion.div>
+          </Link>
         ))}
         
         {/* Theme Toggle */}
