@@ -101,7 +101,7 @@ export function ContactForm() {
                     "text-foreground dark:text-white",
                     "placeholder:text-muted-foreground dark:placeholder:text-neutral-500"
                   )}
-                  placeholder="your@email.com"
+                  placeholder="your-email@email.com"
                 />
                 {errors.email && (
                   <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
