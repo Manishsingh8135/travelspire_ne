@@ -10,6 +10,7 @@ import { Menu, X } from "lucide-react";
 import { ModeToggle } from "@/components/theme/theme-button/toggle-button";
 import { DesktopNavigation } from "./desktop-navigation";
 import MobileNavigation from "./mobile-navigation";
+import { Logo } from "../logo/logo";
 
 export const AdvancedNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -73,12 +74,12 @@ export const AdvancedNavbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link 
-                href="/" 
+              <div 
+                
                 className="text-2xl font-bold text-gradient-primary"
               >
-                Travelspire NE
-              </Link>
+                <Logo/>
+              </div>
             </motion.div>
 
             {/* Desktop Navigation */}
