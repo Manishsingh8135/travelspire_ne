@@ -5,9 +5,9 @@ import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { 
-  Clock, MapPin, Calendar, Check, 
-  BadgeIndianRupee, Mountain 
+import {
+  Clock, MapPin, Calendar, Check,
+  BadgeIndianRupee, Mountain
 } from "lucide-react";
 import { Tour } from "@/types/tours/tour";
 import { DotPattern, GlowEffect } from "@/components/ui/background-patterns";
@@ -15,6 +15,7 @@ import { TourSection } from "./tour-section";
 import { TourItineraryDay } from "./tour-itinerary-day";
 import { TourBookingCard } from "./tour-booking-card";
 import { TourInfoCard } from "./tour-info-card";
+import { TourGallery } from "./tour-gallery";
 
 interface TourDetailProps {
   tour: Tour;
@@ -25,11 +26,11 @@ export function TourDetail({ tour, className }: TourDetailProps) {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
-  
+
   return (
     <div className={cn("relative min-h-screen", className)}>
       {/* Hero Section with Parallax */}
-      <motion.div 
+      <motion.div
         style={{ opacity, scale }}
         className="relative h-[80vh] w-full"
       >
@@ -42,14 +43,14 @@ export function TourDetail({ tour, className }: TourDetailProps) {
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60" />
-        
+
         {/* Background Pattern */}
         <DotPattern className="opacity-20" />
-        
+
         {/* Hero Content */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent">
           <div className="relative h-full max-w-7xl mx-auto px-4 flex flex-col justify-end pb-20">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="space-y-4"
@@ -100,13 +101,13 @@ export function TourDetail({ tour, className }: TourDetailProps) {
         </div>
 
         {/* Gradient Glows */}
-        <GlowEffect 
+        <GlowEffect
           color="primary"
           size="lg"
           opacity="medium"
           className="absolute -right-[40%] top-0"
         />
-        <GlowEffect 
+        <GlowEffect
           color="secondary"
           size="lg"
           opacity="medium"
@@ -128,7 +129,7 @@ export function TourDetail({ tour, className }: TourDetailProps) {
               <TourSection title="Itinerary">
                 <div className="space-y-8">
                   {tour.itinerary.map((day, index) => (
-                    <TourItineraryDay 
+                    <TourItineraryDay
                       key={index}
                       day={day}
                       index={index}
@@ -141,7 +142,7 @@ export function TourDetail({ tour, className }: TourDetailProps) {
               <TourSection title="Tour Highlights">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {tour.highlights.map((highlight, index) => (
-                    <div 
+                    <div
                       key={index}
                       className="flex items-start gap-3"
                     >
@@ -156,26 +157,7 @@ export function TourDetail({ tour, className }: TourDetailProps) {
 
               {/* Gallery */}
               <TourSection title="Gallery">
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {tour.gallery.map((image, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="relative aspect-square rounded-2xl overflow-hidden group"
-                    >
-                      <Image
-                        src={image}
-                        alt={`Tour image ${index + 1}`}
-                        fill
-                        className="object-cover transform-gpu transition-transform duration-500 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
-                    </motion.div>
-                  ))}
-                </div>
+                <TourGallery images={tour.gallery}/>
               </TourSection>
             </div>
 

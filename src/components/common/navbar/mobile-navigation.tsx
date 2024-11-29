@@ -16,6 +16,64 @@ interface MobileNavigationProps {
   setActive: (value: string | null) => void;
 }
 
+const MobileNavItem = ({ 
+  item, 
+  active, 
+  setActive,
+  setIsOpen 
+}: {
+  item: NavigationItem;
+  active: string | null;
+  setActive: (value: string | null) => void;
+  setIsOpen: (value: boolean) => void;
+}) => {
+  if (item.submenu) {
+    return (
+      <motion.button
+        whileTap={{ scale: 0.98 }}
+        onClick={() => setActive(active === item.name ? null : item.name)}
+        className={cn(
+          "w-full px-4 py-3 rounded-lg",
+          "flex items-center justify-between",
+          "text-foreground/80 hover:text-foreground",
+          "hover:bg-primary-50 dark:hover:bg-primary-950/50",
+          "transition-all duration-200"
+        )}
+      >
+        <span className="flex items-center gap-2">
+          {item.icon && <item.icon className="h-5 w-5 text-primary-500" />}
+          <span className="font-medium">{item.name}</span>
+        </span>
+        <ChevronDown
+          className={cn(
+            "h-4 w-4 text-muted-foreground transition-transform duration-200",
+            active === item.name && "rotate-180"
+          )}
+        />
+      </motion.button>
+    );
+  }
+
+  return (
+    <Link
+      href={item.href}
+      onClick={() => setIsOpen(false)}
+      className={cn(
+        "w-full px-4 py-3 rounded-lg",
+        "flex items-center",
+        "text-foreground/80 hover:text-foreground",
+        "hover:bg-primary-50 dark:hover:bg-primary-950/50",
+        "transition-all duration-200"
+      )}
+    >
+      <span className="flex items-center gap-2">
+        {item.icon && <item.icon className="h-5 w-5 text-primary-500" />}
+        <span className="font-medium">{item.name}</span>
+      </span>
+    </Link>
+  );
+};
+
 const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNavigationProps) => {
   if (!isOpen) return null;
 
@@ -46,32 +104,14 @@ const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNaviga
         )}
       >
         <div className="py-4 space-y-1 px-2">
-          {navigationData.primary.map((item: NavigationItem) => (
+          {navigationData.primary.map((item) => (
             <div key={item.name} className="px-2">
-              <motion.button
-                whileTap={{ scale: 0.98 }}
-                onClick={() => item.submenu && setActive(active === item.name ? null : item.name)}
-                className={cn(
-                  "w-full px-4 py-3 rounded-lg",
-                  "flex items-center justify-between",
-                  "text-foreground/80 hover:text-foreground",
-                  "hover:bg-primary-50 dark:hover:bg-primary-950/50",
-                  "transition-all duration-200"
-                )}
-              >
-                <span className="flex items-center gap-2">
-                  {item.icon && <item.icon className="h-5 w-5 text-primary-500" />}
-                  <span className="font-medium">{item.name}</span>
-                </span>
-                {item.submenu && (
-                  <ChevronDown
-                    className={cn(
-                      "h-4 w-4 text-muted-foreground transition-transform duration-200",
-                      active === item.name && "rotate-180"
-                    )}
-                  />
-                )}
-              </motion.button>
+              <MobileNavItem
+                item={item}
+                active={active}
+                setActive={setActive}
+                setIsOpen={setIsOpen}
+              />
 
               {/* Mobile Submenu */}
               {item.submenu && (
@@ -121,10 +161,11 @@ const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNaviga
           {/* Mobile Secondary Navigation */}
           <div className="px-4 py-4 mt-4 border-t border-primary-200/20 dark:border-primary-800/20">
             <div className="grid grid-cols-3 gap-4">
-              {navigationData.secondary.map((item: NavigationItem) => (
-                <motion.button
+              {navigationData.secondary.map((item) => (
+                <Link
                   key={item.name}
-                  whileTap={{ scale: 0.95 }}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
                   className={cn(
                     "flex flex-col items-center",
                     "text-sm text-foreground/80 hover:text-foreground",
@@ -135,7 +176,7 @@ const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNaviga
                 >
                   {item.icon && <item.icon className="h-6 w-6 mb-1" />}
                   <span>{item.name}</span>
-                </motion.button>
+                </Link>
               ))}
             </div>
           </div>

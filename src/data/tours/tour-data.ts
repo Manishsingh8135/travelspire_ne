@@ -25,12 +25,14 @@ export const tawangExpedition: Tour = {
   price: 16499,
   featured: true,
 
-  heroImage: imageLinks[3],
-  thumbnail: imageLinks[3],
+  heroImage: "/images/places/tawang/Tawang_1.PNG",
+  thumbnail: "/images/places/tawang/Tawang_1.PNG",
   gallery: [
-    imageLinks[2],
-    imageLinks[3],
-    imageLinks[0]
+    "/images/places/tawang/Tawang_2.JPG",
+    "/images/places/tawang/Tawang_3.JPG",
+    "/images/places/tawang/Tawang_4.PNG",
+    "/images/places/tawang/Tawang_5.jpg",
+    "/images/places/tawang/Tawang_6.PNG"
   ],
 
   highlights: [
@@ -149,6 +151,8 @@ export const tawangExpedition: Tour = {
   bestTimeToVisit: ["October", "November", "March", "April"]
 };
 
+
+
 export const dongValleyExpedition: Tour = {
   id: "dong-valley-expedition",
   slug: "dong-valley-expedition",
@@ -162,12 +166,13 @@ export const dongValleyExpedition: Tour = {
   price: 9999,
   featured: false,
 
-  heroImage: imageLinks[1],
-  thumbnail: imageLinks[2],
+  heroImage: "/images/places/dong/Dong_1.JPG",
+  thumbnail: "/images/places/dong/Dong_1.JPG",
   gallery: [
-    imageLinks[3],
-    imageLinks[0],
-    imageLinks[1]
+    "/images/places/dong/Dong_2.jpg",
+    "/images/places/dong/Dong_3.jpg",
+    "/images/places/dong/Dong_4.jpg",
+    "/images/places/dong/Dong_5.jpg"
   ],
 
   highlights: [
@@ -280,7 +285,131 @@ export const dongValleyExpedition: Tour = {
   bestTimeToVisit: ["October", "November", "March", "April"]
 };
 
+
+export const aniniExpedition: Tour = {
+  id: "anini-expedition",
+  slug: "anini-expedition",
+  type: "Adventure",
+  title: "Anini Dibang Valley",
+  subtitle: "3 Days in the Heart of Dibang Valley",
+  overview: "Experience the untouched beauty of Dibang Valley, featuring stunning waterfalls, the scenic Mayodia Pass, and pristine landscapes. Explore Acheso, witness the majestic Mawu ando & Mathu waterfalls, and immerse yourself in the natural splendor of Anini.",
+  duration: "3 Days / 2 Nights",
+  location: "Anini, Dibang Valley, Arunachal Pradesh",
+  startDate: "Available Year Round",
+  price: 10999,
+  featured: false,
+
+  // We'll need proper images later, using placeholders for now
+  heroImage: "/images/places/anini/Anini_1.JPG", // Replace with actual Anini images
+  thumbnail: "/images/places/anini/Anini_1.JPG",
+  gallery: [
+    "/images/places/anini/Anini_2.JPG",
+    "/images/places/anini/Anini_3.jpg",
+    "/images/places/anini/Anini_4.JPG",
+    "/images/places/anini/Anini_6.jpg",
+    "/images/places/anini/Anini_7.jpg"
+  ],
+
+  highlights: [
+    "Explore Dibang Valley & Acheso",
+    "Visit Mawu ando & Mathu waterfall",
+    "Experience Chigu camp & Dree-afra",
+    "Journey through Mayodia Pass",
+    "Scenic 480km journey from Dibrugarh",
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Anini",
+      description: "Early morning start for a scenic 480km journey to Anini Valley.",
+      activities: [
+        "04:00-05:00 Pickup from Dibrugarh",
+        "Journey to Anini (480kms)",
+        "Lunch stoppage en route",
+        "Evening arrival and overnight stay at Anini Valley"
+      ]
+    },
+    {
+      title: "Anini Exploration",
+      description: "Full day exploring the wonders of Dibang Valley.",
+      activities: [
+        "Good morning from Anini",
+        "Explore Dibang Valley & Acheso",
+        "Visit Mawu ando & Mathu waterfall",
+        "Experience Chigu camp & Dree-afra",
+        "Overnight stay in Anini"
+      ]
+    },
+    {
+      title: "Return to Dibrugarh",
+      description: "Return journey with scenic stops.",
+      activities: [
+        "Morning departure from Anini",
+        "Stoppage at Mayodia Pass",
+        "Journey back to Dibrugarh",
+        "Evening arrival in Dibrugarh"
+      ]
+    }
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170], // Dibrugarh
+      [28.8427, 95.8997], // Anini
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Starting point of the journey"
+      },
+      {
+        name: "Anini",
+        location: [28.8427, 95.8997],
+        description: "Main destination in Dibang Valley"
+      }
+    ]
+  },
+
+  inclusions: [
+    "Breakfast",
+    "Vehicle charges",
+    "Fuel charges and Driver",
+    "Stay with necessary accommodation",
+    "Guide charges",
+    "Inner line permit"
+  ],
+
+  exclusions: [
+    "Lunch & Dinner",
+    "Extra activities like Rafting",
+    "Tourist Spot tickets",
+    "Railway & Airway tickets"
+  ],
+
+  importantNote: "To confirm this trip please pay 50% of the total package cost i.e., ₹10999/- per person",
+
+  thingsToCarry: [
+    "Comfortable walking shoes",
+    "Warm clothes",
+    "Camera",
+    "Personal medications",
+    "Valid ID proof"
+  ],
+
+  maxGroupSize: 10, // Setting a reasonable number since not specified
+  difficulty: "Moderate",
+  altitude: 2000, // Approximate, should be verified
+  bestTimeToVisit: ["October", "November", "March", "April"] // Standard Northeast season
+};
+
+
 export const upcomingTours = [
   tawangExpedition,
-  dongValleyExpedition
+  dongValleyExpedition,
+  aniniExpedition
 ];
+
+
+
+

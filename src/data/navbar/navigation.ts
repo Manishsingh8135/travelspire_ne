@@ -71,25 +71,25 @@ import {
           },
         ],
       },
-      {
-        name: "Plan Your Trip",
-        href: "/plan",
-        icon: Calendar,
-        submenu: [
-          { 
-            name: "Accommodations", 
-            href: "/plan/stay",
-            icon: Hotel,
-            description: "Where to Stay"
-          },
-          { 
-            name: "Transportation", 
-            href: "/plan/transport",
-            icon: Car,
-            description: "How to Get Around"
-          },
-        ],
-      },
+      // {
+      //   name: "Plan Your Trip",
+      //   href: "/plan",
+      //   icon: Calendar,
+      //   submenu: [
+      //     { 
+      //       name: "Accommodations", 
+      //       href: "/plan/stay",
+      //       icon: Hotel,
+      //       description: "Where to Stay"
+      //     },
+      //     { 
+      //       name: "Transportation", 
+      //       href: "/plan/transport",
+      //       icon: Car,
+      //       description: "How to Get Around"
+      //     },
+      //   ],
+      // },
       { 
         name: "About Us", 
         href: "/about",

@@ -57,8 +57,8 @@ export const footerData = {
     bottomSection: {
       copyright: "© 2024 Travelspire Northeast. All rights reserved.",
       legalLinks: [
-        { text: "Privacy Policy", href: "/privacy" },
-        { text: "Terms of Service", href: "/terms" },
+        { text: "Privacy Policy", href: "/privacy-policy" },
+        { text: "Terms of Service", href: "/terms-and-conditions" },
         { text: "Booking Policy", href: "/booking-policy" }
       ]
     },
