@@ -25,12 +25,14 @@ export const tawangExpedition: Tour = {
   price: 16499,
   featured: true,
 
-  heroImage: imageLinks[3],
-  thumbnail: imageLinks[3],
+  heroImage: "/images/places/tawang/Tawang_1.PNG",
+  thumbnail: "/images/places/tawang/Tawang_1.PNG",
   gallery: [
-    imageLinks[2],
-    imageLinks[3],
-    imageLinks[0]
+    "/images/places/tawang/Tawang_2.JPG",
+    "/images/places/tawang/Tawang_3.JPG",
+    "/images/places/tawang/Tawang_4.PNG",
+    "/images/places/tawang/Tawang_5.jpg",
+    "/images/places/tawang/Tawang_6.PNG"
   ],
 
   highlights: [
@@ -149,6 +151,8 @@ export const tawangExpedition: Tour = {
   bestTimeToVisit: ["October", "November", "March", "April"]
 };
 
+
+
 export const dongValleyExpedition: Tour = {
   id: "dong-valley-expedition",
   slug: "dong-valley-expedition",
@@ -162,12 +166,13 @@ export const dongValleyExpedition: Tour = {
   price: 9999,
   featured: false,
 
-  heroImage: imageLinks[1],
-  thumbnail: imageLinks[2],
+  heroImage: "/images/places/dong/Dong_1.JPG",
+  thumbnail: "/images/places/dong/Dong_1.JPG",
   gallery: [
-    imageLinks[3],
-    imageLinks[0],
-    imageLinks[1]
+    "/images/places/dong/Dong_2.jpg",
+    "/images/places/dong/Dong_3.jpg",
+    "/images/places/dong/Dong_4.jpg",
+    "/images/places/dong/Dong_5.jpg"
   ],
 
   highlights: [
@@ -295,12 +300,14 @@ export const aniniExpedition: Tour = {
   featured: false,
 
   // We'll need proper images later, using placeholders for now
-  heroImage: imageLinks[0], // Replace with actual Anini images
-  thumbnail: imageLinks[1],
+  heroImage: "/images/places/anini/Anini_1.JPG", // Replace with actual Anini images
+  thumbnail: "/images/places/anini/Anini_1.JPG",
   gallery: [
-    imageLinks[2],
-    imageLinks[3],
-    imageLinks[0]
+    "/images/places/anini/Anini_2.JPG",
+    "/images/places/anini/Anini_3.jpg",
+    "/images/places/anini/Anini_4.JPG",
+    "/images/places/anini/Anini_6.jpg",
+    "/images/places/anini/Anini_7.jpg"
   ],
 
   highlights: [
