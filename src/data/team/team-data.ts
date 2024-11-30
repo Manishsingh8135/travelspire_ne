@@ -6,7 +6,7 @@ export const teamMembers: TeamMember[] = [
     id: 'ss-001',
     name: 'Sandeep Sonowal',
     roles: ['Founder', 'Lead Explorer'],
-    image: '/images/team/sandeep.jpg', // Update with actual image path
+    image: '/images/team/Sandeep_2.jpg', // Update with actual image path
     location: {
       city: 'Dibrugarh',
       state: 'Assam'
