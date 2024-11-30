@@ -28,10 +28,11 @@ export const tawangExpedition: Tour = {
   heroImage: "/images/places/tawang/Tawang_1.PNG",
   thumbnail: "/images/places/tawang/Tawang_1.PNG",
   gallery: [
-    "/images/places/tawang/Tawang_2.JPG",
+    "/images/places/tawang/Tawang_9.JPG",
+    "/images/places/tawang/Tawang_5.jpg",
     "/images/places/tawang/Tawang_3.JPG",
     "/images/places/tawang/Tawang_4.PNG",
-    "/images/places/tawang/Tawang_5.jpg",
+   
     "/images/places/tawang/Tawang_6.PNG"
   ],
 
@@ -303,8 +304,8 @@ export const aniniExpedition: Tour = {
   heroImage: "/images/places/anini/Anini_1.JPG", // Replace with actual Anini images
   thumbnail: "/images/places/anini/Anini_1.JPG",
   gallery: [
-    "/images/places/anini/Anini_2.JPG",
-    "/images/places/anini/Anini_3.jpg",
+    "/images/places/anini/Anini_9.JPG",
+    "/images/places/anini/Anini_10.JPG",
     "/images/places/anini/Anini_4.JPG",
     "/images/places/anini/Anini_6.jpg",
     "/images/places/anini/Anini_7.jpg"

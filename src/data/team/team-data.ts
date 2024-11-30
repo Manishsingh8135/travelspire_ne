@@ -19,8 +19,8 @@ export const teamMembers: TeamMember[] = [
     social: [
       {
         platform: 'instagram',
-        handle: '@travelwith_82',
-        url: 'https://instagram.com/travelwith_82'
+        handle: '@travelspire_ne',
+        url: 'https://instagram.com/travelspire_ne'
       }
     ],
     achievements: [

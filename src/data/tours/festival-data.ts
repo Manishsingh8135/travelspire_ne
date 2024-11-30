@@ -22,7 +22,9 @@ export const hornbillFestival: FestivalTour = {
   thumbnail: "/images/places/hornbill/Hornbill_3.PNG",
   gallery: [
     // "/images/places/hornbill/Hornbill_1.PNG",
+    "/images/places/hornbill/Dzoku_3.jpg",
     "/images/places/hornbill/Hornbill_2.WEBP",
+    "/images/places/hornbill/Dzoku_2.jpg",
     "/images/places/hornbill/Hornbill_3.PNG",
     "/images/places/hornbill/Hornbill_4.PNG"
   ],
