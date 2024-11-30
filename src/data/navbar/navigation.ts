@@ -21,6 +21,7 @@ import {
   
   export const navigationData: NavigationData = {
     primary: [
+      /* Temporarily hidden - Destinations
       {
         name: "Destinations",
         href: "/destinations",
@@ -46,6 +47,8 @@ import {
           },
         ],
       },
+      */
+      /* Temporarily hidden - Tours
       {
         name: "Tours",
         href: "/tours",
@@ -71,25 +74,28 @@ import {
           },
         ],
       },
-      // {
-      //   name: "Plan Your Trip",
-      //   href: "/plan",
-      //   icon: Calendar,
-      //   submenu: [
-      //     { 
-      //       name: "Accommodations", 
-      //       href: "/plan/stay",
-      //       icon: Hotel,
-      //       description: "Where to Stay"
-      //     },
-      //     { 
-      //       name: "Transportation", 
-      //       href: "/plan/transport",
-      //       icon: Car,
-      //       description: "How to Get Around"
-      //     },
-      //   ],
-      // },
+      */
+      /* Temporarily hidden - Plan Your Trip
+      {
+        name: "Plan Your Trip",
+        href: "/plan",
+        icon: Calendar,
+        submenu: [
+          { 
+            name: "Accommodations", 
+            href: "/plan/stay",
+            icon: Hotel,
+            description: "Where to Stay"
+          },
+          { 
+            name: "Transportation", 
+            href: "/plan/transport",
+            icon: Car,
+            description: "How to Get Around"
+          },
+        ],
+      },
+      */
       { 
         name: "About Us", 
         href: "/about",
@@ -99,23 +105,25 @@ import {
         name: "Contact", 
         href: "/contact",
         icon: Phone 
-      },
+      }
     ],
     secondary: [
+      /* Temporarily hidden - Secondary navigation
       { 
         name: "Search", 
-        href: "/search", 
+        href: "/search",
         icon: Search 
       },
       { 
         name: "Notifications", 
-        href: "/notifications", 
+        href: "/notifications",
         icon: Bell 
       },
       { 
         name: "Account", 
-        href: "/account", 
+        href: "/account",
         icon: UserCircle 
-      },
-    ],
+      }
+      */
+    ]
   };
