@@ -308,7 +308,7 @@ export const aniniExpedition: Tour = {
     "/images/places/anini/Anini_10.JPG",
     "/images/places/anini/Anini_4.JPG",
     "/images/places/anini/Anini_6.jpg",
-    "/images/places/anini/Anini_7.jpg"
+    "/images/places/anini/Anini_8.jpg"
   ],
 
   highlights: [
