@@ -52,24 +52,24 @@ import {
   export const socialLinks = [
     {
       name: "Instagram",
-      href: "https://instagram.com/travelspire_northeast",
+      href: "https://instagram.com/travelspire_ne",
       icon: Instagram
     },
-    {
-      name: "Twitter",
-      href: "https://twitter.com/travelspirene",
-      icon: Twitter
-    },
-    {
-      name: "Facebook",
-      href: "https://facebook.com/travelspirene",
-      icon: Facebook
-    },
-    {
-      name: "LinkedIn",
-      href: "https://linkedin.com/company/travelspire-northeast",
-      icon: Linkedin
-    }
+    // {
+    //   name: "Twitter",
+    //   href: "https://twitter.com/travelspirene",
+    //   icon: Twitter
+    // },
+    // {
+    //   name: "Facebook",
+    //   href: "https://facebook.com/travelspirene",
+    //   icon: Facebook
+    // },
+    // {
+    //   name: "LinkedIn",
+    //   href: "https://linkedin.com/company/travelspire-northeast",
+    //   icon: Linkedin
+    // }
   ];
   
   export const officeLocation = {

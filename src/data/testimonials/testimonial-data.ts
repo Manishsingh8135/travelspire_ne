@@ -55,7 +55,7 @@ export const testimonialData: TestimonialSection = {
       media: [
         {
           type: 'image',
-          url: '/images/places/tawang/Tawang_3.jpg',
+          url: '/images/places/tawang/Tawang_6.PNG',
           caption: 'Sunrise at Tawang Monastery',
           location: 'Tawang, Arunachal Pradesh'
         }
