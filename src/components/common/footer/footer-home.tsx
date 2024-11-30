@@ -7,7 +7,7 @@ export function FooterHome() {
   return (
     <Footer 
       data={footerData} 
-      className="mt-20 md:mt-32 border-t border-primary-100/20 dark:border-white/10" 
+      className="border-primary-100/20 dark:border-white/10" 
     />
   );
 }

@@ -354,7 +354,7 @@ export function Footer({ data, className }: FooterProps) {
         <MainSection data={data.mainSection} />
         
         <div className="space-y-20">
-          <QuickLinks data={data.quickLinks} />
+          {/* <QuickLinks data={data.quickLinks} /> */}
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <Newsletter data={data.newsletter} />

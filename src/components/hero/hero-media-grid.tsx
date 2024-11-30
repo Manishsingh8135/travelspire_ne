@@ -69,6 +69,9 @@ const MediaItem = ({
 };
 
 export function HeroMediaGrid({ items }: { items: Omit<MediaItemProps, "index">[] }) {
+  console.log('Total items received:', items.length);
+  console.log('Items:', items);
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}

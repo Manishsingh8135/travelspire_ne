@@ -404,7 +404,7 @@ export const aniniExpedition: Tour = {
 };
 
 
-export const upcomingTours = [
+export const regularTours = [
   tawangExpedition,
   dongValleyExpedition,
   aniniExpedition

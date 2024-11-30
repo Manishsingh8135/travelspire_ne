@@ -1,4 +1,5 @@
-import { TourDetail } from "@/components/tours/tour-details/tour-detail";
+// app/tours/[slug]/page.tsx
+import { TourWrapper } from "@/components/tours/tour-details/tour-wrapper";
 import { getTourBySlug } from "@/data/tours/tour-helper";
 import { notFound } from "next/navigation";
 
@@ -16,7 +17,7 @@ export default async function TourPage({ params }: { params: Promise<Params> }) 
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <TourDetail tour={tour} />
+      <TourWrapper tour={tour} />
     </div>
   );
 }

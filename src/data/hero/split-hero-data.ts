@@ -28,25 +28,23 @@ export const heroData = {
   
   export const mediaData = [
     {
-      src: "/images/places/tawang/Tawang_1.PNG",
-      alt: "Tawang Monestry",
+      src: "/images/places/dong/Dong_1.JPG",
+      alt: "Dong Village Landscape",
     },
     {
-      src: "/images/places/anini/Anini_1.JPG",
-      alt: "Anini cottage",
+      src: "/images/places/tawang/Tawang_6.PNG",
+      alt: "Tawang Monastery View",
+    },
+    {
+      src: "/images/places/anini/Anini_4.JPG",
+      alt: "Anini Scenic Beauty",
+    },
+    {
+      src: "/images/places/dong/Dong_5.jpg",
+      alt: "Dong Valley",
     },
     {
       src: "/images/places/hornbill/Hornbill_1.PNG",
-      alt: "Traditional women in hornbill festival",
-    },
-    {
-      src: "/images/places/anini/Anini_2.JPG",
-      alt: "Anini snowy mountains",
-    },
-    
-    {
-      src: "/images/places/hornbill/Hornbill_1.PNG",
-      alt: "Traditional women in hornbill festival",
-    },
-    
+      alt: "Hornbill Festival Celebration",
+    }
   ];
