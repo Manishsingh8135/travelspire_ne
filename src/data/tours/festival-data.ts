@@ -18,14 +18,13 @@ export const hornbillFestival: FestivalTour = {
     year: 2024
   },
 
-  heroImage: "/images/places/hornbill/Hornbill_1.PNG",
-  thumbnail: "/images/places/hornbill/Hornbill_1.PNG",
+  heroImage: "/images/places/hornbill/Hornbill_3.PNG",
+  thumbnail: "/images/places/hornbill/Hornbill_3.PNG",
   gallery: [
-    "/images/places/hornbill/Hornbill_1.PNG",
-    "/images/places/hornbill/Hornbill_2.PNG",
+    // "/images/places/hornbill/Hornbill_1.PNG",
+    "/images/places/hornbill/Hornbill_2.WEBP",
     "/images/places/hornbill/Hornbill_3.PNG",
-    "/images/places/hornbill/Hornbill_4.PNG",
-    "/images/places/hornbill/Hornbill_5.PNG"
+    "/images/places/hornbill/Hornbill_4.PNG"
   ],
 
   highlights: [

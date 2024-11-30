@@ -69,7 +69,7 @@ export const footerData = {
       buttonText: "Subscribe"
     },
     contactInfo: {
-      email: "travelspirene82@gmail.com",
+      email: "info@travelspirene.com",
       phone: "+91 98641 41211",
       address: "Dibrugarh, Assam, India"
     }

@@ -26,7 +26,7 @@ import {
       description: "Send us your queries and we'll get back to you.",
       action: {
         text: "Send email",
-        href: "mailto:travelspirene82@gmail.com"
+        href: "mailto:info@travelspirene.com"
       }
     },
     {
@@ -76,7 +76,7 @@ import {
     title: "Dibrugarh Office",
     address: "HSR Layout, Dibrugarh, Assam, India",
     phone: "+91 98641 41211",
-    email: "travelspirene82@gmail.com",
+    email: "info@travelspirene.com",
     coordinates: {
       lat: 27.4728,
       lng: 95.0170

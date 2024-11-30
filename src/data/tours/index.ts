@@ -7,7 +7,9 @@ import { dambukOrangeFestival, dambukBikeTour } from "./special-activity-data";
 // Special tours categorization
 export const specialTours = {
   festivals: [hornbillFestival],
-  activities: [dambukOrangeFestival, dambukBikeTour]
+  // Temporarily hidden:
+  // activities: [dambukOrangeFestival, dambukBikeTour]
+  activities: []
 };
 
 // Export specific tour arrays

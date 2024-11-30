@@ -119,14 +119,23 @@ export function FestivalTourCard({ tour, index }: FestivalTourCardProps) {
             <Link 
               href={`/tours/${tour.slug}`}
               className={cn(
-                "group/btn flex items-center gap-2 px-6 py-3 rounded-xl",
-                "bg-white/10 backdrop-blur-md",
-                "hover:bg-white/20 transition-colors duration-300",
-                "text-white font-medium"
+                "group/btn relative inline-flex items-center justify-center gap-2",
+                // Mobile baseline
+                "px-4 py-2 rounded-lg",
+                "text-sm",
+                // Desktop scaling
+                "md:px-8 md:py-4 md:rounded-full",
+                "md:text-xl",
+                // Consistent styling
+                "bg-gradient-to-r from-primary-500 to-secondary-500",
+                "hover:from-primary-400 hover:to-secondary-400",
+                "text-white font-medium",
+                "shadow-xl shadow-primary-500/25 dark:shadow-primary-500/10",
+                "transition-all duration-300"
               )}
             >
               View Packages
-              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+              <ArrowUpRight className="w-3 h-3 md:w-5 md:h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
             </Link>
           </div>
         </div>
