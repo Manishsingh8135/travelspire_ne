@@ -3,7 +3,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Tour } from "@/types/tours/tour";
+import { Tour, isRegularTour, isFestivalTour, isSpecialActivityTour } from "@/types/tours/tour";
 import { DotPattern } from "@/components/ui/background-patterns";
 
 interface TourBookingCardProps {
@@ -12,6 +12,27 @@ interface TourBookingCardProps {
 }
 
 export function TourBookingCard({ tour, className }: TourBookingCardProps) {
+  // Get the appropriate price based on tour type
+  const getPrice = () => {
+    if (isRegularTour(tour)) {
+      return tour.price;
+    }
+    if (isFestivalTour(tour) || isSpecialActivityTour(tour)) {
+      return Math.min(...tour.variants.map(v => v.price));
+    }
+    return 0;
+  };
+
+  // Get the appropriate price label
+  const getPriceLabel = () => {
+    if (isRegularTour(tour)) {
+      return "Price per person";
+    }
+    return "Starting from";
+  };
+
+  const price = getPrice();
+
   return (
     <div className={cn(
       "relative rounded-[2.5rem] overflow-hidden",
@@ -32,9 +53,9 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
           "text-center pb-6",
           "border-b border-primary-100/20 dark:border-white/10"
         )}>
-          <div className="text-sm text-muted-foreground">Price per person</div>
+          <div className="text-sm text-muted-foreground">{getPriceLabel()}</div>
           <div className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            ₹{tour.price.toLocaleString()}
+            ₹{price.toLocaleString()}
           </div>
         </div>
 

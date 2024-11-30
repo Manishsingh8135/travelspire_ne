@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Clock, MapPin, Calendar } from "lucide-react";
-import { Tour } from "@/types/tours/tour";
+import { Tour, isRegularTour, isFestivalTour, isSpecialActivityTour } from "@/types/tours/tour";
 import { DotPattern } from "@/components/ui/background-patterns";
 
 interface TourCardProps {
@@ -17,6 +17,43 @@ interface TourCardProps {
 
 export function TourCard({ tour, index }: TourCardProps) {
   const [isHovered, setIsHovered] = React.useState(false);
+
+  // Helper functions to get the correct display values based on tour type
+  const getDuration = () => {
+    if (isRegularTour(tour)) {
+      return tour.duration;
+    }
+    if (isFestivalTour(tour) || isSpecialActivityTour(tour)) {
+      const shortestVariant = tour.variants.reduce((prev, curr) => 
+        prev.duration.days < curr.duration.days ? prev : curr
+      );
+      return `${shortestVariant.duration.days} Days`;
+    }
+    return "Multiple Options";
+  };
+
+  const getStartDate = () => {
+    if (isRegularTour(tour)) {
+      return tour.startDate;
+    }
+    if (isFestivalTour(tour) || isSpecialActivityTour(tour)) {
+      return new Date(tour.eventDates.start).toLocaleDateString('en-US', { 
+        month: 'short',
+        day: 'numeric'
+      });
+    }
+    return "";
+  };
+
+  const getPrice = () => {
+    if (isRegularTour(tour)) {
+      return tour.price;
+    }
+    if (isFestivalTour(tour) || isSpecialActivityTour(tour)) {
+      return Math.min(...tour.variants.map(v => v.price));
+    }
+    return 0;
+  };
 
   return (
     <motion.div
@@ -70,7 +107,7 @@ export function TourCard({ tour, index }: TourCardProps) {
           <div className="flex flex-wrap gap-4 text-sm text-white/80">
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>{tour.duration}</span>
+              <span>{getDuration()}</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4" />
@@ -78,7 +115,7 @@ export function TourCard({ tour, index }: TourCardProps) {
             </div>
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
-              <span>{tour.startDate}</span>
+              <span>{getStartDate()}</span>
             </div>
           </div>
 
@@ -96,7 +133,7 @@ export function TourCard({ tour, index }: TourCardProps) {
           <div className="flex items-end justify-between">
             <div>
               <div className="text-sm text-white/60">Starting from</div>
-              <div className="text-2xl font-bold text-white">₹{tour.price.toLocaleString()}</div>
+              <div className="text-2xl font-bold text-white">₹{getPrice().toLocaleString()}</div>
             </div>
 
             <Link

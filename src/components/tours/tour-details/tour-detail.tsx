@@ -9,7 +9,7 @@ import {
   Clock, MapPin, Calendar, Check,
   BadgeIndianRupee, Mountain
 } from "lucide-react";
-import { Tour } from "@/types/tours/tour";
+import { Tour, isRegularTour, isFestivalTour, isSpecialActivityTour } from "@/types/tours/tour";
 import { DotPattern, GlowEffect } from "@/components/ui/background-patterns";
 import { TourSection } from "./tour-section";
 import { TourItineraryDay } from "./tour-itinerary-day";
@@ -26,6 +26,45 @@ export function TourDetail({ tour, className }: TourDetailProps) {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+
+  // Helper functions to get the correct display values based on tour type
+  const getDuration = () => {
+    if (isRegularTour(tour)) {
+      return tour.duration;
+    }
+    if (isFestivalTour(tour) || isSpecialActivityTour(tour)) {
+      const shortestVariant = tour.variants.reduce((prev, curr) => 
+        prev.duration.days < curr.duration.days ? prev : curr
+      );
+      return `${shortestVariant.duration.days} Days / ${shortestVariant.duration.nights} Nights`;
+    }
+    return "Multiple Options";
+  };
+
+  const getStartDate = () => {
+    if (isRegularTour(tour)) {
+      return tour.startDate;
+    }
+    if (isFestivalTour(tour) || isSpecialActivityTour(tour)) {
+      return new Date(tour.eventDates.start).toLocaleDateString('en-US', { 
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+      });
+    }
+    return "";
+  };
+
+  const getPrice = () => {
+    if (isRegularTour(tour)) {
+      return `₹${tour.price.toLocaleString()} per person`;
+    }
+    if (isFestivalTour(tour) || isSpecialActivityTour(tour)) {
+      const basePrice = Math.min(...tour.variants.map(v => v.price));
+      return `Starting from ₹${basePrice.toLocaleString()}`;
+    }
+    return "";
+  };
 
   return (
     <div className={cn("relative min-h-screen", className)}>
@@ -62,7 +101,7 @@ export function TourDetail({ tour, className }: TourDetailProps) {
                 "text-white text-sm font-medium"
               )}>
                 <Mountain className="w-4 h-4" />
-                {tour.type}
+                {isRegularTour(tour) ? tour.type : (isFestivalTour(tour) ? 'Festival' : tour.activityType)}
               </span>
 
               <h1 className="heading-1 text-gradient-primary dark:text-white">
@@ -73,7 +112,7 @@ export function TourDetail({ tour, className }: TourDetailProps) {
               <div className="flex flex-wrap gap-6 text-muted-foreground">
                 <div className="flex items-center gap-2">
                   <Clock className="w-5 h-5" />
-                  <span>{tour.duration}</span>
+                  <span>{getDuration()}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="w-5 h-5" />
@@ -81,11 +120,11 @@ export function TourDetail({ tour, className }: TourDetailProps) {
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="w-5 h-5" />
-                  <span>{tour.startDate}</span>
+                  <span>{getStartDate()}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <BadgeIndianRupee className="w-5 h-5" />
-                  <span>₹{tour.price.toLocaleString()} per person</span>
+                  <span>{getPrice()}</span>
                 </div>
               </div>
             </motion.div>
@@ -126,17 +165,58 @@ export function TourDetail({ tour, className }: TourDetailProps) {
               </TourSection>
 
               {/* Itinerary */}
-              <TourSection title="Itinerary">
-                <div className="space-y-8">
-                  {tour.itinerary.map((day, index) => (
-                    <TourItineraryDay
-                      key={index}
-                      day={day}
-                      index={index}
-                    />
-                  ))}
-                </div>
-              </TourSection>
+              {isRegularTour(tour) && (
+                <TourSection title="Itinerary">
+                  <div className="space-y-8">
+                    {tour.itinerary.map((day, index) => (
+                      <TourItineraryDay
+                        key={index}
+                        day={day}
+                        index={index}
+                      />
+                    ))}
+                  </div>
+                </TourSection>
+              )}
+
+              {/* Package Variants for Festival/Special Activity Tours */}
+              {(isFestivalTour(tour) || isSpecialActivityTour(tour)) && (
+                <TourSection title="Available Packages">
+                  <div className="space-y-8">
+                    {tour.variants.map((variant, index) => (
+                      <div key={index} className="space-y-4">
+                        <h3 className="text-xl font-semibold">{variant.name}</h3>
+                        {variant.description && (
+                          <p className="text-muted-foreground">{variant.description}</p>
+                        )}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="flex items-center gap-2">
+                            <Clock className="w-5 h-5 text-primary-500" />
+                            <span>{variant.duration.days} Days / {variant.duration.nights} Nights</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <BadgeIndianRupee className="w-5 h-5 text-primary-500" />
+                            <span>₹{variant.price.toLocaleString()}</span>
+                          </div>
+                        </div>
+                        {variant.inclusions && variant.inclusions.length > 0 && (
+                          <div className="space-y-2">
+                            <h4 className="font-medium">Package Inclusions:</h4>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                              {variant.inclusions.map((inclusion, idx) => (
+                                <div key={idx} className="flex items-start gap-2">
+                                  <Check className="w-4 h-4 mt-1 text-primary-500" />
+                                  <span className="text-muted-foreground">{inclusion}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </TourSection>
+              )}
 
               {/* Highlights */}
               <TourSection title="Tour Highlights">
@@ -159,12 +239,72 @@ export function TourDetail({ tour, className }: TourDetailProps) {
               <TourSection title="Gallery">
                 <TourGallery images={tour.gallery}/>
               </TourSection>
+
+              {/* Additional Information */}
+              <TourSection title="Important Information">
+                <div className="space-y-8">
+                  {/* Base Inclusions */}
+                  {((isFestivalTour(tour) || isSpecialActivityTour(tour)) ? tour.baseInclusions : tour.inclusions)?.length > 0 && (
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-semibold">Inclusions</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {((isFestivalTour(tour) || isSpecialActivityTour(tour)) ? tour.baseInclusions : tour.inclusions).map((item, index) => (
+                          <div key={index} className="flex items-start gap-2">
+                            <Check className="w-4 h-4 mt-1 text-primary-500" />
+                            <span className="text-muted-foreground">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Base Exclusions */}
+                  {((isFestivalTour(tour) || isSpecialActivityTour(tour)) ? tour.baseExclusions : tour.exclusions)?.length > 0 && (
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-semibold">Exclusions</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {((isFestivalTour(tour) || isSpecialActivityTour(tour)) ? tour.baseExclusions : tour.exclusions).map((item, index) => (
+                          <div key={index} className="flex items-start gap-2">
+                            <Check className="w-4 h-4 mt-1 text-primary-500" />
+                            <span className="text-muted-foreground">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Things to Carry */}
+                  {tour.thingsToCarry?.length > 0 && (
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-semibold">Things to Carry</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {tour.thingsToCarry.map((item, index) => (
+                          <div key={index} className="flex items-start gap-2">
+                            <Check className="w-4 h-4 mt-1 text-primary-500" />
+                            <span className="text-muted-foreground">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Important Note */}
+                  {tour.importantNote && (
+                    <div className="space-y-4">
+                      <h3 className="text-lg font-semibold">Important Note</h3>
+                      <p className="text-muted-foreground">{tour.importantNote}</p>
+                    </div>
+                  )}
+                </div>
+              </TourSection>
             </div>
 
-            {/* Right Column - Booking Card & Info */}
-            <div className="lg:sticky lg:top-8 space-y-8 h-fit">
-              <TourBookingCard tour={tour} />
-              <TourInfoCard tour={tour} />
+            {/* Right Column - Booking Card */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-24">
+                <TourBookingCard tour={tour} />
+                <TourInfoCard tour={tour} className="mt-8" />
+              </div>
             </div>
           </div>
         </div>

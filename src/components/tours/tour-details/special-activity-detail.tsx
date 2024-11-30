@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import {
   Clock, MapPin, Calendar, Check,
-  BadgeIndianRupee, Bike, Orange, 
+  BadgeIndianRupee, Bike, Apple, 
   ArrowUpRight, Mountain
 } from "lucide-react";
 import { SpecialActivityTour } from "@/types/tours/tour";
@@ -32,7 +32,7 @@ export function SpecialActivityDetail({ tour, className }: SpecialActivityDetail
       case 'BikeTrip':
         return <Bike className="w-4 h-4" />;
       case 'FruitFestival':
-        return <Orange className="w-4 h-4" />;
+        return <Apple className="w-4 h-4" />;
       default:
         return <Mountain className="w-4 h-4" />;
     }

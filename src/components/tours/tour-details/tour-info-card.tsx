@@ -2,7 +2,7 @@
 "use client";
 
 import { Check, X, AlertCircle } from "lucide-react";
-import { Tour } from "@/types/tours/tour";
+import { Tour, isRegularTour, isFestivalTour, isSpecialActivityTour } from "@/types/tours/tour";
 import { cn } from "@/lib/utils";
 import { DotPattern } from "@/components/ui/background-patterns";
 import { motion } from "framer-motion";
@@ -13,6 +13,28 @@ interface TourInfoCardProps {
 }
 
 export function TourInfoCard({ tour, className }: TourInfoCardProps) {
+  // Helper function to get the correct inclusions based on tour type
+  const getInclusions = () => {
+    if (isRegularTour(tour)) {
+      return tour.inclusions;
+    }
+    if (isFestivalTour(tour) || isSpecialActivityTour(tour)) {
+      return tour.baseInclusions;
+    }
+    return [];
+  };
+
+  // Helper function to get the correct exclusions based on tour type
+  const getExclusions = () => {
+    if (isRegularTour(tour)) {
+      return tour.exclusions;
+    }
+    if (isFestivalTour(tour) || isSpecialActivityTour(tour)) {
+      return tour.baseExclusions;
+    }
+    return [];
+  };
+
   return (
     <div className={cn(
       "relative rounded-[2.5rem] overflow-hidden",
@@ -34,7 +56,7 @@ export function TourInfoCard({ tour, className }: TourInfoCardProps) {
             Inclusions
           </h3>
           <div className="space-y-2">
-            {tour.inclusions.map((item, index) => (
+            {getInclusions().map((item, index) => (
               <motion.div 
                 key={index} 
                 initial={{ opacity: 0, x: -20 }}
@@ -60,7 +82,7 @@ export function TourInfoCard({ tour, className }: TourInfoCardProps) {
             Exclusions
           </h3>
           <div className="space-y-2">
-            {tour.exclusions.map((item, index) => (
+            {getExclusions().map((item, index) => (
               <motion.div 
                 key={index} 
                 initial={{ opacity: 0, x: -20 }}

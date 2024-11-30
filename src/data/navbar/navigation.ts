@@ -1,28 +1,26 @@
 // src/data/navigation.ts
 import { NavigationData } from "@/types/navbar/navigation";
 import { 
-    // Compass, 
-    // Map, 
-    // Calendar, 
+    Compass, 
+    Map, 
+    Calendar, 
     Info, 
     Phone, 
-    // Search, 
-    // Bell, 
-    // UserCircle,
-    // Mountain,
-    // Tent,
-    // Camera,
-    // Bird,
-    // TreePine,
-    // Footprints,
-    // Hotel,
-    // Car
+    Search, 
+    Bell, 
+    UserCircle,
+    Mountain,
+    Tent,
+    Camera,
+    Bird,
+    TreePine,
+    Footprints,
+    Hotel,
+    Car
   } from "lucide-react";
   
   export const navigationData: NavigationData = {
     primary: [
-      // Temporarily hidden navigation items
-      /*
       {
         name: "Destinations",
         href: "/destinations",
@@ -92,20 +90,17 @@ import {
       //     },
       //   ],
       // },
-      */
-      {
-        name: "About Us",
+      { 
+        name: "About Us", 
         href: "/about",
-        icon: Info
+        icon: Info 
       },
-      {
-        name: "Contact",
+      { 
+        name: "Contact", 
         href: "/contact",
-        icon: Phone
-      }
+        icon: Phone 
+      },
     ],
-    // Temporarily hidden secondary navigation
-    /*
     secondary: [
       { 
         name: "Search", 
@@ -123,6 +118,4 @@ import {
         icon: UserCircle 
       },
     ],
-    */
-    secondary: []
   };
