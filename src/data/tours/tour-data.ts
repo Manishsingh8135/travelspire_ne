@@ -304,7 +304,7 @@ export const aniniExpedition: Tour = {
   heroImage: "/images/places/anini/Anini_1.JPG", // Replace with actual Anini images
   thumbnail: "/images/places/anini/Anini_1.JPG",
   gallery: [
-    "/images/places/anini/Anini_9.JPG",
+    "/images/places/anini/Anini_9.jpg",
     "/images/places/anini/Anini_10.JPG",
     "/images/places/anini/Anini_4.JPG",
     "/images/places/anini/Anini_6.jpg",
