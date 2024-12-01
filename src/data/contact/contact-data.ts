@@ -44,7 +44,7 @@ import {
       description: "Chat with our team in real-time.",
       action: {
         text: "Start chat",
-        href: "#"
+        href: "https://wa.me/message/LG2T3K7ZSLWKA1"
       }
     }
   ];

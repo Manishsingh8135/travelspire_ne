@@ -43,6 +43,14 @@ export const footerData = {
         href: "https://instagram.com/travelspire_ne",
         icon: "Instagram"
       },
+      {
+        name: "Whatsapp",
+        href: "https://wa.me/message/LG2T3K7ZSLWKA1",
+        icon: "Whatsapp"
+      },
+
+
+      
       // {
       //   name: "Twitter",
       //   href: "https://twitter.com/travelspirene",

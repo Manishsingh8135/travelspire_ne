@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Check, Clock, Users } from "lucide-react";
 import { TourPackageVariant } from "@/types/tours/tour";
+import { contactInfo } from "@/data/social/social-links";
 
 interface FestivalPackageCardProps {
   variant: TourPackageVariant;
@@ -75,6 +76,7 @@ export function FestivalPackageCard({ variant, index }: FestivalPackageCardProps
           </div>
 
           <button 
+            onClick={() => window.open(contactInfo.whatsapp, '_blank')}
             className={cn(
               "px-6 py-3 rounded-xl",
               "bg-gradient-primary hover:bg-gradient-secondary",

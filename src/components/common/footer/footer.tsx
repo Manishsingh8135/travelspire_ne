@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from "@/lib/utils";
-import { Twitter, Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
+import { Twitter, Instagram, Linkedin, ArrowUpRight, MessageCircle } from 'lucide-react';
 
 
 
@@ -247,7 +247,8 @@ function SocialLinks({ links }: { links: FooterProps['data']['socialLinks'] }) {
   const socialIcons = {
     Twitter,
     Instagram,
-    LinkedIn: Linkedin
+    LinkedIn: Linkedin,
+    Whatsapp: MessageCircle
   };
 
   return (
@@ -293,9 +294,23 @@ function ContactCard({ data }: { data: FooterProps['data']['contactInfo'] }) {
         <h3 className="text-2xl md:text-3xl font-bold text-foreground dark:text-white">
           Get in touch
         </h3>
-        <address className="not-italic text-lg space-y-2 text-muted-foreground dark:text-neutral-300 mx-auto md:mx-0">
-          <p>{data.email}</p>
-          <p>{data.phone}</p>
+        <address className="not-italic text-lg space-y-4 text-muted-foreground dark:text-neutral-300 mx-auto md:mx-0">
+          <div className="relative z-10">
+            <a 
+              href="mailto:info@travelspirene.com"
+              className="inline-block text-muted-foreground hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-400 transition-colors"
+            >
+              {data.email}
+            </a>
+          </div>
+          <div className="relative z-10">
+            <a 
+              href="tel:+919864141211"
+              className="inline-block text-muted-foreground hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-400 transition-colors"
+            >
+              {data.phone}
+            </a>
+          </div>
           <p className="text-muted-foreground dark:text-neutral-400">{data.address}</p>
         </address>
       </div>

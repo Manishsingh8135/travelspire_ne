@@ -129,3 +129,165 @@ export const hornbillFestival: FestivalTour = {
   importantNote: "50% advance payment required for booking confirmation. Festival entry tickets to be purchased separately at the venue.",
   difficulty: "Easy"
 };
+
+export const orangeFestival: FestivalTour = {
+  id: "orange-festival-2024",
+  slug: "orange-festival-2024",
+  type: "Festival",
+  festivalName: "Orange Festival of Adventure & Music, Dambuk",
+  title: "Orange Festival of Music (OFM) 2024",
+  subtitle: "Where Adventure Meets Music in the Land of Oranges",
+  overview: "Experience the unique blend of music, adventure, and nature at the Orange Festival of Adventure & Music in Dambuk. Set against the backdrop of orange orchards and mountains, this festival offers an unforgettable mix of live performances, adventure activities, and local culture.",
+  location: "Dambuk, Arunachal Pradesh",
+  featured: true,
+
+  eventDates: {
+    start: "2024-12-15", 
+    end: "2024-12-18",
+    year: 2024
+  },
+
+  heroImage: "/images/places/dambuk/Dambuk_3.jpg", 
+  thumbnail: "/images/places/dambuk/Dambuk_3.jpg",
+  gallery: [
+   "/images/places/dambuk/Dambuk_4.JPG",
+   "/images/places/dambuk/Dambuk_2.jpg",
+   "/images/places/dambuk/Dambuk_5.jpg",
+   "/images/places/dambuk/Dambuk_6.JPG",
+   "/images/places/dambuk/Dambuk_7.jpg"
+  ],
+
+  highlights: [
+    "Live Music Performances at Orange Festival",
+    "Adventure Activities and Pool Parties",
+    "Morning Instrumental Music Sessions",
+    "Scenic Mountain Views and Orange Orchards",
+    "Unique Camping Experience"
+  ],
+
+  culturalHighlights: [
+    "Live music performances",
+    "Local orange cultivation experience",
+    "Cultural performances",
+    "Adventure sports activities"
+  ],
+
+  specialActivities: [
+    "Morning live instrumental music",
+    "Day pool party",
+    "After-party till 1:00 AM",
+    "Sightseeing",
+    "Jamming sessions"
+  ],
+
+  variants: [
+    {
+      id: "ofm-cottage-double-decker",
+      name: "Double Decker Cottage",
+      duration: {
+        days: 3,
+        nights: 2
+      },
+      price: 7500,
+      description: "Luxurious double-decker cottage accommodation perfect for small groups",
+      maxGroupSize: 3,
+      inclusions: [
+        "Breakfast included",
+        "Access to all festival areas",
+        "Pool party access",
+        "Morning music session",
+        "Comfortable cottage stay"
+      ]
+    },
+    {
+      id: "ofm-double-room",
+      name: "Double Room",
+      duration: {
+        days: 3,
+        nights: 2
+      },
+      price: 6500,
+      description: "Comfortable double room accommodation for couples",
+      maxGroupSize: 2,
+      inclusions: [
+        "Breakfast included",
+        "Access to all festival areas",
+        "Pool party access",
+        "Morning music session"
+      ]
+    },
+    {
+      id: "ofm-xxl-tent",
+      name: "XXL Elevated Tent",
+      duration: {
+        days: 3,
+        nights: 2
+      },
+      price: 2250,
+      description: "Spacious elevated tent for a unique camping experience",
+      maxGroupSize: 1,
+      inclusions: [
+        "Breakfast included",
+        "Access to all festival areas",
+        "Pool party access",
+        "Morning music session",
+        "Elevated camping experience"
+      ]
+    },
+    {
+      id: "ofm-dome-tent",
+      name: "Dome Tent",
+      duration: {
+        days: 3,
+        nights: 2
+      },
+      price: 1899,
+      description: "Cozy dome tent for the authentic festival camping experience",
+      maxGroupSize: 1,
+      inclusions: [
+        "Breakfast included",
+        "Access to all festival areas",
+        "Pool party access",
+        "Morning music session"
+      ]
+    }
+  ],
+
+  baseInclusions: [
+    "Festival entry pass",
+    "Accommodation as per package",
+    "Daily breakfast",
+    "Access to pool parties",
+    "Access to morning music sessions",
+    "Access to after-parties",
+    "Basic amenities"
+  ],
+
+  baseExclusions: [
+    "Travel to and from Dambuk",
+    "Lunch and dinner",
+    "Personal expenses",
+    "Additional activities",
+    "Travel insurance"
+  ],
+
+  thingsToCarry: [
+    "Valid ID proof",
+    "Comfortable clothing",
+    "Swimming costume",
+    "Sunscreen and hat",
+    "Camera",
+    "Warm clothes for evening",
+    "Basic medicines",
+    "Cash for additional expenses"
+  ],
+
+  importantNote: "The festival timings and activities may vary. Swimming pool and party access is subject to weather conditions. Accommodation is on a first-come, first-served basis.",
+  
+  difficulty: "Easy"
+};
+
+export const festivalTours = [
+  hornbillFestival,
+  orangeFestival
+] as const;
