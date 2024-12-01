@@ -33,7 +33,7 @@ export function FestivalTourDetail({ tour, className }: FestivalTourDetailProps)
       {/* Hero Section with Parallax - Similar to regular tour detail */}
       <motion.div
         style={{ opacity, scale }}
-        className="relative h-[80vh] w-full"
+        className="relative h-[100vh] sm:h-[80vh] w-full"
       >
         {/* Hero Image */}
         <Image
@@ -48,11 +48,11 @@ export function FestivalTourDetail({ tour, className }: FestivalTourDetailProps)
         <DotPattern className="opacity-20" />
         
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent">
-          <div className="relative h-full max-w-7xl mx-auto px-4 flex flex-col justify-end pb-20">
+          <div className="relative h-full max-w-7xl mx-auto px-4 flex flex-col justify-end">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="space-y-4"
+              className="space-y-6 pb-20 pt-48 sm:space-y-4 sm:pt-0 sm:pb-20"
             >
               {/* Festival Badge */}
               <span className={cn(
@@ -61,10 +61,10 @@ export function FestivalTourDetail({ tour, className }: FestivalTourDetailProps)
                 "text-white text-sm font-medium"
               )}>
                 <PartyPopper className="w-4 h-4" />
-                {tour.festivalName}
+                {tour.type}
               </span>
 
-              <h1 className="heading-1 text-gradient-primary dark:text-white">
+              <h1 className="heading-1 text-gradient-primary dark:text-white text-4xl sm:text-5xl md:text-6xl">
                 {tour.title}
               </h1>
 

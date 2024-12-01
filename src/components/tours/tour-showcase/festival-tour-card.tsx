@@ -58,17 +58,17 @@ export function FestivalTourCard({ tour, index }: FestivalTourCardProps) {
       <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
         {/* Festival Badge */}
         <div className="absolute top-6 left-6">
-          <span className={cn(
+          {/* <span className={cn(
             "px-4 py-2 rounded-full",
             "bg-gradient-primary text-white text-sm font-medium",
             "border border-white/10 backdrop-blur-sm"
           )}>
             {tour.festivalName}
-          </span>
+          </span> */}
           {tour.featured && (
             <span className={cn(
               "ml-2 px-4 py-2 rounded-full",
-              "bg-white/10 backdrop-blur-sm",
+              "bg-gradient-primary backdrop-blur-sm",
               "text-white text-sm font-medium"
             )}>
               Featured
@@ -76,7 +76,7 @@ export function FestivalTourCard({ tour, index }: FestivalTourCardProps) {
           )}
         </div>
 
-        <div className="relative space-y-4">
+        <div className="relative  sm:space-y-6 md:space-y-4">
           {/* Meta info */}
           <div className="flex flex-wrap gap-4 text-sm text-white/80">
             <div className="flex items-center gap-2">
