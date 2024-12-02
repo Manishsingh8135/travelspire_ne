@@ -135,8 +135,8 @@ export const orangeFestival: FestivalTour = {
   id: "orange-festival-2024",
   slug: "orange-festival-2024",
   type: "Festival",
-  festivalName: "Orange Tour ",
-  title: "Orange Tour",
+  festivalName: "OFAM (DAMBUK) 2024 ",
+  title: "OFAM (DAMBUK) 2024",
   subtitle: "Where Adventure Meets Music in the Land of Oranges",
   overview: "Experience the unique blend of music, adventure, and nature at the Orange Festival of Adventure & Music in Dambuk. Set against the backdrop of orange orchards and mountains, this festival offers an unforgettable mix of live performances, adventure activities, and local culture.",
   location: "Dambuk, Arunachal Pradesh",
@@ -194,7 +194,6 @@ export const orangeFestival: FestivalTour = {
       maxGroupSize: 3,
       inclusions: [
         "Breakfast included",
-        "Access to all festival areas",
         "Pool party access",
         "Morning music session",
         "Comfortable cottage stay"
