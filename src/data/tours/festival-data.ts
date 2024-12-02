@@ -22,6 +22,7 @@ export const hornbillFestival: FestivalTour = {
   thumbnail: "/images/places/hornbill/Hornbill_3.PNG",
   gallery: [
     // "/images/places/hornbill/Hornbill_1.PNG",
+     "/images/places/hornbill/Hornbill_6.JPG",
     "/images/places/hornbill/Dzoku_3.jpg",
     "/images/places/hornbill/Hornbill_2.WEBP",
     "/images/places/hornbill/Dzoku_2.jpg",
@@ -134,16 +135,16 @@ export const orangeFestival: FestivalTour = {
   id: "orange-festival-2024",
   slug: "orange-festival-2024",
   type: "Festival",
-  festivalName: "Orange Festival of Adventure & Music, Dambuk",
-  title: "Orange Festival of Music (OFM) 2024",
+  festivalName: "Orange Tour ",
+  title: "Orange Tour",
   subtitle: "Where Adventure Meets Music in the Land of Oranges",
   overview: "Experience the unique blend of music, adventure, and nature at the Orange Festival of Adventure & Music in Dambuk. Set against the backdrop of orange orchards and mountains, this festival offers an unforgettable mix of live performances, adventure activities, and local culture.",
   location: "Dambuk, Arunachal Pradesh",
   featured: true,
 
   eventDates: {
-    start: "2024-12-15", 
-    end: "2024-12-18",
+    start: "2024-12-13", 
+    end: "2024-12-15",
     year: 2024
   },
 
@@ -254,16 +255,16 @@ export const orangeFestival: FestivalTour = {
   ],
 
   baseInclusions: [
-    "Festival entry pass",
     "Accommodation as per package",
-    "Daily breakfast",
     "Access to pool parties",
     "Access to morning music sessions",
     "Access to after-parties",
-    "Basic amenities"
+    "Basic amenities",
+    "Daily breakfast",
   ],
 
   baseExclusions: [
+    "Festival entry pass",
     "Travel to and from Dambuk",
     "Lunch and dinner",
     "Personal expenses",
