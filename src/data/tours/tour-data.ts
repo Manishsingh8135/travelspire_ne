@@ -2,16 +2,6 @@
 import { Tour } from "@/types/tours/tour";
 
 
-
-
-
-const imageLinks = [
-  "https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1435732960391-11053ee5e6b6?q=80&w=2448&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1626761627604-f27d98885f4b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-];
-
 export const tawangExpedition: Tour = {
   id: "tawang-expedition",
   slug: "tawang-expedition",
@@ -404,11 +394,397 @@ export const aniniExpedition: Tour = {
   bestTimeToVisit: ["October", "November", "March", "April"] // Standard Northeast season
 };
 
+export const dambukAniniOfamTour: Tour = {
+  id: "dambuk-anini-ofam",
+  slug: "dambuk-anini-ofam",
+  type: "Adventure",
+  title: "OFAM Tour Package",
+  subtitle: "Lets explore DAMBUK & ANINI",
+  overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with the pristine landscapes of Anini. Journey through orange orchards, witness the Mawu ando & Mathu waterfalls, and explore the remote Dibang Valley with its stunning Mayodia Pass.",
+  duration: "4 Days / 3 Nights",
+  location: "Dambuk & Anini, Arunachal Pradesh",
+  startDate: "December 2024", // During OFAM festival
+  price: 18500,
+  featured: true,
+
+  heroImage: "/images/places/dambuk/Dambuk_4.jpg",
+  thumbnail: "/images/places/dambuk/Dambuk_4.jpg",
+  gallery: [
+    "/images/places/dambuk/Dambuk_2.jpg",
+    "/images/places/anini/Anini_1.jpg",
+    "/images/places/dambuk/Dambuk_3.jpg",
+    "/images/places/anini/Anini_2.jpg"
+  ],
+
+  highlights: [
+    "Dambuk OFAM & Sikang Boggo",
+    "Mayodia Pass exploration",
+    "Chigu camp & Dree-afra experience",
+    "Mawu ando & Mathu waterfall visit",
+    "Dibang Valley & Acheso exploration",
+    "Traditional homestay and camping experience"
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Dambuk",
+      description: "Begin your journey with the Orange Festival experience in Dambuk.",
+      activities: [
+        "Pickup from Dibrugarh",
+        "Lunch stoppage at Shantipur gate",
+        "Enjoy the Dambuk OFAM festival",
+        "Overnight at Dambuk Campsite"
+      ]
+    },
+    {
+      title: "Dambuk to Anini",
+      description: "Journey through scenic mountain roads to reach Anini.",
+      activities: [
+        "Morning departure from Dambuk",
+        "Explore Dibang Valley & Acheso",
+        "Stoppage at Mayodia Pass",
+        "Night stay at Anini homestay"
+      ]
+    },
+    {
+      title: "Anini Exploration",
+      description: "Full day exploring the wonders of Anini region.",
+      activities: [
+        "Morning start in Anini",
+        "Visit Mawu ando & Mathu waterfall",
+        "Experience Chigu camp & Dree-afra",
+        "Overnight at Dree-afra/Anini homestay"
+      ]
+    },
+    {
+      title: "Return to Dibrugarh",
+      description: "Return journey with scenic stops.",
+      activities: [
+        "Morning departure from Anini",
+        "Lunch stoppage at Roing",
+        "Evening arrival in Dibrugarh"
+      ]
+    }
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170], // Dibrugarh
+      [28.3582, 95.3665], // Dambuk
+      [28.8427, 95.8997]  // Anini
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Starting point of the journey"
+      },
+      {
+        name: "Dambuk",
+        location: [28.3582, 95.3665],
+        description: "Orange Festival location and first stop"
+      },
+      {
+        name: "Anini",
+        location: [28.8427, 95.8997],
+        description: "Final destination in Dibang Valley"
+      }
+    ]
+  },
+
+  inclusions: [
+    "Homestay & Camping accommodations",
+    "Healthy Breakfast",
+    "Transportation cost",
+    "Tour Guide",
+    "Inner line permits"
+  ],
+
+  exclusions: [
+    "Lunch & Dinner",
+    "Railway & Airway tickets",
+    "Tourist spot tickets",
+    "Personal expenses"
+  ],
+
+  importantNote: "To confirm this trip please pay 50% of the total package cost. Minimum 4 persons required in a group.",
+
+  thingsToCarry: [
+    "Warm clothes",
+    "Comfortable trekking shoes",
+    "Valid ID proof",
+    "Camera",
+    "Personal medications",
+    "Light backpack for day trips"
+  ],
+
+  maxGroupSize: 12,
+  difficulty: "Moderate",
+  altitude: 2500, // Approximate altitude for Anini area
+  bestTimeToVisit: ["December"] // During OFAM festival
+};
+
+export const dambukGoldenPagodaTour: Tour = {
+  id: "dambuk-golden-pagoda-ofam",
+  slug: "dambuk-golden-pagoda-ofam",
+  type: "Adventure",
+  title: "OFAM Tour Package",
+  subtitle: "Lets explore DAMBUK & GOLDEN PAGODA",
+  overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with a spiritual journey to the majestic Golden Pagoda in Namsai. Enjoy riverside camping, explore sacred Buddhist sites, and immerse yourself in the cultural heritage of Arunachal Pradesh.",
+  duration: "3 Days / 2 Nights",
+  location: "Dambuk & Namsai, Arunachal Pradesh",
+  startDate: "December 2024", // During OFAM festival
+  price: 12999,
+  featured: true,
+
+  heroImage: "/images/places/dambuk/Dambuk_5.jpg",
+  thumbnail: "/images/places/dambuk/Dambuk_5.jpg",
+  gallery: [
+    "/images/places/dambuk/Dambuk_2.jpg",
+    "/images/places/dambuk/Dambuk_3.jpg",
+    "/images/places/dambuk/Dambuk_4.jpg",
+    "/images/places/dambuk/Dambuk_5.jpg"
+  ],
+
+  highlights: [
+    "Dambuk OFAM & Sikang Boggo",
+    "Golden Pagoda exploration",
+    "Parsuram Kund visit",
+    "River resort experience",
+    "Buddhist cultural immersion",
+    "Orange orchards and local cuisine"
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Dambuk",
+      description: "Begin your journey with the Orange Festival experience in Dambuk.",
+      activities: [
+        "Pickup from Dibrugarh",
+        "Lunch stoppage at Shantipur gate",
+        "Enjoy the Dambuk OFAM",
+        "Overnight at Dambuk Campsite"
+      ]
+    },
+    {
+      title: "Dambuk to Namsai",
+      description: "Explore Namsai and its spiritual landmarks.",
+      activities: [
+        "Good morning from Dambuk",
+        "Explore Namsai",
+        "Lunch & Break time at resort",
+        "Night stay at Namsai resort"
+      ]
+    },
+    {
+      title: "Return to Dibrugarh",
+      description: "Visit final attractions before return.",
+      activities: [
+        "Morning visit to Golden Pagoda",
+        "Visit Parsuram Kund",
+        "Lunch near Namsai",
+        "Evening return to Dibrugarh"
+      ]
+    }
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170], // Dibrugarh
+      [28.3582, 95.3665], // Dambuk
+      [27.6667, 95.8667]  // Namsai
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Starting point of the journey"
+      },
+      {
+        name: "Dambuk",
+        location: [28.3582, 95.3665],
+        description: "Orange Festival location"
+      },
+      {
+        name: "Namsai",
+        location: [27.6667, 95.8667],
+        description: "Golden Pagoda and cultural sites"
+      }
+    ]
+  },
+
+  inclusions: [
+    "Homestay & Camping accommodations",
+    "Healthy Breakfast",
+    "Transportation cost",
+    "Tour Guide",
+    "Inner line permits"
+  ],
+
+  exclusions: [
+    "Lunch & Dinner",
+    "Railway & Airway tickets",
+    "Tourist spot tickets",
+    "Personal expenses"
+  ],
+
+  importantNote: "To confirm this trip please pay 50% of the total package cost. Minimum 4 persons required in a group.",
+
+  thingsToCarry: [
+    "Comfortable walking shoes",
+    "Modest clothing for temple visits",
+    "Camera",
+    "Personal medications",
+    "Valid ID proof",
+    "Light jacket or shawl"
+  ],
+
+  maxGroupSize: 12,
+  difficulty: "Easy",
+  altitude: 500, // Approximate for Namsai region
+  bestTimeToVisit: ["December"] // During OFAM festival
+};
+
+export const dambukDongValleyTour: Tour = {
+  id: "dambuk-dong-valley-ofam",
+  slug: "dambuk-dong-valley-ofam",
+  type: "Adventure",
+  title: "OFAM Tour Package",
+  subtitle: "Lets explore DAMBUK & DONG VALLEY",
+  overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with an expedition to India's easternmost valley. Journey from the orange orchards of Dambuk to the historic Dong Valley, enjoying hot springs, trek experiences, and visiting India's easternmost villages.",
+  duration: "4 Days / 3 Nights",
+  location: "Dambuk & Dong Valley, Arunachal Pradesh",
+  startDate: "December 2024", // During OFAM festival
+  price: 18500,
+  featured: true,
+
+  heroImage: "/images/places/dong/Dong_2.jpg",
+  thumbnail: "/images/places/dong/Dong_3.jpg",
+  gallery: [
+    "/images/places/dambuk/Dambuk_2.jpg",
+    "/images/places/dong/Dong_1.jpg",
+    "/images/places/dong/Dong_3.jpg",
+    "/images/places/dong/Dong_5.jpg"
+  ],
+
+  highlights: [
+    "Dambuk OFAM & Sikang Boggo",
+    "Tilam Hotspring experience",
+    "War memorial visit",
+    "Dong Valley trek",
+    "Explore Kaho & Kibithoo villages",
+    "India's easternmost point"
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Dambuk",
+      description: "Begin your journey with OFAM festival experience.",
+      activities: [
+        "Pickup from Dibrugarh",
+        "Lunch stoppage at Shantipur gate",
+        "Enjoy the Dambuk OFAM",
+        "Overnight at Dambuk Campsite"
+      ]
+    },
+    {
+      title: "Dambuk to Walong",
+      description: "Journey to Walong with cultural stops.",
+      activities: [
+        "Morning departure from Dambuk",
+        "Explore Walong region",
+        "Stoppage at Parsuram Kund",
+        "Lunch at Hayuliang",
+        "Evening rest at Tilam Hotspring"
+      ]
+    },
+    {
+      title: "Dong Valley Exploration",
+      description: "Trek to India's easternmost valley.",
+      activities: [
+        "Morning start from Tilam Hotspring",
+        "DONG VALLEY trek",
+        "Visit India's most eastern village KAHO",
+        "Explore KIBITHOO & War memorial",
+        "Lunch at Walong Cafe",
+        "Night at TILAM HOTSPRING"
+      ]
+    },
+    {
+      title: "Return to Dibrugarh",
+      description: "Return journey with scenic stops.",
+      activities: [
+        "Morning departure from Walong",
+        "Lunch stoppage at Hayuliang",
+        "Evening arrival in Dibrugarh"
+      ]
+    }
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170], // Dibrugarh
+      [28.3582, 95.3665], // Dambuk
+      [28.1500, 97.1333]  // Dong Valley
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Starting point of the journey"
+      },
+      {
+        name: "Dambuk",
+        location: [28.3582, 95.3665],
+        description: "Orange Festival location"
+      },
+      {
+        name: "Dong Valley",
+        location: [28.1500, 97.1333],
+        description: "India's easternmost valley"
+      }
+    ]
+  },
+
+  inclusions: [
+    "Homestay & Camping accommodations",
+    "Healthy Breakfast",
+    "Transportation cost",
+    "Tour Guide",
+    "Inner line permits"
+  ],
+
+  exclusions: [
+    "Lunch & Dinner",
+    "Railway & Airway tickets",
+    "Tourist spot tickets",
+    "Personal expenses"
+  ],
+
+  importantNote: "To confirm this trip please pay 50% of the total package cost. Minimum 4 persons required in a group.",
+
+  thingsToCarry: [
+    "Warm clothes",
+    "Trekking/comfortable shoes",
+    "Valid ID proof",
+    "Camera",
+    "Personal medications",
+    "Mini flask for water"
+  ],
+
+  maxGroupSize: 12,
+  difficulty: "Moderate",
+  altitude: 3500, // Approximate for Dong Valley region
+  bestTimeToVisit: ["December"] // During OFAM festival
+};
 
 export const regularTours = [
   tawangExpedition,
   dongValleyExpedition,
-  aniniExpedition
+  aniniExpedition,
+  dambukAniniOfamTour,
+  dambukGoldenPagodaTour,
+  dambukDongValleyTour
 ];
 
 
