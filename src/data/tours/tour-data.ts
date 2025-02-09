@@ -154,7 +154,7 @@ export const dongValleyExpedition: Tour = {
   duration: "4 Days / 3 Nights",
   location: "Dong Valley, Arunachal Pradesh",
   startDate: "Available Year Round",
-  price: 9999,
+  price: 13499,
   featured: false,
 
   heroImage: "/images/places/dong/Dong_1.JPG",
@@ -174,6 +174,8 @@ export const dongValleyExpedition: Tour = {
     "Experience Tilam Hotspring",
     "Visit Parshuram Kund"
   ],
+
+  
 
   itinerary: [
     {
@@ -287,7 +289,7 @@ export const aniniExpedition: Tour = {
   duration: "3 Days / 2 Nights",
   location: "Anini, Dibang Valley, Arunachal Pradesh",
   startDate: "Available Year Round",
-  price: 10999,
+  price: 12499,
   featured: false,
 
   // We'll need proper images later, using placeholders for now
@@ -778,13 +780,144 @@ export const dambukDongValleyTour: Tour = {
   bestTimeToVisit: ["December"] // During OFAM festival
 };
 
+export const pomoTrekExpedition: Tour = {
+  id: "pomo-trek-expedition",
+  slug: "pomo-trek-expedition",
+  type: "Adventure",
+  title: "Anini Pomo Trek Expedition",
+  subtitle: "3 Nights / 4 Days Trekking Adventure",
+  overview: "Embark on a thrilling trek to Pomo, near Anini, in the heart of Dibang Valley.  Experience stunning waterfalls, pristine landscapes, and the unique culture of the region. This trek includes visits to Mayudia Pass, Mawu Ando & Mathu waterfalls, and Chigu and Dree-afra camps.",
+  duration: "4 Days / 3 Nights",
+  location: "Anini, Dibang Valley, Arunachal Pradesh",
+  startDate: "Available Year Round",
+  price: 19999,
+  featured: true,
+
+  heroImage: "/images/places/pomo/pomo1.JPG",
+  thumbnail: "/images/places/pomo/pomo1.JPG",
+  gallery: [
+    "/images/places/pomo/pomo1.JPG",
+    "/images/places/pomo/pomo2.JPG",
+    "/images/places/pomo/pomo3.JPG",
+    "/images/places/pomo/pomo4.JPG",
+    "/images/places/pomo/pomo5.JPG",
+    "/images/places/pomo/pomo6.JPG",
+  ],
+
+  highlights: [
+    "Trek to the scenic Pomo region",
+    "Explore Mayudia Pass",
+    "Visit Mawu Ando & Mathu waterfalls",
+    "Experience Chigu and Dree-afra camps",
+    "Discover hidden waterfalls and lakes",
+    "Immerse yourself in the local culture",
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Anini",
+      description: "Drive from Dibrugarh to Anini, with sightseeing and a stop at Mayudia Pass.",
+      activities: [
+        "Pickup from Dibrugarh",
+        "Scenic drive to Anini",
+        "Sightseeing along the way",
+        "Viewpoint and stoppage at Mayudia Pass",
+        "Overnight stay at Anini"
+      ]
+    },
+    {
+      title: "Anini Exploration",
+      description: "Explore the waterfalls and camps around Anini.",
+      activities: [
+        "Morning departure from Anini",
+        "Visit Mawu Ando & Mathu waterfalls",
+        "Explore Chigu and Dree-afra camps",
+        "Overnight stay at Anini"
+      ]
+    },
+    {
+      title: "Pomo Trek",
+      description: "Embark on the Pomo trek, experiencing the natural beauty of the region.",
+      activities: [
+        "Good morning from Anini",
+        "Start the Pomo trek",
+        "Explore scenic views, waterfalls, and lakes",
+        "Overnight stay at Pomo or Anini (depending on trek progress and preference)"
+      ]
+    },
+    {
+      title: "Anini to Dibrugarh",
+      description: "Return journey to Dibrugarh with a lunch break near Mayudia Pass.",
+      activities: [
+        "Morning departure from Anini/Pomo",
+        "Lunch break near Mayudia Pass",
+        "Return to Dibrugarh",
+        "Trip completion"
+      ]
+    }
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170],
+      [28.8427, 95.8997]
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Starting point of the journey"
+      },
+      {
+        name: "Anini",
+        location: [28.8427, 95.8997],
+        description: "Base for the trek and exploration"
+      },
+    ]
+  },
+
+  inclusions: [
+    "Stay (Homestay/Camping)",
+    "Breakfast & Evening Snacks",
+    "Trip Guide",
+    "Trekking Guide",
+    "Sightseeing",
+    "Travel Expenses",
+    "Inner Line Permits"
+  ],
+
+  exclusions: [
+    "Airway Tickets & Railway Tickets",
+    "Anything not mentioned above",
+    "Lunch",
+    "Dinner"
+  ],
+
+  importantNote: "To confirm this trip, please pay 50% of the total package cost.",
+
+  thingsToCarry: [
+    "2 pairs of shoes (1 for trek)",
+    "Warm clothes",
+    "Raincoats, Umbrella & Gumboots for the trek",
+    "Stretchable or breathable bottoms (jeans won't help for treks)",
+    "Mini flask for warm water",
+    "Small backpack for essential items during the Pomo trek"
+  ],
+
+  maxGroupSize: 10,
+  difficulty: "Moderate",
+  altitude: 2200,
+  bestTimeToVisit: ["October", "November", "March", "April"]
+};
+
 export const regularTours = [
   tawangExpedition,
   dongValleyExpedition,
   aniniExpedition,
   dambukAniniOfamTour,
   dambukGoldenPagodaTour,
-  dambukDongValleyTour
+  dambukDongValleyTour,
+  pomoTrekExpedition
 ];
 
 
