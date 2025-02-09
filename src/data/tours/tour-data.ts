@@ -126,7 +126,7 @@ export const tawangExpedition: Tour = {
     "Anything not mentioned in inclusions"
   ],
 
-  importantNote: "To confirm your trip please pay 50% of the total package cost i.e., ₹16499/- per person",
+  importantNote: "To confirm your trip please pay 50% of the total package cost.",
   
   thingsToCarry: [
     "Warm clothes",
@@ -261,8 +261,8 @@ export const dongValleyExpedition: Tour = {
     "Railway & Airway tickets",
     "Tourist spots tickets"
   ],
-
-  importantNote: "To confirm this trip please pay 50% of the total package cost i.e., ₹9999/- per person",
+  
+    importantNote: "To confirm this trip please pay 50% of the total package cost. ",
 
   thingsToCarry: [
     "2 pairs of shoes (1 for trek)",
@@ -380,7 +380,7 @@ export const aniniExpedition: Tour = {
     "Railway & Airway tickets"
   ],
 
-  importantNote: "To confirm this trip please pay 50% of the total package cost i.e., ₹10999/- per person",
+  importantNote: "To confirm this trip please pay 50% of the total package cost. ",
 
   thingsToCarry: [
     "Comfortable walking shoes",
