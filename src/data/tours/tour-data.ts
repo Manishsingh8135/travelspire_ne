@@ -14,6 +14,9 @@ export const tawangExpedition: Tour = {
   startDate: "Available Year Round",
   price: 16499,
   featured: true,
+  trending: true,
+  upcoming: false,
+  tags: ["monastery", "buddhist-culture", "mountain-pass", "premium"],
 
   heroImage: "/images/places/tawang/Tawang_1.PNG",
   thumbnail: "/images/places/tawang/Tawang_1.PNG",
@@ -155,6 +158,9 @@ export const dongValleyExpedition: Tour = {
   location: "Dong Valley, Arunachal Pradesh",
   startDate: "Available Year Round",
   price: 13499,
+  upcoming: true,
+  trending: false,
+  tags: ["sunrise", "easternmost-india", "pristine-nature", "cultural-heritage"],
   featured: false,
 
   heroImage: "/images/places/dong/Dong_1.JPG",
@@ -407,7 +413,7 @@ export const dambukAniniOfamTour: Tour = {
   location: "Dambuk & Anini, Arunachal Pradesh",
   startDate: "December 2024", // During OFAM festival
   price: 18500,
-  featured: true,
+  featured: false,
 
   heroImage: "/images/places/dambuk/Dambuk_4.jpg",
   thumbnail: "/images/places/dambuk/Dambuk_4.jpg",
@@ -537,7 +543,7 @@ export const dambukGoldenPagodaTour: Tour = {
   location: "Dambuk & Namsai, Arunachal Pradesh",
   startDate: "December 2024", // During OFAM festival
   price: 12999,
-  featured: true,
+  featured: false,
 
   heroImage: "/images/places/dambuk/Dambuk_5.jpg",
   thumbnail: "/images/places/dambuk/Dambuk_5.jpg",
@@ -658,7 +664,7 @@ export const dambukDongValleyTour: Tour = {
   location: "Dambuk & Dong Valley, Arunachal Pradesh",
   startDate: "December 2024", // During OFAM festival
   price: 18500,
-  featured: true,
+  featured: false,
 
   heroImage: "/images/places/dong/Dong_2.jpg",
   thumbnail: "/images/places/dong/Dong_3.jpg",
@@ -791,7 +797,7 @@ export const pomoTrekExpedition: Tour = {
   location: "Anini, Dibang Valley, Arunachal Pradesh",
   startDate: "Available Year Round",
   price: 19999,
-  featured: true,
+  featured: false,
 
   heroImage: "/images/places/pomo/pomo1.JPG",
   thumbnail: "/images/places/pomo/pomo1.JPG",

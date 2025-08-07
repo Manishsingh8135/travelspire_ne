@@ -123,19 +123,20 @@ export function FestivalTourCard({ tour, index }: FestivalTourCardProps) {
                 // Mobile baseline
                 "px-4 py-2 rounded-lg",
                 "text-sm",
-                // Desktop scaling
-                "md:px-8 md:py-4 md:rounded-full",
-                "md:text-xl",
+                // Desktop - smaller, more elegant
+                "md:px-5 md:py-2.5 md:rounded-xl",
+                "md:text-sm",
                 // Consistent styling
                 "bg-gradient-to-r from-primary-500 to-secondary-500",
                 "hover:from-primary-400 hover:to-secondary-400",
                 "text-white font-medium",
-                "shadow-xl shadow-primary-500/25 dark:shadow-primary-500/10",
-                "transition-all duration-300"
+                "shadow-lg shadow-primary-500/25 dark:shadow-primary-500/10",
+                "transition-all duration-300",
+                "hover:scale-105"
               )}
             >
               View Packages
-              <ArrowUpRight className="w-3 h-3 md:w-5 md:h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+              <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
             </Link>
           </div>
         </div>

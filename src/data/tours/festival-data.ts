@@ -11,6 +11,9 @@ export const hornbillFestival: FestivalTour = {
   overview: "Experience the cultural extravaganza of Northeast India at the Hornbill Festival, combined with the breathtaking beauty of Dzukou Valley. This festival celebrates the rich heritage of Nagaland's 16 major tribes with traditional dances, music, local cuisine, and handicrafts.",
   location: "Kisama Heritage Village, Nagaland",
   featured: true,
+  upcoming: true,
+  trending: true,
+  tags: ["festival", "cultural", "nagaland", "tribal-heritage", "dzukou-valley"],
 
   eventDates: {
     start: "2024-12-01",
