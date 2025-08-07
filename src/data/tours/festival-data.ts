@@ -2,11 +2,11 @@
 import { FestivalTour } from "@/types/tours/tour";
 
 export const hornbillFestival: FestivalTour = {
-  id: "hornbill-festival-2024",
-  slug: "hornbill-festival-2024",
+  id: "hornbill-festival-2025",
+  slug: "hornbill-festival-2025",
   type: "Festival",
   festivalName: "Hornbill Festival",
-  title: "Hornbill Festival 2024",
+  title: "Hornbill Festival 2025",
   subtitle: "The biggest festival of Nagaland",
   overview: "Experience the cultural extravaganza of Northeast India at the Hornbill Festival, combined with the breathtaking beauty of Dzukou Valley. This festival celebrates the rich heritage of Nagaland's 16 major tribes with traditional dances, music, local cuisine, and handicrafts.",
   location: "Kisama Heritage Village, Nagaland",
@@ -16,9 +16,9 @@ export const hornbillFestival: FestivalTour = {
   tags: ["festival", "cultural", "nagaland", "tribal-heritage", "dzukou-valley"],
 
   eventDates: {
-    start: "2024-12-01",
-    end: "2024-12-10",
-    year: 2024
+    start: "2025-12-01",
+    end: "2025-12-10",
+    year: 2025
   },
 
   heroImage: "/images/places/hornbill/Hornbill_3.PNG",
@@ -135,20 +135,20 @@ export const hornbillFestival: FestivalTour = {
 };
 
 export const orangeFestival: FestivalTour = {
-  id: "orange-festival-2024",
-  slug: "orange-festival-2024",
+  id: "orange-festival-2025",
+  slug: "orange-festival-2025",
   type: "Festival",
   festivalName: "OFAM (DAMBUK) 2024 ",
-  title: "OFAM (DAMBUK) 2024",
+  title: "OFAM (DAMBUK) 2025",
   subtitle: "Where Adventure Meets Music in the Land of Oranges",
   overview: "Experience the unique blend of music, adventure, and nature at the Orange Festival of Adventure & Music in Dambuk. Set against the backdrop of orange orchards and mountains, this festival offers an unforgettable mix of live performances, adventure activities, and local culture.",
   location: "Dambuk, Arunachal Pradesh",
   featured: true,
 
   eventDates: {
-    start: "2024-12-13", 
-    end: "2024-12-15",
-    year: 2024
+    start: "2025-12-13", 
+    end: "2025-12-15",
+    year: 2025
   },
 
   heroImage: "/images/places/dambuk/Dambuk_3.jpg", 
@@ -290,7 +290,231 @@ export const orangeFestival: FestivalTour = {
   difficulty: "Easy"
 };
 
+export const ziroFestival2025: FestivalTour = {
+  id: "ziro-festival-2025",
+  slug: "ziro-festival-2025",
+  type: "Festival",
+  festivalName: "ZIRO Festival of Music 2025",
+  title: "ZIRO Festival of Music 2025",
+  subtitle: "Feel the Beat. Live the Moment",
+  overview: "Experience one of India’s most iconic outdoor music festivals set in the serene Ziro Valley of Arunachal Pradesh. Enjoy live music, local culture, and immersive nature experiences with Travelspire’s seamless camping and travel packages.",
+  location: "Ziro Valley, Arunachal Pradesh",
+  featured: true,
+  upcoming: true,
+  trending: true,
+  tags: ["festival", "music", "ziro-valley", "camping", "adventure"],
+
+  eventDates: {
+    start: "2025-09-25",  // Approximate expected timeframe, can be adjusted once official dates are out
+    end: "2025-09-28",
+    year: 2025
+  },
+
+  heroImage: "/images/places/ziro-new/ziro-new-landscape-1.jpeg",
+  thumbnail: "/images/places/ziro-new/ziro-new-landscape-1.jpeg",
+  gallery: [
+    "/images/places/ziro-new/ziro-new-landscape-2.JPG",
+    "/images/places/ziro-new/ziro-new-landscape-3.JPG",
+    "/images/places/ziro-new/ziro-new-landscape-4.JPG",
+    "/images/places/ziro-new/ziro-new-portrait-5.JPG",
+    "/images/places/ziro-new/ziro-new-portrait-6.JPG",
+    "/images/places/ziro-new/ziro-new-portrait-8.jpg",
+    "/images/places/ziro-new/ziro-new-portrait-9.jpg",
+    "/images/places/ziro-new/ziro-new-portrait-10.jpg",
+    "/images/places/ziro-new/ziro-new-portrait-11.jpg",
+    "/images/places/ziro-new/ziro-new-portrait-12.jpg",
+    "/images/places/ziro-new/ziro-new-portrait-13.jpeg",
+    "/images/places/ziro-new/ziro-new-portrait-14.jpeg",
+    "/images/places/ziro-new/ziro-new-portrait-15.JPG",
+
+
+  ],
+
+  highlights: [
+    "Live indie and folk music performances under the open sky",
+    "Scenic camping in Ziro Valley",
+    "Cultural village tour and local cuisine",
+    "After-parties and bar access at the campsite",
+    "Nature safari and local sightseeing"
+  ],
+
+  culturalHighlights: [
+    "Local village tour",
+    "Ziro Safari covering Old Ziro, Sirro, Hapoli Shiv Mandir, Seeh Lake, Butterfly Park",
+    "Indigenous food and drink",
+    "Art and crafts exposure"
+  ],
+
+  variants: [
+    {
+      id: "ziro-dome-basic",
+      name: "1N Dome Tent (Standard)",
+      duration: {
+        days: 2,
+        nights: 1
+      },
+      price: 1999,
+      description: "Standard dome tent with shared accommodation and campsite access",
+      inclusions: [
+        "1-night dome tent stay",
+        "1 breakfast",
+        "Campsite amenities"
+      ]
+    },
+    {
+      id: "ziro-dome-premium-1n",
+      name: "1N Dome Tent with Platform (Premium)",
+      duration: {
+        days: 2,
+        nights: 1
+      },
+      price: 2499,
+      description: "Premium dome tent with elevated platform for extra comfort",
+      inclusions: [
+        "1-night premium dome tent stay",
+        "1 breakfast",
+        "Platform tent",
+        "Campsite amenities"
+      ]
+    },
+    {
+      id: "ziro-dome-premium-2n",
+      name: "2N Dome Tent with Platform (Premium)",
+      duration: {
+        days: 3,
+        nights: 2
+      },
+      price: 4999,
+      description: "Extended stay in premium dome tent with elevated platform",
+      inclusions: [
+        "2-night premium dome tent stay",
+        "2 breakfasts",
+        "Platform tent",
+        "Campsite amenities"
+      ]
+    },
+    {
+      id: "ziro-alpine-2n",
+      name: "2N Alpine Tent (Premium)",
+      duration: {
+        days: 3,
+        nights: 2
+      },
+      price: 5999,
+      description: "Spacious alpine tent for premium camping experience",
+      inclusions: [
+        "2-night alpine tent stay",
+        "2 breakfasts",
+        "Campsite amenities"
+      ]
+    },
+    {
+      id: "ziro-alpine-3n",
+      name: "3N Alpine Tent (Premium)",
+      duration: {
+        days: 4,
+        nights: 3
+      },
+      price: 8999,
+      description: "Comfortable alpine tent stay with extended access to Ziro festival",
+      inclusions: [
+        "3-night alpine tent stay",
+        "3 breakfasts",
+        "Campsite amenities"
+      ]
+    },
+    {
+      id: "ziro-alpine-4n",
+      name: "4N Alpine Tent (Premium)",
+      duration: {
+        days: 5,
+        nights: 4
+      },
+      price: 11999,
+      description: "Ultimate full-duration experience in premium alpine tent",
+      inclusions: [
+        "4-night alpine tent stay",
+        "4 breakfasts",
+        "Campsite amenities"
+      ]
+    },
+    {
+      id: "ziro-all-inclusive-dome",
+      name: "All Inclusive Package - Dome Tent",
+      duration: {
+        days: 5,
+        nights: 4
+      },
+      price: 15699,
+      description: "4N/5D complete package with travel, safari, village tour, and dome tent stay",
+      inclusions: [
+        "Round-trip train tickets (Guwahati-Harmuti/NHLN)",
+        "Pickup/drop from Harmuti/NHLN to Ziro",
+        "4 nights stay in Dome Tent",
+        "5 breakfasts",
+        "Ziro safari & village tour",
+        "Inner Line Permit"
+      ]
+    },
+    {
+      id: "ziro-all-inclusive-alpine",
+      name: "All Inclusive Package - Alpine Tent",
+      duration: {
+        days: 5,
+        nights: 4
+      },
+      price: 17699,
+      description: "4N/5D premium package with travel, safari, village tour, and alpine tent stay",
+      inclusions: [
+        "Round-trip train tickets (Guwahati-Harmuti/NHLN)",
+        "Pickup/drop from Harmuti/NHLN to Ziro",
+        "4 nights stay in Alpine Tent",
+        "5 breakfasts",
+        "Ziro safari & village tour",
+        "Inner Line Permit"
+      ]
+    }
+  ],
+
+  baseInclusions: [
+    "Stay in tent as per selection",
+    "Daily breakfast",
+    "Access to campsite amenities",
+    "After-parties",
+    "Bar access",
+    "Hygienic washrooms",
+    "Charging ports",
+    "Parking",
+    "BBQ access"
+  ],
+
+  baseExclusions: [
+    "Festival entry passes",
+    "Travel to Guwahati or Harmuti/NHLN",
+    "Lunch and dinner",
+    "Personal expenses",
+    "Travel insurance"
+  ],
+
+  thingsToCarry: [
+    "Valid ID proof",
+    "Warm clothing for evenings",
+    "Comfortable footwear",
+    "Powerbank and chargers",
+    "Camera",
+    "Basic medication",
+    "Cash for local purchases"
+  ],
+
+  importantNote: "Festival passes not included in the package. Train tickets are included only in all-inclusive packages. Accommodation availability is on first-come, first-served basis.",
+  
+  difficulty: "Easy"
+};
+
+
 export const festivalTours = [
+  ziroFestival2025,
   hornbillFestival,
-  orangeFestival
+  orangeFestival,
+  
 ] as const;

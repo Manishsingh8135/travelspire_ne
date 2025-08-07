@@ -4,7 +4,7 @@ export const heroData = {
     description: "Embark on extraordinary journeys through unexplored landscapes, vibrant cultures, and authentic local experiences in India's mystical Northeast.",
     cta: {
       text: "Start Your Journey",
-      href: "/tours"
+      href: "/all-tours"
     },
     stats: [
       {

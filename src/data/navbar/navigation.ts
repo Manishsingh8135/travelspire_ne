@@ -21,6 +21,11 @@ import {
   
   export const navigationData: NavigationData = {
     primary: [
+      { 
+        name: "All Tours", 
+        href: "/all-tours",
+        icon: Map 
+      },
       /* Temporarily hidden - Destinations
       {
         name: "Destinations",

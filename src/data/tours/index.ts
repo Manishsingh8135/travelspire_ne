@@ -1,12 +1,12 @@
 // data/tours/index.ts
 import { Tour } from "@/types/tours/tour";
 import { regularTours } from "./tour-data";
-import { hornbillFestival, orangeFestival } from "./festival-data";
+import { hornbillFestival, orangeFestival, ziroFestival2025 } from "./festival-data";
 import { dambukOrangeFestival, dambukBikeTour } from "./special-activity-data";
 
 // Special tours categorization
 export const specialTours = {
-  festivals: [hornbillFestival, orangeFestival],
+  festivals: [hornbillFestival, orangeFestival, ziroFestival2025],
   // Temporarily hidden:
   // activities: [dambukOrangeFestival, dambukBikeTour]
   activities: []

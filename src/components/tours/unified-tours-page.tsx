@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { 
@@ -106,20 +107,27 @@ export function UnifiedToursPage({ initialFilters = {}, className }: UnifiedTour
         />
       </div>
       
-      {/* Hero Section with original green background */}
-      <div className="relative bg-gradient-to-b from-white to-primary-50/30 dark:from-black dark:to-accent-900 rounded-b-[3rem] mx-4 md:mx-8">
-        {/* Header Section */}
-        <div className="relative overflow-hidden rounded-b-[3rem]">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-secondary-500/10 to-primary-500/10" />
-          
-          <div className="relative container mx-auto px-4 md:px-8 py-24 md:py-32">
+      {/* Hero Section - taller, image background, subtle overlay */}
+      <div className="relative rounded-b-[3rem] mx-4 md:mx-8 overflow-hidden">
+        <div className="relative min-h-[360px] md:min-h-[520px]">
+          <Image
+            src="/images/places/ziro-new/ziro-new-landscape-1.jpeg"
+            alt="Explore tours across Northeast India"
+            fill
+            priority
+            className="object-cover"
+          />
+          {/* Subtle dark overlay for text readability */}
+          <div className="absolute inset-0 bg-black/40" />
+
+          <div className="relative container mx-auto px-4 md:px-8 py-24 md:py-40">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-center space-y-6"
             >
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 via-secondary-600 to-primary-600 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-6xl font-bold text-white">
                 All Tours & Experiences
               </h1>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

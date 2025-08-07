@@ -163,13 +163,23 @@ export const dongValleyExpedition: Tour = {
   tags: ["sunrise", "easternmost-india", "pristine-nature", "cultural-heritage"],
   featured: false,
 
-  heroImage: "/images/places/dong/Dong_1.JPG",
-  thumbnail: "/images/places/dong/Dong_1.JPG",
+  heroImage: "/images/places/dong-new/dong-new-landscape-8.jpg",
+  thumbnail: "/images/places/dong-new/dong-new-landscape-8.jpg",
   gallery: [
+    // "/images/places/dong/Dong_1.JPG",
     "/images/places/dong/Dong_2.jpg",
     "/images/places/dong/Dong_3.jpg",
     "/images/places/dong/Dong_4.jpg",
-    "/images/places/dong/Dong_5.jpg"
+    "/images/places/dong/Dong_5.jpg",
+    "/images/places/dong-new/dong-new-portrait-1.jpg",
+    "/images/places/dong-new/dong-new-portrait-2.jpg",
+    "/images/places/dong-new/dong-new-portrait-3.jpg",
+    "/images/places/dong-new/dong-new-portrait-4.jpg",
+    "/images/places/dong-new/dong-new-portrait-6.jpg",
+    "/images/places/dong-new/dong-new-portrait-7.jpg",
+    "/images/places/dong-new/dong-new-portrait-9.jpg",
+    "/images/places/dong-new/dong-new-portrait-10.jpg",
+
   ],
 
   highlights: [
@@ -299,14 +309,18 @@ export const aniniExpedition: Tour = {
   featured: false,
 
   // We'll need proper images later, using placeholders for now
-  heroImage: "/images/places/anini/Anini_1.JPG", // Replace with actual Anini images
-  thumbnail: "/images/places/anini/Anini_1.JPG",
+  heroImage: "/images/places/anini-new/anini-new-landscape-11.jpeg", // Replace with actual Anini images
+  thumbnail: "/images/places/anini-new/anini-new-landscape-11.jpeg",
   gallery: [
-    "/images/places/anini/Anini_9.jpg",
-    "/images/places/anini/Anini_10.JPG",
-    "/images/places/anini/Anini_4.JPG",
-    "/images/places/anini/Anini_6.jpg",
-    "/images/places/anini/Anini_8.jpg"
+    "/images/places/anini-new/anini-new-portrait-1.JPG",
+    "/images/places/anini-new/anini-new-portrait-2.JPG",
+    "/images/places/anini-new/anini-new-portrait-3.JPG",
+    "/images/places/anini-new/anini-new-portrait-4.JPG",
+    "/images/places/anini-new/anini-new-portrait-5.JPG",
+    "/images/places/anini-new/anini-new-portrait-6.JPG",
+    "/images/places/anini-new/anini-new-portrait-7.JPG",
+    "/images/places/anini-new/anini-new-portrait-8.JPG",
+    "/images/places/anini-new/anini-new-portrait-9.JPG",
   ],
 
   highlights: [
@@ -411,7 +425,7 @@ export const dambukAniniOfamTour: Tour = {
   overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with the pristine landscapes of Anini. Journey through orange orchards, witness the Mawu ando & Mathu waterfalls, and explore the remote Dibang Valley with its stunning Mayodia Pass.",
   duration: "4 Days / 3 Nights",
   location: "Dambuk & Anini, Arunachal Pradesh",
-  startDate: "December 2024", // During OFAM festival
+  startDate: "December 2025", // During OFAM festival
   price: 18500,
   featured: false,
 
@@ -541,7 +555,7 @@ export const dambukGoldenPagodaTour: Tour = {
   overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with a spiritual journey to the majestic Golden Pagoda in Namsai. Enjoy riverside camping, explore sacred Buddhist sites, and immerse yourself in the cultural heritage of Arunachal Pradesh.",
   duration: "3 Days / 2 Nights",
   location: "Dambuk & Namsai, Arunachal Pradesh",
-  startDate: "December 2024", // During OFAM festival
+  startDate: "December 2025", // During OFAM festival
   price: 12999,
   featured: false,
 
@@ -662,7 +676,7 @@ export const dambukDongValleyTour: Tour = {
   overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with an expedition to India's easternmost valley. Journey from the orange orchards of Dambuk to the historic Dong Valley, enjoying hot springs, trek experiences, and visiting India's easternmost villages.",
   duration: "4 Days / 3 Nights",
   location: "Dambuk & Dong Valley, Arunachal Pradesh",
-  startDate: "December 2024", // During OFAM festival
+  startDate: "December 2025", // During OFAM festival
   price: 18500,
   featured: false,
 
@@ -916,6 +930,168 @@ export const pomoTrekExpedition: Tour = {
   bestTimeToVisit: ["October", "November", "March", "April"]
 };
 
+export const mechukaExpedition: Tour = {
+  id: "mechuka-expedition",
+  slug: "mechuka-expedition",
+  type: "Adventure",
+  title: "Mechuka Expedition",
+  subtitle: "5 Nights 6 Days in the Hidden Valley of Arunachal",
+  overview:
+    "Discover the untouched charm of Mechuka Valley — a serene land of scenic beauty, exotic tribes, gentle hills, and snow-capped mountains. Journey through Aalo, cross the Bogibeel and Yorlung bridges, and immerse yourself in a mix of spirituality, nature, and thrill.",
+  duration: "6 Days / 5 Nights",
+  location: "Mechuka Valley, Arunachal Pradesh",
+  startDate: "Available Year Round",
+  price: 19999,
+  featured: true,
+  trending: true,
+  upcoming: false,
+  tags: ["tribal-culture", "hidden-gem", "monasteries", "zipline", "valley-tour"],
+
+  heroImage: "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
+  thumbnail: "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
+  gallery: [
+    "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
+    "/images/places/mechuka-new/mechuka-new-portrait-2.JPG",
+    "/images/places/mechuka-new/mechuka-new-portrait-3.JPG",
+    "/images/places/mechuka-new/mechuka-new-portrait-8.JPG",
+    "/images/places/mechuka-new/mechuka-new-portrait-15.JPG",
+    "/images/places/mechuka-new/mechuka-new-portrait-21.JPG",
+  ],
+
+  highlights: [
+    "Cross India’s longest railroad bridge – Bogibeel Bridge",
+    "Explore the scenic Mechuka Valley",
+    "Visit 400-year-old Mechuka Monastery",
+    "See the rock face of Hanuman",
+    "Gurudwara maintained by Indian Army",
+    "Sacred meditation cave of Guru Rinpoche",
+    "Ziplining adventure at Dorjeeling",
+    "Oldest monastery in Dorjeeling (older than Tawang)"
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Aalo (Along)",
+      description: "Begin your journey with a scenic drive to Aalo crossing Bogibeel bridge.",
+      activities: [
+        "Early morning departure from Dibrugarh",
+        "Cross Bogibeel Bridge – India’s longest railroad bridge",
+        "Drive through West Siang region",
+        "Reach Aalo by evening",
+        "Overnight stay in Aalo"
+      ]
+    },
+    {
+      title: "Aalo to Mechuka",
+      description: "Enter the magical Mechuka Valley crossing the Yorlung Bridge.",
+      activities: [
+        "Drive to Mechuka (190 km, approx. 6 hours)",
+        "Cross the Yorlung Bridge",
+        "Check into homestay or hotel",
+        "Explore Mechuka town and local market",
+        "Overnight stay in Mechuka"
+      ]
+    },
+    {
+      title: "Mechuka Exploration - Part 1",
+      description: "Spiritual and cultural exploration of sacred landmarks in Mechuka.",
+      activities: [
+        "Visit ancient 400-year-old Mechuka Monastery",
+        "See Hanuman face engraved on mountain",
+        "Visit the Indian Army-maintained Gurudwara",
+        "Visit Neh-Bechag Shingri (sacred cave of Guru Rinpoche)",
+        "Understand history of the sacred tiger imprint",
+        "Overnight stay in Mechuka"
+      ]
+    },
+    {
+      title: "Dorjeeling Visit and Zipline",
+      description: "Trek to viewpoint and explore Dorjeeling’s monastery and zipline thrills.",
+      activities: [
+        "Morning trek to a mountain viewpoint near Mechuka",
+        "Drive to Dorjeeling",
+        "Ziplining experience with breathtaking views",
+        "Visit the oldest monastery in Dorjeeling (older than Tawang Monastery)",
+        "Drive back to Mechuka",
+        "Overnight stay in Mechuka"
+      ]
+    },
+    {
+      title: "Mechuka to Aalo",
+      description: "Return journey from Mechuka to Aalo through scenic roads.",
+      activities: [
+        "Breakfast in Mechuka",
+        "Drive back to Aalo",
+        "Scenic drive through hills and valleys",
+        "Overnight stay in Aalo"
+      ]
+    },
+    {
+      title: "Aalo to Dibrugarh",
+      description: "Final leg of the journey back to Dibrugarh.",
+      activities: [
+        "Early morning departure from Aalo",
+        "Drive back to Dibrugarh",
+        "End of trip"
+      ]
+    }
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170], // Dibrugarh
+      [28.1700, 94.8000], // Aalo (Along)
+      [28.6000, 94.1500]  // Mechuka
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Starting point via Bogibeel Bridge"
+      },
+      {
+        name: "Aalo",
+        location: [28.1700, 94.8000],
+        description: "District headquarters of West Siang"
+      },
+      {
+        name: "Mechuka",
+        location: [28.6000, 94.1500],
+        description: "Remote valley with monasteries, history, and adventure"
+      }
+    ]
+  },
+
+  inclusions: [
+    "Stay with necessary accommodations",
+    "Breakfast & evening snacks",
+    "Travel expenses",
+    "Guide charges",
+    "Tourist spot tickets",
+    "Inner Line Permit"
+  ],
+
+  exclusions: [
+    "Lunch & Dinner",
+    "Railway & Airway tickets"
+  ],
+
+  importantNote: "To confirm this trip please pay 50% of the total package cost.",
+
+  thingsToCarry: [
+    "Warm clothes",
+    "Chargers & Powerbanks",
+    "Mini flask for warm water",
+    "Small backpack for essentials during sightseeing"
+  ],
+
+  maxGroupSize: 12,
+  difficulty: "Moderate",
+  altitude: 1829, // Approx altitude of Mechuka in meters
+  bestTimeToVisit: ["October", "November", "March", "April"]
+};
+
+
 export const regularTours = [
   tawangExpedition,
   dongValleyExpedition,
@@ -923,7 +1099,8 @@ export const regularTours = [
   dambukAniniOfamTour,
   dambukGoldenPagodaTour,
   dambukDongValleyTour,
-  pomoTrekExpedition
+  pomoTrekExpedition,
+  mechukaExpedition
 ];
 
 
