@@ -12,8 +12,7 @@ import {
   Cloud,
   Backpack,
   MessageSquare,
-  FileCheck,
-  MapPin
+  FileCheck
 } from "lucide-react";
 import { DotPattern, GlowEffect } from "@/components/ui/background-patterns";
 

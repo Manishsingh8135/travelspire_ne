@@ -38,10 +38,8 @@ const SubMenuItem = ({ item }: { item: NavigationItem }) => (
   </Link>
 );
 
-const NavItem = ({ item, active, setActive }: {
+const NavItem = ({ item }: {
   item: NavigationItem;
-  active: string | null;
-  setActive: (name: string | null) => void;
 }) => {
   const isZiroFestival = item.name === "Ziro Festival";
   
@@ -126,7 +124,7 @@ const NavItem = ({ item, active, setActive }: {
   );
 };
 
-export const DesktopNavigation = ({ active, setActive, isScrolled }: DesktopNavigationProps) => {
+export const DesktopNavigation = ({ active, setActive }: DesktopNavigationProps) => {
   return (
     <div className="hidden md:flex items-center space-x-4">
       {navigationData.primary.map((item) => (
@@ -136,7 +134,7 @@ export const DesktopNavigation = ({ active, setActive, isScrolled }: DesktopNavi
           onMouseEnter={() => setActive(item.name)}
           onMouseLeave={() => setActive(null)}
         >
-          <NavItem item={item} active={active} setActive={setActive} />
+          <NavItem item={item} />
 
           {/* Dropdown Menu */}
           {item.submenu && (

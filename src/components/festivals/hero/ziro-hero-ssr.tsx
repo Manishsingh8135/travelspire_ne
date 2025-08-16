@@ -1,4 +1,5 @@
 // components/festivals/hero/ziro-hero-ssr.tsx
+import Image from "next/image";
 import { Calendar, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -10,10 +11,11 @@ export function ZiroHeroSSR() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-b-[4rem] overflow-hidden">
-          <img 
+          <Image 
             src={ziroFestival2025.heroImage}
             alt="Ziro Festival 2025"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80 rounded-b-[4rem]" />
@@ -46,7 +48,7 @@ export function ZiroHeroSSR() {
           <div className="mt-4">
             <Badge className="px-6 py-3 text-sm font-medium bg-primary-500/15 text-primary-300 border-primary-400/25 backdrop-blur-md rounded-[2rem]">
               <span className="mr-2">🌿</span>
-              India's Greatest Eco-Friendly Festival
+              Arunachal Pradesh&apos;s most celebrated music festival
             </Badge>
           </div>
         </div>
@@ -64,7 +66,7 @@ export function ZiroHeroSSR() {
         </h1>
 
         <p className="text-xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
-          Experience India's premier outdoor music festival in the UNESCO Tentative World Heritage Site of Ziro Valley
+          Experience India&apos;s premier outdoor music festival in the UNESCO Tentative World Heritage Site of Ziro Valley
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">

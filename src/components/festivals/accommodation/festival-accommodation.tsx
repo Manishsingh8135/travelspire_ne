@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
 import { FestivalSectionHeader } from "../common/festival-section-header";
+import Link from "next/link";
 
 // Shimmer loading component
 const AccommodationShimmer = () => (
@@ -219,7 +220,7 @@ export function FestivalAccommodation({
                         whileTap={{ scale: 0.98 }}
                         className="pt-4"
                       >
-                        <a
+                        <Link
                           href="/tours/ziro-festival-2025"
                           className="
                             block w-full py-4 px-6 bg-gradient-to-r from-amber-600 via-orange-500 to-red-500 
@@ -243,7 +244,7 @@ export function FestivalAccommodation({
                               →
                             </motion.span>
                           </span>
-                        </a>
+                        </Link>
                       </motion.div>
                     </CardContent>
                   </Card>

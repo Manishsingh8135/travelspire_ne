@@ -4,7 +4,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Menu, X } from "lucide-react";
 import { ModeToggle } from "@/components/theme/theme-button/toggle-button";

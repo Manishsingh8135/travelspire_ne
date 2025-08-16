@@ -1,6 +1,8 @@
 // components/festivals/lineup/festival-lineup-ssr.tsx
-import { Music } from "lucide-react";
+import React from "react";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { Music } from "lucide-react";
 import { FestivalSectionHeader } from "../common/festival-section-header";
 
 interface Artist {
@@ -32,7 +34,7 @@ export function FestivalLineupSSR({
 
         {/* Artists Grid - Static */}
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          {artists.map((artist, index) => (
+          {artists.map((artist) => (
             <div
               key={artist.name}
               className="group cursor-pointer hover:scale-[1.02] hover:-translate-y-1 transition-transform duration-300"
@@ -40,10 +42,11 @@ export function FestivalLineupSSR({
               <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300">
                 {/* Artist Image */}
                 <div className="relative h-32 sm:h-40 md:h-48 overflow-hidden">
-                  <img 
+                  <Image 
                     src={artist.image}
                     alt={artist.name}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   

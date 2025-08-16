@@ -117,6 +117,8 @@ function MainSection({ data }: { data: FooterProps['data']['mainSection'] }) {
   );
 }
 
+// QuickLinks function commented out as it's unused
+/*
 function QuickLinks({ data }: { data: FooterProps['data']['quickLinks'] }) {
   return (
     <div className="px-4 md:px-8 lg:px-12">
@@ -162,6 +164,7 @@ function QuickLinks({ data }: { data: FooterProps['data']['quickLinks'] }) {
     </div>
   );
 }
+*/
 
 
 function Newsletter({ data }: { data: { title: string; description: string; placeholder: string; buttonText: string; } }) {

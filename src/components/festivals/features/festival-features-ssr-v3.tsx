@@ -1,6 +1,8 @@
 // components/festivals/features/festival-features-ssr-v3.tsx
-import { Music, Leaf, Award, Users, Mountain } from "lucide-react";
+import React from "react";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
+import { Music, Leaf, Award, Users, Mountain } from "lucide-react";
 import { FestivalSectionHeader } from "../common/festival-section-header";
 
 const features = [
@@ -91,10 +93,11 @@ export function FestivalFeaturesSSRV3() {
                   
                   {/* Background Image */}
                   <div className="absolute inset-0">
-                    <img 
+                    <Image 
                       src={feature.image} 
                       alt={feature.title}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   </div>
                   

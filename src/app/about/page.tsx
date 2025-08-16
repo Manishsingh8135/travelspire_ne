@@ -4,12 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import {
     Mountain,
-    Heart,
-    Users,
-    Leaf,
-    Camera,
     MapPin,
-    Compass,
     HandHeart,
     TreePine,
     ScrollText,

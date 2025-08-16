@@ -3,7 +3,6 @@
 
 import { motion } from "framer-motion";
 import { contactMethods } from "@/data/contact/contact-data";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 export function ContactMethods() {
