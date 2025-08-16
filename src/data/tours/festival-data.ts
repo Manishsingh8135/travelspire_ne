@@ -294,18 +294,18 @@ export const ziroFestival2025: FestivalTour = {
   id: "ziro-festival-2025",
   slug: "ziro-festival-2025",
   type: "Festival",
-  festivalName: "ZIRO Festival of Music 2025",
-  title: "ZIRO Festival of Music 2025",
-  subtitle: "Feel the Beat. Live the Moment",
-  overview: "Experience one of India’s most iconic outdoor music festivals set in the serene Ziro Valley of Arunachal Pradesh. Enjoy live music, local culture, and immersive nature experiences with Travelspire’s seamless camping and travel packages.",
+  festivalName: "Ziro Festival of Music 2025",
+  title: "Ziro Festival of Music 2025",
+  subtitle: "India's Greatest Eco-Friendly Outdoor Music Festival",
+  overview: "Experience India's premier eco-friendly outdoor music festival in the UNESCO Tentative World Heritage Site of Ziro Valley. Founded in 2012, this 4-day celebration features 33+ artists from India and around the world, hosted by the indigenous Apatani tribe with sustainable bamboo infrastructure and zero-waste practices.",
   location: "Ziro Valley, Arunachal Pradesh",
   featured: true,
   upcoming: true,
   trending: true,
-  tags: ["festival", "music", "ziro-valley", "camping", "adventure"],
+  tags: ["festival", "music", "ziro-valley", "eco-friendly", "unesco", "apatani-culture", "indie-music"],
 
   eventDates: {
-    start: "2025-09-25",  // Approximate expected timeframe, can be adjusted once official dates are out
+    start: "2025-09-25",
     end: "2025-09-28",
     year: 2025
   },
@@ -331,18 +331,22 @@ export const ziroFestival2025: FestivalTour = {
   ],
 
   highlights: [
-    "Live indie and folk music performances under the open sky",
-    "Scenic camping in Ziro Valley",
-    "Cultural village tour and local cuisine",
-    "After-parties and bar access at the campsite",
-    "Nature safari and local sightseeing"
+    "33+ artists including Shilpa Rao, Anna Erhard, Soumik Datta & international performers",
+    "UNESCO Tentative World Heritage Site - Ziro Valley setting",
+    "Sustainable bamboo infrastructure by local Apatani artisans",
+    "Zero-waste eco-friendly festival practices",
+    "4-day outdoor music celebration with indie, folk & world music",
+    "Premium homestays and camping experiences",
+    "Cultural workshops and Ziro Literary Festival"
   ],
 
   culturalHighlights: [
-    "Local village tour",
-    "Ziro Safari covering Old Ziro, Sirro, Hapoli Shiv Mandir, Seeh Lake, Butterfly Park",
-    "Indigenous food and drink",
-    "Art and crafts exposure"
+    "Hosted by indigenous Apatani tribe with 1000+ years of heritage",
+    "Traditional wet rice cultivation and sustainable farming practices",
+    "Local bamboo craftsmanship and artisan workshops",
+    "Authentic Apatani cuisine and cultural immersion",
+    "Community-based tourism supporting local economy",
+    "Traditional Apatani architecture and lifestyle experience"
   ],
 
   variants: [

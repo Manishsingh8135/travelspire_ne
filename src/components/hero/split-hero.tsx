@@ -58,6 +58,114 @@ export function HeroContent({
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="space-y-6 sm:space-y-8"
       >
+        {/* Ziro Festival Premium Badge */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8, y: -20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          className="flex justify-center lg:justify-start mb-6"
+        >
+          <div className="relative group">
+            {/* Outer glow */}
+            <motion.div
+              className="absolute -inset-3 bg-gradient-to-r from-amber-400/30 via-orange-500/30 to-red-500/30 rounded-[2.5rem] blur-xl"
+              animate={{
+                opacity: [0.3, 0.7, 0.3],
+                scale: [0.95, 1.05, 0.95],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            
+            {/* Main badge */}
+            <motion.div
+              className="relative px-6 py-3 bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-red-500/15 backdrop-blur-xl border border-amber-400/30 rounded-[2rem] shadow-2xl"
+              whileHover={{ scale: 1.05, y: -2 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <div className="flex items-center gap-3">
+                {/* Animated music icon */}
+                <motion.div
+                  animate={{ 
+                    rotate: [0, 5, -5, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 2.5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                  className="w-5 h-5 text-amber-400"
+                >
+                  🎵
+                </motion.div>
+                
+                {/* Badge text */}
+                <span className="text-sm font-bold bg-gradient-to-r from-amber-300 via-orange-300 to-red-300 bg-clip-text text-transparent">
+                  ZIRO FESTIVAL 2025
+                </span>
+                
+                {/* Pulsing dot */}
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.3, 1],
+                    opacity: [0.7, 1, 0.7]
+                  }}
+                  transition={{ 
+                    duration: 1.5, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                  className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"
+                />
+                
+                {/* Live badge */}
+                <span className="px-2 py-1 text-xs font-bold bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full animate-pulse">
+                  LIVE
+                </span>
+              </div>
+              
+              {/* Floating sparkles */}
+              <motion.div
+                className="absolute -top-1 -right-1 text-amber-400 text-xs"
+                animate={{ 
+                  y: [0, -3, 0],
+                  rotate: [0, 15, 0],
+                  opacity: [0.6, 1, 0.6]
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 0.5
+                }}
+              >
+                ✨
+              </motion.div>
+              
+              <motion.div
+                className="absolute -bottom-1 -left-1 text-orange-400 text-xs"
+                animate={{ 
+                  y: [0, 3, 0],
+                  rotate: [0, -15, 0],
+                  opacity: [0.6, 1, 0.6]
+                }}
+                transition={{ 
+                  duration: 2.5, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 1
+                }}
+              >
+                ✨
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.div>
+
         <h1 className="heading-2 text-center lg:text-left">
           <span className="block text-foreground dark:text-white">
             {title}

@@ -60,7 +60,7 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
         </div>
 
         {/* Booking Form */}
-        <form className="space-y-4">
+        <form className="space-y-4 max-w-sm mx-auto">
           {/* Name Input */}
           <div className="space-y-2">
             <input

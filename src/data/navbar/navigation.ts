@@ -16,7 +16,8 @@ import {
     TreePine,
     Footprints,
     Hotel,
-    Car
+    Car,
+    Music
   } from "lucide-react";
   
   export const navigationData: NavigationData = {
@@ -25,6 +26,11 @@ import {
         name: "All Tours", 
         href: "/all-tours",
         icon: Map 
+      },
+      { 
+        name: "Ziro Festival", 
+        href: "/ziro-festival",
+        icon: Music 
       },
       /* Temporarily hidden - Destinations
       {
