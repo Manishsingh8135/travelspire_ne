@@ -1,29 +1,13 @@
-// components/festivals/ziro-festival-page.tsx
+// components/festivals/ziro-festival-client-sections.tsx
+"use client";
+
 import { motion } from "framer-motion";
-import { ZiroHeroSSR } from "./hero";
-import { FestivalFeatures } from "./features";
 import { FestivalPackages } from "./packages";
 import { ziroFestival2025 } from "@/data/tours/festival-data";
 import { TourGallery } from "@/components/tours/tour-details/tour-gallery";
 import { ContactMethods } from "@/components/contact/contact-methods";
 import { FestivalAccommodation } from "./accommodation/festival-accommodation";
-import { FestivalLineup } from "./lineup/festival-lineup";
-import { FestivalFAQ } from "./faqs/festival-faq";
 import { ziroFestivalFAQData } from "@/data/faqs/ziro-festival-faq-data";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
 
 // Artist lineup data
 const lineup2025 = [
@@ -113,7 +97,6 @@ const lineup2025 = [
   }
 ];
 
-
 // Real accommodation data from Ziro Festival 2025
 const accommodationOptions = [
   {
@@ -174,23 +157,9 @@ const accommodationOptions = [
   }
 ];
 
-export function ZiroFestivalPage() {
+export function ZiroFestivalClientSections() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      {/* SSR Hero Section */}
-      <ZiroHeroSSR />
-
-      {/* Festival Features Section */}
-      <FestivalFeatures />
-
-      {/* Artist Lineup */}
-      <FestivalLineup 
-        artists={lineup2025}
-        isLoading={false}
-        year="2025"
-        totalArtists="33+"
-      />
-
+    <>
       {/* Accommodation Options */}
       <FestivalAccommodation 
         accommodationOptions={accommodationOptions}
@@ -229,11 +198,8 @@ export function ZiroFestivalPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <FestivalFAQ section={ziroFestivalFAQData} />
-
       {/* Contact Section */}
       <ContactMethods />
-    </div>
+    </>
   );
 }
