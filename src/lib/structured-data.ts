@@ -332,6 +332,11 @@ export const generateZiroFestival2025Schema = () => ({
     },
     {
       "@type": "MusicGroup",
+      "name": "Susheela Raman",
+      "genre": "World Music, Tamil"
+    },
+    {
+      "@type": "MusicGroup",
       "name": "Swarathma",
       "genre": "Folk Rock, Indie"
     },
@@ -339,6 +344,16 @@ export const generateZiroFestival2025Schema = () => ({
       "@type": "MusicGroup",
       "name": "Parvaaz",
       "genre": "Progressive Rock"
+    },
+    {
+      "@type": "MusicGroup",
+      "name": "The Local Train",
+      "genre": "Indie Rock, Hindi"
+    },
+    {
+      "@type": "MusicGroup",
+      "name": "Dualist Inquiry",
+      "genre": "Electronic, Ambient"
     }
   ],
   "offers": [

@@ -1,6 +1,5 @@
 // components/festivals/lineup/festival-lineup-ssr.tsx
 import React from "react";
-import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Music } from "lucide-react";
 import { FestivalSectionHeader } from "../common/festival-section-header";
@@ -9,7 +8,6 @@ interface Artist {
   name: string;
   origin: string;
   type: string;
-  image: string;
   genre: string;
 }
 
@@ -40,14 +38,11 @@ export function FestivalLineupSSR({
               className="group cursor-pointer hover:scale-[1.02] hover:-translate-y-1 transition-transform duration-300"
             >
               <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300">
-                {/* Artist Image */}
-                <div className="relative h-32 sm:h-40 md:h-48 overflow-hidden">
-                  <Image 
-                    src={artist.image}
-                    alt={artist.name}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
+                {/* Artist Icon Header */}
+                <div className="relative h-32 sm:h-40 md:h-48 overflow-hidden flex items-center justify-center bg-gradient-to-br from-slate-800/50 to-slate-900/50">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-amber-400/20 to-orange-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                    <Music className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-amber-300" />
+                  </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   
                   {/* Static Music Icon */}
