@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider/theme-provider"
 import AdvancedNavbar from "@/components/common/navbar/advance-navbar";
 import FooterHome from "@/components/common/footer/footer-home";
 import { StructuredData } from "@/components/seo/structured-data";
+import { WhatsAppWidget } from "@/components/whatsapp-widget";
 import { 
   generateOrganizationSchema, 
   generateLocalBusinessSchema,
@@ -164,6 +165,9 @@ export default function RootLayout({
             <main className="flex-1">
               {children}
             </main>
+            
+            {/* WhatsApp Widget - Available on all pages */}
+            <WhatsAppWidget />
           </div>
         </ThemeProvider>
         <FooterHome/>
