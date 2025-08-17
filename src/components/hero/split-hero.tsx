@@ -81,52 +81,55 @@ export function HeroContent({
             />
             
             {/* Main badge */}
-            <motion.div
-              className="relative px-6 py-3 bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-red-500/15 backdrop-blur-xl border border-amber-400/30 rounded-[2rem] shadow-2xl"
-              whileHover={{ scale: 1.05, y: -2 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-            >
-              <div className="flex items-center gap-3">
-                {/* Animated music icon */}
-                <motion.div
-                  animate={{ 
-                    rotate: [0, 5, -5, 0],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{ 
-                    duration: 2.5, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                  className="w-5 h-5 text-amber-400"
-                >
-                  🎵
-                </motion.div>
-                
-                {/* Badge text */}
-                <span className="text-sm font-bold bg-gradient-to-r from-amber-300 via-orange-300 to-red-300 bg-clip-text text-transparent">
-                  ZIRO FESTIVAL 2025
-                </span>
-                
-                {/* Pulsing dot */}
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.3, 1],
-                    opacity: [0.7, 1, 0.7]
-                  }}
-                  transition={{ 
-                    duration: 1.5, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                  className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"
-                />
-                
-                {/* Live badge */}
-                <span className="px-2 py-1 text-xs font-bold bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full animate-pulse">
-                  LIVE
-                </span>
-              </div>
+            <Link href="/ziro-music-festival-2025">
+              <motion.div
+                className="relative px-6 py-3 bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-red-500/15 backdrop-blur-xl border border-amber-400/30 rounded-[2rem] shadow-2xl cursor-pointer"
+                whileHover={{ scale: 1.05, y: -2 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <div className="flex items-center gap-3">
+                  {/* Animated music icon */}
+                  <motion.div
+                    animate={{ 
+                      rotate: [0, 5, -5, 0],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                      duration: 2.5, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
+                    className="w-5 h-5 text-amber-400"
+                  >
+                    🎵
+                  </motion.div>
+                  
+                  {/* Badge text */}
+                  <span className="text-sm font-bold bg-gradient-to-r from-amber-300 via-orange-300 to-red-300 bg-clip-text text-transparent">
+                    ZIRO FESTIVAL 2025
+                  </span>
+                  
+                  {/* Pulsing dot */}
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.3, 1],
+                      opacity: [0.7, 1, 0.7]
+                    }}
+                    transition={{ 
+                      duration: 1.5, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
+                    className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"
+                  />
+                  
+                  {/* Live badge */}
+                  <span className="px-2 py-1 text-xs font-bold bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full animate-pulse">
+                    LIVE
+                  </span>
+                </div>
+              </motion.div>
+            </Link>
               
               {/* Floating sparkles */}
               <motion.div
@@ -162,9 +165,8 @@ export function HeroContent({
               >
                 ✨
               </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
+            </div>
+          </motion.div>
 
         <h1 className="heading-2 text-center lg:text-left">
           <span className="block text-foreground dark:text-white">
@@ -177,7 +179,7 @@ export function HeroContent({
         
         <div className="relative">
           <div className="absolute -left-4 top-0 h-full w-1 bg-gradient-to-b from-primary-500 to-secondary-500 hidden sm:block" />
-          <p className="text-lg sm:text-xl text-center md:text-left text-muted-foreground dark:text-neutral-300 max-w-full sm:max-w-xl pl-0 sm:pl-8 text-center lg:text-left">
+          <p className="text-lg sm:text-xl md:text-left text-muted-foreground dark:text-neutral-300 max-w-full sm:max-w-xl pl-0 sm:pl-8 text-center lg:text-left">
             {description}
           </p>
         </div>
