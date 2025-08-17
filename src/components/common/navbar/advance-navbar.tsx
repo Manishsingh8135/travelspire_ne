@@ -6,7 +6,6 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Menu, X } from "lucide-react";
-import { ModeToggle } from "@/components/theme/theme-button/toggle-button";
 import { DesktopNavigation } from "./desktop-navigation";
 import MobileNavigation from "./mobile-navigation";
 import { Logo } from "../logo/logo";
@@ -90,10 +89,9 @@ export const AdvancedNavbar = () => {
               />
             )}
 
-            {/* Mobile Menu Button and Theme Toggle */}
+            {/* Mobile Menu Button */}
             {isMobile && (
               <div className="flex items-center gap-2">
-                <ModeToggle />
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setIsOpen(!isOpen)}

@@ -2,9 +2,9 @@
 import { ContactInfo, SocialLink } from "@/types/social/social-links";
 
 export const contactInfo: ContactInfo = {
-  whatsapp: "https://wa.me/message/LG2T3K7ZSLWKA1",
+  whatsapp: "https://wa.me/c/919864141211",
   email: "info@travelspirene.com",
-  phone: "+91 98641 41211",
+  phone: "+91-9864141211",
   instagram: "https://instagram.com/travelspire_ne",
   facebook: "", // Add actual URL when available
   twitter: ""    // Add actual URL when available
@@ -13,7 +13,7 @@ export const contactInfo: ContactInfo = {
 export const socialLinks: SocialLink[] = [
   {
     platform: 'whatsapp',
-    url: contactInfo.whatsapp,
+    url: "https://wa.me/c/919864141211",
     label: 'Chat on WhatsApp',
   },
   {

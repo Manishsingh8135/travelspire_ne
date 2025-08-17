@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
-import { ModeToggle } from "@/components/theme/theme-button/toggle-button";
 import { NavigationItem } from "@/types/navbar/navigation";
 import { navigationData } from "@/data/navbar/navigation";
 
@@ -192,11 +191,6 @@ export const DesktopNavigation = ({ active, setActive }: DesktopNavigationProps)
             </motion.div>
           </Link>
         ))}
-        
-        {/* Theme Toggle */}
-        <div className="ml-2">
-          <ModeToggle />
-        </div>
       </div>
     </div>
   );

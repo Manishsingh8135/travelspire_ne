@@ -44,7 +44,7 @@ import {
       description: "Chat with our team in real-time.",
       action: {
         text: "Start chat",
-        href: "https://wa.me/message/LG2T3K7ZSLWKA1"
+        href: "https://wa.me/c/919864141211"
       }
     }
   ];
@@ -75,7 +75,7 @@ import {
   export const officeLocation = {
     title: "Dibrugarh Office",
     address: "HSR Layout, Dibrugarh, Assam, India",
-    phone: "+91 98641 41211",
+    phone: "+91-9864141211",
     email: "info@travelspirene.com",
     coordinates: {
       lat: 27.4728,

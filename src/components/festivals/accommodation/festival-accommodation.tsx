@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import { CheckCircle, Star, MapPin, Users, Wifi, Car, Coffee, Mountain, MessageCircle } from "lucide-react";
+import { createFestivalBookingURL } from "@/lib/whatsapp";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle } from "lucide-react";
 import { FestivalSectionHeader } from "../common/festival-section-header";
-import Link from "next/link";
 
 // Shimmer loading component
 const AccommodationShimmer = () => (
@@ -220,19 +222,20 @@ export function FestivalAccommodation({
                         whileTap={{ scale: 0.98 }}
                         className="pt-4"
                       >
-                        <Link
-                          href="/tours/ziro-festival-2025"
+                        <button
+                          onClick={() => window.open(createFestivalBookingURL("Ziro Festival 2025 - " + option.name), '_blank')}
                           className="
-                            block w-full py-4 px-6 bg-gradient-to-r from-amber-600 via-orange-500 to-red-500 
-                            hover:from-amber-500 hover:via-orange-400 hover:to-red-400 
+                            block w-full py-4 px-6 bg-gradient-to-r from-green-600 via-green-700 to-green-800 
+                            hover:from-green-500 hover:via-green-600 hover:to-green-700 
                             text-white font-bold text-center rounded-[1.5rem] 
-                            transition-all duration-300 transform hover:shadow-xl hover:shadow-amber-500/25
-                            border border-amber-400/30 hover:border-amber-300/50
+                            transition-all duration-300 transform hover:shadow-xl hover:shadow-green-500/25
+                            border border-green-400/30 hover:border-green-300/50
                             group-hover:scale-105
                           "
                         >
                           <span className="flex items-center justify-center gap-2">
-                            Book Now
+                            <MessageCircle className="w-4 h-4" />
+                            Book via WhatsApp
                             <motion.span
                               animate={{ x: [0, 4, 0] }}
                               transition={{ 
@@ -244,7 +247,7 @@ export function FestivalAccommodation({
                               →
                             </motion.span>
                           </span>
-                        </Link>
+                        </button>
                       </motion.div>
                     </CardContent>
                   </Card>

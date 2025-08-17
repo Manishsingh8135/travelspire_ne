@@ -1,10 +1,13 @@
 // components/tours/tour-detail/tour-booking-card.tsx
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Tour, isRegularTour, isFestivalTour, isSpecialActivityTour } from "@/types/tours/tour";
 import { DotPattern } from "@/components/ui/background-patterns";
+import { createTourWhatsAppURL } from "@/lib/whatsapp";
+import { MessageCircle } from "lucide-react";
 
 interface TourBookingCardProps {
   tour: Tour;
@@ -12,6 +15,10 @@ interface TourBookingCardProps {
 }
 
 export function TourBookingCard({ tour, className }: TourBookingCardProps) {
+  const [customerName, setCustomerName] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
+
   // Get the appropriate price based on tour type
   const getPrice = () => {
     if (isRegularTour(tour)) {
@@ -32,6 +39,15 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
   };
 
   const price = getPrice();
+
+  const handleWhatsAppBooking = () => {
+    const whatsappURL = createTourWhatsAppURL(tour, {
+      customerName: customerName || undefined,
+      customerEmail: customerEmail || undefined,
+      customerPhone: customerPhone || undefined
+    });
+    window.open(whatsappURL, '_blank');
+  };
 
   return (
     <div className={cn(
@@ -60,12 +76,14 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
         </div>
 
         {/* Booking Form */}
-        <form className="space-y-4 max-w-sm mx-auto">
+        <div className="space-y-4 max-w-sm mx-auto">
           {/* Name Input */}
           <div className="space-y-2">
             <input
               type="text"
-              placeholder="Your Name"
+              placeholder="Your Name (Optional)"
+              value={customerName}
+              onChange={(e) => setCustomerName(e.target.value)}
               className={cn(
                 "w-full px-4 py-3 rounded-xl",
                 "bg-white dark:bg-white/5",
@@ -82,7 +100,9 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
           <div className="space-y-2">
             <input
               type="email"
-              placeholder="Your Email"
+              placeholder="Your Email (Optional)"
+              value={customerEmail}
+              onChange={(e) => setCustomerEmail(e.target.value)}
               className={cn(
                 "w-full px-4 py-3 rounded-xl",
                 "bg-white dark:bg-white/5",
@@ -99,7 +119,9 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
           <div className="space-y-2">
             <input
               type="tel"
-              placeholder="Your Phone"
+              placeholder="Your Phone (Optional)"
+              value={customerPhone}
+              onChange={(e) => setCustomerPhone(e.target.value)}
               className={cn(
                 "w-full px-4 py-3 rounded-xl",
                 "bg-white dark:bg-white/5",
@@ -112,22 +134,25 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
             />
           </div>
 
-          {/* Submit Button */}
+          {/* WhatsApp Booking Button */}
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            type="submit"
+            onClick={handleWhatsAppBooking}
+            type="button"
             className={cn(
               "w-full py-4 rounded-xl",
-              "bg-gradient-primary hover:bg-gradient-secondary",
+              "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600",
               "text-white font-medium",
               "shadow-glow-sm dark:shadow-none",
-              "transition-all duration-300"
+              "transition-all duration-300",
+              "flex items-center justify-center gap-2"
             )}
           >
-            Book Now
+            <MessageCircle className="w-5 h-5" />
+            Book via WhatsApp
           </motion.button>
-        </form>
+        </div>
       </div>
     </div>
   );

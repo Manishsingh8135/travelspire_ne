@@ -45,7 +45,7 @@ export const footerData = {
       },
       {
         name: "Whatsapp",
-        href: "https://wa.me/message/LG2T3K7ZSLWKA1",
+        href: "https://wa.me/c/919864141211",
         icon: "Whatsapp"
       },
 
@@ -78,7 +78,7 @@ export const footerData = {
     },
     contactInfo: {
       email: "info@travelspirene.com",
-      phone: "+91 98641 41211",
+      phone: "+91-9864141211",
       address: "Dibrugarh, Assam, India"
     }
   } as const;

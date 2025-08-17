@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 interface SplitHeroProps {
@@ -182,7 +182,8 @@ export function HeroContent({
           </p>
         </div>
 
-        <div className="flex justify-center lg:justify-start">
+        <div className="flex flex-row gap-2 sm:gap-3 justify-center lg:justify-start">
+          {/* Primary CTA Button */}
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -191,11 +192,11 @@ export function HeroContent({
             <Link 
               href={cta.href}
               className={cn(
-                "group relative inline-flex items-center gap-2",
-                "px-4 sm:px-6 lg:px-8",
-                "py-2 sm:py-3 lg:py-4",
+                "group relative inline-flex items-center gap-1 sm:gap-2",
+                "px-3 sm:px-5 lg:px-6",
+                "py-2.5 sm:py-2.5 lg:py-3",
                 "rounded-full",
-                "text-lg sm:text-xl font-medium",
+                "text-sm sm:text-base lg:text-lg font-medium",
                 "bg-gradient-to-r from-primary-500 to-secondary-500",
                 "hover:from-primary-400 hover:to-secondary-400",
                 "text-white",
@@ -203,8 +204,39 @@ export function HeroContent({
                 "transition-all duration-300"
               )}
             >
-              {cta.text}
-              <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <span className="hidden sm:inline">{cta.text}</span>
+              <span className="sm:hidden">Start Journey</span>
+              <ArrowUpRight className="w-4 h-4 sm:w-4 sm:h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+          </motion.div>
+          
+          {/* Ziro Festival WhatsApp Booking Button */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-block"
+          >
+            <Link 
+              href="https://wa.me/c/919864141211?text=Hi! I'm interested in booking Ziro Music Festival 2025 packages. Can you share the details?"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "group relative inline-flex items-center gap-1 sm:gap-2",
+                "px-3 sm:px-5 lg:px-6",
+                "py-2.5 sm:py-2.5 lg:py-3",
+                "rounded-full",
+                "text-sm sm:text-base lg:text-lg font-medium",
+                "bg-gradient-to-r from-green-600 to-green-700",
+                "hover:from-green-500 hover:to-green-600",
+                "text-white",
+                "shadow-xl shadow-green-500/25",
+                "transition-all duration-300",
+                "border border-green-500/30"
+              )}
+            >
+              <span className="hidden sm:inline">🎵 Book Ziro Festival</span>
+              <span className="sm:hidden">Ziro Music Festival</span>
+              <MessageCircle className="w-4 h-4 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
             </Link>
           </motion.div>
         </div>

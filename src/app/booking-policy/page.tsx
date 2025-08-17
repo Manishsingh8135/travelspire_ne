@@ -240,7 +240,7 @@ export default function BookingPolicyPage() {
           </div>
           <div className="space-y-2 text-muted-foreground dark:text-neutral-300">
             <p>Email: travelspirene82@gmail.com</p>
-            <p>Phone: +91 98641 41211</p>
+            <p>Phone: +91-9864141211</p>
             <p>Address: Dibrugarh, Assam, India</p>
           </div>
         </motion.div> */}

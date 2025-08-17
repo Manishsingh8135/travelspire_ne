@@ -29,7 +29,7 @@ import {
       },
       { 
         name: "Ziro Festival", 
-        href: "/ziro-festival",
+        href: "/ziro-music-festival-2025",
         icon: Music 
       },
       /* Temporarily hidden - Destinations

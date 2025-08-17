@@ -1,9 +1,12 @@
 // components/festivals/hero/ziro-hero-ssr.tsx
+"use client";
+
 import Image from "next/image";
-import { Calendar, Music } from "lucide-react";
+import { Calendar, Music, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ziroFestival2025 } from "@/data/tours/festival-data";
+import { createFestivalBookingURL } from "@/lib/whatsapp";
 
 export function ZiroHeroSSR() {
   return (
@@ -70,29 +73,25 @@ export function ZiroHeroSSR() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-          <div className="relative group">
-            {/* Glow effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 rounded-[2rem] blur opacity-0 group-hover:opacity-75 transition-opacity duration-300" />
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 hover:from-amber-400 hover:via-orange-400 hover:to-red-400 text-white px-12 py-6 text-lg font-semibold rounded-[2rem] shadow-xl hover:shadow-2xl transition-all duration-300 border border-amber-400/30"
-            >
-              <Calendar className="w-5 h-5 mr-3" />
-              Book Your Experience
-            </Button>
-          </div>
-          <div className="relative group">
-            {/* Glow effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-white/20 to-amber-400/20 rounded-[2rem] blur opacity-0 group-hover:opacity-75 transition-opacity duration-300" />
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 px-12 py-6 text-lg font-semibold rounded-[2rem] backdrop-blur-md transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              <Music className="w-5 h-5 mr-3" />
-              View Lineup
-            </Button>
-          </div>
+          {/* WhatsApp Booking Button - Elegant Hover */}
+          <Button 
+            size="lg" 
+            className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white px-12 py-6 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-green-500/30"
+            onClick={() => window.open(createFestivalBookingURL("Ziro Festival 2025"), '_blank')}
+          >
+            <MessageCircle className="w-5 h-5 mr-3" />
+            Book via WhatsApp
+          </Button>
+          
+          {/* View Lineup Button - Elegant Hover */}
+          <Button 
+            variant="outline" 
+            size="lg"
+            className="border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 hover:scale-[1.02] px-12 py-6 text-lg font-semibold rounded-2xl backdrop-blur-md transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            <Music className="w-5 h-5 mr-3" />
+            View Lineup
+          </Button>
         </div>
 
         <div className="mt-16 flex flex-wrap justify-center gap-8 text-center">
