@@ -8,6 +8,7 @@ import { ZiroFestivalClientSections } from "@/components/festivals/ziro-festival
 import { ziroFestivalFAQData } from "@/data/faqs/ziro-festival-faq-data";
 import { StructuredData } from "@/components/seo/structured-data";
 import { generateZiroFestival2025Schema } from "@/lib/structured-data";
+import { ImageSEO } from "@/components/seo/image-seo";
 
 export const metadata: Metadata = {
   title: "Ziro Music Festival 2025 | Official Packages & Tickets | TravelSpire NE",
@@ -148,6 +149,9 @@ export default function ZiroMusicFestival2025PageRoute() {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Enhanced Structured Data for 2025 Festival */}
       <StructuredData data={generateZiroFestival2025Schema()} />
+      
+      {/* Ziro Valley Images SEO */}
+      <ImageSEO location="ziro-new" limit={5} />
       
       {/* SSR Hero Section - Lightning Fast */}
       <ZiroHeroSSR />
