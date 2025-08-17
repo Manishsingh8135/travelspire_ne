@@ -2,7 +2,7 @@
 import Script from 'next/script';
 
 interface StructuredDataProps {
-  data: Record<string, any>;
+  data: Record<string, unknown>;
 }
 
 export function StructuredData({ data }: StructuredDataProps) {
@@ -17,7 +17,6 @@ export function StructuredData({ data }: StructuredDataProps) {
 
 // components/seo/page-seo.tsx  
 import { Metadata } from 'next';
-import { StructuredData } from './structured-data';
 
 interface PageSEOProps {
   title: string;

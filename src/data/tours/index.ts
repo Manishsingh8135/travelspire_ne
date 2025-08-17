@@ -2,7 +2,7 @@
 import { Tour } from "@/types/tours/tour";
 import { regularTours } from "./tour-data";
 import { hornbillFestival, orangeFestival, ziroFestival2025 } from "./festival-data";
-import { dambukOrangeFestival, dambukBikeTour } from "./special-activity-data";
+// import { dambukOrangeFestival, dambukBikeTour } from "./special-activity-data";
 
 // Special tours categorization
 export const specialTours = {

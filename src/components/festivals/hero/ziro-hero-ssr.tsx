@@ -2,7 +2,7 @@
 "use client";
 
 import Image from "next/image";
-import { Calendar, Music, MessageCircle } from "lucide-react";
+import { Music, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ziroFestival2025 } from "@/data/tours/festival-data";

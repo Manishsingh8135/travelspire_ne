@@ -26,8 +26,11 @@ export function ContactForm() {
     resolver: zodResolver(formSchema)
   });
 
-  const onSubmit = async (_data: ContactFormData) => {
+  const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
+    
+    // Log form data (in production, this would be sent to an API)
+    console.log('Contact form submitted:', data);
     
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
