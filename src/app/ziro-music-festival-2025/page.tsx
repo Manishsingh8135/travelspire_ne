@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ziro Music Festival 2025 | Official Packages & Tickets | TravelSpire NE",
     description: "Book official Ziro Music Festival 2025 packages (Sep 25-28). 35+ artists, eco-friendly camping in UNESCO valley.",
-    images: ["/images/places/ziro-new/ziro-new-landscape-1.jpeg"],
+    images: ["/images/og/travelspire-ne-og.png"],
     url: "https://travelspirene.com/ziro-music-festival-2025",
     siteName: "TravelSpire NE",
     type: "website",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ziro Music Festival 2025 | Official Packages & Tickets",
     description: "Book official Ziro Music Festival 2025 packages (Sep 25-28). 35+ artists, eco-friendly camping in UNESCO valley.",
-    images: ["/images/places/ziro-new/ziro-new-landscape-1.jpeg"],
+    images: ["/images/og/travelspire-ne-og.png"],
     site: "@TravelSpireNE",
   },
   alternates: {
