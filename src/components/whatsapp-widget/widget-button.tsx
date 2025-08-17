@@ -16,14 +16,17 @@ export function WidgetButton({ isOpen, onClick, className }: WidgetButtonProps) 
     <motion.button
       onClick={onClick}
       className={cn(
-        "fixed bottom-6 right-6 z-50",
-        "w-16 h-16 rounded-full",
+        "fixed bottom-4 right-4 z-50",
+        "w-14 h-14 sm:w-16 sm:h-16 rounded-full",
         "bg-gradient-to-r from-green-500 to-green-600",
         "hover:from-green-600 hover:to-green-700",
         "text-white shadow-lg hover:shadow-xl",
         "flex items-center justify-center",
         "transition-all duration-300",
         "group overflow-hidden",
+        // Mobile-specific positioning
+        "max-md:bottom-4 max-md:right-4",
+        "max-sm:bottom-3 max-sm:right-3",
         className
       )}
       whileHover={{ scale: 1.05 }}
@@ -53,18 +56,18 @@ export function WidgetButton({ isOpen, onClick, className }: WidgetButtonProps) 
         className="relative z-10"
       >
         {isOpen ? (
-          <X className="w-6 h-6" />
+          <X className="w-5 h-5 sm:w-6 sm:h-6" />
         ) : (
-          <MessageCircle className="w-6 h-6" />
+          <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
         )}
       </motion.div>
 
-      {/* Hover tooltip for closed state */}
+      {/* Hover tooltip for closed state - Hidden on mobile */}
       {!isOpen && (
         <motion.div
           initial={{ opacity: 0, x: 10 }}
           whileHover={{ opacity: 1, x: 0 }}
-          className="absolute right-full mr-3 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg whitespace-nowrap pointer-events-none"
+          className="absolute right-full mr-3 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg whitespace-nowrap pointer-events-none hidden sm:block"
         >
           Chat with us on WhatsApp
           <div className="absolute top-1/2 -right-1 transform -translate-y-1/2 w-2 h-2 bg-gray-900 rotate-45" />

@@ -30,7 +30,7 @@ export function QuickActions({
             key={action.id}
             onClick={() => onActionToggle(action)}
             className={cn(
-              "flex items-center gap-2.5 p-2.5 rounded-lg text-left",
+              "flex items-center gap-2 p-1.5 sm:p-2 rounded-lg text-left",
               "border-2 transition-all duration-200",
               "hover:shadow-md",
               isSelected(action)
@@ -45,14 +45,14 @@ export function QuickActions({
             whileTap={{ scale: 0.98 }}
           >
             {/* Icon */}
-            <span className="text-xl flex-shrink-0">
+            <span className="text-base sm:text-lg flex-shrink-0">
               {action.icon}
             </span>
 
             {/* Content */}
             <div className="flex-1 min-w-0">
               <p className={cn(
-                "font-medium text-xs",
+                "font-medium text-xs leading-tight",
                 isSelected(action) 
                   ? "text-green-700 dark:text-green-300" 
                   : "text-gray-900 dark:text-gray-100"
@@ -61,10 +61,10 @@ export function QuickActions({
               </p>
             </div>
 
-            {/* Selection indicator */}
+            {/* Selection indicator - Smaller */}
             <motion.div
               className={cn(
-                "w-4 h-4 rounded-full border-2 flex items-center justify-center",
+                "w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 flex items-center justify-center flex-shrink-0",
                 isSelected(action)
                   ? "border-green-500 bg-green-500"
                   : "border-gray-300 dark:border-gray-600"
@@ -80,7 +80,7 @@ export function QuickActions({
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 >
-                  <Check className="w-2.5 h-2.5 text-white" />
+                  <Check className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-white" />
                 </motion.div>
               )}
             </motion.div>
