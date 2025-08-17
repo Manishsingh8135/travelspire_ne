@@ -48,7 +48,7 @@ export const generateOrganizationSchema = () => ({
   "email": "info@travelspirene.com",
   "sameAs": [
     "https://www.instagram.com/travelspire_ne",
-    "https://wa.me/c/919864141211"
+    "https://wa.me/919864141211"
   ],
   "serviceArea": [
     "Arunachal Pradesh",
@@ -161,7 +161,7 @@ export const generateLocalBusinessSchema = () => ({
   },
   "sameAs": [
     "https://www.instagram.com/travelspire_ne",
-    "https://wa.me/c/919864141211"
+    "https://wa.me/919864141211"
   ],
   "serviceArea": {
     "@type": "GeoCircle",
@@ -247,7 +247,7 @@ export const generateWhatsAppSchema = () => ({
     "closes": "21:00"
   },
   "contactOption": "WhatsApp",
-  "url": "https://wa.me/c/919864141211"
+  "url": "https://wa.me/919864141211"
 });
 
 // Service Schema for SEO

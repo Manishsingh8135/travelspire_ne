@@ -45,7 +45,7 @@ export const footerData = {
       },
       {
         name: "Whatsapp",
-        href: "https://wa.me/c/919864141211",
+        href: "https://wa.me/919864141211",
         icon: "Whatsapp"
       },
 

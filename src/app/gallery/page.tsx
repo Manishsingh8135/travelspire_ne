@@ -116,7 +116,7 @@ export default function GalleryPage() {
               Explore Tours
             </Link>
             <a
-              href="https://wa.me/c/919864141211?text=Hi! I'm interested in Northeast India tours after seeing your gallery"
+              href="https://wa.me/919864141211?text=Hi! I'm interested in Northeast India tours after seeing your gallery"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-full font-medium transition-colors"

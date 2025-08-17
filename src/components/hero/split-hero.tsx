@@ -219,7 +219,7 @@ export function HeroContent({
             className="inline-block"
           >
             <Link 
-              href="https://wa.me/c/919864141211?text=Hi! I'm interested in booking Ziro Music Festival 2025 packages. Can you share the details?"
+              href="https://wa.me/919864141211?text=Hi! I'm interested in booking Ziro Music Festival 2025 packages. Can you share the details?"
               target="_blank"
               rel="noopener noreferrer"
               className={cn(

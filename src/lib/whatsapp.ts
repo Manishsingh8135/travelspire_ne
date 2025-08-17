@@ -1,7 +1,9 @@
 // lib/whatsapp.ts
 import { Tour, isRegularTour, isFestivalTour } from "@/types/tours/tour";
 
-const WHATSAPP_BASE_URL = "https://wa.me/c/919864141211";
+// WhatsApp URLs
+const WHATSAPP_CHAT_URL = "https://wa.me/919864141211"; // For direct chat/messaging
+const WHATSAPP_CATALOG_URL = "https://wa.me/c/919864141211"; // For business catalog
 
 export interface WhatsAppMessageOptions {
   tourName?: string;
@@ -10,6 +12,7 @@ export interface WhatsAppMessageOptions {
   customerEmail?: string;
   customerPhone?: string;
   customMessage?: string;
+  useCatalog?: boolean; // Optional flag to use catalog instead of chat
 }
 
 export function createWhatsAppURL(options: WhatsAppMessageOptions = {}): string {
@@ -19,7 +22,8 @@ export function createWhatsAppURL(options: WhatsAppMessageOptions = {}): string 
     customerName,
     customerEmail,
     customerPhone,
-    customMessage
+    customMessage,
+    useCatalog = false // Default to chat URL
   } = options;
 
   let message = "";
@@ -58,7 +62,8 @@ export function createWhatsAppURL(options: WhatsAppMessageOptions = {}): string 
   }
 
   const encodedMessage = encodeURIComponent(message);
-  return `${WHATSAPP_BASE_URL}?text=${encodedMessage}`;
+  const baseUrl = useCatalog ? WHATSAPP_CATALOG_URL : WHATSAPP_CHAT_URL;
+  return `${baseUrl}?text=${encodedMessage}`;
 }
 
 // Helper function for tour-specific WhatsApp links
