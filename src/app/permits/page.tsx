@@ -1001,8 +1001,55 @@ export default function PermitsPage() {
         </div>
       </section>
 
-      {/* Official Government Portals */}
+      {/* State-Specific Detailed Guides */}
       <section className="relative py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-4">
+          <SectionHeader
+            title="Detailed State Permit Guides"
+            subtitle="Complete Information"
+            description="In-depth guides for each state with step-by-step application process, FAQs, and expert tips."
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {[
+              { state: "Arunachal Pradesh", slug: "arunachal-pradesh-ilp", type: "ILP", highlight: "₹100 fee, 24hr processing", color: "from-blue-500 to-indigo-600" },
+              { state: "Nagaland", slug: "nagaland-ilp", type: "ILP", highlight: "Hornbill Festival ready", color: "from-orange-500 to-red-600" },
+              { state: "Mizoram", slug: "mizoram-ilp", type: "ILP", highlight: "On arrival at airport!", color: "from-green-500 to-emerald-600" },
+              { state: "Manipur", slug: "manipur-ilp", type: "ILP", highlight: "Sangai Festival ready", color: "from-purple-500 to-pink-600" },
+              { state: "Sikkim", slug: "sikkim-permit", type: "PAP", highlight: "Nathula & North Sikkim", color: "from-cyan-500 to-blue-600" },
+            ].map((item, index) => (
+              <motion.div
+                key={item.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Link
+                  href={`/permits/${item.slug}`}
+                  className="block p-5 rounded-2xl bg-white/80 dark:bg-accent-800/80 border border-primary-100/30 dark:border-primary-900/30 hover:border-primary-300 dark:hover:border-primary-700 transition-all hover:shadow-xl hover:scale-[1.02] group"
+                >
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${item.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                    <FileCheck className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-bold text-foreground dark:text-white mb-1">{item.state}</h3>
+                  <span className="inline-block px-2 py-0.5 text-xs rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 mb-2">
+                    {item.type}
+                  </span>
+                  <p className="text-sm text-muted-foreground mb-3">{item.highlight}</p>
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-primary-600 dark:text-primary-400 group-hover:gap-2 transition-all">
+                    Read Full Guide
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Official Government Portals */}
+      <section className="relative py-16 md:py-24 bg-primary-50/30 dark:bg-accent-900/30">
         <div className="max-w-7xl mx-auto px-4">
           <SectionHeader
             title="Official Government Portals"
@@ -1318,37 +1365,6 @@ export default function PermitsPage() {
           </div>
         </div>
       </section>
-
-      {/* Sticky Help CTA - Mobile */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 md:hidden">
-        <Link
-          href="https://wa.me/919864141211?text=Hi%20TravelSpire%20NE!%20%F0%9F%8E%AB%0A%0AI%20need%20help%20with%20travel%20permits%20for%20Northeast%20India.%0A%0APlease%20guide%20me!"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold shadow-2xl shadow-green-500/30 hover:shadow-green-500/50 transition-all duration-300 animate-pulse"
-        >
-          <MessageCircle className="w-5 h-5" />
-          Need Permit Help?
-        </Link>
-      </div>
-
-      {/* Sticky Help CTA - Desktop */}
-      <div className="fixed bottom-8 right-8 z-50 hidden md:block">
-        <Link
-          href="https://wa.me/919864141211?text=Hi%20TravelSpire%20NE!%20%F0%9F%8E%AB%0A%0AI%20need%20help%20with%20travel%20permits%20for%20Northeast%20India.%0A%0AMy%20details%3A%0A%E2%80%A2%20Destination%3A%20%0A%E2%80%A2%20Travel%20Dates%3A%20%0A%E2%80%A2%20Number%20of%20People%3A%20%0A%E2%80%A2%20Nationality%3A%20Indian%20%2F%20Foreign%0A%0APlease%20help%20me%20get%20my%20permits!"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold shadow-2xl shadow-green-500/30 hover:shadow-green-500/50 hover:scale-105 transition-all duration-300"
-        >
-          <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/30 transition-colors">
-            <MessageCircle className="w-5 h-5" />
-          </div>
-          <div className="text-left">
-            <div className="text-sm opacity-90">Need Help?</div>
-            <div className="text-base">Get Permit Assistance</div>
-          </div>
-        </Link>
-      </div>
     </main>
   );
 }

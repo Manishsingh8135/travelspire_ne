@@ -110,7 +110,7 @@ export const quickActionCategories: QuickActionCategory[] = [
         label: 'Permit Assistance',
         icon: '🎫',
         category: 'planning',
-        message: "I need help with Inner Line Permits (ILP) and Protected Area Permits (PAP) for Northeast India."
+        message: "Hi TravelSpire NE! 🎫\n\nI need help with travel permits for Northeast India.\n\nMy details:\n• Destination: \n• Travel Dates: \n• Number of People: \n• Nationality: Indian / Foreign\n\nPlease guide me through the permit process (ILP/PAP/RAP). Thank you!"
       },
       {
         id: 'pricing',

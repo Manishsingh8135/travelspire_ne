@@ -2,6 +2,7 @@
 import { MetadataRoute } from 'next'
 import { regularTours } from '@/data/tours/tour-data'
 import { festivalTours } from '@/data/tours/festival-data'
+import { statePermitPages } from '@/data/permits'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://travelspirene.com'
@@ -80,5 +81,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
-  return [...staticPages, ...tourPages, ...festivalPages]
+  // State-specific permit pages (high priority for SEO)
+  const permitPages: MetadataRoute.Sitemap = statePermitPages.map((permit) => ({
+    url: `${baseUrl}/permits/${permit.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: permit.priority,
+  }))
+
+  return [...staticPages, ...tourPages, ...festivalPages, ...permitPages]
 }

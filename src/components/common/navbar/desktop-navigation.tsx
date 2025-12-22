@@ -15,25 +15,37 @@ interface DesktopNavigationProps {
 }
 
 const SubMenuItem = ({ item }: { item: NavigationItem }) => (
-  <Link
-    href={item.href}
-    className={cn(
-      "block w-full px-4 py-3",
-      "text-sm",
-      "text-foreground/80 hover:text-foreground",
-      "hover:bg-primary-50 dark:hover:bg-primary-950/50",
-      "transition-all duration-200"
-    )}
-  >
-    <span className="flex items-center gap-3">
-      {item.icon && <item.icon className="h-5 w-5 text-primary-500" />}
-      <div>
-        <div className="font-medium">{item.name}</div>
-        {item.description && (
-          <div className="text-sm text-muted-foreground">{item.description}</div>
+  <Link href={item.href}>
+    <motion.div
+      whileHover={{ x: 4, scale: 1.02 }}
+      className={cn(
+        "block px-4 py-3 rounded-lg mx-2 my-1",
+        "text-sm group cursor-pointer",
+        "text-foreground/80 hover:text-foreground",
+        "hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50",
+        "dark:hover:from-primary-950/50 dark:hover:to-secondary-950/50",
+        "transition-all duration-300",
+        "border border-transparent hover:border-primary-200/50 dark:hover:border-primary-800/50"
+      )}
+    >
+      <div className="flex items-start gap-3">
+        {item.icon && (
+          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/50 dark:to-secondary-900/50 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+            <item.icon className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+          </div>
         )}
+        <div className="flex-1 min-w-0 overflow-hidden">
+          <div className="font-semibold text-foreground group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate">
+            {item.name}
+          </div>
+          {item.description && (
+            <div className="text-xs text-muted-foreground mt-0.5 line-clamp-2 break-words">
+              {item.description}
+            </div>
+          )}
+        </div>
       </div>
-    </span>
+    </motion.div>
   </Link>
 );
 
@@ -104,28 +116,60 @@ export const DesktopNavigation = ({ active, setActive }: DesktopNavigationProps)
             <AnimatePresence>
               {active === item.name && (
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   transition={{ 
                     type: "spring", 
-                    bounce: 0.3,
-                    duration: 0.3 
+                    bounce: 0.2,
+                    duration: 0.4 
                   }}
                   className={cn(
-                    "absolute top-full left-0 mt-2 w-64",
-                    "rounded-xl bg-background/95",
-                    "backdrop-blur-xl shadow-glow-lg",
-                    "ring-1 ring-primary-100/20 dark:ring-primary-900/20",
-                    "border border-primary-100/20 dark:border-primary-900/20",
+                    "absolute top-full left-0 mt-2",
+                    item.name === "Permits" ? "w-80" : "w-64",
+                    "rounded-2xl bg-background",
+                    "backdrop-blur-xl shadow-2xl",
+                    "ring-1 ring-primary-200/50 dark:ring-primary-800/50",
+                    "border border-primary-200/50 dark:border-primary-800/50",
                     "overflow-hidden"
                   )}
+                  style={{
+                    boxShadow: "0 20px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.1)"
+                  }}
                 >
-                  <div className="py-2">
-                    {item.submenu.map((subitem) => (
-                      <SubMenuItem key={subitem.name} item={subitem} />
+                  {/* Gradient header for Permits */}
+                  {item.name === "Permits" && (
+                    <div className="px-4 py-3 bg-gradient-to-r from-primary-500/10 via-secondary-500/10 to-primary-500/10 border-b border-primary-100/20 dark:border-primary-900/20">
+                      <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
+                        {item.icon && <item.icon className="h-4 w-4 text-primary-600 dark:text-primary-400" />}
+                        State Permit Guides
+                      </h3>
+                      <p className="text-xs text-muted-foreground mt-0.5">Complete information for each state</p>
+                    </div>
+                  )}
+                  
+                  <div className="py-2 max-h-[70vh] overflow-y-auto">
+                    {item.submenu.map((subitem, index) => (
+                      <motion.div
+                        key={subitem.name}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                      >
+                        <SubMenuItem item={subitem} />
+                      </motion.div>
                     ))}
                   </div>
+
+                  {/* Footer for Permits */}
+                  {item.name === "Permits" && (
+                    <div className="px-4 py-3 bg-gradient-to-r from-primary-50/50 to-secondary-50/50 dark:from-primary-950/30 dark:to-secondary-950/30 border-t border-primary-100/20 dark:border-primary-900/20">
+                      <Link href="/permits" className="text-xs font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 flex items-center gap-1 group">
+                        View All Permit Information
+                        <ChevronDown className="h-3 w-3 rotate-[-90deg] group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>

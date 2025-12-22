@@ -122,35 +122,60 @@ const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNaviga
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.2 }}
-                      className="bg-primary-50/50 dark:bg-primary-950/50 mt-1 rounded-lg overflow-hidden"
+                      className="bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-950 dark:to-secondary-950 mt-1 rounded-lg overflow-hidden border border-primary-200/50 dark:border-primary-800/50"
                     >
-                      {item.submenu.map((subitem) => (
-                        <Link
+                      {/* Header for Permits */}
+                      {item.name === "Permits" && (
+                        <div className="px-4 py-2 bg-primary-100/30 dark:bg-primary-900/30 border-b border-primary-200/30 dark:border-primary-800/30">
+                          <p className="text-xs font-semibold text-primary-700 dark:text-primary-300">State Permit Guides</p>
+                        </div>
+                      )}
+                      
+                      {item.submenu.map((subitem, index) => (
+                        <motion.div
                           key={subitem.name}
-                          href={subitem.href}
-                          onClick={() => setIsOpen(false)}
-                          className={cn(
-                            "block px-6 py-3",
-                            "text-base text-foreground/80 hover:text-foreground",
-                            "hover:bg-primary-100/50 dark:hover:bg-primary-900/50",
-                            "transition-all duration-200"
-                          )}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.05 }}
                         >
-                          <span className="flex items-center gap-3">
-                            {subitem.icon && (
-                              <subitem.icon className="h-5 w-5 text-primary-500" />
+                          <Link
+                            href={subitem.href}
+                            onClick={() => setIsOpen(false)}
+                            className={cn(
+                              "block px-4 py-3 mx-2 my-1 rounded-lg",
+                              "text-sm text-foreground/80 hover:text-foreground",
+                              "hover:bg-white/80 dark:hover:bg-accent-900/80",
+                              "transition-all duration-200",
+                              "border border-transparent hover:border-primary-200/50 dark:hover:border-primary-800/50"
                             )}
-                            <div>
-                              <div className="font-medium">{subitem.name}</div>
-                              {subitem.description && (
-                                <div className="text-sm text-muted-foreground">
-                                  {subitem.description}
+                          >
+                            <div className="flex items-start gap-3">
+                              {subitem.icon && (
+                                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/50 dark:to-secondary-900/50 flex items-center justify-center flex-shrink-0">
+                                  <subitem.icon className="h-4 w-4 text-primary-600 dark:text-primary-400" />
                                 </div>
                               )}
+                              <div className="flex-1 min-w-0 overflow-hidden">
+                                <div className="font-semibold text-foreground truncate">{subitem.name}</div>
+                                {subitem.description && (
+                                  <div className="text-xs text-muted-foreground mt-0.5 line-clamp-2 break-words">
+                                    {subitem.description}
+                                  </div>
+                                )}
+                              </div>
                             </div>
-                          </span>
-                        </Link>
+                          </Link>
+                        </motion.div>
                       ))}
+
+                      {/* Footer for Permits */}
+                      {item.name === "Permits" && (
+                        <div className="px-4 py-2 bg-primary-100/30 dark:bg-primary-900/30 border-t border-primary-200/30 dark:border-primary-800/30">
+                          <Link href="/permits" onClick={() => setIsOpen(false)} className="text-xs font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 flex items-center gap-1">
+                            View All Permit Information →
+                          </Link>
+                        </div>
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>
