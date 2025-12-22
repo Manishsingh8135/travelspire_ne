@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { ArrowUpRight, MessageCircle, Music } from "lucide-react";
 import Link from "next/link";
 
 interface SplitHeroProps {
@@ -58,116 +58,6 @@ export function HeroContent({
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="space-y-6 sm:space-y-8"
       >
-        {/* Ziro Festival Premium Badge */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8, y: -20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="flex justify-center lg:justify-start mb-6"
-        >
-          <div className="relative group">
-            {/* Outer glow */}
-            <motion.div
-              className="absolute -inset-3 bg-gradient-to-r from-amber-400/30 via-orange-500/30 to-red-500/30 rounded-[2.5rem] blur-xl"
-              animate={{
-                opacity: [0.3, 0.7, 0.3],
-                scale: [0.95, 1.05, 0.95],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
-            {/* Main badge */}
-            <Link href="/ziro-music-festival-2025">
-              <motion.div
-                className="relative px-6 py-3 bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-red-500/15 backdrop-blur-xl border border-amber-400/30 rounded-[2rem] shadow-2xl cursor-pointer"
-                whileHover={{ scale: 1.05, y: -2 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-              >
-                <div className="flex items-center gap-3">
-                  {/* Animated music icon */}
-                  <motion.div
-                    animate={{ 
-                      rotate: [0, 5, -5, 0],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ 
-                      duration: 2.5, 
-                      repeat: Infinity, 
-                      ease: "easeInOut" 
-                    }}
-                    className="w-5 h-5 text-amber-400"
-                  >
-                    🎵
-                  </motion.div>
-                  
-                  {/* Badge text */}
-                  <span className="text-sm font-bold bg-gradient-to-r from-amber-300 via-orange-300 to-red-300 bg-clip-text text-transparent">
-                    ZIRO FESTIVAL 2025
-                  </span>
-                  
-                  {/* Pulsing dot */}
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.3, 1],
-                      opacity: [0.7, 1, 0.7]
-                    }}
-                    transition={{ 
-                      duration: 1.5, 
-                      repeat: Infinity, 
-                      ease: "easeInOut" 
-                    }}
-                    className="w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"
-                  />
-                  
-                  {/* Live badge */}
-                  <span className="px-2 py-1 text-xs font-bold bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full animate-pulse">
-                    LIVE
-                  </span>
-                </div>
-              </motion.div>
-            </Link>
-              
-              {/* Floating sparkles */}
-              <motion.div
-                className="absolute -top-1 -right-1 text-amber-400 text-xs"
-                animate={{ 
-                  y: [0, -3, 0],
-                  rotate: [0, 15, 0],
-                  opacity: [0.6, 1, 0.6]
-                }}
-                transition={{ 
-                  duration: 2, 
-                  repeat: Infinity, 
-                  ease: "easeInOut",
-                  delay: 0.5
-                }}
-              >
-                ✨
-              </motion.div>
-              
-              <motion.div
-                className="absolute -bottom-1 -left-1 text-orange-400 text-xs"
-                animate={{ 
-                  y: [0, 3, 0],
-                  rotate: [0, -15, 0],
-                  opacity: [0.6, 1, 0.6]
-                }}
-                transition={{ 
-                  duration: 2.5, 
-                  repeat: Infinity, 
-                  ease: "easeInOut",
-                  delay: 1
-                }}
-              >
-                ✨
-              </motion.div>
-            </div>
-          </motion.div>
-
         <h1 className="heading-2 text-center lg:text-left">
           <span className="block text-foreground dark:text-white">
             {title}
@@ -195,10 +85,10 @@ export function HeroContent({
               href={cta.href}
               className={cn(
                 "group relative inline-flex items-center gap-1 sm:gap-2",
-                "px-3 sm:px-5 lg:px-6",
-                "py-2.5 sm:py-2.5 lg:py-3",
+                "px-3 sm:px-4 lg:px-5",
+                "py-2 sm:py-2 lg:py-2.5",
                 "rounded-full",
-                "text-sm sm:text-base lg:text-lg font-medium",
+                "text-xs sm:text-sm lg:text-base font-medium",
                 "bg-gradient-to-r from-primary-500 to-secondary-500",
                 "hover:from-primary-400 hover:to-secondary-400",
                 "text-white",
@@ -212,22 +102,22 @@ export function HeroContent({
             </Link>
           </motion.div>
           
-          {/* Ziro Festival WhatsApp Booking Button */}
+          {/* Plan My Trip - WhatsApp Button */}
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="inline-block"
           >
             <Link 
-              href="https://wa.me/919864141211?text=Hi! I'm interested in booking Ziro Music Festival 2025 packages. Can you share the details?"
+              href="https://wa.me/919864141211?text=Hi%20TravelSpire%20NE!%20%F0%9F%91%8B%0A%0AI%27d%20like%20to%20plan%20a%20trip%20to%20Northeast%20India.%20Can%20you%20help%20me%20with%3A%0A%E2%80%A2%20Tour%20recommendations%0A%E2%80%A2%20Pricing%20%26%20availability%0A%E2%80%A2%20Permit%20assistance%0A%E2%80%A2%20Best%20time%20to%20visit%0A%0ALooking%20forward%20to%20an%20amazing%20adventure!%20%F0%9F%8F%94%EF%B8%8F%E2%9C%A8"
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
                 "group relative inline-flex items-center gap-1 sm:gap-2",
-                "px-3 sm:px-5 lg:px-6",
-                "py-2.5 sm:py-2.5 lg:py-3",
+                "px-3 sm:px-4 lg:px-5",
+                "py-2 sm:py-2 lg:py-2.5",
                 "rounded-full",
-                "text-sm sm:text-base lg:text-lg font-medium",
+                "text-xs sm:text-sm lg:text-base font-medium",
                 "bg-gradient-to-r from-green-600 to-green-700",
                 "hover:from-green-500 hover:to-green-600",
                 "text-white",
@@ -236,9 +126,37 @@ export function HeroContent({
                 "border border-green-500/30"
               )}
             >
-              <span className="hidden sm:inline">🎵 Book Ziro Festival</span>
-              <span className="sm:hidden">Ziro Music Festival</span>
               <MessageCircle className="w-4 h-4 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
+              <span className="hidden sm:inline">Plan My Trip</span>
+              <span className="sm:hidden">Plan Trip</span>
+            </Link>
+          </motion.div>
+          
+          {/* Explore Festivals - Secondary CTA */}
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-block"
+          >
+            <Link 
+              href="/all-tours?category=Festival"
+              className={cn(
+                "group relative inline-flex items-center gap-1 sm:gap-2",
+                "px-3 sm:px-4 lg:px-5",
+                "py-2 sm:py-2 lg:py-2.5",
+                "rounded-full",
+                "text-xs sm:text-sm lg:text-base font-medium",
+                "border-2 border-white/40",
+                "text-white",
+                "hover:bg-white/10 hover:border-white/60",
+                "backdrop-blur-md",
+                "transition-all duration-300",
+                "shadow-lg hover:shadow-xl"
+              )}
+            >
+              <Music className="w-4 h-4 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform" />
+              <span className="hidden sm:inline">Explore Festivals</span>
+              <span className="sm:hidden">Festivals</span>
             </Link>
           </motion.div>
         </div>

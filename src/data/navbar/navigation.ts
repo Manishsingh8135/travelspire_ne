@@ -28,8 +28,8 @@ import {
         icon: Map 
       },
       { 
-        name: "Ziro Festival", 
-        href: "/ziro-music-festival-2025",
+        name: "Festivals", 
+        href: "/all-tours?category=Festival",
         icon: Music 
       },
       /* Temporarily hidden - Destinations

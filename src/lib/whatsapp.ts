@@ -98,3 +98,54 @@ export function createFestivalBookingURL(festivalName: string): string {
     customMessage: `Hi TravelSpire NE! 🎵\n\nI'm interested in the *${festivalName}* package. Could you share:\n\n• Available accommodation options\n• Festival itinerary\n• Pricing details\n• What's included in the package\n\nLooking forward to this cultural experience! 🎭✨`
   });
 }
+
+// General trip planning (most common use case)
+export function createTripPlanningURL(details?: {
+  destination?: string;
+  dates?: string;
+  groupSize?: number;
+}): string {
+  let message = "Hi TravelSpire NE! 👋\n\nI'd like to plan a trip to Northeast India.\n\n";
+  
+  if (details?.destination) {
+    message += `📍 Interested in: ${details.destination}\n`;
+  }
+  if (details?.dates) {
+    message += `📅 Preferred dates: ${details.dates}\n`;
+  }
+  if (details?.groupSize) {
+    message += `👥 Group size: ${details.groupSize} people\n`;
+  }
+  
+  message += "\nCan you help me with:\n";
+  message += "• Tour recommendations\n";
+  message += "• Pricing & availability\n";
+  message += "• Permit assistance\n";
+  message += "• Best time to visit\n\n";
+  message += "Looking forward to an amazing adventure! 🏔️✨";
+  
+  return createWhatsAppURL({ customMessage: message });
+}
+
+// Permit assistance (unique value prop)
+export function createPermitAssistanceURL(): string {
+  return createWhatsAppURL({
+    customMessage: "Hi TravelSpire NE! 🎫\n\nI need assistance with travel permits for Northeast India:\n\n• Inner Line Permit (ILP)\n• Protected Area Permit (PAP)\n• Documentation requirements\n• Processing timeline\n\nCan you guide me through the process? Thank you! 🙏"
+  });
+}
+
+// Availability check
+export function createAvailabilityCheckURL(dates?: string): string {
+  const message = dates 
+    ? `Hi! I'd like to check tour availability for ${dates}. Can you share what's available and recommend the best options?`
+    : "Hi! I'd like to check tour availability for my preferred dates. Can you help me find the best time to visit?";
+    
+  return createWhatsAppURL({ customMessage: message });
+}
+
+// Custom itinerary request
+export function createCustomItineraryURL(): string {
+  return createWhatsAppURL({
+    customMessage: "Hi TravelSpire NE! ✨\n\nI'd like a custom itinerary planned for Northeast India based on:\n\n• My interests & preferences\n• Budget range\n• Travel dates\n• Special requirements\n\nCan we discuss the possibilities? 🗺️"
+  });
+}

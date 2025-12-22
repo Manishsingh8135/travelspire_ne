@@ -27,8 +27,6 @@ const MobileNavItem = ({
   setActive: (value: string | null) => void;
   setIsOpen: (value: boolean) => void;
 }) => {
-  const isZiroFestival = item.name === "Ziro Festival";
-
   if (item.submenu) {
     return (
       <motion.button
@@ -57,51 +55,22 @@ const MobileNavItem = ({
   }
 
   return (
-    <div className={cn("relative", isZiroFestival && "mb-2")}>
-      {isZiroFestival && (
-        <motion.div
-          className="absolute -inset-1 bg-gradient-to-r from-amber-400/20 to-orange-500/20 rounded-xl blur-sm"
-          animate={{
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+    <Link
+      href={item.href}
+      onClick={() => setIsOpen(false)}
+      className={cn(
+        "w-full px-4 py-3 rounded-lg",
+        "flex items-center justify-between",
+        "text-foreground/80 hover:text-foreground",
+        "hover:bg-primary-50 dark:hover:bg-primary-950/50",
+        "transition-all duration-200"
       )}
-      <Link
-        href={item.href}
-        onClick={() => setIsOpen(false)}
-        className={cn(
-          "relative w-full px-4 py-3 rounded-lg",
-          "flex items-center justify-between",
-          "transition-all duration-300",
-          isZiroFestival ? [
-            "bg-gradient-to-r from-amber-500/10 to-orange-500/10",
-            "border border-amber-400/20",
-            "text-amber-600 dark:text-amber-400",
-            "hover:from-amber-500/20 hover:to-orange-500/20",
-            "hover:border-amber-400/40",
-            "backdrop-blur-sm"
-          ] : [
-            "text-foreground/80 hover:text-foreground",
-            "hover:bg-primary-50 dark:hover:bg-primary-950/50"
-          ]
-        )}
-      >
-        <span className="flex items-center gap-2">
-          {item.icon && <item.icon className={cn("h-5 w-5", isZiroFestival ? "text-amber-400" : "text-primary-500")} />}
-          <span className="font-medium">{item.name}</span>
-        </span>
-        {isZiroFestival && (
-          <span className="px-2 py-1 text-xs font-semibold bg-gradient-to-r from-amber-400 to-orange-500 text-white rounded-full animate-pulse">
-            LIVE
-          </span>
-        )}
-      </Link>
-    </div>
+    >
+      <span className="flex items-center gap-2">
+        {item.icon && <item.icon className="h-5 w-5 text-primary-500" />}
+        <span className="font-medium">{item.name}</span>
+      </span>
+    </Link>
   );
 };
 

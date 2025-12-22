@@ -1,32 +1,32 @@
-// data.ts - Quick Actions data with Ziro Festival highlighted
+// data.ts - Quick Actions data for WhatsApp widget
 import { QuickActionCategory } from './types';
 
 export const quickActionCategories: QuickActionCategory[] = [
   {
-    id: 'festivals',
-    title: 'Festival Tours',
-    icon: '🎵',
+    id: 'popular',
+    title: '🌟 Most Popular',
+    icon: '⭐',
     actions: [
       {
-        id: 'ziro-festival',
-        label: '🔥 Ziro Music Festival 2025',
-        icon: '🎵',
-        category: 'tours',
-        message: "I'm interested in Ziro Music Festival 2025! This looks amazing. Can you share:\n• Accommodation options (Dome/Alpine tents)\n• Festival packages & pricing\n• Travel arrangements\n• What's included in packages\n• Best booking options\n\nI'd love to experience this unique music festival in the UNESCO site! 🎶🏔️"
+        id: 'plan-trip',
+        label: '🗓️ Plan My Trip',
+        icon: '📅',
+        category: 'planning',
+        message: "Hi TravelSpire NE! 👋\n\nI'd like to plan a trip to Northeast India. Can you help me with:\n• Best time to visit\n• Tour recommendations\n• Pricing & availability\n• Permit assistance\n\nLooking forward to an amazing adventure! 🏔️✨"
       },
       {
-        id: 'hornbill-festival',
-        label: 'Hornbill Festival',
-        icon: '🎭',
-        category: 'tours', 
-        message: "I'd like to know about Hornbill Festival tour packages and cultural experiences."
+        id: 'check-availability',
+        label: '📅 Check Availability',
+        icon: '✓',
+        category: 'planning',
+        message: "Hi! I'd like to check tour availability for my preferred dates and get recommendations for the best time to visit."
       },
       {
-        id: 'orange-festival',
-        label: 'Orange Festival (OFAM)',
-        icon: '🍊',
-        category: 'tours',
-        message: "Tell me about the Orange Festival tour packages in Dambuk!"
+        id: 'custom-itinerary',
+        label: '✨ Custom Itinerary',
+        icon: '📋',
+        category: 'planning',
+        message: "I need a custom itinerary planned for Northeast India based on my interests, budget, and travel dates. Can we discuss?"
       }
     ]
   },
@@ -67,22 +67,29 @@ export const quickActionCategories: QuickActionCategory[] = [
   },
   {
     id: 'tour-types',
-    title: 'Tour Types',
-    icon: '🎒',
+    title: '🎒 Tour Categories',
+    icon: '🎯',
     actions: [
       {
         id: 'adventure',
         label: 'Adventure Tours',
         icon: '🏔️',
         category: 'tours',
-        message: "I'm looking for adventure tours in Northeast India - trekking, camping, and outdoor activities."
+        message: "I'm looking for adventure tours - trekking, camping, and outdoor activities in Northeast India."
       },
       {
         id: 'cultural',
-        label: 'Cultural Tours', 
+        label: 'Cultural Experiences', 
         icon: '🎭',
         category: 'tours',
         message: "I want to experience the rich culture and traditions of Northeast India with local communities."
+      },
+      {
+        id: 'festivals',
+        label: 'Festival Tours',
+        icon: '🎵',
+        category: 'tours',
+        message: "I'm interested in experiencing cultural festivals in Northeast India. What festivals do you cover?"
       },
       {
         id: 'photography',
@@ -94,16 +101,16 @@ export const quickActionCategories: QuickActionCategory[] = [
     ]
   },
   {
-    id: 'planning',
-    title: 'Trip Planning',
-    icon: '📅',
+    id: 'help',
+    title: '❓ Need Help?',
+    icon: '💬',
     actions: [
       {
-        id: 'availability',
-        label: 'Check Availability',
-        icon: '📅',
+        id: 'permits',
+        label: 'Permit Assistance',
+        icon: '🎫',
         category: 'planning',
-        message: "Can you check availability for my preferred travel dates and suggest the best time to visit?"
+        message: "I need help with Inner Line Permits (ILP) and Protected Area Permits (PAP) for Northeast India."
       },
       {
         id: 'pricing',
@@ -112,27 +119,6 @@ export const quickActionCategories: QuickActionCategory[] = [
         category: 'planning',
         message: "I'd like to know the pricing for different tour packages and what's included."
       },
-      {
-        id: 'custom',
-        label: 'Custom Itinerary',
-        icon: '📋',
-        category: 'planning',
-        message: "I need a custom itinerary planned according to my interests and budget."
-      },
-      {
-        id: 'permits',
-        label: 'Permit Assistance',
-        icon: '🎫',
-        category: 'planning',
-        message: "I need help with Inner Line Permits and other documentation for Northeast India."
-      }
-    ]
-  },
-  {
-    id: 'help',
-    title: 'Quick Help',
-    icon: '❓',
-    actions: [
       {
         id: 'general',
         label: 'General Inquiry',
@@ -146,13 +132,6 @@ export const quickActionCategories: QuickActionCategory[] = [
         icon: '📞',
         category: 'help',
         message: "Please call me back to discuss my travel plans. Here's my number:"
-      },
-      {
-        id: 'email',
-        label: 'Email Details',
-        icon: '📧',
-        category: 'help',
-        message: "Please email me detailed information about your tour packages."
       }
     ]
   }
