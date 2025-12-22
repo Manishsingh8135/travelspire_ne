@@ -17,7 +17,8 @@ import {
     Footprints,
     Hotel,
     Car,
-    Music
+    Music,
+    Shield
   } from "lucide-react";
   
   export const navigationData: NavigationData = {
@@ -107,6 +108,11 @@ import {
         ],
       },
       */
+      { 
+        name: "Permits", 
+        href: "/permits",
+        icon: Shield 
+      },
       { 
         name: "About Us", 
         href: "/about",
