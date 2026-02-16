@@ -97,7 +97,7 @@ export const placeImagesData: Record<string, PlaceImage[]> = {
     },
     {
       src: '/images/places/ziro-new/ziro-new-portrait-5.JPG',
-      alt: 'Ziro Music Festival 2025 venue - Open-air amphitheater surrounded by pine forests',
+      alt: 'Ziro Music Festival 2026 venue - Open-air amphitheater surrounded by pine forests',
       title: 'Ziro Music Festival Venue - Natural Amphitheater',
       caption: 'The iconic Ziro Music Festival venue nestled in the heart of pine forests',
       location: {

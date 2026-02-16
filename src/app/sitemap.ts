@@ -58,7 +58,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/ziro-music-festival-2025`,
+      url: `${baseUrl}/ziro-music-festival-2026`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,

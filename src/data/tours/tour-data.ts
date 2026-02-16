@@ -425,7 +425,7 @@ export const dambukAniniOfamTour: Tour = {
   overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with the pristine landscapes of Anini. Journey through orange orchards, witness the Mawu ando & Mathu waterfalls, and explore the remote Dibang Valley with its stunning Mayodia Pass.",
   duration: "4 Days / 3 Nights",
   location: "Dambuk & Anini, Arunachal Pradesh",
-  startDate: "December 2025", // During OFAM festival
+  startDate: "December 2026", // During OFAM festival
   price: 18500,
   featured: false,
 
@@ -555,7 +555,7 @@ export const dambukGoldenPagodaTour: Tour = {
   overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with a spiritual journey to the majestic Golden Pagoda in Namsai. Enjoy riverside camping, explore sacred Buddhist sites, and immerse yourself in the cultural heritage of Arunachal Pradesh.",
   duration: "3 Days / 2 Nights",
   location: "Dambuk & Namsai, Arunachal Pradesh",
-  startDate: "December 2025", // During OFAM festival
+  startDate: "December 2026", // During OFAM festival
   price: 12999,
   featured: false,
 
@@ -676,7 +676,7 @@ export const dambukDongValleyTour: Tour = {
   overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with an expedition to India's easternmost valley. Journey from the orange orchards of Dambuk to the historic Dong Valley, enjoying hot springs, trek experiences, and visiting India's easternmost villages.",
   duration: "4 Days / 3 Nights",
   location: "Dambuk & Dong Valley, Arunachal Pradesh",
-  startDate: "December 2025", // During OFAM festival
+  startDate: "December 2026", // During OFAM festival
   price: 18500,
   featured: false,
 

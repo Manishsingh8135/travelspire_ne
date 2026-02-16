@@ -223,7 +223,7 @@ export function FestivalAccommodation({
                         className="pt-4"
                       >
                         <button
-                          onClick={() => window.open(createFestivalBookingURL("Ziro Festival 2025 - " + option.name), '_blank')}
+                          onClick={() => window.open(createFestivalBookingURL("Ziro Festival 2026 - " + option.name), '_blank')}
                           className="
                             block w-full py-4 px-6 bg-gradient-to-r from-green-600 via-green-700 to-green-800 
                             hover:from-green-500 hover:via-green-600 hover:to-green-700 

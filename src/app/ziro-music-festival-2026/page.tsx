@@ -1,4 +1,4 @@
-// app/ziro-music-festival-2025/page.tsx
+// app/ziro-music-festival-2026/page.tsx
 import { Metadata } from "next";
 import { ZiroHeroSSR } from "@/components/festivals/hero";
 import { FestivalFeaturesSSRV3 } from "@/components/festivals/features/festival-features-ssr-v3";
@@ -7,35 +7,35 @@ import { FestivalFAQFast } from "@/components/festivals/faqs/festival-faq-fast";
 import { ZiroFestivalClientSections } from "@/components/festivals/ziro-festival-client-sections";
 import { ziroFestivalFAQData } from "@/data/faqs/ziro-festival-faq-data";
 import { StructuredData } from "@/components/seo/structured-data";
-import { generateZiroFestival2025Schema } from "@/lib/structured-data";
+import { generateZiroFestival2026Schema } from "@/lib/structured-data";
 import { ImageSEO } from "@/components/seo/image-seo";
 
 export const metadata: Metadata = {
-  title: "Ziro Music Festival 2025 | Official Packages & Tickets | TravelSpire NE",
-  description: "Book official Ziro Music Festival 2025 packages (Sep 25-28). 35+ international & Indian artists, eco-friendly camping in UNESCO Tentative World Heritage Site. All-inclusive packages from ₹1,999.",
-  keywords: "Ziro Music Festival 2025, Ziro Festival tickets, Ziro Festival packages, Ziro Festival 2025 booking, Arunachal Pradesh music festival, eco-friendly festival camping, Ziro Valley festival, indie music festival India, UNESCO heritage music festival, Apatani tribe festival",
+  title: "Ziro Music Festival 2026 | Official Packages & Tickets | TravelSpire NE",
+  description: "Book official Ziro Music Festival 2026 packages (Sep 25-28). 35+ international & Indian artists, eco-friendly camping in UNESCO Tentative World Heritage Site. All-inclusive packages from ₹1,999.",
+  keywords: "Ziro Music Festival 2026, Ziro Festival tickets, Ziro Festival packages, Ziro Festival 2026 booking, Arunachal Pradesh music festival, eco-friendly festival camping, Ziro Valley festival, indie music festival India, UNESCO heritage music festival, Apatani tribe festival",
   openGraph: {
-    title: "Ziro Music Festival 2025 | Official Packages & Tickets | TravelSpire NE",
-    description: "Book official Ziro Music Festival 2025 packages (Sep 25-28). 35+ artists, eco-friendly camping in UNESCO valley.",
+    title: "Ziro Music Festival 2026 | Official Packages & Tickets | TravelSpire NE",
+    description: "Book official Ziro Music Festival 2026 packages (Sep 25-28). 35+ artists, eco-friendly camping in UNESCO valley.",
     images: ["/images/og/travelspire-ne-og.png"],
-    url: "https://travelspirene.com/ziro-music-festival-2025",
+    url: "https://travelspirene.com/ziro-music-festival-2026",
     siteName: "TravelSpire NE",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ziro Music Festival 2025 | Official Packages & Tickets",
-    description: "Book official Ziro Music Festival 2025 packages (Sep 25-28). 35+ artists, eco-friendly camping in UNESCO valley.",
+    title: "Ziro Music Festival 2026 | Official Packages & Tickets",
+    description: "Book official Ziro Music Festival 2026 packages (Sep 25-28). 35+ artists, eco-friendly camping in UNESCO valley.",
     images: ["/images/og/travelspire-ne-og.png"],
     site: "@TravelSpireNE",
   },
   alternates: {
-    canonical: "https://travelspirene.com/ziro-music-festival-2025",
+    canonical: "https://travelspirene.com/ziro-music-festival-2026",
   },
 };
 
-// Enhanced artist lineup data with more artists for 2025
-const lineup2025 = [
+// Enhanced artist lineup data with more artists for 2026
+const lineup2026 = [
   { 
     name: "Shilpa Rao", 
     origin: "Mumbai", 
@@ -129,11 +129,11 @@ const lineup2025 = [
   }
 ];
 
-export default function ZiroMusicFestival2025PageRoute() {
+export default function ZiroMusicFestival2026PageRoute() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      {/* Enhanced Structured Data for 2025 Festival */}
-      <StructuredData data={generateZiroFestival2025Schema()} />
+      {/* Enhanced Structured Data for 2026 Festival */}
+      <StructuredData data={generateZiroFestival2026Schema()} />
       
       {/* Ziro Valley Images SEO */}
       <ImageSEO location="ziro-new" limit={5} />
@@ -149,8 +149,8 @@ export default function ZiroMusicFestival2025PageRoute() {
 
       {/* SSR Artist Lineup - Compact Version Without Images */}
       <FestivalLineupCompact 
-        artists={lineup2025}
-        year="2025"
+        artists={lineup2026}
+        year="2026"
         totalArtists="35+"
       />
 

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ZiroHeroSSR } from "./hero";
 import { FestivalFeatures } from "./features";
 import { FestivalPackages } from "./packages";
-import { ziroFestival2025 } from "@/data/tours/festival-data";
+import { ziroFestival2026 } from "@/data/tours/festival-data";
 import { TourGallery } from "@/components/tours/tour-details/tour-gallery";
 import { ContactMethods } from "@/components/contact/contact-methods";
 
@@ -44,7 +44,7 @@ export function ZiroFestivalPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <TourGallery images={ziroFestival2025.gallery} />
+            <TourGallery images={ziroFestival2026.gallery} />
           </motion.div>
         </div>
       </section>

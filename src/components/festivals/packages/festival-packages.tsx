@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Users, Shield } from "lucide-react";
 import { TourBookingCard } from "@/components/tours/tour-details/tour-booking-card";
-import { ziroFestival2025 } from "@/data/tours/festival-data";
+import { ziroFestival2026 } from "@/data/tours/festival-data";
 
 export function FestivalPackages() {
   return (
@@ -69,7 +69,7 @@ export function FestivalPackages() {
           >
             {/* Festival-themed booking card wrapper */}
             <div className="bg-slate-800/60 backdrop-blur-xl border border-amber-400/30 rounded-2xl p-4 shadow-2xl [&_.bg-gradient-primary]:!bg-gradient-to-r [&_.bg-gradient-primary]:!from-amber-500 [&_.bg-gradient-primary]:!to-orange-600 [&_.focus\\:ring-primary-500]:!focus:ring-amber-500 [&_.border-primary-100\\/20]:!border-amber-400/20 [&_.text-primary-500]:!text-amber-500">
-              <TourBookingCard tour={ziroFestival2025} />
+              <TourBookingCard tour={ziroFestival2026} />
             </div>
           </motion.div>
         </div>

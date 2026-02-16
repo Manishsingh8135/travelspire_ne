@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Music, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ziroFestival2025 } from "@/data/tours/festival-data";
+import { ziroFestival2026 } from "@/data/tours/festival-data";
 import { createFestivalBookingURL } from "@/lib/whatsapp";
 
 export function ZiroHeroSSR() {
@@ -15,8 +15,8 @@ export function ZiroHeroSSR() {
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-b-[4rem] overflow-hidden">
           <Image 
-            src={ziroFestival2025.heroImage}
-            alt="Ziro Festival 2025"
+            src={ziroFestival2026.heroImage}
+            alt="Ziro Festival 2026"
             fill
             className="object-cover"
           />
@@ -42,7 +42,7 @@ export function ZiroHeroSSR() {
                 LIVE NOW
               </span>
               <span className="mx-2 text-amber-300">•</span>
-              <span className="text-amber-100">Sep 25-28, 2025</span>
+              <span className="text-amber-100">Sep 25-28, 2026</span>
               <div className="ml-3 w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full inline-block" />
             </Badge>
           </div>
@@ -64,7 +64,7 @@ export function ZiroHeroSSR() {
             FESTIVAL
           </span>
           <span className="block text-3xl md:text-5xl lg:text-6xl text-amber-300 drop-shadow-xl mt-2">
-            2025
+            2026
           </span>
         </h1>
 
@@ -77,7 +77,7 @@ export function ZiroHeroSSR() {
           <Button 
             size="lg" 
             className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white px-12 py-6 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-green-500/30"
-            onClick={() => window.open(createFestivalBookingURL("Ziro Festival 2025"), '_blank')}
+            onClick={() => window.open(createFestivalBookingURL("Ziro Festival 2026"), '_blank')}
           >
             <MessageCircle className="w-5 h-5 mr-3" />
             Book via WhatsApp
@@ -97,7 +97,7 @@ export function ZiroHeroSSR() {
         <div className="mt-16 flex flex-wrap justify-center gap-8 text-center">
           <div className="text-white">
             <div className="text-3xl font-bold text-amber-300">Sep 25-28</div>
-            <div className="text-sm text-gray-300">2025</div>
+            <div className="text-sm text-gray-300">2026</div>
           </div>
           <div className="text-white">
             <div className="text-3xl font-bold text-orange-300">33+</div>

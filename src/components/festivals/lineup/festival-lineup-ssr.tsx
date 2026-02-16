@@ -19,7 +19,7 @@ interface FestivalLineupSSRProps {
 
 export function FestivalLineupSSR({ 
   artists = [], 
-  year = "2025",
+  year = "2026",
   totalArtists = "33+"
 }: FestivalLineupSSRProps) {
   return (

@@ -2,11 +2,11 @@
 import { FestivalTour } from "@/types/tours/tour";
 
 export const hornbillFestival: FestivalTour = {
-  id: "hornbill-festival-2025",
-  slug: "hornbill-festival-2025",
+  id: "hornbill-festival-2026",
+  slug: "hornbill-festival-2026",
   type: "Festival",
   festivalName: "Hornbill Festival",
-  title: "Hornbill Festival 2025",
+  title: "Hornbill Festival 2026",
   subtitle: "The biggest festival of Nagaland",
   overview: "Experience the cultural extravaganza of Northeast India at the Hornbill Festival, combined with the breathtaking beauty of Dzukou Valley. This festival celebrates the rich heritage of Nagaland's 16 major tribes with traditional dances, music, local cuisine, and handicrafts.",
   location: "Kisama Heritage Village, Nagaland",
@@ -16,9 +16,9 @@ export const hornbillFestival: FestivalTour = {
   tags: ["festival", "cultural", "nagaland", "tribal-heritage", "dzukou-valley"],
 
   eventDates: {
-    start: "2025-12-01",
-    end: "2025-12-10",
-    year: 2025
+    start: "2026-12-01",
+    end: "2026-12-10",
+    year: 2026
   },
 
   heroImage: "/images/places/hornbill/Hornbill_3.PNG",
@@ -135,20 +135,20 @@ export const hornbillFestival: FestivalTour = {
 };
 
 export const orangeFestival: FestivalTour = {
-  id: "orange-festival-2025",
-  slug: "orange-festival-2025",
+  id: "orange-festival-2026",
+  slug: "orange-festival-2026",
   type: "Festival",
-  festivalName: "OFAM (DAMBUK) 2024 ",
-  title: "OFAM (DAMBUK) 2025",
+  festivalName: "OFAM (DAMBUK) 2026",
+  title: "OFAM (DAMBUK) 2026",
   subtitle: "Where Adventure Meets Music in the Land of Oranges",
   overview: "Experience the unique blend of music, adventure, and nature at the Orange Festival of Adventure & Music in Dambuk. Set against the backdrop of orange orchards and mountains, this festival offers an unforgettable mix of live performances, adventure activities, and local culture.",
   location: "Dambuk, Arunachal Pradesh",
   featured: true,
 
   eventDates: {
-    start: "2025-12-13", 
-    end: "2025-12-15",
-    year: 2025
+    start: "2026-12-13",
+    end: "2026-12-15",
+    year: 2026
   },
 
   heroImage: "/images/places/dambuk/Dambuk_3.jpg", 
@@ -290,12 +290,12 @@ export const orangeFestival: FestivalTour = {
   difficulty: "Easy"
 };
 
-export const ziroFestival2025: FestivalTour = {
-  id: "ziro-festival-2025",
-  slug: "ziro-festival-2025",
+export const ziroFestival2026: FestivalTour = {
+  id: "ziro-festival-2026",
+  slug: "ziro-festival-2026",
   type: "Festival",
-  festivalName: "Ziro Festival of Music 2025",
-  title: "Ziro Festival of Music 2025",
+  festivalName: "Ziro Festival of Music 2026",
+  title: "Ziro Festival of Music 2026",
   subtitle: "India's Greatest Eco-Friendly Outdoor Music Festival",
   overview: "Experience India's premier eco-friendly outdoor music festival in the UNESCO Tentative World Heritage Site of Ziro Valley. Founded in 2012, this 4-day celebration features 33+ artists from India and around the world, hosted by the indigenous Apatani tribe with sustainable bamboo infrastructure and zero-waste practices.",
   location: "Ziro Valley, Arunachal Pradesh",
@@ -305,9 +305,9 @@ export const ziroFestival2025: FestivalTour = {
   tags: ["festival", "music", "ziro-valley", "eco-friendly", "unesco", "apatani-culture", "indie-music"],
 
   eventDates: {
-    start: "2025-09-25",
-    end: "2025-09-28",
-    year: 2025
+    start: "2026-09-25",
+    end: "2026-09-28",
+    year: 2026
   },
 
   heroImage: "/images/places/ziro-new/ziro-new-landscape-1.jpeg",
@@ -517,7 +517,7 @@ export const ziroFestival2025: FestivalTour = {
 
 
 export const festivalTours = [
-  ziroFestival2025,
+  ziroFestival2026,
   hornbillFestival,
   orangeFestival,
   

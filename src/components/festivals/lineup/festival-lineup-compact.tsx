@@ -19,7 +19,7 @@ interface FestivalLineupCompactProps {
 
 export function FestivalLineupCompact({ 
   artists = [], 
-  year = "2025",
+  year = "2026",
   totalArtists = "33+"
 }: FestivalLineupCompactProps) {
   return (

@@ -3,12 +3,12 @@
 
 import { motion } from "framer-motion";
 import { FestivalPackages } from "./packages";
-import { ziroFestival2025 } from "@/data/tours/festival-data";
+import { ziroFestival2026 } from "@/data/tours/festival-data";
 import { TourGallery } from "@/components/tours/tour-details/tour-gallery";
 import { ContactMethods } from "@/components/contact/contact-methods";
 import { FestivalAccommodation } from "./accommodation/festival-accommodation";
 
-// Real accommodation data from Ziro Festival 2025
+// Real accommodation data from Ziro Festival 2026
 const accommodationOptions = [
   {
     name: "Dome Tent (Standard)",
@@ -104,7 +104,7 @@ export function ZiroFestivalClientSections() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <TourGallery images={ziroFestival2025.gallery} />
+            <TourGallery images={ziroFestival2026.gallery} />
           </motion.div>
         </div>
       </section>

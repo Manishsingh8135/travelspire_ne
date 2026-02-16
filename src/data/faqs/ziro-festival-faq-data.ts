@@ -3,12 +3,12 @@ import { FAQSection } from "@/types/faqs/faq";
 
 export const ziroFestivalFAQData: FAQSection = {
   title: "Ziro Festival FAQs",
-  description: "Everything you need to know about attending Ziro Festival of Music 2025. Get answers to the most common questions about tickets, camping, travel, and more.",
+  description: "Everything you need to know about attending Ziro Festival of Music 2026. Get answers to the most common questions about tickets, camping, travel, and more.",
   faqs: [
     {
       id: "zf1",
-      question: "When and where is Ziro Festival 2025?",
-      answer: "Ziro Festival of Music 2025 will be held from September 26-29, 2025, in the beautiful Ziro Valley, Arunachal Pradesh. The festival takes place in the heart of the valley surrounded by pine forests and rice fields, creating a magical natural amphitheater.",
+      question: "When and where is Ziro Festival 2026?",
+      answer: "Ziro Festival of Music 2026 will be held from September 26-29, 2026, in the beautiful Ziro Valley, Arunachal Pradesh. The festival takes place in the heart of the valley surrounded by pine forests and rice fields, creating a magical natural amphitheater.",
       category: "general"
     },
     {

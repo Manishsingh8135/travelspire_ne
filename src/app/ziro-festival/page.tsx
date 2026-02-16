@@ -3,5 +3,5 @@ import { redirect } from 'next/navigation';
 
 export default function ZiroFestivalRedirect() {
   // Permanent redirect for SEO (301)
-  redirect('/ziro-music-festival-2025');
+  redirect('/ziro-music-festival-2026');
 }

@@ -279,15 +279,15 @@ export const generateServiceSchema = () => ({
   }
 });
 
-// Enhanced Ziro Festival 2025 Event Schema
-export const generateZiroFestival2025Schema = () => ({
+// Enhanced Ziro Festival 2026 Event Schema
+export const generateZiroFestival2026Schema = () => ({
   "@context": "https://schema.org",
   "@type": "MusicEvent",
-  "name": "Ziro Festival of Music 2025",
-  "alternateName": "Ziro Music Festival 2025",
+  "name": "Ziro Festival of Music 2026",
+  "alternateName": "Ziro Music Festival 2026",
   "description": "India's premier eco-friendly outdoor music festival featuring 35+ international and Indian artists in the UNESCO Tentative World Heritage Site of Ziro Valley, Arunachal Pradesh.",
-  "startDate": "2025-09-25T15:00:00+05:30",
-  "endDate": "2025-09-28T23:00:00+05:30",
+  "startDate": "2026-09-25T15:00:00+05:30",
+  "endDate": "2026-09-28T23:00:00+05:30",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": {
@@ -363,28 +363,28 @@ export const generateZiroFestival2025Schema = () => ({
       "price": "1999",
       "priceCurrency": "INR",
       "availability": "https://schema.org/InStock",
-      "validFrom": "2024-12-01",
-      "validThrough": "2025-09-20",
+      "validFrom": "2025-12-01",
+      "validThrough": "2026-09-20",
       "description": "1 night dome tent accommodation with breakfast and campsite amenities"
     },
     {
       "@type": "Offer",
       "name": "Alpine Tent Premium Package",
-      "price": "8999", 
+      "price": "8999",
       "priceCurrency": "INR",
       "availability": "https://schema.org/InStock",
-      "validFrom": "2024-12-01",
-      "validThrough": "2025-09-20",
+      "validFrom": "2025-12-01",
+      "validThrough": "2026-09-20",
       "description": "3 nights alpine tent accommodation with all amenities and festival access"
     },
     {
       "@type": "Offer",
       "name": "All Inclusive Package",
       "price": "17699",
-      "priceCurrency": "INR", 
+      "priceCurrency": "INR",
       "availability": "https://schema.org/InStock",
-      "validFrom": "2024-12-01",
-      "validThrough": "2025-09-20", 
+      "validFrom": "2025-12-01",
+      "validThrough": "2026-09-20",
       "description": "Complete 4N/5D package with train tickets, alpine tent, safari, and village tour"
     }
   ],
@@ -392,7 +392,7 @@ export const generateZiroFestival2025Schema = () => ({
     "https://travelspirene.com/images/places/ziro-new/ziro-new-landscape-1.jpeg",
     "https://travelspirene.com/images/places/ziro-new/ziro-new-landscape-2.JPG"
   ],
-  "url": "https://travelspirene.com/ziro-music-festival-2025",
+  "url": "https://travelspirene.com/ziro-music-festival-2026",
   "maximumAttendeeCapacity": 8000,
   "typicalAgeRange": "18-65",
   "inLanguage": "en",
@@ -406,7 +406,7 @@ export const generateZiroFestival2025Schema = () => ({
     {
       "@type": "MusicEvent",
       "name": "Opening Concert",
-      "startDate": "2025-09-25T15:00:00+05:30"
+      "startDate": "2026-09-25T15:00:00+05:30"
     },
     {
       "@type": "Event", 
