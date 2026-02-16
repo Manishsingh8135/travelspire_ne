@@ -4,7 +4,7 @@ export const heroData = {
     description: "Embark on extraordinary journeys through unexplored landscapes, vibrant cultures, and authentic local experiences in India's mystical Northeast.",
     cta: {
       text: "Start Your Journey",
-      href: "/tours"
+      href: "/all-tours"
     },
     stats: [
       {
@@ -29,24 +29,27 @@ export const heroData = {
   export const mediaData = [
     {
       src: "/images/places/tawang/Tawang_1.PNG",
-      alt: "Tawang Monestry",
+      alt: "Tawang Monastery",
     },
     {
-      src: "/images/places/anini/Anini_1.JPG",
-      alt: "Anini cottage",
+      src: "/images/places/anini/Anini_9.jpg",
+      alt: "Anini Cottage",
     },
     {
-      src: "/images/places/hornbill/Hornbill_1.PNG",
-      alt: "Traditional women in hornbill festival",
+      src: "/images/places/dong/Dong_3.jpg",
+      alt: "Dong Valley",
     },
     {
-      src: "/images/places/anini/Anini_2.JPG",
-      alt: "Anini snowy mountains",
+      src: "/images/places/dambuk/Dambuk_1.jpg",
+      alt: " Dambuk",
     },
-    
     {
-      src: "/images/places/hornbill/Hornbill_1.PNG",
-      alt: "Traditional women in hornbill festival",
+      src: "/images/places/dong/Dong_1.JPG",
+      alt: "Dong Valley",
+    },
+    {
+      src: "/images/places/anini/Anini_6.jpg",
+      alt: "Anini Cottage",
     },
     
   ];

@@ -40,22 +40,30 @@ export const footerData = {
     socialLinks: [
       {
         name: "Instagram",
-        href: "https://instagram.com/travelspire_northeast",
+        href: "https://instagram.com/travelspire_ne",
         icon: "Instagram"
       },
       {
-        name: "Twitter",
-        href: "https://twitter.com/travelspirene",
-        icon: "Twitter"
+        name: "Whatsapp",
+        href: "https://wa.me/919864141211",
+        icon: "Whatsapp"
       },
-      {
-        name: "LinkedIn",
-        href: "https://linkedin.com/company/travelspire-northeast",
-        icon: "LinkedIn"
-      }
+
+
+      
+      // {
+      //   name: "Twitter",
+      //   href: "https://twitter.com/travelspirene",
+      //   icon: "Twitter"
+      // },
+      // {
+      //   name: "LinkedIn",
+      //   href: "https://linkedin.com/company/travelspire-northeast",
+      //   icon: "LinkedIn"
+      // }
     ],
     bottomSection: {
-      copyright: "© 2024 Travelspire Northeast. All rights reserved.",
+      copyright: " 2025 Travelspire Northeast. All rights reserved.",
       legalLinks: [
         { text: "Privacy Policy", href: "/privacy-policy" },
         { text: "Terms of Service", href: "/terms-and-conditions" },
@@ -69,8 +77,8 @@ export const footerData = {
       buttonText: "Subscribe"
     },
     contactInfo: {
-      email: "travelspirene82@gmail.com",
-      phone: "+91 98641 41211",
+      email: "info@travelspirene.com",
+      phone: "+91-9864141211",
       address: "Dibrugarh, Assam, India"
     }
   } as const;

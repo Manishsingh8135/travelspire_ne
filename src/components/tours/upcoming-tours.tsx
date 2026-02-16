@@ -1,4 +1,4 @@
-// components/tours/upcoming-tours.tsx
+// components/sections/upcoming-tours.tsx
 "use client";
 
 import { 
@@ -7,7 +7,10 @@ import {
   TourCard,
   TourGrid 
 } from "@/components/tours/tour-showcase";
-import { upcomingTours } from "@/data/tours/tour-data";
+import { FestivalTourCard } from "@/components/tours/tour-showcase/festival-tour-card";
+import { ActivityTourCard } from "@/components/tours/tour-showcase/special-activity-card";
+import { upcomingTours } from "@/data/tours";
+import { isFestivalTour, isSpecialActivityTour } from "@/types/tours/tour";
 
 export function UpcomingTours() {
   return (
@@ -18,13 +21,35 @@ export function UpcomingTours() {
       />
       
       <TourGrid>
-        {upcomingTours.map((tour, index) => (
-          <TourCard
-            key={tour.id}
-            tour={tour}
-            index={index}
-          />
-        ))}
+        {upcomingTours.map((tour, index) => {
+          if (isFestivalTour(tour)) {
+            return (
+              <FestivalTourCard
+                key={tour.id}
+                tour={tour}
+                index={index}
+              />
+            );
+          }
+          
+          if (isSpecialActivityTour(tour)) {
+            return (
+              <ActivityTourCard
+                key={tour.id}
+                tour={tour}
+                index={index}
+              />
+            );
+          }
+
+          return (
+            <TourCard
+              key={tour.id}
+              tour={tour}
+              index={index}
+            />
+          );
+        })}
       </TourGrid>
     </TourShowcase>
   );

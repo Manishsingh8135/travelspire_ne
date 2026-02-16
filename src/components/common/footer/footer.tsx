@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from "@/lib/utils";
-import { Twitter, Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
+import { Twitter, Instagram, Linkedin, ArrowUpRight, MessageCircle } from 'lucide-react';
 
 
 
@@ -117,6 +117,8 @@ function MainSection({ data }: { data: FooterProps['data']['mainSection'] }) {
   );
 }
 
+// QuickLinks function commented out as it's unused
+/*
 function QuickLinks({ data }: { data: FooterProps['data']['quickLinks'] }) {
   return (
     <div className="px-4 md:px-8 lg:px-12">
@@ -162,6 +164,7 @@ function QuickLinks({ data }: { data: FooterProps['data']['quickLinks'] }) {
     </div>
   );
 }
+*/
 
 
 function Newsletter({ data }: { data: { title: string; description: string; placeholder: string; buttonText: string; } }) {
@@ -247,7 +250,8 @@ function SocialLinks({ links }: { links: FooterProps['data']['socialLinks'] }) {
   const socialIcons = {
     Twitter,
     Instagram,
-    LinkedIn: Linkedin
+    LinkedIn: Linkedin,
+    Whatsapp: MessageCircle
   };
 
   return (
@@ -293,9 +297,23 @@ function ContactCard({ data }: { data: FooterProps['data']['contactInfo'] }) {
         <h3 className="text-2xl md:text-3xl font-bold text-foreground dark:text-white">
           Get in touch
         </h3>
-        <address className="not-italic text-lg space-y-2 text-muted-foreground dark:text-neutral-300 mx-auto md:mx-0">
-          <p>{data.email}</p>
-          <p>{data.phone}</p>
+        <address className="not-italic text-lg space-y-4 text-muted-foreground dark:text-neutral-300 mx-auto md:mx-0">
+          <div className="relative z-10">
+            <a 
+              href="mailto:info@travelspirene.com"
+              className="inline-block text-muted-foreground hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-400 transition-colors"
+            >
+              {data.email}
+            </a>
+          </div>
+          <div className="relative z-10">
+            <a 
+              href="tel:+919864141211"
+              className="inline-block text-muted-foreground hover:text-primary-600 dark:text-neutral-400 dark:hover:text-primary-400 transition-colors"
+            >
+              {data.phone}
+            </a>
+          </div>
           <p className="text-muted-foreground dark:text-neutral-400">{data.address}</p>
         </address>
       </div>
@@ -354,7 +372,7 @@ export function Footer({ data, className }: FooterProps) {
         <MainSection data={data.mainSection} />
         
         <div className="space-y-20">
-          <QuickLinks data={data.quickLinks} />
+          {/* <QuickLinks data={data.quickLinks} /> */}
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <Newsletter data={data.newsletter} />

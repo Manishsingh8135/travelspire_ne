@@ -26,7 +26,7 @@ import {
       description: "Send us your queries and we'll get back to you.",
       action: {
         text: "Send email",
-        href: "mailto:travelspirene82@gmail.com"
+        href: "mailto:info@travelspirene.com"
       }
     },
     {
@@ -44,7 +44,7 @@ import {
       description: "Chat with our team in real-time.",
       action: {
         text: "Start chat",
-        href: "#"
+        href: "https://wa.me/919864141211"
       }
     }
   ];
@@ -52,31 +52,31 @@ import {
   export const socialLinks = [
     {
       name: "Instagram",
-      href: "https://instagram.com/travelspire_northeast",
+      href: "https://instagram.com/travelspire_ne",
       icon: Instagram
     },
-    {
-      name: "Twitter",
-      href: "https://twitter.com/travelspirene",
-      icon: Twitter
-    },
-    {
-      name: "Facebook",
-      href: "https://facebook.com/travelspirene",
-      icon: Facebook
-    },
-    {
-      name: "LinkedIn",
-      href: "https://linkedin.com/company/travelspire-northeast",
-      icon: Linkedin
-    }
+    // {
+    //   name: "Twitter",
+    //   href: "https://twitter.com/travelspirene",
+    //   icon: Twitter
+    // },
+    // {
+    //   name: "Facebook",
+    //   href: "https://facebook.com/travelspirene",
+    //   icon: Facebook
+    // },
+    // {
+    //   name: "LinkedIn",
+    //   href: "https://linkedin.com/company/travelspire-northeast",
+    //   icon: Linkedin
+    // }
   ];
   
   export const officeLocation = {
     title: "Dibrugarh Office",
     address: "HSR Layout, Dibrugarh, Assam, India",
-    phone: "+91 98641 41211",
-    email: "travelspirene82@gmail.com",
+    phone: "+91-9864141211",
+    email: "info@travelspirene.com",
     coordinates: {
       lat: 27.4728,
       lng: 95.0170

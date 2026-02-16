@@ -16,11 +16,24 @@ import {
     TreePine,
     Footprints,
     Hotel,
-    Car
+    Car,
+    Music,
+    Shield
   } from "lucide-react";
   
   export const navigationData: NavigationData = {
     primary: [
+      { 
+        name: "All Tours", 
+        href: "/all-tours",
+        icon: Map 
+      },
+      { 
+        name: "Festivals", 
+        href: "/all-tours?category=Festival",
+        icon: Music 
+      },
+      /* Temporarily hidden - Destinations
       {
         name: "Destinations",
         href: "/destinations",
@@ -46,6 +59,8 @@ import {
           },
         ],
       },
+      */
+      /* Temporarily hidden - Tours
       {
         name: "Tours",
         href: "/tours",
@@ -71,25 +86,65 @@ import {
           },
         ],
       },
-      // {
-      //   name: "Plan Your Trip",
-      //   href: "/plan",
-      //   icon: Calendar,
-      //   submenu: [
-      //     { 
-      //       name: "Accommodations", 
-      //       href: "/plan/stay",
-      //       icon: Hotel,
-      //       description: "Where to Stay"
-      //     },
-      //     { 
-      //       name: "Transportation", 
-      //       href: "/plan/transport",
-      //       icon: Car,
-      //       description: "How to Get Around"
-      //     },
-      //   ],
-      // },
+      */
+      /* Temporarily hidden - Plan Your Trip
+      {
+        name: "Plan Your Trip",
+        href: "/plan",
+        icon: Calendar,
+        submenu: [
+          { 
+            name: "Accommodations", 
+            href: "/plan/stay",
+            icon: Hotel,
+            description: "Where to Stay"
+          },
+          { 
+            name: "Transportation", 
+            href: "/plan/transport",
+            icon: Car,
+            description: "How to Get Around"
+          },
+        ],
+      },
+      */
+      { 
+        name: "Permits", 
+        href: "/permits",
+        icon: Shield,
+        submenu: [
+          {
+            name: "Arunachal Pradesh ILP",
+            href: "/permits/arunachal-pradesh-ilp",
+            icon: Mountain,
+            description: "₹100 • 24hr processing • Land of Rising Sun"
+          },
+          {
+            name: "Nagaland ILP",
+            href: "/permits/nagaland-ilp",
+            icon: Music,
+            description: "₹200 • Hornbill Festival • Land of Festivals"
+          },
+          {
+            name: "Mizoram ILP",
+            href: "/permits/mizoram-ilp",
+            icon: TreePine,
+            description: "₹120 • On Arrival at Airport • Land of Blue Mountains"
+          },
+          {
+            name: "Manipur ILP",
+            href: "/permits/manipur-ilp",
+            icon: Bird,
+            description: "₹100 • Sangai Festival • Jewel of India"
+          },
+          {
+            name: "Sikkim Permit",
+            href: "/permits/sikkim-permit",
+            icon: Mountain,
+            description: "PAP • Nathula & North Sikkim • Land of Kangchenjunga"
+          },
+        ]
+      },
       { 
         name: "About Us", 
         href: "/about",
@@ -99,23 +154,25 @@ import {
         name: "Contact", 
         href: "/contact",
         icon: Phone 
-      },
+      }
     ],
     secondary: [
+      /* Temporarily hidden - Secondary navigation
       { 
         name: "Search", 
-        href: "/search", 
+        href: "/search",
         icon: Search 
       },
       { 
         name: "Notifications", 
-        href: "/notifications", 
+        href: "/notifications",
         icon: Bell 
       },
       { 
         name: "Account", 
-        href: "/account", 
+        href: "/account",
         icon: UserCircle 
-      },
-    ],
+      }
+      */
+    ]
   };

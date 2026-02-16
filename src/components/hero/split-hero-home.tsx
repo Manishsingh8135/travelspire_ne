@@ -13,7 +13,7 @@ export function SplitHeroHome() {
   return (
     <SplitHero>
       {/* Left Side - Content */}
-      <div className="relative">
+      <div className="relative order-last lg:order-none">
         <HeroContent
           title={heroData.title}
           highlightedTitle={heroData.highlightedTitle}
@@ -27,7 +27,7 @@ export function SplitHeroHome() {
       <HeroDecorator className="hidden lg:block left-1/2 -translate-x-1/2" />
 
       {/* Right Side - Media Grid */}
-      <div className="relative lg:pl-16">
+      <div className="relative lg:pl-16 order-first lg:order-none">
         <HeroMediaGrid items={mediaData} />
       </div>
     </SplitHero>

@@ -49,7 +49,7 @@ export function useScroll(threshold: number = 0, options: ScrollOptions = {}) {
   }, [bothDirections, prevScrollY, threshold, offset]);
 
   const debouncedHandleScroll = useCallback(
-    debounce(handleScroll, delay),
+    () => debounce(handleScroll, delay)(),
     [handleScroll, delay]
   );
 

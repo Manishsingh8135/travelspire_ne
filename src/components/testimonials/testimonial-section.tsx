@@ -259,22 +259,16 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
           {/* Footer - Author Info */}
           <div className="flex items-start gap-4 mt-auto pt-6 border-t border-primary-100/20 dark:border-primary-900/20">
-            <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-              {testimonial.author.avatar ? (
+            {testimonial.author.avatar && (
+              <div className="relative w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                 <Image
                   src={testimonial.author.avatar}
                   alt={testimonial.author.name}
                   fill
                   className="object-cover"
                 />
-              ) : (
-                <div className="w-full h-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center">
-                  <span className="text-lg font-medium text-primary-700 dark:text-primary-300">
-                    {testimonial.author.name.charAt(0)}
-                  </span>
-                </div>
-              )}
-            </div>
+              </div>
+            )}
 
             <div className="flex-1">
               <div className="flex items-center gap-2">

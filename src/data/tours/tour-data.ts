@@ -2,16 +2,6 @@
 import { Tour } from "@/types/tours/tour";
 
 
-
-
-
-const imageLinks = [
-  "https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1433838552652-f9a46b332c40?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1435732960391-11053ee5e6b6?q=80&w=2448&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1626761627604-f27d98885f4b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-];
-
 export const tawangExpedition: Tour = {
   id: "tawang-expedition",
   slug: "tawang-expedition",
@@ -24,14 +14,18 @@ export const tawangExpedition: Tour = {
   startDate: "Available Year Round",
   price: 16499,
   featured: true,
+  trending: true,
+  upcoming: false,
+  tags: ["monastery", "buddhist-culture", "mountain-pass", "premium"],
 
   heroImage: "/images/places/tawang/Tawang_1.PNG",
   thumbnail: "/images/places/tawang/Tawang_1.PNG",
   gallery: [
-    "/images/places/tawang/Tawang_2.JPG",
+    "/images/places/tawang/Tawang_9.JPG",
+    "/images/places/tawang/Tawang_5.jpg",
     "/images/places/tawang/Tawang_3.JPG",
     "/images/places/tawang/Tawang_4.PNG",
-    "/images/places/tawang/Tawang_5.jpg",
+   
     "/images/places/tawang/Tawang_6.PNG"
   ],
 
@@ -135,7 +129,7 @@ export const tawangExpedition: Tour = {
     "Anything not mentioned in inclusions"
   ],
 
-  importantNote: "To confirm your trip please pay 50% of the total package cost i.e., ₹16499/- per person",
+  importantNote: "To confirm your trip please pay 50% of the total package cost.",
   
   thingsToCarry: [
     "Warm clothes",
@@ -163,16 +157,29 @@ export const dongValleyExpedition: Tour = {
   duration: "4 Days / 3 Nights",
   location: "Dong Valley, Arunachal Pradesh",
   startDate: "Available Year Round",
-  price: 9999,
+  price: 13499,
+  upcoming: true,
+  trending: false,
+  tags: ["sunrise", "easternmost-india", "pristine-nature", "cultural-heritage"],
   featured: false,
 
-  heroImage: "/images/places/dong/Dong_1.JPG",
-  thumbnail: "/images/places/dong/Dong_1.JPG",
+  heroImage: "/images/places/dong-new/dong-new-landscape-8.jpg",
+  thumbnail: "/images/places/dong-new/dong-new-landscape-8.jpg",
   gallery: [
+    // "/images/places/dong/Dong_1.JPG",
     "/images/places/dong/Dong_2.jpg",
     "/images/places/dong/Dong_3.jpg",
     "/images/places/dong/Dong_4.jpg",
-    "/images/places/dong/Dong_5.jpg"
+    "/images/places/dong/Dong_5.jpg",
+    "/images/places/dong-new/dong-new-portrait-1.jpg",
+    "/images/places/dong-new/dong-new-portrait-2.jpg",
+    "/images/places/dong-new/dong-new-portrait-3.jpg",
+    "/images/places/dong-new/dong-new-portrait-4.jpg",
+    "/images/places/dong-new/dong-new-portrait-6.jpg",
+    "/images/places/dong-new/dong-new-portrait-7.jpg",
+    "/images/places/dong-new/dong-new-portrait-9.jpg",
+    "/images/places/dong-new/dong-new-portrait-10.jpg",
+
   ],
 
   highlights: [
@@ -183,6 +190,8 @@ export const dongValleyExpedition: Tour = {
     "Experience Tilam Hotspring",
     "Visit Parshuram Kund"
   ],
+
+  
 
   itinerary: [
     {
@@ -268,8 +277,8 @@ export const dongValleyExpedition: Tour = {
     "Railway & Airway tickets",
     "Tourist spots tickets"
   ],
-
-  importantNote: "To confirm this trip please pay 50% of the total package cost i.e., ₹9999/- per person",
+  
+    importantNote: "To confirm this trip please pay 50% of the total package cost. ",
 
   thingsToCarry: [
     "2 pairs of shoes (1 for trek)",
@@ -296,18 +305,22 @@ export const aniniExpedition: Tour = {
   duration: "3 Days / 2 Nights",
   location: "Anini, Dibang Valley, Arunachal Pradesh",
   startDate: "Available Year Round",
-  price: 10999,
+  price: 12499,
   featured: false,
 
   // We'll need proper images later, using placeholders for now
-  heroImage: "/images/places/anini/Anini_1.JPG", // Replace with actual Anini images
-  thumbnail: "/images/places/anini/Anini_1.JPG",
+  heroImage: "/images/places/anini-new/anini-new-landscape-11.jpeg", // Replace with actual Anini images
+  thumbnail: "/images/places/anini-new/anini-new-landscape-11.jpeg",
   gallery: [
-    "/images/places/anini/Anini_2.JPG",
-    "/images/places/anini/Anini_3.jpg",
-    "/images/places/anini/Anini_4.JPG",
-    "/images/places/anini/Anini_6.jpg",
-    "/images/places/anini/Anini_7.jpg"
+    "/images/places/anini-new/anini-new-portrait-1.JPG",
+    "/images/places/anini-new/anini-new-portrait-2.JPG",
+    "/images/places/anini-new/anini-new-portrait-3.JPG",
+    "/images/places/anini-new/anini-new-portrait-4.JPG",
+    "/images/places/anini-new/anini-new-portrait-5.JPG",
+    "/images/places/anini-new/anini-new-portrait-6.JPG",
+    "/images/places/anini-new/anini-new-portrait-7.JPG",
+    "/images/places/anini-new/anini-new-portrait-8.JPG",
+    "/images/places/anini-new/anini-new-portrait-9.JPG",
   ],
 
   highlights: [
@@ -387,7 +400,7 @@ export const aniniExpedition: Tour = {
     "Railway & Airway tickets"
   ],
 
-  importantNote: "To confirm this trip please pay 50% of the total package cost i.e., ₹10999/- per person",
+  importantNote: "To confirm this trip please pay 50% of the total package cost. ",
 
   thingsToCarry: [
     "Comfortable walking shoes",
@@ -403,11 +416,691 @@ export const aniniExpedition: Tour = {
   bestTimeToVisit: ["October", "November", "March", "April"] // Standard Northeast season
 };
 
+export const dambukAniniOfamTour: Tour = {
+  id: "dambuk-anini-ofam",
+  slug: "dambuk-anini-ofam",
+  type: "Adventure",
+  title: "Dambuk to Anini Tour",
+  subtitle: "Lets explore DAMBUK & ANINI",
+  overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with the pristine landscapes of Anini. Journey through orange orchards, witness the Mawu ando & Mathu waterfalls, and explore the remote Dibang Valley with its stunning Mayodia Pass.",
+  duration: "4 Days / 3 Nights",
+  location: "Dambuk & Anini, Arunachal Pradesh",
+  startDate: "December 2026", // During OFAM festival
+  price: 18500,
+  featured: false,
 
-export const upcomingTours = [
+  heroImage: "/images/places/dambuk/Dambuk_4.jpg",
+  thumbnail: "/images/places/dambuk/Dambuk_4.jpg",
+  gallery: [
+    "/images/places/dambuk/Dambuk_2.jpg",
+    "/images/places/anini/Anini_1.jpg",
+    "/images/places/dambuk/Dambuk_3.jpg",
+    "/images/places/anini/Anini_2.jpg"
+  ],
+
+  highlights: [
+    "Dambuk OFAM & Sikang Boggo",
+    "Mayodia Pass exploration",
+    "Chigu camp & Dree-afra experience",
+    "Mawu ando & Mathu waterfall visit",
+    "Dibang Valley & Acheso exploration",
+    "Traditional homestay and camping experience"
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Dambuk",
+      description: "Begin your journey with the Orange Festival experience in Dambuk.",
+      activities: [
+        "Pickup from Dibrugarh",
+        "Lunch stoppage at Shantipur gate",
+        "Enjoy the Dambuk OFAM festival",
+        "Overnight at Dambuk Campsite"
+      ]
+    },
+    {
+      title: "Dambuk to Anini",
+      description: "Journey through scenic mountain roads to reach Anini.",
+      activities: [
+        "Morning departure from Dambuk",
+        "Explore Dibang Valley & Acheso",
+        "Stoppage at Mayodia Pass",
+        "Night stay at Anini homestay"
+      ]
+    },
+    {
+      title: "Anini Exploration",
+      description: "Full day exploring the wonders of Anini region.",
+      activities: [
+        "Morning start in Anini",
+        "Visit Mawu ando & Mathu waterfall",
+        "Experience Chigu camp & Dree-afra",
+        "Overnight at Dree-afra/Anini homestay"
+      ]
+    },
+    {
+      title: "Return to Dibrugarh",
+      description: "Return journey with scenic stops.",
+      activities: [
+        "Morning departure from Anini",
+        "Lunch stoppage at Roing",
+        "Evening arrival in Dibrugarh"
+      ]
+    }
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170], // Dibrugarh
+      [28.3582, 95.3665], // Dambuk
+      [28.8427, 95.8997]  // Anini
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Starting point of the journey"
+      },
+      {
+        name: "Dambuk",
+        location: [28.3582, 95.3665],
+        description: "Orange Festival location and first stop"
+      },
+      {
+        name: "Anini",
+        location: [28.8427, 95.8997],
+        description: "Final destination in Dibang Valley"
+      }
+    ]
+  },
+
+  inclusions: [
+    "Homestay & Camping accommodations",
+    "Healthy Breakfast",
+    "Transportation cost",
+    "Tour Guide",
+    "Inner line permits"
+  ],
+
+  exclusions: [
+    "Lunch & Dinner",
+    "Railway & Airway tickets",
+    "Tourist spot tickets",
+    "Personal expenses"
+  ],
+
+  importantNote: "To confirm this trip please pay 50% of the total package cost. Minimum 4 persons required in a group.",
+
+  thingsToCarry: [
+    "Warm clothes",
+    "Comfortable trekking shoes",
+    "Valid ID proof",
+    "Camera",
+    "Personal medications",
+    "Light backpack for day trips"
+  ],
+
+  maxGroupSize: 12,
+  difficulty: "Moderate",
+  altitude: 2500, // Approximate altitude for Anini area
+  bestTimeToVisit: ["December"] // During OFAM festival
+};
+
+export const dambukGoldenPagodaTour: Tour = {
+  id: "dambuk-golden-pagoda-ofam",
+  slug: "dambuk-golden-pagoda-ofam",
+  type: "Adventure",
+  title: "Dambuk to Golden Pagoda Tour",
+  subtitle: "Lets explore DAMBUK & GOLDEN PAGODA",
+  overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with a spiritual journey to the majestic Golden Pagoda in Namsai. Enjoy riverside camping, explore sacred Buddhist sites, and immerse yourself in the cultural heritage of Arunachal Pradesh.",
+  duration: "3 Days / 2 Nights",
+  location: "Dambuk & Namsai, Arunachal Pradesh",
+  startDate: "December 2026", // During OFAM festival
+  price: 12999,
+  featured: false,
+
+  heroImage: "/images/places/dambuk/Dambuk_5.jpg",
+  thumbnail: "/images/places/dambuk/Dambuk_5.jpg",
+  gallery: [
+    "/images/places/dambuk/Dambuk_2.jpg",
+    "/images/places/dambuk/Dambuk_3.jpg",
+    "/images/places/dambuk/Dambuk_4.jpg",
+    "/images/places/dambuk/Dambuk_5.jpg"
+  ],
+
+  highlights: [
+    "Dambuk OFAM & Sikang Boggo",
+    "Golden Pagoda exploration",
+    "Parsuram Kund visit",
+    "River resort experience",
+    "Buddhist cultural immersion",
+    "Orange orchards and local cuisine"
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Dambuk",
+      description: "Begin your journey with the Orange Festival experience in Dambuk.",
+      activities: [
+        "Pickup from Dibrugarh",
+        "Lunch stoppage at Shantipur gate",
+        "Enjoy the Dambuk OFAM",
+        "Overnight at Dambuk Campsite"
+      ]
+    },
+    {
+      title: "Dambuk to Namsai",
+      description: "Explore Namsai and its spiritual landmarks.",
+      activities: [
+        "Good morning from Dambuk",
+        "Explore Namsai",
+        "Lunch & Break time at resort",
+        "Night stay at Namsai resort"
+      ]
+    },
+    {
+      title: "Return to Dibrugarh",
+      description: "Visit final attractions before return.",
+      activities: [
+        "Morning visit to Golden Pagoda",
+        "Visit Parsuram Kund",
+        "Lunch near Namsai",
+        "Evening return to Dibrugarh"
+      ]
+    }
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170], // Dibrugarh
+      [28.3582, 95.3665], // Dambuk
+      [27.6667, 95.8667]  // Namsai
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Starting point of the journey"
+      },
+      {
+        name: "Dambuk",
+        location: [28.3582, 95.3665],
+        description: "Orange Festival location"
+      },
+      {
+        name: "Namsai",
+        location: [27.6667, 95.8667],
+        description: "Golden Pagoda and cultural sites"
+      }
+    ]
+  },
+
+  inclusions: [
+    "Homestay & Camping accommodations",
+    "Healthy Breakfast",
+    "Transportation cost",
+    "Tour Guide",
+    "Inner line permits"
+  ],
+
+  exclusions: [
+    "Lunch & Dinner",
+    "Railway & Airway tickets",
+    "Tourist spot tickets",
+    "Personal expenses"
+  ],
+
+  importantNote: "To confirm this trip please pay 50% of the total package cost. Minimum 4 persons required in a group.",
+
+  thingsToCarry: [
+    "Comfortable walking shoes",
+    "Modest clothing for temple visits",
+    "Camera",
+    "Personal medications",
+    "Valid ID proof",
+    "Light jacket or shawl"
+  ],
+
+  maxGroupSize: 12,
+  difficulty: "Easy",
+  altitude: 500, // Approximate for Namsai region
+  bestTimeToVisit: ["December"] // During OFAM festival
+};
+
+export const dambukDongValleyTour: Tour = {
+  id: "dambuk-dong-valley-ofam",
+  slug: "dambuk-dong-valley-ofam",
+  type: "Adventure",
+  title: "Dambuk to Dong Valley Tour",
+  subtitle: "Lets explore DAMBUK & DONG VALLEY",
+  overview: "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with an expedition to India's easternmost valley. Journey from the orange orchards of Dambuk to the historic Dong Valley, enjoying hot springs, trek experiences, and visiting India's easternmost villages.",
+  duration: "4 Days / 3 Nights",
+  location: "Dambuk & Dong Valley, Arunachal Pradesh",
+  startDate: "December 2026", // During OFAM festival
+  price: 18500,
+  featured: false,
+
+  heroImage: "/images/places/dong/Dong_2.jpg",
+  thumbnail: "/images/places/dong/Dong_3.jpg",
+  gallery: [
+    "/images/places/dambuk/Dambuk_2.jpg",
+    "/images/places/dong/Dong_1.jpg",
+    "/images/places/dong/Dong_3.jpg",
+    "/images/places/dong/Dong_5.jpg"
+  ],
+
+  highlights: [
+    "Dambuk OFAM & Sikang Boggo",
+    "Tilam Hotspring experience",
+    "War memorial visit",
+    "Dong Valley trek",
+    "Explore Kaho & Kibithoo villages",
+    "India's easternmost point"
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Dambuk",
+      description: "Begin your journey with OFAM festival experience.",
+      activities: [
+        "Pickup from Dibrugarh",
+        "Lunch stoppage at Shantipur gate",
+        "Enjoy the Dambuk OFAM",
+        "Overnight at Dambuk Campsite"
+      ]
+    },
+    {
+      title: "Dambuk to Walong",
+      description: "Journey to Walong with cultural stops.",
+      activities: [
+        "Morning departure from Dambuk",
+        "Explore Walong region",
+        "Stoppage at Parsuram Kund",
+        "Lunch at Hayuliang",
+        "Evening rest at Tilam Hotspring"
+      ]
+    },
+    {
+      title: "Dong Valley Exploration",
+      description: "Trek to India's easternmost valley.",
+      activities: [
+        "Morning start from Tilam Hotspring",
+        "DONG VALLEY trek",
+        "Visit India's most eastern village KAHO",
+        "Explore KIBITHOO & War memorial",
+        "Lunch at Walong Cafe",
+        "Night at TILAM HOTSPRING"
+      ]
+    },
+    {
+      title: "Return to Dibrugarh",
+      description: "Return journey with scenic stops.",
+      activities: [
+        "Morning departure from Walong",
+        "Lunch stoppage at Hayuliang",
+        "Evening arrival in Dibrugarh"
+      ]
+    }
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170], // Dibrugarh
+      [28.3582, 95.3665], // Dambuk
+      [28.1500, 97.1333]  // Dong Valley
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Starting point of the journey"
+      },
+      {
+        name: "Dambuk",
+        location: [28.3582, 95.3665],
+        description: "Orange Festival location"
+      },
+      {
+        name: "Dong Valley",
+        location: [28.1500, 97.1333],
+        description: "India's easternmost valley"
+      }
+    ]
+  },
+
+  inclusions: [
+    "Homestay & Camping accommodations",
+    "Healthy Breakfast",
+    "Transportation cost",
+    "Tour Guide",
+    "Inner line permits"
+  ],
+
+  exclusions: [
+    "Lunch & Dinner",
+    "Railway & Airway tickets",
+    "Tourist spot tickets",
+    "Personal expenses"
+  ],
+
+  importantNote: "To confirm this trip please pay 50% of the total package cost. Minimum 4 persons required in a group.",
+
+  thingsToCarry: [
+    "Warm clothes",
+    "Trekking/comfortable shoes",
+    "Valid ID proof",
+    "Camera",
+    "Personal medications",
+    "Mini flask for water"
+  ],
+
+  maxGroupSize: 12,
+  difficulty: "Moderate",
+  altitude: 3500, // Approximate for Dong Valley region
+  bestTimeToVisit: ["December"] // During OFAM festival
+};
+
+export const pomoTrekExpedition: Tour = {
+  id: "pomo-trek-expedition",
+  slug: "pomo-trek-expedition",
+  type: "Adventure",
+  title: "Anini Pomo Trek Expedition",
+  subtitle: "3 Nights / 4 Days Trekking Adventure",
+  overview: "Embark on a thrilling trek to Pomo, near Anini, in the heart of Dibang Valley.  Experience stunning waterfalls, pristine landscapes, and the unique culture of the region. This trek includes visits to Mayudia Pass, Mawu Ando & Mathu waterfalls, and Chigu and Dree-afra camps.",
+  duration: "4 Days / 3 Nights",
+  location: "Anini, Dibang Valley, Arunachal Pradesh",
+  startDate: "Available Year Round",
+  price: 19999,
+  featured: false,
+
+  heroImage: "/images/places/pomo/pomo1.JPG",
+  thumbnail: "/images/places/pomo/pomo1.JPG",
+  gallery: [
+    "/images/places/pomo/pomo1.JPG",
+    "/images/places/pomo/pomo2.JPG",
+    "/images/places/pomo/pomo3.JPG",
+    "/images/places/pomo/pomo4.JPG",
+    "/images/places/pomo/pomo5.JPG",
+    "/images/places/pomo/pomo6.JPG",
+  ],
+
+  highlights: [
+    "Trek to the scenic Pomo region",
+    "Explore Mayudia Pass",
+    "Visit Mawu Ando & Mathu waterfalls",
+    "Experience Chigu and Dree-afra camps",
+    "Discover hidden waterfalls and lakes",
+    "Immerse yourself in the local culture",
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Anini",
+      description: "Drive from Dibrugarh to Anini, with sightseeing and a stop at Mayudia Pass.",
+      activities: [
+        "Pickup from Dibrugarh",
+        "Scenic drive to Anini",
+        "Sightseeing along the way",
+        "Viewpoint and stoppage at Mayudia Pass",
+        "Overnight stay at Anini"
+      ]
+    },
+    {
+      title: "Anini Exploration",
+      description: "Explore the waterfalls and camps around Anini.",
+      activities: [
+        "Morning departure from Anini",
+        "Visit Mawu Ando & Mathu waterfalls",
+        "Explore Chigu and Dree-afra camps",
+        "Overnight stay at Anini"
+      ]
+    },
+    {
+      title: "Pomo Trek",
+      description: "Embark on the Pomo trek, experiencing the natural beauty of the region.",
+      activities: [
+        "Good morning from Anini",
+        "Start the Pomo trek",
+        "Explore scenic views, waterfalls, and lakes",
+        "Overnight stay at Pomo or Anini (depending on trek progress and preference)"
+      ]
+    },
+    {
+      title: "Anini to Dibrugarh",
+      description: "Return journey to Dibrugarh with a lunch break near Mayudia Pass.",
+      activities: [
+        "Morning departure from Anini/Pomo",
+        "Lunch break near Mayudia Pass",
+        "Return to Dibrugarh",
+        "Trip completion"
+      ]
+    }
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170],
+      [28.8427, 95.8997]
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Starting point of the journey"
+      },
+      {
+        name: "Anini",
+        location: [28.8427, 95.8997],
+        description: "Base for the trek and exploration"
+      },
+    ]
+  },
+
+  inclusions: [
+    "Stay (Homestay/Camping)",
+    "Breakfast & Evening Snacks",
+    "Trip Guide",
+    "Trekking Guide",
+    "Sightseeing",
+    "Travel Expenses",
+    "Inner Line Permits"
+  ],
+
+  exclusions: [
+    "Airway Tickets & Railway Tickets",
+    "Anything not mentioned above",
+    "Lunch",
+    "Dinner"
+  ],
+
+  importantNote: "To confirm this trip, please pay 50% of the total package cost.",
+
+  thingsToCarry: [
+    "2 pairs of shoes (1 for trek)",
+    "Warm clothes",
+    "Raincoats, Umbrella & Gumboots for the trek",
+    "Stretchable or breathable bottoms (jeans won't help for treks)",
+    "Mini flask for warm water",
+    "Small backpack for essential items during the Pomo trek"
+  ],
+
+  maxGroupSize: 10,
+  difficulty: "Moderate",
+  altitude: 2200,
+  bestTimeToVisit: ["October", "November", "March", "April"]
+};
+
+export const mechukaExpedition: Tour = {
+  id: "mechuka-expedition",
+  slug: "mechuka-expedition",
+  type: "Adventure",
+  title: "Mechuka Expedition",
+  subtitle: "5 Nights 6 Days in the Hidden Valley of Arunachal",
+  overview:
+    "Discover the untouched charm of Mechuka Valley — a serene land of scenic beauty, exotic tribes, gentle hills, and snow-capped mountains. Journey through Aalo, cross the Bogibeel and Yorlung bridges, and immerse yourself in a mix of spirituality, nature, and thrill.",
+  duration: "6 Days / 5 Nights",
+  location: "Mechuka Valley, Arunachal Pradesh",
+  startDate: "Available Year Round",
+  price: 19999,
+  featured: true,
+  trending: true,
+  upcoming: false,
+  tags: ["tribal-culture", "hidden-gem", "monasteries", "zipline", "valley-tour"],
+
+  heroImage: "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
+  thumbnail: "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
+  gallery: [
+    "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
+    "/images/places/mechuka-new/mechuka-new-portrait-2.JPG",
+    "/images/places/mechuka-new/mechuka-new-portrait-3.JPG",
+    "/images/places/mechuka-new/mechuka-new-portrait-8.JPG",
+    "/images/places/mechuka-new/mechuka-new-portrait-15.JPG",
+    "/images/places/mechuka-new/mechuka-new-portrait-21.JPG",
+  ],
+
+  highlights: [
+    "Cross India’s longest railroad bridge – Bogibeel Bridge",
+    "Explore the scenic Mechuka Valley",
+    "Visit 400-year-old Mechuka Monastery",
+    "See the rock face of Hanuman",
+    "Gurudwara maintained by Indian Army",
+    "Sacred meditation cave of Guru Rinpoche",
+    "Ziplining adventure at Dorjeeling",
+    "Oldest monastery in Dorjeeling (older than Tawang)"
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Aalo (Along)",
+      description: "Begin your journey with a scenic drive to Aalo crossing Bogibeel bridge.",
+      activities: [
+        "Early morning departure from Dibrugarh",
+        "Cross Bogibeel Bridge – India’s longest railroad bridge",
+        "Drive through West Siang region",
+        "Reach Aalo by evening",
+        "Overnight stay in Aalo"
+      ]
+    },
+    {
+      title: "Aalo to Mechuka",
+      description: "Enter the magical Mechuka Valley crossing the Yorlung Bridge.",
+      activities: [
+        "Drive to Mechuka (190 km, approx. 6 hours)",
+        "Cross the Yorlung Bridge",
+        "Check into homestay or hotel",
+        "Explore Mechuka town and local market",
+        "Overnight stay in Mechuka"
+      ]
+    },
+    {
+      title: "Mechuka Exploration - Part 1",
+      description: "Spiritual and cultural exploration of sacred landmarks in Mechuka.",
+      activities: [
+        "Visit ancient 400-year-old Mechuka Monastery",
+        "See Hanuman face engraved on mountain",
+        "Visit the Indian Army-maintained Gurudwara",
+        "Visit Neh-Bechag Shingri (sacred cave of Guru Rinpoche)",
+        "Understand history of the sacred tiger imprint",
+        "Overnight stay in Mechuka"
+      ]
+    },
+    {
+      title: "Dorjeeling Visit and Zipline",
+      description: "Trek to viewpoint and explore Dorjeeling’s monastery and zipline thrills.",
+      activities: [
+        "Morning trek to a mountain viewpoint near Mechuka",
+        "Drive to Dorjeeling",
+        "Ziplining experience with breathtaking views",
+        "Visit the oldest monastery in Dorjeeling (older than Tawang Monastery)",
+        "Drive back to Mechuka",
+        "Overnight stay in Mechuka"
+      ]
+    },
+    {
+      title: "Mechuka to Aalo",
+      description: "Return journey from Mechuka to Aalo through scenic roads.",
+      activities: [
+        "Breakfast in Mechuka",
+        "Drive back to Aalo",
+        "Scenic drive through hills and valleys",
+        "Overnight stay in Aalo"
+      ]
+    },
+    {
+      title: "Aalo to Dibrugarh",
+      description: "Final leg of the journey back to Dibrugarh.",
+      activities: [
+        "Early morning departure from Aalo",
+        "Drive back to Dibrugarh",
+        "End of trip"
+      ]
+    }
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170], // Dibrugarh
+      [28.1700, 94.8000], // Aalo (Along)
+      [28.6000, 94.1500]  // Mechuka
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Starting point via Bogibeel Bridge"
+      },
+      {
+        name: "Aalo",
+        location: [28.1700, 94.8000],
+        description: "District headquarters of West Siang"
+      },
+      {
+        name: "Mechuka",
+        location: [28.6000, 94.1500],
+        description: "Remote valley with monasteries, history, and adventure"
+      }
+    ]
+  },
+
+  inclusions: [
+    "Stay with necessary accommodations",
+    "Breakfast & evening snacks",
+    "Travel expenses",
+    "Guide charges",
+    "Tourist spot tickets",
+    "Inner Line Permit"
+  ],
+
+  exclusions: [
+    "Lunch & Dinner",
+    "Railway & Airway tickets"
+  ],
+
+  importantNote: "To confirm this trip please pay 50% of the total package cost.",
+
+  thingsToCarry: [
+    "Warm clothes",
+    "Chargers & Powerbanks",
+    "Mini flask for warm water",
+    "Small backpack for essentials during sightseeing"
+  ],
+
+  maxGroupSize: 12,
+  difficulty: "Moderate",
+  altitude: 1829, // Approx altitude of Mechuka in meters
+  bestTimeToVisit: ["October", "November", "March", "April"]
+};
+
+
+export const regularTours = [
   tawangExpedition,
   dongValleyExpedition,
-  aniniExpedition
+  aniniExpedition,
+  dambukAniniOfamTour,
+  dambukGoldenPagodaTour,
+  dambukDongValleyTour,
+  pomoTrekExpedition,
+  mechukaExpedition
 ];
 
 

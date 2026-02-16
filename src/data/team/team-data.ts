@@ -6,7 +6,7 @@ export const teamMembers: TeamMember[] = [
     id: 'ss-001',
     name: 'Sandeep Sonowal',
     roles: ['Founder', 'Lead Explorer'],
-    image: '/images/team/sandeep.jpg', // Update with actual image path
+    image: '/images/team/Sandeep.JPG', // Update with actual image path
     location: {
       city: 'Dibrugarh',
       state: 'Assam'
@@ -19,8 +19,8 @@ export const teamMembers: TeamMember[] = [
     social: [
       {
         platform: 'instagram',
-        handle: '@travelwith_82',
-        url: 'https://instagram.com/travelwith_82'
+        handle: '@travelspire_ne',
+        url: 'https://instagram.com/travelspire_ne'
       }
     ],
     achievements: [

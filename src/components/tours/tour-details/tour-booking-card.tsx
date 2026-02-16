@@ -1,10 +1,13 @@
 // components/tours/tour-detail/tour-booking-card.tsx
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Tour } from "@/types/tours/tour";
+import { Tour, isRegularTour, isFestivalTour, isSpecialActivityTour } from "@/types/tours/tour";
 import { DotPattern } from "@/components/ui/background-patterns";
+import { createTourWhatsAppURL } from "@/lib/whatsapp";
+import { MessageCircle } from "lucide-react";
 
 interface TourBookingCardProps {
   tour: Tour;
@@ -12,6 +15,40 @@ interface TourBookingCardProps {
 }
 
 export function TourBookingCard({ tour, className }: TourBookingCardProps) {
+  const [customerName, setCustomerName] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
+
+  // Get the appropriate price based on tour type
+  const getPrice = () => {
+    if (isRegularTour(tour)) {
+      return tour.price;
+    }
+    if (isFestivalTour(tour) || isSpecialActivityTour(tour)) {
+      return Math.min(...tour.variants.map(v => v.price));
+    }
+    return 0;
+  };
+
+  // Get the appropriate price label
+  const getPriceLabel = () => {
+    if (isRegularTour(tour)) {
+      return "Price per person";
+    }
+    return "Starting from";
+  };
+
+  const price = getPrice();
+
+  const handleWhatsAppBooking = () => {
+    const whatsappURL = createTourWhatsAppURL(tour, {
+      customerName: customerName || undefined,
+      customerEmail: customerEmail || undefined,
+      customerPhone: customerPhone || undefined
+    });
+    window.open(whatsappURL, '_blank');
+  };
+
   return (
     <div className={cn(
       "relative rounded-[2.5rem] overflow-hidden",
@@ -32,19 +69,21 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
           "text-center pb-6",
           "border-b border-primary-100/20 dark:border-white/10"
         )}>
-          <div className="text-sm text-muted-foreground">Price per person</div>
+          <div className="text-sm text-muted-foreground">{getPriceLabel()}</div>
           <div className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            ₹{tour.price.toLocaleString()}
+            ₹{price.toLocaleString()}
           </div>
         </div>
 
         {/* Booking Form */}
-        <form className="space-y-4">
+        <div className="space-y-4 max-w-sm mx-auto">
           {/* Name Input */}
           <div className="space-y-2">
             <input
               type="text"
-              placeholder="Your Name"
+              placeholder="Your Name (Optional)"
+              value={customerName}
+              onChange={(e) => setCustomerName(e.target.value)}
               className={cn(
                 "w-full px-4 py-3 rounded-xl",
                 "bg-white dark:bg-white/5",
@@ -61,7 +100,9 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
           <div className="space-y-2">
             <input
               type="email"
-              placeholder="Your Email"
+              placeholder="Your Email (Optional)"
+              value={customerEmail}
+              onChange={(e) => setCustomerEmail(e.target.value)}
               className={cn(
                 "w-full px-4 py-3 rounded-xl",
                 "bg-white dark:bg-white/5",
@@ -78,7 +119,9 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
           <div className="space-y-2">
             <input
               type="tel"
-              placeholder="Your Phone"
+              placeholder="Your Phone (Optional)"
+              value={customerPhone}
+              onChange={(e) => setCustomerPhone(e.target.value)}
               className={cn(
                 "w-full px-4 py-3 rounded-xl",
                 "bg-white dark:bg-white/5",
@@ -91,22 +134,25 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
             />
           </div>
 
-          {/* Submit Button */}
+          {/* WhatsApp Booking Button */}
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            type="submit"
+            onClick={handleWhatsAppBooking}
+            type="button"
             className={cn(
               "w-full py-4 rounded-xl",
-              "bg-gradient-primary hover:bg-gradient-secondary",
+              "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600",
               "text-white font-medium",
               "shadow-glow-sm dark:shadow-none",
-              "transition-all duration-300"
+              "transition-all duration-300",
+              "flex items-center justify-center gap-2"
             )}
           >
-            Book Now
+            <MessageCircle className="w-5 h-5" />
+            Book via WhatsApp
           </motion.button>
-        </form>
+        </div>
       </div>
     </div>
   );
