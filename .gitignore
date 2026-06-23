@@ -31,6 +31,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -46,3 +47,9 @@ next-env.d.ts
 
 /helper-ui-components
 /helper-ui-components/*
+
+# v1 app, kept locally for reference (lives in git history + main)
+/legacy
+
+# internal planning + progress docs (kept out of the repo by choice)
+/docs-new

@@ -1,0 +1,7 @@
+.next
+node_modules
+legacy
+helper-ui-components
+pnpm-lock.yaml
+public
+*.md

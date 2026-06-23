@@ -1,239 +1,312 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
- 
+/* Scope content detection to src/ only — keep legacy/ and helper-ui-components/ out. */
+@import "tailwindcss" source("..");
+
+/* Dark mode is driven by a data attribute (manual toggle), not media-query only. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* =========================================================================
+   PRIMITIVES — the raw palette + scales. These generate Tailwind utilities
+   (bg-marigold-500, text-pine-700, etc.). Components must NOT use these
+   directly — they use the semantic roles defined further down.
+   Palette: OKLCH ramps on a shared lightness ladder, chroma tapered at the
+   ends. See docs-new/03-frontend/02-design-system.md
+   ========================================================================= */
+@theme {
+  /* Mist — warm paper neutral (the light foundation) */
+  --color-mist-50: oklch(0.985 0.006 85);
+  --color-mist-100: oklch(0.965 0.008 85);
+  --color-mist-200: oklch(0.925 0.01 84);
+  --color-mist-300: oklch(0.86 0.011 82);
+  --color-mist-400: oklch(0.75 0.012 80);
+  --color-mist-500: oklch(0.63 0.012 78);
+  --color-mist-600: oklch(0.53 0.011 74);
+  --color-mist-700: oklch(0.44 0.01 70);
+  --color-mist-800: oklch(0.34 0.009 66);
+  --color-mist-900: oklch(0.26 0.008 62);
+  --color-mist-950: oklch(0.185 0.008 60);
+
+  /* Basalt — warm near-black ink (never pure #000) */
+  --color-basalt-50: oklch(0.96 0.004 60);
+  --color-basalt-100: oklch(0.92 0.005 60);
+  --color-basalt-200: oklch(0.85 0.006 60);
+  --color-basalt-300: oklch(0.74 0.007 60);
+  --color-basalt-400: oklch(0.62 0.008 60);
+  --color-basalt-500: oklch(0.53 0.008 60);
+  --color-basalt-600: oklch(0.44 0.008 60);
+  --color-basalt-700: oklch(0.35 0.008 60);
+  --color-basalt-800: oklch(0.28 0.008 60);
+  --color-basalt-900: oklch(0.23 0.008 60);
+  --color-basalt-950: oklch(0.175 0.008 58);
+
+  /* Stone — warm taupe neutral (borders, muted) */
+  --color-stone-50: oklch(0.985 0.006 80);
+  --color-stone-100: oklch(0.96 0.008 80);
+  --color-stone-200: oklch(0.92 0.01 78);
+  --color-stone-300: oklch(0.85 0.012 78);
+  --color-stone-400: oklch(0.74 0.014 76);
+  --color-stone-500: oklch(0.62 0.015 75);
+  --color-stone-600: oklch(0.53 0.014 74);
+  --color-stone-700: oklch(0.44 0.012 72);
+  --color-stone-800: oklch(0.34 0.01 70);
+  --color-stone-900: oklch(0.26 0.009 68);
+  --color-stone-950: oklch(0.18 0.008 66);
+
+  /* Pine — deep forest green (secondary / success) */
+  --color-pine-50: oklch(0.96 0.012 160);
+  --color-pine-100: oklch(0.93 0.022 162);
+  --color-pine-200: oklch(0.87 0.034 162);
+  --color-pine-300: oklch(0.78 0.046 160);
+  --color-pine-400: oklch(0.66 0.056 158);
+  --color-pine-500: oklch(0.55 0.06 156);
+  --color-pine-600: oklch(0.47 0.058 156);
+  --color-pine-700: oklch(0.4 0.052 158);
+  --color-pine-800: oklch(0.34 0.044 160);
+  --color-pine-900: oklch(0.27 0.034 162);
+  --color-pine-950: oklch(0.2 0.024 164);
+
+  /* Clay — terracotta (warm secondary / danger-ish) */
+  --color-clay-50: oklch(0.96 0.02 50);
+  --color-clay-100: oklch(0.93 0.035 48);
+  --color-clay-200: oklch(0.87 0.055 46);
+  --color-clay-300: oklch(0.78 0.08 45);
+  --color-clay-400: oklch(0.66 0.1 44);
+  --color-clay-500: oklch(0.55 0.115 43);
+  --color-clay-600: oklch(0.48 0.11 42);
+  --color-clay-700: oklch(0.42 0.1 41);
+  --color-clay-800: oklch(0.36 0.085 40);
+  --color-clay-900: oklch(0.3 0.065 40);
+  --color-clay-950: oklch(0.23 0.045 40);
+
+  /* Marigold — THE single accent (saffron of NE festivals/monasteries) */
+  --color-marigold-50: oklch(0.97 0.025 85);
+  --color-marigold-100: oklch(0.94 0.05 84);
+  --color-marigold-200: oklch(0.9 0.08 82);
+  --color-marigold-300: oklch(0.86 0.11 80);
+  --color-marigold-400: oklch(0.82 0.135 78);
+  --color-marigold-500: oklch(0.78 0.15 75);
+  --color-marigold-600: oklch(0.7 0.15 70);
+  --color-marigold-700: oklch(0.6 0.13 65);
+  --color-marigold-800: oklch(0.5 0.105 60);
+  --color-marigold-900: oklch(0.42 0.08 58);
+  --color-marigold-950: oklch(0.32 0.06 55);
+
+  /* Charcoal Forest — the dark-mode foundation */
+  --color-charcoal-50: oklch(0.96 0.004 70);
+  --color-charcoal-100: oklch(0.9 0.005 70);
+  --color-charcoal-200: oklch(0.8 0.006 70);
+  --color-charcoal-300: oklch(0.68 0.007 70);
+  --color-charcoal-400: oklch(0.55 0.008 70);
+  --color-charcoal-500: oklch(0.44 0.009 68);
+  --color-charcoal-600: oklch(0.36 0.01 66);
+  --color-charcoal-700: oklch(0.28 0.01 64);
+  --color-charcoal-800: oklch(0.21 0.01 62);
+  --color-charcoal-900: oklch(0.175 0.01 62);
+  --color-charcoal-950: oklch(0.145 0.009 60);
+
+  /* Fonts — wired to next/font variables on <html> */
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  /* Type scale — Major Second/Third, base 16. Size + line-height + tracking. */
+  --text-xs: 0.75rem;        --text-xs--line-height: 1.4;     --text-xs--letter-spacing: 0.01em;
+  --text-sm: 0.875rem;       --text-sm--line-height: 1.45;    --text-sm--letter-spacing: 0.005em;
+  --text-base: 1rem;         --text-base--line-height: 1.55;
+  --text-lg: 1.125rem;       --text-lg--line-height: 1.5;
+  --text-xl: 1.25rem;        --text-xl--line-height: 1.4;     --text-xl--letter-spacing: -0.005em;
+  --text-2xl: 1.5625rem;     --text-2xl--line-height: 1.3;    --text-2xl--letter-spacing: -0.01em;
+  --text-3xl: 1.9375rem;     --text-3xl--line-height: 1.2;    --text-3xl--letter-spacing: -0.015em;
+  --text-4xl: clamp(1.95rem, 1.5rem + 2vw, 2.4375rem);   --text-4xl--line-height: 1.1;  --text-4xl--letter-spacing: -0.02em;
+  --text-5xl: clamp(2.4375rem, 1.8rem + 3.2vw, 3.0625rem); --text-5xl--line-height: 1.05; --text-5xl--letter-spacing: -0.025em;
+  --text-6xl: clamp(3rem, 2rem + 5vw, 3.8125rem);        --text-6xl--line-height: 1.0;  --text-6xl--letter-spacing: -0.03em;
+
+  /* Radius — soft editorial, not pill-everything */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+
+  /* Elevation — multi-layer, warm-tinted toward Basalt, never neon */
+  --shadow-xs: 0 1px 2px -1px oklch(0.2 0.02 60 / 0.08);
+  --shadow-sm: 0 0 0 1px oklch(0.2 0.02 60 / 0.04), 0 1px 2px oklch(0.2 0.02 60 / 0.06), 0 2px 4px -1px oklch(0.2 0.02 60 / 0.08);
+  --shadow-md: 0 0 0 1px oklch(0.2 0.02 60 / 0.05), 0 2px 4px oklch(0.2 0.02 60 / 0.06), 0 6px 12px -2px oklch(0.2 0.02 60 / 0.1);
+  --shadow-lg: 0 0 0 1px oklch(0.2 0.02 60 / 0.05), 0 4px 8px oklch(0.2 0.02 60 / 0.06), 0 12px 24px -4px oklch(0.2 0.02 60 / 0.12);
+  --shadow-xl: 0 0 0 1px oklch(0.2 0.02 60 / 0.06), 0 8px 16px oklch(0.2 0.02 60 / 0.08), 0 24px 48px -8px oklch(0.2 0.02 60 / 0.16);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Breakpoints */
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+}
+
+/* =========================================================================
+   SEMANTIC ROLES — the public API components consume. Light theme here,
+   dark theme overrides below. One-variable swap; no per-component drift.
+   ========================================================================= */
+:root {
+  --bg-base: var(--color-mist-100);
+  --bg-surface: var(--color-mist-50);
+  --bg-subtle: var(--color-mist-200);
+  --bg-inset: var(--color-mist-200);
+
+  --fg: var(--color-basalt-900);
+  --fg-muted: var(--color-stone-600);
+  --fg-subtle: var(--color-stone-500);
+
+  --border-subtle: oklch(0.85 0.012 78 / 0.7);
+  --border-default: var(--color-stone-300);
+  --border-strong: var(--color-stone-500);
+
+  --accent: var(--color-marigold-500);
+  --accent-hover: var(--color-marigold-600);
+  --accent-active: var(--color-marigold-700);
+  --accent-subtle: var(--color-marigold-100);
+  --on-accent: var(--color-basalt-900);
+
+  --secondary: var(--color-pine-700);
+  --on-secondary: var(--color-mist-50);
+
+  --ring: var(--color-marigold-500);
+
+  --success: var(--color-pine-600);
+  --warning: var(--color-marigold-600);
+  --danger: var(--color-clay-600);
+
+  --marker-you: var(--color-marigold-500);
+  --marker-secret: var(--color-clay-500);
+
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg-base: var(--color-charcoal-950);
+  --bg-surface: var(--color-charcoal-900);
+  --bg-subtle: var(--color-charcoal-800);
+  --bg-inset: var(--color-charcoal-800);
+
+  --fg: var(--color-mist-100);
+  --fg-muted: var(--color-stone-400);
+  --fg-subtle: var(--color-stone-500);
+
+  --border-subtle: oklch(0.44 0.012 72 / 0.4);
+  --border-default: var(--color-charcoal-700);
+  --border-strong: var(--color-charcoal-600);
+
+  --accent: var(--color-marigold-400);
+  --accent-hover: var(--color-marigold-300);
+  --accent-active: var(--color-marigold-500);
+  --accent-subtle: oklch(0.42 0.08 58 / 0.25);
+  --on-accent: var(--color-basalt-950);
+
+  --secondary: var(--color-pine-400);
+  --on-secondary: var(--color-charcoal-950);
+
+  --ring: var(--color-marigold-400);
+
+  --success: var(--color-pine-400);
+  --warning: var(--color-marigold-400);
+  --danger: var(--color-clay-400);
+
+  color-scheme: dark;
+}
+
+/* =========================================================================
+   BRIDGE — expose semantic roles as Tailwind color utilities
+   (bg-background, text-foreground, border-border, bg-primary, ...).
+   Convention: background/foreground pairs (shadcn-style), so a card is
+   `bg-card text-card-foreground`, a CTA is `bg-primary text-primary-foreground`.
+   ========================================================================= */
+@theme inline {
+  --color-background: var(--bg-base);
+  --color-foreground: var(--fg);
+  --color-muted-foreground: var(--fg-muted);
+  --color-subtle-foreground: var(--fg-subtle);
+
+  --color-card: var(--bg-surface);
+  --color-card-foreground: var(--fg);
+  --color-muted: var(--bg-subtle);
+  --color-inset: var(--bg-inset);
+
+  --color-border: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--border-default);
+  --color-ring: var(--ring);
+
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--on-accent);
+  --color-primary-hover: var(--accent-hover);
+  --color-primary-active: var(--accent-active);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--on-accent);
+  --color-accent-subtle: var(--accent-subtle);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--on-secondary);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --color-marker-you: var(--marker-you);
+  --color-marker-secret: var(--marker-secret);
+}
+
+/* =========================================================================
+   BASE
+   ========================================================================= */
 @layer base {
-  :root {
-    /* Main Brand Colors - Ocean and Forest Theme */
-    --primary-50: 236 253 245;   /* Lightest */
-    --primary-100: 209 250 229;
-    --primary-200: 167 243 208;
-    --primary-300: 110 231 183;
-    --primary-400: 52 211 153;
-    --primary-500: 16 185 129;  /* Base */
-    --primary-600: 5 150 105;
-    --primary-700: 4 120 87;
-    --primary-800: 6 95 70;
-    --primary-900: 6 78 59;     /* Darkest */
-    --primary-950: 2 44 34;
-
-    /* Secondary Colors - Ocean Blue */
-    --secondary-50: 240 249 255;
-    --secondary-100: 224 242 254;
-    --secondary-200: 186 230 253;
-    --secondary-300: 125 211 252;
-    --secondary-400: 56 189 248;
-    --secondary-500: 14 165 233;
-    --secondary-600: 2 132 199;
-    --secondary-700: 3 105 161;
-    --secondary-800: 7 88 136;
-    --secondary-900: 12 74 110;
-    --secondary-950: 8 47 73;
-
-    /* Accent - Mountain Mist */
-    --accent-50: 248 250 252;
-    --accent-100: 241 245 249;
-    --accent-200: 226 232 240;
-    --accent-300: 203 213 225;
-    --accent-400: 148 163 184;
-    --accent-500: 100 116 139;
-    --accent-600: 71 85 105;
-    --accent-700: 51 65 85;
-    --accent-800: 30 41 59;
-    --accent-900: 15 23 42;
-    --accent-950: 2 6 23;
-
-    /* Success, Warning, Error Colors */
-    --success: 34 197 94;
-    --warning: 234 179 8;
-    --error: 239 68 68;
-    --info: 59 130 246;
-
-    /* Background and Foreground */
-    --background: 255 255 255;
-    --foreground: 15 23 42;
-
-    /* UI Element Colors */
-    --card: 255 255 255;
-    --card-foreground: 15 23 42;
-    --popover: 255 255 255;
-    --popover-foreground: 15 23 42;
-    --muted: 241 245 249;
-    --muted-foreground: 100 116 139;
-    --border: 226 232 240;
-    --input: 226 232 240;
-    --ring: 14 165 233;
-
-    /* Border Radius */
-    --radius-sm: 0.375rem;
-    --radius: 0.5rem;
-    --radius-md: 0.75rem;
-    --radius-lg: 1rem;
-    --radius-xl: 1.5rem;
-    --radius-2xl: 2rem;
-    
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    
-    /* Typography Scale - Larger than default */
-    --font-size-xs: 0.875rem;     /* 14px */
-    --font-size-sm: 1rem;         /* 16px */
-    --font-size-base: 1.125rem;   /* 18px */
-    --font-size-lg: 1.25rem;      /* 20px */
-    --font-size-xl: 1.5rem;       /* 24px */
-    --font-size-2xl: 2rem;        /* 32px */
-    --font-size-3xl: 2.5rem;      /* 40px */
-    --font-size-4xl: 3rem;        /* 48px */
-    --font-size-5xl: 4rem;        /* 64px */
-    --font-size-6xl: 5rem;        /* 80px */
+  * {
+    border-color: var(--color-border);
   }
 
-  .dark {
-    --background: 15 23 42;
-    --foreground: 248 250 252;
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
 
-    --card: 30 41 59;
-    --card-foreground: 248 250 252;
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-    --popover: 30 41 59;
-    --popover-foreground: 248 250 252;
+  /* Marigold focus ring — always visible, never removed without replacement */
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 
-    --primary: 16 185 129;
-    --primary-foreground: 236 253 245;
+  ::selection {
+    background-color: var(--color-accent-subtle);
+    color: var(--color-foreground);
+  }
 
-    --secondary: 14 165 233;
-    --secondary-foreground: 240 249 255;
-
-    --muted: 51 65 85;
-    --muted-foreground: 148 163 184;
-
-    --accent: 100 116 139;
-    --accent-foreground: 248 250 252;
-
-    --border: 51 65 85;
-    --input: 51 65 85;
-    --ring: 14 165 233;
+  /* Tabular numerals where numbers must align (prices, coords, altitudes) */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-@layer utilities {
-  /* Gradient Utilities */
-  .gradient-primary {
-    @apply bg-gradient-to-r from-primary-500 to-secondary-500;
+/* Respect reduced-motion globally (mandatory). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-
-  .gradient-primary-subtle {
-    @apply bg-gradient-to-r from-primary-100 to-secondary-100;
-  }
-
-  .gradient-secondary {
-    @apply bg-gradient-to-r from-secondary-500 to-primary-500;
-  }
-
-  .gradient-accent {
-    @apply bg-gradient-to-r from-accent-500 to-secondary-500;
-  }
-
-  .gradient-diagonal {
-    @apply bg-gradient-to-tr from-primary-600 via-primary-500 to-secondary-500;
-  }
-
-  .gradient-radial {
-    @apply bg-gradient-radial from-primary-500 via-secondary-500 to-accent-500;
-  }
-
-  /* Hover Effects */
-  .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
-  }
-
-  .hover-grow {
-    @apply transition-all duration-300 hover:scale-105;
-  }
-
-  .hover-glow {
-    @apply transition-all duration-300 hover:shadow-[0_0_15px_rgba(16,185,129,0.5)];
-  }
-
-  /* Text Gradients */
-  .text-gradient-primary {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-500;
-  }
-
-  .text-gradient-secondary {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary-500 to-primary-500;
-  }
-  /* Button Hover Effect */
-   /* Add to your existing utilities */
-   .interactive {
-    @apply cursor-pointer;
-  }
-
-  /* Interactive Element Styles */
-  button, 
-  [role="button"],
-  .button,
-  a {
-    @apply cursor-pointer;
-  }
-
-  /* Enhanced Link Styles */
-  .link {
-    @apply cursor-pointer
-    hover:text-primary-600
-    dark:hover:text-primary-400
-    transition-colors
-    duration-200;
-  }
-
-  /* Enhanced Button Styles */
-  .btn {
-    @apply cursor-pointer
-    transition-all
-    duration-200
-    active:scale-95;
-  }
-
-}
-
-@layer components {
-  /* Typography Components */
-  .heading-1 {
-    @apply scroll-m-20 text-5xl font-extrabold tracking-tight lg:text-6xl;
-  }
-
-  .heading-2 {
-    @apply scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl;
-  }
-
-  .heading-3 {
-    @apply scroll-m-20 text-3xl font-semibold tracking-tight lg:text-4xl;
-  }
-
-  .heading-4 {
-    @apply scroll-m-20 text-2xl font-semibold tracking-tight lg:text-3xl;
-  }
-
-  /* Card Styles */
-  .card-hover {
-    @apply hover-lift hover-glow;
-  }
-
-  .card-gradient {
-    @apply gradient-primary text-white hover-lift;
-  }
-
-  /* Button Styles */
-  .btn-gradient {
-    @apply gradient-primary text-white hover:shadow-lg transition-all duration-300;
-  }
-
-  .btn-outline-gradient {
-    @apply border-2 border-transparent bg-clip-border hover:border-primary-500 transition-all duration-300;
-  }
-  
 }

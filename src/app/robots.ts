@@ -1,36 +1,11 @@
-// app/robots.ts
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+import { env } from "@/lib/env";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://travelspirene.com'
-  
+  const base = env.NEXT_PUBLIC_SITE_URL;
   return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: [
-          '/private/',
-          '/admin/',
-          '/_next/',
-          '/api/',
-          '*.json',
-          '/temp/'
-        ],
-      },
-      {
-        userAgent: 'GPTBot',
-        disallow: '/',
-      },
-      {
-        userAgent: 'ChatGPT-User',
-        disallow: '/',
-      },
-      {
-        userAgent: 'CCBot',
-        disallow: '/',
-      }
-    ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-  }
+    rules: [{ userAgent: "*", allow: "/", disallow: ["/design", "/admin"] }],
+    sitemap: `${base}/sitemap.xml`,
+    host: base,
+  };
 }

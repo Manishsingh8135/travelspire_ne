@@ -1,23 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  typedRoutes: true,
   images: {
-    // domains: ['images.unsplash.com'],
+    // AVIF first, then WebP — see docs-new/04-content-seo/02-image-seo.md
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'unsplash.com',
-        port: '',
-        pathname: '/**',
-      },
-    ]
+      // Supabase Storage (public + transformed). Project ref filled in via env at deploy.
+      { protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/**" },
+      { protocol: "https", hostname: "*.supabase.in", pathname: "/storage/v1/object/**" },
+    ],
   },
 };
 
