@@ -15,3 +15,4 @@ export type UpdateRow<T extends keyof Database["public"]["Tables"]> =
 export type Region = Tables<"regions">;
 export type Place = Tables<"places">;
 export type Media = Tables<"media">;
+export type Tour = Tables<"tours">;

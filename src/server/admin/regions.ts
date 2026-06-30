@@ -29,13 +29,23 @@ function tally(rows: { status: string }[] | null): Counts {
   return { total: r.length, published, draft: r.length - published };
 }
 
-export async function getAdminCounts(): Promise<{ regions: Counts; places: Counts }> {
+export async function getAdminCounts(): Promise<{
+  regions: Counts;
+  places: Counts;
+  tours: Counts;
+}> {
   const sb = createSupabaseAdminClient();
-  const [regions, places] = await Promise.all([
+  const [regions, places, tours] = await Promise.all([
     sb.from("regions").select("status"),
     sb.from("places").select("status"),
+    sb.from("tours").select("status"),
   ]);
   if (regions.error) throw regions.error;
   if (places.error) throw places.error;
-  return { regions: tally(regions.data), places: tally(places.data) };
+  if (tours.error) throw tours.error;
+  return {
+    regions: tally(regions.data),
+    places: tally(places.data),
+    tours: tally(tours.data),
+  };
 }

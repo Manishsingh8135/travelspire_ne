@@ -49,6 +49,35 @@ export const PlaceFormSchema = z
 
 export type PlaceForm = z.infer<typeof PlaceFormSchema>;
 
+export const TOUR_TYPES = [
+  "adventure",
+  "cultural",
+  "nature",
+  "pilgrimage",
+  "festival",
+  "trek",
+] as const;
+export const TOUR_DIFFICULTIES = ["easy", "moderate", "challenging"] as const;
+
+export const TourFormSchema = z.object({
+  title: z.string().min(1, "Required"),
+  slug,
+  subtitle: z.string().optional(),
+  regionId: z.union([z.uuid(), z.literal("")]).optional(),
+  type: z.enum(TOUR_TYPES),
+  difficulty: z.enum(TOUR_DIFFICULTIES),
+  durationDays: z.coerce.number().int().min(1).max(60).optional(),
+  priceInr: z.coerce.number().int().min(0).max(100_000_000).optional(),
+  bestTime: z.string().optional(),
+  overview: z.string().optional(),
+  highlights: z.string().optional(), // newline-separated
+  inclusions: z.string().optional(), // newline-separated
+  seoTitle: z.string().optional(),
+  seoDescription: z.string().optional(),
+});
+
+export type TourForm = z.infer<typeof TourFormSchema>;
+
 /** First error message per field, for form display. */
 export function fieldErrorsOf(error: z.ZodError): Record<string, string> {
   const out: Record<string, string> = {};

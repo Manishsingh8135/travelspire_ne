@@ -234,6 +234,74 @@ export type Database = {
         }
         Relationships: []
       }
+      tours: {
+        Row: {
+          best_time: string | null
+          body: Json | null
+          created_at: string
+          deleted_at: string | null
+          difficulty: Database["public"]["Enums"]["tour_difficulty"]
+          duration_days: number | null
+          id: string
+          price_inr: number | null
+          published_at: string | null
+          region_id: string | null
+          seo: Json
+          slug: string
+          status: Database["public"]["Enums"]["publish_status"]
+          subtitle: string | null
+          title: string
+          type: Database["public"]["Enums"]["tour_type"]
+          updated_at: string
+        }
+        Insert: {
+          best_time?: string | null
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          difficulty?: Database["public"]["Enums"]["tour_difficulty"]
+          duration_days?: number | null
+          id?: string
+          price_inr?: number | null
+          published_at?: string | null
+          region_id?: string | null
+          seo?: Json
+          slug: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          subtitle?: string | null
+          title: string
+          type?: Database["public"]["Enums"]["tour_type"]
+          updated_at?: string
+        }
+        Update: {
+          best_time?: string | null
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          difficulty?: Database["public"]["Enums"]["tour_difficulty"]
+          duration_days?: number | null
+          id?: string
+          price_inr?: number | null
+          published_at?: string | null
+          region_id?: string | null
+          seo?: Json
+          slug?: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          subtitle?: string | null
+          title?: string
+          type?: Database["public"]["Enums"]["tour_type"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tours_region_id_fkey"
+            columns: ["region_id"]
+            isOneToOne: false
+            referencedRelation: "regions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       geography_columns: {
@@ -1186,6 +1254,14 @@ export type Database = {
         | "waterfall"
         | "other"
       publish_status: "draft" | "published" | "archived"
+      tour_difficulty: "easy" | "moderate" | "challenging"
+      tour_type:
+        | "adventure"
+        | "cultural"
+        | "nature"
+        | "pilgrimage"
+        | "festival"
+        | "trek"
     }
     CompositeTypes: {
       geometry_dump: {
@@ -1334,6 +1410,15 @@ export const Constants = {
         "other",
       ],
       publish_status: ["draft", "published", "archived"],
+      tour_difficulty: ["easy", "moderate", "challenging"],
+      tour_type: [
+        "adventure",
+        "cultural",
+        "nature",
+        "pilgrimage",
+        "festival",
+        "trek",
+      ],
     },
   },
 } as const

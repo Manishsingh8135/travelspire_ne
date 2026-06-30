@@ -13,6 +13,12 @@ export function SiteHeader() {
         </Link>
         <nav className="flex items-center gap-1">
           <Link
+            href="/tours"
+            className="rounded-sm px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Tours
+          </Link>
+          <Link
             href="/explore"
             className="rounded-sm px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >

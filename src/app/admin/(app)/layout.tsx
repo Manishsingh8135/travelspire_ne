@@ -34,6 +34,12 @@ export default async function AdminLayout({ children }: { children: ReactNode })
               >
                 Places
               </Link>
+              <Link
+                href="/admin/tours"
+                className="rounded-sm px-3 py-2 font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Tours
+              </Link>
             </nav>
           </div>
           <div className="flex items-center gap-3">
