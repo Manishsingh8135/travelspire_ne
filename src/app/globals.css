@@ -310,3 +310,55 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Living Map (Mapbox) — branded to our tokens ────────────────────────── */
+.ts-marker {
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: var(--color-marigold-500);
+  border: 1.5px solid var(--color-mist-50);
+  box-shadow:
+    0 0 0 3px oklch(0.78 0.15 75 / 0.22),
+    var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 140ms var(--ease-out);
+}
+.ts-marker:hover {
+  transform: scale(1.25);
+}
+.mapboxgl-popup-content {
+  padding: 0;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  color: var(--fg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+.mapboxgl-popup-tip {
+  border-top-color: var(--bg-surface) !important;
+  border-bottom-color: var(--bg-surface) !important;
+}
+.ts-popup {
+  display: block;
+  padding: 0.625rem 0.875rem;
+  text-decoration: none;
+  color: var(--fg);
+}
+.ts-popup:hover {
+  background: var(--bg-subtle);
+}
+.ts-popup-kind {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+}
+.ts-popup-name {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  margin-top: 0.125rem;
+}

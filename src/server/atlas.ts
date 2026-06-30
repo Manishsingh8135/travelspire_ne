@@ -54,6 +54,47 @@ export async function getPlaceBySlug(slug: string): Promise<Place | null> {
   return data;
 }
 
+/** A place reduced to what the Living Map needs (coords + linkable slugs). */
+export type MapPlace = {
+  slug: string;
+  name: string;
+  kind: string;
+  elevation_m: number | null;
+  lat: number;
+  lng: number;
+  regionSlug: string;
+};
+
+/** Published places that have coordinates, with their region slug, for the map. */
+export async function getMappablePlaces(): Promise<MapPlace[]> {
+  const regions = await getRegions();
+  const slugByRegionId = new Map(regions.map((r) => [r.id, r.slug]));
+
+  const sb = createSupabasePublicClient();
+  const { data, error } = await sb
+    .from("places")
+    .select("slug, name, kind, elevation_m, lat, lng, region_id")
+    .eq("status", "published");
+  if (error) throw error;
+
+  const places: MapPlace[] = [];
+  for (const p of data ?? []) {
+    if (p.lat == null || p.lng == null || !p.region_id) continue;
+    const regionSlug = slugByRegionId.get(p.region_id);
+    if (!regionSlug) continue;
+    places.push({
+      slug: p.slug,
+      name: p.name,
+      kind: p.kind,
+      elevation_m: p.elevation_m,
+      lat: p.lat,
+      lng: p.lng,
+      regionSlug,
+    });
+  }
+  return places;
+}
+
 /** All published (region, place) slug pairs — for generateStaticParams. */
 export async function getPlaceParams(): Promise<
   { regionSlug: string; placeSlug: string }[]

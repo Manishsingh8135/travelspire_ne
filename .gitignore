@@ -53,3 +53,6 @@ next-env.d.ts
 
 # internal planning + progress docs (kept out of the repo by choice)
 /docs-new
+
+# temp verification scripts
+scripts/_*.mjs

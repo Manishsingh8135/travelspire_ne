@@ -1,13 +1,12 @@
 import { z } from "zod";
 
 /**
- * Validated environment. Keys are optional at import time so the app builds
- * without secrets; helpers below fail fast when a feature actually needs them.
- * See .env.example for the full list.
+ * Client-safe environment — NEXT_PUBLIC_* only, so this module is safe to import
+ * from the browser. Server-only secrets (service-role key, admin allowlist) live
+ * in `@/lib/env.server` and must never be imported by client code.
  *
- * Supabase's new key system: NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (sb_publishable_…,
- * browser-safe, replaces the old anon key) and SUPABASE_SECRET_KEY (sb_secret_…,
- * server-only, replaces service_role). Legacy names are still accepted as fallback.
+ * Supabase key system: NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY (sb_publishable_…,
+ * browser-safe, replaces the old anon key). Legacy anon name accepted as fallback.
  */
 const EnvSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
@@ -16,8 +15,8 @@ const EnvSchema = z.object({
   NEXT_PUBLIC_SUPABASE_URL: z.url().optional(),
   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().min(1).optional(),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1).optional(), // legacy fallback
-  SUPABASE_SECRET_KEY: z.string().min(1).optional(),
-  SUPABASE_SERVICE_ROLE_KEY: z.string().min(1).optional(), // legacy fallback
+
+  NEXT_PUBLIC_MAPBOX_TOKEN: z.string().min(1).optional(),
 });
 
 export const env = EnvSchema.parse({
@@ -26,8 +25,7 @@ export const env = EnvSchema.parse({
   NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
   NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-  SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
-  SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+  NEXT_PUBLIC_MAPBOX_TOKEN: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
 });
 
 /** Browser/anon-tier Supabase credentials (publishable key; RLS applies). */
@@ -40,15 +38,4 @@ export function requireSupabaseEnv(): { url: string; key: string } {
     );
   }
   return { url: env.NEXT_PUBLIC_SUPABASE_URL, key };
-}
-
-/** Server-only secret key (admin writes, seeding; bypasses RLS). Never expose to the client. */
-export function requireSupabaseSecretKey(): string {
-  const secret = env.SUPABASE_SECRET_KEY ?? env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!secret) {
-    throw new Error(
-      "SUPABASE_SECRET_KEY missing — the server-only admin key (sb_secret_…). Never prefix with NEXT_PUBLIC.",
-    );
-  }
-  return secret;
 }
