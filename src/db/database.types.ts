@@ -67,6 +67,7 @@ export type Database = {
           elevation_m: number | null
           exclusivity_tier: number
           geom: unknown
+          hero_media_id: string | null
           id: string
           is_secret: boolean
           kind: Database["public"]["Enums"]["place_kind"]
@@ -87,6 +88,7 @@ export type Database = {
           elevation_m?: number | null
           exclusivity_tier?: number
           geom?: unknown
+          hero_media_id?: string | null
           id?: string
           is_secret?: boolean
           kind?: Database["public"]["Enums"]["place_kind"]
@@ -107,6 +109,7 @@ export type Database = {
           elevation_m?: number | null
           exclusivity_tier?: number
           geom?: unknown
+          hero_media_id?: string | null
           id?: string
           is_secret?: boolean
           kind?: Database["public"]["Enums"]["place_kind"]
@@ -121,6 +124,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "places_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "places_region_id_fkey"
             columns: ["region_id"]
@@ -160,6 +170,7 @@ export type Database = {
           created_at: string
           deleted_at: string | null
           geom: unknown
+          hero_media_id: string | null
           id: string
           level: string
           name: string
@@ -175,6 +186,7 @@ export type Database = {
           created_at?: string
           deleted_at?: string | null
           geom?: unknown
+          hero_media_id?: string | null
           id?: string
           level?: string
           name: string
@@ -190,6 +202,7 @@ export type Database = {
           created_at?: string
           deleted_at?: string | null
           geom?: unknown
+          hero_media_id?: string | null
           id?: string
           level?: string
           name?: string
@@ -201,6 +214,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "regions_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "regions_parent_id_fkey"
             columns: ["parent_id"]
@@ -242,6 +262,7 @@ export type Database = {
           deleted_at: string | null
           difficulty: Database["public"]["Enums"]["tour_difficulty"]
           duration_days: number | null
+          hero_media_id: string | null
           id: string
           price_inr: number | null
           published_at: string | null
@@ -261,6 +282,7 @@ export type Database = {
           deleted_at?: string | null
           difficulty?: Database["public"]["Enums"]["tour_difficulty"]
           duration_days?: number | null
+          hero_media_id?: string | null
           id?: string
           price_inr?: number | null
           published_at?: string | null
@@ -280,6 +302,7 @@ export type Database = {
           deleted_at?: string | null
           difficulty?: Database["public"]["Enums"]["tour_difficulty"]
           duration_days?: number | null
+          hero_media_id?: string | null
           id?: string
           price_inr?: number | null
           published_at?: string | null
@@ -293,6 +316,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "tours_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "tours_region_id_fkey"
             columns: ["region_id"]

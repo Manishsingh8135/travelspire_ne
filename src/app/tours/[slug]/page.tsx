@@ -8,6 +8,7 @@ import { env } from "@/lib/env";
 import { SiteHeader } from "@/components/site/site-header";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { Badge } from "@/components/ui";
+import { MediaImage } from "@/components/media/media-image";
 import { JsonLd } from "@/components/seo/json-ld";
 
 export const revalidate = 3600;
@@ -81,6 +82,11 @@ export default async function TourPage({ params }: Params) {
         />
 
         <article className="mt-6 flex flex-col gap-8">
+          {tour.hero ? (
+            <div className="relative aspect-[21/9] w-full overflow-hidden rounded-xl bg-muted">
+              <MediaImage media={tour.hero} priority sizes="(min-width: 768px) 768px, 100vw" />
+            </div>
+          ) : null}
           <header className="flex flex-col gap-3 border-b border-border-subtle pb-8">
             <div className="flex items-center gap-2">
               <Badge variant="accent" className="capitalize">
