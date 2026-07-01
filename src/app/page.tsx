@@ -8,6 +8,7 @@ import { Dream } from "@/components/marketing/dream/dream";
 import { Experience } from "@/components/marketing/experience/experience";
 import { LivingMap } from "@/components/marketing/map/living-map";
 import { Mei } from "@/components/marketing/mei/mei";
+import { Journey } from "@/components/marketing/journey/journey";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -42,7 +43,8 @@ export default function HomePage() {
           <Experience />
           <LivingMap />
           <Mei />
-          {/* Sections 7–17 append here, in order. */}
+          <Journey />
+          {/* Sections 8–17 append here, in order. */}
         </main>
       </MotionProvider>
       <SiteFooter />
