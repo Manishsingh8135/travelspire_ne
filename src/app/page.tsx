@@ -15,6 +15,7 @@ import { Featured } from "@/components/marketing/featured/featured";
 import { People } from "@/components/marketing/people/people";
 import { Community } from "@/components/marketing/community/community";
 import { Marketplace } from "@/components/marketing/marketplace/marketplace";
+import { Atlas } from "@/components/marketing/atlas/atlas";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -56,7 +57,8 @@ export default function HomePage() {
           <People />
           <Community />
           <Marketplace />
-          {/* Sections 14–17 append here, in order. */}
+          <Atlas />
+          {/* Sections 15–17 append here, in order. */}
         </main>
       </MotionProvider>
       <SiteFooter />
