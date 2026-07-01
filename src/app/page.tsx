@@ -10,6 +10,7 @@ import { LivingMap } from "@/components/marketing/map/living-map";
 import { Mei } from "@/components/marketing/mei/mei";
 import { Journey } from "@/components/marketing/journey/journey";
 import { Exclusive } from "@/components/marketing/exclusive/exclusive";
+import { Emotion } from "@/components/marketing/emotion/emotion";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -46,7 +47,8 @@ export default function HomePage() {
           <Mei />
           <Journey />
           <Exclusive />
-          {/* Sections 9–17 append here, in order. */}
+          <Emotion />
+          {/* Sections 10–17 append here, in order. */}
         </main>
       </MotionProvider>
       <SiteFooter />
