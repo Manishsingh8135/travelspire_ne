@@ -1,7 +1,46 @@
 import type { Metadata } from "next";
 import { readString } from "@/lib/json";
+import { env } from "@/lib/env";
 
 export const SITE_NAME = "Travelspire";
+
+/**
+ * Site-wide identity for AI engines and search (read even where there is no
+ * rich-result UI). Emit once on the homepage. See content-seo/01-seo-strategy.md.
+ */
+export function organizationJsonLd(): Record<string, unknown> {
+  const url = env.NEXT_PUBLIC_SITE_URL;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url,
+    logo: `${url}/images/logo/Travelspire_ne_logo_new.png`,
+    description:
+      "The living atlas, marketplaces and trip companion for Northeast India — guided when you want it, independent when you don't.",
+    slogan: "Northeast India, on your own terms",
+    areaServed: "Northeast India",
+  };
+}
+
+/** WebSite node with a SearchAction so engines can surface site search. */
+export function websiteJsonLd(): Record<string, unknown> {
+  const url = env.NEXT_PUBLIC_SITE_URL;
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${url}/explore?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
 
 /**
  * Build Next Metadata from a Publishable `seo` jsonb column (title, description,

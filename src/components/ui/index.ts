@@ -14,3 +14,7 @@ export { Field, Label, FieldDescription, FieldMessage } from "./field";
 export { Input } from "./input";
 export { Textarea } from "./textarea";
 export { SearchBar, type SearchBarProps } from "./search-bar";
+export { Eyebrow, eyebrowVariants } from "./eyebrow";
+export { GlassPanel, glassPanelVariants } from "./glass-panel";
+export { StatBlock } from "./stat-block";
+export { StampBadge } from "./stamp-badge";

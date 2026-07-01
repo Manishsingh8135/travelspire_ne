@@ -90,18 +90,21 @@
   --color-marigold-900: oklch(0.42 0.08 58);
   --color-marigold-950: oklch(0.32 0.06 55);
 
-  /* Charcoal Forest — the dark-mode foundation */
-  --color-charcoal-50: oklch(0.96 0.004 70);
-  --color-charcoal-100: oklch(0.9 0.005 70);
-  --color-charcoal-200: oklch(0.8 0.006 70);
-  --color-charcoal-300: oklch(0.68 0.007 70);
-  --color-charcoal-400: oklch(0.55 0.008 70);
-  --color-charcoal-500: oklch(0.44 0.009 68);
-  --color-charcoal-600: oklch(0.36 0.01 66);
-  --color-charcoal-700: oklch(0.28 0.01 64);
-  --color-charcoal-800: oklch(0.21 0.01 62);
-  --color-charcoal-900: oklch(0.175 0.01 62);
-  --color-charcoal-950: oklch(0.145 0.009 60);
+  /* Charcoal Forest — the dark-mode foundation. Hue ~162 (Pine family) with a
+     gentle chroma ramp toward the dark end: a forest-green-tinted black, not a
+     warm/neutral black. Dial the dark-end chroma (≈0.016) up to ~0.022 for a
+     stronger "forest at night", down to ~0.01 to mute it. */
+  --color-charcoal-50: oklch(0.96 0.004 165);
+  --color-charcoal-100: oklch(0.9 0.005 165);
+  --color-charcoal-200: oklch(0.8 0.007 164);
+  --color-charcoal-300: oklch(0.68 0.009 164);
+  --color-charcoal-400: oklch(0.55 0.011 163);
+  --color-charcoal-500: oklch(0.44 0.013 163);
+  --color-charcoal-600: oklch(0.36 0.014 162);
+  --color-charcoal-700: oklch(0.28 0.015 162);
+  --color-charcoal-800: oklch(0.21 0.016 161);
+  --color-charcoal-900: oklch(0.175 0.016 161);
+  --color-charcoal-950: oklch(0.15 0.017 160);
 
   /* Fonts — wired to next/font variables on <html> */
   --font-sans: var(--font-hanken), system-ui, sans-serif;
@@ -183,6 +186,14 @@
   --marker-you: var(--color-marigold-500);
   --marker-secret: var(--color-clay-500);
 
+  /* Glass / overlay surfaces — art-directed translucency used over photography
+     (hero info cards, floating strips, map panel). Constant across themes: a
+     dark photo wants the same warm-charcoal glass regardless of UI theme. */
+  --glass: oklch(0.18 0.01 62 / 0.5);
+  --glass-strong: oklch(0.15 0.009 60 / 0.68);
+  --glass-light: oklch(0.99 0.006 85 / 0.62);
+  --glass-border: oklch(1 0 0 / 0.12);
+
   color-scheme: light;
 }
 
@@ -258,6 +269,11 @@
 
   --color-marker-you: var(--marker-you);
   --color-marker-secret: var(--marker-secret);
+
+  --color-glass: var(--glass);
+  --color-glass-strong: var(--glass-strong);
+  --color-glass-light: var(--glass-light);
+  --color-glass-border: var(--glass-border);
 }
 
 /* =========================================================================
@@ -361,4 +377,21 @@
   font-size: 1.0625rem;
   font-weight: 500;
   margin-top: 0.125rem;
+}
+
+/* ── Living Map teaser — the "slowly glowing pins" from new.md §5. Very slow,
+   low-amplitude breathe; the global reduced-motion rule above stops the loop. */
+@keyframes ts-pin-pulse {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.55);
+  }
+}
+.ts-pin-halo {
+  animation: ts-pin-pulse 3.6s var(--ease-in-out, ease-in-out) infinite;
 }
