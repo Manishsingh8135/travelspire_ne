@@ -13,6 +13,7 @@ import { Exclusive } from "@/components/marketing/exclusive/exclusive";
 import { Emotion } from "@/components/marketing/emotion/emotion";
 import { Featured } from "@/components/marketing/featured/featured";
 import { People } from "@/components/marketing/people/people";
+import { Community } from "@/components/marketing/community/community";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -52,7 +53,8 @@ export default function HomePage() {
           <Emotion />
           <Featured />
           <People />
-          {/* Sections 12–17 append here, in order. */}
+          <Community />
+          {/* Sections 13–17 append here, in order. */}
         </main>
       </MotionProvider>
       <SiteFooter />
