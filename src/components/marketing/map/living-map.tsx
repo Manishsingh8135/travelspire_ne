@@ -1,19 +1,61 @@
 import Link from "next/link";
 import type { Route } from "next";
-import { ArrowRight } from "lucide-react";
-import { Button, Eyebrow } from "@/components/ui";
+import { Route as RouteIcon, Gem, Home, ShieldCheck, ChevronRight } from "lucide-react";
+import { Eyebrow, StatBlock } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/marketing/section";
-import { MapCanvas } from "./map-canvas";
+import { getMappablePlaces, type MapPlace } from "@/server/atlas";
+import { env } from "@/lib/env";
+import { MapFrame } from "./map-frame";
+import { PlaceRail } from "./place-rail";
+
+// What the living map knows — honest product promises (not fake data).
+const LAYER_CARDS = [
+  {
+    icon: RouteIcon,
+    title: "Real-time Road Conditions",
+    body: "Live updates on road status, landslides and weather.",
+  },
+  {
+    icon: Gem,
+    title: "Hidden Places",
+    body: "Curated by locals, for explorers who seek more.",
+  },
+  {
+    icon: Home,
+    title: "Stays & Experiences",
+    body: "Handpicked homestays, guides and authentic experiences.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Permit Zones",
+    body: "Know exactly where ILP / PAP is required.",
+  },
+];
 
 /**
- * Section 5 — The Living Map. Near-fullscreen dark "chapter" where the map
- * canvas dominates and the header is a slim strip (content-forward proportions).
- * A cinematic *teaser*: real place names, glowing pins and the five intelligence
- * layers, with a CTA into the real interactive map at /explore (new.md §5 —
- * "this section alone can sell the platform").
+ * Section 5 — The Living Map. Faithful to the inspiration: a slim left column
+ * (opener + the intelligence layers + honest stats) beside a dominant map, with
+ * a filterable place rail below. The map renders live (Mapbox) wherever a token
+ * is set and falls back to a stylised field-journal backdrop otherwise. A
+ * content-forward "chapter" that shows the platform's map intelligence and sends
+ * motivated explorers into the real map at /explore (new.md §5).
  */
-export function LivingMap() {
+export async function LivingMap() {
+  let places: MapPlace[] = [];
+  try {
+    places = await getMappablePlaces();
+  } catch {
+    places = [];
+  }
+
+  const stats: { value: string; label: string }[] = [
+    { value: "8", label: "States" },
+    { value: "200+", label: "Tribes" },
+    { value: "200+", label: "Languages" },
+  ];
+  if (places.length > 0) stats.push({ value: String(places.length), label: "Places" });
+
   return (
     <Section
       tone="forest"
@@ -23,36 +65,67 @@ export function LivingMap() {
       className="py-16 sm:py-20 lg:py-24"
     >
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
-        {/* slim header — title left, dek + CTA right */}
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-          <div className="max-w-2xl">
+        <div className="grid gap-8 lg:grid-cols-[22rem_1fr] lg:gap-10 xl:grid-cols-[24rem_1fr] xl:gap-12">
+          {/* left column — opener, layers, stats */}
+          <div>
             <Eyebrow tone="onDark" ornament className="text-pine-300">
               The Living Map
             </Eyebrow>
             <h2
               id="map-heading"
-              className="mt-4 font-display text-4xl leading-[1.03] font-medium text-balance text-mist-50 sm:text-5xl lg:text-[3.5rem]"
+              className="mt-4 font-display text-4xl leading-[1.04] font-medium text-balance text-mist-50 sm:text-5xl"
             >
-              Northeast, mapped by the people who live here.
+              Northeast India,{" "}
+              <span className="italic text-pine-300">alive and in your hands.</span>
             </h2>
-          </div>
-          <div className="lg:max-w-xs lg:shrink-0 lg:text-right">
-            <p className="text-base text-pretty text-mist-200/75">
-              Weather, road status, permits, hidden spots and local scouts — one living map
-              that actually knows the ground.
+            <p className="mt-4 max-w-md text-base text-pretty text-mist-200/75">
+              More than directions — a living, breathing guide to every road, river, village and
+              story. Real-time updates. Local insight. Hidden gems.
             </p>
-            <Button asChild variant="secondary" size="lg" className="mt-5 rounded-full">
-              <Link href={"/explore" as Route}>
-                Open the Living Map
-                <ArrowRight />
-              </Link>
-            </Button>
+
+            {/* layer cards */}
+            <div className="mt-8 flex flex-col gap-3">
+              {LAYER_CARDS.map(({ icon: Icon, title, body }) => (
+                <Link
+                  key={title}
+                  href={"/explore" as Route}
+                  className="group flex items-start gap-3.5 rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition-colors duration-200 outline-none hover:bg-white/[0.06] focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-pine-500/15 text-pine-300 ring-1 ring-pine-400/20 [&_svg]:size-4.5">
+                    <Icon />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-medium text-mist-50">{title}</span>
+                    <span className="mt-0.5 block text-sm text-mist-200/70">{body}</span>
+                  </span>
+                  <ChevronRight className="mt-1 size-4 shrink-0 text-mist-300/50 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-mist-100" />
+                </Link>
+              ))}
+            </div>
+
+            {/* stats */}
+            <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-white/10 pt-6 sm:grid-cols-4 lg:grid-cols-2">
+              {stats.map((s) => (
+                <StatBlock
+                  key={s.label}
+                  value={s.value}
+                  label={s.label}
+                  valueClassName="text-mist-50"
+                  labelClassName="text-mist-300"
+                />
+              ))}
+            </div>
           </div>
+
+          {/* the map dominates */}
+          <Reveal amount={0.1}>
+            <MapFrame places={places} token={env.NEXT_PUBLIC_MAPBOX_TOKEN} />
+          </Reveal>
         </div>
 
-        {/* the canvas dominates */}
-        <Reveal className="mt-8 sm:mt-10" amount={0.1}>
-          <MapCanvas />
+        {/* explore-what's-around-you rail */}
+        <Reveal className="mt-12 sm:mt-16" amount={0.15}>
+          <PlaceRail />
         </Reveal>
       </div>
     </Section>

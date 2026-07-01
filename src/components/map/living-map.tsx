@@ -14,7 +14,19 @@ function escapeHtml(s: string): string {
   );
 }
 
-export function LivingMap({ places, token }: { places: MapPlace[]; token?: string }) {
+export function LivingMap({
+  places,
+  token,
+  style,
+  showLoadingOverlay = true,
+}: {
+  places: MapPlace[];
+  token?: string;
+  /** Mapbox style URL. Defaults to the light outdoors topo; marketing passes a dark style. */
+  style?: string;
+  /** The "Loading map…" cream overlay. Off when a dark backdrop sits behind the map. */
+  showLoadingOverlay?: boolean;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
 
@@ -32,7 +44,7 @@ export function LivingMap({ places, token }: { places: MapPlace[]; token?: strin
       mapboxgl.accessToken = token;
       map = new mapboxgl.Map({
         container,
-        style: "mapbox://styles/mapbox/outdoors-v12",
+        style: style ?? "mapbox://styles/mapbox/outdoors-v12",
         center: [93.6, 27.9],
         zoom: 5.8,
         attributionControl: true,
@@ -65,14 +77,14 @@ export function LivingMap({ places, token }: { places: MapPlace[]; token?: strin
       cancelled = true;
       map?.remove();
     };
-  }, [places, token]);
+  }, [places, token, style]);
 
   if (!token) return <NoTokenFallback places={places} />;
 
   return (
     <div className="relative h-full w-full">
       <div ref={containerRef} className="h-full w-full" />
-      {!ready ? (
+      {showLoadingOverlay && !ready ? (
         <div className="pointer-events-none absolute inset-0 grid place-items-center bg-background">
           <span className="font-mono text-xs text-muted-foreground">Loading map…</span>
         </div>
