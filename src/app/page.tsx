@@ -12,6 +12,7 @@ import { Journey } from "@/components/marketing/journey/journey";
 import { Exclusive } from "@/components/marketing/exclusive/exclusive";
 import { Emotion } from "@/components/marketing/emotion/emotion";
 import { Featured } from "@/components/marketing/featured/featured";
+import { People } from "@/components/marketing/people/people";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -50,7 +51,8 @@ export default function HomePage() {
           <Exclusive />
           <Emotion />
           <Featured />
-          {/* Sections 11–17 append here, in order. */}
+          <People />
+          {/* Sections 12–17 append here, in order. */}
         </main>
       </MotionProvider>
       <SiteFooter />
