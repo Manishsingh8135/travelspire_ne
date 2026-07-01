@@ -16,6 +16,8 @@ import { People } from "@/components/marketing/people/people";
 import { Community } from "@/components/marketing/community/community";
 import { Marketplace } from "@/components/marketing/marketplace/marketplace";
 import { Atlas } from "@/components/marketing/atlas/atlas";
+import { SocialProof } from "@/components/marketing/stories/social-proof";
+import { Membership } from "@/components/marketing/membership/membership";
 import { JsonLd } from "@/components/seo/json-ld";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
@@ -58,7 +60,9 @@ export default function HomePage() {
           <Community />
           <Marketplace />
           <Atlas />
-          {/* Sections 15–17 append here, in order. */}
+          <SocialProof />
+          <Membership />
+          {/* §17 Footer is the SiteFooter below. */}
         </main>
       </MotionProvider>
       <SiteFooter />
