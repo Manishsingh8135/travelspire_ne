@@ -15,7 +15,7 @@ const STORIES: Story[] = [
     region: "Nagaland",
     headline: "Celebrations that echo generations.",
     location: "Hornbill Festival, Kohima",
-    src: "/images/places/hornbill/Hornbill_1.PNG",
+    src: "/images/places/hornbill/Hornbill_women.PNG",
     alt: "Naga women in traditional attire and beaded jewellery at the Hornbill Festival, Kohima, Nagaland",
     href: "/explore",
   },

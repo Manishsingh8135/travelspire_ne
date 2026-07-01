@@ -35,7 +35,7 @@ export function People() {
           <Reveal amount={0.2} className="relative">
             <div className="relative aspect-[4/5] w-full max-w-lg overflow-hidden rounded-3xl ring-1 ring-black/5">
               <Image
-                src="/images/places/hornbill/Hornbill_1.PNG"
+                src="/images/places/hornbill/Hornbill_women.PNG"
                 alt="Naga women in traditional attire and beaded jewellery at the Hornbill Festival, Kohima, Nagaland"
                 fill
                 sizes="(min-width: 1024px) 32rem, 100vw"

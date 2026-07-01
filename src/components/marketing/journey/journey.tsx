@@ -65,7 +65,7 @@ const STAGES: Stage[] = [
     body: "You post one photo. A friend in a distant city stops scrolling. And somewhere, quietly, the next journey begins.",
     note: "And the loop closes",
     place: "Hornbill Festival · Nagaland",
-    src: "/images/places/hornbill/Hornbill_1.PNG",
+    src: "/images/places/hornbill/Hornbill_women.PNG",
     alt: "Naga women in traditional attire and beaded jewellery at the Hornbill Festival, Kohima, Nagaland",
   },
 ];

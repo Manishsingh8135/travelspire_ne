@@ -1,44 +1,162 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Route } from "next";
 import {
   Moon,
   Mountain,
-  Drama,
   Bike,
+  Snowflake,
+  Drama,
+  PartyPopper,
+  Sparkles,
+  Droplets,
+  Bird,
   Camera,
   Heart,
-  Bird,
-  Sparkles,
-  UtensilsCrossed,
-  PartyPopper,
-  Snowflake,
-  Droplets,
-  ArrowUpRight,
   type LucideIcon,
 } from "lucide-react";
 import { Eyebrow } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/marketing/section";
+import { cn } from "@/lib/cn";
 
-const MOODS: { label: string; icon: LucideIcon }[] = [
-  { label: "Stillness", icon: Moon },
-  { label: "Adventure", icon: Mountain },
-  { label: "Culture", icon: Drama },
-  { label: "Motorcycle", icon: Bike },
-  { label: "Photography", icon: Camera },
-  { label: "Romance", icon: Heart },
-  { label: "Wildlife", icon: Bird },
-  { label: "Spirituality", icon: Sparkles },
-  { label: "Food", icon: UtensilsCrossed },
-  { label: "Festivals", icon: PartyPopper },
-  { label: "Snow", icon: Snowflake },
-  { label: "Waterfalls", icon: Droplets },
+type Mood = {
+  label: string;
+  icon: LucideIcon;
+  span: string;
+  feature?: boolean;
+  src: string;
+  alt: string;
+};
+
+// A photographic mood board — each feeling backed by a real NE photograph that
+// evokes it. Bento spans give the editorial rhythm (distinct from the §4 grid).
+const MOODS: Mood[] = [
+  {
+    label: "Stillness",
+    icon: Moon,
+    span: "col-span-2 row-span-2",
+    feature: true,
+    src: "/images/places/dong-new/dong-new-portrait-2.jpg",
+    alt: "A traveller sitting quietly, looking out over green mountains from a tent at Dong, Arunachal Pradesh",
+  },
+  {
+    label: "Culture",
+    icon: Drama,
+    span: "col-span-2",
+    src: "/images/places/hornbill/Hornbill_women.PNG",
+    alt: "Naga women in traditional attire at the Hornbill Festival, Kohima, Nagaland",
+  },
+  {
+    label: "Motorcycle",
+    icon: Bike,
+    span: "col-span-1",
+    src: "/images/places/dambuk/Dambuk_2.jpg",
+    alt: "A motorcycle traveller at a riverside adventure camp in Dambuk, Arunachal Pradesh",
+  },
+  {
+    label: "Snow",
+    icon: Snowflake,
+    span: "col-span-1",
+    src: "/images/places/tawang/Tawang_2.JPG",
+    alt: "Snow and prayer flags at Sela Pass near Tawang, Arunachal Pradesh",
+  },
+  {
+    label: "Adventure",
+    icon: Mountain,
+    span: "col-span-2",
+    src: "/images/places/mechuka-new/mechuka-new-portrait-4.jpg",
+    alt: "Travellers crossing a prayer-flag-draped suspension bridge near Mechuka, Arunachal Pradesh",
+  },
+  {
+    label: "Festivals",
+    icon: PartyPopper,
+    span: "col-span-1",
+    src: "/images/places/hornbill/Hornbill_2.WEBP",
+    alt: "Naga warriors leaping mid-dance at the Hornbill Festival, Nagaland",
+  },
+  {
+    label: "Spirituality",
+    icon: Sparkles,
+    span: "col-span-1",
+    src: "/images/places/tawang/Tawang_1.PNG",
+    alt: "Tawang Monastery on a ridge below a bank of cloud, Arunachal Pradesh",
+  },
+  {
+    label: "Waterfalls",
+    icon: Droplets,
+    span: "col-span-1",
+    src: "/images/places/mechuka-new/mechuka-new-portrait-2.jpg",
+    alt: "A tall waterfall beside a mountain road near Mechuka, Arunachal Pradesh",
+  },
+  {
+    label: "Wild blooms",
+    icon: Bird,
+    span: "col-span-1",
+    src: "/images/places/hornbill/Dzoku_1.webp",
+    alt: "Rare pink Dzükou lilies across the emerald hills of Dzükou Valley, Nagaland",
+  },
+  {
+    label: "Photography",
+    icon: Camera,
+    span: "col-span-1",
+    src: "/images/places/ziro-new/ziro-new-portrait-5.JPG",
+    alt: "Pink cosmos over golden paddy fields in Ziro Valley, Arunachal Pradesh",
+  },
+  {
+    label: "Romance",
+    icon: Heart,
+    span: "col-span-1",
+    src: "/images/places/hornbill/Dzoku_3.jpg",
+    alt: "Golden sunrise over the rolling hills of Dzükou Valley, Nagaland",
+  },
 ];
+
+function MoodTile({ mood, index }: { mood: Mood; index: number }) {
+  const Icon = mood.icon;
+  return (
+    <Link
+      href={"/explore" as Route}
+      aria-label={mood.label}
+      className={cn(
+        "group relative overflow-hidden rounded-2xl ring-1 ring-black/5 outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        mood.span,
+      )}
+    >
+      <Image
+        src={mood.src}
+        alt={mood.alt}
+        fill
+        sizes={mood.feature ? "(min-width: 1024px) 44vw, 100vw" : "(min-width: 1024px) 22vw, 50vw"}
+        loading={index < 4 ? undefined : "lazy"}
+        className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.06]"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-t from-charcoal-950/85 via-charcoal-950/20 to-charcoal-950/5"
+      />
+      <span
+        aria-hidden
+        className="absolute top-3.5 left-3.5 inline-flex size-8 items-center justify-center rounded-full bg-charcoal-950/45 text-mist-50 ring-1 ring-white/15 backdrop-blur-sm [&_svg]:size-4"
+      >
+        <Icon />
+      </span>
+      <h3
+        className={cn(
+          "absolute right-4 bottom-4 left-4 font-display font-medium text-mist-50",
+          mood.feature ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl",
+        )}
+      >
+        {mood.label}
+      </h3>
+    </Link>
+  );
+}
 
 /**
  * Section 9 — Explore by Emotion. People don't choose a place, they choose a
- * feeling (new.md §9). A paper "chapter": start from a mood, not a map. Each
- * tile leads into the explore experience filtered by that feeling.
+ * feeling (new.md §9). A photographic mood board — start from how you want to
+ * feel, and the tile carries you into explore.
  */
 export function Emotion() {
   return (
@@ -56,37 +174,23 @@ export function Emotion() {
           </Eyebrow>
           <h2
             id="emotion-heading"
-            className="mt-4 font-display text-4xl leading-[1.05] font-medium text-balance sm:text-5xl"
+            className="mt-4 font-display text-4xl leading-[1.05] font-medium text-balance sm:text-5xl lg:text-6xl"
           >
             What are you <span className="italic text-secondary">looking for?</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-pretty text-muted-foreground sm:text-lg">
+          <p className="mx-auto mt-5 max-w-xl text-base text-pretty text-muted-foreground sm:text-lg">
             Most people don&apos;t choose a place — they choose a feeling. Start with yours, and
-            we&apos;ll find the Northeast that fits.
+            we&apos;ll carry you into the Northeast that fits.
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 xl:grid-cols-6">
-          {MOODS.map((mood, i) => {
-            const Icon = mood.icon;
-            return (
-              <Reveal key={mood.label} delay={(i % 6) * 0.04} amount={0.3}>
-                <Link
-                  href={"/explore" as Route}
-                  className="group flex min-h-[7.5rem] flex-col justify-between rounded-2xl border border-border bg-card p-4 transition-colors duration-200 outline-none hover:border-secondary/40 hover:bg-secondary/[0.04] focus-visible:ring-2 focus-visible:ring-ring sm:p-5"
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="inline-flex size-9 items-center justify-center rounded-xl bg-secondary/10 text-secondary ring-1 ring-secondary/15 [&_svg]:size-4.5">
-                      <Icon />
-                    </span>
-                    <ArrowUpRight className="size-4 text-muted-foreground/40 transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-secondary" />
-                  </div>
-                  <span className="mt-4 font-display text-lg font-medium">{mood.label}</span>
-                </Link>
-              </Reveal>
-            );
-          })}
-        </div>
+        <Reveal amount={0.1} className="mt-12">
+          <div className="grid auto-rows-[10.5rem] grid-flow-row-dense grid-cols-2 gap-3 sm:auto-rows-[13rem] sm:gap-4 lg:grid-cols-4">
+            {MOODS.map((mood, i) => (
+              <MoodTile key={mood.label} mood={mood} index={i} />
+            ))}
+          </div>
+        </Reveal>
       </div>
     </Section>
   );
