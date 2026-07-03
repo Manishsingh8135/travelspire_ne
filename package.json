@@ -51,6 +51,7 @@
     "eslint-config-next": "^16.2.9",
     "prettier": "^3.8.4",
     "tailwindcss": "^4.3.1",
+    "tsx": "^4.22.5",
     "typescript": "^5.9.0",
     "vitest": "^4.1.9"
   }
