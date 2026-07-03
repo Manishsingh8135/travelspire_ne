@@ -94,17 +94,17 @@
      gentle chroma ramp toward the dark end: a forest-green-tinted black, not a
      warm/neutral black. Dial the dark-end chroma (≈0.016) up to ~0.022 for a
      stronger "forest at night", down to ~0.01 to mute it. */
-  --color-charcoal-50: oklch(0.96 0.004 165);
-  --color-charcoal-100: oklch(0.9 0.005 165);
-  --color-charcoal-200: oklch(0.8 0.007 164);
-  --color-charcoal-300: oklch(0.68 0.009 164);
-  --color-charcoal-400: oklch(0.55 0.011 163);
-  --color-charcoal-500: oklch(0.44 0.013 163);
-  --color-charcoal-600: oklch(0.36 0.014 162);
-  --color-charcoal-700: oklch(0.28 0.015 162);
-  --color-charcoal-800: oklch(0.21 0.016 161);
-  --color-charcoal-900: oklch(0.175 0.016 161);
-  --color-charcoal-950: oklch(0.15 0.017 160);
+  --color-charcoal-50: oklch(0.965 0.006 164);
+  --color-charcoal-100: oklch(0.91 0.01 163);
+  --color-charcoal-200: oklch(0.82 0.016 162);
+  --color-charcoal-300: oklch(0.7 0.022 160);
+  --color-charcoal-400: oklch(0.57 0.028 158);
+  --color-charcoal-500: oklch(0.47 0.034 157);
+  --color-charcoal-600: oklch(0.4 0.038 156);
+  --color-charcoal-700: oklch(0.34 0.04 156);
+  --color-charcoal-800: oklch(0.285 0.042 156);
+  --color-charcoal-900: oklch(0.235 0.042 156);
+  --color-charcoal-950: oklch(0.195 0.04 156);
 
   /* Fonts — wired to next/font variables on <html> */
   --font-sans: var(--font-hanken), system-ui, sans-serif;

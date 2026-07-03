@@ -22,7 +22,7 @@ const TONE: Record<SectionTone, string> = {
 // Soft radial that lifts a dark section's centre + base. One place to retune
 // the whole app's dark-section depth.
 const FOREST_GLOW =
-  "radial-gradient(120% 70% at 50% -8%, oklch(0.26 0.038 158) 0%, transparent 58%), radial-gradient(90% 60% at 50% 112%, oklch(0.22 0.03 162) 0%, transparent 60%)";
+  "radial-gradient(120% 75% at 50% -10%, oklch(0.3 0.05 156) 0%, transparent 60%), radial-gradient(90% 60% at 50% 112%, oklch(0.25 0.045 158) 0%, transparent 62%)";
 
 type SectionProps = React.ComponentProps<"section"> & {
   tone?: SectionTone;
