@@ -24,6 +24,23 @@ function lines(s?: string): string[] {
     .filter(Boolean);
 }
 
+/** Parse the ItineraryEditor's hidden JSON field into clean, non-empty days. */
+function parseItinerary(v: FormDataEntryValue | null): { title: string; description: string }[] {
+  if (typeof v !== "string" || !v.trim()) return [];
+  try {
+    const arr = JSON.parse(v);
+    if (!Array.isArray(arr)) return [];
+    return arr
+      .map((d) => ({
+        title: String((d as { title?: unknown })?.title ?? "").trim(),
+        description: String((d as { description?: unknown })?.description ?? "").trim(),
+      }))
+      .filter((d) => d.title || d.description);
+  } catch {
+    return [];
+  }
+}
+
 function parse(formData: FormData) {
   return TourFormSchema.safeParse({
     title: formData.get("title"),
@@ -38,6 +55,8 @@ function parse(formData: FormData) {
     overview: emptyToUndef(formData.get("overview")),
     highlights: emptyToUndef(formData.get("highlights")),
     inclusions: emptyToUndef(formData.get("inclusions")),
+    exclusions: emptyToUndef(formData.get("exclusions")),
+    itinerary: parseItinerary(formData.get("itinerary")),
     seoTitle: emptyToUndef(formData.get("seoTitle")),
     seoDescription: emptyToUndef(formData.get("seoDescription")),
   });
@@ -50,10 +69,14 @@ function toWrite(data: TourData) {
   };
   const highlights = lines(data.highlights);
   const inclusions = lines(data.inclusions);
+  const exclusions = lines(data.exclusions);
+  const itinerary = data.itinerary ?? [];
   const body: Record<string, Json> = {
     ...(data.overview ? { overview: data.overview } : {}),
     ...(highlights.length ? { highlights } : {}),
     ...(inclusions.length ? { inclusions } : {}),
+    ...(exclusions.length ? { exclusions } : {}),
+    ...(itinerary.length ? { itinerary } : {}),
   };
   return {
     title: data.title,

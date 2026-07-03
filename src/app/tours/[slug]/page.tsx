@@ -28,6 +28,19 @@ function strArray(value: unknown, key: string): string[] {
   return [];
 }
 
+type Day = { title: string; description: string };
+function itineraryDays(value: unknown): Day[] {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return [];
+  const arr = (value as Record<string, unknown>).itinerary;
+  if (!Array.isArray(arr)) return [];
+  return arr
+    .map((d) => {
+      const day = d as { title?: unknown; description?: unknown };
+      return { title: String(day?.title ?? ""), description: String(day?.description ?? "") };
+    })
+    .filter((d) => d.title || d.description);
+}
+
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const tour = await getTourBySlug(slug);
@@ -47,6 +60,7 @@ export default async function TourPage({ params }: Params) {
   const overview = readString(tour.body, "overview");
   const highlights = strArray(tour.body, "highlights");
   const inclusions = strArray(tour.body, "inclusions");
+  const itinerary = itineraryDays(tour.body);
   const base = env.NEXT_PUBLIC_SITE_URL;
   const url = `${base}/tours/${slug}`;
 
@@ -64,6 +78,19 @@ export default async function TourPage({ params }: Params) {
             priceCurrency: "INR",
             availability: "https://schema.org/InStock",
             url,
+          },
+        }
+      : {}),
+    ...(itinerary.length
+      ? {
+          itinerary: {
+            "@type": "ItemList",
+            numberOfItems: itinerary.length,
+            itemListElement: itinerary.map((day, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              name: day.title || `Day ${i + 1}`,
+            })),
           },
         }
       : {}),
@@ -139,6 +166,38 @@ export default async function TourPage({ params }: Params) {
                   </li>
                 ))}
               </ul>
+            </section>
+          ) : null}
+
+          {itinerary.length ? (
+            <section className="flex flex-col gap-4">
+              <h2 className="font-display text-2xl font-medium">Itinerary</h2>
+              <ol className="flex flex-col">
+                {itinerary.map((day, i) => (
+                  <li key={i} className="flex gap-4">
+                    <div className="flex flex-col items-center">
+                      <span className="grid size-8 shrink-0 place-items-center rounded-full border border-border-subtle bg-card font-mono text-xs tabular-nums text-muted-foreground">
+                        {i + 1}
+                      </span>
+                      {i < itinerary.length - 1 ? (
+                        <span aria-hidden className="my-1 w-px flex-1 bg-border-subtle" />
+                      ) : null}
+                    </div>
+                    <div className="flex flex-col gap-1 pb-6">
+                      {day.title ? (
+                        <h3 className="font-display text-lg leading-snug font-medium">{day.title}</h3>
+                      ) : (
+                        <h3 className="font-mono text-sm text-muted-foreground">Day {i + 1}</h3>
+                      )}
+                      {day.description ? (
+                        <p className="leading-relaxed text-pretty text-muted-foreground">
+                          {day.description}
+                        </p>
+                      ) : null}
+                    </div>
+                  </li>
+                ))}
+              </ol>
             </section>
           ) : null}
 

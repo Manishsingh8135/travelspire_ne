@@ -6,6 +6,7 @@ import type { FormState } from "./db-error";
 import { TOUR_DIFFICULTIES, TOUR_TYPES } from "./schemas";
 import { Button, Field, FieldMessage, Input, Label, Textarea } from "@/components/ui";
 import { NameSlugFields } from "./ui/name-slug-fields";
+import { ItineraryEditor, type ItineraryDay } from "./itinerary-editor";
 import { readString } from "@/lib/json";
 import type { Tour } from "@/lib/supabase/types";
 
@@ -16,6 +17,16 @@ const selectClass =
 
 function joinLines(v: unknown): string {
   return Array.isArray(v) ? v.filter((x) => typeof x === "string").join("\n") : "";
+}
+
+function readDays(v: unknown): ItineraryDay[] {
+  if (!Array.isArray(v)) return [];
+  return v
+    .map((d) => {
+      const day = d as { title?: unknown; description?: unknown };
+      return { title: String(day?.title ?? ""), description: String(day?.description ?? "") };
+    })
+    .filter((d) => d.title || d.description);
 }
 
 export function TourForm({
@@ -140,6 +151,17 @@ export function TourForm({
         <Label htmlFor="inclusions">Inclusions (one per line)</Label>
         <Textarea id="inclusions" name="inclusions" defaultValue={joinLines(body.inclusions)} />
       </Field>
+      <Field>
+        <Label htmlFor="exclusions">Exclusions (one per line)</Label>
+        <Textarea id="exclusions" name="exclusions" defaultValue={joinLines(body.exclusions)} />
+      </Field>
+
+      <fieldset className="flex flex-col gap-4 rounded-lg border border-border-subtle p-5">
+        <legend className="px-1 font-mono text-xs tracking-wider text-muted-foreground uppercase">
+          Itinerary
+        </legend>
+        <ItineraryEditor name="itinerary" defaultValue={readDays(body.itinerary)} />
+      </fieldset>
 
       <fieldset className="flex flex-col gap-4 rounded-lg border border-border-subtle p-5">
         <legend className="px-1 font-mono text-xs tracking-wider text-muted-foreground uppercase">

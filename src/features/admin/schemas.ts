@@ -75,6 +75,8 @@ export const TourFormSchema = z.object({
   overview: z.string().optional(),
   highlights: z.string().optional(), // newline-separated
   inclusions: z.string().optional(), // newline-separated
+  exclusions: z.string().optional(), // newline-separated
+  itinerary: z.array(z.object({ title: z.string(), description: z.string() })).optional(),
   seoTitle: z.string().optional(),
   seoDescription: z.string().optional(),
 });
