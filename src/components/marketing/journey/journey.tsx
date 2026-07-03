@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import { RotateCcw } from "lucide-react";
 import { Eyebrow, StampBadge } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
@@ -131,7 +131,7 @@ export function Journey() {
                   {/* photo */}
                   <div className={cn("relative", photoRight && "lg:order-2")}>
                     <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-xl ring-1 ring-black/5">
-                      <Image
+                      <Photo
                         src={stage.src}
                         alt={stage.alt}
                         fill

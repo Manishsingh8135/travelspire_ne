@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import { Leaf, Check, Sparkles } from "lucide-react";
 
 const TAGS = ["Scenic Drives", "Culture", "Offbeat", "Food"];
@@ -48,7 +48,7 @@ export function MeiPhone() {
             {/* trip card */}
             <div className="overflow-hidden rounded-2xl border border-white/10 bg-charcoal-900">
               <div className="relative aspect-[16/9]">
-                <Image
+                <Photo
                   src="/images/places/tawang/Tawang_1.PNG"
                   alt="Tawang Monastery on a ridge below a bank of cloud, Arunachal Pradesh"
                   fill

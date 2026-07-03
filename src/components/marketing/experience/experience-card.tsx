@@ -1,5 +1,5 @@
 import * as React from "react";
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import Link from "next/link";
 import type { Route } from "next";
 import { cn } from "@/lib/cn";
@@ -29,7 +29,7 @@ export function ExperienceCard({ exp, index }: { exp: Experience; index: number 
         "ring-1 ring-black/5 outline-none focus-visible:ring-2 focus-visible:ring-ring",
       )}
     >
-      <Image
+      <Photo
         src={exp.src}
         alt={exp.alt}
         fill

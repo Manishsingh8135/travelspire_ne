@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import Link from "next/link";
 import type { Route } from "next";
 import {
@@ -123,7 +123,7 @@ function MoodTile({ mood, index }: { mood: Mood; index: number }) {
         mood.span,
       )}
     >
-      <Image
+      <Photo
         src={mood.src}
         alt={mood.alt}
         fill

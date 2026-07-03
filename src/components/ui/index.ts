@@ -18,3 +18,4 @@ export { Eyebrow, eyebrowVariants } from "./eyebrow";
 export { GlassPanel, glassPanelVariants } from "./glass-panel";
 export { StatBlock } from "./stat-block";
 export { StampBadge } from "./stamp-badge";
+export { Photo } from "./photo";

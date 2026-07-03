@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import Link from "next/link";
 import type { Route } from "next";
 import { Check, ArrowRight } from "lucide-react";
@@ -36,7 +36,7 @@ export function Membership() {
             <div className="grid lg:grid-cols-2">
               {/* aspirational scene */}
               <div className="relative min-h-[16rem] lg:min-h-[34rem]">
-                <Image
+                <Photo
                   src="/images/places/hornbill/Dzoku_3.jpg"
                   alt="Golden sunrise over the rolling hills of Dzükou Valley with tents in the foreground, Nagaland"
                   fill

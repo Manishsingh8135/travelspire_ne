@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import Link from "next/link";
 import type { Route } from "next";
 import {
@@ -115,7 +115,7 @@ export async function Atlas() {
             href={(featuredSlug ? `/${featuredSlug}` : "/explore") as Route}
             className="group relative min-h-[22rem] overflow-hidden rounded-3xl ring-1 ring-white/10 outline-none focus-visible:ring-2 focus-visible:ring-ring lg:col-span-2 lg:min-h-[26rem]"
           >
-            <Image
+            <Photo
               src="/images/places/anini-new/anini-new-landscape-11.jpeg"
               alt="A river winding past a forested valley near Anini, Arunachal Pradesh"
               fill

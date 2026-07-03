@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import Link from "next/link";
 import type { Route } from "next";
 import { ArrowRight } from "lucide-react";
@@ -68,7 +68,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
       aria-label={feature.title}
       className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-3xl ring-1 ring-white/10 outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
-      <Image
+      <Photo
         src={feature.src}
         alt={feature.alt}
         fill

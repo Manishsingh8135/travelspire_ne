@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import { Quote } from "lucide-react";
 import { Eyebrow } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
@@ -66,7 +66,7 @@ export function SocialProof() {
         {/* featured cinematic moment */}
         <Reveal amount={0.2} className="mt-12">
           <figure className="relative flex min-h-[22rem] items-end overflow-hidden rounded-3xl ring-1 ring-black/5 sm:min-h-[26rem]">
-            <Image
+            <Photo
               src={FEATURED.src}
               alt={FEATURED.alt}
               fill
@@ -97,7 +97,7 @@ export function SocialProof() {
             <Reveal key={m.kicker} delay={i * 0.08} amount={0.2}>
               <figure className="flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
                 <div className="relative aspect-[16/9]">
-                  <Image
+                  <Photo
                     src={m.src}
                     alt={m.alt}
                     fill

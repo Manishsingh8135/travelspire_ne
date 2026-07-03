@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import { CloudSun, FileText, Home, Headphones, Check } from "lucide-react";
 import { GlassPanel } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
@@ -37,7 +37,7 @@ export function AfterPanel({ className }: { className?: string }) {
       </div>
 
       <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl ring-1 ring-black/10 sm:aspect-auto sm:min-h-[480px] sm:flex-1">
-        <Image
+        <Photo
           src="/images/places/mechuka-new/mechuka-new-landscape-16.JPG"
           alt="A homestay in the sunlit Mechuka valley framed by Himalayan ridges, Arunachal Pradesh — the calm of one trusted guide"
           fill

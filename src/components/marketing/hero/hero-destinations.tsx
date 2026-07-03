@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import { GlassPanel } from "@/components/ui";
 import { cn } from "@/lib/cn";
 
@@ -32,7 +32,7 @@ export function HeroDestinations({ className }: { className?: string }) {
           <li key={d.name} className="shrink-0 snap-start">
             <a href="#stories" className="group block w-[116px]">
               <div className="relative h-[74px] w-full overflow-hidden rounded-lg">
-                <Image
+                <Photo
                   src={d.src}
                   alt={`${d.name}, ${d.region}`}
                   fill

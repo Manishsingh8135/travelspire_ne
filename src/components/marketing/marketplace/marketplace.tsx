@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import Link from "next/link";
 import type { Route } from "next";
 import {
@@ -94,7 +94,7 @@ function PhotoTile({ card, index }: { card: PhotoCard; index: number }) {
         card.span,
       )}
     >
-      <Image
+      <Photo
         src={card.src}
         alt={card.alt}
         fill

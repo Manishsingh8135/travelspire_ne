@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Photo } from "@/components/ui/photo";
 import Link from "next/link";
 import type { Route } from "next";
 import { Home, Compass, Binoculars, HeartHandshake, Palette, ArrowRight } from "lucide-react";
@@ -34,7 +34,7 @@ export function People() {
           {/* portrait collage */}
           <Reveal amount={0.2} className="relative">
             <div className="relative aspect-[4/5] w-full max-w-lg overflow-hidden rounded-3xl ring-1 ring-black/5">
-              <Image
+              <Photo
                 src="/images/places/hornbill/Hornbill_women.PNG"
                 alt="Naga women in traditional attire and beaded jewellery at the Hornbill Festival, Kohima, Nagaland"
                 fill
@@ -47,7 +47,7 @@ export function People() {
             </div>
             {/* secondary portrait, overlapping */}
             <div className="absolute -right-2 -bottom-8 hidden aspect-square w-40 overflow-hidden rounded-2xl ring-4 ring-background sm:block lg:w-48">
-              <Image
+              <Photo
                 src="/images/places/hornbill/Hornbill_2.WEBP"
                 alt="A Naga warrior in traditional dress and headgear at the Hornbill Festival, Nagaland"
                 fill
