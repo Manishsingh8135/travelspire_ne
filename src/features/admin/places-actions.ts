@@ -27,6 +27,8 @@ function parse(formData: FormData) {
     elevation: emptyToUndef(formData.get("elevation")),
     lat: emptyToUndef(formData.get("lat")),
     lng: emptyToUndef(formData.get("lng")),
+    isSecret: formData.get("isSecret") === "on",
+    exclusivityTier: emptyToUndef(formData.get("exclusivityTier")),
     intro: emptyToUndef(formData.get("intro")),
     seoTitle: emptyToUndef(formData.get("seoTitle")),
     seoDescription: emptyToUndef(formData.get("seoDescription")),
@@ -39,6 +41,8 @@ type PlaceWrite = {
   kind: PlaceData["kind"];
   region_id: string;
   elevation_m: number | null;
+  is_secret: boolean;
+  exclusivity_tier: number;
   body: Json | null;
   seo: Json;
   geom?: string;
@@ -55,6 +59,8 @@ function toWrite(data: PlaceData): PlaceWrite {
     kind: data.kind,
     region_id: data.regionId,
     elevation_m: data.elevation ?? null,
+    is_secret: data.isSecret ?? false,
+    exclusivity_tier: data.exclusivityTier ?? 0,
     body: data.intro ? { intro: data.intro } : null,
     seo,
   };

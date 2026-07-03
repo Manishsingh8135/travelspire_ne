@@ -1,10 +1,12 @@
 import "server-only";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import type { HeroMedia } from "@/lib/media";
 import type { Place } from "@/lib/supabase/types";
 import { type TableQuery, pageRange } from "@/features/admin/ui/table-state";
 import { sanitizeTerm } from "./query";
 
 export type AdminPlace = Place & { region_name: string | null };
+export type AdminPlaceDetail = Place & { hero: HeroMedia | null };
 export type RegionOption = { id: string; name: string };
 
 const PLACE_SORT: Record<string, string> = {
@@ -49,11 +51,15 @@ export async function listPlacesForAdmin(
   return { rows, total: count ?? 0 };
 }
 
-export async function getPlaceForAdmin(id: string): Promise<Place | null> {
+export async function getPlaceForAdmin(id: string): Promise<AdminPlaceDetail | null> {
   const sb = createSupabaseAdminClient();
-  const { data, error } = await sb.from("places").select("*").eq("id", id).maybeSingle();
+  const { data, error } = await sb
+    .from("places")
+    .select("*, hero:media!hero_media_id(storage_path, alt)")
+    .eq("id", id)
+    .maybeSingle();
   if (error) throw error;
-  return data;
+  return (data ?? null) as unknown as AdminPlaceDetail | null;
 }
 
 export async function getRegionOptions(): Promise<RegionOption[]> {

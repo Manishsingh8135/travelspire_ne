@@ -3,6 +3,7 @@ import { getRegionOptions, getTourForAdmin } from "@/server/admin/tours";
 import { updateTour } from "@/features/admin/tours-actions";
 import { TourForm } from "@/features/admin/tour-form";
 import { HeroUploader } from "@/features/admin/hero-uploader";
+import { EditHeader } from "@/features/admin/ui/edit-header";
 import { MediaImage } from "@/components/media/media-image";
 
 export const dynamic = "force-dynamic";
@@ -17,14 +18,18 @@ export default async function EditTourPage({ params }: Params) {
   const action = updateTour.bind(null, tour.id);
 
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <h1 className="font-display text-3xl font-medium">Edit tour</h1>
-        <p className="mt-1 font-mono text-xs text-muted-foreground">{tour.slug}</p>
-      </div>
+    <div className="flex max-w-2xl flex-col gap-6">
+      <EditHeader
+        title={tour.title}
+        slug={tour.slug}
+        status={tour.status}
+        liveHref={`/tours/${tour.slug}`}
+      />
 
       <section className="flex flex-col gap-4 rounded-lg border border-border-subtle p-5">
-        <h2 className="font-display text-xl font-medium">Hero image</h2>
+        <h2 className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
+          Hero image
+        </h2>
         {tour.hero ? (
           <div className="relative aspect-[16/9] w-72 overflow-hidden rounded-md border border-border-subtle bg-muted">
             <MediaImage media={tour.hero} sizes="288px" />

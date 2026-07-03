@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { FormState } from "./db-error";
 import { TOUR_DIFFICULTIES, TOUR_TYPES } from "./schemas";
 import { Button, Field, FieldMessage, Input, Label, Textarea } from "@/components/ui";
+import { NameSlugFields } from "./ui/name-slug-fields";
 import { readString } from "@/lib/json";
 import type { Tour } from "@/lib/supabase/types";
 
@@ -33,22 +34,15 @@ export function TourForm({
 
   return (
     <form action={formAction} className="flex max-w-2xl flex-col gap-5">
-      <Field>
-        <Label htmlFor="title">Title</Label>
-        <Input id="title" name="title" defaultValue={tour?.title ?? ""} required />
-        {state.fieldErrors?.title ? <FieldMessage>{state.fieldErrors.title}</FieldMessage> : null}
-      </Field>
-      <Field>
-        <Label htmlFor="slug">Slug</Label>
-        <Input
-          id="slug"
-          name="slug"
-          defaultValue={tour?.slug ?? ""}
-          placeholder="tawang-winter-expedition"
-          required
-        />
-        {state.fieldErrors?.slug ? <FieldMessage>{state.fieldErrors.slug}</FieldMessage> : null}
-      </Field>
+      <NameSlugFields
+        sourceField="title"
+        sourceLabel="Title"
+        defaultSource={tour?.title ?? ""}
+        defaultSlug={tour?.slug ?? ""}
+        sourceError={state.fieldErrors?.title}
+        slugError={state.fieldErrors?.slug}
+        slugPlaceholder="tawang-winter-expedition"
+      />
       <Field>
         <Label htmlFor="subtitle">Subtitle</Label>
         <Input id="subtitle" name="subtitle" defaultValue={tour?.subtitle ?? ""} />

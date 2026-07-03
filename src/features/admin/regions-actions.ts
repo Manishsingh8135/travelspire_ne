@@ -13,6 +13,7 @@ type RegionWrite = {
   name: string;
   slug: string;
   level: string;
+  parent_id: string | null;
   body: Json | null;
   seo: Json;
 };
@@ -22,6 +23,7 @@ function parse(formData: FormData) {
     name: formData.get("name"),
     slug: formData.get("slug"),
     level: formData.get("level"),
+    parentId: formData.get("parentId") || undefined,
     intro: formData.get("intro") || undefined,
     seoTitle: formData.get("seoTitle") || undefined,
     seoDescription: formData.get("seoDescription") || undefined,
@@ -32,6 +34,7 @@ function toWrite(data: {
   name: string;
   slug: string;
   level: string;
+  parentId?: string;
   intro?: string;
   seoTitle?: string;
   seoDescription?: string;
@@ -41,7 +44,14 @@ function toWrite(data: {
     ...(data.seoDescription ? { description: data.seoDescription } : {}),
   };
   const body: Json | null = data.intro ? { intro: data.intro } : null;
-  return { name: data.name, slug: data.slug, level: data.level, body, seo };
+  return {
+    name: data.name,
+    slug: data.slug,
+    level: data.level,
+    parent_id: data.parentId ? data.parentId : null,
+    body,
+    seo,
+  };
 }
 
 function revalidateAtlas() {

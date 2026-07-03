@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { FormState } from "./db-error";
 import { PLACE_KINDS } from "./schemas";
 import { Button, Field, FieldMessage, Input, Label, Textarea } from "@/components/ui";
+import { NameSlugFields } from "./ui/name-slug-fields";
 import { readString } from "@/lib/json";
 import type { Place } from "@/lib/supabase/types";
 
@@ -28,17 +29,15 @@ export function PlaceForm({
 
   return (
     <form action={formAction} className="flex max-w-2xl flex-col gap-5">
-      <Field>
-        <Label htmlFor="name">Name</Label>
-        <Input id="name" name="name" defaultValue={place?.name ?? ""} required />
-        {state.fieldErrors?.name ? <FieldMessage>{state.fieldErrors.name}</FieldMessage> : null}
-      </Field>
-
-      <Field>
-        <Label htmlFor="slug">Slug</Label>
-        <Input id="slug" name="slug" defaultValue={place?.slug ?? ""} placeholder="mechuka" required />
-        {state.fieldErrors?.slug ? <FieldMessage>{state.fieldErrors.slug}</FieldMessage> : null}
-      </Field>
+      <NameSlugFields
+        sourceField="name"
+        sourceLabel="Name"
+        defaultSource={place?.name ?? ""}
+        defaultSlug={place?.slug ?? ""}
+        sourceError={state.fieldErrors?.name}
+        slugError={state.fieldErrors?.slug}
+        slugPlaceholder="mechuka"
+      />
 
       <div className="grid gap-5 sm:grid-cols-2">
         <Field>
@@ -126,6 +125,42 @@ export function PlaceForm({
           placeholder="What makes this place worth the journey…"
         />
       </Field>
+
+      <fieldset className="flex flex-col gap-4 rounded-lg border border-border-subtle p-5">
+        <legend className="px-1 font-mono text-xs tracking-wider text-muted-foreground uppercase">
+          Visibility &amp; access
+        </legend>
+        <label className="flex items-start gap-3">
+          <input
+            type="checkbox"
+            name="isSecret"
+            defaultChecked={place?.is_secret ?? false}
+            className="mt-0.5 size-4 rounded-xs border-border-strong accent-[var(--accent)]"
+          />
+          <span>
+            <span className="text-sm font-medium">Secret spot</span>
+            <span className="block text-xs text-muted-foreground">
+              Hidden from anonymous visitors and search engines — protects fragile places.
+            </span>
+          </span>
+        </label>
+        <Field>
+          <Label htmlFor="exclusivityTier">Exclusivity</Label>
+          <select
+            id="exclusivityTier"
+            name="exclusivityTier"
+            defaultValue={String(place?.exclusivity_tier ?? 0)}
+            className={selectClass}
+          >
+            <option value="0">Public — anyone can view</option>
+            <option value="1">Member — members only</option>
+            <option value="2">Premium — premium members only</option>
+          </select>
+          <p className="text-xs text-muted-foreground">
+            Gated tiers keep crown-jewel intel behind membership.
+          </p>
+        </Field>
+      </fieldset>
 
       <fieldset className="flex flex-col gap-4 rounded-lg border border-border-subtle p-5">
         <legend className="px-1 font-mono text-xs tracking-wider text-muted-foreground uppercase">

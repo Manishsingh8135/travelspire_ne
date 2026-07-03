@@ -1,8 +1,12 @@
 import "server-only";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
+import type { HeroMedia } from "@/lib/media";
 import type { Region } from "@/lib/supabase/types";
 import { type TableQuery, pageRange } from "@/features/admin/ui/table-state";
 import { sanitizeTerm, countByStatus, type EntityCounts } from "./query";
+
+export type AdminRegionDetail = Region & { hero: HeroMedia | null };
+export type RegionOption = { id: string; name: string };
 
 const REGION_SORT: Record<string, string> = {
   name: "name",
@@ -34,11 +38,27 @@ export async function listRegionsForAdmin(
   return { rows: data ?? [], total: count ?? 0 };
 }
 
-export async function getRegionForAdmin(id: string): Promise<Region | null> {
+export async function getRegionForAdmin(id: string): Promise<AdminRegionDetail | null> {
   const sb = createSupabaseAdminClient();
-  const { data, error } = await sb.from("regions").select("*").eq("id", id).maybeSingle();
+  const { data, error } = await sb
+    .from("regions")
+    .select("*, hero:media!hero_media_id(storage_path, alt)")
+    .eq("id", id)
+    .maybeSingle();
   if (error) throw error;
-  return data;
+  return (data ?? null) as unknown as AdminRegionDetail | null;
+}
+
+/** Region options (id + name) for parent + region pickers. */
+export async function getRegionOptions(): Promise<RegionOption[]> {
+  const sb = createSupabaseAdminClient();
+  const { data, error } = await sb
+    .from("regions")
+    .select("id, name")
+    .is("deleted_at", null)
+    .order("name");
+  if (error) throw error;
+  return data ?? [];
 }
 
 export type AdminCounts = {

@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import Link from "next/link";
 import type { FormState } from "./db-error";
 import { Button, Field, FieldMessage, Input, Label, Textarea } from "@/components/ui";
+import { NameSlugFields } from "./ui/name-slug-fields";
 import { readString } from "@/lib/json";
 import type { Region } from "@/lib/supabase/types";
 
@@ -15,49 +16,62 @@ const selectClass =
 export function RegionForm({
   action,
   region,
+  regions = [],
   submitLabel,
 }: {
   action: Action;
   region?: Region;
+  /** Candidate parents (all regions); the current region is filtered out. */
+  regions?: { id: string; name: string }[];
   submitLabel: string;
 }) {
   const [state, formAction, pending] = useActionState<FormState, FormData>(action, {});
+  const parentOptions = regions.filter((r) => r.id !== region?.id);
 
   return (
     <form action={formAction} className="flex max-w-2xl flex-col gap-5">
-      <Field>
-        <Label htmlFor="name">Name</Label>
-        <Input id="name" name="name" defaultValue={region?.name ?? ""} required />
-        {state.fieldErrors?.name ? <FieldMessage>{state.fieldErrors.name}</FieldMessage> : null}
-      </Field>
+      <NameSlugFields
+        sourceField="name"
+        sourceLabel="Name"
+        defaultSource={region?.name ?? ""}
+        defaultSlug={region?.slug ?? ""}
+        sourceError={state.fieldErrors?.name}
+        slugError={state.fieldErrors?.slug}
+        slugPlaceholder="arunachal-pradesh"
+      />
 
-      <Field>
-        <Label htmlFor="slug">Slug</Label>
-        <Input
-          id="slug"
-          name="slug"
-          defaultValue={region?.slug ?? ""}
-          placeholder="arunachal-pradesh"
-          required
-        />
-        {state.fieldErrors?.slug ? (
-          <FieldMessage>{state.fieldErrors.slug}</FieldMessage>
-        ) : null}
-      </Field>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field>
+          <Label htmlFor="level">Level</Label>
+          <select
+            id="level"
+            name="level"
+            defaultValue={region?.level ?? "state"}
+            className={selectClass}
+          >
+            <option value="state">State</option>
+            <option value="district">District</option>
+            <option value="valley">Valley</option>
+          </select>
+        </Field>
 
-      <Field>
-        <Label htmlFor="level">Level</Label>
-        <select
-          id="level"
-          name="level"
-          defaultValue={region?.level ?? "state"}
-          className={selectClass}
-        >
-          <option value="state">State</option>
-          <option value="district">District</option>
-          <option value="valley">Valley</option>
-        </select>
-      </Field>
+        <Field>
+          <Label htmlFor="parentId">Parent region</Label>
+          <select
+            id="parentId"
+            name="parentId"
+            defaultValue={region?.parent_id ?? ""}
+            className={selectClass}
+          >
+            <option value="">— none (top level) —</option>
+            {parentOptions.map((r) => (
+              <option key={r.id} value={r.id}>
+                {r.name}
+              </option>
+            ))}
+          </select>
+        </Field>
+      </div>
 
       <Field>
         <Label htmlFor="intro">Intro</Label>
