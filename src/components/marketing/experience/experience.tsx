@@ -54,7 +54,7 @@ const EXPERIENCES: Experience[] = [
   },
   {
     title: "Festivals & Culture",
-    blurb: "Vibrant living traditions you can join.",
+    blurb: "Living traditions you can be part of.",
     src: "/images/places/hornbill/Hornbill_2.WEBP",
     alt: "Naga warriors in traditional dress leaping mid-dance at the Hornbill Festival, Nagaland",
     href: "/explore",
@@ -62,7 +62,7 @@ const EXPERIENCES: Experience[] = [
   },
   {
     title: "Treks & Trails",
-    blurb: "Hidden trails and breathtaking views.",
+    blurb: "Backcountry trails and high ridge views.",
     src: "/images/places/mechuka-new/mechuka-new-portrait-4.jpg",
     alt: "Travellers crossing a prayer-flag-draped suspension bridge below snow peaks near Mechuka, Arunachal Pradesh",
     href: "/explore",

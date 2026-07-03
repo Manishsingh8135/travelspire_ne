@@ -63,7 +63,7 @@ function ContextCard({
 }) {
   return (
     <div
-      className={`w-44 rounded-2xl border border-white/10 bg-charcoal-900/85 p-3.5 shadow-xl backdrop-blur-md ${className ?? ""}`}
+      className={`w-44 rounded-2xl border border-white/10 bg-charcoal-900 p-3.5 shadow-xl ${className ?? ""}`}
     >
       <div className="flex items-center gap-2">
         <Icon className="size-4 text-pine-300" />

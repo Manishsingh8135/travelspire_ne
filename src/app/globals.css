@@ -379,19 +379,8 @@
   margin-top: 0.125rem;
 }
 
-/* ── Living Map teaser — the "slowly glowing pins" from new.md §5. Very slow,
-   low-amplitude breathe; the global reduced-motion rule above stops the loop. */
-@keyframes ts-pin-pulse {
-  0%,
-  100% {
-    opacity: 0.28;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.55);
-  }
-}
+/* ── Living Map teaser — a static soft glow behind each pin. No looping ambient
+   motion (motion doctrine §8: markers must not perpetually pulse). */
 .ts-pin-halo {
-  animation: ts-pin-pulse 3.6s var(--ease-in-out, ease-in-out) infinite;
+  opacity: 0.55;
 }

@@ -63,7 +63,7 @@ export function MeiPhone() {
                 <p className="font-display text-base font-medium text-mist-50">
                   Guwahati to Tawang Explorer
                 </p>
-                <p className="text-xs text-mist-300">Mountains, monasteries & hidden gems</p>
+                <p className="text-xs text-mist-300">Mountains, monasteries & quiet valleys</p>
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {TAGS.map((t) => (
                     <span

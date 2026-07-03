@@ -80,7 +80,7 @@ export async function LivingMap() {
             </h2>
             <p className="mt-4 max-w-md text-base text-pretty text-mist-200/75">
               More than directions — a living, breathing guide to every road, river, village and
-              story. Real-time updates. Local insight. Hidden gems.
+              story. Real-time updates. Local insight. Places only locals know.
             </p>
 
             {/* layer cards */}

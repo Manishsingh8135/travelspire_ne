@@ -8,7 +8,7 @@ const DAYS = [
   { d: "Day 3", t: "Dirang to Tawang", s: "Sela Pass & high-altitude views" },
   { d: "Day 4", t: "Tawang Exploration", s: "Monastery, war memorial & lake" },
   { d: "Day 5", t: "Zemithang Village Stay", s: "Offbeat, peaceful & authentic" },
-  { d: "Day 6", t: "Shonga-tser Lake", s: "Hidden gem near Tawang" },
+  { d: "Day 6", t: "Shonga-tser Lake", s: "Alpine lake near Tawang" },
   { d: "Day 7", t: "Return to Guwahati", s: "Memories for a lifetime" },
 ];
 
