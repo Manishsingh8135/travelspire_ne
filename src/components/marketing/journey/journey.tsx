@@ -86,11 +86,11 @@ export function Journey() {
       aria-labelledby="journey-heading"
       className="py-20 sm:py-28"
     >
-      <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
+      <div className="relative mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
+        <CompassRose className="pointer-events-none absolute top-0 right-5 hidden w-16 text-secondary/15 sm:right-8 sm:block lg:right-12 lg:w-24" />
         {/* header */}
-        <div className="relative mx-auto max-w-2xl text-center">
-          <CompassRose className="pointer-events-none absolute -top-6 right-2 hidden w-16 text-secondary/15 sm:block lg:-right-10 lg:w-20" />
-          <Eyebrow tone="muted" ornament className="justify-center">
+        <div className="max-w-2xl">
+          <Eyebrow tone="muted" ornament>
             The Journey
           </Eyebrow>
           <h2
@@ -99,7 +99,7 @@ export function Journey() {
           >
             Every great trip is <span className="italic text-secondary">a loop.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base text-pretty text-muted-foreground sm:text-lg">
+          <p className="mt-5 max-w-xl text-base text-pretty text-muted-foreground sm:text-lg">
             It begins long before the road and echoes long after. Dream, plan, go, remember,
             share — and somewhere, someone else&apos;s spark catches. This is the circle Travelspire
             is built around.

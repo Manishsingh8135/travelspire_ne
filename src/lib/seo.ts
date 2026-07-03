@@ -43,6 +43,28 @@ export function websiteJsonLd(): Record<string, unknown> {
 }
 
 /**
+ * ItemList node for a listing/hub (e.g. the Atlas region index). Items with a
+ * real URL become linkable ListItems; name-only entries are still valid.
+ * See content-seo/01-seo-strategy.md.
+ */
+export function itemListJsonLd(
+  name: string,
+  items: { name: string; url?: string }[],
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      ...(item.url ? { url: item.url } : {}),
+    })),
+  };
+}
+
+/**
  * Build Next Metadata from a Publishable `seo` jsonb column (title, description,
  * canonical, ogImage, noindex) with strong fallbacks. Every published entity
  * gets sane SEO for free; admin overrides live in the jsonb. metadataBase (set

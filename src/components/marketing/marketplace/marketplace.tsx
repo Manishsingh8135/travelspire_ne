@@ -169,14 +169,14 @@ export function Marketplace() {
       aria-labelledby="marketplace-heading"
       className="py-16 sm:py-24"
     >
-      <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
-        <div className="relative mx-auto max-w-2xl text-center">
-          <StampBadge
-            topText="ONE ECOSYSTEM"
-            bottomText="ONE PLACE"
-            className="pointer-events-none absolute -top-4 right-0 hidden size-16 text-secondary/20 sm:block lg:-right-10 lg:size-20"
-          />
-          <Eyebrow tone="muted" ornament className="justify-center">
+      <div className="relative mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
+        <StampBadge
+          topText="ONE ECOSYSTEM"
+          bottomText="ONE PLACE"
+          className="pointer-events-none absolute top-0 right-5 hidden size-16 text-secondary/20 sm:right-8 sm:block lg:right-12 lg:size-20"
+        />
+        <div className="max-w-2xl">
+          <Eyebrow tone="muted" ornament>
             Marketplace
           </Eyebrow>
           <h2
@@ -186,7 +186,7 @@ export function Marketplace() {
             Everything you need.{" "}
             <span className="italic text-secondary">One ecosystem.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base text-pretty text-muted-foreground sm:text-lg">
+          <p className="mt-5 max-w-xl text-base text-pretty text-muted-foreground sm:text-lg">
             Stays, rides, guides, permits, insurance, offline maps — the whole trip, sorted in one
             place. No fifteen tabs, no dead ends.
           </p>

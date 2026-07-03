@@ -23,6 +23,9 @@ import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/marketing/section";
 import { getRegions } from "@/server/atlas";
 import type { Region } from "@/lib/supabase/types";
+import { JsonLd } from "@/components/seo/json-ld";
+import { itemListJsonLd } from "@/lib/seo";
+import { env } from "@/lib/env";
 
 // The eight states of the Northeast — a reference index. Descriptors are
 // grounded facts, not evocation. Published states deep-link to their atlas page.
@@ -68,6 +71,12 @@ export async function Atlas() {
   const slugByName = new Map(regions.map((r) => [r.name.toLowerCase(), r.slug]));
   const featuredSlug = slugByName.get("arunachal pradesh");
 
+  const siteUrl = env.NEXT_PUBLIC_SITE_URL;
+  const regionItems = STATES.map((s) => {
+    const slug = slugByName.get(s.name.toLowerCase());
+    return { name: s.name, url: slug ? `${siteUrl}/${slug}` : undefined };
+  });
+
   return (
     <Section
       tone="forest"
@@ -76,6 +85,7 @@ export async function Atlas() {
       aria-labelledby="atlas-heading"
       className="py-16 sm:py-20 lg:py-24"
     >
+      <JsonLd data={itemListJsonLd("States of Northeast India", regionItems)} />
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         {/* header */}
         <div className="relative max-w-2xl">

@@ -168,8 +168,8 @@ export function Emotion() {
       className="py-16 sm:py-24"
     >
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
-        <div className="mx-auto max-w-2xl text-center">
-          <Eyebrow tone="muted" ornament className="justify-center">
+        <div className="max-w-2xl">
+          <Eyebrow tone="muted" ornament>
             Explore by Emotion
           </Eyebrow>
           <h2
@@ -178,7 +178,7 @@ export function Emotion() {
           >
             What are you <span className="italic text-secondary">looking for?</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base text-pretty text-muted-foreground sm:text-lg">
+          <p className="mt-5 max-w-xl text-base text-pretty text-muted-foreground sm:text-lg">
             Most people don&apos;t choose a place — they choose a feeling. Start with yours, and
             we&apos;ll carry you into the Northeast that fits.
           </p>
