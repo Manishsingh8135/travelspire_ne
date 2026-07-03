@@ -18,4 +18,6 @@ export { Eyebrow, eyebrowVariants } from "./eyebrow";
 export { GlassPanel, glassPanelVariants } from "./glass-panel";
 export { StatBlock } from "./stat-block";
 export { StampBadge } from "./stamp-badge";
-export { Photo } from "./photo";
+// NOTE: `Photo` is intentionally NOT re-exported here — it pulls in the
+// `server-only` blur map (image-blur.ts), which would break any client component
+// that imports this barrel. Import it directly: `@/components/ui/photo`.

@@ -327,6 +327,83 @@
   }
 }
 
+/* =========================================================================
+   ADMIN — the "field station". A denser instrument surface than the editorial
+   marketing site: hairlines over shadows, tighter rhythm, per-user density.
+   Everything is scoped to [data-admin-root] so the marketing scale is untouched.
+   ========================================================================= */
+[data-admin-root] {
+  /* Row height + control padding driven by one var so tables, lists and
+     pickers all obey the density toggle. Default = "regular" (48px). */
+  --admin-row-h: 3rem;
+  --admin-cell-x: 0.75rem;
+}
+[data-admin-root][data-density="compact"] {
+  --admin-row-h: 2.5rem;
+  --admin-cell-x: 0.625rem;
+}
+[data-admin-root][data-density="relaxed"] {
+  --admin-row-h: 3.5rem;
+  --admin-cell-x: 0.875rem;
+}
+
+/* Thin, unobtrusive scrollbars inside admin scroll regions. */
+[data-admin-root] .admin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+[data-admin-root] .admin-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+[data-admin-root] .admin-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 9999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+/* Sonner toasts — bound to our tokens (warm surfaces, hairline, soft shadow). */
+[data-admin-root] [data-sonner-toaster],
+[data-sonner-toaster] {
+  --normal-bg: var(--bg-surface);
+  --normal-text: var(--fg);
+  --normal-border: var(--border-subtle);
+  --border-radius: var(--radius-md);
+}
+
+/* Command palette (cmdk) — item states, keyboard-first, no decorative motion. */
+[cmdk-root] {
+  font-family: var(--font-sans);
+}
+[cmdk-item] {
+  cursor: default;
+  border-radius: var(--radius-sm);
+  transition: background-color 100ms var(--ease-out);
+}
+[cmdk-item][data-selected="true"] {
+  background: var(--bg-subtle);
+}
+[cmdk-item][data-disabled="true"] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+[cmdk-group-heading] {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  padding: 0.5rem 0.5rem 0.25rem;
+}
+[cmdk-overlay] {
+  position: fixed;
+  inset: 0;
+  z-index: 1390;
+  background: oklch(0.15 0.01 60 / 0.32);
+  backdrop-filter: blur(2px);
+}
+
 /* ── Living Map (Mapbox) — branded to our tokens ────────────────────────── */
 .ts-marker {
   width: 14px;
