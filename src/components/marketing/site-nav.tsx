@@ -14,11 +14,10 @@ type NavItem = { label: string; href: string };
 // get wired to real routes as those sections/pages land.
 const NAV: NavItem[] = [
   { label: "Explore", href: "/explore" },
-  { label: "Plan", href: "#plan" },
-  { label: "Experiences", href: "#experiences" },
-  { label: "Stays", href: "/tours" },
-  { label: "Rides", href: "#rides" },
-  { label: "Community", href: "#community" },
+  { label: "Expeditions", href: "/tours" },
+  { label: "Festivals", href: "/tours?type=festival" },
+  { label: "Stories", href: "/#stories" },
+  { label: "Community", href: "/#community" },
 ];
 
 function NavLink({

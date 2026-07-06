@@ -5,7 +5,7 @@ import { getPublishedTours, getTourBySlug } from "@/server/tours";
 import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { readString } from "@/lib/json";
 import { env } from "@/lib/env";
-import { tourInquiryUrl } from "@/lib/whatsapp";
+import { tourInquiryUrl, availabilityUrl } from "@/lib/whatsapp";
 import { SiteHeader } from "@/components/site/site-header";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { Badge } from "@/components/ui";
@@ -18,6 +18,7 @@ import { GalleryMosaic, type MosaicImage } from "@/components/site/gallery-mosai
 import { PullQuote } from "@/components/site/pull-quote";
 import { FieldNote } from "@/components/site/field-note";
 import { TourCard } from "@/components/site/tour-card";
+import { VariantTable, type Variant } from "@/components/site/variant-table";
 
 export const revalidate = 3600;
 
@@ -69,6 +70,26 @@ function galleryImages(body: Record<string, unknown>, title: string): MosaicImag
     src,
     alt: `${title} — expedition photograph ${i + 1}`,
   }));
+}
+
+function variants(body: Record<string, unknown>): Variant[] {
+  const arr = body.variants;
+  if (!Array.isArray(arr)) return [];
+  return arr
+    .map((v) => {
+      const item = asRecord(v);
+      return {
+        name: String(item.name ?? ""),
+        price: typeof item.price === "number" ? item.price : NaN,
+        days: typeof item.days === "number" ? item.days : null,
+        nights: typeof item.nights === "number" ? item.nights : null,
+        note: item.note ? String(item.note) : null,
+        inclusions: Array.isArray(item.inclusions)
+          ? item.inclusions.filter((x): x is string => typeof x === "string")
+          : [],
+      };
+    })
+    .filter((v) => v.name && Number.isFinite(v.price));
 }
 
 type Testimonial = { quote: string; name: string; location?: string; date?: string };
@@ -125,6 +146,7 @@ export default async function TourPage({ params }: Params) {
   const gallery = galleryImages(body, tour.title);
   const quotes = testimonials(body);
   const importantNote = readString(tour.body, "importantNote");
+  const packageVariants = variants(body);
   const maxGroup = typeof body.maxGroupSize === "number" ? body.maxGroupSize : null;
 
   const base = env.NEXT_PUBLIC_SITE_URL;
@@ -298,6 +320,13 @@ export default async function TourPage({ params }: Params) {
             ) : null}
 
             {carry.length ? <ChecklistCard title="Carry this" items={carry} mark="neutral" /> : null}
+
+            {packageVariants.length ? (
+              <VariantTable
+                variants={packageVariants}
+                whatsAppHref={(name) => availabilityUrl(`${tour.title} — ${name}`)}
+              />
+            ) : null}
 
             {importantNote ? (
               <FieldNote kicker="Before you book">{importantNote}</FieldNote>

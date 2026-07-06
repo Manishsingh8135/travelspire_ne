@@ -1,5 +1,4 @@
 import Link from "next/link";
-import type { Route } from "next";
 import { BookMarked, Award, NotebookPen, MapPinned, ArrowRight, Leaf } from "lucide-react";
 import { Eyebrow, StampBadge, StatBlock } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
@@ -64,7 +63,7 @@ export function Community() {
             </ul>
 
             <Link
-              href={"/explore" as Route}
+              href="#membership"
               className="group mt-8 inline-flex items-center gap-2 rounded-full border border-accent/40 px-5 py-2.5 text-sm font-medium tracking-wide text-accent uppercase transition-colors duration-200 outline-none hover:bg-accent/10 hover:text-accent-hover focus-visible:ring-2 focus-visible:ring-ring"
             >
               Start your Passport

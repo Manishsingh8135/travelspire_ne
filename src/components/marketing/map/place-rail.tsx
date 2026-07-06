@@ -21,6 +21,7 @@ const CHIPS: ("All" | Category)[] = ["All", "Stays", "Experiences", "Rides", "Fe
 
 type Place = {
   name: string;
+  href: string;
   region: string;
   category: Category;
   src: string;
@@ -31,6 +32,7 @@ type Place = {
 const PLACES: Place[] = [
   {
     name: "Hillside Homestay",
+    href: "/arunachal-pradesh/tawang",
     region: "Tawang, Arunachal",
     category: "Stays",
     src: "/images/places/tawang/Tawang_4.PNG",
@@ -38,6 +40,7 @@ const PLACES: Place[] = [
   },
   {
     name: "Tawang Monastery",
+    href: "/arunachal-pradesh/tawang",
     region: "Arunachal Pradesh",
     category: "Experiences",
     src: "/images/places/tawang/Tawang_1.PNG",
@@ -45,6 +48,7 @@ const PLACES: Place[] = [
   },
   {
     name: "Sela Pass",
+    href: "/tours/tawang-expedition",
     region: "Arunachal Pradesh",
     category: "Rides",
     src: "/images/places/tawang/Tawang_2.JPG",
@@ -52,6 +56,7 @@ const PLACES: Place[] = [
   },
   {
     name: "Hornbill Festival",
+    href: "/tours/hornbill-festival-2026",
     region: "Kohima, Nagaland",
     category: "Festivals",
     src: "/images/places/hornbill/Hornbill_2.WEBP",
@@ -59,6 +64,7 @@ const PLACES: Place[] = [
   },
   {
     name: "Dzükou Valley",
+    href: "/tours/hornbill-festival-2026",
     region: "Nagaland",
     category: "Trails",
     src: "/images/places/hornbill/Dzoku_2.jpg",
@@ -66,6 +72,7 @@ const PLACES: Place[] = [
   },
   {
     name: "Mechuka Bridge",
+    href: "/arunachal-pradesh/mechuka",
     region: "Arunachal Pradesh",
     category: "Trails",
     src: "/images/places/mechuka-new/mechuka-new-portrait-4.jpg",
@@ -73,6 +80,7 @@ const PLACES: Place[] = [
   },
   {
     name: "Dambuk Trail",
+    href: "/tours/dambuk-anini-ofam",
     region: "Arunachal Pradesh",
     category: "Rides",
     src: "/images/places/dambuk/Dambuk_2.jpg",
@@ -80,6 +88,7 @@ const PLACES: Place[] = [
   },
   {
     name: "Ziro Valley",
+    href: "/arunachal-pradesh/ziro",
     region: "Arunachal Pradesh",
     category: "Experiences",
     src: "/images/places/ziro-new/ziro-new-portrait-5.JPG",
@@ -135,7 +144,7 @@ export function PlaceRail() {
           return (
             <li key={place.name} className="shrink-0 snap-start">
               <Link
-                href={"/explore" as Route}
+                href={place.href as Route}
                 aria-label={`${place.name} — ${place.region}`}
                 className="group relative block aspect-[5/4] w-[15rem] overflow-hidden rounded-2xl ring-1 ring-white/10 outline-none focus-visible:ring-2 focus-visible:ring-ring sm:w-[16rem]"
               >

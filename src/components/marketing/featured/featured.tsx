@@ -8,6 +8,7 @@ import { Section } from "@/components/marketing/section";
 
 type Feature = {
   kicker: string;
+  href: string;
   title: string;
   story: string;
   src: string;
@@ -18,6 +19,7 @@ type Feature = {
 // experiences we have photography for.
 const FEATURES: Feature[] = [
   {
+    href: "/tours/tawang-expedition",
     kicker: "Arunachal · Ride",
     title: "Ride the Sela Pass",
     story: "Snow, prayer flags and one of the highest motorable roads on earth.",
@@ -25,6 +27,7 @@ const FEATURES: Feature[] = [
     alt: "Snow and prayer flags at Sela Pass near Tawang, Arunachal Pradesh",
   },
   {
+    href: "/tours/hornbill-festival-2026",
     kicker: "Nagaland · Festival",
     title: "Live the Hornbill Festival",
     story: "A thousand years of tribes, songs and colour gathered into one field.",
@@ -32,6 +35,7 @@ const FEATURES: Feature[] = [
     alt: "Naga warriors in traditional dress leaping mid-dance at the Hornbill Festival, Nagaland",
   },
   {
+    href: "/tours/mechuka-expedition",
     kicker: "Arunachal · Valley",
     title: "Chase the Mechuka Sunrise",
     story: "A hidden Himalayan valley where the road runs out and the view begins.",
@@ -39,6 +43,7 @@ const FEATURES: Feature[] = [
     alt: "A tall waterfall beside a mountain road near Mechuka, Arunachal Pradesh",
   },
   {
+    href: "/tours/hornbill-festival-2026",
     kicker: "Nagaland · Trek",
     title: "Trek into Dzükou Valley",
     story: "Rolling emerald hills and rare lilies that only a few ever witness.",
@@ -46,6 +51,7 @@ const FEATURES: Feature[] = [
     alt: "The emerald rolling hills and winding stream of Dzükou Valley, Nagaland",
   },
   {
+    href: "/arunachal-pradesh/ziro",
     kicker: "Arunachal · Culture",
     title: "Ziro & the Apatani Way",
     story: "Golden rice fields, bamboo homes and a culture like nowhere else.",
@@ -53,6 +59,7 @@ const FEATURES: Feature[] = [
     alt: "Pink cosmos flowers over golden paddy fields and bamboo huts in Ziro Valley, Arunachal Pradesh",
   },
   {
+    href: "/tours/orange-festival-2026",
     kicker: "Arunachal · Camp",
     title: "Nights Under Dambuk Skies",
     story: "Orange groves, river camps and a sky thick with stars at the frontier.",
@@ -64,7 +71,7 @@ const FEATURES: Feature[] = [
 function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
   return (
     <Link
-      href={"/explore" as Route}
+      href={feature.href as Route}
       aria-label={feature.title}
       className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-3xl shadow-panel ring-1 ring-border-subtle outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >

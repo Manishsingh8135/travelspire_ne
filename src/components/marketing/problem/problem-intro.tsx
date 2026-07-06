@@ -1,5 +1,4 @@
 import Link from "next/link";
-import type { Route } from "next";
 import { ArrowRight, ShieldCheck, RefreshCw, Compass, Layers } from "lucide-react";
 import { Button, Eyebrow } from "@/components/ui";
 import { BrandMark } from "@/components/marketing/brand-logo";
@@ -71,7 +70,7 @@ export function ProblemIntro({
       </ul>
 
       <Button asChild variant="secondary" size="lg" className="group mt-9 rounded-full pr-2">
-        <Link href={"/explore" as Route}>
+        <Link href="#journey">
           See How It Works
           <span className="ml-1 flex size-7 items-center justify-center rounded-full bg-mist-50/15 transition-transform duration-200 ease-out group-hover:translate-x-0.5">
             <ArrowRight className="size-4" />

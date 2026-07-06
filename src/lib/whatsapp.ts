@@ -64,6 +64,14 @@ export function stayInquiryUrl(place: string): string {
   );
 }
 
+/** Explorer membership interest (until accounts/membership exist). */
+export function explorerUrl(): string {
+  return whatsAppUrl(
+    `Hi Travelspire — I want to become an *Explorer member*. ` +
+      `What does it include and when does it open?`,
+  );
+}
+
 /** General hello (contact page). */
 export function helloUrl(): string {
   return whatsAppUrl(`Hi Travelspire — I have a question about traveling the Northeast.`);

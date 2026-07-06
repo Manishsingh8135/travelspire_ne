@@ -38,7 +38,7 @@ export function MeiItinerary() {
         ))}
       </ol>
       <Link
-        href={"/explore" as Route}
+        href={"/tours/tawang-expedition" as Route}
         className="group mt-5 inline-flex items-center gap-2 text-sm font-medium text-secondary outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
       >
         View Full Itinerary

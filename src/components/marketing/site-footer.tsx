@@ -9,28 +9,34 @@ const COLUMNS: FooterCol[] = [
   {
     heading: "Explore",
     links: [
-      { label: "The Atlas", href: "/explore" },
-      { label: "Living Map", href: "#map" },
-      { label: "Stories", href: "#stories" },
-      { label: "Experiences", href: "#experiences" },
+      { label: "The Atlas", href: "/#atlas" },
+      { label: "Living Map", href: "/explore" },
+      { label: "Stories", href: "/#stories" },
+      { label: "Expeditions", href: "/tours" },
     ],
   },
   {
     heading: "Plan",
     links: [
-      { label: "Meet Mei", href: "#mei" },
-      { label: "Permits (ILP/PAP)", href: "#permits" },
-      { label: "Stays", href: "/tours" },
-      { label: "Rides", href: "#rides" },
+      { label: "Meet Mei", href: "/#mei" },
+      { label: "Permits (ILP/PAP)", href: "https://wa.me/919864141211?text=Hi%20Travelspire%20%E2%80%94%20I%20need%20help%20with%20permits." },
+      { label: "Festivals", href: "/tours?type=festival" },
+      { label: "Rides", href: "/tours" },
     ],
   },
   {
     heading: "Travelspire",
     links: [
-      { label: "Our story", href: "#about" },
-      { label: "Hosts & Scouts", href: "#hosts" },
-      { label: "Journal", href: "#journal" },
-      { label: "Contact", href: "#contact" },
+      { label: "Our story", href: "/#people" },
+      {
+        label: "Hosts & Scouts",
+        href: "https://wa.me/919864141211?text=Hi%20Travelspire%20%E2%80%94%20I%20run%20a%20homestay%20or%20know%20my%20region%20well%20and%20want%20to%20partner.",
+      },
+      { label: "Journal", href: "/#stories" },
+      {
+        label: "Contact",
+        href: "https://wa.me/919864141211?text=Hi%20Travelspire%20%E2%80%94%20I%20have%20a%20question.",
+      },
     ],
   },
 ];

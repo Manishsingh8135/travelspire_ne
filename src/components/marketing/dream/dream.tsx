@@ -17,7 +17,7 @@ const STORIES: Story[] = [
     location: "Hornbill Festival, Kohima",
     src: "/images/places/hornbill/Hornbill_women.PNG",
     alt: "Naga women in traditional attire and beaded jewellery at the Hornbill Festival, Kohima, Nagaland",
-    href: "/explore",
+    href: "/tours/hornbill-festival-2026",
   },
   {
     region: "Nagaland",
@@ -25,7 +25,7 @@ const STORIES: Story[] = [
     location: "Dzükou Valley",
     src: "/images/places/hornbill/Dzoku_2.jpg",
     alt: "The emerald rolling hills and a winding stream of Dzükou Valley, Nagaland",
-    href: "/explore",
+    href: "/tours/hornbill-festival-2026",
   },
   {
     region: "Arunachal Pradesh",
@@ -33,7 +33,7 @@ const STORIES: Story[] = [
     location: "Mechuka",
     src: "/images/places/mechuka-new/mechuka-new-portrait-2.jpg",
     alt: "A tall waterfall tumbling beside a mountain road near Mechuka, Arunachal Pradesh",
-    href: "/explore",
+    href: "/arunachal-pradesh/mechuka",
   },
   {
     region: "Arunachal Pradesh",
@@ -41,7 +41,7 @@ const STORIES: Story[] = [
     location: "Ziro Valley",
     src: "/images/places/ziro-new/ziro-new-landscape-1.jpeg",
     alt: "Golden Apatani rice fields and fish ponds ringed by forested hills, Ziro Valley, Arunachal Pradesh",
-    href: "/explore",
+    href: "/arunachal-pradesh/ziro",
   },
   {
     region: "Arunachal Pradesh",
@@ -49,7 +49,7 @@ const STORIES: Story[] = [
     location: "Tawang",
     src: "/images/places/tawang/Tawang_9.JPG",
     alt: "Snow falling over prayer flags and a mountain road at Tawang, Arunachal Pradesh",
-    href: "/explore",
+    href: "/arunachal-pradesh/tawang",
   },
   {
     region: "Arunachal Pradesh",
@@ -57,7 +57,7 @@ const STORIES: Story[] = [
     location: "Dambuk",
     src: "/images/places/dambuk/Dambuk_2.jpg",
     alt: "A motorcycle traveller at a riverside adventure camp in Dambuk, Arunachal Pradesh",
-    href: "/explore",
+    href: "/tours/dambuk-anini-ofam",
   },
 ];
 
@@ -133,7 +133,7 @@ export function Dream() {
               <p className="mt-1.5 text-muted-foreground">You dream it. We&apos;ll help you live it.</p>
             </div>
             <Button asChild variant="secondary" size="lg" className="shrink-0 rounded-full">
-              <Link href={"/explore" as Route}>
+              <Link href={"/tours" as Route}>
                 Explore All Stories
                 <ArrowRight />
               </Link>

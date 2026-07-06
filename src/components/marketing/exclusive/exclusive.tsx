@@ -1,5 +1,4 @@
 import Link from "next/link";
-import type { Route } from "next";
 import {
   Lock,
   UtensilsCrossed,
@@ -143,7 +142,7 @@ export function Exclusive() {
             </p>
           </div>
           <Link
-            href={"/explore" as Route}
+            href="#membership"
             className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-accent/40 px-5 py-2.5 text-sm font-medium tracking-wide text-accent uppercase transition-colors duration-200 outline-none hover:bg-accent/10 hover:text-accent-hover focus-visible:ring-2 focus-visible:ring-ring"
           >
             Become an Explorer

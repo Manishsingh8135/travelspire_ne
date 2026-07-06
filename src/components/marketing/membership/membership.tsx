@@ -1,10 +1,9 @@
 import { Photo } from "@/components/ui/photo";
-import Link from "next/link";
-import type { Route } from "next";
 import { Check, ArrowRight } from "lucide-react";
 import { Eyebrow, StampBadge } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/marketing/section";
+import { explorerUrl } from "@/lib/whatsapp";
 
 const LAYERS = [
   "The hidden map & secret routes",
@@ -84,13 +83,15 @@ export function Membership() {
                     ))}
                   </ul>
 
-                  <Link
-                    href={"/explore" as Route}
+                  <a
+                    href={explorerUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="group mt-9 inline-flex items-center gap-2 rounded-full border border-accent/40 px-6 py-3 text-sm font-medium tracking-wide text-accent uppercase transition-colors duration-200 outline-none hover:bg-accent/10 hover:text-accent-hover focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     Become an Explorer
                     <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                  </Link>
+                  </a>
                   <p className="mt-3 font-mono text-[11px] tracking-wider text-subtle-foreground uppercase">
                     Start free · upgrade when you&apos;re ready
                   </p>

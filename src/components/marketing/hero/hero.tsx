@@ -57,7 +57,7 @@ export function Hero() {
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
               <Button asChild size="lg" variant="secondary" className="rounded-full">
-                <Link href={"/explore" as Route}>
+                <Link href={"/tours" as Route}>
                   Start Your Journey
                   <ArrowRight />
                 </Link>

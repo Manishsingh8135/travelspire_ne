@@ -17,10 +17,12 @@ import {
 import { Eyebrow, StampBadge } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
 import { Section } from "@/components/marketing/section";
+import { permitAssistUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/cn";
 
 type PhotoCard = {
   kind: "photo";
+  href: string;
   icon: LucideIcon;
   label: string;
   note: string;
@@ -31,6 +33,8 @@ type PhotoCard = {
 };
 type UtilityCard = {
   kind: "utility";
+  href: string;
+  external?: boolean;
   icon: LucideIcon;
   label: string;
   note: string;
@@ -42,6 +46,7 @@ type UtilityCard = {
 const CARDS: (PhotoCard | UtilityCard)[] = [
   {
     kind: "photo",
+    href: "/explore",
     icon: Home,
     label: "Stays",
     note: "Homestays, camps & boutique lodges.",
@@ -52,6 +57,7 @@ const CARDS: (PhotoCard | UtilityCard)[] = [
   },
   {
     kind: "photo",
+    href: "/tours/dambuk-anini-ofam",
     icon: Bike,
     label: "Rides",
     note: "Bikes, cars & drivers you can trust.",
@@ -61,6 +67,7 @@ const CARDS: (PhotoCard | UtilityCard)[] = [
   },
   {
     kind: "photo",
+    href: "/tours",
     icon: Compass,
     label: "Experiences",
     note: "Curated, run by locals.",
@@ -70,6 +77,7 @@ const CARDS: (PhotoCard | UtilityCard)[] = [
   },
   {
     kind: "photo",
+    href: "/tours",
     icon: RouteIcon,
     label: "Tours",
     note: "Ready-made, or build your own.",
@@ -77,17 +85,17 @@ const CARDS: (PhotoCard | UtilityCard)[] = [
     src: "/images/places/ziro-new/ziro-new-landscape-2.JPG",
     alt: "A road winding through the terraced paddy fields of Ziro Valley, Arunachal Pradesh",
   },
-  { kind: "utility", icon: Map, label: "Guides", note: "Vetted local guides & scouts.", span: "col-span-1" },
-  { kind: "utility", icon: ShieldCheck, label: "Permits", note: "ILP / PAP handled before you go.", span: "col-span-1" },
-  { kind: "utility", icon: Umbrella, label: "Insurance", note: "Cover for the mountains & the road.", span: "col-span-1" },
-  { kind: "utility", icon: Download, label: "Offline", note: "Maps & guides that work off-grid.", span: "col-span-1" },
+  { kind: "utility", href: "#people", icon: Map, label: "Guides", note: "Vetted local guides & scouts.", span: "col-span-1" },
+  { kind: "utility", href: permitAssistUrl(), external: true, icon: ShieldCheck, label: "Permits", note: "ILP / PAP handled before you go.", span: "col-span-1" },
+  { kind: "utility", href: "#mei", icon: Umbrella, label: "Insurance", note: "Cover for the mountains & the road.", span: "col-span-1" },
+  { kind: "utility", href: "#map", icon: Download, label: "Offline", note: "Maps & guides that work off-grid.", span: "col-span-1" },
 ];
 
 function PhotoTile({ card, index }: { card: PhotoCard; index: number }) {
   const Icon = card.icon;
   return (
     <Link
-      href={"/explore" as Route}
+      href={card.href as Route}
       aria-label={card.label}
       className={cn(
         "group relative overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5 outline-none focus-visible:ring-2 focus-visible:ring-ring",
@@ -129,9 +137,11 @@ function PhotoTile({ card, index }: { card: PhotoCard; index: number }) {
 
 function UtilityTile({ card }: { card: UtilityCard }) {
   const Icon = card.icon;
+  const Comp = card.external ? "a" : Link;
   return (
-    <Link
-      href={"/explore" as Route}
+    <Comp
+      href={card.href as Route}
+      {...(card.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={cn(
         "group relative flex flex-col justify-between rounded-2xl border border-border bg-card p-5 shadow-sm transition-all duration-200 outline-none hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-ring",
         card.span,
@@ -150,7 +160,7 @@ function UtilityTile({ card }: { card: UtilityCard }) {
         <h3 className="font-display text-lg font-medium">{card.label}</h3>
         <p className="mt-1 text-sm text-muted-foreground">{card.note}</p>
       </div>
-    </Link>
+    </Comp>
   );
 }
 
@@ -204,7 +214,7 @@ export function Marketplace() {
 
         <Reveal delay={0.05} className="mt-8 flex items-center justify-center">
           <Link
-            href={"/explore" as Route}
+            href={"/tours" as Route}
             className="group inline-flex items-center gap-2 font-mono text-xs font-medium tracking-[0.18em] text-foreground uppercase underline-offset-4 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
           >
             Explore the marketplace

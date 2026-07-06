@@ -1,6 +1,5 @@
 import { Photo } from "@/components/ui/photo";
 import Link from "next/link";
-import type { Route } from "next";
 import { Home, Compass, Binoculars, HeartHandshake, Palette, ArrowRight } from "lucide-react";
 import { Eyebrow } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
@@ -87,7 +86,7 @@ export function People() {
             </ul>
 
             <Link
-              href={"/explore" as Route}
+              href="#community"
               className="group mt-8 inline-flex items-center gap-2 font-mono text-xs font-medium tracking-[0.18em] text-foreground uppercase underline-offset-4 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
             >
               Meet the community

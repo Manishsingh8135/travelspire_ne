@@ -157,7 +157,7 @@ export function Experience() {
             discover experiences that connect you to the soul of Northeast India.
           </p>
           <Link
-            href={"/explore" as Route}
+            href={"/tours" as Route}
             className="group mt-5 inline-flex items-center gap-2 font-mono text-xs font-medium tracking-[0.18em] text-foreground uppercase underline-offset-4 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
           >
             Explore All Experiences
@@ -203,7 +203,7 @@ export function Experience() {
                   size="lg"
                   className="shrink-0 rounded-full bg-mist-50 text-charcoal-950 hover:bg-mist-100"
                 >
-                  <Link href={"/explore" as Route}>
+                  <Link href={"/tours" as Route}>
                     Discover More
                     <ArrowRight />
                   </Link>

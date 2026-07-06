@@ -22,6 +22,7 @@ import { cn } from "@/lib/cn";
 
 type Mood = {
   label: string;
+  href: string;
   icon: LucideIcon;
   span: string;
   feature?: boolean;
@@ -34,6 +35,7 @@ type Mood = {
 const MOODS: Mood[] = [
   {
     label: "Stillness",
+    href: "/tours/dong-valley-expedition",
     icon: Moon,
     span: "col-span-2 row-span-2",
     feature: true,
@@ -42,6 +44,7 @@ const MOODS: Mood[] = [
   },
   {
     label: "Culture",
+    href: "/tours/hornbill-festival-2026",
     icon: Drama,
     span: "col-span-2",
     src: "/images/places/hornbill/Hornbill_women.PNG",
@@ -49,6 +52,7 @@ const MOODS: Mood[] = [
   },
   {
     label: "Motorcycle",
+    href: "/tours/dambuk-anini-ofam",
     icon: Bike,
     span: "col-span-1",
     src: "/images/places/dambuk/Dambuk_2.jpg",
@@ -56,6 +60,7 @@ const MOODS: Mood[] = [
   },
   {
     label: "Snow",
+    href: "/tours/tawang-expedition",
     icon: Snowflake,
     span: "col-span-1",
     src: "/images/places/tawang/Tawang_2.JPG",
@@ -63,6 +68,7 @@ const MOODS: Mood[] = [
   },
   {
     label: "Adventure",
+    href: "/tours/mechuka-expedition",
     icon: Mountain,
     span: "col-span-2",
     src: "/images/places/mechuka-new/mechuka-new-portrait-4.jpg",
@@ -70,6 +76,7 @@ const MOODS: Mood[] = [
   },
   {
     label: "Festivals",
+    href: "/tours?type=festival",
     icon: PartyPopper,
     span: "col-span-1",
     src: "/images/places/hornbill/Hornbill_2.WEBP",
@@ -77,6 +84,7 @@ const MOODS: Mood[] = [
   },
   {
     label: "Spirituality",
+    href: "/arunachal-pradesh/tawang",
     icon: Sparkles,
     span: "col-span-1",
     src: "/images/places/tawang/Tawang_1.PNG",
@@ -84,6 +92,7 @@ const MOODS: Mood[] = [
   },
   {
     label: "Waterfalls",
+    href: "/arunachal-pradesh/mechuka",
     icon: Droplets,
     span: "col-span-1",
     src: "/images/places/mechuka-new/mechuka-new-portrait-2.jpg",
@@ -91,6 +100,7 @@ const MOODS: Mood[] = [
   },
   {
     label: "Wild blooms",
+    href: "/tours/hornbill-festival-2026",
     icon: Bird,
     span: "col-span-1",
     src: "/images/places/hornbill/Dzoku_1.webp",
@@ -98,6 +108,7 @@ const MOODS: Mood[] = [
   },
   {
     label: "Photography",
+    href: "/arunachal-pradesh/ziro",
     icon: Camera,
     span: "col-span-1",
     src: "/images/places/ziro-new/ziro-new-portrait-5.JPG",
@@ -105,6 +116,7 @@ const MOODS: Mood[] = [
   },
   {
     label: "Romance",
+    href: "/tours/mechuka-expedition",
     icon: Heart,
     span: "col-span-1",
     src: "/images/places/hornbill/Dzoku_3.jpg",
@@ -116,7 +128,7 @@ function MoodTile({ mood, index }: { mood: Mood; index: number }) {
   const Icon = mood.icon;
   return (
     <Link
-      href={"/explore" as Route}
+      href={mood.href as Route}
       aria-label={mood.label}
       className={cn(
         "group relative overflow-hidden rounded-2xl ring-1 ring-black/5 outline-none focus-visible:ring-2 focus-visible:ring-ring",
