@@ -16,7 +16,7 @@ import { HeroExplorers } from "./hero-explorers";
  */
 export function Hero() {
   return (
-    <section id="top" className="relative flex min-h-svh flex-col overflow-hidden bg-charcoal-950">
+    <section id="top" data-tone="forest" className="relative flex min-h-svh flex-col overflow-hidden bg-charcoal-950">
       {/* LCP background — static import gives intrinsic dims + blur placeholder (zero CLS) */}
       <Image
         src={heroImage}

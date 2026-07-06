@@ -63,14 +63,16 @@ function ContextCard({
 }) {
   return (
     <div
-      className={`w-44 rounded-2xl border border-white/10 bg-charcoal-900 p-3.5 shadow-xl ${className ?? ""}`}
+      className={`w-44 rounded-2xl border border-border-subtle bg-card p-3.5 shadow-lift ${className ?? ""}`}
     >
       <div className="flex items-center gap-2">
-        <Icon className="size-4 text-pine-300" />
-        <span className="font-mono text-[10px] tracking-wider text-mist-300 uppercase">{label}</span>
+        <Icon className="size-4 text-secondary" />
+        <span className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
+          {label}
+        </span>
       </div>
-      <p className="mt-1.5 text-sm font-medium text-mist-50">{value}</p>
-      <p className="mt-0.5 text-xs text-mist-300">{note}</p>
+      <p className="mt-1.5 text-sm font-medium">{value}</p>
+      <p className="mt-0.5 text-xs text-muted-foreground">{note}</p>
     </div>
   );
 }
@@ -84,27 +86,21 @@ function ContextCard({
  */
 export function Mei() {
   return (
-    <Section
-      tone="forest"
-      padded={false}
-      id="mei"
-      aria-labelledby="mei-heading"
-      className="py-16 sm:py-20 lg:py-24"
-    >
+    <Section tone="forest" id="mei" aria-labelledby="mei-heading">
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         {/* header */}
         <div className="max-w-2xl">
-          <Eyebrow tone="onDark" ornament className="text-pine-300">
+          <Eyebrow tone="pine" ornament>
             Meet Mei · Travel Companion
           </Eyebrow>
           <h2
             id="mei-heading"
-            className="mt-4 font-display text-4xl leading-[1.03] font-medium text-balance text-mist-50 sm:text-5xl"
+            className="mt-4 font-display text-4xl leading-[1.03] font-medium text-balance sm:text-5xl lg:text-6xl"
           >
             <span className="block">Plan smarter. Travel deeper.</span>
-            <span className="italic text-pine-300">With Mei, who knows Northeast like a local.</span>
+            <span className="italic text-secondary">With Mei, who knows Northeast like a local.</span>
           </h2>
-          <p className="mt-4 max-w-xl text-base text-pretty text-mist-200/75">
+          <p className="mt-4 max-w-xl text-base text-pretty text-muted-foreground">
             From permits to the best sunrise spots, hidden stays to real road conditions — Mei
             crafts journeys that are personal, practical and unforgettable.
           </p>
@@ -117,27 +113,27 @@ export function Mei() {
             <ul className="flex flex-col gap-5">
               {FEATURES.map(({ icon: Icon, title, body }) => (
                 <li key={title} className="flex items-start gap-3.5">
-                  <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-pine-500/15 text-pine-300 ring-1 ring-pine-400/20 [&_svg]:size-4.5">
+                  <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-pine-500/15 text-secondary ring-1 ring-pine-400/20 [&_svg]:size-4.5">
                     <Icon />
                   </span>
                   <span>
-                    <span className="block font-medium text-mist-50">{title}</span>
-                    <span className="mt-0.5 block text-sm text-mist-200/70">{body}</span>
+                    <span className="block font-medium">{title}</span>
+                    <span className="mt-0.5 block text-sm text-muted-foreground">{body}</span>
                   </span>
                 </li>
               ))}
             </ul>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+            <div className="rounded-2xl border border-border-subtle bg-card p-4 shadow-panel">
               <div className="flex items-center gap-2.5">
                 <span className="inline-flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-pine-400 to-pine-600 text-charcoal-950">
                   <Leaf className="size-4" />
                 </span>
-                <span className="font-mono text-[11px] tracking-wider text-pine-300 uppercase">
+                <span className="font-mono text-[11px] tracking-wider text-secondary uppercase">
                   Mei
                 </span>
               </div>
-              <p className="mt-2.5 text-sm text-pretty text-mist-100 italic">
+              <p className="mt-2.5 text-sm text-pretty italic">
                 {"“Hi, I'm Mei. Think of me as your friend from the Northeast — I'll help you plan, guide and support you, every step of the way.”"}
               </p>
             </div>

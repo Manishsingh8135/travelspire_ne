@@ -28,28 +28,22 @@ const SAMPLE = [
  */
 export function Community() {
   return (
-    <Section
-      tone="forest"
-      padded={false}
-      id="community"
-      aria-labelledby="community-heading"
-      className="py-16 sm:py-20 lg:py-24"
-    >
+    <Section tone="forest" id="community" aria-labelledby="community-heading">
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* copy + perks */}
           <div>
-            <Eyebrow tone="onDark" ornament className="text-pine-300">
+            <Eyebrow tone="pine" ornament>
               Community
             </Eyebrow>
             <h2
               id="community-heading"
-              className="mt-4 font-display text-4xl leading-[1.04] font-medium text-balance text-mist-50 sm:text-5xl"
+              className="mt-4 font-display text-4xl leading-[1.04] font-medium text-balance sm:text-5xl lg:text-6xl"
             >
               Every journey earns its{" "}
-              <span className="italic text-marigold-300">stamps.</span>
+              <span className="italic text-accent">stamps.</span>
             </h2>
-            <p className="mt-4 max-w-xl text-base text-pretty text-mist-200/75">
+            <p className="mt-4 max-w-xl text-base text-pretty text-muted-foreground">
               Your Explorer Passport keeps every trip — the villages, the tribes, the festivals —
               as badges, memory books and a map that slowly fills in. Travel that adds up to
               something.
@@ -58,12 +52,12 @@ export function Community() {
             <ul className="mt-8 grid gap-x-8 gap-y-5 sm:grid-cols-2">
               {PERKS.map(({ icon: Icon, label, note }) => (
                 <li key={label} className="flex items-start gap-3">
-                  <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-pine-500/15 text-pine-300 ring-1 ring-pine-400/20 [&_svg]:size-4.5">
+                  <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-pine-500/15 text-secondary ring-1 ring-pine-400/20 [&_svg]:size-4.5">
                     <Icon />
                   </span>
                   <span>
-                    <span className="block font-medium text-mist-50">{label}</span>
-                    <span className="mt-0.5 block text-sm text-mist-200/70">{note}</span>
+                    <span className="block font-medium">{label}</span>
+                    <span className="mt-0.5 block text-sm text-muted-foreground">{note}</span>
                   </span>
                 </li>
               ))}
@@ -71,7 +65,7 @@ export function Community() {
 
             <Link
               href={"/explore" as Route}
-              className="group mt-8 inline-flex items-center gap-2 rounded-full border border-marigold-400/40 px-5 py-2.5 text-sm font-medium tracking-wide text-marigold-300 uppercase transition-colors duration-200 outline-none hover:bg-marigold-400/10 hover:text-marigold-200 focus-visible:ring-2 focus-visible:ring-ring"
+              className="group mt-8 inline-flex items-center gap-2 rounded-full border border-accent/40 px-5 py-2.5 text-sm font-medium tracking-wide text-accent uppercase transition-colors duration-200 outline-none hover:bg-accent/10 hover:text-accent-hover focus-visible:ring-2 focus-visible:ring-ring"
             >
               Start your Passport
               <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -80,18 +74,18 @@ export function Community() {
 
           {/* passport card */}
           <Reveal amount={0.2}>
-            <div className="relative overflow-hidden rounded-3xl border border-marigold-400/25 bg-charcoal-900 p-6 shadow-2xl sm:p-8">
+            <div className="relative overflow-hidden rounded-3xl border border-accent/25 bg-card p-6 shadow-deep sm:p-8">
               {/* header */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <span className="inline-flex size-9 items-center justify-center rounded-full bg-gradient-to-br from-marigold-300 to-marigold-500 text-charcoal-950">
                     <Leaf className="size-4" />
                   </span>
-                  <span className="font-mono text-xs tracking-[0.2em] text-marigold-300 uppercase">
+                  <span className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
                     Explorer Passport
                   </span>
                 </div>
-                <span className="font-mono text-[10px] tracking-wider text-mist-300 uppercase">
+                <span className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
                   Travelspire · NE
                 </span>
               </div>
@@ -102,22 +96,22 @@ export function Community() {
                   A
                 </span>
                 <div>
-                  <p className="font-display text-lg font-medium text-mist-50">An Explorer</p>
-                  <p className="font-mono text-[10px] tracking-wider text-mist-300 uppercase">
+                  <p className="font-display text-lg font-medium">An Explorer</p>
+                  <p className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
                     Member since 2024
                   </p>
                 </div>
               </div>
 
               {/* stats */}
-              <div className="mt-6 grid grid-cols-4 gap-3 border-y border-white/10 py-5">
+              <div className="mt-6 grid grid-cols-4 gap-3 border-y border-border-subtle py-5">
                 {SAMPLE.map((s) => (
                   <StatBlock
                     key={s.label}
                     value={s.value}
                     label={s.label}
-                    valueClassName="text-mist-50 text-2xl"
-                    labelClassName="text-mist-300 text-[10px]"
+                    valueClassName="text-foreground text-2xl"
+                    labelClassName="text-muted-foreground text-[10px]"
                   />
                 ))}
               </div>
@@ -128,31 +122,31 @@ export function Community() {
                   <StampBadge
                     topText="TAWANG"
                     bottomText="EXPLORED"
-                    className="size-16 text-marigold-300/70"
+                    className="size-16 text-accent/70"
                   />
                   <StampBadge
                     topText="HORNBILL"
                     bottomText="FESTIVAL"
-                    className="size-16 text-pine-300/70"
+                    className="size-16 text-secondary/70"
                   />
                   <StampBadge
                     topText="ZIRO"
                     bottomText="APATANI"
-                    className="size-16 text-mist-200/60"
+                    className="size-16 text-muted-foreground/60"
                   />
                 </div>
-                <span className="font-mono text-[10px] tracking-wider text-mist-300/70 uppercase">
+                <span className="font-mono text-[10px] tracking-wider text-subtle-foreground uppercase">
                   Sample passport
                 </span>
               </div>
 
               {/* map progress */}
               <div className="mt-5">
-                <div className="flex items-center justify-between font-mono text-[10px] tracking-wider text-mist-300 uppercase">
+                <div className="flex items-center justify-between font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
                   <span>Map of the Northeast</span>
-                  <span className="text-pine-300">62% complete</span>
+                  <span className="text-secondary">62% complete</span>
                 </div>
-                <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/10">
+                <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-muted">
                   <div className="h-full w-[62%] rounded-full bg-gradient-to-r from-pine-400 to-marigold-300" />
                 </div>
               </div>

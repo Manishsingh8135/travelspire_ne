@@ -130,8 +130,6 @@ export function Experience() {
       id="experiences"
       aria-labelledby="experience-heading"
       tone="paper"
-      padded={false}
-      className="py-16 sm:py-24"
     >
       {/* marginalia */}
       <StampBadge
@@ -149,7 +147,7 @@ export function Experience() {
           </Eyebrow>
           <h2
             id="experience-heading"
-            className="mt-4 font-display text-4xl leading-[1.05] font-medium text-balance sm:text-5xl lg:text-[3.5rem]"
+            className="mt-4 font-display text-4xl leading-[1.05] font-medium text-balance sm:text-5xl lg:text-6xl"
           >
             <span className="block">More than places.</span>
             <span className="italic text-secondary">A thousand ways to feel alive.</span>

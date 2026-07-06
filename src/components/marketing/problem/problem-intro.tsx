@@ -33,7 +33,7 @@ export function ProblemIntro({
 
       <h2
         id={headingId}
-        className="mt-6 font-display text-3xl leading-[1.1] font-medium text-balance text-foreground sm:text-4xl"
+        className="mt-6 font-display text-4xl leading-[1.1] font-medium text-balance text-foreground sm:text-5xl"
       >
         Northeast isn&apos;t difficult because it lacks beauty.{" "}
         <span className="text-secondary italic">

@@ -7,22 +7,22 @@ import { cn } from "@/lib/cn";
  * — independent of the app's global light/dark toggle (the editorial look is
  * pinned per section, per new.md "chapters, not sections").
  *
- * Dark tones get the forest-glow depth layer so the green-tinted charcoal reads
- * as "forest at night" rather than flat black (tuned against the inspiration's
- * ~#070d0c dark; see the charcoal ramp notes in globals.css).
+ * The tone is expressed as `data-tone`, which re-maps the semantic token roles
+ * (see globals.css §SECTION TONES). Inside a forest chapter, `bg-card`,
+ * `text-muted-foreground`, `border-border-subtle`, `text-secondary` and the
+ * `shadow-panel/lift/deep` elevation utilities all resolve to dark-tuned
+ * values — components never hand-roll white/N recipes.
+ *
+ * Dark tones also get the forest-glow depth layer so the green-tinted charcoal
+ * reads as "forest at night" rather than flat black. The glow is tuned low so
+ * it lifts the room without erasing the card-vs-background step.
  */
 export type SectionTone = "paper" | "sand" | "forest";
-
-const TONE: Record<SectionTone, string> = {
-  paper: "bg-background text-foreground",
-  sand: "bg-mist-200 text-foreground",
-  forest: "bg-charcoal-950 text-mist-50",
-};
 
 // Soft radial that lifts a dark section's centre + base. One place to retune
 // the whole app's dark-section depth.
 const FOREST_GLOW =
-  "radial-gradient(120% 75% at 50% -10%, oklch(0.3 0.05 156) 0%, transparent 60%), radial-gradient(90% 60% at 50% 112%, oklch(0.25 0.045 158) 0%, transparent 62%)";
+  "radial-gradient(120% 75% at 50% -10%, oklch(0.275 0.048 156) 0%, transparent 58%), radial-gradient(90% 60% at 50% 112%, oklch(0.235 0.044 158) 0%, transparent 60%)";
 
 type SectionProps = React.ComponentProps<"section"> & {
   tone?: SectionTone;
@@ -43,10 +43,10 @@ export function Section({
   const showGlow = depth ?? tone === "forest";
   return (
     <section
+      data-tone={tone}
       className={cn(
-        "relative isolate overflow-hidden",
+        "relative isolate overflow-hidden bg-background text-foreground",
         padded && "py-20 sm:py-28",
-        TONE[tone],
         className,
       )}
       {...props}

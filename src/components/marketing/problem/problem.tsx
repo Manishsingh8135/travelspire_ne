@@ -31,8 +31,6 @@ export function Problem() {
       id="problem"
       aria-labelledby="problem-heading"
       tone="paper"
-      padded={false}
-      className="py-16 sm:py-24"
     >
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-x-12">

@@ -41,10 +41,8 @@ export function SocialProof() {
   return (
     <Section
       tone="paper"
-      padded={false}
       id="moments"
       aria-labelledby="moments-heading"
-      className="py-16 sm:py-24"
     >
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         <div className="max-w-2xl">

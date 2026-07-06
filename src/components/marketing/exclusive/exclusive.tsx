@@ -79,20 +79,20 @@ function SecretCard({ secret }: { secret: Secret }) {
   return (
     <div
       className={cn(
-        "relative flex min-h-[10.5rem] flex-col justify-between overflow-hidden rounded-2xl border bg-charcoal-900 p-5",
-        secret.locked ? "border-marigold-400/20" : "border-white/10",
+        "relative flex min-h-[10.5rem] flex-col justify-between overflow-hidden rounded-2xl border bg-card p-5 shadow-panel",
+        secret.locked ? "border-accent/25" : "border-border-subtle",
       )}
     >
       <div className="flex items-center gap-2">
-        <Icon className={cn("size-4", secret.locked ? "text-marigold-300/80" : "text-pine-300")} />
-        <span className="font-mono text-[10px] tracking-[0.18em] text-mist-300 uppercase">
+        <Icon className={cn("size-4", secret.locked ? "text-accent" : "text-secondary")} />
+        <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground uppercase">
           {secret.cat}
         </span>
       </div>
 
       <p
         className={cn(
-          "mt-4 text-[15px] leading-snug text-balance text-mist-100",
+          "mt-4 text-[15px] leading-snug text-balance",
           secret.locked && "pointer-events-none blur-[6px] select-none",
         )}
         aria-hidden={secret.locked || undefined}
@@ -101,12 +101,12 @@ function SecretCard({ secret }: { secret: Secret }) {
       </p>
 
       {secret.locked ? (
-        <span className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-marigold-400/30 px-2.5 py-1 font-mono text-[10px] tracking-wider text-marigold-300 uppercase">
+        <span className="mt-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-accent/30 px-2.5 py-1 font-mono text-[10px] tracking-wider text-accent uppercase">
           <Lock className="size-3" />
           Explorer Pass
         </span>
       ) : (
-        <span className="mt-4 font-mono text-[10px] tracking-wider text-pine-300/80 uppercase">
+        <span className="mt-4 font-mono text-[10px] tracking-wider text-secondary/80 uppercase">
           Open intel
         </span>
       )}
@@ -123,34 +123,28 @@ function SecretCard({ secret }: { secret: Secret }) {
  */
 export function Exclusive() {
   return (
-    <Section
-      tone="forest"
-      padded={false}
-      id="exclusive"
-      aria-labelledby="exclusive-heading"
-      className="py-16 sm:py-20 lg:py-24"
-    >
+    <Section tone="forest" id="exclusive" aria-labelledby="exclusive-heading">
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         {/* header — title left, membership CTA right */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
           <div className="max-w-2xl">
-            <Eyebrow tone="onDark" ornament className="text-pine-300">
+            <Eyebrow tone="pine" ornament>
               The Exclusive Layer
             </Eyebrow>
             <h2
               id="exclusive-heading"
-              className="mt-4 font-display text-4xl leading-[1.04] font-medium text-balance text-mist-50 sm:text-5xl"
+              className="mt-4 font-display text-4xl leading-[1.04] font-medium text-balance sm:text-5xl lg:text-6xl"
             >
-              The map has a <span className="italic text-marigold-300">hidden layer.</span>
+              The map has a <span className="italic text-accent">hidden layer.</span>
             </h2>
-            <p className="mt-4 max-w-xl text-base text-pretty text-mist-200/75">
+            <p className="mt-4 max-w-xl text-base text-pretty text-muted-foreground">
               The intel locals share only with their own — the shortcuts, the sunrises, the houses
               that never make a listing. Explorers get the key.
             </p>
           </div>
           <Link
             href={"/explore" as Route}
-            className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-marigold-400/40 px-5 py-2.5 text-sm font-medium tracking-wide text-marigold-300 uppercase transition-colors duration-200 outline-none hover:bg-marigold-400/10 hover:text-marigold-200 focus-visible:ring-2 focus-visible:ring-ring"
+            className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-accent/40 px-5 py-2.5 text-sm font-medium tracking-wide text-accent uppercase transition-colors duration-200 outline-none hover:bg-accent/10 hover:text-accent-hover focus-visible:ring-2 focus-visible:ring-ring"
           >
             Become an Explorer
             <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

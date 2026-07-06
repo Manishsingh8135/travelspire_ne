@@ -65,6 +65,7 @@ export function SiteNav() {
 
   return (
     <header
+      data-tone="forest"
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
         scrolled
@@ -105,7 +106,7 @@ export function SiteNav() {
             </Dialog.Trigger>
             <Dialog.Portal>
               <Dialog.Overlay className="fixed inset-0 z-50 bg-charcoal-950/70 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in" />
-              <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-charcoal-950 px-6 py-5 text-mist-50 shadow-xl outline-none">
+              <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-charcoal-950 px-6 py-5 text-mist-50 shadow-deep outline-none">
                 <div className="flex items-center justify-between">
                   <BrandLogo onClick={() => setOpen(false)} />
                   <Dialog.Close

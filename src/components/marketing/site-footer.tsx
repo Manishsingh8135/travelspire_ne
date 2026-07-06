@@ -37,7 +37,7 @@ const COLUMNS: FooterCol[] = [
 
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   const className =
-    "text-sm text-mist-300/80 transition-colors hover:text-mist-50";
+    "text-sm text-muted-foreground/80 transition-colors hover:text-foreground";
   if (href.startsWith("#")) {
     return (
       <a href={href} className={className}>
@@ -60,7 +60,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-charcoal-950 text-mist-50">
+    <footer data-tone="forest" className="relative bg-charcoal-950 text-mist-50">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         {/* Emotional close */}
         <div className="border-b border-mist-50/10 py-20 md:py-28">
@@ -81,7 +81,7 @@ export function SiteFooter() {
         <div className="grid gap-12 py-14 md:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div className="flex flex-col gap-5">
             <BrandLogo />
-            <p className="max-w-xs text-sm text-mist-300/80">
+            <p className="max-w-xs text-sm text-muted-foreground/80">
               The living atlas, marketplaces and trip companion for Northeast India —
               guided when you want it, independent when you don&apos;t.
             </p>

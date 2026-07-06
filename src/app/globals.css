@@ -194,6 +194,14 @@
   --glass-light: oklch(0.99 0.006 85 / 0.62);
   --glass-border: oklch(1 0 0 / 0.12);
 
+  /* Elevation roles — tone-aware (bridged to shadow-panel/lift/deep utilities).
+     Light: the warm multi-layer ramp. Dark tones re-map these to the §6 recipe:
+     inset top-highlight (lit rim) + mist ring + deep forest-black pools —
+     because ordinary shadows are invisible on charcoal. */
+  --elev-panel: var(--shadow-sm);
+  --elev-lift: var(--shadow-md);
+  --elev-deep: var(--shadow-xl);
+
   color-scheme: light;
 }
 
@@ -226,7 +234,90 @@
   --warning: var(--color-marigold-400);
   --danger: var(--color-clay-400);
 
+  /* Dark elevation — outer black shadows die on charcoal; the edge is drawn by
+     a lit top rim + mist ring, depth by deep green-black pools (§6). */
+  --elev-panel:
+    inset 0 1px 0 oklch(1 0 0 / 0.06),
+    0 0 0 1px oklch(0.93 0.015 160 / 0.1),
+    0 2px 6px oklch(0.07 0.03 156 / 0.45),
+    0 8px 20px -6px oklch(0.07 0.03 156 / 0.55);
+  --elev-lift:
+    inset 0 1px 0 oklch(1 0 0 / 0.08),
+    0 0 0 1px oklch(0.93 0.015 160 / 0.13),
+    0 4px 10px oklch(0.07 0.03 156 / 0.5),
+    0 16px 40px -8px oklch(0.06 0.03 156 / 0.65);
+  --elev-deep:
+    inset 0 1px 0 oklch(1 0 0 / 0.09),
+    0 0 0 1px oklch(0.93 0.015 160 / 0.15),
+    0 8px 24px oklch(0.06 0.03 156 / 0.55),
+    0 32px 80px -12px oklch(0.05 0.03 156 / 0.7);
+
   color-scheme: dark;
+}
+
+/* =========================================================================
+   SECTION TONES — art-directed chapter palettes for the marketing site.
+   `data-tone="forest"` re-maps the SAME semantic roles the theme system uses,
+   so bg-card / text-muted-foreground / border-border-subtle / text-secondary
+   / shadow-panel all "just work" inside a dark chapter — one system, no
+   hand-rolled white/N recipes. Pinned per-section, independent of the app
+   light/dark toggle (new.md: "chapters, not sections").
+   ========================================================================= */
+[data-tone="forest"] {
+  --bg-base: var(--color-charcoal-950);
+  --bg-surface: var(--color-charcoal-900);
+  --bg-subtle: var(--color-charcoal-800);
+  --bg-inset: oklch(0.165 0.036 156);
+
+  --fg: var(--color-mist-50);
+  --fg-muted: var(--color-mist-300);
+  --fg-subtle: var(--color-stone-400);
+
+  /* Warm mist hairlines — one edge language instead of the white/N zoo. */
+  --border-subtle: oklch(0.92 0.01 84 / 0.14);
+  --border-default: oklch(0.92 0.01 84 / 0.22);
+  --border-strong: oklch(0.92 0.01 84 / 0.34);
+
+  --accent: var(--color-marigold-400);
+  --accent-hover: var(--color-marigold-300);
+  --accent-active: var(--color-marigold-500);
+  --accent-subtle: oklch(0.42 0.08 58 / 0.28);
+  --on-accent: var(--color-basalt-950);
+
+  /* Pine flips to its luminous cut — italic accents & eyebrows stay legible. */
+  --secondary: var(--color-pine-300);
+  --on-secondary: var(--color-charcoal-950);
+
+  --ring: var(--color-marigold-400);
+
+  --success: var(--color-pine-300);
+  --warning: var(--color-marigold-300);
+  --danger: var(--color-clay-300);
+
+  --elev-panel:
+    inset 0 1px 0 oklch(1 0 0 / 0.06),
+    0 0 0 1px oklch(0.93 0.015 160 / 0.1),
+    0 2px 6px oklch(0.07 0.03 156 / 0.45),
+    0 8px 20px -6px oklch(0.07 0.03 156 / 0.55);
+  --elev-lift:
+    inset 0 1px 0 oklch(1 0 0 / 0.08),
+    0 0 0 1px oklch(0.93 0.015 160 / 0.13),
+    0 4px 10px oklch(0.07 0.03 156 / 0.5),
+    0 16px 40px -8px oklch(0.06 0.03 156 / 0.65);
+  --elev-deep:
+    inset 0 1px 0 oklch(1 0 0 / 0.09),
+    0 0 0 1px oklch(0.93 0.015 160 / 0.15),
+    0 8px 24px oklch(0.06 0.03 156 / 0.55),
+    0 32px 80px -12px oklch(0.05 0.03 156 / 0.7);
+
+  color-scheme: dark;
+}
+
+/* Sand — the warm mid-tone room (breaks the paper/forest metronome). */
+[data-tone="sand"] {
+  --bg-base: var(--color-mist-200);
+  --bg-surface: var(--color-mist-50);
+  --bg-subtle: var(--color-mist-300);
 }
 
 /* =========================================================================
@@ -257,6 +348,7 @@
   --color-primary-hover: var(--accent-hover);
   --color-primary-active: var(--accent-active);
   --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --color-accent-foreground: var(--on-accent);
   --color-accent-subtle: var(--accent-subtle);
 
@@ -274,6 +366,12 @@
   --color-glass-strong: var(--glass-strong);
   --color-glass-light: var(--glass-light);
   --color-glass-border: var(--glass-border);
+
+  /* Tone-aware elevation utilities: shadow-panel (rest), shadow-lift (raised/
+     hover), shadow-deep (floating/hero). Values resolve per data-tone/theme. */
+  --shadow-panel: var(--elev-panel);
+  --shadow-lift: var(--elev-lift);
+  --shadow-deep: var(--elev-deep);
 }
 
 /* =========================================================================

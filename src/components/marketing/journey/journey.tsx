@@ -81,10 +81,8 @@ export function Journey() {
   return (
     <Section
       tone="paper"
-      padded={false}
       id="journey"
       aria-labelledby="journey-heading"
-      className="py-20 sm:py-28"
     >
       <div className="relative mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         <CompassRose className="pointer-events-none absolute top-0 right-5 hidden w-16 text-secondary/15 sm:right-8 sm:block lg:right-12 lg:w-24" />

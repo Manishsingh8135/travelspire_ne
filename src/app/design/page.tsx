@@ -179,6 +179,50 @@ export default function DesignSystemPage() {
       </section>
 
       {/* ELEVATION */}
+      {/* FOREST TONE — the dark chapter system. data-tone remaps every semantic
+          role + elevation, so these are the SAME classes as the light cards. */}
+      <section className="border-t border-border-subtle py-12">
+        <SectionLabel>Forest tone — semantic surfaces on dark (data-tone)</SectionLabel>
+        <div data-tone="forest" className="rounded-xl bg-background p-8 text-foreground">
+          <div className="grid gap-5 md:grid-cols-3">
+            <div className="rounded-2xl border border-border-subtle bg-card p-5 shadow-panel">
+              <p className="font-mono text-[10px] tracking-[0.18em] text-secondary uppercase">
+                shadow-panel
+              </p>
+              <p className="mt-2 font-display text-lg font-medium">Card at rest</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                bg-card · border-border-subtle · lit top rim + deep pool.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-border-subtle bg-card p-5 shadow-lift">
+              <p className="font-mono text-[10px] tracking-[0.18em] text-secondary uppercase">
+                shadow-lift
+              </p>
+              <p className="mt-2 font-display text-lg font-medium">Raised / hover</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Same classes as light — the tone remap does the work.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-accent/25 bg-card p-5 shadow-deep">
+              <p className="font-mono text-[10px] tracking-[0.18em] text-accent uppercase">
+                shadow-deep
+              </p>
+              <p className="mt-2 font-display text-lg font-medium">Floating / marquee</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Accent-bordered flagship object (passport, membership).
+              </p>
+            </div>
+          </div>
+          <p className="mt-6 text-sm">
+            Body on forest ·{" "}
+            <span className="text-muted-foreground">muted (mist-300)</span> ·{" "}
+            <span className="text-subtle-foreground">subtle</span> ·{" "}
+            <span className="text-secondary italic">pine accent italic</span> ·{" "}
+            <span className="text-accent">marigold accent</span>
+          </p>
+        </div>
+      </section>
+
       <section className="border-t border-border-subtle py-12">
         <SectionLabel>Elevation — warm, multi-layer, never neon</SectionLabel>
         <div className="grid gap-8 sm:grid-cols-2">

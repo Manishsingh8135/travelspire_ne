@@ -165,7 +165,7 @@ export function MapFrame({ places, token }: { places: MapPlace[]; token?: string
   return (
     <div
       ref={ref}
-      className="relative min-h-[58vh] overflow-hidden rounded-3xl bg-charcoal-900/50 ring-1 ring-white/10 sm:min-h-[62vh] lg:min-h-[72vh]"
+      className="relative min-h-[58vh] overflow-hidden rounded-3xl bg-card/60 shadow-lift ring-1 ring-border-subtle sm:min-h-[62vh] lg:min-h-[72vh]"
     >
       {/* stylised backdrop always sits behind — it's the graceful fallback while
          the real map loads, or wherever Mapbox/WebGL can't render */}
@@ -183,16 +183,16 @@ export function MapFrame({ places, token }: { places: MapPlace[]; token?: string
 
       {/* Map Layers legend — informative, bottom-left (clears the map's nav control) */}
       <div className="pointer-events-none absolute bottom-4 left-4 hidden sm:block">
-        <div className="rounded-2xl border border-white/10 bg-charcoal-950/70 p-3 backdrop-blur-md">
-          <p className="mb-2 font-mono text-[10px] tracking-[0.2em] text-mist-300 uppercase">
+        <div className="rounded-2xl border border-border-subtle bg-background/70 p-3 shadow-panel backdrop-blur-md">
+          <p className="mb-2 font-mono text-[10px] tracking-[0.2em] text-muted-foreground uppercase">
             Map Layers
           </p>
           <ul className="flex flex-col gap-1.5">
             {LAYERS.map(({ label, icon: Icon }) => (
               <li key={label} className="flex items-center gap-2.5 text-sm text-mist-100">
-                <Icon className="size-4 shrink-0 text-pine-300" />
+                <Icon className="size-4 shrink-0 text-secondary" />
                 {label}
-                <span aria-hidden className="ml-auto size-1.5 rounded-full bg-pine-300/90" />
+                <span aria-hidden className="ml-auto size-1.5 rounded-full bg-secondary/90" />
               </li>
             ))}
           </ul>

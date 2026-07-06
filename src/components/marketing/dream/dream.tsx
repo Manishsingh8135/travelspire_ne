@@ -86,30 +86,30 @@ export function Dream() {
       <StampBadge
         topText="REAL STORIES"
         bottomText="REAL NORTHEAST"
-        className="absolute top-24 left-6 hidden size-28 text-pine-300/55 lg:block xl:left-12"
+        className="absolute top-24 left-6 hidden size-28 text-secondary/55 lg:block xl:left-12"
       />
       {/* dotted "journey path" in the top-right margin */}
       <svg
         aria-hidden
         viewBox="0 0 220 120"
-        className="pointer-events-none absolute top-16 right-0 hidden w-64 text-pine-300/35 lg:block"
+        className="pointer-events-none absolute top-16 right-0 hidden w-64 text-secondary/35 lg:block"
         fill="none"
       >
         <path d="M4 96 C 60 88, 92 40, 150 36 S 206 20, 216 8" stroke="currentColor" strokeWidth="1.25" strokeDasharray="2 7" strokeLinecap="round" />
         <circle cx="216" cy="8" r="2.5" fill="currentColor" />
       </svg>
 
-      <div className="mx-auto mb-12 max-w-3xl px-5 text-center md:px-10">
-        <Eyebrow tone="onDark" ornament className="justify-center text-pine-300">
+      <div className="mx-auto mb-12 max-w-3xl px-5 text-center sm:px-8 lg:px-12">
+        <Eyebrow tone="pine" ornament className="justify-center">
           Dream
         </Eyebrow>
         <h2
           id="dream-heading"
-          className="mt-5 font-display text-4xl leading-[1.04] font-medium text-balance text-mist-50 sm:text-5xl lg:text-6xl"
+          className="mt-5 font-display text-4xl leading-[1.04] font-medium text-balance sm:text-5xl lg:text-6xl"
         >
           Stories that stay with you.
         </h2>
-        <p className="mx-auto mt-5 max-w-xl text-base text-pretty text-mist-200/75 sm:text-lg">
+        <p className="mx-auto mt-5 max-w-xl text-base text-pretty text-muted-foreground sm:text-lg">
           Real places. Real people. Real stories from the Northeast. Let your next journey
           begin here.
         </p>
@@ -122,15 +122,15 @@ export function Dream() {
         <StoryFeed stories={STORIES} />
       </Reveal>
 
-      <div className="mx-auto max-w-7xl px-5 md:px-10">
-        <div className="relative mt-16 overflow-hidden rounded-2xl border border-white/8 bg-charcoal-900/70 px-6 py-8 sm:px-10">
-          <RidgeMotif className="pointer-events-none absolute -top-2 right-4 w-40 text-pine-300/10" />
+      <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
+        <div className="relative mt-16 overflow-hidden rounded-2xl border border-border-subtle bg-card px-6 py-8 shadow-panel sm:px-10">
+          <RidgeMotif className="pointer-events-none absolute -top-2 right-4 w-40 text-secondary/10" />
           <div className="relative z-10 flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:gap-10 md:text-left">
             <div>
-              <p className="font-display text-2xl leading-tight font-medium text-mist-50 sm:text-[1.75rem]">
+              <p className="font-display text-2xl leading-tight font-medium sm:text-[1.75rem]">
                 Every story is a doorway.
               </p>
-              <p className="mt-1.5 text-mist-200/75">You dream it. We&apos;ll help you live it.</p>
+              <p className="mt-1.5 text-muted-foreground">You dream it. We&apos;ll help you live it.</p>
             </div>
             <Button asChild variant="secondary" size="lg" className="shrink-0 rounded-full">
               <Link href={"/explore" as Route}>

@@ -164,10 +164,8 @@ export function Marketplace() {
   return (
     <Section
       tone="paper"
-      padded={false}
       id="marketplace"
       aria-labelledby="marketplace-heading"
-      className="py-16 sm:py-24"
     >
       <div className="relative mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         <StampBadge

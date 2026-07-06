@@ -15,31 +15,31 @@ const DAYS = [
 /** The plan Mei builds — a clean 7-day timeline the chat produces. */
 export function MeiItinerary() {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+    <div className="rounded-3xl border border-border-subtle bg-card p-6 shadow-panel">
       <div className="flex items-center gap-2.5">
-        <CalendarDays className="size-4 text-pine-300" />
-        <p className="font-display text-lg font-medium text-mist-50">Your 7-Day Plan</p>
+        <CalendarDays className="size-4 text-secondary" />
+        <p className="font-display text-lg font-medium">Your 7-Day Plan</p>
       </div>
       <ol className="mt-5">
         {DAYS.map((day, i) => (
           <li key={day.d} className="flex gap-4">
             <div className="flex flex-col items-center">
-              <span className="mt-1.5 size-2.5 shrink-0 rounded-full bg-pine-300 ring-4 ring-pine-300/15" />
-              {i < DAYS.length - 1 ? <span className="w-px flex-1 bg-white/10" /> : null}
+              <span className="mt-1.5 size-2.5 shrink-0 rounded-full bg-secondary ring-4 ring-secondary/15" />
+              {i < DAYS.length - 1 ? <span className="w-px flex-1 bg-border-subtle" /> : null}
             </div>
             <div className={i < DAYS.length - 1 ? "pb-4" : ""}>
-              <p className="font-mono text-[10px] tracking-[0.18em] text-pine-300 uppercase">
+              <p className="font-mono text-[10px] tracking-[0.18em] text-secondary uppercase">
                 {day.d}
               </p>
-              <p className="mt-0.5 text-sm font-medium text-mist-50">{day.t}</p>
-              <p className="text-xs text-mist-300">{day.s}</p>
+              <p className="mt-0.5 text-sm font-medium">{day.t}</p>
+              <p className="text-xs text-muted-foreground">{day.s}</p>
             </div>
           </li>
         ))}
       </ol>
       <Link
         href={"/explore" as Route}
-        className="group mt-5 inline-flex items-center gap-2 text-sm font-medium text-pine-200 outline-none hover:text-pine-100 focus-visible:ring-2 focus-visible:ring-ring"
+        className="group mt-5 inline-flex items-center gap-2 text-sm font-medium text-secondary outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
       >
         View Full Itinerary
         <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />

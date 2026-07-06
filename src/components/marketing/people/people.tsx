@@ -24,10 +24,8 @@ export function People() {
   return (
     <Section
       tone="paper"
-      padded={false}
       id="people"
       aria-labelledby="people-heading"
-      className="py-16 sm:py-24"
     >
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -64,7 +62,7 @@ export function People() {
             </Eyebrow>
             <h2
               id="people-heading"
-              className="mt-4 font-display text-4xl leading-[1.05] font-medium text-balance sm:text-5xl"
+              className="mt-4 font-display text-4xl leading-[1.05] font-medium text-balance sm:text-5xl lg:text-6xl"
             >
               Meet the people who make it{" "}
               <span className="italic text-secondary">unforgettable.</span>

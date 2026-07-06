@@ -78,13 +78,7 @@ export async function Atlas() {
   });
 
   return (
-    <Section
-      tone="forest"
-      padded={false}
-      id="atlas"
-      aria-labelledby="atlas-heading"
-      className="py-16 sm:py-20 lg:py-24"
-    >
+    <Section tone="forest" id="atlas" aria-labelledby="atlas-heading">
       <JsonLd data={itemListJsonLd("States of Northeast India", regionItems)} />
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         {/* header */}
@@ -92,18 +86,18 @@ export async function Atlas() {
           <StampBadge
             topText="THE ATLAS"
             bottomText="REAL NORTHEAST"
-            className="pointer-events-none absolute -top-2 right-0 hidden size-20 text-pine-300/25 lg:block xl:-right-24"
+            className="pointer-events-none absolute -top-2 right-0 hidden size-20 text-secondary/25 lg:block xl:-right-24"
           />
-          <Eyebrow tone="onDark" ornament className="text-pine-300">
+          <Eyebrow tone="pine" ornament>
             The Atlas
           </Eyebrow>
           <h2
             id="atlas-heading"
-            className="mt-4 font-display text-4xl leading-[1.04] font-medium text-balance text-mist-50 sm:text-5xl lg:text-6xl"
+            className="mt-4 font-display text-4xl leading-[1.04] font-medium text-balance sm:text-5xl lg:text-6xl"
           >
-            The Northeast, <span className="italic text-pine-300">documented.</span>
+            The Northeast, <span className="italic text-secondary">documented.</span>
           </h2>
-          <p className="mt-4 max-w-xl text-base text-pretty text-mist-200/75">
+          <p className="mt-4 max-w-xl text-base text-pretty text-muted-foreground">
             Villages, tribes, languages, food, festivals, roads, wildlife, monasteries — a living
             encyclopedia of the region, researched on the ground and growing every week.
           </p>
@@ -113,7 +107,7 @@ export async function Atlas() {
         <Reveal amount={0.15} className="mt-12 grid gap-5 lg:grid-cols-3">
           <Link
             href={(featuredSlug ? `/${featuredSlug}` : "/explore") as Route}
-            className="group relative min-h-[22rem] overflow-hidden rounded-3xl ring-1 ring-white/10 outline-none focus-visible:ring-2 focus-visible:ring-ring lg:col-span-2 lg:min-h-[26rem]"
+            className="group relative min-h-[22rem] overflow-hidden rounded-3xl shadow-panel ring-1 ring-border-subtle outline-none focus-visible:ring-2 focus-visible:ring-ring lg:col-span-2 lg:min-h-[26rem]"
           >
             <Photo
               src="/images/places/anini-new/anini-new-landscape-11.jpeg"
@@ -127,7 +121,7 @@ export async function Atlas() {
               className="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-charcoal-950/25 to-charcoal-950/10"
             />
             <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-              <p className="font-mono text-[11px] tracking-[0.2em] text-pine-300 uppercase">
+              <p className="font-mono text-[11px] tracking-[0.2em] text-secondary uppercase">
                 Featured region
               </p>
               <h3 className="mt-2 font-display text-3xl leading-tight font-medium text-mist-50 sm:text-4xl">
@@ -155,19 +149,19 @@ export async function Atlas() {
           </Link>
 
           {/* by the numbers */}
-          <div className="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.03] p-7">
+          <div className="flex flex-col justify-between rounded-3xl border border-border-subtle bg-card p-7 shadow-panel">
             <div>
-              <p className="font-mono text-[11px] tracking-[0.2em] text-mist-300 uppercase">
+              <p className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground uppercase">
                 By the numbers
               </p>
               <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-7">
-                <StatBlock value="8" label="States" valueClassName="text-mist-50 text-4xl" labelClassName="text-mist-300" />
-                <StatBlock value="200+" label="Tribes" valueClassName="text-mist-50 text-4xl" labelClassName="text-mist-300" />
-                <StatBlock value="200+" label="Languages" valueClassName="text-mist-50 text-4xl" labelClassName="text-mist-300" />
-                <StatBlock value="1000s" label="Stories" valueClassName="text-mist-50 text-4xl" labelClassName="text-mist-300" />
+                <StatBlock value="8" label="States" valueClassName="text-foreground text-4xl" labelClassName="text-muted-foreground" />
+                <StatBlock value="200+" label="Tribes" valueClassName="text-foreground text-4xl" labelClassName="text-muted-foreground" />
+                <StatBlock value="200+" label="Languages" valueClassName="text-foreground text-4xl" labelClassName="text-muted-foreground" />
+                <StatBlock value="1000s" label="Stories" valueClassName="text-foreground text-4xl" labelClassName="text-muted-foreground" />
               </div>
             </div>
-            <p className="mt-8 border-t border-white/10 pt-5 font-mono text-[11px] tracking-wider text-pine-300 uppercase">
+            <p className="mt-8 border-t border-border-subtle pt-5 font-mono text-[11px] tracking-wider text-secondary uppercase">
               Verified on the ground · updated weekly
             </p>
           </div>
@@ -175,7 +169,7 @@ export async function Atlas() {
 
         {/* the eight states — reference index */}
         <div className="mt-14">
-          <p className="font-mono text-xs tracking-[0.2em] text-mist-300 uppercase">
+          <p className="font-mono text-xs tracking-[0.2em] text-muted-foreground uppercase">
             Explore by state
           </p>
           <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -184,31 +178,31 @@ export async function Atlas() {
               const inner = (
                 <>
                   <div className="flex items-start justify-between gap-3">
-                    <span className="font-display text-lg font-medium text-mist-50">{state.name}</span>
-                    <span className="mt-0.5 font-mono text-[10px] tracking-wider text-mist-400/70 tabular-nums">
+                    <span className="font-display text-lg font-medium">{state.name}</span>
+                    <span className="mt-0.5 font-mono text-[10px] tracking-wider text-subtle-foreground tabular-nums">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <p className="mt-2 text-sm text-pretty text-mist-200/65">{state.blurb}</p>
+                  <p className="mt-2 text-sm text-pretty text-muted-foreground">{state.blurb}</p>
                   {slug ? (
-                    <span className="mt-3 inline-flex items-center gap-1 font-mono text-[10px] tracking-wider text-pine-300 uppercase">
+                    <span className="mt-3 inline-flex items-center gap-1 font-mono text-[10px] tracking-wider text-secondary uppercase">
                       In the atlas
                       <ArrowUpRight className="size-3" />
                     </span>
                   ) : (
-                    <span className="mt-3 inline-block font-mono text-[10px] tracking-wider text-mist-400/60 uppercase">
+                    <span className="mt-3 inline-block font-mono text-[10px] tracking-wider text-subtle-foreground uppercase">
                       Mapping in progress
                     </span>
                   )}
                 </>
               );
               const base =
-                "flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-5";
+                "flex h-full flex-col rounded-2xl border border-border-subtle bg-card p-5 shadow-panel";
               return slug ? (
                 <Link
                   key={state.name}
                   href={`/${slug}` as Route}
-                  className={`group ${base} transition-colors duration-200 outline-none hover:bg-white/[0.06] focus-visible:ring-2 focus-visible:ring-ring`}
+                  className={`group ${base} transition-colors duration-200 outline-none hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring`}
                 >
                   {inner}
                 </Link>
@@ -223,16 +217,16 @@ export async function Atlas() {
 
         {/* topic taxonomy */}
         <div className="mt-14">
-          <p className="font-mono text-xs tracking-[0.2em] text-mist-300 uppercase">In the Atlas</p>
+          <p className="font-mono text-xs tracking-[0.2em] text-muted-foreground uppercase">In the Atlas</p>
           <div className="mt-5 grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
             {TOPICS.map(({ icon: Icon, label, blurb }) => (
               <div key={label} className="flex items-start gap-3.5">
-                <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-pine-500/12 text-pine-300 ring-1 ring-pine-400/20 [&_svg]:size-4.5">
+                <span className="mt-0.5 inline-flex size-9 shrink-0 items-center justify-center rounded-xl bg-pine-500/12 text-secondary ring-1 ring-pine-400/20 [&_svg]:size-4.5">
                   <Icon />
                 </span>
                 <span>
-                  <span className="block font-medium text-mist-50">{label}</span>
-                  <span className="mt-0.5 block text-sm text-mist-200/65">{blurb}</span>
+                  <span className="block font-medium">{label}</span>
+                  <span className="mt-0.5 block text-sm text-muted-foreground">{blurb}</span>
                 </span>
               </div>
             ))}
@@ -241,7 +235,7 @@ export async function Atlas() {
 
         <Link
           href={"/explore" as Route}
-          className="group mt-12 inline-flex items-center gap-2 font-mono text-xs font-medium tracking-[0.18em] text-mist-100 uppercase underline-offset-4 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
+          className="group mt-12 inline-flex items-center gap-2 font-mono text-xs font-medium tracking-[0.18em] text-foreground uppercase underline-offset-4 outline-none hover:underline focus-visible:ring-2 focus-visible:ring-ring"
         >
           Open the full Atlas
           <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />

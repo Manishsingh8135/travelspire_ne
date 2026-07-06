@@ -66,7 +66,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
     <Link
       href={"/explore" as Route}
       aria-label={feature.title}
-      className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-3xl ring-1 ring-white/10 outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-3xl shadow-panel ring-1 ring-border-subtle outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
       <Photo
         src={feature.src}
@@ -81,7 +81,7 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
         className="absolute inset-0 bg-gradient-to-t from-charcoal-950/92 via-charcoal-950/25 to-charcoal-950/5"
       />
       <div className="relative p-6 sm:p-7">
-        <p className="font-mono text-[11px] tracking-[0.18em] text-pine-300 uppercase">
+        <p className="font-mono text-[11px] tracking-[0.18em] text-secondary uppercase">
           {feature.kicker}
         </p>
         <h3 className="mt-2 font-display text-2xl leading-tight font-medium text-balance text-mist-50 sm:text-[1.75rem]">
@@ -104,25 +104,19 @@ function FeatureCard({ feature, index }: { feature: Feature; index: number }) {
  */
 export function Featured() {
   return (
-    <Section
-      tone="forest"
-      padded={false}
-      id="featured"
-      aria-labelledby="featured-heading"
-      className="py-16 sm:py-20 lg:py-24"
-    >
+    <Section tone="forest" id="featured" aria-labelledby="featured-heading">
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         <div className="max-w-2xl">
-          <Eyebrow tone="onDark" ornament className="text-pine-300">
+          <Eyebrow tone="pine" ornament>
             Featured Experiences
           </Eyebrow>
           <h2
             id="featured-heading"
-            className="mt-4 font-display text-4xl leading-[1.04] font-medium text-balance text-mist-50 sm:text-5xl"
+            className="mt-4 font-display text-4xl leading-[1.04] font-medium text-balance sm:text-5xl lg:text-6xl"
           >
-            Moments you&apos;ll talk about <span className="italic text-pine-300">for years.</span>
+            Moments you&apos;ll talk about <span className="italic text-secondary">for years.</span>
           </h2>
-          <p className="mt-4 max-w-xl text-base text-pretty text-mist-200/75">
+          <p className="mt-4 max-w-xl text-base text-pretty text-muted-foreground">
             Not a checklist of sights — a handful of experiences worth crossing the country for.
           </p>
         </div>

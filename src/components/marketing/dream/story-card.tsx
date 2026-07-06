@@ -25,7 +25,7 @@ export function StoryCard({ story, index }: { story: Story; index: number }) {
       aria-label={`${story.headline} — ${story.location}, ${story.region}`}
       className={cn(
         "group relative block aspect-[3/4] w-[78vw] max-w-[320px] shrink-0 snap-start overflow-hidden rounded-2xl",
-        "ring-1 ring-white/10 sm:w-[290px] lg:w-[300px]",
+        "shadow-panel ring-1 ring-border-subtle sm:w-[290px] lg:w-[300px]",
         "outline-none focus-visible:ring-2 focus-visible:ring-ring",
       )}
     >

@@ -23,16 +23,10 @@ const LAYERS = [
  */
 export function Membership() {
   return (
-    <Section
-      tone="forest"
-      padded={false}
-      id="membership"
-      aria-labelledby="membership-heading"
-      className="py-16 sm:py-20 lg:py-24"
-    >
+    <Section tone="forest" id="membership" aria-labelledby="membership-heading">
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-12">
         <Reveal amount={0.15}>
-          <div className="overflow-hidden rounded-3xl border border-marigold-400/25 bg-charcoal-900 shadow-2xl">
+          <div className="overflow-hidden rounded-3xl border border-accent/25 bg-card shadow-deep">
             <div className="grid lg:grid-cols-2">
               {/* aspirational scene */}
               <div className="relative min-h-[16rem] lg:min-h-[34rem]">
@@ -50,7 +44,7 @@ export function Membership() {
                 <StampBadge
                   topText="THE EXPLORER"
                   bottomText="MEMBER"
-                  className="absolute top-6 left-6 size-20 text-marigold-300/70"
+                  className="absolute top-6 left-6 size-20 text-accent/70"
                 />
               </div>
 
@@ -65,24 +59,24 @@ export function Membership() {
                   }}
                 />
                 <div className="relative">
-                  <Eyebrow tone="onDark" ornament className="text-marigold-300">
+                  <Eyebrow tone="onDark" ornament className="text-accent">
                     Membership
                   </Eyebrow>
                   <h2
                     id="membership-heading"
-                    className="mt-4 font-display text-4xl leading-[1.04] font-medium text-balance text-mist-50 sm:text-5xl"
+                    className="mt-4 font-display text-4xl leading-[1.04] font-medium text-balance sm:text-5xl lg:text-6xl"
                   >
-                    Become an <span className="italic text-marigold-300">Explorer.</span>
+                    Become an <span className="italic text-accent">Explorer.</span>
                   </h2>
-                  <p className="mt-4 max-w-md text-base text-pretty text-mist-200/75">
+                  <p className="mt-4 max-w-md text-base text-pretty text-muted-foreground">
                     Explore the Northeast free for as long as you like. When you&apos;re ready to go
                     deeper, the Explorer membership gives you the layers the locals live by.
                   </p>
 
                   <ul className="mt-8 grid gap-x-6 gap-y-3.5 sm:grid-cols-2">
                     {LAYERS.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-sm text-mist-100">
-                        <span className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-marigold-400/15 text-marigold-300 [&_svg]:size-3.5">
+                      <li key={item} className="flex items-start gap-2.5 text-sm">
+                        <span className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent [&_svg]:size-3.5">
                           <Check />
                         </span>
                         {item}
@@ -92,12 +86,12 @@ export function Membership() {
 
                   <Link
                     href={"/explore" as Route}
-                    className="group mt-9 inline-flex items-center gap-2 rounded-full border border-marigold-400/40 px-6 py-3 text-sm font-medium tracking-wide text-marigold-300 uppercase transition-colors duration-200 outline-none hover:bg-marigold-400/10 hover:text-marigold-200 focus-visible:ring-2 focus-visible:ring-ring"
+                    className="group mt-9 inline-flex items-center gap-2 rounded-full border border-accent/40 px-6 py-3 text-sm font-medium tracking-wide text-accent uppercase transition-colors duration-200 outline-none hover:bg-accent/10 hover:text-accent-hover focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     Become an Explorer
                     <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </Link>
-                  <p className="mt-3 font-mono text-[11px] tracking-wider text-mist-300/70 uppercase">
+                  <p className="mt-3 font-mono text-[11px] tracking-wider text-subtle-foreground uppercase">
                     Start free · upgrade when you&apos;re ready
                   </p>
                 </div>

@@ -103,7 +103,7 @@ export function PlaceRail() {
           <p className="font-display text-xl font-medium text-mist-50 sm:text-2xl">
             Explore what&apos;s around you
           </p>
-          <p className="mt-1 text-mist-200/70">Pick a category — the region rearranges itself.</p>
+          <p className="mt-1 text-muted-foreground">Pick a category — the region rearranges itself.</p>
         </div>
         {/* filter chips */}
         <div className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 [&::-webkit-scrollbar]:hidden">
@@ -119,7 +119,7 @@ export function PlaceRail() {
                   "shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   on
                     ? "border-transparent bg-secondary text-secondary-foreground"
-                    : "border-white/15 text-mist-200 hover:bg-white/5",
+                    : "border-border-default text-muted-foreground hover:bg-muted/60",
                 )}
               >
                 {chip}
