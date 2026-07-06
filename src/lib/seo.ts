@@ -65,6 +65,26 @@ export function itemListJsonLd(
 }
 
 /**
+ * BreadcrumbList node — always emitted together with the Breadcrumbs UI
+ * (never one without the other; see docs-new/07-pages/README.md §2).
+ */
+export function breadcrumbJsonLd(
+  items: { name: string; path?: string }[],
+): Record<string, unknown> {
+  const base = env.NEXT_PUBLIC_SITE_URL;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: item.name,
+      ...(item.path ? { item: `${base}${item.path}` } : {}),
+    })),
+  };
+}
+
+/**
  * Build Next Metadata from a Publishable `seo` jsonb column (title, description,
  * canonical, ogImage, noindex) with strong fallbacks. Every published entity
  * gets sane SEO for free; admin overrides live in the jsonb. metadataBase (set

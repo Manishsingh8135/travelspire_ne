@@ -124,7 +124,34 @@ export async function updateTour(
     return { error: "Please fix the highlighted fields.", fieldErrors: fieldErrorsOf(parsed.error) };
   }
   const sb = createSupabaseAdminClient();
-  const { error } = await sb.from("tours").update(toWrite(parsed.data)).eq("id", id);
+  // Merge body: the form owns overview/highlights/inclusions/exclusions/itinerary;
+  // enriched keys (gallery, routeStops, thingsToCarry, testimonials, …) written by
+  // importers/other editors must survive an admin save.
+  const { data: existing, error: readErr } = await sb
+    .from("tours")
+    .select("body")
+    .eq("id", id)
+    .maybeSingle();
+  if (readErr) return dbErrorToState(readErr);
+  const write = toWrite(parsed.data);
+  const prevBody =
+    existing?.body && typeof existing.body === "object" && !Array.isArray(existing.body)
+      ? (existing.body as Record<string, Json>)
+      : {};
+  const formBody =
+    write.body && typeof write.body === "object" && !Array.isArray(write.body)
+      ? (write.body as Record<string, Json>)
+      : {};
+  // Form-owned keys are always replaced (so clearing a field really clears it).
+  const FORM_KEYS = ["overview", "highlights", "inclusions", "exclusions", "itinerary"] as const;
+  const merged: Record<string, Json> = { ...prevBody, ...formBody };
+  for (const key of FORM_KEYS) {
+    if (!(key in formBody)) delete merged[key];
+  }
+  const { error } = await sb
+    .from("tours")
+    .update({ ...write, body: Object.keys(merged).length ? merged : null })
+    .eq("id", id);
   if (error) return dbErrorToState(error);
   revalidateTours();
   redirect("/admin/tours");
