@@ -44,6 +44,7 @@
     "legacy",
     "helper-ui-components",
     "docs",
-    "docs-new"
+    "docs-new",
+    "scripts"
   ]
 }
