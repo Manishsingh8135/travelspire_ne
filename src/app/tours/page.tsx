@@ -165,7 +165,11 @@ export default async function ToursPage({ searchParams }: { searchParams: SP }) 
           <section key={window} className="mt-14" aria-label={`Best time ${window}`}>
             <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
               <h2 className="font-display text-2xl font-medium sm:text-3xl">
-                {window === "Year-round" ? "Any month works" : "Riding out"}
+                {window === "Year-round"
+                  ? "Any month works"
+                  : groupTours.every((t) => t.type === "festival")
+                    ? "Festival dates"
+                    : "Riding out"}
               </h2>
               <span className="font-mono text-xs tracking-[0.18em] text-secondary uppercase">
                 {window}

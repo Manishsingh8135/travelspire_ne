@@ -146,6 +146,7 @@ export default async function TourPage({ params }: Params) {
   const gallery = galleryImages(body, tour.title);
   const quotes = testimonials(body);
   const importantNote = readString(tour.body, "importantNote");
+  const location = readString(tour.body, "location") ?? "Arunachal Pradesh";
   const packageVariants = variants(body);
   const maxGroup = typeof body.maxGroupSize === "number" ? body.maxGroupSize : null;
 
@@ -228,7 +229,7 @@ export default async function TourPage({ params }: Params) {
                   {tour.type}
                 </Badge>
                 <span className="font-mono text-[11px] tracking-[0.18em] text-mist-200 uppercase">
-                  Arunachal Pradesh
+                  {location}
                 </span>
               </div>
               <h1 className="mt-3 max-w-3xl font-display text-3xl leading-[1.05] font-medium text-balance text-mist-50 sm:text-5xl">
