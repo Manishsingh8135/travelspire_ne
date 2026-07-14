@@ -7,7 +7,8 @@ import { z } from "zod";
  */
 
 export const GroupTierSchema = z.object({
-  groupSize: z.number().int().min(1),
+  /** 0 = group size unstated in the source (parser fallback — fix in the composer). */
+  groupSize: z.number().int().min(0),
   pricePax: z.number().int().min(0),
 });
 export type GroupTier = z.infer<typeof GroupTierSchema>;

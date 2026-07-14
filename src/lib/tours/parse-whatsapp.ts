@@ -51,7 +51,7 @@ const ROUTE_PARENS = /^(.+?)\s+(?:to|-)\s+(.+?)\s*\(\s*(\d+)\s*km\s*,?\s*([^)]*)
 const BARE_TIME = /^\d{1,2}[:.]\d{2}\s*(?:am|pm)?\s*$/i;
 const THANK_YOU = /^thank\s*you!?\.?$/i;
 
-function parseRouteFromTitle(title: string): { from: string; to: string } | null {
+export function parseRouteFromTitle(title: string): { from: string; to: string } | null {
   // " to " always splits; " - " splits only with surrounding spaces (protects hyphenated names).
   const to = /^(.{2,}?)\s+to\s+(.{2,})$/i.exec(title);
   if (to) return { from: to[1]!.trim(), to: to[2]!.trim() };
@@ -69,7 +69,7 @@ function overnightType(text: string): OvernightType | null {
   return null;
 }
 
-function parseOvernight(text: string): Overnight | null {
+export function parseOvernight(text: string): Overnight | null {
   const m = OVERNIGHT.exec(text);
   if (!m) return null;
   // "Anini Homestay with Bonfire evening." → name "Anini", type homestay.
