@@ -67,6 +67,7 @@ export function EditorShell({
   slug,
   status,
   liveHref,
+  actions,
   tabs,
   summary,
   rail,
@@ -81,6 +82,8 @@ export function EditorShell({
   slug?: string | null;
   status?: string | null;
   liveHref?: string;
+  /** Extra header controls (e.g. PublishButton) rendered beside the status pill. */
+  actions?: React.ReactNode;
   tabs: EditorTab[];
   /** Mono computed facts under the tab rail (desktop). */
   summary?: React.ReactNode;
@@ -147,8 +150,9 @@ export function EditorShell({
               <p className="font-mono text-xs text-muted-foreground">{slug}</p>
             ) : null}
           </div>
-          <div className="ml-auto flex items-center gap-3">
+          <div className="ml-auto flex flex-wrap items-center gap-3">
             <StatusPill status={status} />
+            {actions}
             {liveHref ? (
               <a
                 href={liveHref}

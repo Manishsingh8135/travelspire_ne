@@ -89,6 +89,59 @@ export const TourFormSchema = z.object({
 
 export type TourForm = z.infer<typeof TourFormSchema>;
 
+const optionalUuid = z.union([z.uuid(), z.literal("")]).optional();
+
+export const FestivalFormSchema = z.object({
+  name: z.string().min(1, "Required"),
+  slug,
+  tribeId: optionalUuid,
+  placeId: optionalUuid,
+  regionId: optionalUuid,
+  month: z.coerce.number().int().min(1).max(12).optional(),
+  typicalStartDay: z.coerce.number().int().min(1).max(31).optional(),
+  durationDays: z.coerce.number().int().min(1).max(30).optional(),
+  ruleNote: z.string().optional(),
+  significance: z.string().optional(),
+  whatToExpect: z.string().optional(), // PairList JSON [{a: title, b: note}]
+  attendWhere: z.string().optional(),
+  attendWhenNote: z.string().optional(),
+  attendScarcity: z.string().optional(),
+  faqs: z.string().optional(), // PairList JSON [{a: q, b: a}]
+  seoTitle: z.string().optional(),
+  seoDescription: z.string().optional(),
+});
+export type FestivalForm = z.infer<typeof FestivalFormSchema>;
+
+export const TribeFormSchema = z.object({
+  name: z.string().min(1, "Required"),
+  slug,
+  who: z.string().optional(),
+  seoTitle: z.string().optional(),
+  seoDescription: z.string().optional(),
+});
+export type TribeForm = z.infer<typeof TribeFormSchema>;
+
+export const PERMIT_TYPES = ["ILP", "PAP", "RAP", "none"] as const;
+
+export const PermitFormSchema = z.object({
+  name: z.string().min(1, "Required"),
+  slug,
+  permitType: z.enum(PERMIT_TYPES),
+  officialPortal: z.string().optional(),
+  helpline: z.string().optional(),
+  processingTime: z.string().optional(),
+  validity: z.string().optional(),
+  indiansAllowed: z.boolean(),
+  foreignersAllowed: z.boolean(),
+  onArrival: z.boolean(),
+  lastVerified: z.string().optional(), // yyyy-mm-dd from <input type=date>
+  fee: z.string().optional(), // PairList JSON [{a: label, b: value}]
+  faqs: z.string().optional(), // PairList JSON [{a: question, b: answer}]
+  seoTitle: z.string().optional(),
+  seoDescription: z.string().optional(),
+});
+export type PermitForm = z.infer<typeof PermitFormSchema>;
+
 /** First error message per field, for form display. */
 export function fieldErrorsOf(error: z.ZodError): Record<string, string> {
   const out: Record<string, string> = {};

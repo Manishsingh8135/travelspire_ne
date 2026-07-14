@@ -106,6 +106,28 @@ export async function listPermitsForAdmin(
   return { rows: data ?? [], total: count ?? 0 };
 }
 
+export async function getTribeOptions(): Promise<{ id: string; name: string }[]> {
+  const sb = createSupabaseAdminClient();
+  const { data, error } = await sb
+    .from("tribes")
+    .select("id, name")
+    .is("deleted_at", null)
+    .order("name");
+  if (error) throw error;
+  return data ?? [];
+}
+
+export async function getPlaceOptions(): Promise<{ id: string; name: string }[]> {
+  const sb = createSupabaseAdminClient();
+  const { data, error } = await sb
+    .from("places")
+    .select("id, name")
+    .is("deleted_at", null)
+    .order("name");
+  if (error) throw error;
+  return data ?? [];
+}
+
 export async function getPermitForAdmin(id: string): Promise<AdminPermit | null> {
   const sb = createSupabaseAdminClient();
   const { data, error } = await sb.from("permit_zones").select("*").eq("id", id).maybeSingle();
