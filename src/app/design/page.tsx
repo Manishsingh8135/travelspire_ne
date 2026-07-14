@@ -18,6 +18,12 @@ import {
   SearchBar,
   Textarea,
 } from "@/components/ui";
+import * as FieldIcons from "@/components/icons/field-icons";
+import { ContourField } from "@/components/marketing/decor/contour-field";
+import { WeaveBand } from "@/components/marketing/decor/weave-band";
+import { MistBand } from "@/components/marketing/decor/mist-band";
+import { WaxStamp } from "@/components/marketing/decor/wax-stamp";
+import { NEMap } from "@/components/marketing/decor/ne-map";
 
 export const metadata: Metadata = {
   title: "Design system",
@@ -344,6 +350,79 @@ export default function DesignSystemPage() {
               </Button>
             </CardFooter>
           </Card>
+        </div>
+      </section>
+
+      {/* ── Field Icons v1 (08-blueprint/14 D4) ─────────────────────────── */}
+      <section className="flex flex-col gap-5">
+        <h2 className="font-display text-2xl font-medium">Field Icons</h2>
+        <p className="max-w-xl text-sm text-muted-foreground">
+          The owned set — 24-grid, 1.75 stroke, field-guide line work. Public surfaces only.
+        </p>
+        <div className="grid grid-cols-3 gap-3 sm:grid-cols-5 lg:grid-cols-8">
+          {Object.entries(FieldIcons).map(([name, Icon]) => (
+            <div
+              key={name}
+              className="flex flex-col items-center gap-2 rounded-lg border border-border-subtle p-4"
+            >
+              <Icon className="size-7 text-foreground" />
+              <span className="text-center font-mono text-[10px] tracking-wide text-muted-foreground">
+                {name}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Marginalia v1 (08-blueprint/14 D5) ──────────────────────────── */}
+      <section className="flex flex-col gap-5">
+        <h2 className="font-display text-2xl font-medium">Marginalia</h2>
+        <p className="max-w-xl text-sm text-muted-foreground">
+          Section atmosphere — background motifs render at 4–7% opacity; stamps stay crisp at
+          edges. One family per section.
+        </p>
+        <div className="grid gap-5 lg:grid-cols-2">
+          <div className="relative overflow-hidden rounded-lg border border-border-subtle p-6">
+            <ContourField className="absolute -top-10 -right-10 w-[26rem] text-foreground opacity-[0.06]" />
+            <p className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
+              ContourField · bg motif @6%
+            </p>
+            <p className="mt-16 max-w-xs text-sm text-muted-foreground">
+              Content sits over the contour field — the motif whispers, never shouts.
+            </p>
+          </div>
+          <div className="flex flex-col justify-between gap-6 rounded-lg border border-border-subtle p-6">
+            <div className="flex flex-col gap-4">
+              <p className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
+                WeaveBand · diamond / lines
+              </p>
+              <WeaveBand variant="diamond" className="h-5 w-full text-foreground/60" />
+              <WeaveBand variant="lines" className="h-5 w-full text-foreground/60" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <p className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
+                MistBand
+              </p>
+              <MistBand className="w-full text-foreground/50" />
+            </div>
+          </div>
+          <div className="flex items-center gap-8 rounded-lg border border-border-subtle p-6">
+            <WaxStamp label="Dream" sub="Stage 01" className="size-24 -rotate-3 text-secondary" />
+            <WaxStamp label="Tawang" sub="Explored" className="size-24 rotate-2 text-marigold-600" />
+            <p className="max-w-[16rem] text-sm text-muted-foreground">
+              WaxStamp — the postal/permit mark language for chapter nodes and passport moments.
+            </p>
+          </div>
+          <div className="rounded-lg border border-border-subtle p-6">
+            <p className="font-mono text-[10px] tracking-wider text-muted-foreground uppercase">
+              NEMap · activeState=&quot;arunachal-pradesh&quot; · labels on
+            </p>
+            <NEMap
+              showLabels
+              activeState="arunachal-pradesh"
+              className="mt-4 w-full text-foreground/80"
+            />
+          </div>
         </div>
       </section>
     </main>
