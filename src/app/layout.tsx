@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Hanken_Grotesk, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { NightAB } from "@/components/dev/night-ab";
 import { env } from "@/lib/env";
 import "./globals.css";
 
@@ -50,6 +51,8 @@ export default function RootLayout({
           themes={["light", "dark"]}
         >
           {children}
+          {/* TEMPORARY: dark-theme A/B switch — dev only, deleted after the verdict. */}
+          <NightAB />
         </ThemeProvider>
       </body>
     </html>

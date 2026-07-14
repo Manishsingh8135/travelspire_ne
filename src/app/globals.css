@@ -90,23 +90,24 @@
   --color-marigold-900: oklch(0.42 0.08 58);
   --color-marigold-950: oklch(0.32 0.06 55);
 
-  /* Midnight Basalt — the dark-mode foundation (recolored per
-     08-blueprint/14 D1; was the green "Charcoal Forest" at hue 156, which
-     the founder rejected). Warm near-black: the hue drifts 84→64 as it
-     deepens — the same warm drift as the mist ramp — at low chroma, so dark
-     chapters read "night", not "green room". Dial dark-end chroma up to
-     ~0.018 for more warmth, down to ~0.006 to go near-neutral. */
-  --color-charcoal-50: oklch(0.965 0.005 84);
-  --color-charcoal-100: oklch(0.91 0.007 82);
-  --color-charcoal-200: oklch(0.82 0.009 80);
-  --color-charcoal-300: oklch(0.7 0.011 78);
-  --color-charcoal-400: oklch(0.57 0.012 76);
-  --color-charcoal-500: oklch(0.47 0.013 74);
-  --color-charcoal-600: oklch(0.4 0.014 72);
-  --color-charcoal-700: oklch(0.34 0.014 70);
-  --color-charcoal-800: oklch(0.285 0.014 68);
-  --color-charcoal-900: oklch(0.235 0.013 66);
-  --color-charcoal-950: oklch(0.195 0.012 64);
+  /* INK NIGHT — the dark foundation, candidate A (08-blueprint/14 D1, third
+     iteration: founder rejected forest-green hue 156 AND the warm-neutral
+     "Midnight Basalt" as drab). Deep blue-black — iron-gall ink, the high-
+     Himalaya sky an hour after sunset. Marigold sits near-complementary to
+     hue ~268, so every CTA/stamp/glow burns like a butter lamp against it.
+     Candidate B ("True Basalt") overrides below via [data-night="basalt"] —
+     the A/B toggle; the loser gets deleted after the founder's verdict. */
+  --color-charcoal-50: oklch(0.965 0.004 262);
+  --color-charcoal-100: oklch(0.91 0.006 262);
+  --color-charcoal-200: oklch(0.82 0.008 262);
+  --color-charcoal-300: oklch(0.7 0.01 263);
+  --color-charcoal-400: oklch(0.57 0.013 264);
+  --color-charcoal-500: oklch(0.47 0.016 265);
+  --color-charcoal-600: oklch(0.4 0.018 266);
+  --color-charcoal-700: oklch(0.335 0.02 267);
+  --color-charcoal-800: oklch(0.275 0.021 268);
+  --color-charcoal-900: oklch(0.225 0.021 269);
+  --color-charcoal-950: oklch(0.185 0.02 270);
 
   /* Fonts — wired to next/font variables on <html> */
   --font-sans: var(--font-hanken), system-ui, sans-serif;
@@ -444,6 +445,34 @@
       transform: none;
     }
   }
+}
+
+/* =========================================================================
+   DARK A/B — candidate B: "TRUE BASALT" (near-neutral, deeper; warmth comes
+   from the glow layer and content, not the base). Toggled by the temporary
+   dev switch (data-night on <html>). DELETE the losing candidate after the
+   founder's verdict — this block must not ship to production long-term.
+   ========================================================================= */
+html[data-night="basalt"] {
+  --color-charcoal-50: oklch(0.965 0.003 80);
+  --color-charcoal-100: oklch(0.91 0.004 78);
+  --color-charcoal-200: oklch(0.82 0.005 76);
+  --color-charcoal-300: oklch(0.7 0.006 74);
+  --color-charcoal-400: oklch(0.57 0.006 72);
+  --color-charcoal-500: oklch(0.47 0.006 70);
+  --color-charcoal-600: oklch(0.395 0.006 68);
+  --color-charcoal-700: oklch(0.33 0.006 66);
+  --color-charcoal-800: oklch(0.27 0.006 64);
+  --color-charcoal-900: oklch(0.215 0.005 62);
+  --color-charcoal-950: oklch(0.175 0.005 60);
+}
+
+/* Ink Night's inset well leans blue; basalt's stays warm-neutral. */
+[data-tone="forest"] {
+  --bg-inset: oklch(0.16 0.018 268);
+}
+html[data-night="basalt"] [data-tone="forest"] {
+  --bg-inset: oklch(0.15 0.005 62);
 }
 
 /* Respect reduced-motion globally (mandatory). */
