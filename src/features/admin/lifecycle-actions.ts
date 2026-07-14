@@ -5,18 +5,42 @@ import { requireAdmin } from "@/lib/auth";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import { revalidatePublicAtlas } from "./revalidate";
 
-export type ContentTable = "tours" | "places" | "regions";
-const ALLOWED: ContentTable[] = ["tours", "places", "regions"];
+export type ContentTable =
+  | "tours"
+  | "places"
+  | "regions"
+  | "festivals"
+  | "tribes"
+  | "permit_zones";
+const ALLOWED: ContentTable[] = [
+  "tours",
+  "places",
+  "regions",
+  "festivals",
+  "tribes",
+  "permit_zones",
+];
+
+/** Admin route segment per table (permit_zones lives at /admin/permits). */
+const ADMIN_SEGMENT: Record<ContentTable, string> = {
+  tours: "tours",
+  places: "places",
+  regions: "regions",
+  festivals: "festivals",
+  tribes: "tribes",
+  permit_zones: "permits",
+};
 
 function revalidateFor(table: ContentTable) {
-  revalidatePath(`/admin/${table}`);
+  revalidatePath(`/admin/${ADMIN_SEGMENT[table]}`);
   revalidatePath("/admin");
   if (table === "tours") {
     revalidatePath("/tours");
     revalidatePath("/tours/[slug]", "page");
-  } else {
+  } else if (table === "places" || table === "regions") {
     revalidatePublicAtlas();
   }
+  // festivals/tribes/permit_zones: no public routes yet — admin paths suffice.
   revalidatePath("/sitemap.xml");
 }
 

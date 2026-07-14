@@ -1,0 +1,124 @@
+"use client";
+
+import { CircleCheck, Circle, Archive, Trash2 } from "lucide-react";
+import type { AdminFestival } from "@/server/admin/content";
+import {
+  AdminTable,
+  type AdminColumn,
+  type TableFilter,
+  type BulkAction,
+} from "@/features/admin/ui/data-table";
+import { StatusBadge } from "@/features/admin/ui/status-badge";
+import { RowActions } from "@/features/admin/ui/row-actions";
+import { useLifecycle } from "@/features/admin/ui/use-lifecycle";
+import { formatRelative } from "@/features/admin/ui/format";
+
+const MONTHS = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+function recurrenceMonth(r: AdminFestival): string {
+  const rec = r.recurrence as { month?: number; rule_note?: string } | null;
+  return rec?.month ? (MONTHS[rec.month] ?? "—") : "—";
+}
+
+export function FestivalsTable({
+  rows,
+  total,
+  pageSize,
+}: {
+  rows: AdminFestival[];
+  total: number;
+  pageSize: number;
+}) {
+  const lc = useLifecycle("festivals", "festival");
+
+  const columns: AdminColumn<AdminFestival>[] = [
+    {
+      id: "name",
+      header: "Name",
+      sortable: true,
+      cell: (r) => (
+        <div className="min-w-0">
+          <div className="truncate font-medium text-foreground">{r.name}</div>
+          <div className="truncate font-mono text-xs text-muted-foreground">{r.slug}</div>
+        </div>
+      ),
+    },
+    { id: "status", header: "Status", sortable: true, cell: (r) => <StatusBadge status={r.status} /> },
+    {
+      id: "month",
+      header: "Month",
+      cell: (r) => (
+        <span className="font-mono text-xs text-muted-foreground uppercase">{recurrenceMonth(r)}</span>
+      ),
+    },
+    {
+      id: "tribe",
+      header: "Tribe",
+      cell: (r) => <span className="text-muted-foreground">{r.tribe?.name ?? "—"}</span>,
+    },
+    {
+      id: "place",
+      header: "Place",
+      cell: (r) => <span className="text-muted-foreground">{r.place?.name ?? "—"}</span>,
+    },
+    {
+      id: "updated",
+      header: "Updated",
+      sortable: true,
+      align: "right",
+      cell: (r) => (
+        <span className="font-mono text-xs text-muted-foreground">{formatRelative(r.updated_at)}</span>
+      ),
+    },
+  ];
+
+  const filters: TableFilter[] = [
+    {
+      id: "status",
+      label: "Status",
+      options: [
+        { value: "draft", label: "Draft" },
+        { value: "published", label: "Published" },
+        { value: "archived", label: "Archived" },
+      ],
+    },
+  ];
+
+  const ids = (rows: AdminFestival[]) => rows.map((r) => r.id);
+  const bulkActions: BulkAction<AdminFestival>[] = [
+    { id: "publish", label: "Publish", icon: CircleCheck, run: (r) => lc.publish(ids(r)) },
+    { id: "unpublish", label: "Unpublish", icon: Circle, run: (r) => lc.unpublish(ids(r)) },
+    { id: "archive", label: "Archive", icon: Archive, run: (r) => lc.archive(ids(r)) },
+    { id: "delete", label: "Delete", icon: Trash2, danger: true, run: (r) => lc.remove(ids(r)) },
+  ];
+
+  return (
+    <AdminTable
+      rows={rows}
+      total={total}
+      pageSize={pageSize}
+      columns={columns}
+      filters={filters}
+      searchPlaceholder="Search festivals…"
+      entityPlural="festivals"
+      getEditHref={(r) => `/admin/festivals/${r.id}`}
+      bulkActions={bulkActions}
+      rowActions={(r) => (
+        <RowActions
+          editHref={`/admin/festivals/${r.id}`}
+          published={r.status === "published"}
+          onPublishToggle={() =>
+            r.status === "published" ? lc.unpublish([r.id]) : lc.publish([r.id])
+          }
+          onArchive={() => lc.archive([r.id])}
+        />
+      )}
+      emptyState={
+        <div className="flex flex-col items-center gap-2 p-12 text-center">
+          <p className="font-display text-lg">No festivals yet</p>
+          <p className="text-sm text-muted-foreground">The calendar layer starts here.</p>
+        </div>
+      }
+    />
+  );
+}

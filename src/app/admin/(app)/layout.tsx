@@ -20,6 +20,9 @@ export default async function AdminLayout({ children }: { children: ReactNode })
     tours: counts.tours.draft,
     places: counts.places.draft,
     regions: counts.regions.draft,
+    festivals: counts.festivals.draft,
+    tribes: counts.tribes.draft,
+    permits: counts.permits.draft,
   };
 
   return (

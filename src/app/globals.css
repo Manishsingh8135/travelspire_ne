@@ -387,6 +387,16 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* Tailwind v4 preflight ships buttons with `cursor: default` — restore the
+     pointer affordance on every enabled interactive control, site-wide. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  select:not(:disabled),
+  summary,
+  label[for] {
+    cursor: pointer;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -475,7 +485,7 @@
   font-family: var(--font-sans);
 }
 [cmdk-item] {
-  cursor: default;
+  cursor: pointer;
   border-radius: var(--radius-sm);
   transition: background-color 100ms var(--ease-out);
 }

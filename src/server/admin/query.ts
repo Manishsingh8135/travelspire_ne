@@ -1,7 +1,13 @@
 import "server-only";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
-export type ContentTable = "tours" | "places" | "regions";
+export type ContentTable =
+  | "tours"
+  | "places"
+  | "regions"
+  | "festivals"
+  | "tribes"
+  | "permit_zones";
 
 export type EntityCounts = {
   total: number;

@@ -65,14 +65,20 @@ export type AdminCounts = {
   regions: EntityCounts;
   places: EntityCounts;
   tours: EntityCounts;
+  festivals: EntityCounts;
+  tribes: EntityCounts;
+  permits: EntityCounts;
 };
 
 /** Real head-count aggregates for the dashboard + rail badges. */
 export async function getAdminCounts(): Promise<AdminCounts> {
-  const [regions, places, tours] = await Promise.all([
+  const [regions, places, tours, festivals, tribes, permits] = await Promise.all([
     countByStatus("regions"),
     countByStatus("places"),
     countByStatus("tours"),
+    countByStatus("festivals"),
+    countByStatus("tribes"),
+    countByStatus("permit_zones"),
   ]);
-  return { regions, places, tours };
+  return { regions, places, tours, festivals, tribes, permits };
 }
