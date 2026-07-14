@@ -100,7 +100,21 @@ export async function updatePlace(
     return { error: "Please fix the highlighted fields.", fieldErrors: fieldErrorsOf(parsed.error) };
   }
   const sb = createSupabaseAdminClient();
-  const { error } = await sb.from("places").update(toWrite(parsed.data)).eq("id", id);
+  const write = toWrite(parsed.data);
+  // Merge body: the form owns only `intro`. Enriched field-entry keys
+  // (field_note, story, approach, vitals_extra, ground_truth_flags, …)
+  // are written by content seeds and MUST survive admin saves.
+  const { data: existing } = await sb.from("places").select("body").eq("id", id).maybeSingle();
+  const existingBody =
+    existing?.body && typeof existing.body === "object" && !Array.isArray(existing.body)
+      ? (existing.body as Record<string, Json>)
+      : {};
+  const merged: Record<string, Json> = { ...existingBody };
+  const intro = parsed.data.intro?.trim();
+  if (intro) merged.intro = intro;
+  else delete merged.intro;
+  write.body = Object.keys(merged).length ? merged : null;
+  const { error } = await sb.from("places").update(write).eq("id", id);
   if (error) return dbErrorToState(error);
   revalidateAtlas();
   redirect("/admin/places");

@@ -83,7 +83,21 @@ export async function updateRegion(
     return { error: "Please fix the highlighted fields.", fieldErrors: fieldErrorsOf(parsed.error) };
   }
   const sb = createSupabaseAdminClient();
-  const { error } = await sb.from("regions").update(toWrite(parsed.data)).eq("id", id);
+  const write = toWrite(parsed.data);
+  // Merge body: the form owns only `intro`. Hub-content keys (soul_line,
+  // vitals, answers, signature_moments, getting_there, season, faqs, …)
+  // are written by content seeds and MUST survive admin saves.
+  const { data: existing } = await sb.from("regions").select("body").eq("id", id).maybeSingle();
+  const existingBody =
+    existing?.body && typeof existing.body === "object" && !Array.isArray(existing.body)
+      ? (existing.body as Record<string, Json>)
+      : {};
+  const merged: Record<string, Json> = { ...existingBody };
+  const intro = parsed.data.intro?.trim();
+  if (intro) merged.intro = intro;
+  else delete merged.intro;
+  write.body = Object.keys(merged).length ? merged : null;
+  const { error } = await sb.from("regions").update(write).eq("id", id);
   if (error) return dbErrorToState(error);
   revalidateAtlas();
   redirect("/admin/regions");
