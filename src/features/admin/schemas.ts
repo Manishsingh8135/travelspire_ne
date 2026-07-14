@@ -5,12 +5,32 @@ const slug = z
   .min(1, "Required")
   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "lowercase letters, numbers and hyphens only");
 
+export const REGION_LEVELS = ["state", "circuit", "district", "valley"] as const;
+
 export const RegionFormSchema = z.object({
   name: z.string().min(1, "Required"),
   slug,
-  level: z.enum(["state", "district", "valley"]),
+  level: z.enum(REGION_LEVELS),
   parentId: z.union([z.uuid(), z.literal("")]).optional(),
   intro: z.string().optional(),
+  // ── Hub tab (06-state-hub-vertical §1 body contract; all optional) ──
+  soulLine: z.string().optional(),
+  vitalsCapital: z.string().optional(),
+  vitalsPermit: z.string().optional(),
+  vitalsBestWindow: z.string().optional(),
+  vitalsElevation: z.string().optional(),
+  vitalsTribes: z.string().optional(),
+  gatewayCities: z.string().optional(), // TokenInput JSON string[]
+  answers: z.string().optional(), // PairList JSON [{a: q, b: a}]
+  signatureMoments: z.string().optional(), // PairList JSON [{a: title, b: prose}]
+  airports: z.string().optional(), // MultiFieldList JSON [{name, note}]
+  railheads: z.string().optional(),
+  roadGates: z.string().optional(), // [{gate, from, opens}]
+  gettingThereNote: z.string().optional(),
+  season: z.string().optional(), // SeasonEditor JSON [{m, glyph, road_risk, note}]
+  seasonBestWindow: z.string().optional(),
+  seasonMonsoonNote: z.string().optional(),
+  faqs: z.string().optional(), // PairList JSON [{a: q, b: a}]
   seoTitle: z.string().optional(),
   seoDescription: z.string().optional(),
 });
@@ -41,7 +61,15 @@ export const PlaceFormSchema = z
     lng: z.coerce.number().min(-180).max(180).optional(),
     isSecret: z.boolean().optional(),
     exclusivityTier: z.coerce.number().int().min(0).max(2).optional(),
+    tribeId: z.union([z.uuid(), z.literal("")]).optional(),
+    permitNote: z.string().optional(),
     intro: z.string().optional(),
+    // ── Entry tab (07-place-vertical §2 body contract; all optional) ──
+    fieldNote: z.string().optional(),
+    story: z.string().optional(),
+    approachGateway: z.string().optional(),
+    approachLegs: z.string().optional(), // MultiFieldList JSON [{from,to,km,time,note}]
+    vitalsExtra: z.string().optional(), // PairList JSON [{a: label, b: value}]
     seoTitle: z.string().optional(),
     seoDescription: z.string().optional(),
   })

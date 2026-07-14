@@ -9,6 +9,7 @@ import type { Json } from "@/db/database.types";
 import { PlaceFormSchema, fieldErrorsOf } from "./schemas";
 import { revalidatePublicAtlas } from "./revalidate";
 import { dbErrorToState, type FormState } from "./db-error";
+import { pairsFrom } from "./form-utils";
 
 type PlaceData = z.infer<typeof PlaceFormSchema>;
 
@@ -29,10 +30,41 @@ function parse(formData: FormData) {
     lng: emptyToUndef(formData.get("lng")),
     isSecret: formData.get("isSecret") === "on",
     exclusivityTier: emptyToUndef(formData.get("exclusivityTier")),
+    tribeId: formData.get("tribeId") ?? undefined,
+    permitNote: emptyToUndef(formData.get("permitNote")),
     intro: emptyToUndef(formData.get("intro")),
+    fieldNote: emptyToUndef(formData.get("fieldNote")),
+    story: emptyToUndef(formData.get("story")),
+    approachGateway: emptyToUndef(formData.get("approachGateway")),
+    approachLegs: emptyToUndef(formData.get("approachLegs")),
+    vitalsExtra: emptyToUndef(formData.get("vitalsExtra")),
     seoTitle: emptyToUndef(formData.get("seoTitle")),
     seoDescription: emptyToUndef(formData.get("seoDescription")),
   });
+}
+
+/** MultiFieldList approach legs → the body.approach.legs shape (km numeric). */
+function legsFrom(v: string | undefined): { from: string; to: string; km: number | null; time: string | null; note: string | null }[] {
+  if (!v) return [];
+  try {
+    const arr = JSON.parse(v);
+    if (!Array.isArray(arr)) return [];
+    return arr
+      .map((r) => {
+        const row = r as Record<string, unknown>;
+        const km = Number(String(row.km ?? "").replace(/[^\d.]/g, ""));
+        return {
+          from: String(row.from ?? "").trim(),
+          to: String(row.to ?? "").trim(),
+          km: Number.isFinite(km) && km > 0 ? km : null,
+          time: String(row.time ?? "").trim() || null,
+          note: String(row.note ?? "").trim() || null,
+        };
+      })
+      .filter((l) => l.from || l.to || l.note);
+  } catch {
+    return [];
+  }
 }
 
 type PlaceWrite = {
@@ -101,23 +133,54 @@ export async function updatePlace(
   }
   const sb = createSupabaseAdminClient();
   const write = toWrite(parsed.data);
-  // Merge body: the form owns only `intro`. Enriched field-entry keys
-  // (field_note, story, approach, vitals_extra, ground_truth_flags, …)
-  // are written by content seeds and MUST survive admin saves.
+  // Merge body: the Entry tab owns intro / field_note / story / approach /
+  // vitals_extra. Pipeline keys (ground_truth_flags, verified, season, entry
+  // metadata, …) MUST survive admin saves.
   const { data: existing } = await sb.from("places").select("body").eq("id", id).maybeSingle();
   const existingBody =
     existing?.body && typeof existing.body === "object" && !Array.isArray(existing.body)
       ? (existing.body as Record<string, Json>)
       : {};
   const merged: Record<string, Json> = { ...existingBody };
-  const intro = parsed.data.intro?.trim();
-  if (intro) merged.intro = intro;
-  else delete merged.intro;
+
+  const own = (key: string, value: Json | undefined | null) => {
+    if (value != null && (typeof value !== "string" || value.trim() !== "")) merged[key] = value;
+    else delete merged[key];
+  };
+  own("intro", parsed.data.intro?.trim());
+  own("field_note", parsed.data.fieldNote?.trim());
+  own("story", parsed.data.story?.trim());
+  const legs = legsFrom(parsed.data.approachLegs);
+  const gateway = parsed.data.approachGateway?.trim();
+  if (legs.length || gateway) {
+    const prevApproach =
+      existingBody.approach && typeof existingBody.approach === "object" && !Array.isArray(existingBody.approach)
+        ? (existingBody.approach as Record<string, Json>)
+        : {};
+    merged.approach = {
+      ...prevApproach,
+      from_gateway: gateway ?? null,
+      legs: legs as unknown as Json,
+    };
+  } else {
+    delete merged.approach;
+  }
+  const vitalsPairs = pairsFrom(parsed.data.vitalsExtra);
+  if (vitalsPairs.length)
+    merged.vitals_extra = Object.fromEntries(vitalsPairs.map((r) => [r.a, r.b]));
+  else delete merged.vitals_extra;
+
   write.body = Object.keys(merged).length ? merged : null;
-  const { error } = await sb.from("places").update(write).eq("id", id);
+  const columns = {
+    ...write,
+    tribe_id: parsed.data.tribeId ? parsed.data.tribeId : null,
+    permit_note: parsed.data.permitNote ?? null,
+  };
+  const { error } = await sb.from("places").update(columns).eq("id", id);
   if (error) return dbErrorToState(error);
   revalidateAtlas();
-  redirect("/admin/places");
+  // Stay in the editor — the shell toasts and clears its dirty state.
+  return { ok: true };
 }
 
 export async function setPlacePublished(id: string, published: boolean): Promise<void> {

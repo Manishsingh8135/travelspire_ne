@@ -50,6 +50,7 @@ export function RegionForm({
             className={selectClass}
           >
             <option value="state">State</option>
+            <option value="circuit">Circuit</option>
             <option value="district">District</option>
             <option value="valley">Valley</option>
           </select>
