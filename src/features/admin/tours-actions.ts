@@ -6,8 +6,36 @@ import { z } from "zod";
 import { requireAdmin } from "@/lib/auth";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import type { Json } from "@/db/database.types";
+import type { UpdateRow } from "@/lib/supabase/types";
 import { TourFormSchema, fieldErrorsOf } from "./schemas";
 import { dbErrorToState, type FormState } from "./db-error";
+import { ItinerarySchema, type ItineraryDay } from "@/lib/tours/itinerary";
+import { PricingSchema, fromPrice, type Pricing } from "@/lib/tours/pricing";
+
+/** Keep `format` in sync with the legacy `type` until the code swaps over. */
+const TYPE_TO_FORMAT: Record<string, string> = {
+  adventure: "expedition",
+  nature: "expedition",
+  cultural: "cultural",
+  pilgrimage: "pilgrimage",
+  festival: "festival",
+  trek: "trek",
+};
+
+/** body.itinerary stays derived from the rich days so the public dossier
+ * remains consistent until its rebuild (13-admin-editor-system §3.5). */
+function deriveLegacyItinerary(days: ItineraryDay[]): { title: string; description: string }[] {
+  return days.map((d) => ({
+    title: d.title,
+    description: [
+      d.summary ?? "",
+      ...(d.sightseeing ?? []).map((s) => `• ${s.name}`),
+      d.overnight ? `Overnight stay at ${d.overnight.name}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n"),
+  }));
+}
 
 type TourData = z.infer<typeof TourFormSchema>;
 
@@ -50,8 +78,12 @@ function parse(formData: FormData) {
     type: formData.get("type"),
     difficulty: formData.get("difficulty"),
     durationDays: emptyToUndef(formData.get("durationDays")),
+    nights: emptyToUndef(formData.get("nights")),
+    maxGroupSize: emptyToUndef(formData.get("maxGroupSize")),
     priceInr: emptyToUndef(formData.get("priceInr")),
     bestTime: emptyToUndef(formData.get("bestTime")),
+    itineraryRich: emptyToUndef(formData.get("itineraryRich")),
+    pricing: emptyToUndef(formData.get("pricing")),
     overview: emptyToUndef(formData.get("overview")),
     highlights: emptyToUndef(formData.get("highlights")),
     inclusions: emptyToUndef(formData.get("inclusions")),
@@ -123,13 +155,33 @@ export async function updateTour(
   if (!parsed.success) {
     return { error: "Please fix the highlighted fields.", fieldErrors: fieldErrorsOf(parsed.error) };
   }
+  // ── Rich payloads: validate with the REAL contracts before any write ──
+  // (data-safety §3.4 — invalid JSON never partially writes.)
+  let richDays: ItineraryDay[] | null = null;
+  if (parsed.data.itineraryRich) {
+    try {
+      richDays = ItinerarySchema.parse(JSON.parse(parsed.data.itineraryRich));
+    } catch {
+      return { error: "Itinerary data failed validation — nothing was saved. Reload and retry." };
+    }
+  }
+  let pricingMatrix: Pricing | null = null;
+  if (parsed.data.pricing) {
+    try {
+      const p = PricingSchema.parse(JSON.parse(parsed.data.pricing));
+      pricingMatrix = p.modes.length ? p : null;
+    } catch {
+      return { error: "Pricing data failed validation — nothing was saved. Reload and retry." };
+    }
+  }
+
   const sb = createSupabaseAdminClient();
   // Merge body: the form owns overview/highlights/inclusions/exclusions/itinerary;
   // enriched keys (gallery, routeStops, thingsToCarry, testimonials, …) written by
   // importers/other editors must survive an admin save.
   const { data: existing, error: readErr } = await sb
     .from("tours")
-    .select("body")
+    .select("body, price_inr")
     .eq("id", id)
     .maybeSingle();
   if (readErr) return dbErrorToState(readErr);
@@ -148,13 +200,50 @@ export async function updateTour(
   for (const key of FORM_KEYS) {
     if (!(key in formBody)) delete merged[key];
   }
-  const { error } = await sb
-    .from("tours")
-    .update({ ...write, body: Object.keys(merged).length ? merged : null })
-    .eq("id", id);
+  // The composer posts rich days: tour_days become the source of truth and
+  // body.itinerary is DERIVED for public back-compat until the dossier rebuild.
+  if (richDays) {
+    if (richDays.length) merged.itinerary = deriveLegacyItinerary(richDays) as unknown as Json;
+    else delete merged.itinerary;
+  }
+
+  const columns: UpdateRow<"tours"> = {
+    ...write,
+    body: Object.keys(merged).length ? merged : null,
+    format: (TYPE_TO_FORMAT[parsed.data.type] ?? "expedition") as UpdateRow<"tours">["format"],
+    nights: parsed.data.nights ?? null,
+    max_group_size: parsed.data.maxGroupSize ?? null,
+  };
+  if (pricingMatrix) {
+    columns.pricing = pricingMatrix as unknown as Json;
+    // "From ₹X" is computed, never typed (03 §4).
+    columns.price_inr = fromPrice(pricingMatrix) ?? write.price_inr;
+  }
+
+  const { error } = await sb.from("tours").update(columns).eq("id", id);
   if (error) return dbErrorToState(error);
+
+  // Replace the day rows (source-owned, same pattern as the importer).
+  if (richDays) {
+    const del = await sb.from("tour_days").delete().eq("tour_id", id);
+    if (del.error) return dbErrorToState(del.error);
+    if (richDays.length) {
+      const ins = await sb.from("tour_days").insert(
+        richDays.map((d) => ({
+          tour_id: id,
+          day_no: d.dayNo,
+          title: d.title || null,
+          body: d as unknown as Json,
+          place_ids: [],
+        })),
+      );
+      if (ins.error) return dbErrorToState(ins.error);
+    }
+  }
+
   revalidateTours();
-  redirect("/admin/tours");
+  // Stay in the editor — the shell toasts and clears its dirty state.
+  return { ok: true };
 }
 
 export async function setTourPublished(id: string, published: boolean): Promise<void> {

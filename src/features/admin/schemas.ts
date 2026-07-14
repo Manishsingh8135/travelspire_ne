@@ -70,8 +70,14 @@ export const TourFormSchema = z.object({
   type: z.enum(TOUR_TYPES),
   difficulty: z.enum(TOUR_DIFFICULTIES),
   durationDays: z.coerce.number().int().min(1).max(60).optional(),
+  nights: z.coerce.number().int().min(0).max(60).optional(),
+  maxGroupSize: z.coerce.number().int().min(1).max(100).optional(),
   priceInr: z.coerce.number().int().min(0).max(100_000_000).optional(),
   bestTime: z.string().optional(),
+  /** Rich payloads (JSON strings) — validated in the action by the real
+   * ItinerarySchema / PricingSchema so an invalid payload never partially writes. */
+  itineraryRich: z.string().optional(),
+  pricing: z.string().optional(),
   overview: z.string().optional(),
   highlights: z.string().optional(), // newline-separated
   inclusions: z.string().optional(), // newline-separated

@@ -2,6 +2,7 @@ import "server-only";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 import type { HeroMedia } from "@/lib/media";
 import type { Tour } from "@/lib/supabase/types";
+import { ItineraryDaySchema, type ItineraryDay } from "@/lib/tours/itinerary";
 import { type TableQuery, pageRange } from "@/features/admin/ui/table-state";
 import { sanitizeTerm } from "./query";
 
@@ -55,6 +56,24 @@ export async function getTourForAdmin(id: string): Promise<AdminTour | null> {
     .maybeSingle();
   if (error) throw error;
   return (data ?? null) as unknown as AdminTour | null;
+}
+
+/** The rich day rows (tour_days.body holds the ItineraryDay contract, 03 §2).
+ * Tolerant mapper: importer-written bodies match the schema; anything odd
+ * degrades to an empty-but-editable day rather than crashing the composer. */
+export async function getTourDaysForAdmin(tourId: string): Promise<ItineraryDay[]> {
+  const sb = createSupabaseAdminClient();
+  const { data, error } = await sb
+    .from("tour_days")
+    .select("day_no, title, body")
+    .eq("tour_id", tourId)
+    .order("day_no");
+  if (error) throw error;
+  return (data ?? []).map((row, i) => {
+    const parsed = ItineraryDaySchema.safeParse(row.body);
+    if (parsed.success) return { ...parsed.data, dayNo: i + 1 };
+    return { dayNo: i + 1, title: row.title ?? "", sightseeing: [], tags: [] };
+  });
 }
 
 export async function getRegionOptions(): Promise<{ id: string; name: string }[]> {

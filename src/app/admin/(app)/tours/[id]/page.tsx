@@ -1,10 +1,7 @@
 import { notFound } from "next/navigation";
-import { getRegionOptions, getTourForAdmin } from "@/server/admin/tours";
+import { getRegionOptions, getTourDaysForAdmin, getTourForAdmin } from "@/server/admin/tours";
 import { updateTour } from "@/features/admin/tours-actions";
-import { TourForm } from "@/features/admin/tour-form";
-import { HeroUploader } from "@/features/admin/hero-uploader";
-import { EditHeader } from "@/features/admin/ui/edit-header";
-import { MediaImage } from "@/components/media/media-image";
+import { TourComposer } from "@/features/admin/tour-composer";
 
 export const dynamic = "force-dynamic";
 
@@ -14,31 +11,9 @@ export default async function EditTourPage({ params }: Params) {
   const { id } = await params;
   const [tour, regions] = await Promise.all([getTourForAdmin(id), getRegionOptions()]);
   if (!tour) notFound();
+  const days = await getTourDaysForAdmin(tour.id);
 
   const action = updateTour.bind(null, tour.id);
 
-  return (
-    <div className="flex max-w-2xl flex-col gap-6">
-      <EditHeader
-        title={tour.title}
-        slug={tour.slug}
-        status={tour.status}
-        liveHref={`/tours/${tour.slug}`}
-      />
-
-      <section className="flex flex-col gap-4 rounded-lg border border-border-subtle p-5">
-        <h2 className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
-          Hero image
-        </h2>
-        {tour.hero ? (
-          <div className="relative aspect-[16/9] w-72 overflow-hidden rounded-md border border-border-subtle bg-muted">
-            <MediaImage media={tour.hero} sizes="288px" />
-          </div>
-        ) : null}
-        <HeroUploader entity="tours" id={tour.id} hasHero={!!tour.hero_media_id} />
-      </section>
-
-      <TourForm action={action} tour={tour} regions={regions} submitLabel="Save changes" />
-    </div>
-  );
+  return <TourComposer tour={tour} days={days} regions={regions} action={action} />;
 }
