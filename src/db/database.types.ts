@@ -14,17 +14,337 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_events: {
+        Row: {
+          action: string
+          actor_id: string | null
+          context: Json
+          id: string
+          metadata: Json
+          occurred_at: string
+          targets: Json
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          context?: Json
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          targets?: Json
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          context?: Json
+          id?: string
+          metadata?: Json
+          occurred_at?: string
+          targets?: Json
+        }
+        Relationships: []
+      }
+      entity_versions: {
+        Row: {
+          author_id: string | null
+          change_summary: string | null
+          created_at: string
+          entity_id: string
+          entity_type: string
+          id: string
+          snapshot: Json
+          state: string
+          version_no: number
+        }
+        Insert: {
+          author_id?: string | null
+          change_summary?: string | null
+          created_at?: string
+          entity_id: string
+          entity_type: string
+          id?: string
+          snapshot: Json
+          state: string
+          version_no: number
+        }
+        Update: {
+          author_id?: string | null
+          change_summary?: string | null
+          created_at?: string
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          snapshot?: Json
+          state?: string
+          version_no?: number
+        }
+        Relationships: []
+      }
+      events: {
+        Row: {
+          booked_note: string | null
+          capacity: number | null
+          created_at: string
+          ends_on: string | null
+          festival_id: string | null
+          id: string
+          kind: Database["public"]["Enums"]["event_kind"]
+          label: string | null
+          starts_on: string
+          status: Database["public"]["Enums"]["event_status"]
+          tour_id: string | null
+          updated_at: string
+          year: number | null
+        }
+        Insert: {
+          booked_note?: string | null
+          capacity?: number | null
+          created_at?: string
+          ends_on?: string | null
+          festival_id?: string | null
+          id?: string
+          kind: Database["public"]["Enums"]["event_kind"]
+          label?: string | null
+          starts_on: string
+          status?: Database["public"]["Enums"]["event_status"]
+          tour_id?: string | null
+          updated_at?: string
+          year?: number | null
+        }
+        Update: {
+          booked_note?: string | null
+          capacity?: number | null
+          created_at?: string
+          ends_on?: string | null
+          festival_id?: string | null
+          id?: string
+          kind?: Database["public"]["Enums"]["event_kind"]
+          label?: string | null
+          starts_on?: string
+          status?: Database["public"]["Enums"]["event_status"]
+          tour_id?: string | null
+          updated_at?: string
+          year?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "events_festival_id_fkey"
+            columns: ["festival_id"]
+            isOneToOne: false
+            referencedRelation: "festivals"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "events_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      experiences: {
+        Row: {
+          authentic: boolean
+          body: Json | null
+          created_at: string
+          deleted_at: string | null
+          duration_label: string | null
+          exclusivity_tier: number
+          group_max: number | null
+          hero_media_id: string | null
+          host_id: string | null
+          id: string
+          kind: Database["public"]["Enums"]["experience_kind"]
+          name: string
+          place_id: string | null
+          price_inr: number | null
+          published_at: string | null
+          scheduled_for: string | null
+          seo: Json
+          slug: string
+          status: Database["public"]["Enums"]["publish_status"]
+          tribe_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          authentic?: boolean
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          duration_label?: string | null
+          exclusivity_tier?: number
+          group_max?: number | null
+          hero_media_id?: string | null
+          host_id?: string | null
+          id?: string
+          kind?: Database["public"]["Enums"]["experience_kind"]
+          name: string
+          place_id?: string | null
+          price_inr?: number | null
+          published_at?: string | null
+          scheduled_for?: string | null
+          seo?: Json
+          slug: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          tribe_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          authentic?: boolean
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          duration_label?: string | null
+          exclusivity_tier?: number
+          group_max?: number | null
+          hero_media_id?: string | null
+          host_id?: string | null
+          id?: string
+          kind?: Database["public"]["Enums"]["experience_kind"]
+          name?: string
+          place_id?: string | null
+          price_inr?: number | null
+          published_at?: string | null
+          scheduled_for?: string | null
+          seo?: Json
+          slug?: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          tribe_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "experiences_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "experiences_host_id_fkey"
+            columns: ["host_id"]
+            isOneToOne: false
+            referencedRelation: "partners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "experiences_place_id_fkey"
+            columns: ["place_id"]
+            isOneToOne: false
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "experiences_tribe_id_fkey"
+            columns: ["tribe_id"]
+            isOneToOne: false
+            referencedRelation: "tribes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      festivals: {
+        Row: {
+          body: Json | null
+          created_at: string
+          deleted_at: string | null
+          hero_media_id: string | null
+          id: string
+          name: string
+          place_id: string | null
+          published_at: string | null
+          recurrence: Json
+          region_id: string | null
+          scheduled_for: string | null
+          seo: Json
+          slug: string
+          status: Database["public"]["Enums"]["publish_status"]
+          tribe_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          hero_media_id?: string | null
+          id?: string
+          name: string
+          place_id?: string | null
+          published_at?: string | null
+          recurrence?: Json
+          region_id?: string | null
+          scheduled_for?: string | null
+          seo?: Json
+          slug: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          tribe_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          hero_media_id?: string | null
+          id?: string
+          name?: string
+          place_id?: string | null
+          published_at?: string | null
+          recurrence?: Json
+          region_id?: string | null
+          scheduled_for?: string | null
+          seo?: Json
+          slug?: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          tribe_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "festivals_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "festivals_place_id_fkey"
+            columns: ["place_id"]
+            isOneToOne: false
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "festivals_region_id_fkey"
+            columns: ["region_id"]
+            isOneToOne: false
+            referencedRelation: "regions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "festivals_tribe_id_fkey"
+            columns: ["tribe_id"]
+            isOneToOne: false
+            referencedRelation: "tribes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       media: {
         Row: {
           alt: string | null
           blurhash: string | null
+          bytes: number | null
           caption: string | null
+          content_hash: string | null
           created_at: string
           credit: string | null
+          focal_point: Json | null
           geom: unknown
           height: number | null
           id: string
           kind: string
+          mime: string | null
           storage_path: string
           updated_at: string
           width: number | null
@@ -32,13 +352,17 @@ export type Database = {
         Insert: {
           alt?: string | null
           blurhash?: string | null
+          bytes?: number | null
           caption?: string | null
+          content_hash?: string | null
           created_at?: string
           credit?: string | null
+          focal_point?: Json | null
           geom?: unknown
           height?: number | null
           id?: string
           kind?: string
+          mime?: string | null
           storage_path: string
           updated_at?: string
           width?: number | null
@@ -46,18 +370,226 @@ export type Database = {
         Update: {
           alt?: string | null
           blurhash?: string | null
+          bytes?: number | null
           caption?: string | null
+          content_hash?: string | null
           created_at?: string
           credit?: string | null
+          focal_point?: Json | null
           geom?: unknown
           height?: number | null
           id?: string
           kind?: string
+          mime?: string | null
           storage_path?: string
           updated_at?: string
           width?: number | null
         }
         Relationships: []
+      }
+      media_links: {
+        Row: {
+          created_at: string
+          id: string
+          media_id: string
+          owner_id: string
+          owner_type: string
+          role: string
+          sort: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          media_id: string
+          owner_id: string
+          owner_type: string
+          role?: string
+          sort?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          media_id?: string
+          owner_id?: string
+          owner_type?: string
+          role?: string
+          sort?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "media_links_media_id_fkey"
+            columns: ["media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      partners: {
+        Row: {
+          bio: string | null
+          contact: Json
+          created_at: string
+          hero_media_id: string | null
+          id: string
+          kind: Database["public"]["Enums"]["partner_kind"]
+          name: string
+          place_id: string | null
+          tribe_id: string | null
+          updated_at: string
+          verified_at: string | null
+        }
+        Insert: {
+          bio?: string | null
+          contact?: Json
+          created_at?: string
+          hero_media_id?: string | null
+          id?: string
+          kind?: Database["public"]["Enums"]["partner_kind"]
+          name: string
+          place_id?: string | null
+          tribe_id?: string | null
+          updated_at?: string
+          verified_at?: string | null
+        }
+        Update: {
+          bio?: string | null
+          contact?: Json
+          created_at?: string
+          hero_media_id?: string | null
+          id?: string
+          kind?: Database["public"]["Enums"]["partner_kind"]
+          name?: string
+          place_id?: string | null
+          tribe_id?: string | null
+          updated_at?: string
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "partners_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "partners_place_id_fkey"
+            columns: ["place_id"]
+            isOneToOne: false
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "partners_tribe_id_fkey"
+            columns: ["tribe_id"]
+            isOneToOne: false
+            referencedRelation: "tribes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      permit_zones: {
+        Row: {
+          body: Json | null
+          created_at: string
+          deleted_at: string | null
+          faqs: Json
+          fee: Json
+          foreigners_allowed: boolean
+          geom: unknown
+          helpline: string | null
+          hero_media_id: string | null
+          id: string
+          indians_allowed: boolean
+          last_verified_at: string | null
+          name: string
+          official_portal: string | null
+          on_arrival: boolean
+          permit_type: Database["public"]["Enums"]["permit_type"]
+          processing_time: string | null
+          published_at: string | null
+          region_id: string | null
+          rules: Json
+          scheduled_for: string | null
+          seo: Json
+          slug: string
+          status: Database["public"]["Enums"]["publish_status"]
+          updated_at: string
+          validity: string | null
+        }
+        Insert: {
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          faqs?: Json
+          fee?: Json
+          foreigners_allowed?: boolean
+          geom?: unknown
+          helpline?: string | null
+          hero_media_id?: string | null
+          id?: string
+          indians_allowed?: boolean
+          last_verified_at?: string | null
+          name: string
+          official_portal?: string | null
+          on_arrival?: boolean
+          permit_type?: Database["public"]["Enums"]["permit_type"]
+          processing_time?: string | null
+          published_at?: string | null
+          region_id?: string | null
+          rules?: Json
+          scheduled_for?: string | null
+          seo?: Json
+          slug: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          updated_at?: string
+          validity?: string | null
+        }
+        Update: {
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          faqs?: Json
+          fee?: Json
+          foreigners_allowed?: boolean
+          geom?: unknown
+          helpline?: string | null
+          hero_media_id?: string | null
+          id?: string
+          indians_allowed?: boolean
+          last_verified_at?: string | null
+          name?: string
+          official_portal?: string | null
+          on_arrival?: boolean
+          permit_type?: Database["public"]["Enums"]["permit_type"]
+          processing_time?: string | null
+          published_at?: string | null
+          region_id?: string | null
+          rules?: Json
+          scheduled_for?: string | null
+          seo?: Json
+          slug?: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          updated_at?: string
+          validity?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "permit_zones_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "permit_zones_region_id_fkey"
+            columns: ["region_id"]
+            isOneToOne: false
+            referencedRelation: "regions"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       places: {
         Row: {
@@ -65,6 +597,7 @@ export type Database = {
           created_at: string
           deleted_at: string | null
           elevation_m: number | null
+          entry_no: number | null
           exclusivity_tier: number
           geom: unknown
           hero_media_id: string | null
@@ -74,11 +607,15 @@ export type Database = {
           lat: number | null
           lng: number | null
           name: string
+          permit_note: string | null
           published_at: string | null
           region_id: string | null
+          scheduled_for: string | null
+          search_vector: unknown
           seo: Json
           slug: string
           status: Database["public"]["Enums"]["publish_status"]
+          tribe_id: string | null
           updated_at: string
         }
         Insert: {
@@ -86,6 +623,7 @@ export type Database = {
           created_at?: string
           deleted_at?: string | null
           elevation_m?: number | null
+          entry_no?: number | null
           exclusivity_tier?: number
           geom?: unknown
           hero_media_id?: string | null
@@ -95,11 +633,15 @@ export type Database = {
           lat?: number | null
           lng?: number | null
           name: string
+          permit_note?: string | null
           published_at?: string | null
           region_id?: string | null
+          scheduled_for?: string | null
+          search_vector?: unknown
           seo?: Json
           slug: string
           status?: Database["public"]["Enums"]["publish_status"]
+          tribe_id?: string | null
           updated_at?: string
         }
         Update: {
@@ -107,6 +649,7 @@ export type Database = {
           created_at?: string
           deleted_at?: string | null
           elevation_m?: number | null
+          entry_no?: number | null
           exclusivity_tier?: number
           geom?: unknown
           hero_media_id?: string | null
@@ -116,11 +659,15 @@ export type Database = {
           lat?: number | null
           lng?: number | null
           name?: string
+          permit_note?: string | null
           published_at?: string | null
           region_id?: string | null
+          scheduled_for?: string | null
+          search_vector?: unknown
           seo?: Json
           slug?: string
           status?: Database["public"]["Enums"]["publish_status"]
+          tribe_id?: string | null
           updated_at?: string
         }
         Relationships: [
@@ -138,11 +685,20 @@ export type Database = {
             referencedRelation: "regions"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "places_tribe_id_fkey"
+            columns: ["tribe_id"]
+            isOneToOne: false
+            referencedRelation: "tribes"
+            referencedColumns: ["id"]
+          },
         ]
       }
       redirects: {
         Row: {
           created_at: string
+          entity_id: string | null
+          entity_type: string | null
           from_path: string
           id: string
           status_code: number
@@ -150,6 +706,8 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
           from_path: string
           id?: string
           status_code?: number
@@ -157,6 +715,8 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
           from_path?: string
           id?: string
           status_code?: number
@@ -176,6 +736,8 @@ export type Database = {
           name: string
           parent_id: string | null
           published_at: string | null
+          scheduled_for: string | null
+          search_vector: unknown
           seo: Json
           slug: string
           status: Database["public"]["Enums"]["publish_status"]
@@ -192,6 +754,8 @@ export type Database = {
           name: string
           parent_id?: string | null
           published_at?: string | null
+          scheduled_for?: string | null
+          search_vector?: unknown
           seo?: Json
           slug: string
           status?: Database["public"]["Enums"]["publish_status"]
@@ -208,6 +772,8 @@ export type Database = {
           name?: string
           parent_id?: string | null
           published_at?: string | null
+          scheduled_for?: string | null
+          search_vector?: unknown
           seo?: Json
           slug?: string
           status?: Database["public"]["Enums"]["publish_status"]
@@ -229,6 +795,143 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      reviews: {
+        Row: {
+          author: Json
+          content: string
+          created_at: string
+          id: string
+          rating: Json
+          source: string
+          status: Database["public"]["Enums"]["review_status"]
+          tour_id: string
+          trip: Json
+          updated_at: string
+        }
+        Insert: {
+          author?: Json
+          content: string
+          created_at?: string
+          id?: string
+          rating?: Json
+          source?: string
+          status?: Database["public"]["Enums"]["review_status"]
+          tour_id: string
+          trip?: Json
+          updated_at?: string
+        }
+        Update: {
+          author?: Json
+          content?: string
+          created_at?: string
+          id?: string
+          rating?: Json
+          source?: string
+          status?: Database["public"]["Enums"]["review_status"]
+          tour_id?: string
+          trip?: Json
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rides: {
+        Row: {
+          base_place_id: string | null
+          body: Json | null
+          capacity: number | null
+          created_at: string
+          deleted_at: string | null
+          hero_media_id: string | null
+          id: string
+          name: string
+          price_band: string | null
+          published_at: string | null
+          scheduled_for: string | null
+          seo: Json
+          slug: string
+          status: Database["public"]["Enums"]["publish_status"]
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          base_place_id?: string | null
+          body?: Json | null
+          capacity?: number | null
+          created_at?: string
+          deleted_at?: string | null
+          hero_media_id?: string | null
+          id?: string
+          name: string
+          price_band?: string | null
+          published_at?: string | null
+          scheduled_for?: string | null
+          seo?: Json
+          slug: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          type?: string
+          updated_at?: string
+        }
+        Update: {
+          base_place_id?: string | null
+          body?: Json | null
+          capacity?: number | null
+          created_at?: string
+          deleted_at?: string | null
+          hero_media_id?: string | null
+          id?: string
+          name?: string
+          price_band?: string | null
+          published_at?: string | null
+          scheduled_for?: string | null
+          seo?: Json
+          slug?: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rides_base_place_id_fkey"
+            columns: ["base_place_id"]
+            isOneToOne: false
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "rides_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      role_permissions: {
+        Row: {
+          id: number
+          permission: Database["public"]["Enums"]["app_permission"]
+          role: Database["public"]["Enums"]["app_role"]
+        }
+        Insert: {
+          id?: number
+          permission: Database["public"]["Enums"]["app_permission"]
+          role: Database["public"]["Enums"]["app_role"]
+        }
+        Update: {
+          id?: number
+          permission?: Database["public"]["Enums"]["app_permission"]
+          role?: Database["public"]["Enums"]["app_role"]
+        }
+        Relationships: []
       }
       spatial_ref_sys: {
         Row: {
@@ -254,68 +957,348 @@ export type Database = {
         }
         Relationships: []
       }
+      stays: {
+        Row: {
+          body: Json | null
+          capacity: number | null
+          created_at: string
+          deleted_at: string | null
+          facilities: string[]
+          geom: unknown
+          hero_media_id: string | null
+          host_id: string | null
+          id: string
+          name: string
+          place_id: string | null
+          price_band: string | null
+          published_at: string | null
+          rooms_note: string | null
+          scheduled_for: string | null
+          seo: Json
+          slug: string
+          status: Database["public"]["Enums"]["publish_status"]
+          type: Database["public"]["Enums"]["stay_type"]
+          updated_at: string
+        }
+        Insert: {
+          body?: Json | null
+          capacity?: number | null
+          created_at?: string
+          deleted_at?: string | null
+          facilities?: string[]
+          geom?: unknown
+          hero_media_id?: string | null
+          host_id?: string | null
+          id?: string
+          name: string
+          place_id?: string | null
+          price_band?: string | null
+          published_at?: string | null
+          rooms_note?: string | null
+          scheduled_for?: string | null
+          seo?: Json
+          slug: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          type?: Database["public"]["Enums"]["stay_type"]
+          updated_at?: string
+        }
+        Update: {
+          body?: Json | null
+          capacity?: number | null
+          created_at?: string
+          deleted_at?: string | null
+          facilities?: string[]
+          geom?: unknown
+          hero_media_id?: string | null
+          host_id?: string | null
+          id?: string
+          name?: string
+          place_id?: string | null
+          price_band?: string | null
+          published_at?: string | null
+          rooms_note?: string | null
+          scheduled_for?: string | null
+          seo?: Json
+          slug?: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          type?: Database["public"]["Enums"]["stay_type"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "stays_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "stays_host_id_fkey"
+            columns: ["host_id"]
+            isOneToOne: false
+            referencedRelation: "partners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "stays_place_id_fkey"
+            columns: ["place_id"]
+            isOneToOne: false
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      stories: {
+        Row: {
+          author: Json
+          body: Json | null
+          created_at: string
+          deleted_at: string | null
+          hero_media_id: string | null
+          id: string
+          mentions: Json
+          published_at: string | null
+          scheduled_for: string | null
+          seo: Json
+          slug: string
+          status: Database["public"]["Enums"]["publish_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: Json
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          hero_media_id?: string | null
+          id?: string
+          mentions?: Json
+          published_at?: string | null
+          scheduled_for?: string | null
+          seo?: Json
+          slug: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: Json
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          hero_media_id?: string | null
+          id?: string
+          mentions?: Json
+          published_at?: string | null
+          scheduled_for?: string | null
+          seo?: Json
+          slug?: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "stories_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tour_days: {
+        Row: {
+          body: Json | null
+          created_at: string
+          day_no: number
+          id: string
+          place_ids: string[]
+          title: string | null
+          tour_id: string
+          updated_at: string
+        }
+        Insert: {
+          body?: Json | null
+          created_at?: string
+          day_no: number
+          id?: string
+          place_ids?: string[]
+          title?: string | null
+          tour_id: string
+          updated_at?: string
+        }
+        Update: {
+          body?: Json | null
+          created_at?: string
+          day_no?: number
+          id?: string
+          place_ids?: string[]
+          title?: string | null
+          tour_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tour_days_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tour_places: {
+        Row: {
+          place_id: string
+          role: string
+          sort: number
+          tour_id: string
+        }
+        Insert: {
+          place_id: string
+          role?: string
+          sort?: number
+          tour_id: string
+        }
+        Update: {
+          place_id?: string
+          role?: string
+          sort?: number
+          tour_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tour_places_place_id_fkey"
+            columns: ["place_id"]
+            isOneToOne: false
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tour_places_tour_id_fkey"
+            columns: ["tour_id"]
+            isOneToOne: false
+            referencedRelation: "tours"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       tours: {
         Row: {
+          altitude_max_m: number | null
           best_time: string | null
           body: Json | null
           created_at: string
           deleted_at: string | null
           difficulty: Database["public"]["Enums"]["tour_difficulty"]
           duration_days: number | null
+          ends_at_place_id: string | null
+          featured: boolean
+          festival_id: string | null
+          format: Database["public"]["Enums"]["tour_format"]
           hero_media_id: string | null
           id: string
+          max_group_size: number | null
+          nights: number | null
           price_inr: number | null
+          pricing: Json
           published_at: string | null
           region_id: string | null
+          route: Json
+          scheduled_for: string | null
+          search_vector: unknown
           seo: Json
           slug: string
+          starts_from_place_id: string | null
           status: Database["public"]["Enums"]["publish_status"]
           subtitle: string | null
           title: string
+          trending: boolean
           type: Database["public"]["Enums"]["tour_type"]
           updated_at: string
         }
         Insert: {
+          altitude_max_m?: number | null
           best_time?: string | null
           body?: Json | null
           created_at?: string
           deleted_at?: string | null
           difficulty?: Database["public"]["Enums"]["tour_difficulty"]
           duration_days?: number | null
+          ends_at_place_id?: string | null
+          featured?: boolean
+          festival_id?: string | null
+          format?: Database["public"]["Enums"]["tour_format"]
           hero_media_id?: string | null
           id?: string
+          max_group_size?: number | null
+          nights?: number | null
           price_inr?: number | null
+          pricing?: Json
           published_at?: string | null
           region_id?: string | null
+          route?: Json
+          scheduled_for?: string | null
+          search_vector?: unknown
           seo?: Json
           slug: string
+          starts_from_place_id?: string | null
           status?: Database["public"]["Enums"]["publish_status"]
           subtitle?: string | null
           title: string
+          trending?: boolean
           type?: Database["public"]["Enums"]["tour_type"]
           updated_at?: string
         }
         Update: {
+          altitude_max_m?: number | null
           best_time?: string | null
           body?: Json | null
           created_at?: string
           deleted_at?: string | null
           difficulty?: Database["public"]["Enums"]["tour_difficulty"]
           duration_days?: number | null
+          ends_at_place_id?: string | null
+          featured?: boolean
+          festival_id?: string | null
+          format?: Database["public"]["Enums"]["tour_format"]
           hero_media_id?: string | null
           id?: string
+          max_group_size?: number | null
+          nights?: number | null
           price_inr?: number | null
+          pricing?: Json
           published_at?: string | null
           region_id?: string | null
+          route?: Json
+          scheduled_for?: string | null
+          search_vector?: unknown
           seo?: Json
           slug?: string
+          starts_from_place_id?: string | null
           status?: Database["public"]["Enums"]["publish_status"]
           subtitle?: string | null
           title?: string
+          trending?: boolean
           type?: Database["public"]["Enums"]["tour_type"]
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "tours_ends_at_place_id_fkey"
+            columns: ["ends_at_place_id"]
+            isOneToOne: false
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tours_festival_id_fkey"
+            columns: ["festival_id"]
+            isOneToOne: false
+            referencedRelation: "festivals"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "tours_hero_media_id_fkey"
             columns: ["hero_media_id"]
@@ -330,7 +1313,88 @@ export type Database = {
             referencedRelation: "regions"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "tours_starts_from_place_id_fkey"
+            columns: ["starts_from_place_id"]
+            isOneToOne: false
+            referencedRelation: "places"
+            referencedColumns: ["id"]
+          },
         ]
+      }
+      tribes: {
+        Row: {
+          body: Json | null
+          created_at: string
+          deleted_at: string | null
+          hero_media_id: string | null
+          id: string
+          name: string
+          published_at: string | null
+          region_ids: string[]
+          scheduled_for: string | null
+          seo: Json
+          slug: string
+          status: Database["public"]["Enums"]["publish_status"]
+          updated_at: string
+        }
+        Insert: {
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          hero_media_id?: string | null
+          id?: string
+          name: string
+          published_at?: string | null
+          region_ids?: string[]
+          scheduled_for?: string | null
+          seo?: Json
+          slug: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          updated_at?: string
+        }
+        Update: {
+          body?: Json | null
+          created_at?: string
+          deleted_at?: string | null
+          hero_media_id?: string | null
+          id?: string
+          name?: string
+          published_at?: string | null
+          region_ids?: string[]
+          scheduled_for?: string | null
+          seo?: Json
+          slug?: string
+          status?: Database["public"]["Enums"]["publish_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tribes_hero_media_id_fkey"
+            columns: ["hero_media_id"]
+            isOneToOne: false
+            referencedRelation: "media"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: number
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: number
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: number
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
       }
     }
     Views: {
@@ -505,6 +1569,13 @@ export type Database = {
             }
             Returns: string
           }
+      authorize: {
+        Args: {
+          requested_permission: Database["public"]["Enums"]["app_permission"]
+        }
+        Returns: boolean
+      }
+      custom_access_token_hook: { Args: { event: Json }; Returns: Json }
       disablelongtransactions: { Args: never; Returns: string }
       dropgeometrycolumn:
         | {
@@ -1272,6 +2343,34 @@ export type Database = {
       }
     }
     Enums: {
+      app_permission:
+        | "content.read"
+        | "content.write"
+        | "content.publish"
+        | "content.delete"
+        | "media.manage"
+        | "settings.manage"
+        | "roles.manage"
+      app_role: "owner" | "editor" | "contributor" | "scout"
+      event_kind: "festival_edition" | "tour_departure"
+      event_status:
+        | "scheduled"
+        | "open"
+        | "limited"
+        | "sold_out"
+        | "completed"
+        | "cancelled"
+      experience_kind:
+        | "homestay_life"
+        | "craft"
+        | "food"
+        | "ritual"
+        | "trek_day"
+        | "sunrise"
+        | "wildlife"
+        | "other"
+      partner_kind: "host" | "guide" | "scout" | "artisan"
+      permit_type: "ILP" | "PAP" | "RAP" | "none"
       place_kind:
         | "village"
         | "town"
@@ -1283,8 +2382,20 @@ export type Database = {
         | "viewpoint"
         | "waterfall"
         | "other"
-      publish_status: "draft" | "published" | "archived"
+      publish_status: "draft" | "published" | "archived" | "scheduled"
+      review_status: "pending" | "approved" | "rejected"
+      stay_type: "homestay" | "camp" | "tent" | "hotel" | "guesthouse"
       tour_difficulty: "easy" | "moderate" | "challenging"
+      tour_format:
+        | "expedition"
+        | "trek"
+        | "road_trip"
+        | "cultural"
+        | "festival"
+        | "wildlife"
+        | "pilgrimage"
+        | "bike"
+        | "camping"
       tour_type:
         | "adventure"
         | "cultural"
@@ -1427,6 +2538,37 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      app_permission: [
+        "content.read",
+        "content.write",
+        "content.publish",
+        "content.delete",
+        "media.manage",
+        "settings.manage",
+        "roles.manage",
+      ],
+      app_role: ["owner", "editor", "contributor", "scout"],
+      event_kind: ["festival_edition", "tour_departure"],
+      event_status: [
+        "scheduled",
+        "open",
+        "limited",
+        "sold_out",
+        "completed",
+        "cancelled",
+      ],
+      experience_kind: [
+        "homestay_life",
+        "craft",
+        "food",
+        "ritual",
+        "trek_day",
+        "sunrise",
+        "wildlife",
+        "other",
+      ],
+      partner_kind: ["host", "guide", "scout", "artisan"],
+      permit_type: ["ILP", "PAP", "RAP", "none"],
       place_kind: [
         "village",
         "town",
@@ -1439,8 +2581,21 @@ export const Constants = {
         "waterfall",
         "other",
       ],
-      publish_status: ["draft", "published", "archived"],
+      publish_status: ["draft", "published", "archived", "scheduled"],
+      review_status: ["pending", "approved", "rejected"],
+      stay_type: ["homestay", "camp", "tent", "hotel", "guesthouse"],
       tour_difficulty: ["easy", "moderate", "challenging"],
+      tour_format: [
+        "expedition",
+        "trek",
+        "road_trip",
+        "cultural",
+        "festival",
+        "wildlife",
+        "pilgrimage",
+        "bike",
+        "camping",
+      ],
       tour_type: [
         "adventure",
         "cultural",
