@@ -13,16 +13,17 @@ import { cn } from "@/lib/cn";
  * `shadow-panel/lift/deep` elevation utilities all resolve to dark-tuned
  * values — components never hand-roll white/N recipes.
  *
- * Dark tones also get the forest-glow depth layer so the green-tinted charcoal
- * reads as "forest at night" rather than flat black. The glow is tuned low so
- * it lifts the room without erasing the card-vs-background step.
+ * Dark tones also get a midnight-glow depth layer so the warm basalt charcoal
+ * reads as "night" rather than flat black. The glow is tuned low so it lifts
+ * the room without erasing the card-vs-background step.
  */
 export type SectionTone = "paper" | "sand" | "forest";
 
 // Soft radial that lifts a dark section's centre + base. One place to retune
-// the whole app's dark-section depth.
+// the whole app's dark-section depth. Warm (distant-firelight) per
+// 08-blueprint/14 D1 — the old green forest wash is gone.
 const FOREST_GLOW =
-  "radial-gradient(120% 75% at 50% -10%, oklch(0.275 0.048 156) 0%, transparent 58%), radial-gradient(90% 60% at 50% 112%, oklch(0.235 0.044 158) 0%, transparent 60%)";
+  "radial-gradient(120% 75% at 50% -10%, oklch(0.275 0.02 72) 0%, transparent 58%), radial-gradient(90% 60% at 50% 112%, oklch(0.235 0.016 68) 0%, transparent 60%)";
 
 type SectionProps = React.ComponentProps<"section"> & {
   tone?: SectionTone;

@@ -90,21 +90,23 @@
   --color-marigold-900: oklch(0.42 0.08 58);
   --color-marigold-950: oklch(0.32 0.06 55);
 
-  /* Charcoal Forest — the dark-mode foundation. Hue ~162 (Pine family) with a
-     gentle chroma ramp toward the dark end: a forest-green-tinted black, not a
-     warm/neutral black. Dial the dark-end chroma (≈0.016) up to ~0.022 for a
-     stronger "forest at night", down to ~0.01 to mute it. */
-  --color-charcoal-50: oklch(0.965 0.006 164);
-  --color-charcoal-100: oklch(0.91 0.01 163);
-  --color-charcoal-200: oklch(0.82 0.016 162);
-  --color-charcoal-300: oklch(0.7 0.022 160);
-  --color-charcoal-400: oklch(0.57 0.028 158);
-  --color-charcoal-500: oklch(0.47 0.034 157);
-  --color-charcoal-600: oklch(0.4 0.038 156);
-  --color-charcoal-700: oklch(0.34 0.04 156);
-  --color-charcoal-800: oklch(0.285 0.042 156);
-  --color-charcoal-900: oklch(0.235 0.042 156);
-  --color-charcoal-950: oklch(0.195 0.04 156);
+  /* Midnight Basalt — the dark-mode foundation (recolored per
+     08-blueprint/14 D1; was the green "Charcoal Forest" at hue 156, which
+     the founder rejected). Warm near-black: the hue drifts 84→64 as it
+     deepens — the same warm drift as the mist ramp — at low chroma, so dark
+     chapters read "night", not "green room". Dial dark-end chroma up to
+     ~0.018 for more warmth, down to ~0.006 to go near-neutral. */
+  --color-charcoal-50: oklch(0.965 0.005 84);
+  --color-charcoal-100: oklch(0.91 0.007 82);
+  --color-charcoal-200: oklch(0.82 0.009 80);
+  --color-charcoal-300: oklch(0.7 0.011 78);
+  --color-charcoal-400: oklch(0.57 0.012 76);
+  --color-charcoal-500: oklch(0.47 0.013 74);
+  --color-charcoal-600: oklch(0.4 0.014 72);
+  --color-charcoal-700: oklch(0.34 0.014 70);
+  --color-charcoal-800: oklch(0.285 0.014 68);
+  --color-charcoal-900: oklch(0.235 0.013 66);
+  --color-charcoal-950: oklch(0.195 0.012 64);
 
   /* Fonts — wired to next/font variables on <html> */
   --font-sans: var(--font-hanken), system-ui, sans-serif;
@@ -238,19 +240,19 @@
      a lit top rim + mist ring, depth by deep green-black pools (§6). */
   --elev-panel:
     inset 0 1px 0 oklch(1 0 0 / 0.06),
-    0 0 0 1px oklch(0.93 0.015 160 / 0.1),
-    0 2px 6px oklch(0.07 0.03 156 / 0.45),
-    0 8px 20px -6px oklch(0.07 0.03 156 / 0.55);
+    0 0 0 1px oklch(0.93 0.012 84 / 0.1),
+    0 2px 6px oklch(0.07 0.012 66 / 0.45),
+    0 8px 20px -6px oklch(0.07 0.012 66 / 0.55);
   --elev-lift:
     inset 0 1px 0 oklch(1 0 0 / 0.08),
-    0 0 0 1px oklch(0.93 0.015 160 / 0.13),
-    0 4px 10px oklch(0.07 0.03 156 / 0.5),
-    0 16px 40px -8px oklch(0.06 0.03 156 / 0.65);
+    0 0 0 1px oklch(0.93 0.012 84 / 0.13),
+    0 4px 10px oklch(0.07 0.012 66 / 0.5),
+    0 16px 40px -8px oklch(0.06 0.012 66 / 0.65);
   --elev-deep:
     inset 0 1px 0 oklch(1 0 0 / 0.09),
-    0 0 0 1px oklch(0.93 0.015 160 / 0.15),
-    0 8px 24px oklch(0.06 0.03 156 / 0.55),
-    0 32px 80px -12px oklch(0.05 0.03 156 / 0.7);
+    0 0 0 1px oklch(0.93 0.012 84 / 0.15),
+    0 8px 24px oklch(0.06 0.012 66 / 0.55),
+    0 32px 80px -12px oklch(0.05 0.012 66 / 0.7);
 
   color-scheme: dark;
 }
@@ -267,7 +269,7 @@
   --bg-base: var(--color-charcoal-950);
   --bg-surface: var(--color-charcoal-900);
   --bg-subtle: var(--color-charcoal-800);
-  --bg-inset: oklch(0.165 0.036 156);
+  --bg-inset: oklch(0.165 0.012 66);
 
   --fg: var(--color-mist-50);
   --fg-muted: var(--color-mist-300);
@@ -296,19 +298,19 @@
 
   --elev-panel:
     inset 0 1px 0 oklch(1 0 0 / 0.06),
-    0 0 0 1px oklch(0.93 0.015 160 / 0.1),
-    0 2px 6px oklch(0.07 0.03 156 / 0.45),
-    0 8px 20px -6px oklch(0.07 0.03 156 / 0.55);
+    0 0 0 1px oklch(0.93 0.012 84 / 0.1),
+    0 2px 6px oklch(0.07 0.012 66 / 0.45),
+    0 8px 20px -6px oklch(0.07 0.012 66 / 0.55);
   --elev-lift:
     inset 0 1px 0 oklch(1 0 0 / 0.08),
-    0 0 0 1px oklch(0.93 0.015 160 / 0.13),
-    0 4px 10px oklch(0.07 0.03 156 / 0.5),
-    0 16px 40px -8px oklch(0.06 0.03 156 / 0.65);
+    0 0 0 1px oklch(0.93 0.012 84 / 0.13),
+    0 4px 10px oklch(0.07 0.012 66 / 0.5),
+    0 16px 40px -8px oklch(0.06 0.012 66 / 0.65);
   --elev-deep:
     inset 0 1px 0 oklch(1 0 0 / 0.09),
-    0 0 0 1px oklch(0.93 0.015 160 / 0.15),
-    0 8px 24px oklch(0.06 0.03 156 / 0.55),
-    0 32px 80px -12px oklch(0.05 0.03 156 / 0.7);
+    0 0 0 1px oklch(0.93 0.012 84 / 0.15),
+    0 8px 24px oklch(0.06 0.012 66 / 0.55),
+    0 32px 80px -12px oklch(0.05 0.012 66 / 0.7);
 
   color-scheme: dark;
 }
@@ -420,6 +422,27 @@
   /* Tabular numerals where numbers must align (prices, coords, altitudes) */
   .tabular-nums {
     font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Public shadow doctrine (08-blueprint/14 D3): photography/object cards carry
+   a real warm shadow and lift on hover. Objects cast shadows; paragraphs
+   don't. Resolves per tone (dark tones re-map the elevation roles). */
+@utility card-lift {
+  box-shadow: var(--shadow-md);
+  transition:
+    box-shadow 150ms var(--ease-out),
+    transform 150ms var(--ease-out);
+
+  &:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &:hover {
+      transform: none;
+    }
   }
 }
 

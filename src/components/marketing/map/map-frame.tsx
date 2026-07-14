@@ -57,7 +57,7 @@ function Backdrop() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(80% 60% at 38% 32%, oklch(0.3 0.045 160 / 0.55) 0%, transparent 60%), radial-gradient(70% 60% at 75% 78%, oklch(0.26 0.04 165 / 0.4) 0%, transparent 65%)",
+            "radial-gradient(80% 60% at 38% 32%, oklch(0.3 0.018 74 / 0.55) 0%, transparent 60%), radial-gradient(70% 60% at 75% 78%, oklch(0.26 0.016 70 / 0.4) 0%, transparent 65%)",
         }}
       />
       <svg
