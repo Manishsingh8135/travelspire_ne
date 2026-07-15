@@ -17,6 +17,7 @@ const container = {
   hidden: {},
   show: { transition: { staggerChildren: 0.16, delayChildren: 0.1 } },
 };
+const containerReduced = { hidden: {}, show: {} };
 const nodeIn = {
   hidden: { opacity: 0, scale: 0.6 },
   show: { opacity: 1, scale: 1, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const } },
@@ -27,6 +28,13 @@ const lineDraw = {
     clipPath: "inset(0 0% 0 0)",
     transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
   },
+};
+/* Reduced-motion keeps the fade, drops the spatial transform (motion doc §7).
+   NEVER swap variants to undefined under reduce: SSR already inlined the
+   "hidden" style, and with no animation lifecycle it would stay invisible. */
+const fadeOnly = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.2 } },
 };
 
 function nightsLabel(node: RibbonNode): string {
@@ -56,15 +64,15 @@ export function RouteRibbon({ nodes, className }: { nodes: RibbonNode[]; classNa
       <div className="hidden overflow-x-auto sm:block">
         <m.ol
           className="flex min-w-max items-start px-1 pb-2"
-          variants={reduce ? undefined : container}
-          initial={reduce ? undefined : "hidden"}
-          whileInView={reduce ? undefined : "show"}
+          variants={reduce ? containerReduced : container}
+          initial="hidden"
+          whileInView="show"
           viewport={{ once: true, amount: 0.4 }}
         >
           {nodes.map((node, i) => (
             <li key={`${node.name}-${i}`} className="flex items-start">
               <m.div
-                variants={reduce ? undefined : nodeIn}
+                variants={reduce ? fadeOnly : nodeIn}
                 className="flex w-max min-w-20 flex-col items-center text-center"
               >
                 <Dot gateway={node.nights === 0} />
@@ -78,7 +86,7 @@ export function RouteRibbon({ nodes, className }: { nodes: RibbonNode[]; classNa
               {i < nodes.length - 1 ? (
                 <m.span
                   aria-hidden
-                  variants={reduce ? undefined : lineDraw}
+                  variants={reduce ? fadeOnly : lineDraw}
                   className="mx-3 mt-[4px] block h-px w-14 border-t border-dashed border-border-strong lg:w-24"
                 />
               ) : null}
