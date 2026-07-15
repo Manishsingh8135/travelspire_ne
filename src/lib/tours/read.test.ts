@@ -78,6 +78,29 @@ describe("parseDay", () => {
   });
 });
 
+describe("legacyDays — the prose-era fallback", () => {
+  it("lifts {title, description} rows into minimal days and skips empties", async () => {
+    const { legacyDays } = await import("./read");
+    const body = {
+      itinerary: [
+        { title: "Dibrugarh to Aalo", description: "Cross the Bogibeel bridge." },
+        { title: "", description: "" },
+        "junk",
+      ],
+    };
+    expect(legacyDays(body)).toEqual([
+      {
+        dayNo: 1,
+        title: "Dibrugarh to Aalo",
+        summary: "Cross the Bogibeel bridge.",
+        sightseeing: [],
+        tags: [],
+      },
+    ]);
+    expect(legacyDays({})).toEqual([]);
+  });
+});
+
 describe("overnightNodes — the ribbon spine", () => {
   it("gateway first, consecutive overnights grouped with night counts", () => {
     const days = [

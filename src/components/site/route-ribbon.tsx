@@ -1,90 +1,112 @@
-import { MapPin } from "lucide-react";
+"use client";
+
+import { m, useReducedMotion } from "motion/react";
+import type { RibbonNode } from "@/lib/tours/read";
 import { cn } from "@/lib/cn";
 
-export type RouteStop = { name: string; note?: string | null };
-
 /**
- * A journey as a ribbon (docs-new/07-pages/10 §10): mono place nodes joined by
- * dashed segments. Desktop: horizontal spread. Mobile: vertical timeline —
- * same data, no hover required. Field-journal grammar: the route IS the story.
+ * RouteRibbon v2 (08-blueprint/05 §3.2) — the journey as a dashed line across
+ * paper, no enclosing box. Nodes are where you actually SLEEP (derived from
+ * tour_days overnights via overnightNodes()), the gateway ringed, night counts
+ * under each halt. The line draws itself on first view — a clip-path reveal so
+ * the dashes stay crisp (animating pathLength would eat the dash pattern);
+ * reduced-motion renders it already drawn. Mobile: a static vertical timeline.
  */
-export function RouteRibbon({
-  stops,
-  className,
-}: {
-  stops: RouteStop[];
-  className?: string;
-}) {
-  if (stops.length < 2) return null;
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.16, delayChildren: 0.1 } },
+};
+const nodeIn = {
+  hidden: { opacity: 0, scale: 0.6 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const } },
+};
+const lineDraw = {
+  hidden: { clipPath: "inset(0 100% 0 0)" },
+  show: {
+    clipPath: "inset(0 0% 0 0)",
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  },
+};
+
+function nightsLabel(node: RibbonNode): string {
+  if (node.nights === 0) return "START";
+  return node.nights === 1 ? "1 NIGHT" : `${node.nights} NIGHTS`;
+}
+
+function Dot({ gateway }: { gateway: boolean }) {
   return (
-    <div className={cn("rounded-2xl border border-border-subtle bg-card p-6 shadow-panel sm:p-8", className)}>
-      <p className="font-mono text-xs font-medium tracking-[0.18em] text-muted-foreground uppercase">
-        The route
-      </p>
+    <span
+      aria-hidden
+      className={cn(
+        "size-2.5 shrink-0 rounded-full",
+        gateway ? "border-[1.5px] border-secondary bg-transparent" : "bg-secondary",
+      )}
+    />
+  );
+}
 
-      {/* Desktop — horizontal ribbon */}
-      <ol className="mt-6 hidden items-start sm:flex">
-        {stops.map((stop, i) => (
-          <li
-            key={stop.name}
-            className={cn("flex min-w-0 items-start", i < stops.length - 1 && "flex-1")}
-          >
-            <div className="flex min-w-0 max-w-40 flex-col items-start">
-              <span
-                aria-hidden
-                className={cn(
-                  "grid size-8 shrink-0 place-items-center rounded-full ring-1",
-                  i === 0 || i === stops.length - 1
-                    ? "bg-secondary text-secondary-foreground ring-secondary"
-                    : "bg-card text-secondary ring-border-default",
-                )}
+export function RouteRibbon({ nodes, className }: { nodes: RibbonNode[]; className?: string }) {
+  const reduce = useReducedMotion();
+  if (nodes.length < 2) return null;
+
+  return (
+    <div className={className}>
+      {/* Desktop — the horizontal ribbon (scrolls when the route is long) */}
+      <div className="hidden overflow-x-auto sm:block">
+        <m.ol
+          className="flex min-w-max items-start px-1 pb-2"
+          variants={reduce ? undefined : container}
+          initial={reduce ? undefined : "hidden"}
+          whileInView={reduce ? undefined : "show"}
+          viewport={{ once: true, amount: 0.4 }}
+        >
+          {nodes.map((node, i) => (
+            <li key={`${node.name}-${i}`} className="flex items-start">
+              <m.div
+                variants={reduce ? undefined : nodeIn}
+                className="flex w-max min-w-20 flex-col items-center text-center"
               >
-                <MapPin className="size-3.5" />
-              </span>
-              <span className="mt-2.5 font-mono text-xs font-medium tracking-wide uppercase">
-                {stop.name}
-              </span>
-              {stop.note ? (
-                <span className="mt-1 text-xs leading-snug text-pretty text-muted-foreground">
-                  {stop.note}
+                <Dot gateway={node.nights === 0} />
+                <span className="mt-2.5 max-w-36 font-mono text-[11px] leading-tight font-medium tracking-[0.14em] uppercase">
+                  {node.name}
                 </span>
+                <span className="mt-1 font-mono text-[10px] tracking-[0.14em] text-muted-foreground tabular-nums uppercase">
+                  {nightsLabel(node)}
+                </span>
+              </m.div>
+              {i < nodes.length - 1 ? (
+                <m.span
+                  aria-hidden
+                  variants={reduce ? undefined : lineDraw}
+                  className="mx-3 mt-[4px] block h-px w-14 border-t border-dashed border-border-strong lg:w-24"
+                />
               ) : null}
-            </div>
-            {i < stops.length - 1 ? (
-              <span
-                aria-hidden
-                className="mx-3 mt-4 h-px flex-1 border-t border-dashed border-border-strong"
-              />
-            ) : null}
-          </li>
-        ))}
-      </ol>
+            </li>
+          ))}
+        </m.ol>
+      </div>
 
-      {/* Mobile — vertical timeline */}
-      <ol className="mt-5 flex flex-col sm:hidden">
-        {stops.map((stop, i) => (
-          <li key={stop.name} className="flex gap-4">
-            <div className="flex flex-col items-center">
-              <span
-                aria-hidden
-                className={cn(
-                  "grid size-7 shrink-0 place-items-center rounded-full ring-1",
-                  i === 0 || i === stops.length - 1
-                    ? "bg-secondary text-secondary-foreground ring-secondary"
-                    : "bg-card text-secondary ring-border-default",
-                )}
-              >
-                <MapPin className="size-3" />
-              </span>
-              {i < stops.length - 1 ? (
-                <span aria-hidden className="my-1 w-px flex-1 border-l border-dashed border-border-strong" />
+      {/* Mobile — vertical timeline, static (calm by default) */}
+      <ol className="flex flex-col sm:hidden">
+        {nodes.map((node, i) => (
+          <li key={`${node.name}-${i}`} className="flex gap-4">
+            <div className="flex flex-col items-center pt-[5px]">
+              <Dot gateway={node.nights === 0} />
+              {i < nodes.length - 1 ? (
+                <span
+                  aria-hidden
+                  className="my-1 w-px flex-1 border-l border-dashed border-border-strong"
+                />
               ) : null}
             </div>
-            <div className={cn(i < stops.length - 1 && "pb-5")}>
-              <p className="font-mono text-xs font-medium tracking-wide uppercase">{stop.name}</p>
-              {stop.note ? (
-                <p className="mt-0.5 text-xs text-pretty text-muted-foreground">{stop.note}</p>
-              ) : null}
+            <div className={cn("flex items-baseline gap-3", i < nodes.length - 1 && "pb-6")}>
+              <p className="font-mono text-xs font-medium tracking-[0.14em] uppercase">
+                {node.name}
+              </p>
+              <p className="font-mono text-[10px] tracking-[0.14em] text-muted-foreground tabular-nums uppercase">
+                {nightsLabel(node)}
+              </p>
             </div>
           </li>
         ))}

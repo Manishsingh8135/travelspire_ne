@@ -62,6 +62,31 @@ export function parseDay(row: TourDayRow): ItineraryDay {
   };
 }
 
+/**
+ * Legacy body.itinerary ({title, description} prose) lifted into minimal
+ * ItineraryDays — the fallback when tour_days is empty, so ONE journal
+ * renderer serves both eras.
+ */
+export function legacyDays(body: Record<string, unknown>): ItineraryDay[] {
+  if (!Array.isArray(body.itinerary)) return [];
+  return body.itinerary.flatMap((raw, i) => {
+    if (!raw || typeof raw !== "object") return [];
+    const day = raw as Record<string, unknown>;
+    const title = typeof day.title === "string" ? day.title : "";
+    const summary = typeof day.description === "string" ? day.description : null;
+    if (!title && !summary) return [];
+    return [
+      {
+        dayNo: i + 1,
+        title: title || `Day ${i + 1}`,
+        summary,
+        sightseeing: [],
+        tags: [],
+      } satisfies ItineraryDay,
+    ];
+  });
+}
+
 /* ── the route spine ─────────────────────────────────────────────────────── */
 
 export type RibbonNode = {
