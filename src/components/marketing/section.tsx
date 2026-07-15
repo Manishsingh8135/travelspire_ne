@@ -46,7 +46,10 @@ export function Section({
     <section
       data-tone={tone}
       className={cn(
-        "relative isolate overflow-hidden bg-background text-foreground",
+        // overflow-CLIP, not hidden: clip doesn't create a scroll container,
+        // so position:sticky descendants (the Loop stage) still pin to the
+        // viewport. hidden silently kills sticky — hard-won lesson.
+        "relative isolate overflow-clip bg-background text-foreground",
         padded && "py-20 sm:py-28",
         className,
       )}

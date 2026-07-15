@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { usePathname } from "next/navigation";
 
 /**
  * Owned theme provider (replaced next-themes: its injected <script> trips
@@ -40,6 +41,15 @@ function readInitial(): Theme {
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = React.useState<Theme>(readInitial);
+  const pathname = usePathname();
+  const isAdmin = pathname?.startsWith("/admin") ?? false;
+
+  // Founder law (08-blueprint/14): PUBLIC pages are always light — the
+  // palettes are art-directed per section. Dark stays an admin preference.
+  // This also covers SPA navigation between the two worlds.
+  React.useEffect(() => {
+    document.documentElement.dataset.theme = isAdmin ? theme : "light";
+  }, [isAdmin, theme]);
 
   const setTheme = React.useCallback((next: Theme | string) => {
     const value: Theme = next === "dark" ? "dark" : "light";
@@ -60,7 +70,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
-/** Inline pre-hydration script body — rendered by the SERVER layout. */
-export const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem(${JSON.stringify(
+/** Inline pre-hydration script body — rendered by the SERVER layout.
+ * Dark is honored only under /admin; public pages always paint light. */
+export const THEME_INIT_SCRIPT = `(function(){try{var a=location.pathname.lastIndexOf("/admin",0)===0;var t=localStorage.getItem(${JSON.stringify(
   THEME_STORAGE_KEY,
-)});document.documentElement.dataset.theme=t==="dark"?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
+)});document.documentElement.dataset.theme=a&&t==="dark"?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
