@@ -3,7 +3,7 @@
 import * as React from "react";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Toaster } from "sonner";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 import { PreferencesProvider } from "./preferences";
 
 function AdminToaster() {

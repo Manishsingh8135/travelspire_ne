@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import type { Route } from "next";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 import { Command } from "cmdk";
 import {
   Search,

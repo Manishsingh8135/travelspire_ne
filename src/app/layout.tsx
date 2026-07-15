@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Hanken_Grotesk, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider, THEME_INIT_SCRIPT } from "@/components/theme-provider";
 import { NightAB } from "@/components/dev/night-ab";
 import { env } from "@/lib/env";
 import "./globals.css";
@@ -43,13 +43,9 @@ export default function RootLayout({
       className={`${fraunces.variable} ${hanken.variable} ${geistMono.variable}`}
     >
       <body>
-        <ThemeProvider
-          attribute="data-theme"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange
-          themes={["light", "dark"]}
-        >
+        {/* Pre-hydration theme stamp — server-rendered, runs before first paint. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        <ThemeProvider>
           {children}
           {/* TEMPORARY: dark-theme A/B switch — dev only, deleted after the verdict. */}
           <NightAB />

@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import type { Route } from "next";
 import { usePathname, useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/components/theme-provider";
 import {
   PanelLeftClose,
   PanelLeft,
