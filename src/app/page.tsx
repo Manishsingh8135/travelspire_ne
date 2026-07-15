@@ -8,7 +8,6 @@ import { Dream } from "@/components/marketing/dream/dream";
 import { Experience } from "@/components/marketing/experience/experience";
 import { LivingMap } from "@/components/marketing/map/living-map";
 import { Mei } from "@/components/marketing/mei/mei";
-import { Journey } from "@/components/marketing/journey/journey";
 import { Exclusive } from "@/components/marketing/exclusive/exclusive";
 import { Emotion } from "@/components/marketing/emotion/emotion";
 import { Featured } from "@/components/marketing/featured/featured";
@@ -52,7 +51,6 @@ export default function HomePage() {
           <Experience />
           <LivingMap />
           <Mei />
-          <Journey />
           <Exclusive />
           <Emotion />
           <Featured />
