@@ -43,7 +43,11 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${fraunces.variable} ${hanken.variable} ${geistMono.variable}`}
     >
-      <body>
+      {/* suppressHydrationWarning: browser extensions (ColorZilla's
+          cz-shortcut-listen, Grammarly, password managers…) stamp attributes
+          on <body> before React hydrates. Suppression is attribute-only and
+          element-local — children still hydrate strictly. */}
+      <body suppressHydrationWarning>
         {/* Pre-hydration theme stamp — beforeInteractive is hoisted OUTSIDE
             React's hydration tree, so React 19's script-in-component warning
             can't fire (unlike a raw <script>, which triggered it). */}
