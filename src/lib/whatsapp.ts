@@ -23,8 +23,14 @@ export function tourInquiryUrl(tour: { title: string; durationDays?: number | nu
   );
 }
 
-/** Availability check for a specific window. */
-export function availabilityUrl(tourTitle: string): string {
+/** Availability check — optionally names the rate-card tier being asked about. */
+export function availabilityUrl(tourTitle: string, tier?: string): string {
+  if (tier) {
+    return whatsAppUrl(
+      `Hi Travelspire — for *${tourTitle}*, I'm looking at the *${tier}* rate. ` +
+        `Which dates are open?`,
+    );
+  }
   return whatsAppUrl(
     `Hi Travelspire — is *${tourTitle}* running in the next few months? ` +
       `My dates are flexible; what departures do you have?`,
