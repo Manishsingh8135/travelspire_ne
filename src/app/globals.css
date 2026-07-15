@@ -479,6 +479,30 @@
   }
 }
 
+/* =========================================================================
+   V2 EDITORIAL EXPERIMENT (tours-v2) — a parallel type voice, scoped by the
+   route layout providing --font-editorial. Giant serif, ghost numerals.
+   Deleted or promoted wholesale after the founder's verdict.
+   ========================================================================= */
+@layer utilities {
+  .font-editorial {
+    font-family: var(--font-editorial), Georgia, "Times New Roman", serif;
+  }
+  /* Giant outline numerals. Solid-color fallback where stroke is unsupported. */
+  .text-ghost {
+    color: oklch(0.85 0.008 62 / 0.55);
+  }
+  @supports (-webkit-text-stroke: 1px black) {
+    .text-ghost {
+      color: transparent;
+      -webkit-text-stroke: 1.5px oklch(0.6 0.01 62 / 0.55);
+    }
+    [data-theme="dark"] .text-ghost {
+      -webkit-text-stroke-color: oklch(0.88 0.011 82 / 0.4);
+    }
+  }
+}
+
 /* Public shadow doctrine (08-blueprint/14 D3): photography/object cards carry
    a real warm shadow and lift on hover. Objects cast shadows; paragraphs
    don't. Resolves per tone (dark tones re-map the elevation roles). */
