@@ -9,11 +9,13 @@ import { tourInquiryUrl, helloUrl } from "@/lib/whatsapp";
 import {
   arrangeRows,
   bodyOf,
+  daysUntilStart,
   legacyDays,
   overnightNodes,
   parsePricing,
   routeLine,
   difficultyTicks,
+  stopNames,
   strArray,
   testimonialsOf,
   tourFromPrice,
@@ -58,32 +60,6 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     description: tour.subtitle ?? readString(tour.body, "overview"),
     path: `/tours/${slug}`,
   });
-}
-
-/* ── small local readers ─────────────────────────────────────────────────── */
-
-function stopNames(body: Record<string, unknown>): string[] {
-  if (!Array.isArray(body.routeStops)) return [];
-  return body.routeStops.flatMap((s) =>
-    s && typeof s === "object" && typeof (s as { name?: unknown }).name === "string"
-      ? [(s as { name: string }).name]
-      : [],
-  );
-}
-
-/** Days until the festival's start date (body.eventDates) — null when unknowable. */
-function daysUntilStart(body: Record<string, unknown>): number | null {
-  const dates = body.eventDates;
-  if (!dates || typeof dates !== "object") return null;
-  const r = dates as Record<string, unknown>;
-  const raw = [r.start, r.startsOn, r.from].find((v) => typeof v === "string") as
-    | string
-    | undefined;
-  if (!raw) return null;
-  const t = Date.parse(raw);
-  if (Number.isNaN(t)) return null;
-  const days = Math.ceil((t - Date.now()) / 86_400_000);
-  return days > 0 && days < 400 ? days : null;
 }
 
 /** Shared compact section head — eyebrow + display title + optional right chip. */
@@ -278,7 +254,7 @@ export default async function TourPage({ params }: Params) {
               ) : null}
               <div
                 aria-hidden
-                className="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-charcoal-950/20 to-charcoal-950/25"
+                className="absolute inset-0 bg-linear-to-t from-charcoal-950/80 via-charcoal-950/20 to-charcoal-950/25"
               />
             </div>
             <div className={`relative z-10 ${gutters} pt-5`}>
@@ -402,7 +378,7 @@ export default async function TourPage({ params }: Params) {
                       ))}
                     </ul>
                   </FieldNote>
-                  <FieldNote kicker="Not for you if —" className="-rotate-[0.4deg]">
+                  <FieldNote kicker="Not for you if —" className="rotate-[-0.4deg]">
                     <ul className="flex flex-col gap-2.5 text-base leading-relaxed">
                       {notFor.map((item) => (
                         <li key={item} className="flex gap-2.5">

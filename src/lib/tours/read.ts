@@ -115,6 +115,31 @@ export function overnightNodes(days: ItineraryDay[]): RibbonNode[] {
   return nodes.length >= 2 ? nodes : [];
 }
 
+/** Stop names out of the legacy body.routeStops (ribbon/route-line fallback). */
+export function stopNames(body: Record<string, unknown>): string[] {
+  if (!Array.isArray(body.routeStops)) return [];
+  return body.routeStops.flatMap((s) =>
+    s && typeof s === "object" && typeof (s as { name?: unknown }).name === "string"
+      ? [(s as { name: string }).name]
+      : [],
+  );
+}
+
+/** Days until a festival tour starts (body.eventDates) — null when unknowable. */
+export function daysUntilStart(body: Record<string, unknown>, now = Date.now()): number | null {
+  const dates = body.eventDates;
+  if (!dates || typeof dates !== "object") return null;
+  const r = dates as Record<string, unknown>;
+  const raw = [r.start, r.startsOn, r.from].find((v) => typeof v === "string") as
+    | string
+    | undefined;
+  if (!raw) return null;
+  const t = Date.parse(raw);
+  if (Number.isNaN(t)) return null;
+  const days = Math.ceil((t - now) / 86_400_000);
+  return days > 0 && days < 400 ? days : null;
+}
+
 /** "DIBRUGARH → AALO → MECHUKA" — middle-truncated past `max` names. */
 export function routeLine(names: string[], max = 3): string | null {
   const clean = names.map((n) => n.trim()).filter(Boolean).map((n) => n.toUpperCase());
