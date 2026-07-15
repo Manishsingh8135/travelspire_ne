@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import {
-  motion,
+  m,
   useScroll,
   useTransform,
   useMotionValueEvent,
@@ -152,14 +152,14 @@ function LoopSticky({ stages }: { stages: LoopStage[] }) {
                 strokeLinecap="round"
               />
               {/* the road travelled */}
-              <motion.path
+              <m.path
                 d={ROUTE}
                 stroke="var(--color-marigold-400)"
                 strokeWidth="2"
                 strokeLinecap="round"
                 style={{ pathLength: lineProgress }}
               />
-              <motion.path
+              <m.path
                 d={HOME}
                 stroke="var(--color-marigold-400)"
                 strokeWidth="1.6"
@@ -194,7 +194,7 @@ function LoopSticky({ stages }: { stages: LoopStage[] }) {
         </div>
 
         {/* ── Mobile: stamp strip + progress hairline ── */}
-        <div className="absolute inset-x-0 top-0 pt-[max(theme(spacing.20),env(safe-area-inset-top))] lg:hidden">
+        <div className="absolute inset-x-0 top-0 pt-[max(--spacing(20),env(safe-area-inset-top))] lg:hidden">
           <div className="flex items-center justify-center gap-2 px-4">
             {stages.map((stage, i) => (
               <button
@@ -215,13 +215,13 @@ function LoopSticky({ stages }: { stages: LoopStage[] }) {
             ))}
           </div>
           <div className="mx-auto mt-3 h-px w-56 overflow-hidden bg-mist-50/15">
-            <motion.div className="h-full bg-marigold-400" style={{ width: mobileBar }} />
+            <m.div className="h-full bg-marigold-400" style={{ width: mobileBar }} />
           </div>
         </div>
 
         {/* ── The words — typography on the night, no boxes ── */}
         <div className="absolute inset-0 flex items-end lg:items-center">
-          <div className="relative w-full px-5 pb-[max(theme(spacing.16),env(safe-area-inset-bottom))] sm:px-8 lg:pb-0 lg:pl-48 xl:pl-64">
+          <div className="relative w-full px-5 pb-[max(--spacing(16),env(safe-area-inset-bottom))] sm:px-8 lg:pb-0 lg:pl-48 xl:pl-64">
             <div className="relative max-w-xl">
               {stages.map((stage, i) => (
                 <div

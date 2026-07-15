@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Fraunces, Hanken_Grotesk, Geist_Mono } from "next/font/google";
 import { ThemeProvider, THEME_INIT_SCRIPT } from "@/components/theme-provider";
 import { NightAB } from "@/components/dev/night-ab";
@@ -43,8 +44,12 @@ export default function RootLayout({
       className={`${fraunces.variable} ${hanken.variable} ${geistMono.variable}`}
     >
       <body>
-        {/* Pre-hydration theme stamp — server-rendered, runs before first paint. */}
-        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        {/* Pre-hydration theme stamp — beforeInteractive is hoisted OUTSIDE
+            React's hydration tree, so React 19's script-in-component warning
+            can't fire (unlike a raw <script>, which triggered it). */}
+        <Script id="theme-init" strategy="beforeInteractive">
+          {THEME_INIT_SCRIPT}
+        </Script>
         <ThemeProvider>
           {children}
           {/* TEMPORARY: dark-theme A/B switch — dev only, deleted after the verdict. */}
