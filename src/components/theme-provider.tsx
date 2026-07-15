@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { usePathname } from "next/navigation";
 
 /**
  * Owned theme provider (replaced next-themes: its injected <script> trips
@@ -12,6 +11,11 @@ import { usePathname } from "next/navigation";
  * `data-theme` on <html> from localStorage BEFORE first paint (server-
  * rendered script — executes normally, no client warning). This provider
  * reads that as its initial truth and keeps state, DOM and storage in sync.
+ *
+ * Dark is honored EVERYWHERE (founder verdict 2026-07-15 — the public dark
+ * theme is "the field journal by lamplight"; the old public-always-light law
+ * is retired). Default for first-time visitors stays light. Section tones
+ * (data-tone) remain pinned art direction, independent of this toggle.
  */
 
 export type Theme = "light" | "dark";
@@ -41,15 +45,11 @@ function readInitial(): Theme {
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = React.useState<Theme>(readInitial);
-  const pathname = usePathname();
-  const isAdmin = pathname?.startsWith("/admin") ?? false;
 
-  // Founder law (08-blueprint/14): PUBLIC pages are always light — the
-  // palettes are art-directed per section. Dark stays an admin preference.
-  // This also covers SPA navigation between the two worlds.
+  // Keep the DOM stamped through SPA navigation and state changes.
   React.useEffect(() => {
-    document.documentElement.dataset.theme = isAdmin ? theme : "light";
-  }, [isAdmin, theme]);
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
 
   const setTheme = React.useCallback((next: Theme | string) => {
     const value: Theme = next === "dark" ? "dark" : "light";
@@ -71,7 +71,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 }
 
 /** Inline pre-hydration script body — rendered by the SERVER layout.
- * Dark is honored only under /admin; public pages always paint light. */
-export const THEME_INIT_SCRIPT = `(function(){try{var a=location.pathname.lastIndexOf("/admin",0)===0;var t=localStorage.getItem(${JSON.stringify(
+ * Stored theme is honored on every route; first visits paint light. */
+export const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem(${JSON.stringify(
   THEME_STORAGE_KEY,
-)});document.documentElement.dataset.theme=a&&t==="dark"?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;
+)});document.documentElement.dataset.theme=t==="dark"?"dark":"light";}catch(e){document.documentElement.dataset.theme="light";}})();`;

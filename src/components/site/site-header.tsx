@@ -50,7 +50,7 @@ export function SiteHeader() {
             href={NAV_CTA.href}
             target="_blank"
             rel="noreferrer"
-            className="hidden items-center rounded-full bg-marigold-500 px-4 py-2 text-xs font-semibold tracking-wider text-basalt-950 uppercase transition-colors hover:bg-marigold-400 sm:inline-flex"
+            className="hidden items-center rounded-full bg-primary px-4 py-2 text-xs font-semibold tracking-wider text-primary-foreground uppercase transition-colors hover:bg-primary-hover sm:inline-flex"
           >
             {NAV_CTA.label}
           </a>

@@ -18,7 +18,7 @@ export function FieldNote({
   return (
     <aside
       className={cn(
-        "rounded-2xl border border-border-subtle bg-mist-200/60 p-6 sm:p-7",
+        "rounded-2xl border border-border-subtle bg-mist-200/60 p-6 sm:p-7 dark:bg-charcoal-900/80",
         className,
       )}
     >

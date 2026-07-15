@@ -323,6 +323,48 @@
   --bg-subtle: var(--color-mist-300);
 }
 
+/* Sand at NIGHT — under the dark theme the sand tone becomes "the warm room
+   at night": a lifted, warm-hued charcoal (hue ~62 vs the page's cool ink
+   ~268), mist hairlines, luminous pine — a lamplit room against the night.
+   Without this remap the pinned light sand would blast out of a dark page. */
+[data-theme="dark"] [data-tone="sand"] {
+  --bg-base: oklch(0.235 0.016 62);
+  --bg-surface: oklch(0.265 0.016 64);
+  --bg-subtle: oklch(0.295 0.016 64);
+  --bg-inset: oklch(0.205 0.015 60);
+
+  --fg: var(--color-mist-100);
+  --fg-muted: var(--color-mist-300);
+  --fg-subtle: var(--color-stone-400);
+
+  --border-subtle: oklch(0.92 0.01 84 / 0.14);
+  --border-default: oklch(0.92 0.01 84 / 0.22);
+  --border-strong: oklch(0.92 0.01 84 / 0.34);
+
+  --secondary: var(--color-pine-300);
+  --on-secondary: var(--color-charcoal-950);
+
+  --success: var(--color-pine-300);
+
+  --elev-panel:
+    inset 0 1px 0 oklch(1 0 0 / 0.06),
+    0 0 0 1px oklch(0.93 0.012 84 / 0.1),
+    0 2px 6px oklch(0.09 0.014 62 / 0.45),
+    0 8px 20px -6px oklch(0.09 0.014 62 / 0.55);
+  --elev-lift:
+    inset 0 1px 0 oklch(1 0 0 / 0.08),
+    0 0 0 1px oklch(0.93 0.012 84 / 0.13),
+    0 4px 10px oklch(0.09 0.014 62 / 0.5),
+    0 16px 40px -8px oklch(0.08 0.014 62 / 0.65);
+  --elev-deep:
+    inset 0 1px 0 oklch(1 0 0 / 0.09),
+    0 0 0 1px oklch(0.93 0.012 84 / 0.15),
+    0 8px 24px oklch(0.08 0.014 62 / 0.55),
+    0 32px 80px -12px oklch(0.07 0.014 62 / 0.7);
+
+  color-scheme: dark;
+}
+
 /* =========================================================================
    BRIDGE — expose semantic roles as Tailwind color utilities
    (bg-background, text-foreground, border-border, bg-primary, ...).
@@ -406,6 +448,17 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* The night has depth, never flat black: a whisper of distant lamplight at
+     the top (warm, hue ~60) over the deep ink pool (hue ~268). Fixed so the
+     glow doesn't scroll away — the room stays lit. (Public dark theme —
+     "the field journal by lamplight".) */
+  [data-theme="dark"] body {
+    background-image:
+      radial-gradient(110% 60% at 50% -12%, oklch(0.245 0.018 62 / 0.55) 0%, transparent 55%),
+      radial-gradient(90% 50% at 50% 115%, oklch(0.16 0.02 268 / 0.8) 0%, transparent 60%);
+    background-attachment: fixed;
   }
 
   /* Marigold focus ring — always visible, never removed without replacement */

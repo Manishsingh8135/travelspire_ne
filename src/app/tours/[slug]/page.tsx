@@ -296,7 +296,7 @@ export default async function TourPage({ params }: Params) {
                 <section id="route" aria-label="The route" className="relative scroll-mt-24">
                   <CompassRose
                     aria-hidden
-                    className="pointer-events-none absolute -top-8 right-0 size-28 text-foreground opacity-[0.05]"
+                    className="pointer-events-none absolute -top-8 right-0 size-28 text-foreground opacity-[0.05] dark:opacity-[0.09]"
                   />
                   <SectionHead
                     eyebrow="The route"
@@ -491,14 +491,25 @@ export default async function TourPage({ params }: Params) {
                 <section aria-label="Before you book">
                   {/* text-foreground is REQUIRED with data-tone: the body's color
                       resolved against the light tokens and inherits through —
-                      the tone remap only takes effect where color is re-read. */}
+                      the tone remap only takes effect where color is re-read.
+                      bg-inset = forest's ink well: on the dark theme this stays
+                      a WELL, deeper than the night page around it. */}
                   <div
                     data-tone="forest"
-                    className="relative overflow-hidden rounded-2xl border border-border-subtle bg-background px-6 py-12 text-center text-foreground sm:px-12 sm:py-16"
+                    className="relative isolate overflow-hidden rounded-2xl border border-border-subtle bg-inset px-6 py-12 text-center text-foreground sm:px-12 sm:py-16"
                   >
+                    {/* distant-lamplight depth so the moment stays a moment at night */}
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 -z-10"
+                      style={{
+                        background:
+                          "radial-gradient(120% 75% at 50% -10%, oklch(0.275 0.02 72 / 0.8) 0%, transparent 58%)",
+                      }}
+                    />
                     <RidgeMotif
                       aria-hidden
-                      className="pointer-events-none absolute inset-x-0 -bottom-2 h-28 w-full text-mist-50 opacity-[0.06]"
+                      className="pointer-events-none absolute inset-x-0 -bottom-2 h-28 w-full text-mist-50 opacity-[0.06] dark:opacity-[0.09]"
                     />
                     <p className="font-mono text-[11px] font-medium tracking-[0.24em] text-accent uppercase">
                       Read this first

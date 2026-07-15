@@ -94,7 +94,7 @@ export function RateCard({
       <WaxStamp
         label="Rates"
         sub={season}
-        className="absolute -top-3 -right-3 size-20 rotate-6 text-stone-400/50"
+        className="absolute -top-3 -right-3 size-20 rotate-6 text-stone-400/50 dark:text-mist-300/40"
       />
 
       <div className="border-b border-border-subtle px-5 py-3.5 sm:px-6">

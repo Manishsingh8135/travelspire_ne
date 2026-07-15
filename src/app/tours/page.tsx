@@ -22,6 +22,7 @@ import { MediaImage } from "@/components/media/media-image";
 import { WaxStamp } from "@/components/marketing/decor/wax-stamp";
 import { ContourField } from "@/components/marketing/decor/contour-field";
 import { RidgeMotif } from "@/components/marketing/decor/ridge-motif";
+import { WeaveBand } from "@/components/marketing/decor/weave-band";
 import { SunriseRidge, SnowPass, Hornbill, TrailDashed } from "@/components/icons/field-icons";
 import { cn } from "@/lib/cn";
 
@@ -128,7 +129,7 @@ export default async function ToursPage({ searchParams }: { searchParams: SP }) 
         <section aria-label="The expedition catalogue" className="relative mt-10 sm:mt-12">
           <ContourField
             aria-hidden
-            className="pointer-events-none absolute -top-10 right-0 hidden h-64 w-[42rem] text-foreground opacity-[0.04] lg:block"
+            className="pointer-events-none absolute -top-10 right-0 hidden h-64 w-[42rem] text-foreground opacity-[0.04] lg:block dark:opacity-[0.08]"
           />
           <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
@@ -328,8 +329,14 @@ export default async function ToursPage({ searchParams }: { searchParams: SP }) 
           <section aria-label="Festival departures" className="mt-16 sm:mt-20">
             <div
               data-tone="sand"
-              className="rounded-2xl border border-border-subtle bg-background px-6 py-8 text-foreground sm:px-10 sm:py-10"
+              className="relative overflow-hidden rounded-2xl border border-border-subtle bg-background px-6 py-8 text-foreground sm:px-10 sm:py-10"
             >
+              {/* textile band along the top edge — the culture content's motif */}
+              <WeaveBand
+                variant="lines"
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 top-0 h-4 w-full text-foreground opacity-[0.14] dark:opacity-[0.18]"
+              />
               <p className="font-mono text-xs font-medium tracking-[0.2em] text-secondary uppercase">
                 Some journeys have a date
               </p>
@@ -382,7 +389,7 @@ export default async function ToursPage({ searchParams }: { searchParams: SP }) 
         >
           <RidgeMotif
             aria-hidden
-            className="pointer-events-none absolute right-0 -bottom-4 h-32 w-[36rem] text-foreground opacity-[0.05]"
+            className="pointer-events-none absolute right-0 -bottom-4 h-32 w-[36rem] text-foreground opacity-[0.05] dark:opacity-[0.09]"
           />
           <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
