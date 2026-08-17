@@ -396,8 +396,8 @@ export function UnifiedToursPage({ initialFilters = {}, className }: UnifiedTour
                 transition={{ duration: 0.5 }}
                 className={cn(
                   viewMode === 'grid' 
-                    ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                    : "space-y-6"
+                    ? "grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+                    : "space-y-4"
                 )}
               >
                 {filteredAndSortedTours.map((tour, index) => (

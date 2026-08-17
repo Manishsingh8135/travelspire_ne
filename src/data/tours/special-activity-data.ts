@@ -23,7 +23,7 @@ export const dambukOrangeFestival: SpecialActivityTour = {
   gallery: [
     "/images/places/anini/Anini_4.JPG",
     "/images/places/anini/Anini_5.JPG",
-    "/images/places/anini/Anini_6.JPG",
+    "/images/places/anini/Anini_6.jpg",
    
   ],
 
@@ -111,7 +111,7 @@ export const dambukBikeTour: SpecialActivityTour = {
   },
 
   heroImage: "/images/places/anini/Anini_7.JPG",
-  thumbnail: "/images/places/anini/Anini_8.JPG",
+  thumbnail: "/images/places/anini/Anini_8.jpg",
   gallery: [
     "/images/places/anini/Anini_1.JPG",
     "/images/places/anini/Anini_1.JPG",

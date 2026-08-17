@@ -2,7 +2,6 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
 import { Send, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -14,12 +13,12 @@ interface MessageComposerProps {
   className?: string;
 }
 
-export function MessageComposer({ 
-  customMessage, 
-  onMessageChange, 
-  onSend, 
+export function MessageComposer({
+  customMessage,
+  onMessageChange,
+  onSend,
   isLoading = false,
-  className 
+  className,
 }: MessageComposerProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -27,13 +26,13 @@ export function MessageComposer({
   useEffect(() => {
     const textarea = textareaRef.current;
     if (textarea) {
-      textarea.style.height = 'auto';
+      textarea.style.height = "auto";
       textarea.style.height = `${Math.min(textarea.scrollHeight, 80)}px`; // Fixed max 80px
     }
   }, [customMessage]);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       onSend();
     }
@@ -53,47 +52,46 @@ export function MessageComposer({
           onKeyPress={handleKeyPress}
           placeholder="Add your message here... (optional)"
           className={cn(
-            "w-full p-2 sm:p-2.5 border-2 rounded-xl resize-none",
+            "w-full resize-none rounded-[10px] border p-2 sm:p-2.5",
             "border-gray-200 dark:border-gray-700",
             "focus:border-green-500 focus:outline-none",
             "bg-white dark:bg-gray-800",
             "text-gray-900 dark:text-gray-100",
             "placeholder:text-gray-500 dark:placeholder:text-gray-400",
-            "transition-all duration-200",
+            "transition-colors duration-200",
             "min-h-[40px] max-h-[80px]", // Guaranteed small height
-            "text-sm"
+            "text-sm",
           )}
           maxLength={maxCharacters}
         />
-        
+
         {/* Character counter */}
         {characterCount > 0 && (
-          <div className={cn(
-            "absolute bottom-2 right-2 text-xs",
-            characterCount > maxCharacters * 0.8 
-              ? "text-orange-500" 
-              : "text-gray-400"
-          )}>
+          <div
+            className={cn(
+              "absolute bottom-2 right-2 text-xs",
+              characterCount > maxCharacters * 0.8
+                ? "text-orange-500"
+                : "text-gray-400",
+            )}
+          >
             {characterCount}/{maxCharacters}
           </div>
         )}
       </div>
 
       {/* Send button - Compact */}
-      <motion.button
+      <button
+        type="button"
         onClick={onSend}
         disabled={isLoading}
         className={cn(
-          "w-full py-2.5 px-4 rounded-xl font-semibold text-sm",
-          "bg-gradient-to-r from-green-500 to-green-600",
-          "hover:from-green-600 hover:to-green-700",
-          "text-white shadow-lg hover:shadow-xl",
-          "transition-all duration-300",
+          "w-full rounded-[10px] bg-green-600 px-4 py-2.5 text-sm font-semibold",
+          "text-white hover:bg-green-700",
+          "transition-colors duration-200",
           "flex items-center justify-center gap-2",
-          "disabled:opacity-50 disabled:cursor-not-allowed"
+          "disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2",
         )}
-        whileHover={{ scale: isLoading ? 1 : 1.02 }}
-        whileTap={{ scale: isLoading ? 1 : 0.98 }}
       >
         {isLoading ? (
           <>
@@ -106,14 +104,13 @@ export function MessageComposer({
             Send via WhatsApp
           </>
         )}
-      </motion.button>
+      </button>
 
       {/* Helper text - Compact */}
       <p className="text-xs text-gray-500 dark:text-gray-400 text-center leading-tight">
-        {customMessage.trim() === "" 
+        {customMessage.trim() === ""
           ? "Send even without typing!"
-          : "Press Enter to send"
-        }
+          : "Press Enter to send"}
       </p>
     </div>
   );

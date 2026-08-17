@@ -1,11 +1,9 @@
 // components/sections/upcoming-tours.tsx
-"use client";
-
-import { 
+import {
   TourShowcase,
   TourShowcaseHeader,
   TourCard,
-  TourGrid 
+  TourGrid,
 } from "@/components/tours/tour-showcase";
 import { FestivalTourCard } from "@/components/tours/tour-showcase/festival-tour-card";
 import { ActivityTourCard } from "@/components/tours/tour-showcase/special-activity-card";
@@ -18,37 +16,21 @@ export function UpcomingTours() {
       <TourShowcaseHeader
         title="Upcoming Adventures"
         subtitle="Explore our handcrafted journeys through the enchanting Northeast. Each tour is thoughtfully designed to provide authentic experiences and unforgettable memories."
+        actionHref="/all-tours"
+        actionLabel="Explore all journeys"
       />
-      
+
       <TourGrid>
         {upcomingTours.map((tour, index) => {
           if (isFestivalTour(tour)) {
-            return (
-              <FestivalTourCard
-                key={tour.id}
-                tour={tour}
-                index={index}
-              />
-            );
-          }
-          
-          if (isSpecialActivityTour(tour)) {
-            return (
-              <ActivityTourCard
-                key={tour.id}
-                tour={tour}
-                index={index}
-              />
-            );
+            return <FestivalTourCard key={tour.id} tour={tour} index={index} />;
           }
 
-          return (
-            <TourCard
-              key={tour.id}
-              tour={tour}
-              index={index}
-            />
-          );
+          if (isSpecialActivityTour(tour)) {
+            return <ActivityTourCard key={tour.id} tour={tour} index={index} />;
+          }
+
+          return <TourCard key={tour.id} tour={tour} index={index} />;
         })}
       </TourGrid>
     </TourShowcase>

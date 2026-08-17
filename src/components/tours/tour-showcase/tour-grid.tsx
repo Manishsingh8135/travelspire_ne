@@ -8,10 +8,12 @@ interface TourGridProps {
 
 export function TourGrid({ children, className }: TourGridProps) {
   return (
-    <div className={cn(
-      "grid grid-cols-1 md:grid-cols-2 gap-8",
-      className
-    )}>
+    <div
+      className={cn(
+        "grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3",
+        className,
+      )}
+    >
       {children}
     </div>
   );

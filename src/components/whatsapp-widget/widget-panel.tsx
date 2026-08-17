@@ -32,9 +32,11 @@ export function WidgetPanel({
   onMessageChange,
   onSend,
   isLoading = false,
-  className
+  className,
 }: WidgetPanelProps) {
-  const [expandedCategory, setExpandedCategory] = useState<string | null>('festivals');
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(
+    "festivals",
+  );
 
   const toggleCategory = (categoryId: string) => {
     setExpandedCategory(expandedCategory === categoryId ? null : categoryId);
@@ -55,29 +57,29 @@ export function WidgetPanel({
 
           {/* Panel */}
           <motion.div
-            initial={{ opacity: 0, y: 100, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 100, scale: 0.95 }}
-            transition={{ type: "spring", duration: 0.3 }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
             className={cn(
               "fixed bottom-20 right-4 z-50",
               "w-[380px] h-[85vh] max-h-[600px]",
               "bg-white dark:bg-gray-900",
-              "rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700",
+              "rounded-[16px] border border-gray-200 shadow-2xl dark:border-gray-700",
               "overflow-hidden",
               "flex flex-col", // Critical: Flex container for 3 sections
               // Mobile responsive - Better positioning
               "sm:bottom-24 sm:right-6",
               "max-sm:fixed max-sm:inset-x-3 max-sm:bottom-16",
-              "max-sm:w-auto max-sm:h-[80vh] max-sm:max-h-[500px] max-sm:rounded-xl",
+              "max-sm:h-[80vh] max-sm:max-h-[500px] max-sm:w-auto",
               "max-md:inset-x-4 max-md:bottom-20 max-md:h-[82vh] max-md:max-h-[550px]",
-              className
+              className,
             )}
           >
             {/* SECTION 1: Header - Compact Fixed Height */}
             <div className="flex items-center justify-between p-3 sm:p-4 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 flex-shrink-0">
               <div className="flex items-center gap-2 sm:gap-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center p-1 shadow-sm">
+                <div className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-white p-1 shadow-sm sm:h-10 sm:w-10">
                   <Image
                     src="/images/logo/Travelspire_ne_logo_new.png"
                     alt="TravelSpire NE"
@@ -97,7 +99,7 @@ export function WidgetPanel({
               </div>
               <button
                 onClick={onClose}
-                className="p-1.5 sm:p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors flex-shrink-0"
+                className="flex-shrink-0 rounded-[10px] p-1.5 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700 sm:p-2"
               >
                 <X className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500" />
               </button>
@@ -118,14 +120,19 @@ export function WidgetPanel({
 
                 {/* Categories */}
                 {quickActionCategories.map((category) => (
-                  <div key={category.id} className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                  <div
+                    key={category.id}
+                    className="overflow-hidden rounded-[12px] border border-gray-200 dark:border-gray-700"
+                  >
                     {/* Category Header */}
                     <button
                       onClick={() => toggleCategory(category.id)}
                       className="w-full flex items-center justify-between p-2 sm:p-2.5 bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="text-sm sm:text-base">{category.icon}</span>
+                        <span className="text-sm sm:text-base">
+                          {category.icon}
+                        </span>
                         <span className="font-medium text-gray-900 dark:text-gray-100 text-xs sm:text-sm">
                           {category.title}
                         </span>
@@ -165,11 +172,11 @@ export function WidgetPanel({
             {/* SECTION 3: Input Area - Fixed Guaranteed Height */}
             <div className="border-t border-gray-200 dark:border-gray-700 p-2.5 sm:p-3 flex-shrink-0">
               <MessageComposer
-                  customMessage={customMessage}
-                  onMessageChange={onMessageChange}
-                  onSend={onSend}
-                  isLoading={isLoading}
-                />
+                customMessage={customMessage}
+                onMessageChange={onMessageChange}
+                onSend={onSend}
+                isLoading={isLoading}
+              />
             </div>
           </motion.div>
         </>

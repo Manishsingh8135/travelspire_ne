@@ -312,15 +312,15 @@ export const aniniExpedition: Tour = {
   heroImage: "/images/places/anini-new/anini-new-landscape-11.jpeg", // Replace with actual Anini images
   thumbnail: "/images/places/anini-new/anini-new-landscape-11.jpeg",
   gallery: [
-    "/images/places/anini-new/anini-new-portrait-1.JPG",
-    "/images/places/anini-new/anini-new-portrait-2.JPG",
-    "/images/places/anini-new/anini-new-portrait-3.JPG",
-    "/images/places/anini-new/anini-new-portrait-4.JPG",
-    "/images/places/anini-new/anini-new-portrait-5.JPG",
-    "/images/places/anini-new/anini-new-portrait-6.JPG",
-    "/images/places/anini-new/anini-new-portrait-7.JPG",
-    "/images/places/anini-new/anini-new-portrait-8.JPG",
-    "/images/places/anini-new/anini-new-portrait-9.JPG",
+    "/images/places/anini-new/anini-new-portrait-1.jpg",
+    "/images/places/anini-new/anini-new-portrait-2.jpg",
+    "/images/places/anini-new/anini-new-portrait-3.jpg",
+    "/images/places/anini-new/anini-new-portrait-4.jpg",
+    "/images/places/anini-new/anini-new-portrait-5.jpg",
+    "/images/places/anini-new/anini-new-portrait-6.jpg",
+    "/images/places/anini-new/anini-new-portrait-7.jpg",
+    "/images/places/anini-new/anini-new-portrait-8.jpg",
+    "/images/places/anini-new/anini-new-portrait-9.jpg",
   ],
 
   highlights: [
@@ -429,13 +429,13 @@ export const dambukAniniOfamTour: Tour = {
   price: 18500,
   featured: false,
 
-  heroImage: "/images/places/dambuk/Dambuk_4.jpg",
-  thumbnail: "/images/places/dambuk/Dambuk_4.jpg",
+  heroImage: "/images/places/dambuk/Dambuk_4.JPG",
+  thumbnail: "/images/places/dambuk/Dambuk_4.JPG",
   gallery: [
     "/images/places/dambuk/Dambuk_2.jpg",
-    "/images/places/anini/Anini_1.jpg",
+    "/images/places/anini/Anini_1.JPG",
     "/images/places/dambuk/Dambuk_3.jpg",
-    "/images/places/anini/Anini_2.jpg"
+    "/images/places/anini/Anini_2.JPG"
   ],
 
   highlights: [
@@ -564,7 +564,7 @@ export const dambukGoldenPagodaTour: Tour = {
   gallery: [
     "/images/places/dambuk/Dambuk_2.jpg",
     "/images/places/dambuk/Dambuk_3.jpg",
-    "/images/places/dambuk/Dambuk_4.jpg",
+    "/images/places/dambuk/Dambuk_4.JPG",
     "/images/places/dambuk/Dambuk_5.jpg"
   ],
 
@@ -684,7 +684,7 @@ export const dambukDongValleyTour: Tour = {
   thumbnail: "/images/places/dong/Dong_3.jpg",
   gallery: [
     "/images/places/dambuk/Dambuk_2.jpg",
-    "/images/places/dong/Dong_1.jpg",
+    "/images/places/dong/Dong_1.JPG",
     "/images/places/dong/Dong_3.jpg",
     "/images/places/dong/Dong_5.jpg"
   ],
@@ -819,9 +819,9 @@ export const pomoTrekExpedition: Tour = {
     "/images/places/pomo/pomo1.JPG",
     "/images/places/pomo/pomo2.JPG",
     "/images/places/pomo/pomo3.JPG",
-    "/images/places/pomo/pomo4.JPG",
-    "/images/places/pomo/pomo5.JPG",
-    "/images/places/pomo/pomo6.JPG",
+    "/images/places/pomo/pomo4.jpg",
+    "/images/places/pomo/pomo5.jpg",
+    "/images/places/pomo/pomo6.jpg",
   ],
 
   highlights: [
@@ -951,11 +951,11 @@ export const mechukaExpedition: Tour = {
   thumbnail: "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
   gallery: [
     "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
-    "/images/places/mechuka-new/mechuka-new-portrait-2.JPG",
-    "/images/places/mechuka-new/mechuka-new-portrait-3.JPG",
-    "/images/places/mechuka-new/mechuka-new-portrait-8.JPG",
-    "/images/places/mechuka-new/mechuka-new-portrait-15.JPG",
-    "/images/places/mechuka-new/mechuka-new-portrait-21.JPG",
+    "/images/places/mechuka-new/mechuka-new-portrait-2.jpg",
+    "/images/places/mechuka-new/mechuka-new-portrait-3.jpg",
+    "/images/places/mechuka-new/mechuka-new-portrait-8.jpg",
+    "/images/places/mechuka-new/mechuka-new-portrait-15.jpg",
+    "/images/places/mechuka-new/mechuka-new-portrait-21.jpg",
   ],
 
   highlights: [
@@ -1102,7 +1102,6 @@ export const regularTours = [
   pomoTrekExpedition,
   mechukaExpedition
 ];
-
 
 
 

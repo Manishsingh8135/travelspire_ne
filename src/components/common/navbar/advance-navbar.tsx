@@ -1,8 +1,8 @@
 // src/components/layout/advanced-navbar.tsx
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Menu, X } from "lucide-react";
@@ -23,106 +23,76 @@ export const AdvancedNavbar = () => {
 
   useEffect(() => {
     if (isMobile && isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMobile, isOpen]);
 
   return (
-    <motion.header
+    <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        "backdrop-blur-xl"
+        "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
+        isScrolled
+          ? "border-white/10 bg-[#06100e]/95 shadow-[0_12px_40px_rgba(0,0,0,0.18)] backdrop-blur-xl"
+          : "border-transparent bg-gradient-to-b from-black/[0.65] via-black/25 to-transparent",
       )}
     >
-      {/* Top border gradient */}
-      <div className="absolute inset-x-0 top-0 h-[1px] gradient-primary opacity-20" />
-
-      {/* Main container */}
-      <div className={cn(
-        "mx-auto transition-all duration-300",
-        !isMobile && "px-4 py-2 mt-3",
-        !isMobile && (isScrolled 
-          ? "max-w-[95%] rounded-2xl border border-primary-100/20 dark:border-primary-900/20 shadow-glow"
-          : "max-w-7xl")
-      )}>
-        <motion.nav 
-          className={cn(
-            "mx-auto",
-            !isMobile && "px-4 rounded-xl bg-background/60 backdrop-blur-xl",
-            isMobile && (isScrolled ? "bg-background/80" : "bg-transparent")
-          )}
-          animate={{
-            scale: isScrolled ? 1.01 : 1,
-          }}
-          transition={{
-            duration: 0.3,
-            ease: "easeInOut"
-          }}
-        >
+      <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24">
+        <nav aria-label="Primary navigation">
           {/* Navbar content */}
-          <div className="h-16 flex items-center justify-between sm:px-4">
+          <div className="flex h-[72px] items-center justify-between md:h-20">
             {/* Logo */}
-            <motion.div
-              className="flex-shrink-0"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div 
-                
-                className="text-2xl font-bold text-gradient-primary"
-              >
-                <Logo/>
-              </div>
-            </motion.div>
+            <div className="flex-shrink-0">
+              <Logo />
+            </div>
 
             {/* Desktop Navigation */}
             {!isMobile && (
-              <DesktopNavigation 
-                active={active}
-                setActive={setActive}
-                isScrolled={isScrolled}
-              />
+              <DesktopNavigation active={active} setActive={setActive} />
             )}
 
             {/* Mobile Menu Button */}
             {isMobile && (
               <div className="flex items-center gap-2">
-                <motion.button
-                  whileTap={{ scale: 0.9 }}
+                <button
+                  type="button"
                   onClick={() => setIsOpen(!isOpen)}
+                  aria-label={
+                    isOpen ? "Close navigation menu" : "Open navigation menu"
+                  }
+                  aria-expanded={isOpen}
                   className={cn(
-                    "p-2 rounded-full",
-                    "text-foreground/80 hover:text-foreground",
-                    "hover:bg-primary-50 dark:hover:bg-primary-950/50",
-                    "transition-all duration-200"
+                    "grid h-10 w-10 place-items-center rounded-[10px] border border-white/20",
+                    "text-white/[0.85] hover:border-white/[0.45] hover:text-white",
+                    "transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8]",
                   )}
                 >
-                  {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-                </motion.button>
+                  {isOpen ? (
+                    <X className="h-6 w-6" />
+                  ) : (
+                    <Menu className="h-6 w-6" />
+                  )}
+                </button>
               </div>
             )}
           </div>
 
           {/* Mobile Navigation */}
           {isMobile && (
-            <MobileNavigation 
+            <MobileNavigation
               isOpen={isOpen}
               setIsOpen={setIsOpen}
               active={active}
               setActive={setActive}
             />
           )}
-        </motion.nav>
+        </nav>
       </div>
-
-      {/* Bottom border gradient */}
-      <div className="absolute inset-x-0 bottom-0 h-[1px] gradient-primary opacity-20" />
-    </motion.header>
+    </header>
   );
 };
 

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,74 +11,73 @@ import { navigationData } from "@/data/navbar/navigation";
 interface DesktopNavigationProps {
   active: string | null;
   setActive: (name: string | null) => void;
-  isScrolled: boolean;
 }
 
 const SubMenuItem = ({ item }: { item: NavigationItem }) => (
-  <Link href={item.href}>
-    <motion.div
-      whileHover={{ x: 4, scale: 1.02 }}
-      className={cn(
-        "block px-4 py-3 rounded-lg mx-2 my-1",
-        "text-sm group cursor-pointer",
-        "text-foreground/80 hover:text-foreground",
-        "hover:bg-gradient-to-r hover:from-primary-50 hover:to-secondary-50",
-        "dark:hover:from-primary-950/50 dark:hover:to-secondary-950/50",
-        "transition-all duration-300",
-        "border border-transparent hover:border-primary-200/50 dark:hover:border-primary-800/50"
+  <Link
+    href={item.href}
+    className={cn(
+      "mx-2 my-1 block border-l-2 border-transparent px-4 py-3",
+      "text-sm group cursor-pointer",
+      "text-white/70 hover:border-[#d8c59d] hover:bg-white/[0.05] hover:text-white",
+      "transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8]",
+    )}
+  >
+    <div className="flex items-start gap-3">
+      {item.icon && (
+        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-[10px] border border-white/10 bg-white/[0.04]">
+          <item.icon className="h-5 w-5 text-[#d8c59d]" />
+        </div>
       )}
-    >
-      <div className="flex items-start gap-3">
-        {item.icon && (
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/50 dark:to-secondary-900/50 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-            <item.icon className="h-5 w-5 text-primary-600 dark:text-primary-400" />
+      <div className="flex-1 min-w-0 overflow-hidden">
+        <div className="truncate font-semibold text-white transition-colors">
+          {item.name}
+        </div>
+        {item.description && (
+          <div className="mt-0.5 line-clamp-2 break-words text-xs text-white/[0.45]">
+            {item.description}
           </div>
         )}
-        <div className="flex-1 min-w-0 overflow-hidden">
-          <div className="font-semibold text-foreground group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate">
-            {item.name}
-          </div>
-          {item.description && (
-            <div className="text-xs text-muted-foreground mt-0.5 line-clamp-2 break-words">
-              {item.description}
-            </div>
-          )}
-        </div>
       </div>
-    </motion.div>
+    </div>
   </Link>
 );
 
-const NavItem = ({ item }: {
+const NavItem = ({
+  item,
+  isActive,
+}: {
   item: NavigationItem;
+  isActive: boolean;
 }) => {
   const content = (
     <span className="flex items-center gap-2">
       {item.icon && <item.icon className="h-4 w-4" />}
       {item.name}
-      {item.submenu && (
-        <ChevronDown className="h-4 w-4 text-muted-foreground" />
-      )}
+      {item.submenu && <ChevronDown className="h-4 w-4 text-white/[0.45]" />}
     </span>
   );
 
   const buttonClassName = cn(
-    "px-5 py-2.5 rounded-full text-sm font-medium min-w-[100px]",
-    "transition-all duration-300",
-    "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
+    "border-b border-transparent px-3 py-2 text-sm font-medium lg:px-4",
+    "transition-colors duration-200",
+    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8]",
     "inline-flex items-center justify-center",
-    "mx-1",
-    "text-foreground/80 hover:text-foreground",
-    "hover:bg-primary-50 dark:hover:bg-primary-950/50"
+    "text-white/[0.72] hover:border-[#d8c59d]/75 hover:text-white",
   );
 
   // If there's a submenu, render as a button
   if (item.submenu) {
     return (
       <div className="relative block">
-        <motion.button className={buttonClassName}>
+        <button
+          type="button"
+          aria-haspopup="true"
+          aria-expanded={isActive}
+          className={buttonClassName}
+        >
           {content}
-        </motion.button>
+        </button>
       </div>
     );
   }
@@ -86,87 +85,85 @@ const NavItem = ({ item }: {
   // If no submenu, render as a Link
   return (
     <div className="relative block">
-      <motion.div
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="relative"
-      >
-        <Link href={item.href} className={buttonClassName}>
-          {content}
-        </Link>
-      </motion.div>
+      <Link href={item.href} className={buttonClassName}>
+        {content}
+      </Link>
     </div>
   );
 };
 
-export const DesktopNavigation = ({ active, setActive }: DesktopNavigationProps) => {
+export const DesktopNavigation = ({
+  active,
+  setActive,
+}: DesktopNavigationProps) => {
   return (
-    <div className="hidden md:flex items-center space-x-4">
+    <div className="hidden items-center gap-1 md:flex">
       {navigationData.primary.map((item) => (
-        <div 
-          key={item.name} 
+        <div
+          key={item.name}
           className="relative group"
           onMouseEnter={() => setActive(item.name)}
           onMouseLeave={() => setActive(null)}
+          onFocus={() => item.submenu && setActive(item.name)}
+          onBlur={(event) => {
+            if (
+              !event.currentTarget.contains(event.relatedTarget as Node | null)
+            ) {
+              setActive(null);
+            }
+          }}
         >
-          <NavItem item={item} />
+          <NavItem item={item} isActive={active === item.name} />
 
           {/* Dropdown Menu */}
           {item.submenu && (
             <AnimatePresence>
               {active === item.name && (
                 <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  transition={{ 
-                    type: "spring", 
-                    bounce: 0.2,
-                    duration: 0.4 
-                  }}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 6 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
                   className={cn(
                     "absolute top-full left-0 mt-2",
                     item.name === "Permits" ? "w-80" : "w-64",
-                    "rounded-2xl bg-background",
-                    "backdrop-blur-xl shadow-2xl",
-                    "ring-1 ring-primary-200/50 dark:ring-primary-800/50",
-                    "border border-primary-200/50 dark:border-primary-800/50",
-                    "overflow-hidden"
+                    "rounded-[14px] bg-[#07110f]/[0.98]",
+                    "border border-white/10 shadow-[0_24px_70px_rgba(0,0,0,0.42)] backdrop-blur-xl",
+                    "overflow-hidden",
                   )}
-                  style={{
-                    boxShadow: "0 20px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.1)"
-                  }}
                 >
-                  {/* Gradient header for Permits */}
+                  {/* Permit navigation header */}
                   {item.name === "Permits" && (
-                    <div className="px-4 py-3 bg-gradient-to-r from-primary-500/10 via-secondary-500/10 to-primary-500/10 border-b border-primary-100/20 dark:border-primary-900/20">
-                      <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
-                        {item.icon && <item.icon className="h-4 w-4 text-primary-600 dark:text-primary-400" />}
+                    <div className="border-b border-white/10 bg-white/[0.03] px-4 py-3">
+                      <h3 className="flex items-center gap-2 text-sm font-bold text-white">
+                        {item.icon && (
+                          <item.icon className="h-4 w-4 text-[#d8c59d]" />
+                        )}
                         State Permit Guides
                       </h3>
-                      <p className="text-xs text-muted-foreground mt-0.5">Complete information for each state</p>
+                      <p className="mt-0.5 text-xs text-white/[0.45]">
+                        Complete information for each state
+                      </p>
                     </div>
                   )}
-                  
+
                   <div className="py-2 max-h-[70vh] overflow-y-auto">
-                    {item.submenu.map((subitem, index) => (
-                      <motion.div
-                        key={subitem.name}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.05 }}
-                      >
+                    {item.submenu.map((subitem) => (
+                      <div key={subitem.name}>
                         <SubMenuItem item={subitem} />
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
 
                   {/* Footer for Permits */}
                   {item.name === "Permits" && (
-                    <div className="px-4 py-3 bg-gradient-to-r from-primary-50/50 to-secondary-50/50 dark:from-primary-950/30 dark:to-secondary-950/30 border-t border-primary-100/20 dark:border-primary-900/20">
-                      <Link href="/permits" className="text-xs font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 flex items-center gap-1 group">
+                    <div className="border-t border-white/10 bg-white/[0.03] px-4 py-3">
+                      <Link
+                        href="/permits"
+                        className="group flex items-center gap-1 text-xs font-medium text-[#d8c59d] hover:text-white"
+                      >
                         View All Permit Information
-                        <ChevronDown className="h-3 w-3 rotate-[-90deg] group-hover:translate-x-1 transition-transform" />
+                        <ChevronDown className="h-3 w-3 rotate-[-90deg]" />
                       </Link>
                     </div>
                   )}
@@ -178,25 +175,19 @@ export const DesktopNavigation = ({ active, setActive }: DesktopNavigationProps)
       ))}
 
       {/* Secondary Navigation */}
-      <div className="flex items-center pl-6 ml-6 border-l border-primary-200/20 dark:border-primary-800/20">
+      <div className="ml-4 flex items-center border-l border-white/[0.15] pl-4">
         {navigationData.secondary.map((item) => (
           <Link
             key={item.name}
             href={item.href}
+            aria-label={item.name}
+            className={cn(
+              "mx-0.5 grid h-9 w-9 place-items-center rounded-[10px]",
+              "text-white/70 hover:bg-white/[0.08] hover:text-white",
+              "transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8]",
+            )}
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={cn(
-                "p-2 rounded-full",
-                "text-foreground/80 hover:text-foreground",
-                "hover:bg-primary-50 dark:hover:bg-primary-950/50",
-                "transition-all duration-200",
-                "mx-1"
-              )}
-            >
-              {item.icon && <item.icon className="h-5 w-5" />}
-            </motion.div>
+            {item.icon && <item.icon className="h-5 w-5" />}
           </Link>
         ))}
       </div>

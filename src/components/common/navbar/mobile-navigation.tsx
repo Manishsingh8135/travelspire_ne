@@ -1,5 +1,5 @@
 // src/components/layout/mobile-navigation.tsx
-"use client"
+"use client";
 
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,11 +16,11 @@ interface MobileNavigationProps {
   setActive: (value: string | null) => void;
 }
 
-const MobileNavItem = ({ 
-  item, 
-  active, 
+const MobileNavItem = ({
+  item,
+  active,
   setActive,
-  setIsOpen 
+  setIsOpen,
 }: {
   item: NavigationItem;
   active: string | null;
@@ -29,28 +29,28 @@ const MobileNavItem = ({
 }) => {
   if (item.submenu) {
     return (
-      <motion.button
-        whileTap={{ scale: 0.98 }}
+      <button
+        type="button"
         onClick={() => setActive(active === item.name ? null : item.name)}
+        aria-expanded={active === item.name}
         className={cn(
-          "w-full px-4 py-3 rounded-lg",
+          "w-full border-b border-white/[0.08] px-4 py-4",
           "flex items-center justify-between",
-          "text-foreground/80 hover:text-foreground",
-          "hover:bg-primary-50 dark:hover:bg-primary-950/50",
-          "transition-all duration-200"
+          "text-white/75 hover:bg-white/[0.04] hover:text-white",
+          "transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#f2ead8]",
         )}
       >
         <span className="flex items-center gap-2">
-          {item.icon && <item.icon className="h-5 w-5 text-primary-500" />}
+          {item.icon && <item.icon className="h-5 w-5 text-[#d8c59d]" />}
           <span className="font-medium">{item.name}</span>
         </span>
         <ChevronDown
           className={cn(
             "h-4 w-4 text-muted-foreground transition-transform duration-200",
-            active === item.name && "rotate-180"
+            active === item.name && "rotate-180",
           )}
         />
-      </motion.button>
+      </button>
     );
   }
 
@@ -59,22 +59,26 @@ const MobileNavItem = ({
       href={item.href}
       onClick={() => setIsOpen(false)}
       className={cn(
-        "w-full px-4 py-3 rounded-lg",
+        "w-full border-b border-white/[0.08] px-4 py-4",
         "flex items-center justify-between",
-        "text-foreground/80 hover:text-foreground",
-        "hover:bg-primary-50 dark:hover:bg-primary-950/50",
-        "transition-all duration-200"
+        "text-white/75 hover:bg-white/[0.04] hover:text-white",
+        "transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#f2ead8]",
       )}
     >
       <span className="flex items-center gap-2">
-        {item.icon && <item.icon className="h-5 w-5 text-primary-500" />}
+        {item.icon && <item.icon className="h-5 w-5 text-[#d8c59d]" />}
         <span className="font-medium">{item.name}</span>
       </span>
     </Link>
   );
 };
 
-const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNavigationProps) => {
+const MobileNavigation = ({
+  isOpen,
+  setIsOpen,
+  active,
+  setActive,
+}: MobileNavigationProps) => {
   if (!isOpen) return null;
 
   return (
@@ -84,7 +88,7 @@ const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNaviga
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40"
+        className="fixed inset-0 z-40 bg-black/[0.65] backdrop-blur-sm"
         onClick={() => setIsOpen(false)}
       />
 
@@ -93,19 +97,18 @@ const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNaviga
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: 1, height: "auto" }}
         exit={{ opacity: 0, height: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
         className={cn(
           "md:hidden",
-          "fixed top-[64px] left-0 right-0 z-50",
-          "bg-background/95",
-          "border-b border-primary-100/20 dark:border-primary-900/20",
-          "shadow-glow-lg",
-          "max-h-[calc(100vh-64px)] overflow-y-auto"
+          "fixed left-0 right-0 top-[72px] z-50",
+          "border-b border-white/10 bg-[#07110f]/[0.98]",
+          "shadow-[0_24px_60px_rgba(0,0,0,0.38)]",
+          "max-h-[calc(100svh-72px)] overflow-y-auto",
         )}
       >
-        <div className="py-4 space-y-1 px-2">
+        <div className="px-5 pb-6 pt-2 sm:px-8">
           {navigationData.primary.map((item) => (
-            <div key={item.name} className="px-2">
+            <div key={item.name}>
               <MobileNavItem
                 item={item}
                 active={active}
@@ -121,57 +124,58 @@ const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNaviga
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-950 dark:to-secondary-950 mt-1 rounded-lg overflow-hidden border border-primary-200/50 dark:border-primary-800/50"
+                      transition={{ duration: 0.18, ease: "easeOut" }}
+                      className="mt-1 overflow-hidden rounded-[12px] border border-white/10 bg-white/[0.03]"
                     >
                       {/* Header for Permits */}
                       {item.name === "Permits" && (
-                        <div className="px-4 py-2 bg-primary-100/30 dark:bg-primary-900/30 border-b border-primary-200/30 dark:border-primary-800/30">
-                          <p className="text-xs font-semibold text-primary-700 dark:text-primary-300">State Permit Guides</p>
+                        <div className="border-b border-white/10 bg-white/[0.03] px-4 py-2">
+                          <p className="text-xs font-semibold text-[#d8c59d]">
+                            State Permit Guides
+                          </p>
                         </div>
                       )}
-                      
-                      {item.submenu.map((subitem, index) => (
-                        <motion.div
-                          key={subitem.name}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.05 }}
-                        >
+
+                      {item.submenu.map((subitem) => (
+                        <div key={subitem.name}>
                           <Link
                             href={subitem.href}
                             onClick={() => setIsOpen(false)}
                             className={cn(
-                              "block px-4 py-3 mx-2 my-1 rounded-lg",
-                              "text-sm text-foreground/80 hover:text-foreground",
-                              "hover:bg-white/80 dark:hover:bg-accent-900/80",
-                              "transition-all duration-200",
-                              "border border-transparent hover:border-primary-200/50 dark:hover:border-primary-800/50"
+                              "mx-2 my-1 block border-l-2 border-transparent px-4 py-3",
+                              "text-sm text-white/70 hover:border-[#d8c59d] hover:bg-white/[0.04] hover:text-white",
+                              "transition-colors duration-200",
                             )}
                           >
                             <div className="flex items-start gap-3">
                               {subitem.icon && (
-                                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/50 dark:to-secondary-900/50 flex items-center justify-center flex-shrink-0">
-                                  <subitem.icon className="h-4 w-4 text-primary-600 dark:text-primary-400" />
+                                <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-[10px] border border-white/10 bg-white/[0.04]">
+                                  <subitem.icon className="h-4 w-4 text-[#d8c59d]" />
                                 </div>
                               )}
                               <div className="flex-1 min-w-0 overflow-hidden">
-                                <div className="font-semibold text-foreground truncate">{subitem.name}</div>
+                                <div className="truncate font-semibold text-white">
+                                  {subitem.name}
+                                </div>
                                 {subitem.description && (
-                                  <div className="text-xs text-muted-foreground mt-0.5 line-clamp-2 break-words">
+                                  <div className="mt-0.5 line-clamp-2 break-words text-xs text-white/[0.45]">
                                     {subitem.description}
                                   </div>
                                 )}
                               </div>
                             </div>
                           </Link>
-                        </motion.div>
+                        </div>
                       ))}
 
                       {/* Footer for Permits */}
                       {item.name === "Permits" && (
-                        <div className="px-4 py-2 bg-primary-100/30 dark:bg-primary-900/30 border-t border-primary-200/30 dark:border-primary-800/30">
-                          <Link href="/permits" onClick={() => setIsOpen(false)} className="text-xs font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 flex items-center gap-1">
+                        <div className="border-t border-white/10 bg-white/[0.03] px-4 py-2">
+                          <Link
+                            href="/permits"
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center gap-1 text-xs font-medium text-[#d8c59d] hover:text-white"
+                          >
                             View All Permit Information →
                           </Link>
                         </div>
@@ -184,19 +188,17 @@ const MobileNavigation = ({ isOpen, setIsOpen, active, setActive }: MobileNaviga
           ))}
 
           {/* Mobile Secondary Navigation */}
-          <div className="px-4 py-4 mt-4 border-t border-primary-200/20 dark:border-primary-800/20">
-            <div className="grid grid-cols-3 gap-4">
+          <div className="mt-5 border-t border-white/10 px-2 pt-5">
+            <div className="grid grid-cols-3 gap-2">
               {navigationData.secondary.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className={cn(
-                    "flex flex-col items-center",
-                    "text-sm text-foreground/80 hover:text-foreground",
-                    "hover:bg-primary-50 dark:hover:bg-primary-950/50",
-                    "transition-all duration-200",
-                    "rounded-lg p-4"
+                    "flex flex-col items-center rounded-[10px] border border-white/10 p-3",
+                    "text-sm text-white/70 hover:bg-white/[0.05] hover:text-white",
+                    "transition-colors duration-200",
                   )}
                 >
                   {item.icon && <item.icon className="h-6 w-6 mb-1" />}
