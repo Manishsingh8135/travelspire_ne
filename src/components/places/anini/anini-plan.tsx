@@ -125,16 +125,16 @@ export function AniniGo() {
               We drive this road every week. Ride with the people who know it.
             </h2>
             <p className="mt-5 max-w-[46ch] text-[0.95rem] leading-6 text-white/[0.62] sm:text-base sm:leading-7">
-              Signature Anini Dibang Valley expedition — 3 days, 2 nights, from
-              ₹12,499 per person. Transport, stays, permits and a guide who grew up
-              on this road. Festival transfers and private fleet also run all season.
+              Signature week: Six Days in the Dibang — 5 nights, the Pomo Grassland
+              trek, from ₹18,999 per person. Transport, homestay, Chigu camp, ILP
+              and a guide who grew up on this road. A shorter 3-day Anini loop also runs.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/tours/anini-expedition"
+                href="/tours/anini-pomo-grassland-expedition"
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-[#f2ead8] px-6 text-[11px] font-bold uppercase tracking-[0.13em] text-[#07100d] transition-colors duration-200 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#101a14]"
               >
-                See the Anini expedition
+                See the six-day expedition
                 <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
               </Link>
               <a
@@ -148,9 +148,13 @@ export function AniniGo() {
               </a>
             </div>
             <p className="mt-6 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/[0.4]">
-              Coming for the festival?{" "}
+              Prefer a shorter loop?{" "}
+              <Link href="/tours/anini-expedition" className="text-[#d8c59d] underline-offset-4 hover:underline">
+                3 days in Anini →
+              </Link>
+              {" · "}
               <Link href="/anini-winter-fest-2026" className="text-[#d8c59d] underline-offset-4 hover:underline">
-                Anini Winter Fest 2026 →
+                Winter Fest 2026 →
               </Link>
             </p>
           </div>

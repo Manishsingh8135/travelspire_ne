@@ -288,3 +288,14 @@
 .leaflet-container {
   font-family: inherit;
 }
+
+/* Six Days in the Dibang — field edition (scoped to that page only) */
+.six-edition {
+  --six-ink: #070e0d;
+  --six-paper: #f3eee2;
+  --six-brass: #d8be8b;
+  --six-ember: #c9683a;
+}
+.six-edition .font-serif {
+  font-family: var(--font-six-serif), "Iowan Old Style", Palatino, Georgia, serif;
+}

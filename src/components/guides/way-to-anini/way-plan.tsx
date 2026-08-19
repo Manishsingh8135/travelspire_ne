@@ -103,15 +103,22 @@ export function WayGo() {
               Plan on WhatsApp
             </a>
             <Link
-              href="/places/anini"
+              href="/tours/anini-pomo-grassland-expedition"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] border border-white/[0.38] px-6 text-sm font-medium text-white transition-colors duration-200 hover:border-white/70 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d0f]"
             >
               <ArrowRight aria-hidden="true" className="h-4 w-4" />
-              The Anini Guide
+              Six Days in the Dibang
             </Link>
           </div>
           <p className="mt-8 inline-flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/[0.4]">
             <span>Departures daily Oct–Apr</span>
+            <Link
+              href="/places/anini"
+              className="inline-flex items-center gap-1.5 text-[#d8c59d] underline-offset-4 transition-colors hover:text-[#eadfc8] hover:underline"
+            >
+              Anini guide
+              <ArrowUpRight aria-hidden="true" className="h-3 w-3" />
+            </Link>
             <Link
               href="/permits/arunachal-pradesh-ilp"
               className="inline-flex items-center gap-1.5 text-[#d8c59d] underline-offset-4 transition-colors hover:text-[#eadfc8] hover:underline"

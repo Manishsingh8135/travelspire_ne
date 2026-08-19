@@ -39,6 +39,12 @@ import {
         icon: Compass,
         submenu: [
           {
+            name: "Six Days in the Dibang",
+            href: "/tours/anini-pomo-grassland-expedition",
+            icon: Tent,
+            description: "Anini + Pomo Grassland · 5N/6D"
+          },
+          {
             name: "Anini",
             href: "/places/anini",
             icon: Mountain,

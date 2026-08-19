@@ -1092,7 +1092,168 @@ export const mechukaExpedition: Tour = {
 };
 
 
+export const aniniPomoSixExpedition: Tour = {
+  id: "anini-pomo-grassland-expedition",
+  slug: "anini-pomo-grassland-expedition",
+  type: "Adventure",
+  title: "Six Days in the Dibang",
+  subtitle: "Anini + Pomo Grassland · 5 Nights / 6 Days",
+  overview:
+    "Five nights inside Dibang Valley, built around a 3 AM Pomo Grassland trek. Mayodia Pass, waterfall country and Chigu camp, Gipulin's glass bridge, Emuli and Karu meadows, a last-night bonfire in Anini. Small groups of 4–6, or private for two.",
+  duration: "6 Days / 5 Nights",
+  location: "Anini, Dibang Valley, Arunachal Pradesh",
+  startDate: "October – April",
+  price: 18999,
+  featured: true,
+  trending: true,
+  upcoming: false,
+  tags: ["anini", "pomo", "trek", "dibang-valley", "premium"],
+
+  heroImage: "/images/places/pomo/pomo1.JPG",
+  thumbnail: "/images/places/pomo/pomo1.JPG",
+  gallery: [
+    "/images/places/pomo/pomo1.JPG",
+    "/images/places/pomo/pomo3.JPG",
+    "/images/places/anini-new/anini-new-landscape-13.jpeg",
+    "/images/places/pomo/pomo4.jpg",
+    "/images/places/anini-new/anini-new-portrait-8.jpg",
+    "/images/places/pomo/pomo5.jpg",
+  ],
+
+  highlights: [
+    "Pomo Grassland trek — 12 hours, 03:00 start",
+    "Overnight at Chigu camp on the Dri flats",
+    "Mayodia Pass at 2,655 m",
+    "Waterfall country: Deccan, Ahi, Bruni",
+    "Gipulin, Matu valley and the glass bridge",
+    "Emuli & Karu grasslands",
+    "Last-night bonfire at an Anini homestay",
+    "Inner Line Permit and forest pass included",
+  ],
+
+  itinerary: [
+    {
+      title: "Dibrugarh to Anini via Mayodia",
+      description:
+        "05:00–06:30 pickup. 385 km over the Bhupen Hazarika Setu, Roing and Mayodia Pass (2,655 m). Overnight Anini.",
+      activities: [
+        "Morning pickup from Dibrugarh or Tinsukia",
+        "Dr. Bhupen Hazarika Setu — India's longest bridge",
+        "Mayodia Pass at 2,655 m",
+        "Overnight stay at Anini",
+      ],
+    },
+    {
+      title: "Waterfall country to Chigu camp",
+      description:
+        "08:00–09:00 start. Dree Afra, Mawuando, the Dri, Deccan, Ahi and Bruni falls. Overnight at Chigu camp.",
+      activities: [
+        "Dree Afra, Chigu camp, Mawuando",
+        "Dri river",
+        "Deccan, Ahi and Bruni falls",
+        "Overnight stay at Chigu camp",
+      ],
+    },
+    {
+      title: "Pomo Grassland trek",
+      description:
+        "03:00 headlamp start. Twelve hours on foot. Grassland by late morning, down by 15:00. Overnight Anini.",
+      activities: [
+        "03:00 start from Chigu camp",
+        "Forest climb to the tree line",
+        "Pomo Grassland",
+        "Transfer back to Anini by evening",
+      ],
+    },
+    {
+      title: "Gipulin, Matu and the glass bridge",
+      description:
+        "Recovery day. Matu valley, Matu waterfall, the glass bridge, valley viewpoints. Overnight Anini.",
+      activities: [
+        "Matu valley and waterfall",
+        "Glass bridge over the gorge",
+        "Unhurried valley viewpoints",
+        "Overnight stay at Anini",
+      ],
+    },
+    {
+      title: "Emuli, Karu and the last fire",
+      description:
+        "09:00 start. Emuli grassland, Karu viewpoint and grassland, Anini market walk, bonfire at the homestay.",
+      activities: [
+        "Emuli grassland",
+        "Karu viewpoint and grassland",
+        "Evening market walk in Anini",
+        "Bonfire at the homestay",
+      ],
+    },
+    {
+      title: "Anini to Dibrugarh",
+      description:
+        "06:00–07:00 departure via Hunli and Mayodia. Bhupen Hazarika Setu. Dibrugarh drop 17:00–18:00.",
+      activities: [
+        "Early departure via Hunli–Mayodia",
+        "Dr. Bhupen Hazarika Setu",
+        "Drop-off in Dibrugarh by evening",
+      ],
+    },
+  ],
+
+  route: {
+    points: [
+      [27.4728, 95.0170],
+      [28.8427, 95.8997],
+    ],
+    stops: [
+      {
+        name: "Dibrugarh",
+        location: [27.4728, 95.0170],
+        description: "Pickup 05:00–06:30",
+      },
+      {
+        name: "Anini",
+        location: [28.8427, 95.8997],
+        description: "Five nights in Dibang Valley — homestay and Chigu camp",
+      },
+    ],
+  },
+
+  inclusions: [
+    "Accommodation — 4 nights Anini homestay, 1 night Chigu camp",
+    "Private transportation",
+    "Expedition guide",
+    "Pomo grassland trek and trek transport",
+    "Breakfast and dinner",
+    "Inner Line Permit",
+    "Forest pass",
+  ],
+
+  exclusions: [
+    "Lunch",
+    "Flights and trains to Dibrugarh",
+    "Personal expenses",
+    "Anything not listed in inclusions",
+  ],
+
+  importantNote:
+    "50% confirms the booking. October to April only — we do not run this route in monsoon. Book onward travel from Dibrugarh for the morning after day six, never the same evening.",
+
+  thingsToCarry: [
+    "Dedicated trekking shoes for the summit day",
+    "Warm jacket — Mayodia is 2,655 m",
+    "Headlamp with fresh batteries",
+    "Rain shell and a small day pack",
+    "Government photo ID for the Inner Line Permit",
+  ],
+
+  maxGroupSize: 6,
+  difficulty: "Challenging",
+  altitude: 2655,
+  bestTimeToVisit: ["October", "November", "March", "April"],
+};
+
 export const regularTours = [
+  aniniPomoSixExpedition,
   tawangExpedition,
   dongValleyExpedition,
   aniniExpedition,

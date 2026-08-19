@@ -107,7 +107,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/tours/${tour.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
-    priority: 0.8,
+    priority: tour.slug === 'anini-pomo-grassland-expedition' ? 0.95 : 0.8,
   }))
 
   // NOTE: /festivals/* pages don't exist as routes — festival cards link to

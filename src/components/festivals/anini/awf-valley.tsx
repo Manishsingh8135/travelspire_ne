@@ -68,7 +68,7 @@ export function AwfValley() {
               need 3–5 extra days — we recommend arriving by 17 September.
             </p>
             <Link
-              href="/tours/anini-expedition"
+              href="/tours/anini-pomo-grassland-expedition"
               className="group mt-7 inline-flex items-center gap-3 rounded-[12px] bg-[#17241d] px-5 py-4 text-[#f5efe2] transition-colors duration-200 hover:bg-[#24352b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#87543a]"
             >
               <span>
@@ -76,7 +76,7 @@ export function AwfValley() {
                   Extend with Travelspire
                 </span>
                 <span className="mt-1 block text-sm font-semibold">
-                  Anini Dibang Valley Expedition · 3D/2N · from ₹12,499
+                  Six Days in the Dibang · 5N/6D · from ₹18,999
                 </span>
               </span>
               <ArrowUpRight
