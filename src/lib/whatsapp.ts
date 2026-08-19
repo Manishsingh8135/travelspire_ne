@@ -127,6 +127,35 @@ export function createTripPlanningURL(details?: {
   return createWhatsAppURL({ customMessage: message });
 }
 
+// Anini Winter Fest 2026 — Travelspire is the Official Travel & Taxi Partner
+export type AwfInquiryTopic =
+  | { kind: "general" }
+  | { kind: "shared-transfer" }
+  | { kind: "vehicle"; vehicleName: string; pricePerDay: number }
+  | { kind: "package"; plan: string };
+
+export function createAwfInquiryURL(topic: AwfInquiryTopic = { kind: "general" }): string {
+  let message: string;
+
+  switch (topic.kind) {
+    case "shared-transfer":
+      message =
+        "Hi TravelSpire NE! 👋\n\nI'd like to reserve seats on the *Anini Winter Fest Shared Transfer* (₹5,499/person).\n\n• Pickup: 18 Sept 2026 (Dibrugarh 7:00 AM)\n• Drop: 21 Sept 2026\n\nTravellers:\nRough pickup point (Dibrugarh/Tinsukia/Roing):\n\nPlease confirm availability. 🏔️";
+      break;
+    case "vehicle":
+      message = `Hi TravelSpire NE! 👋\n\nI'd like to book the *${topic.vehicleName}* (₹${topic.pricePerDay.toLocaleString("en-IN")}/day, all-inclusive) for Anini Winter Fest 2026.\n\n• Dates needed:\n• Group size:\n\nPlease confirm availability.`;
+      break;
+    case "package":
+      message = `Hi TravelSpire NE! 👋\n\nI'm interested in the *${topic.plan} Anini Winter Fest package* (stay + transport + permits + festival logistics).\n\n• Travellers:\n• Dates:\n\nCould you share the plan and pricing?`;
+      break;
+    default:
+      message =
+        "Hi TravelSpire NE! 👋\n\nI'm planning for *Anini Winter Fest 2026* (19–20 Sept, Dibang Valley).\n\nCan you help me with:\n• Transport (shared transfer / private vehicle)\n• Stay & festival packages\n• ILP permit assistance\n\nLooking forward to it! 🏔️✨";
+  }
+
+  return createWhatsAppURL({ customMessage: message });
+}
+
 // Permit assistance (unique value prop)
 export function createPermitAssistanceURL(): string {
   return createWhatsAppURL({
