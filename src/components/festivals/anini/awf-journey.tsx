@@ -54,6 +54,17 @@ export function AwfJourney() {
           </Link>
         </div>
 
+        <p className="mt-6 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-white/[0.4]">
+          Want the full road, chapter by chapter?{" "}
+          <Link
+            href="/guides/dibrugarh-to-anini"
+            className="inline-flex items-center gap-1.5 text-[#d8c59d] underline-offset-4 transition-colors hover:text-[#eadfc8] hover:underline"
+          >
+            The Way to Anini — our 9-chapter road guide
+            <ArrowUpRight aria-hidden="true" className="h-3 w-3" />
+          </Link>
+        </p>
+
         <div className="mt-14 grid gap-12 lg:mt-20 lg:grid-cols-12 lg:gap-14">
           {/* Steps */}
           <div className="lg:col-span-5">
