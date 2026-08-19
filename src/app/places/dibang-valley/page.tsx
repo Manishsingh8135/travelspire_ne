@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { AdvancedFAQ } from "@/components/faqs/faq-base";
 import { StructuredData } from "@/components/seo/structured-data";
 import { ValleyChapters, ValleyHero, ValleyRiver } from "@/components/places/dibang-valley/valley-sections";
-import { ValleyGo, ValleySeasons } from "@/components/places/dibang-valley/valley-plan";
+import { ValleyGo } from "@/components/places/dibang-valley/valley-plan";
+import { ValleySeasons } from "@/components/places/dibang-valley/valley-seasons";
 import { valleyFaqSection } from "@/data/places/dibang-valley";
 
 export const metadata: Metadata = {

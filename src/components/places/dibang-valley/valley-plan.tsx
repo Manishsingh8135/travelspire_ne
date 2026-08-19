@@ -1,74 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
-import { valleyNextPlaces, valleySeasons } from "@/data/places/dibang-valley";
+import { valleyNextPlaces } from "@/data/places/dibang-valley";
 import { createTripPlanningURL } from "@/lib/whatsapp";
-
-const SEASON_TONES: Record<string, string> = {
-  best: "bg-[#274435]",
-  good: "bg-[#5f7a4d]",
-  caution: "bg-[#c1993f]",
-  avoid: "bg-[#b06b52]",
-};
-
-export function ValleySeasons() {
-  return (
-    <section aria-labelledby="valley-seasons-title" className="bg-[#f1ebdf] py-20 text-[#17221b] sm:py-24 lg:py-28">
-      <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24">
-        <div className="max-w-2xl">
-          <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.22em] text-[#87543a]">
-            The whole valley, month by month
-          </p>
-          <h2
-            id="valley-seasons-title"
-            className="text-[clamp(2.75rem,6vw,4.5rem)] font-medium leading-[0.94] tracking-[-0.055em]"
-          >
-            One calendar,{" "}
-            <span className="font-serif font-normal italic text-[#76533e]">two altitudes</span>
-          </h2>
-        </div>
-
-        <div className="mt-12 overflow-hidden rounded-[16px] border border-[#d5c9ae] bg-[#faf7f0] lg:mt-14">
-          <ol className="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-12">
-            {valleySeasons.map((season) => (
-              <li
-                key={season.month}
-                className="flex min-h-[7.5rem] flex-col justify-between border-[#e2d9c3] p-3.5 odd:border-r sm:min-h-[9rem] sm:border-r"
-              >
-                <span className={`h-1.5 w-6 rounded-full ${SEASON_TONES[season.tone]}`} aria-hidden="true" />
-                <div>
-                  <p className="text-base font-semibold tracking-[-0.02em]">{season.month}</p>
-                  <p className="mt-1 text-[10.5px] font-medium leading-4 text-[#6c6552]">{season.label}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 border-t border-[#e2d9c3] px-4 py-3.5">
-            {(
-              [
-                ["best", "Best window"],
-                ["good", "Good"],
-                ["caution", "Possible with care"],
-                ["avoid", "Monsoon — avoid"],
-              ] as const
-            ).map(([tone, label]) => (
-              <span key={tone} className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#5a5344]">
-                <span className={`h-2 w-2 rounded-full ${SEASON_TONES[tone]}`} aria-hidden="true" />
-                {label}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <p className="mt-6 max-w-2xl text-sm leading-6 text-[#5a5344]">
-          The low valley and the high valley run on the same clock but different weather:
-          when Mayodia is buried in snow, Dambuk is in harvest. We sequence every route
-          so you get both at their best.
-        </p>
-      </div>
-    </section>
-  );
-}
 
 export function ValleyGo() {
   return (
