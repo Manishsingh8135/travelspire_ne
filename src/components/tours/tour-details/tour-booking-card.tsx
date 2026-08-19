@@ -1,159 +1,127 @@
-// components/tours/tour-detail/tour-booking-card.tsx
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { Tour, isRegularTour, isFestivalTour, isSpecialActivityTour } from "@/types/tours/tour";
-import { DotPattern } from "@/components/ui/background-patterns";
+import { CalendarCheck, MessageCircle, ShieldCheck } from "lucide-react";
 import { createTourWhatsAppURL } from "@/lib/whatsapp";
-import { MessageCircle } from "lucide-react";
+import { getTourPrice, isRegularTour, type Tour } from "@/types/tours/tour";
+import { cn } from "@/lib/utils";
 
 interface TourBookingCardProps {
   tour: Tour;
   className?: string;
 }
 
+const priceFormatter = new Intl.NumberFormat("en-IN");
+
 export function TourBookingCard({ tour, className }: TourBookingCardProps) {
   const [customerName, setCustomerName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
+  const price = getTourPrice(tour).min;
 
-  // Get the appropriate price based on tour type
-  const getPrice = () => {
-    if (isRegularTour(tour)) {
-      return tour.price;
-    }
-    if (isFestivalTour(tour) || isSpecialActivityTour(tour)) {
-      return Math.min(...tour.variants.map(v => v.price));
-    }
-    return 0;
-  };
-
-  // Get the appropriate price label
-  const getPriceLabel = () => {
-    if (isRegularTour(tour)) {
-      return "Price per person";
-    }
-    return "Starting from";
-  };
-
-  const price = getPrice();
-
-  const handleWhatsAppBooking = () => {
-    const whatsappURL = createTourWhatsAppURL(tour, {
+  const handleInquiry = () => {
+    const url = createTourWhatsAppURL(tour, {
       customerName: customerName || undefined,
       customerEmail: customerEmail || undefined,
-      customerPhone: customerPhone || undefined
+      customerPhone: customerPhone || undefined,
     });
-    window.open(whatsappURL, '_blank');
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <div className={cn(
-      "relative rounded-[2.5rem] overflow-hidden",
-      "bg-gradient-to-tr from-primary-50 via-white to-secondary-50/30",
-      "dark:from-accent-900/90 dark:via-accent-900/90 dark:to-accent-900/90",
-      "border border-primary-100/20 dark:border-white/10",
-      "shadow-glow dark:shadow-none",
-      "backdrop-blur-xl",
-      "p-6",
-      className
-    )}>
-      {/* Background pattern */}
-      <DotPattern className="opacity-30 dark:opacity-10" />
+    <aside
+      aria-label={`Enquire about ${tour.title}`}
+      className={cn(
+        "overflow-hidden rounded-[16px] bg-[#111c16] p-6 text-[#f5f0e5] shadow-[12px_22px_48px_-27px_rgba(8,16,11,0.9)] sm:p-7",
+        className,
+      )}
+    >
+      <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#cdb783]">
+        {isRegularTour(tour) ? "Price per person" : "Packages from"}
+      </p>
+      <p className="mt-2 text-[2.65rem] font-medium leading-none tracking-[-0.055em] text-white">
+        ₹{priceFormatter.format(price)}
+      </p>
+      <p className="mt-4 text-sm leading-6 text-white/[0.52]">
+        Share a few details and continue the conversation directly with our
+        Northeast travel team.
+      </p>
 
-      <div className="relative space-y-6">
-        {/* Price Display */}
-        <div className={cn(
-          "text-center pb-6",
-          "border-b border-primary-100/20 dark:border-white/10"
-        )}>
-          <div className="text-sm text-muted-foreground">{getPriceLabel()}</div>
-          <div className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            ₹{price.toLocaleString()}
-          </div>
-        </div>
-
-        {/* Booking Form */}
-        <div className="space-y-4 max-w-sm mx-auto">
-          {/* Name Input */}
-          <div className="space-y-2">
-            <input
-              type="text"
-              placeholder="Your Name (Optional)"
-              value={customerName}
-              onChange={(e) => setCustomerName(e.target.value)}
-              className={cn(
-                "w-full px-4 py-3 rounded-xl",
-                "bg-white dark:bg-white/5",
-                "border border-primary-100/20 dark:border-white/10",
-                "text-foreground dark:text-white",
-                "placeholder:text-muted-foreground",
-                "focus:outline-none focus:ring-2 focus:ring-primary-500",
-                "transition-all duration-200"
-              )}
-            />
-          </div>
-
-          {/* Email Input */}
-          <div className="space-y-2">
-            <input
-              type="email"
-              placeholder="Your Email (Optional)"
-              value={customerEmail}
-              onChange={(e) => setCustomerEmail(e.target.value)}
-              className={cn(
-                "w-full px-4 py-3 rounded-xl",
-                "bg-white dark:bg-white/5",
-                "border border-primary-100/20 dark:border-white/10",
-                "text-foreground dark:text-white",
-                "placeholder:text-muted-foreground",
-                "focus:outline-none focus:ring-2 focus:ring-primary-500",
-                "transition-all duration-200"
-              )}
-            />
-          </div>
-
-          {/* Phone Input */}
-          <div className="space-y-2">
-            <input
-              type="tel"
-              placeholder="Your Phone (Optional)"
-              value={customerPhone}
-              onChange={(e) => setCustomerPhone(e.target.value)}
-              className={cn(
-                "w-full px-4 py-3 rounded-xl",
-                "bg-white dark:bg-white/5",
-                "border border-primary-100/20 dark:border-white/10",
-                "text-foreground dark:text-white",
-                "placeholder:text-muted-foreground",
-                "focus:outline-none focus:ring-2 focus:ring-primary-500",
-                "transition-all duration-200"
-              )}
-            />
-          </div>
-
-          {/* WhatsApp Booking Button */}
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={handleWhatsAppBooking}
-            type="button"
-            className={cn(
-              "w-full py-4 rounded-xl",
-              "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600",
-              "text-white font-medium",
-              "shadow-glow-sm dark:shadow-none",
-              "transition-all duration-300",
-              "flex items-center justify-center gap-2"
-            )}
-          >
-            <MessageCircle className="w-5 h-5" />
-            Book via WhatsApp
-          </motion.button>
-        </div>
+      <div className="mt-6 space-y-2.5">
+        <BookingInput
+          id="tour-booking-name"
+          label="Your name"
+          value={customerName}
+          onChange={setCustomerName}
+        />
+        <BookingInput
+          id="tour-booking-email"
+          label="Email address"
+          type="email"
+          value={customerEmail}
+          onChange={setCustomerEmail}
+        />
+        <BookingInput
+          id="tour-booking-phone"
+          label="Phone number"
+          type="tel"
+          value={customerPhone}
+          onChange={setCustomerPhone}
+        />
       </div>
+
+      <button
+        type="button"
+        onClick={handleInquiry}
+        className="mt-3 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-[#eadfc8] px-5 text-[10px] font-bold uppercase tracking-[0.13em] text-[#09110d] shadow-[7px_12px_26px_-16px_rgba(0,0,0,0.9)] transition-colors duration-200 hover:bg-[#f8f1e4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#eadfc8] focus-visible:ring-offset-3 focus-visible:ring-offset-[#111c16]"
+      >
+        <MessageCircle aria-hidden="true" className="h-4 w-4" />
+        Check availability
+      </button>
+
+      <div className="mt-6 grid gap-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-white/[0.46]">
+        <p className="flex items-center gap-2.5">
+          <CalendarCheck
+            aria-hidden="true"
+            className="h-4 w-4 text-[#cdb783]"
+          />
+          Dates confirmed personally
+        </p>
+        <p className="flex items-center gap-2.5">
+          <ShieldCheck aria-hidden="true" className="h-4 w-4 text-[#cdb783]" />
+          Permit guidance included
+        </p>
+      </div>
+    </aside>
+  );
+}
+
+function BookingInput({
+  id,
+  label,
+  type = "text",
+  value,
+  onChange,
+}: {
+  id: string;
+  label: string;
+  type?: "text" | "email" | "tel";
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <div>
+      <label htmlFor={id} className="sr-only">
+        {label}
+      </label>
+      <input
+        id={id}
+        type={type}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder={`${label} (optional)`}
+        className="h-12 w-full rounded-[9px] bg-white/[0.07] px-4 text-sm text-white outline-none placeholder:text-white/[0.32] transition-colors focus:bg-white/[0.1] focus:ring-2 focus:ring-[#b99c65]"
+      />
     </div>
   );
 }

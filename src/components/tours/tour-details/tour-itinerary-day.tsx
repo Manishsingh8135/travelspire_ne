@@ -1,8 +1,3 @@
-// components/tours/tour-detail/tour-itinerary-day.tsx
-"use client";
-
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { Compass } from "lucide-react";
 
 interface TourItineraryDayProps {
@@ -16,57 +11,41 @@ interface TourItineraryDayProps {
 
 export function TourItineraryDay({ day, index }: TourItineraryDayProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      className="relative pl-8 pb-8"
-    >
-      {/* Timeline */}
-      <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-primary-500 to-secondary-500" />
-      <div className={cn(
-        "absolute left-0 top-2 w-2 h-2 rounded-full -translate-x-[calc(50%-0.5px)]",
-        "bg-gradient-to-r from-primary-500 to-secondary-500",
-        "ring-4 ring-primary-500/20"
-      )} />
+    <article className="grid gap-5 rounded-[14px] bg-[#e7dece] p-5 shadow-[7px_14px_30px_-24px_rgba(35,47,39,0.58)] sm:p-7 md:grid-cols-[5.5rem_minmax(0,1fr)] md:gap-7">
+      <div>
+        <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#8a715f]">
+          Day
+        </p>
+        <p className="mt-1 text-4xl font-medium tracking-[-0.05em] text-[#754933]">
+          {String(index + 1).padStart(2, "0")}
+        </p>
+      </div>
 
-      <div className="relative">
-        {/* Day Title */}
-        <h3 className="text-xl font-bold text-foreground mb-4 bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-          Day {index + 1}: {day.title}
+      <div>
+        <h3 className="text-xl font-semibold leading-7 tracking-[-0.025em] text-[#17221b] sm:text-2xl">
+          {day.title}
         </h3>
-        
-        {/* Description */}
-        <p className="text-muted-foreground mb-6">
+        <p className="mt-3 max-w-[48rem] text-sm leading-6 text-[#59655d] sm:text-base sm:leading-7">
           {day.description}
         </p>
 
-        {/* Activities */}
-        <div className="space-y-3 pl-2">
-          {day.activities.map((activity, actIndex) => (
-            <motion.div 
-              key={actIndex}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 * actIndex }}
-              className="flex items-center gap-3 text-muted-foreground group"
-            >
-              <div className={cn(
-                "w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0",
-                "bg-primary-100 dark:bg-primary-900/50",
-                "group-hover:bg-primary-500/20 transition-colors duration-300"
-              )}>
-                <Compass className="w-3 h-3 text-primary-500" />
-              </div>
-              <span className="group-hover:text-foreground transition-colors duration-300">
+        {day.activities.length > 0 && (
+          <div className="mt-5 flex flex-wrap gap-2">
+            {day.activities.map((activity) => (
+              <span
+                key={activity}
+                className="inline-flex min-h-9 items-center gap-2 rounded-[8px] bg-[#f5efe5] px-3 text-[11px] font-medium text-[#4c5a51]"
+              >
+                <Compass
+                  aria-hidden="true"
+                  className="h-3.5 w-3.5 text-[#87543a]"
+                />
                 {activity}
               </span>
-            </motion.div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
-    </motion.div>
+    </article>
   );
 }

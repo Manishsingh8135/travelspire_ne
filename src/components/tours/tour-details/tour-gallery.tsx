@@ -1,158 +1,144 @@
-// components/tours/tour-detail/tour-gallery/index.tsx
 "use client";
 
-import React from 'react';
-import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
-import { TourGalleryGrid } from './tour-gallery-grid';
-import { DotPattern } from "@/components/ui/background-patterns";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { TourGalleryGrid } from "./tour-gallery-grid";
+import { cn } from "@/lib/utils";
 
 interface TourGalleryProps {
   images: string[];
   className?: string;
+  title?: string;
 }
 
-export function TourGallery({ images, className }: TourGalleryProps) {
-  const [selectedImageIndex, setSelectedImageIndex] = React.useState<number | null>(null);
-  const isModalOpen = selectedImageIndex !== null;
+export function TourGallery({
+  images,
+  className,
+  title = "Journey gallery",
+}: TourGalleryProps) {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-  // Navigate through images in modal
-  const showNextImage = React.useCallback(() => {
-    setSelectedImageIndex((prev) => {
-      if (prev === null) return 0;
-      return prev === images.length - 1 ? 0 : prev + 1;
-    });
+  const showNext = useCallback(() => {
+    setSelectedIndex((current) =>
+      current === null || current === images.length - 1 ? 0 : current + 1,
+    );
   }, [images.length]);
 
-  const showPrevImage = React.useCallback(() => {
-    setSelectedImageIndex((prev) => {
-      if (prev === null) return images.length - 1;
-      return prev === 0 ? images.length - 1 : prev - 1;
-    });
+  const showPrevious = useCallback(() => {
+    setSelectedIndex((current) =>
+      current === null || current === 0 ? images.length - 1 : current - 1,
+    );
   }, [images.length]);
 
-  // Keyboard navigation
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isModalOpen) return;
-      
-      switch (e.key) {
-        case "ArrowRight":
-          showNextImage();
-          break;
-        case "ArrowLeft":
-          showPrevImage();
-          break;
-        case "Escape":
-          setSelectedImageIndex(null);
-          break;
-      }
+  useEffect(() => {
+    if (selectedIndex === null) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowRight") showNext();
+      if (event.key === "ArrowLeft") showPrevious();
+      if (event.key === "Escape") setSelectedIndex(null);
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isModalOpen, showNextImage, showPrevImage]);
+  }, [selectedIndex, showNext, showPrevious]);
+
+  if (images.length === 0) return null;
 
   return (
-    <div className={className}>
-      {/* Grid View */}
-      <TourGalleryGrid 
-        images={images}
-        onImageClick={setSelectedImageIndex}
-      />
+    <div className={cn(className)}>
+      <TourGalleryGrid images={images} onImageClick={setSelectedIndex} />
 
-      {/* Fullscreen Modal */}
       <AnimatePresence>
-        {isModalOpen && selectedImageIndex !== null && (
+        {selectedIndex !== null && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={title}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center"
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-[#050a07]/[0.95] p-3 sm:p-6"
+            onClick={() => setSelectedIndex(null)}
           >
-            {/* Backdrop */}
-            <motion.div 
-              className="absolute inset-0 bg-black/90 backdrop-blur-xl"
-              onClick={() => setSelectedImageIndex(null)}
+            <div
+              className="relative h-[82vh] w-full max-w-[1500px]"
+              onClick={(event) => event.stopPropagation()}
             >
-              <DotPattern className="opacity-10" />
-            </motion.div>
+              <Image
+                src={images[selectedIndex]}
+                alt={`Landscape from this journey, photograph ${selectedIndex + 1}`}
+                fill
+                priority
+                sizes="100vw"
+                className="object-contain"
+              />
 
-            {/* Content */}
-            <div className="relative w-full h-full flex items-center justify-center p-4">
-              {/* Close Button */}
-              <motion.button
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={cn(
-                  "absolute top-4 right-4 z-50",
-                  "w-10 h-10 rounded-full",
-                  "bg-white/10 backdrop-blur-sm",
-                  "border border-white/20",
-                  "flex items-center justify-center",
-                  "hover:bg-white/20 transition-colors"
-                )}
-                onClick={() => setSelectedImageIndex(null)}
+              <button
+                type="button"
+                onClick={() => setSelectedIndex(null)}
+                aria-label="Close gallery"
+                className="absolute right-0 top-0 flex h-11 w-11 items-center justify-center rounded-[9px] bg-black/55 text-white shadow-[5px_10px_22px_-14px_rgba(0,0,0,0.95)] backdrop-blur-sm transition-colors hover:bg-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
-                <X className="w-5 h-5 text-white" />
-              </motion.button>
+                <X aria-hidden="true" className="h-5 w-5" />
+              </button>
 
-              {/* Navigation Buttons */}
-              <motion.button
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className={cn(
-                  "absolute left-4 z-50",
-                  "w-12 h-12 rounded-full",
-                  "bg-white/10 backdrop-blur-sm",
-                  "border border-white/20",
-                  "flex items-center justify-center",
-                  "hover:bg-white/20 transition-colors"
-                )}
-                onClick={showPrevImage}
-              >
-                <ChevronLeft className="w-6 h-6 text-white" />
-              </motion.button>
+              {images.length > 1 && (
+                <>
+                  <GalleryButton
+                    label="Previous image"
+                    side="left"
+                    onClick={showPrevious}
+                  >
+                    <ArrowLeft aria-hidden="true" className="h-5 w-5" />
+                  </GalleryButton>
+                  <GalleryButton
+                    label="Next image"
+                    side="right"
+                    onClick={showNext}
+                  >
+                    <ArrowRight aria-hidden="true" className="h-5 w-5" />
+                  </GalleryButton>
+                </>
+              )}
 
-              <motion.button
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className={cn(
-                  "absolute right-4 z-50",
-                  "w-12 h-12 rounded-full",
-                  "bg-white/10 backdrop-blur-sm",
-                  "border border-white/20",
-                  "flex items-center justify-center",
-                  "hover:bg-white/20 transition-colors"
-                )}
-                onClick={showNextImage}
-              >
-                <ChevronRight className="w-6 h-6 text-white" />
-              </motion.button>
-
-              {/* Image */}
-              <motion.div
-                key={selectedImageIndex}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                className="relative w-full h-full"
-              >
-                <Image
-                  src={images[selectedImageIndex]}
-                  alt="Tour location"
-                  fill
-                  className="object-contain"
-                  sizes="100vw"
-                  priority
-                />
-              </motion.div>
+              <p className="absolute bottom-0 left-0 rounded-[8px] bg-black/[0.55] px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/[0.7] backdrop-blur-sm">
+                {String(selectedIndex + 1).padStart(2, "0")} /{" "}
+                {String(images.length).padStart(2, "0")}
+              </p>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+function GalleryButton({
+  children,
+  label,
+  side,
+  onClick,
+}: {
+  children: React.ReactNode;
+  label: string;
+  side: "left" | "right";
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      className={cn(
+        "absolute top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-[9px] bg-black/55 text-white shadow-[5px_10px_22px_-14px_rgba(0,0,0,0.95)] backdrop-blur-sm transition-colors hover:bg-black/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white",
+        side === "left" ? "left-0" : "right-0",
+      )}
+    >
+      {children}
+    </button>
   );
 }
