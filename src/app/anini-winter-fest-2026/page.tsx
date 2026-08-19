@@ -10,8 +10,10 @@ import { AwfPeople } from "@/components/festivals/anini/awf-people";
 import { AwfTransport } from "@/components/festivals/anini/awf-transport";
 import { AwfValley } from "@/components/festivals/anini/awf-valley";
 import { StructuredData } from "@/components/seo/structured-data";
+import { AwfEvergreen, AwfWrappedBanner } from "@/components/festivals/anini/awf-evergreen";
 import {
   awfArtists,
+  awfEdition,
   awfFaqSection,
   awfHeroImages,
   awfMeta,
@@ -20,13 +22,19 @@ import {
 const pageUrl = "https://travelspirene.com/anini-winter-fest-2026";
 const heroImageUrl = `https://travelspirene.com${awfHeroImages.desktop.src}`;
 
+// Evergreen pivot: after 20 Sep 2026, flip awfEdition.status to "past" in the
+// data file and redeploy — metadata, banner and CTAs switch to holder mode.
+const isPast = awfEdition.status === "past";
+const metaTitle = isPast
+  ? `Anini Winter Fest ${awfEdition.nextYear} — Dates Coming Soon · 2026 Recap | Travelspire NE`
+  : "Anini Winter Fest 2026 · Sep 19–20 · Official Travel Partner | Travelspire NE";
+const metaDescription = isPast
+  ? `Anini Winter Fest 2026 has wrapped — ${awfEdition.nextYear} dates will be announced on the festival's official channels. Until then: the complete Anini destination guide, the 9-chapter road guide, and year-round Dibang Valley trips with the festival's Official Travel Partner.`
+  : "Official Travel & Taxi Partner of Anini Winter Fest 2026 (19–20 Sep, Dibang Valley, Arunachal Pradesh). Shared convoy from Dibrugarh at ₹5,499/person, private SUV fleet from ₹5,599/day, ILP assistance, stay packages and NH-313 route expertise — one WhatsApp message sorts it all.";
+
 export const metadata: Metadata = {
-  title: {
-    absolute:
-      "Anini Winter Fest 2026 · Sep 19–20 · Official Travel Partner | Travelspire NE",
-  },
-  description:
-    "Official Travel & Taxi Partner of Anini Winter Fest 2026 (19–20 Sep, Dibang Valley, Arunachal Pradesh). Shared convoy from Dibrugarh at ₹5,499/person, private SUV fleet from ₹5,599/day, ILP assistance, stay packages and NH-313 route expertise — one WhatsApp message sorts it all.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
   keywords: [
     "Anini Winter Fest 2026",
     "Anini Winter Festival",
@@ -115,7 +123,9 @@ const musicEventSchema = {
       name: artist.name,
       genre: artist.genre,
     })),
-  offers: [
+  offers: isPast
+    ? []
+    : [
     {
       "@type": "Offer",
       name: "Shared Group Pickup & Drop — Dibrugarh to Anini",
@@ -196,6 +206,7 @@ export default function AniniWinterFest2026Page() {
     <div className="min-h-screen bg-[#050d0f]">
       <StructuredData data={aniniWinterFestGraph} />
 
+      <AwfWrappedBanner />
       <AwfHero />
       <AwfTrustStrip />
       <AwfLineup />
@@ -205,6 +216,7 @@ export default function AniniWinterFest2026Page() {
       <AwfPasses />
       <AwfValley />
       <AwfPeople />
+      <AwfEvergreen />
       <AdvancedFAQ section={awfFaqSection} />
       <AwfFinalCta />
     </div>

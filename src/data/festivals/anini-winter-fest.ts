@@ -25,6 +25,40 @@ export const awfMeta = {
   ],
 } as const;
 
+// ─── Evergreen pivot ────────────────────────────────────────────────────────
+// The festival ends on 20 Sep 2026; the search interest in Anini does not.
+// Flip `status` to "past" after the event and redeploy — one line pivots the
+// whole page: a wrapped-edition banner appears, metadata switches to the
+// 2027-holder framing, and the "Anini remains" section carries the traffic
+// into the evergreen cluster. Until then it stays "upcoming" and nothing
+// below renders.
+export const awfEdition = {
+  status: "upcoming" as "upcoming" | "live" | "past",
+  nextYear: "2027",
+} as const;
+
+// The pages this one feeds after the festival — and already feeds today.
+export const awfEvergreen = [
+  {
+    name: "Anini",
+    blurb: "The full destination guide — stays, seasons, experiences, permits.",
+    href: "/places/anini",
+    image: "/images/places/anini-new/anini-new-portrait-4.jpg",
+  },
+  {
+    name: "The Way to Anini",
+    blurb: "The road itself, in nine chapters — the drive is half the festival.",
+    href: "/guides/dibrugarh-to-anini",
+    image: "/images/places/anini/Anini_10.JPG",
+  },
+  {
+    name: "Dibang Valley",
+    blurb: "The whole region hub — Dambuk, Roing, Mayodia and beyond.",
+    href: "/places/dibang-valley",
+    image: "/images/places/pomo/pomo1.JPG",
+  },
+] as const;
+
 export const awfHeroImages = {
   desktop: {
     src: "/images/places/anini-new/anini-new-landscape-11.jpeg",
