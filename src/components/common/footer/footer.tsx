@@ -39,7 +39,7 @@ export function Footer({ data, className }: FooterProps) {
           </div>
 
           <div className="flex flex-col items-start justify-end lg:col-span-4">
-            <p className="max-w-[31rem] text-base leading-7 text-white/58">
+            <p className="max-w-[31rem] text-base leading-7 text-white/[0.58]">
               {data.mainSection.description}
             </p>
             <Link
@@ -57,7 +57,7 @@ export function Footer({ data, className }: FooterProps) {
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#b89f70]">
               {data.newsletter.title}
             </p>
-            <p className="mt-4 max-w-[30rem] text-sm leading-6 text-white/48 sm:text-base sm:leading-7">
+            <p className="mt-4 max-w-[30rem] text-sm leading-6 text-white/[0.48] sm:text-base sm:leading-7">
               {data.newsletter.description}
             </p>
             <form
@@ -72,7 +72,7 @@ export function Footer({ data, className }: FooterProps) {
                 type="email"
                 required
                 placeholder={data.newsletter.placeholder}
-                className="min-h-12 min-w-0 flex-1 rounded-[10px] bg-white/[0.07] px-4 text-sm text-white outline-none placeholder:text-white/32 focus:bg-white/[0.1] focus:ring-2 focus:ring-[#b89f70]"
+                className="min-h-12 min-w-0 flex-1 rounded-[10px] bg-white/[0.07] px-4 text-sm text-white outline-none placeholder:text-white/[0.32] focus:bg-white/[0.1] focus:ring-2 focus:ring-[#b89f70]"
               />
               <button
                 type="submit"
@@ -87,7 +87,7 @@ export function Footer({ data, className }: FooterProps) {
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#b89f70]">
               Speak with a local expert
             </p>
-            <address className="mt-5 space-y-4 not-italic text-sm text-white/58">
+            <address className="mt-5 space-y-4 not-italic text-sm text-white/[0.58]">
               <a
                 href={`mailto:${data.contactInfo.email}`}
                 className="flex items-center gap-3 transition-colors duration-200 hover:text-white"
@@ -110,7 +110,7 @@ export function Footer({ data, className }: FooterProps) {
           </section>
         </div>
 
-        <div className="mt-16 flex flex-col gap-8 border-t border-white/[0.09] pt-8 text-xs text-white/40 md:flex-row md:items-center md:justify-between lg:mt-20">
+        <div className="mt-16 flex flex-col gap-8 border-t border-white/[0.09] pt-8 text-xs text-white/[0.4] md:flex-row md:items-center md:justify-between lg:mt-20">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-7">
             <p>{data.bottomSection.copyright}</p>
             <nav aria-label="Legal" className="flex flex-wrap gap-x-6 gap-y-3">
@@ -138,7 +138,7 @@ export function Footer({ data, className }: FooterProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className="flex h-10 w-10 items-center justify-center rounded-[9px] bg-white/[0.07] text-white/68 shadow-[4px_8px_18px_-13px_rgba(0,0,0,0.95)] transition-colors duration-200 hover:bg-white/[0.13] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b89f70]"
+                  className="flex h-10 w-10 items-center justify-center rounded-[9px] bg-white/[0.07] text-white/[0.68] shadow-[4px_8px_18px_-13px_rgba(0,0,0,0.95)] transition-colors duration-200 hover:bg-white/[0.13] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b89f70]"
                 >
                   <Icon aria-hidden="true" className="h-4 w-4" />
                 </a>

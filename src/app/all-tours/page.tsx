@@ -7,5 +7,6 @@ export default function AllToursPage() {
 
 export const metadata = {
   title: "All Tours & Experiences | TravelSpire NE",
-  description: "Discover all our adventures, festivals, and special activities in Northeast India with advanced filtering options.",
+  description:
+    "Discover all our adventures, festivals, and special activities in Northeast India with advanced filtering options.",
 };
