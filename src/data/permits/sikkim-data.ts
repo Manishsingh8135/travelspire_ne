@@ -4,16 +4,16 @@
 export const sikkimPermitData = {
   state: "Sikkim",
   slug: "sikkim-permit",
-  title: "Sikkim Permit Guide 2025",
+  title: "Sikkim Permit Guide 2026",
   tagline: "Complete Guide to Protected Area Permits for the Land of Kangchenjunga",
   
   seo: {
-    title: "Sikkim Permit 2025: Nathula Pass, Gurudongmar Lake, North Sikkim | Complete Guide",
-    description: "Sikkim permit guide 2025. General areas: No permit needed. Nathula Pass, North Sikkim, Gurudongmar require PAP. Indians only at Nathula. Foreigners restrictions apply.",
+    title: "Sikkim Permit 2026: Nathula Pass, Gurudongmar Lake, North Sikkim | Complete Guide",
+    description: "Sikkim permit guide 2026. General areas: No permit needed. Nathula Pass, North Sikkim, Gurudongmar require PAP. Indians only at Nathula. Foreigners restrictions apply.",
     keywords: [
       "sikkim permit", "nathula pass permit", "gurudongmar lake permit", "north sikkim permit",
       "sikkim pap", "sikkim protected area permit", "tsomgo lake permit", "gangtok permit",
-      "sikkim travel permit 2025", "foreigners sikkim permit",
+      "sikkim travel permit 2026", "foreigners sikkim permit",
     ],
     canonical: "https://travelspirene.com/permits/sikkim-permit",
   },
@@ -25,7 +25,7 @@ export const sikkimPermitData = {
     processingTime: { protectedAreas: "1 day (through travel agent)" },
     foreignersNote: "Nathula: NO foreigners allowed. Gurudongmar: Only till Thangu.",
     officialPortal: "https://sikkimtourism.gov.in",
-    lastUpdated: "January 2025",
+    lastUpdated: "August 2026",
   },
 
   permitZones: [

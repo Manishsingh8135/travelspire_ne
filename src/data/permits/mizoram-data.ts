@@ -4,18 +4,18 @@
 export const mizoramPermitData = {
   state: "Mizoram",
   slug: "mizoram-ilp",
-  title: "Mizoram ILP 2025",
+  title: "Mizoram ILP 2026",
   tagline: "Complete Guide to Inner Line Permit for the Land of Blue Mountains",
   
   seo: {
-    title: "Mizoram ILP 2025: Online Apply, Fee ₹120, On Arrival at Airport | Complete Guide",
+    title: "Mizoram ILP 2026: Online Apply, Fee ₹120, On Arrival at Airport | Complete Guide",
     description: "Apply for Mizoram Inner Line Permit (ILP) online or get it on arrival at Lengpui Airport. Fee ₹120, instant processing. Step-by-step guide, required documents, Aizawl travel tips.",
     keywords: [
       "mizoram ilp",
       "mizoram ilp online apply",
       "mizoram inner line permit",
       "mizoram permit",
-      "ilp mizoram 2025",
+      "ilp mizoram 2026",
       "mizoram ilp fee",
       "mizoram ilp on arrival",
       "lengpui airport ilp",
@@ -44,7 +44,7 @@ export const mizoramPermitData = {
     onArrivalNote: "Available at Lengpui Airport from Security Officer. Only state offering on-arrival ILP!",
     officialPortal: "https://ilp.mizoram.gov.in",
     helpline: "Liaison Officers in Guwahati, Kolkata, Shillong, Delhi",
-    lastUpdated: "January 2025",
+    lastUpdated: "August 2026",
   },
 
   whoNeeds: {

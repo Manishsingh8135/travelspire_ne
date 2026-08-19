@@ -10,10 +10,10 @@ import { wayFaqSection } from "@/data/guides/way-to-anini";
 export const metadata: Metadata = {
   title: {
     absolute:
-      "Dibrugarh to Anini Road Guide 2026 — NH-313 in 9 Chapters | The Way to Anini",
+      "Dibrugarh to Anini Road Guide 2026 — NH-313 in 9 Chapters",
   },
   description:
-    "The definitive Dibrugarh to Anini road guide by the team that drives NH-313 weekly. Nine chapters — the Bhupen Hazarika Setu crossing, Shantipur ILP gate, Roing staging, the Mayodia Pass climb, slide-zone corridor and the plateau reveal — with honest timings, an elevation profile and every protocol we actually run.",
+    "The definitive Dibrugarh→Anini road guide by the team that drives NH-313 weekly. The Bhupen Hazarika Setu, Shantipur ILP gate, Roing staging, Mayodia Pass and the plateau reveal — with honest timings.",
   keywords: [
     "dibrugarh to anini",
     "how to reach anini",
@@ -55,22 +55,42 @@ const articleSchema = {
   description:
     "The definitive road guide to reaching Anini, Dibang Valley: the Bhupen Hazarika Setu crossing, the ILP gate at Shantipur, staging in Roing, climbing Mayodia Pass, the slide-zone corridor, and arrival on the Anini plateau — with honest seasonal timings.",
   image: ["https://travelspirene.com/images/places/anini/Anini_10.JPG"],
+  datePublished: "2026-08-19",
+  dateModified: "2026-08-19",
+  inLanguage: "en-IN",
   author: {
     "@type": "Organization",
+    "@id": "https://travelspirene.com/#organization",
     name: "Travelspire Northeast",
     url: "https://travelspirene.com",
   },
   publisher: {
     "@type": "Organization",
+    "@id": "https://travelspirene.com/#organization",
     name: "Travelspire Northeast",
     url: "https://travelspirene.com",
   },
+  isPartOf: { "@id": "https://travelspirene.com/guides/dibrugarh-to-anini#webpage" },
   mainEntityOfPage: "https://travelspirene.com/guides/dibrugarh-to-anini",
   about: {
     "@type": "TouristAttraction",
+    "@id": "https://travelspirene.com/places/anini#place",
     name: "Anini, Dibang Valley",
     url: "https://travelspirene.com/places/anini",
   },
+};
+
+const webPageSchema = {
+  "@type": "WebPage",
+  "@id": "https://travelspirene.com/guides/dibrugarh-to-anini#webpage",
+  url: "https://travelspirene.com/guides/dibrugarh-to-anini",
+  name: "Dibrugarh to Anini Road Guide 2026 — NH-313 in 9 Chapters",
+  isPartOf: { "@id": "https://travelspirene.com/#website" },
+  breadcrumb: { "@id": "https://travelspirene.com/guides/dibrugarh-to-anini#breadcrumb" },
+  primaryImageOfPage: "https://travelspirene.com/images/places/anini/Anini_10.JPG",
+  datePublished: "2026-08-19",
+  dateModified: "2026-08-19",
+  inLanguage: "en-IN",
 };
 
 const faqSchema = {
@@ -84,6 +104,7 @@ const faqSchema = {
 
 const breadcrumbSchema = {
   "@type": "BreadcrumbList",
+  "@id": "https://travelspirene.com/guides/dibrugarh-to-anini#breadcrumb",
   itemListElement: [
     {
       "@type": "ListItem",
@@ -94,12 +115,6 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Guides",
-      item: "https://travelspirene.com/guides",
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
       name: "Dibrugarh to Anini",
       item: "https://travelspirene.com/guides/dibrugarh-to-anini",
     },
@@ -108,7 +123,7 @@ const breadcrumbSchema = {
 
 const wayGraph = {
   "@context": "https://schema.org",
-  "@graph": [articleSchema, faqSchema, breadcrumbSchema],
+  "@graph": [webPageSchema, articleSchema, faqSchema, breadcrumbSchema],
 };
 
 export default function WayToAniniPage() {

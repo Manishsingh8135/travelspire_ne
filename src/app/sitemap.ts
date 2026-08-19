@@ -101,21 +101,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
   ]
 
-  // Dynamic tour pages
-  const tourPages: MetadataRoute.Sitemap = regularTours.map((tour) => ({
+  // Dynamic tour pages — every tour (regular + festival) lives at /tours/<slug>;
+  // there is no /festivals/* route, so never emit one.
+  const tourPages: MetadataRoute.Sitemap = [...regularTours, ...festivalTours].map((tour) => ({
     url: `${baseUrl}/tours/${tour.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.8,
   }))
 
-  // Dynamic festival pages  
-  const festivalPages: MetadataRoute.Sitemap = festivalTours.map((festival) => ({
-    url: `${baseUrl}/festivals/${festival.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }))
+  // NOTE: /festivals/* pages don't exist as routes — festival cards link to
+  // /tours/<slug> instead. Never list URLs here that don't return 200.
 
   // State-specific permit pages (high priority for SEO)
   const permitPages: MetadataRoute.Sitemap = statePermitPages.map((permit) => ({
@@ -125,5 +121,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: permit.priority,
   }))
 
-  return [...staticPages, ...tourPages, ...festivalPages, ...permitPages]
+  return [...staticPages, ...tourPages, ...permitPages]
 }

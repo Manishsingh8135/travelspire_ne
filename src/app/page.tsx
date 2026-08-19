@@ -1,10 +1,15 @@
 import FAQSection from "@/components/faqs/faq-home";
+import type { Metadata } from "next";
 import { SplitHeroHome } from "@/components/hero/split-hero-home";
 import { TestimonialCarousel } from "@/components/testimonials/testimonial-section";
 import { UpcomingTours } from "@/components/tours/upcoming-tours";
 import { testimonialData } from "@/data/testimonials/testimonial-data";
 import { ImageSEO } from "@/components/seo/image-seo";
 import { getAllPlaceImages } from "@/data/seo/image-seo-data";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   // Get featured images for homepage SEO (mix from different locations)

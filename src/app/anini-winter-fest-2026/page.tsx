@@ -26,11 +26,11 @@ const heroImageUrl = `https://travelspirene.com${awfHeroImages.desktop.src}`;
 // data file and redeploy — metadata, banner and CTAs switch to holder mode.
 const isPast = awfEdition.status === "past";
 const metaTitle = isPast
-  ? `Anini Winter Fest ${awfEdition.nextYear} — Dates Coming Soon · 2026 Recap | Travelspire NE`
-  : "Anini Winter Fest 2026 · Sep 19–20 · Official Travel Partner | Travelspire NE";
+  ? `Anini Winter Fest ${awfEdition.nextYear} — Dates Soon · 2026 Recap | Travelspire NE`
+  : "Anini Winter Fest 2026 (Sep 19–20) — Official Travel Partner";
 const metaDescription = isPast
-  ? `Anini Winter Fest 2026 has wrapped — ${awfEdition.nextYear} dates will be announced on the festival's official channels. Until then: the complete Anini destination guide, the 9-chapter road guide, and year-round Dibang Valley trips with the festival's Official Travel Partner.`
-  : "Official Travel & Taxi Partner of Anini Winter Fest 2026 (19–20 Sep, Dibang Valley, Arunachal Pradesh). Shared convoy from Dibrugarh at ₹5,499/person, private SUV fleet from ₹5,599/day, ILP assistance, stay packages and NH-313 route expertise — one WhatsApp message sorts it all.";
+  ? `Anini Winter Fest 2026 has wrapped — ${awfEdition.nextYear} dates will be announced on the festival's official channels. Until then: the complete Anini destination guide, the 9-chapter road guide, and year-round Dibang Valley trips.`
+  : "Official Travel & Taxi Partner of Anini Winter Fest 2026 (19–20 Sep, Dibang Valley). Shared convoy ₹5,499/person, private SUVs from ₹5,599/day, ILP help, stays — one WhatsApp message sorts it all.";
 
 export const metadata: Metadata = {
   title: { absolute: metaTitle },
@@ -98,6 +98,7 @@ const musicEventSchema = {
   url: pageUrl,
   location: {
     "@type": "Place",
+    "@id": "https://travelspirene.com/places/anini#place",
     name: "Anini, Dibang Valley",
     address: {
       "@type": "PostalAddress",
@@ -196,9 +197,23 @@ const breadcrumbSchema = {
   ],
 };
 
+const webPageSchema = {
+  "@type": "WebPage",
+  "@id": `${pageUrl}#webpage`,
+  url: pageUrl,
+  name: "Anini Winter Fest 2026 · Sep 19–20 · Official Travel Partner",
+  isPartOf: { "@id": "https://travelspirene.com/#website" },
+  about: { "@id": `${pageUrl}#event` },
+  breadcrumb: { "@id": `${pageUrl}#breadcrumb` },
+  primaryImageOfPage: heroImageUrl,
+  datePublished: "2026-08-19",
+  dateModified: "2026-08-19",
+  inLanguage: "en-IN",
+};
+
 const aniniWinterFestGraph = {
   "@context": "https://schema.org",
-  "@graph": [musicEventSchema, faqSchema, breadcrumbSchema],
+  "@graph": [webPageSchema, musicEventSchema, faqSchema, breadcrumbSchema],
 };
 
 export default function AniniWinterFest2026Page() {

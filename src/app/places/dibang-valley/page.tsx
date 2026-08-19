@@ -8,10 +8,10 @@ import { valleyFaqSection } from "@/data/places/dibang-valley";
 export const metadata: Metadata = {
   title: {
     absolute:
-      "Dibang Valley Travel Guide 2026 — Anini, Dambuk, Roing & the Whole Frontier | Travelspire NE",
+      "Dibang Valley Travel Guide 2026 — Anini, Dambuk, Roing & More",
   },
   description:
-    "The complete Dibang Valley guide by the team that drives NH-313 weekly. India's largest and emptiest district — Anini's high plateau, Dambuk's orange orchards, Roing the gateway, Mayodia's cloud pass, ILP permits, honest seasons and how to sequence the whole region in one journey.",
+    "The complete Dibang Valley guide by the team that drives NH-313 weekly. Anini's plateau, Dambuk's orange orchards, Roing the gateway, Mayodia's cloud pass — ILP, seasons, one journey.",
   keywords: [
     "dibang valley travel guide",
     "dibang valley arunachal pradesh",
@@ -54,16 +54,40 @@ const placeSchema = {
     "Two districts sharing one river in eastern Arunachal Pradesh: Lower Dibang Valley (Roing, Dambuk) in the foothills and Dibang Valley district (Anini and beyond) in the high mountains. India's largest district by area, with fewer than one person per square kilometre.",
   url: "https://travelspirene.com/places/dibang-valley",
   image: ["https://travelspirene.com/images/places/pomo/pomo1.JPG"],
+  sameAs: [
+    "https://en.wikipedia.org/wiki/Dibang_Valley_district",
+    "https://en.wikipedia.org/wiki/Lower_Dibang_Valley_district",
+  ],
   address: {
     "@type": "PostalAddress",
     addressRegion: "Arunachal Pradesh",
     addressCountry: "IN",
   },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 28.7,
+    longitude: 95.7,
+  },
   containsPlace: [
-    { "@type": "TouristAttraction", name: "Anini", url: "https://travelspirene.com/places/anini" },
-    { "@type": "TouristAttraction", name: "Dambuk", url: "https://travelspirene.com/places/dambuk" },
+    { "@type": "TouristAttraction", "@id": "https://travelspirene.com/places/anini#place", name: "Anini", url: "https://travelspirene.com/places/anini" },
+    { "@type": "TouristAttraction", "@id": "https://travelspirene.com/places/dambuk#place", name: "Dambuk", url: "https://travelspirene.com/places/dambuk" },
+    { "@type": "TouristAttraction", "@id": "https://travelspirene.com/places/roing#place", name: "Roing", url: "https://travelspirene.com/places/roing" },
   ],
   touristType: ["Nature travelers", "Road trippers", "Photographers", "Cultural travelers"],
+};
+
+const webPageSchema = {
+  "@type": "WebPage",
+  "@id": "https://travelspirene.com/places/dibang-valley#webpage",
+  url: "https://travelspirene.com/places/dibang-valley",
+  name: "Dibang Valley Travel Guide 2026 — Anini, Dambuk, Roing & the Whole Frontier",
+  isPartOf: { "@id": "https://travelspirene.com/#website" },
+  about: { "@id": "https://travelspirene.com/places/dibang-valley#place" },
+  breadcrumb: { "@id": "https://travelspirene.com/places/dibang-valley#breadcrumb" },
+  primaryImageOfPage: "https://travelspirene.com/images/places/pomo/pomo1.JPG",
+  datePublished: "2026-08-19",
+  dateModified: "2026-08-19",
+  inLanguage: "en-IN",
 };
 
 const faqSchema = {
@@ -77,6 +101,7 @@ const faqSchema = {
 
 const breadcrumbSchema = {
   "@type": "BreadcrumbList",
+  "@id": "https://travelspirene.com/places/dibang-valley#breadcrumb",
   itemListElement: [
     {
       "@type": "ListItem",
@@ -87,12 +112,6 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Places",
-      item: "https://travelspirene.com/places",
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
       name: "Dibang Valley",
       item: "https://travelspirene.com/places/dibang-valley",
     },
@@ -101,7 +120,7 @@ const breadcrumbSchema = {
 
 const valleyGraph = {
   "@context": "https://schema.org",
-  "@graph": [placeSchema, faqSchema, breadcrumbSchema],
+  "@graph": [webPageSchema, placeSchema, faqSchema, breadcrumbSchema],
 };
 
 export default function DibangValleyPlacePage() {

@@ -8,10 +8,10 @@ import { dambukFaqSection, dambukMeta } from "@/data/places/dambuk";
 export const metadata: Metadata = {
   title: {
     absolute:
-      "Dambuk Travel Guide 2026 — Orange Orchards, Dibang Riverbanks & How to Reach | Travelspire NE",
+      "Dambuk Travel Guide 2026 — Orange Orchards & the Dibang",
   },
   description:
-    "The definitive Dambuk guide by the team that drives this road weekly. Orange harvest season (Nov–Jan), the Dibang riverbanks, the bridge that ended the ferry era, ILP permits, and how to pair Dambuk with Roing and Anini — planned end-to-end by Travelspire NE.",
+    "The definitive Dambuk guide by the team that drives this road weekly. Orange harvest (Nov–Jan), Dibang riverbanks, the bridge that ended the ferry era, and pairing with Roing and Anini.",
   keywords: [
     "dambuk travel guide",
     "dambuk oranges",
@@ -54,6 +54,12 @@ const placeSchema = {
     "Riverside town in Lower Dibang Valley, Arunachal Pradesh, famous for its orange orchards, the Dibang riverbanks, and the bridge that ended decades of ferry crossings. Best visited November to January during harvest.",
   url: "https://travelspirene.com/places/dambuk",
   image: ["https://travelspirene.com/images/places/dambuk/Dambuk_1.jpg"],
+  sameAs: ["https://en.wikipedia.org/wiki/Dambuk"],
+  containedInPlace: {
+    "@type": "AdministrativeArea",
+    name: "Lower Dibang Valley district, Arunachal Pradesh, India",
+    sameAs: "https://en.wikipedia.org/wiki/Lower_Dibang_Valley_district",
+  },
   address: {
     "@type": "PostalAddress",
     addressLocality: "Dambuk",
@@ -61,6 +67,20 @@ const placeSchema = {
     addressCountry: "IN",
   },
   touristType: ["Nature travelers", "Road trippers", "Food and farm travelers", "Photographers"],
+};
+
+const webPageSchema = {
+  "@type": "WebPage",
+  "@id": "https://travelspirene.com/places/dambuk#webpage",
+  url: "https://travelspirene.com/places/dambuk",
+  name: "Dambuk Travel Guide 2026 — Orange Orchards, Dibang Riverbanks & How to Reach",
+  isPartOf: { "@id": "https://travelspirene.com/#website" },
+  about: { "@id": "https://travelspirene.com/places/dambuk#place" },
+  breadcrumb: { "@id": "https://travelspirene.com/places/dambuk#breadcrumb" },
+  primaryImageOfPage: "https://travelspirene.com/images/places/dambuk/Dambuk_1.jpg",
+  datePublished: "2026-08-19",
+  dateModified: "2026-08-19",
+  inLanguage: "en-IN",
 };
 
 const faqSchema = {
@@ -74,6 +94,7 @@ const faqSchema = {
 
 const breadcrumbSchema = {
   "@type": "BreadcrumbList",
+  "@id": "https://travelspirene.com/places/dambuk#breadcrumb",
   itemListElement: [
     {
       "@type": "ListItem",
@@ -84,12 +105,6 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Places",
-      item: "https://travelspirene.com/places",
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
       name: "Dambuk",
       item: "https://travelspirene.com/places/dambuk",
     },
@@ -98,7 +113,7 @@ const breadcrumbSchema = {
 
 const dambukGraph = {
   "@context": "https://schema.org",
-  "@graph": [placeSchema, faqSchema, breadcrumbSchema],
+  "@graph": [webPageSchema, placeSchema, faqSchema, breadcrumbSchema],
 };
 
 export default function DambukPlacePage() {

@@ -5,19 +5,19 @@ export const arunachalPermitData = {
   // Basic Info
   state: "Arunachal Pradesh",
   slug: "arunachal-pradesh-ilp",
-  title: "Arunachal Pradesh ILP 2025",
+  title: "Arunachal Pradesh ILP 2026",
   tagline: "Complete Guide to Inner Line Permit for India's Land of Rising Sun",
   
   // SEO Meta
   seo: {
-    title: "Arunachal Pradesh ILP 2025: Online Apply, Fee ₹100, Documents | Complete Guide",
-    description: "Apply for Arunachal Pradesh Inner Line Permit (ILP) online in 2025. Fee ₹100-₹400, processing 24 hours. Step-by-step guide, required documents, official portal link. Get expert assistance.",
+    title: "Arunachal Pradesh ILP 2026: Online Apply, Fee ₹100, Documents | Complete Guide",
+    description: "Apply for Arunachal Pradesh Inner Line Permit (ILP) online in 2026. Fee ₹100-₹400, processing 24 hours. Step-by-step guide, required documents, official portal link. Get expert assistance.",
     keywords: [
       "arunachal pradesh ilp",
       "arunachal ilp online apply",
       "arunachal pradesh inner line permit",
       "arunachal pradesh permit",
-      "ilp arunachal pradesh 2025",
+      "ilp arunachal pradesh 2026",
       "arunachal pradesh ilp fee",
       "arunachal pradesh ilp documents",
       "how to get ilp for arunachal pradesh",
@@ -51,7 +51,7 @@ export const arunachalPermitData = {
     onArrivalNote: "Must apply online BEFORE entering Arunachal Pradesh",
     officialPortal: "https://eilp.arunachal.gov.in",
     helpline: "1800 345 3605 (Toll Free)",
-    lastUpdated: "January 2025",
+    lastUpdated: "August 2026",
   },
 
   // Who Needs ILP
@@ -333,7 +333,7 @@ export const arunachalPermitData = {
       answer: "Visit the official e-ILP portal at eilp.arunachal.gov.in, register with your details, fill the application form, upload required documents (ID proof and photo), pay ₹100 fee online, and download your approved ILP within 24 hours. For instant processing, pay ₹400.",
     },
     {
-      question: "What is the fee for Arunachal Pradesh ILP in 2025?",
+      question: "What is the fee for Arunachal Pradesh ILP in 2026?",
       answer: "The ILP fee for Arunachal Pradesh is ₹100 for 15 or 30 days tourist permit. For instant/immediate processing, the fee is ₹400. For 1-year permits (workers/students), the fee is ₹200-500 depending on category.",
     },
     {

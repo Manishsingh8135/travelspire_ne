@@ -33,6 +33,43 @@ import {
         href: "/all-tours?category=Festival",
         icon: Music 
       },
+      {
+        name: "Destinations",
+        href: "/places/dibang-valley",
+        icon: Compass,
+        submenu: [
+          {
+            name: "Anini",
+            href: "/places/anini",
+            icon: Mountain,
+            description: "The high plateau — complete travel guide"
+          },
+          {
+            name: "Dibang Valley",
+            href: "/places/dibang-valley",
+            icon: Compass,
+            description: "The whole region, one hub"
+          },
+          {
+            name: "Dambuk",
+            href: "/places/dambuk",
+            icon: TreePine,
+            description: "Orange country on the Dibang"
+          },
+          {
+            name: "Roing",
+            href: "/places/roing",
+            icon: Footprints,
+            description: "The gateway — NH-313 mile zero"
+          },
+          {
+            name: "The Way to Anini",
+            href: "/guides/dibrugarh-to-anini",
+            icon: Map,
+            description: "The road, in nine chapters"
+          },
+        ],
+      },
       /* Temporarily hidden - Destinations
       {
         name: "Destinations",

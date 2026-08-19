@@ -727,10 +727,10 @@ export default function ArunachalPradeshILPPage() {
             className="text-center mt-8"
           >
             <Link
-              href="/states/arunachal-pradesh"
+              href="/places/dibang-valley"
               className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-medium hover:underline"
             >
-              Explore all destinations in Arunachal Pradesh
+              Explore our Arunachal destination guides
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>

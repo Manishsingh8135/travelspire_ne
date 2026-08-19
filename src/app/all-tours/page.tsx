@@ -9,4 +9,5 @@ export const metadata = {
   title: "All Tours & Experiences | TravelSpire NE",
   description:
     "Discover all our adventures, festivals, and special activities in Northeast India with advanced filtering options.",
+  alternates: { canonical: "/all-tours" },
 };

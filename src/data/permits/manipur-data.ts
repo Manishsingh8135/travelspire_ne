@@ -4,15 +4,15 @@
 export const manipurPermitData = {
   state: "Manipur",
   slug: "manipur-ilp",
-  title: "Manipur ILP 2025",
+  title: "Manipur ILP 2026",
   tagline: "Complete Guide to Inner Line Permit for the Jewel of India",
   
   seo: {
-    title: "Manipur ILP 2025: Online Apply, Fee ₹100, Documents Required | Complete Guide",
-    description: "Apply for Manipur Inner Line Permit (ILP) online in 2025. Fee ₹100-₹5000, processing 1-2 days. Step-by-step guide for Imphal, Loktak Lake, Sangai Festival.",
+    title: "Manipur ILP 2026: Online Apply, Fee ₹100, Documents Required | Complete Guide",
+    description: "Apply for Manipur Inner Line Permit (ILP) online in 2026. Fee ₹100-₹5000, processing 1-2 days. Step-by-step guide for Imphal, Loktak Lake, Sangai Festival.",
     keywords: [
       "manipur ilp", "manipur ilp online apply", "manipur inner line permit", "manipur permit",
-      "ilp manipur 2025", "manipur ilp fee", "imphal permit", "loktak lake permit",
+      "ilp manipur 2026", "manipur ilp fee", "imphal permit", "loktak lake permit",
       "sangai festival permit", "manipur travel permit", "manipur entry permit",
     ],
     canonical: "https://travelspirene.com/permits/manipur-ilp",
@@ -30,7 +30,7 @@ export const manipurPermitData = {
     onArrivalNote: "Must apply online before entering Manipur",
     officialPortal: "https://manipurilponline.mn.gov.in",
     helpline: "Home Department, Govt of Manipur",
-    lastUpdated: "January 2025",
+    lastUpdated: "August 2026",
   },
 
   whoNeeds: {

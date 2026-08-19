@@ -1,19 +1,28 @@
 // lib/structured-data.ts
+// Single canonical entity: everything references @id #organization so Google
+// merges all blocks into one knowledge-graph node.
+const ORG_ID = "https://travelspirene.com/#organization";
+
 export const generateOrganizationSchema = () => ({
   "@context": "https://schema.org",
-  "@type": "TravelAgency",
+  "@type": ["Organization", "TravelAgency"],
+  "@id": ORG_ID,
   "name": "Travelspire North-East",
   "alternateName": "Travelspire NE",
   "description": "Authentic travel experiences in Northeast India with local expertise and cultural immersion",
   "url": "https://travelspirene.com",
-  "logo": "https://travelspirene.com/images/logo/Travelspire_ne_logo_new.png",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://travelspirene.com/images/logo/Travelspire_ne_logo_new.png",
+    "width": 1200,
+    "height": 630
+  },
   "foundingDate": "2019",
   "founder": {
     "@type": "Person",
     "name": "Sandeep Sonowal",
     "nationality": "Indian",
     "knowsAbout": ["Northeast India Travel", "Adventure Tourism", "Cultural Tours", "Local History"],
-    "yearOfExperience": 8,
     "sameAs": ["https://instagram.com/travelspire_ne"]
   },
   "address": {
@@ -38,10 +47,23 @@ export const generateOrganizationSchema = () => ({
       "availableLanguage": ["English", "Hindi", "Assamese"]
     },
     {
-      "@type": "ContactPoint", 
+      "@type": "ContactPoint",
       "email": "info@travelspirene.com",
       "contactType": "customer service",
       "areaServed": "IN"
+    },
+    {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "contactOption": "TollFree",
+      "url": "https://wa.me/919864141211",
+      "availableLanguage": ["English", "Hindi", "Assamese"],
+      "hoursAvailable": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "09:00",
+        "closes": "21:00"
+      }
     }
   ],
   "telephone": "+91-9864141211",
@@ -50,9 +72,9 @@ export const generateOrganizationSchema = () => ({
     "https://www.instagram.com/travelspire_ne",
     "https://wa.me/919864141211"
   ],
-  "serviceArea": [
+  "areaServed": [
     "Arunachal Pradesh",
-    "Assam", 
+    "Assam",
     "Manipur",
     "Meghalaya",
     "Mizoram",
@@ -65,13 +87,24 @@ export const generateOrganizationSchema = () => ({
     "Northeast India Travel",
     "Adventure Tourism",
     "Cultural Tours",
-    "Festival Tours", 
+    "Festival Tours",
     "Eco Tourism",
     "Heritage Tourism",
     "Trekking",
     "Wildlife Tours",
     "Photography Tours"
   ]
+});
+
+// WebSite entity — lets Google associate every page with the site node.
+export const generateWebSiteSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://travelspirene.com/#website",
+  "url": "https://travelspirene.com",
+  "name": "Travelspire North-East",
+  "publisher": { "@id": ORG_ID },
+  "inLanguage": "en-IN"
 });
 
 interface TourSchemaInput {
@@ -94,6 +127,7 @@ export const generateTourPackageSchema = (tour: TourSchemaInput) => ({
   "description": tour.description,
   "provider": {
     "@type": "TravelAgency",
+    "@id": ORG_ID,
     "name": "Travelspire North-East"
   },
   "offers": {
@@ -125,8 +159,8 @@ export const generateBreadcrumbSchema = (items: Array<{name: string, url: string
 
 export const generateLocalBusinessSchema = () => ({
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://travelspirene.com",
+  "@type": ["LocalBusiness", "TravelAgency"],
+  "@id": ORG_ID,
   "name": "Travelspire North-East",
   "alternateName": "Travelspire NE",
   "description": "Premier travel agency specializing in authentic Northeast India experiences with expert local guides",
@@ -151,13 +185,6 @@ export const generateLocalBusinessSchema = () => ({
     "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
     "opens": "09:00",
     "closes": "18:00"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "5",
-    "bestRating": "5",
-    "worstRating": "1"
   },
   "sameAs": [
     "https://www.instagram.com/travelspire_ne",
@@ -232,24 +259,6 @@ export const generateReviewSchema = (reviews: Array<{
   "datePublished": reviews[0]?.datePublished
 });
 
-// WhatsApp Contact Schema
-export const generateWhatsAppSchema = () => ({
-  "@context": "https://schema.org",
-  "@type": "ContactPoint",
-  "telephone": "+91-9864141211",
-  "contactType": "customer support",
-  "availableLanguage": ["English", "Hindi", "Assamese"],
-  "serviceArea": "Northeast India",
-  "hoursAvailable": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    "opens": "09:00",
-    "closes": "21:00"
-  },
-  "contactOption": "WhatsApp",
-  "url": "https://wa.me/919864141211"
-});
-
 // Service Schema for SEO
 export const generateServiceSchema = () => ({
   "@context": "https://schema.org",
@@ -258,6 +267,7 @@ export const generateServiceSchema = () => ({
   "description": "Complete travel planning and booking services for authentic Northeast India experiences",
   "provider": {
     "@type": "TravelAgency",
+    "@id": ORG_ID,
     "name": "Travelspire North-East"
   },
   "areaServed": [
@@ -308,11 +318,9 @@ export const generateZiroFestival2026Schema = () => ({
     "description": "UNESCO Tentative World Heritage Site in the heart of Apatani cultural landscape"
   },
   "organizer": {
-    "@type": "TravelAgency",
-    "name": "Travelspire North-East",
-    "url": "https://travelspirene.com",
-    "telephone": "+91-9864141211",
-    "email": "info@travelspirene.com"
+    "@type": "Organization",
+    "name": "Ziro Festival of Music",
+    "url": "https://zirofestival.com"
   },
   "performer": [
     {

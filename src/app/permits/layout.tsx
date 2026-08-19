@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Permit Assistance - ILP, PAP & Travel Permits for Northeast India",
-  description: "Expert assistance for Inner Line Permit (ILP) and Protected Area Permit (PAP) for Arunachal Pradesh, Nagaland, Mizoram, Manipur & Sikkim. Fast processing, 100% success rate, hassle-free documentation.",
+  description: "Expert ILP & PAP assistance for Arunachal Pradesh, Nagaland, Mizoram, Manipur & Sikkim. Fast processing, hassle-free documentation, official portals.",
   keywords: [
     "Inner Line Permit",
     "ILP Arunachal Pradesh",

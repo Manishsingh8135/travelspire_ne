@@ -10,7 +10,7 @@ import {
   generateOrganizationSchema, 
   generateLocalBusinessSchema,
   generateServiceSchema,
-  generateWhatsAppSchema
+  generateWebSiteSchema
 } from "@/lib/structured-data";
 
 const geistSans = localFont({
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     default: "Travelspire North-East | Explore the Unexplored Northeast India",
     template: "%s | Travelspire North-East",
   },
-  description: "Experience authentic travel adventures in Northeast India with Travelspire NE. Expert local guides, offbeat destinations, cultural immersion, and responsible tourism across Arunachal Pradesh, Assam, Meghalaya, Nagaland, Manipur, Mizoram & Tripura.",
+  description: "Experience authentic Northeast India with Travelspire NE. Local guides, offbeat destinations, cultural immersion and responsible tourism across Arunachal, Assam, Meghalaya & beyond.",
   keywords: [
     "North East India travel",
     "Arunachal Pradesh tours",
@@ -74,9 +74,6 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL("https://travelspirene.com"),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -147,11 +144,12 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
-        {/* Enhanced Structured Data */}
+        {/* Enhanced Structured Data — all blocks share @id #organization so
+            search engines merge them into one entity */}
         <StructuredData data={generateOrganizationSchema()} />
         <StructuredData data={generateLocalBusinessSchema()} />
+        <StructuredData data={generateWebSiteSchema()} />
         <StructuredData data={generateServiceSchema()} />
-        <StructuredData data={generateWhatsAppSchema()} />
         
         <ThemeProvider
           attribute="class"

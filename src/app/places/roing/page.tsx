@@ -8,10 +8,10 @@ import { roingFaqSection } from "@/data/places/roing";
 export const metadata: Metadata = {
   title: {
     absolute:
-      "Roing Travel Guide 2026 — Gateway to Anini, Mehao Lake & NH-313 Mile Zero | Travelspire NE",
+      "Roing Travel Guide 2026 — Gateway to Anini & NH-313 Mile Zero",
   },
   description:
-    "The definitive Roing guide by the team that stages here weekly. Mehao Lake, Bhishmaknagar ruins, the last fuel and network before the 235 km NH-313 climb to Anini, ILP permits, honest seasons — and why the gateway deserves a night, not a drive-through.",
+    "The definitive Roing guide by the team that stages here weekly. Mehao Lake, Bhishmaknagar ruins, the last fuel and network before the 235 km climb to Anini, ILP permits, and honest seasons.",
   keywords: [
     "roing travel guide",
     "roing arunachal pradesh",
@@ -54,13 +54,38 @@ const placeSchema = {
     "Gateway town of Lower Dibang Valley, Arunachal Pradesh — mile zero of the NH-313 climb to Anini. Known for Mehao Lake, the Bhishmaknagar fort ruins, and as the last reliable stop for fuel, cash and network before the high valley.",
   url: "https://travelspirene.com/places/roing",
   image: ["https://travelspirene.com/images/places/anini/Anini_2.JPG"],
+  sameAs: ["https://en.wikipedia.org/wiki/Roing"],
+  containedInPlace: {
+    "@type": "AdministrativeArea",
+    name: "Lower Dibang Valley district, Arunachal Pradesh, India",
+    sameAs: "https://en.wikipedia.org/wiki/Lower_Dibang_Valley_district",
+  },
   address: {
     "@type": "PostalAddress",
     addressLocality: "Roing",
     addressRegion: "Arunachal Pradesh",
     addressCountry: "IN",
   },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 28.14278,
+    longitude: 95.84278,
+  },
   touristType: ["Nature travelers", "Road trippers", "History travelers", "Photographers"],
+};
+
+const webPageSchema = {
+  "@type": "WebPage",
+  "@id": "https://travelspirene.com/places/roing#webpage",
+  url: "https://travelspirene.com/places/roing",
+  name: "Roing Travel Guide 2026 — Gateway to Anini, Mehao Lake & NH-313 Mile Zero",
+  isPartOf: { "@id": "https://travelspirene.com/#website" },
+  about: { "@id": "https://travelspirene.com/places/roing#place" },
+  breadcrumb: { "@id": "https://travelspirene.com/places/roing#breadcrumb" },
+  primaryImageOfPage: "https://travelspirene.com/images/places/anini/Anini_2.JPG",
+  datePublished: "2026-08-19",
+  dateModified: "2026-08-19",
+  inLanguage: "en-IN",
 };
 
 const faqSchema = {
@@ -74,6 +99,7 @@ const faqSchema = {
 
 const breadcrumbSchema = {
   "@type": "BreadcrumbList",
+  "@id": "https://travelspirene.com/places/roing#breadcrumb",
   itemListElement: [
     {
       "@type": "ListItem",
@@ -84,12 +110,6 @@ const breadcrumbSchema = {
     {
       "@type": "ListItem",
       position: 2,
-      name: "Places",
-      item: "https://travelspirene.com/places",
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
       name: "Roing",
       item: "https://travelspirene.com/places/roing",
     },
@@ -98,7 +118,7 @@ const breadcrumbSchema = {
 
 const roingGraph = {
   "@context": "https://schema.org",
-  "@graph": [placeSchema, faqSchema, breadcrumbSchema],
+  "@graph": [webPageSchema, placeSchema, faqSchema, breadcrumbSchema],
 };
 
 export default function RoingPlacePage() {

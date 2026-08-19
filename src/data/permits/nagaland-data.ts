@@ -5,19 +5,19 @@ export const nagalandPermitData = {
   // Basic Info
   state: "Nagaland",
   slug: "nagaland-ilp",
-  title: "Nagaland ILP 2025",
+  title: "Nagaland ILP 2026",
   tagline: "Complete Guide to Inner Line Permit for the Land of Festivals",
   
   // SEO Meta
   seo: {
-    title: "Nagaland ILP 2025: Online Apply, Fee ₹200, Hornbill Festival Permit | Complete Guide",
-    description: "Apply for Nagaland Inner Line Permit (ILP) online in 2025. Fee ₹200-₹5000, processing 1-2 days. Step-by-step guide for Hornbill Festival, Kohima, Mon. Official portal link.",
+    title: "Nagaland ILP 2026: Online Apply, Fee ₹200, Hornbill Festival Permit | Complete Guide",
+    description: "Apply for Nagaland Inner Line Permit (ILP) online in 2026. Fee ₹200-₹5000, processing 1-2 days. Step-by-step guide for Hornbill Festival, Kohima, Mon. Official portal link.",
     keywords: [
       "nagaland ilp",
       "nagaland ilp online apply",
       "nagaland inner line permit",
       "nagaland permit",
-      "ilp nagaland 2025",
+      "ilp nagaland 2026",
       "nagaland ilp fee",
       "hornbill festival permit",
       "kohima permit",
@@ -50,7 +50,7 @@ export const nagalandPermitData = {
     onArrivalNote: "Online application mandatory from Dec 31, 2024. No offline applications accepted.",
     officialPortal: "https://ilp.nagaland.gov.in",
     helpline: "ilphelpdesk.nagaland.gov.in",
-    lastUpdated: "January 2025",
+    lastUpdated: "August 2026",
   },
 
   // Who Needs ILP
@@ -309,7 +309,7 @@ export const nagalandPermitData = {
       answer: "Visit the official portal ilp.nagaland.gov.in, register with your mobile number, fill the application form, upload required documents (ID proof and photo), pay ₹200 fee online, and wait 1-2 working days for approval. Download the approved e-ILP from the portal.",
     },
     {
-      question: "What is the fee for Nagaland ILP in 2025?",
+      question: "What is the fee for Nagaland ILP in 2026?",
       answer: "The Nagaland ILP fee varies by category: Tourist (30 days) - ₹200, Student (5 years) - ₹300, Business (1 year) - ₹5000, Employment - ₹500. All payments are made online through the official portal.",
     },
     {

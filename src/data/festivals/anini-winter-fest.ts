@@ -12,7 +12,7 @@ export const awfMeta = {
   dates: { start: "2026-09-19", end: "2026-09-20", label: "19–20 September 2026" },
   location: "Anini, Dibang Valley",
   state: "Arunachal Pradesh",
-  coordinates: { lat: "28.78", lng: "95.86" },
+  coordinates: { lat: "28.79806", lng: "95.90361" },
   elevation: "1,970 m",
   instagram: "https://instagram.com/anini_winter_fest",
   officialSite: "https://www.aniniwinterfest.com",
@@ -165,7 +165,7 @@ export interface AwfRouteStop {
 }
 
 export const awfRouteStops: AwfRouteStop[] = [
-  { km: 0, name: "Roing", note: "Base town — fuel, ATM, market, network", alt: "380 m" },
+  { km: 0, name: "Roing", note: "Base town — fuel, ATM, market, network", alt: "390 m" },
   { km: 22, name: "Tiwarigaon", note: "Tea & breakfast dhabas before the climb" },
   { km: 48, name: "Mayodia Coffee House", note: "Last comfortable halt before the pass", alt: "2,200 m" },
   { km: 56, name: "Mayodia Pass", note: "Highest point — Mishmi Hills panorama", alt: "2,655 m" },

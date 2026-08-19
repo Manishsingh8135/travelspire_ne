@@ -7,7 +7,7 @@ export const aniniMeta = {
   name: "Anini",
   region: "Dibang Valley",
   state: "Arunachal Pradesh",
-  coordinates: { lat: "28.78", lng: "95.86" },
+  coordinates: { lat: "28.79806", lng: "95.90361" },
   elevationM: 1970,
   districtAreaKm2: "9,129",
   density: "< 1 person / km²",
@@ -107,7 +107,7 @@ export const aniniExperiences: AniniExperience[] = [
 // Indicative elevation profile of NH-313, Roing → Anini.
 // Altitudes at named points are published figures; the curve between is indicative.
 export const aniniRouteProfile = [
-  { km: 0, name: "Roing", elev: 380, note: "Base town — fuel, cash, network" },
+  { km: 0, name: "Roing", elev: 390, note: "Base town — fuel, cash, network" },
   { km: 22, name: "Tiwarigaon", elev: 700, note: "Tea stop before the climb" },
   { km: 48, name: "Coffee House", elev: 2200, note: "Last comfort halt" },
   { km: 56, name: "Mayodia Pass", elev: 2655, note: "Route high point" },

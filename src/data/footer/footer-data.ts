@@ -12,28 +12,28 @@ export const footerData = {
       {
         title: "Destinations",
         links: [
-          { text: "Arunachal Pradesh", href: "/destinations/arunachal-pradesh" },
-          { text: "Assam", href: "/destinations/assam" },
-          { text: "Meghalaya", href: "/destinations/meghalaya" },
-          { text: "Nagaland", href: "/destinations/nagaland" }
+          { text: "Anini", href: "/places/anini" },
+          { text: "Dibang Valley", href: "/places/dibang-valley" },
+          { text: "Dambuk", href: "/places/dambuk" },
+          { text: "Roing", href: "/places/roing" }
         ]
       },
       {
         title: "Experiences",
         links: [
-          { text: "Adventure Tours", href: "/tours/adventure" },
-          { text: "Cultural Tours", href: "/tours/cultural" },
-          { text: "Wildlife Tours", href: "/tours/wildlife" },
-          { text: "Photography Tours", href: "/tours/photography" }
+          { text: "All Tours", href: "/all-tours" },
+          { text: "Anini Winter Fest 2026", href: "/anini-winter-fest-2026" },
+          { text: "Ziro Festival 2026", href: "/ziro-music-festival-2026" },
+          { text: "Gallery", href: "/gallery" }
         ]
       },
       {
         title: "Travel Info",
         links: [
-          { text: "Travel Guide", href: "/guide" },
-          { text: "Best Time to Visit", href: "/best-time" },
-          { text: "ILP/PAP Info", href: "/permits" },
-          { text: "FAQs", href: "/faqs" }
+          { text: "The Way to Anini", href: "/guides/dibrugarh-to-anini" },
+          { text: "ILP/PAP Permits", href: "/permits" },
+          { text: "About Us", href: "/about" },
+          { text: "Contact", href: "/contact" }
         ]
       }
     ],
@@ -63,7 +63,7 @@ export const footerData = {
       // }
     ],
     bottomSection: {
-      copyright: " 2025 Travelspire Northeast. All rights reserved.",
+      copyright: " 2026 Travelspire Northeast. All rights reserved.",
       legalLinks: [
         { text: "Privacy Policy", href: "/privacy-policy" },
         { text: "Terms of Service", href: "/terms-and-conditions" },
