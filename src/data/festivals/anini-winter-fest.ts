@@ -402,6 +402,7 @@ export interface AwfMilestoneImage {
 
 export interface AwfMilestone {
   name: string;
+  state: string;
   km: number; // cumulative, from Dibrugarh
   alt: number; // metres
   note: string;
@@ -413,6 +414,7 @@ export interface AwfMilestone {
 export const awfMilestones: AwfMilestone[] = [
   {
     name: "Dibrugarh",
+    state: "Assam",
     km: 0,
     alt: 108,
     note: "The plains send you off — tea gardens, morning light off the Brahmaputra.",
@@ -425,6 +427,7 @@ export const awfMilestones: AwfMilestone[] = [
   },
   {
     name: "Bhupen Hazarika Setu",
+    state: "Assam",
     km: 80,
     alt: 112,
     note: "9.15 km over the Lohit — the bridge that ended the ferry era.",
@@ -437,6 +440,7 @@ export const awfMilestones: AwfMilestone[] = [
   },
   {
     name: "Shantipur Gate",
+    state: "Assam → Arunachal",
     km: 112,
     alt: 130,
     note: "The ILP checkpoint — where Arunachal begins.",
@@ -448,6 +452,7 @@ export const awfMilestones: AwfMilestone[] = [
   },
   {
     name: "Roing",
+    state: "Arunachal Pradesh",
     km: 150,
     alt: 390,
     note: "Kilometre zero of the climb — last reliable fuel, cash and network.",
@@ -460,6 +465,7 @@ export const awfMilestones: AwfMilestone[] = [
   },
   {
     name: "Coffee House",
+    state: "Arunachal Pradesh",
     km: 198,
     alt: 2200,
     note: "The last comfort halt — hot tea above the clouds.",
@@ -471,6 +477,7 @@ export const awfMilestones: AwfMilestone[] = [
   },
   {
     name: "Mayodia Pass",
+    state: "Arunachal Pradesh",
     km: 206,
     alt: 2655,
     note: "The cloud pass — the route's high point and its weather line.",
@@ -483,6 +490,7 @@ export const awfMilestones: AwfMilestone[] = [
   },
   {
     name: "65 KM",
+    state: "Arunachal Pradesh",
     km: 215,
     alt: 2350,
     note: "A place named after a distance — the lunch halt above the tree line.",
@@ -494,6 +502,7 @@ export const awfMilestones: AwfMilestone[] = [
   },
   {
     name: "Hunli",
+    state: "Arunachal Pradesh",
     km: 240,
     alt: 1240,
     note: "First town after the pass — fuel top-up, if the pump is awake.",
@@ -505,6 +514,7 @@ export const awfMilestones: AwfMilestone[] = [
   },
   {
     name: "Etalin",
+    state: "Arunachal Pradesh",
     km: 325,
     alt: 800,
     note: "Where the Dri meets the valley — the last junction before the plateau.",
@@ -516,6 +526,7 @@ export const awfMilestones: AwfMilestone[] = [
   },
   {
     name: "Anini",
+    state: "Arunachal Pradesh",
     km: 385,
     alt: 1968,
     note: "The plateau reveal — between the Dri and the Mathun, the festival ground.",
