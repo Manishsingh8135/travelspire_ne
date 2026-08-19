@@ -237,3 +237,54 @@
   }
   
 }
+
+/* ─── AWF route map: dark, elegant Leaflet popups ─── */
+.awf-map .leaflet-popup-content-wrapper,
+.leaflet-popup-content-wrapper {
+  background: #0b1512;
+  color: #ece4d0;
+  border: 1px solid rgba(232, 220, 192, 0.14);
+  border-radius: 12px;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.85);
+}
+.leaflet-popup-tip {
+  background: #0b1512;
+  border: 1px solid rgba(232, 220, 192, 0.14);
+}
+.leaflet-popup-content {
+  margin: 12px 16px;
+  font-family: inherit;
+  line-height: 1.5;
+}
+.leaflet-container a.leaflet-popup-close-button {
+  color: rgba(236, 228, 208, 0.5);
+}
+.awf-popup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.awf-popup strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 15px;
+  color: #f3ecdc;
+}
+.awf-popup span {
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #d8c59d;
+}
+.awf-popup a {
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #e8dcc0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.leaflet-container {
+  font-family: inherit;
+}

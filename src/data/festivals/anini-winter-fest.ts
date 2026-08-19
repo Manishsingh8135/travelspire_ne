@@ -389,3 +389,161 @@ export const awfContact = {
   phoneSecondaryHref: "tel:+918135971713",
   email: "info@travelspirene.com",
 } as const;
+
+// ─── Route experience (ribbon + map) ─────────────────────────────────────────
+// Milestones carry coordinates for the map, and a small image stack for the
+// ribbon preview — a stop can have more than one frame. Gems are the little
+// in-between dots: no images, just a line of honest road knowledge.
+
+export interface AwfMilestoneImage {
+  src: string;
+  alt: string;
+}
+
+export interface AwfMilestone {
+  name: string;
+  km: number; // cumulative, from Dibrugarh
+  alt: number; // metres
+  note: string;
+  protocol: string; // what we do here — one line
+  coords: [number, number]; // [lat, lng] — for the map
+  images: AwfMilestoneImage[];
+}
+
+export const awfMilestones: AwfMilestone[] = [
+  {
+    name: "Dibrugarh",
+    km: 0,
+    alt: 108,
+    note: "The plains send you off — tea gardens, morning light off the Brahmaputra.",
+    protocol: "Airport & railway pickups with exact pins and a named coordinator.",
+    coords: [27.4728, 95.017],
+    images: [
+      { src: "/images/places/dambuk/Dambuk_2.jpg", alt: "Open river plains at the start of the drive" },
+      { src: "/images/places/dambuk/Dambuk_3.jpg", alt: "Morning light over the Brahmaputra plains" },
+    ],
+  },
+  {
+    name: "Bhupen Hazarika Setu",
+    km: 80,
+    alt: 112,
+    note: "9.15 km over the Lohit — the bridge that ended the ferry era.",
+    protocol: "Timed crossings so you never queue behind a convoy at the ramp.",
+    coords: [27.363, 95.323],
+    images: [
+      { src: "/images/places/dambuk/Dambuk_6.JPG", alt: "The long bridge over the Lohit river" },
+      { src: "/images/places/dambuk/Dambuk_1.jpg", alt: "Wide river light near the crossing" },
+    ],
+  },
+  {
+    name: "Shantipur Gate",
+    km: 112,
+    alt: 130,
+    note: "The ILP checkpoint — where Arunachal begins.",
+    protocol: "Permits verified before this gate, never at it.",
+    coords: [27.347, 95.579],
+    images: [
+      { src: "/images/places/anini/Anini_1.JPG", alt: "Forest road beyond the Shantipur check gate" },
+    ],
+  },
+  {
+    name: "Roing",
+    km: 150,
+    alt: 390,
+    note: "Kilometre zero of the climb — last reliable fuel, cash and network.",
+    protocol: "We stage the night here so the climb runs in one clean daylight push.",
+    coords: [28.1428, 95.8428],
+    images: [
+      { src: "/images/places/anini/Anini_2.JPG", alt: "Roing bazaar at the foot of the Mishmi Hills" },
+      { src: "/images/places/anini/Anini_3.jpg", alt: "Foothill light outside Roing" },
+    ],
+  },
+  {
+    name: "Coffee House",
+    km: 198,
+    alt: 2200,
+    note: "The last comfort halt — hot tea above the clouds.",
+    protocol: "A fixed leg-stretch and thermos stop on every convoy.",
+    coords: [28.209, 95.927],
+    images: [
+      { src: "/images/places/anini/Anini_4.JPG", alt: "Cloud forest around the Coffee House halt" },
+    ],
+  },
+  {
+    name: "Mayodia Pass",
+    km: 206,
+    alt: 2655,
+    note: "The cloud pass — the route's high point and its weather line.",
+    protocol: "We cross before noon; afternoons belong to fog.",
+    coords: [28.233, 95.948],
+    images: [
+      { src: "/images/places/anini/Anini_10.JPG", alt: "Cloud rolling over Mayodia Pass" },
+      { src: "/images/places/anini/Anini_6.jpg", alt: "The road cutting through mist at Mayodia" },
+    ],
+  },
+  {
+    name: "65 KM",
+    km: 215,
+    alt: 2350,
+    note: "A place named after a distance — the lunch halt above the tree line.",
+    protocol: "Hot packed lunch here, not wherever hunger catches you.",
+    coords: [28.241, 95.932],
+    images: [
+      { src: "/images/places/anini/Anini_9.jpg", alt: "Above the tree line at the 65 KM halt" },
+    ],
+  },
+  {
+    name: "Hunli",
+    km: 240,
+    alt: 1240,
+    note: "First town after the pass — fuel top-up, if the pump is awake.",
+    protocol: "Driver checks the vehicle here before the slide-zone corridor.",
+    coords: [28.319, 95.823],
+    images: [
+      { src: "/images/places/anini/Anini_8.jpg", alt: "Descending toward Hunli" },
+    ],
+  },
+  {
+    name: "Etalin",
+    km: 325,
+    alt: 800,
+    note: "Where the Dri meets the valley — the last junction before the plateau.",
+    protocol: "Final halt before the last climb; daylight buffer held here.",
+    coords: [28.575, 95.895],
+    images: [
+      { src: "/images/places/anini/Anini_3.jpg", alt: "River confluence near Etalin" },
+    ],
+  },
+  {
+    name: "Anini",
+    km: 385,
+    alt: 1968,
+    note: "The plateau reveal — between the Dri and the Mathun, the festival ground.",
+    protocol: "Campsite handover, stay check-in, and your valley plan for the week.",
+    coords: [28.798, 95.9036],
+    images: [
+      { src: "/images/places/anini-new/anini-new-landscape-13.jpeg", alt: "The Anini plateau opening up" },
+      { src: "/images/places/anini-new/anini-new-landscape-11.jpeg", alt: "Evening over the Anini plateau" },
+    ],
+  },
+];
+
+export interface AwfRouteGem {
+  name: string;
+  km: number;
+  note: string;
+}
+
+export const awfRouteGems: AwfRouteGem[] = [
+  { name: "Kulai ghat", km: 30, note: "The old ferry point — this crossing once took half a day." },
+  { name: "First hills", km: 135, note: "The Mishmi Hills rise out of the plains like a wall." },
+  { name: "Deopani river", km: 158, note: "The bridge that floods every monsoon — we check it before you fly." },
+  { name: "Bamboo corridor", km: 172, note: "Five kilometres of green tunnel on the lower ascent." },
+  { name: "Takin country", km: 203, note: "Mishmi takin territory — horns in the mist if you're lucky." },
+  { name: "Angolin slide zone", km: 262, note: "Where landslides own the calendar; we never cross it after rain." },
+  { name: "Kahaii Kala view", km: 350, note: "First sight of the ~5,000 m wall guarding the valley." },
+  { name: "Dri gorge", km: 372, note: "The river you follow the whole way, suddenly below you." },
+];
+
+// Indicative route polyline for the map — milestone coords in order.
+export const awfRoutePath: [number, number][] = awfMilestones.map((m) => m.coords);

@@ -7,6 +7,8 @@ import { AwfJourney } from "@/components/festivals/anini/awf-journey";
 import { AwfLineup } from "@/components/festivals/anini/awf-lineup";
 import { AwfPasses } from "@/components/festivals/anini/awf-passes";
 import { AwfPeople } from "@/components/festivals/anini/awf-people";
+import { AwfRouteMap } from "@/components/festivals/anini/awf-route-map";
+import { AwfRouteRibbon } from "@/components/festivals/anini/awf-route-ribbon";
 import { AwfTransport } from "@/components/festivals/anini/awf-transport";
 import { AwfValley } from "@/components/festivals/anini/awf-valley";
 import { StructuredData } from "@/components/seo/structured-data";
@@ -224,8 +226,10 @@ export default function AniniWinterFest2026Page() {
       <AwfWrappedBanner />
       <AwfHero />
       <AwfTrustStrip />
+      <AwfRouteRibbon />
       <AwfLineup />
       <AwfExperience />
+      <AwfRouteMap />
       <AwfJourney />
       <AwfTransport />
       <AwfPasses />
