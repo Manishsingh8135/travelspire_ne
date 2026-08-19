@@ -90,7 +90,7 @@ export function AwfJourney() {
                   The way to Anini
                 </h3>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/[0.45]">
-                  NH-313 · Roing → Anini · 235 km · 6–7 hrs
+                  NH-313 · Roing → Anini · 235 km · 6–7 hrs dry, 8–10 in festival season
                 </p>
               </div>
 
@@ -133,8 +133,9 @@ export function AwfJourney() {
 
               <p className="mt-6 inline-flex items-start gap-2.5 rounded-[10px] bg-white/[0.04] px-4 py-3 text-xs leading-5 text-white/[0.55]">
                 <Signal aria-hidden="true" className="mt-0.5 h-4 w-4 flex-none text-[#d8c59d]" />
-                Only Airtel and BSNL work on NH-313 — Jio has no coverage. Offline maps
-                before Roing; never drive after sunset.
+                Expect long zero-signal stretches on NH-313 — download offline maps before
+                Roing, share your itinerary with family, and treat any network as a bonus.
+                Never drive after sunset.
               </p>
             </div>
           </div>

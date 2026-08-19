@@ -24,10 +24,12 @@ export function AwfPeople() {
             </h2>
             <p className="mt-6 max-w-[34rem] text-base leading-7 text-white/[0.62] sm:text-lg sm:leading-8">
               The indigenous people of Dibang Valley — one of India&apos;s smallest,
-              most distinctive tribal communities. Their language has no script;
-              their knowledge of the forest is unparalleled. The festival is built
-              with their involvement and blessing, and a portion of every pass goes
-              directly to local development.
+              most distinctive tribal communities. For centuries Idu lived only in
+              speech and memory; a Roman script for the language was formally adopted
+              in 2017, and its speakers&apos; knowledge of this forest remains
+              unparalleled. The festival is built with the community&apos;s involvement
+              and blessing, and a portion of every pass goes directly to local
+              development.
             </p>
 
             <ul className="mt-8 grid grid-cols-2 gap-2.5">
@@ -48,8 +50,9 @@ export function AwfPeople() {
 
             <p className="mt-6 inline-flex items-start gap-2.5 text-[13px] leading-6 text-white/[0.5]">
               <HandHeart aria-hidden="true" className="mt-1 h-4 w-4 flex-none text-[#d8c59d]" />
-              Approach the community and their land with curiosity and respect —
-              village visits are guide-accompanied throughout the festival.
+              Greetings shared by the festival&apos;s Idu Mishmi community partners.
+              Approach the community and their land with curiosity and respect — ask
+              before photographing people, and join village visits with a guide.
             </p>
           </div>
 

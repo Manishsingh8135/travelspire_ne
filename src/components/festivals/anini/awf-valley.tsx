@@ -100,6 +100,9 @@ export function AwfValley() {
                     {reason.title}
                   </h4>
                 </div>
+                <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.16em] text-[#8b5a40]/90">
+                  {reason.tier}
+                </p>
                 <p className="mt-3 flex flex-wrap gap-1.5">
                   {reason.tags.map((tag) => (
                     <span
@@ -114,6 +117,14 @@ export function AwfValley() {
             ))}
           </ol>
         </div>
+
+        <p className="mt-8 max-w-[52rem] text-xs leading-5 text-[#7a7263]">
+          Honest tiers: samplers bolt onto the festival weekend; the Roing buffer is a
+          single extra day before the climb; expeditions like Seven Lakes, the Dri
+          Valley trek and Athu Popu run 7–11 days with guides, fitness requirements,
+          permits and cultural protocols — they are journeys in their own right, and
+          Athu Popu is a sacred route, not a sightseeing add-on.
+        </p>
       </div>
     </section>
   );

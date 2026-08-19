@@ -15,6 +15,8 @@ export const awfMeta = {
   coordinates: { lat: "28.78", lng: "95.86" },
   elevation: "1,970 m",
   instagram: "https://instagram.com/anini_winter_fest",
+  officialSite: "https://www.aniniwinterfest.com",
+  lineupVerified: "19 August 2026",
   organizer: "Anini Winter Fest",
   supporters: ["Arunachal Tourism", "District Administration", "District Tourism Dept"],
   awards: [
@@ -116,8 +118,8 @@ export const awfJourneySteps = [
   {
     index: "04",
     title: "The road to Anini",
-    meta: "6–8 hrs · ~235 km",
-    body: "NH-313 over the 2,655 m Mayodia Pass, past waterfalls, canyons and suspension bridges. One of India's great mountain drives — depart by 6 AM, never after dark.",
+    meta: "235 km · plan 8–10 hrs in festival season",
+    body: "NH-313 over the 2,655 m Mayodia Pass, past waterfalls, canyons and suspension bridges. In late monsoon the realistic window is 8–10 hours — depart by 6 AM, never drive after dark, and we confirm road conditions the evening before.",
   },
 ] as const;
 
@@ -133,7 +135,7 @@ export const awfRouteStops: AwfRouteStop[] = [
   { km: 22, name: "Tiwarigaon", note: "Tea & breakfast dhabas before the climb" },
   { km: 48, name: "Mayodia Coffee House", note: "Last comfortable halt before the pass", alt: "2,200 m" },
   { km: 56, name: "Mayodia Pass", note: "Highest point — Mishmi Hills panorama", alt: "2,655 m" },
-  { km: 65, name: "65 Mile", note: "Popular roadside lunch halt" },
+  { km: 65, name: "65 KM", note: "Popular roadside lunch halt" },
   { km: 90, name: "Hunli", note: "First proper town after the pass" },
   { km: 140, name: "Kano · Angolin", note: "Landslide caution zone — daylight only" },
   { km: 175, name: "Etalin", note: "Designated lunch stop — ask about road ahead" },
@@ -141,10 +143,10 @@ export const awfRouteStops: AwfRouteStop[] = [
 ];
 
 export const awfTravelTips = [
-  "Full tank in Roing — no reliable fuel beyond it",
-  "Carry cash — no ATMs past Roing",
-  "Only Airtel & BSNL on NH-313 — Jio has no coverage",
-  "Offline maps before you leave Roing",
+  "Tank full in Roing — don't rely on fuel between Roing and Anini, or on stock at destination",
+  "Carry sufficient cash — Anini has banks, but cash, power and connectivity can fail",
+  "Expect long zero-signal stretches — download everything offline before Roing",
+  "Warm layer + rain shell — September at the pass is wet and cold",
   "Depart by 6:00 AM; never drive after sunset",
   "ILP must mention 'Dibang Valley' — checked at multiple posts",
 ];
@@ -162,10 +164,13 @@ export const awfSharedTransfer = {
   ],
   meals: [
     { meal: "Breakfast", where: "Roing" },
-    { meal: "Lunch", where: "65 Mile" },
+    { meal: "Lunch", where: "65 KM" },
     { meal: "Evening snacks / dinner", where: "Angolin" },
   ],
-  inclusions: ["Shared vehicle", "Fuel", "Driver", "Driver accommodation", "Vehicle standby"],
+  inclusions: ["Shared vehicle", "Fuel", "Driver", "Driver accommodation", "Vehicle standby", "ILP assistance"],
+  atActuals: ["Meals at dhaba stops", "ILP government fee"],
+  pickupNote:
+    "Separate feeder vehicles coordinate the Dibrugarh and Tinsukia reporting points. Exact map pins, vehicle, coordinator and registration details arrive with your booking confirmation.",
   note: "Miss the window and the convoy leaves without you — set two alarms. Timings subject to road and weather.",
 } as const;
 
@@ -234,25 +239,36 @@ export const awfBookingSteps = [
   { step: "04", title: "Ride with us", body: "Shared transfer or private fleet — the journey is our job." },
 ] as const;
 
+// Media ledger rule: only photos whose location we can stand behind.
+// anini-new = Anini plateau & surroundings · pomo = Pomo Grassland, Dibang Valley ·
+// dambuk = Dambuk riverbanks, Lower Dibang Valley. Captions name the real place.
 export const awfGallery = [
-  { src: "/images/places/anini-new/anini-new-landscape-13.jpeg", alt: "Festival grounds plateau at Anini", caption: "Anini Plateau" },
+  { src: "/images/places/anini-new/anini-new-landscape-13.jpeg", alt: "The high plateau at Anini, headquarters of Dibang Valley", caption: "Anini Plateau" },
   { src: "/images/places/pomo/pomo1.JPG", alt: "Pomo grassland horizon under a wide sky", caption: "Pomo Grassland" },
-  { src: "/images/places/dong-new/dong-new-landscape-8.jpg", alt: "River view in Karo Valley", caption: "Karo Valley" },
-  { src: "/images/places/anini-new/anini-new-portrait-2.jpg", alt: "Dri Valley mountains and river", caption: "Dri Valley" },
-  { src: "/images/places/dambuk/Dambuk_1.jpg", alt: "The Dibang river plains at golden hour", caption: "Dibang River" },
-  { src: "/images/places/anini-new/anini-new-portrait-6.jpg", alt: "Aeyo Valley ridgeline in mist", caption: "Aeyo Valley" },
+  { src: "/images/places/anini-new/anini-new-portrait-2.jpg", alt: "Ridgelines in the highlands around Anini", caption: "Anini Highlands" },
+  { src: "/images/places/dambuk/Dambuk_1.jpg", alt: "The Dibang riverbanks at Dambuk in golden light", caption: "Dambuk Riverbanks" },
+  { src: "/images/places/anini-new/anini-new-portrait-6.jpg", alt: "Mist moving over the mountains near Anini", caption: "Mist over Dibang" },
+  { src: "/images/places/dambuk/Dambuk_3.jpg", alt: "The Dibang river winding through forest at Dambuk", caption: "The Dibang at Dambuk" },
   { src: "/images/places/pomo/pomo4.jpg", alt: "Rolling hills of Pomo grassland", caption: "Pomo Grassland" },
-  { src: "/images/places/dong-new/dong-new-portrait-6.jpg", alt: "Sacred forest near Athu Popu", caption: "Athu Popu" },
+  { src: "/images/places/anini-new/anini-new-portrait-3.jpg", alt: "Cloud and ridgeline in Dibang Valley", caption: "Dibang Valley" },
 ] as const;
 
-export const awfStayLonger = [
-  { index: "01", title: "Trekking & Expeditions", tags: ["Dri Valley", "Emuli Grasslands", "Wilderness Camping"] },
-  { index: "02", title: "Scenic Viewpoints", tags: ["Sunrise Points", "Valley Overlooks", "Photography Spots"] },
-  { index: "03", title: "Waterfalls & Rivers", tags: ["Dibang River", "Natural Pools", "Gorges"] },
-  { index: "04", title: "Kiwi Orchards", tags: ["Orchard Visits", "Farm Tourism", "Local Produce"] },
-  { index: "05", title: "Adventure Tourism", tags: ["Camping", "ATV Trails", "Off-Road"] },
-  { index: "06", title: "Idu Mishmi Heritage", tags: ["Village Walks", "Handicrafts", "Local Cuisine"] },
-] as const;
+// Three honest tiers — never mix a sacred expedition with a weekend add-on.
+export interface AwfStayLongerItem {
+  index: string;
+  title: string;
+  tier: "Valley sampler · +2–4 days" | "Roing buffer · +1 day" | "Expedition · +7–11 days";
+  tags: string[];
+}
+
+export const awfStayLonger: AwfStayLongerItem[] = [
+  { index: "01", title: "Waterfalls Around Anini", tier: "Valley sampler · +2–4 days", tags: ["Half-day spots", "Route hints", "Natural Pools"] },
+  { index: "02", title: "Viewpoints & Photography", tier: "Valley sampler · +2–4 days", tags: ["Sunrise Points", "Valley Overlooks", "Cloud Seas"] },
+  { index: "03", title: "Kiwi Orchards & Farm Stays", tier: "Valley sampler · +2–4 days", tags: ["Orchard Visits", "Harvest Season", "Local Produce"] },
+  { index: "04", title: "Dri & Aeyo Valleys", tier: "Valley sampler · +2–4 days", tags: ["Guided Walks", "Village Stays", "River Crossings"] },
+  { index: "05", title: "Roing Buffer Day", tier: "Roing buffer · +1 day", tags: ["Sally Lake", "Mehao Lake", "Bhismaknagar Fort"] },
+  { index: "06", title: "Seven Lakes · Dri Trek · Athu Popu", tier: "Expedition · +7–11 days", tags: ["Guided Only", "Fitness Required", "Sacred Route"] },
+];
 
 export const awfIduGlossary = [
   { word: "Pra~ne Iga", meaning: "Welcome · Greeting" },
@@ -291,19 +307,19 @@ export const awfFaqSection: FAQSection = {
       id: "awf-weather",
       question: "What is the weather like in Anini in September?",
       answer:
-        "Cool mountain days around 15–22°C, cold nights that can dip to 8–10°C, and leftover monsoon showers — September is the late-withdrawal phase. Pack a warm layer, a rain shell and sturdy shoes. The mist rolling over the festival ground is part of the magic.",
+        "Expect cool, wet, changeable late-monsoon mountain weather — pleasant when the sun breaks through, properly cold and wet when the pass clouds roll in. We don't quote exact temperatures this far out on purpose; instead, every Travelspire traveller gets a real, current forecast 7–10 days before departure. Pack a warm layer, a rain shell and sturdy shoes.",
     },
     {
       id: "awf-connectivity",
       question: "Is there mobile connectivity at the festival?",
       answer:
-        "Expect very limited signal. Only Airtel and BSNL work on NH-313 and around Anini — Jio has no coverage on this route. Download offline maps before leaving Roing and tell family your itinerary in advance. Consider it a feature: two days properly offline.",
+        "Plan for long zero-signal stretches on NH-313 and weak, patchy coverage in Anini itself. Which carrier works where changes with weather and towers — so don't plan around any network at all: download offline maps, tickets and music before Roing, tell family your itinerary, and treat any signal you find as a bonus. Consider it a feature: two days properly offline.",
     },
     {
       id: "awf-reach",
       question: "How do I reach Anini from Dibrugarh?",
       answer:
-        "Dibrugarh airport → Roing (5–6 hrs, ~180 km) → Anini via NH-313 over Mayodia Pass (6–8 hrs, 235 km). The simplest option: our festival shared transfer leaves Dibrugarh at 7:00 AM on 18 September (₹5,499 per person, return on 21 September, meals and permits sorted), or book a private SUV with a driver who knows every slide zone by name.",
+        "Dibrugarh airport → Roing (5–6 hrs, ~180 km) → Anini via NH-313 over Mayodia Pass (235 km — plan 8–10 hours in festival season). The simplest option: our festival shared transfer starts from Dibrugarh on the morning of 18 September (₹5,499 per person, return on 21 September; scheduled dhaba meal stops and ILP assistance included, government permit fee at actuals), or book a private SUV with a driver who knows every slide zone by name.",
     },
     {
       id: "awf-safety",

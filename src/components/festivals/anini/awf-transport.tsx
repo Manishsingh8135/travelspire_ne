@@ -111,6 +111,9 @@ export function AwfTransport() {
                   </li>
                 ))}
               </ul>
+              <p className="mt-3 text-[11px] leading-5 text-white/[0.45]">
+                At actuals, not bundled: {shared.atActuals.join(" · ")}
+              </p>
 
               <a
                 href={createAwfInquiryURL({ kind: "shared-transfer" })}
@@ -121,6 +124,9 @@ export function AwfTransport() {
                 <MessageCircle aria-hidden="true" className="h-4 w-4" />
                 Reserve a seat
               </a>
+              <p className="mt-4 text-center text-[10px] leading-4 tracking-[0.06em] text-white/[0.4]">
+                {shared.pickupNote}
+              </p>
               <p className="mt-3 text-center text-[10px] uppercase tracking-[0.14em] text-white/[0.35]">
                 {shared.note}
               </p>

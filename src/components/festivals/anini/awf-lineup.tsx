@@ -144,6 +144,22 @@ export function AwfLineup() {
           </a>
         </div>
 
+        {/* Verification stamp — festival-owned facts, linked not mirrored */}
+        <p className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/[0.4]">
+          <span>
+            As announced by the festival · last verified {awfMeta.lineupVerified}
+          </span>
+          <a
+            href={awfMeta.officialSite}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-[#d8c59d] underline-offset-4 transition-colors hover:text-[#eadfc8] hover:underline"
+          >
+            Official lineup
+            <span aria-hidden="true">↗</span>
+          </a>
+        </p>
+
         {/* Genre strip */}
         <div className="mt-10 flex flex-wrap items-center gap-2">
           <span className="mr-2 text-[9px] font-bold uppercase tracking-[0.2em] text-white/[0.4]">

@@ -81,7 +81,7 @@ const musicEventSchema = {
   name: "Anini Winter Fest 2026 (AWF 5.0)",
   alternateName: "AWF 5.0",
   description:
-    "The fifth edition of Anini Winter Fest — two days of indie, folk, electronic and tribal-fusion music at 1,970 m in Dibang Valley, one of India's last great wildernesses. Adventure activities, curated camping and Idu Mishmi cultural exchange included.",
+    "The fifth edition of Anini Winter Fest — two days of indie, folk, electronic and tribal-fusion music at 1,970 m in Dibang Valley, one of India's last great wildernesses. Adventure activities, camping and cultural exchange are run by the festival and its partners; Travelspire Northeast is the Official Travel & Taxi Partner for transport and journeys.",
   startDate: awfMeta.dates.start,
   endDate: awfMeta.dates.end,
   eventStatus: "https://schema.org/EventScheduled",
@@ -143,15 +143,8 @@ const musicEventSchema = {
         url: "https://travelspirene.com",
       },
     },
-    {
-      "@type": "AggregateOffer",
-      name: "Festival Passes via official booking partners (Zaatio, Baahi)",
-      lowPrice: "1999",
-      highPrice: "3499",
-      priceCurrency: "INR",
-      availability: "https://schema.org/InStock",
-      url: pageUrl,
-    },
+    // Festival passes (₹1,999–3,499) are sold by the festival's official booking
+    // partners Zaatio and Baahi — deliberately NOT listed in Travelspire's offers.
   ],
 };
 
