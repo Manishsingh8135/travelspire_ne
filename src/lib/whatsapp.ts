@@ -156,6 +156,34 @@ export function createAwfInquiryURL(topic: AwfInquiryTopic = { kind: "general" }
   return createWhatsAppURL({ customMessage: message });
 }
 
+// Anini + Pomo Grassland — the 5N/6D expedition
+export type AniniSixTopic =
+  | { kind: "general" }
+  | { kind: "tier"; label: string; size: number; price: number }
+  | { kind: "trek" }
+  | { kind: "dates" };
+
+export function createAniniSixInquiryURL(topic: AniniSixTopic = { kind: "general" }): string {
+  const trip = "*Six Days in the Dibang* (Anini + Pomo Grassland, 5N/6D)";
+  let message: string;
+
+  switch (topic.kind) {
+    case "tier":
+      message = `Hi TravelSpire NE! 👋\n\nI'd like to book ${trip} on the *${topic.label}* rate — ₹${topic.price.toLocaleString("en-IN")} per person.\n\n• Travellers: ${topic.size}\n• Preferred month:\n• Starting from (Dibrugarh / Tinsukia):\n\nCould you confirm availability and the booking process? 🏔️`;
+      break;
+    case "trek":
+      message = `Hi TravelSpire NE! 👋\n\nI have questions about the *Pomo Grassland trek day* on ${trip}.\n\n• My recent trekking experience:\n• Group size:\n• Preferred month:\n\nCould you tell me honestly whether this 12-hour day is right for us?`;
+      break;
+    case "dates":
+      message = `Hi TravelSpire NE! 👋\n\nI'd like to check open departure dates for ${trip}.\n\n• Travellers:\n• Flexible around:\n\nWhich months still have space? 🏔️`;
+      break;
+    default:
+      message = `Hi TravelSpire NE! 👋\n\nI'm interested in ${trip} — Dibrugarh → Mayodia → Anini → Pomo → Gipulin.\n\nCould you share:\n• Open departure dates\n• Group vs private pricing\n• What the trek day actually involves\n• ILP & forest pass process\n\nLooking forward to it! 🏔️✨`;
+  }
+
+  return createWhatsAppURL({ customMessage: message });
+}
+
 // Permit assistance (unique value prop)
 export function createPermitAssistanceURL(): string {
   return createWhatsAppURL({
