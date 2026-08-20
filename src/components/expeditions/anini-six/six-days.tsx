@@ -1,6 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { sixDays } from "@/data/expeditions/anini-six-days";
+import { sixDayLead, sixDayStrips } from "@/data/expeditions/anini-six-atlas";
+import { RATIO } from "@/lib/media";
+import { Plate, PlateImage } from "./plate";
 
 const TONE = {
   ink: {
@@ -8,11 +10,13 @@ const TONE = {
     kicker: "text-[#C9683A]",
     title: "text-[#F7F3E9]",
     serif: "text-[#D8BE8B]",
-    body: "text-[#F3EEE2]/[0.72]",
+    body: "text-[#F3EEE2]/[0.66]",
     rule: "border-[#F3EEE2]/[0.14]",
-    number: "text-[#F3EEE2]/[0.07]",
     spine: "bg-[#D8BE8B]",
-    note: "text-[#F3EEE2]/[0.48]",
+    note: "text-[#F3EEE2]/[0.45]",
+    caption: "light" as const,
+    hair: "bg-[#F3EEE2]/20",
+    frame: "bg-[#0E1815]",
   },
   paper: {
     section: "bg-[#F3EEE2] text-[#111C18]",
@@ -21,20 +25,24 @@ const TONE = {
     serif: "text-[#7A4E2E]",
     body: "text-[#3D4B44]",
     rule: "border-[#111C18]/[0.12]",
-    number: "text-[#111C18]/[0.06]",
     spine: "bg-[#C9683A]",
-    note: "text-[#111C18]/[0.48]",
+    note: "text-[#111C18]/[0.45]",
+    caption: "dark" as const,
+    hair: "bg-[#111C18]/20",
+    frame: "bg-[#E4DAC6]",
   },
   summit: {
     section: "bg-[#0A1210] text-[#F3EEE2]",
     kicker: "text-[#C9683A]",
     title: "text-[#F7F3E9]",
     serif: "text-[#D8BE8B]",
-    body: "text-[#F3EEE2]/[0.72]",
+    body: "text-[#F3EEE2]/[0.66]",
     rule: "border-[#F3EEE2]/[0.14]",
-    number: "text-[#F3EEE2]/[0.08]",
     spine: "bg-[#C9683A]",
-    note: "text-[#F3EEE2]/[0.48]",
+    note: "text-[#F3EEE2]/[0.45]",
+    caption: "light" as const,
+    hair: "bg-[#F3EEE2]/20",
+    frame: "bg-[#111C18]",
   },
 } as const;
 
@@ -43,19 +51,19 @@ export function SixDays() {
     <div>
       <nav
         aria-label="The six days"
-        className="border-y border-[#111C18]/[0.08] bg-[#E9E1CE] text-[#111C18]"
+        className="sticky top-[72px] z-30 border-y border-[#111C18]/[0.08] bg-[#E9E1CE]/95 text-[#111C18] backdrop-blur-md md:top-20"
       >
         <ol className="mx-auto flex w-full max-w-[1600px] gap-0 overflow-x-auto px-5 [scrollbar-width:none] sm:px-8 md:px-10 lg:px-16 xl:px-24 [&::-webkit-scrollbar]:hidden">
           {sixDays.map((day) => (
             <li key={day.n} className="flex-none sm:flex-1">
               <Link
                 href={`#day-${day.n}`}
-                className="group flex min-h-[4.5rem] flex-col justify-center border-r border-[#111C18]/[0.08] py-3 pr-6 last:border-r-0 sm:min-h-[5.25rem] sm:pr-4 lg:pr-8"
+                className="group flex min-h-[3.5rem] flex-col justify-center border-r border-[#111C18]/[0.08] py-2 pr-6 last:border-r-0 sm:min-h-[4rem] sm:pr-4 lg:pr-8"
               >
                 <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#9A5B36]">
                   {day.n}
                 </span>
-                <span className="mt-1 text-[13px] font-medium leading-5 tracking-[-0.02em] text-[#111C18] group-hover:text-[#7A4E2E] sm:text-sm">
+                <span className="mt-0.5 text-[12.5px] font-medium leading-4 tracking-[-0.02em] text-[#111C18] group-hover:text-[#7A4E2E] sm:text-[13px]">
                   {day.title}
                 </span>
               </Link>
@@ -64,134 +72,139 @@ export function SixDays() {
         </ol>
       </nav>
 
-      {sixDays.map((day, index) => {
+      {sixDays.map((day) => {
         const tone = TONE[day.tone];
+        const lead = sixDayLead[day.day];
+        const strip = sixDayStrips[day.day] ?? [];
         const isSummit = day.tone === "summit";
-        const plateLeft = index % 2 === 1;
 
         return (
           <article
             key={day.n}
             id={`day-${day.n}`}
             aria-labelledby={`day-${day.n}-title`}
-            className={`relative scroll-mt-24 overflow-hidden ${tone.section}`}
+            className={`relative scroll-mt-[9.5rem] overflow-hidden ${tone.section}`}
           >
-            <span
-              aria-hidden="true"
-              className={`pointer-events-none absolute -right-6 top-8 font-serif text-[min(42vw,18rem)] italic leading-none ${tone.number} sm:right-8 sm:top-4`}
-            >
-              {day.n}
-            </span>
-
+            {/* The trek day opens full-bleed. It has earned it. */}
             {isSummit && (
-              <figure className="relative h-[72svh] min-h-[28rem] w-full">
-                <Image
-                  src={day.image}
-                  alt={day.imageAlt}
-                  fill
-                  sizes="100vw"
-                  className="object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,18,16,0.15)_0%,rgba(10,18,16,0.08)_40%,rgba(10,18,16,0.92)_100%)]" />
-                <figcaption className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-[1600px] px-5 pb-8 sm:px-8 md:px-10 lg:px-16 xl:px-24">
+              <div className="relative h-[80svh] min-h-[30rem] w-full">
+                <PlateImage frame={lead} sizes="100vw" quality={82} />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,18,16,0.34)_0%,rgba(10,18,16,0.06)_38%,rgba(10,18,16,0.95)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-[1600px] px-5 pb-10 sm:px-8 md:px-10 lg:px-16 xl:px-24">
                   <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#C9683A]">
-                    Day {day.day} · {day.departs} start
+                    Day {day.day} · {day.departs} · {day.from}
                   </p>
-                  <p className="mt-2 max-w-[22ch] font-serif text-[clamp(2.4rem,6vw,4.5rem)] italic leading-[0.92] text-[#F7F3E9]">
+                  <p className="mt-3 max-w-[16ch] font-serif text-[clamp(3rem,10vw,7rem)] italic leading-[0.88] text-[#F7F3E9]">
                     {day.serif}
                   </p>
-                </figcaption>
-              </figure>
+                </div>
+              </div>
             )}
 
             <div className="relative mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-20 md:px-10 lg:px-16 lg:py-24 xl:px-24">
-              <div
-                className={`grid items-start gap-10 lg:grid-cols-12 lg:gap-14 ${
-                  isSummit ? "" : "lg:min-h-[28rem]"
-                }`}
-              >
-                <header className="lg:col-span-4">
+              {/* Every chapter runs the same way down the page: title, one wide
+                  plate, then the reading column. No side-to-side ping-pong. */}
+              <header className="grid gap-5 lg:grid-cols-12 lg:items-end">
+                <div className="lg:col-span-8">
                   <p
                     className={`font-mono text-[10px] uppercase tracking-[0.22em] ${tone.kicker}`}
                   >
-                    Day {day.day} · leaves {day.departs}
+                    Day {day.day} of 6 · leaves {day.departs}
                   </p>
                   <h2
                     id={`day-${day.n}-title`}
-                    className={`mt-4 max-w-[14ch] text-[clamp(2.1rem,4.6vw,3.4rem)] font-medium leading-[0.96] tracking-[-0.045em] ${tone.title}`}
+                    className={`mt-4 max-w-[18ch] text-[clamp(2.2rem,5vw,3.8rem)] font-medium leading-[0.95] tracking-[-0.045em] ${tone.title}`}
                   >
                     {day.title}
-                    <span
-                      className={`mt-2 block font-serif text-[0.58em] font-normal italic tracking-[-0.02em] ${tone.serif}`}
-                    >
-                      {day.serif}
-                    </span>
+                    {!isSummit && (
+                      <span
+                        className={`mt-2 block font-serif text-[0.55em] font-normal italic tracking-[-0.02em] ${tone.serif}`}
+                      >
+                        {day.serif}
+                      </span>
+                    )}
                   </h2>
-                  <dl
-                    className={`mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t pt-6 ${tone.rule} sm:max-w-xs`}
-                  >
-                    <div>
-                      <dt
-                        className={`font-mono text-[9px] uppercase tracking-[0.16em] ${tone.note}`}
-                      >
-                        From
-                      </dt>
-                      <dd className="mt-1 text-sm tracking-[-0.02em]">{day.from}</dd>
-                    </div>
-                    <div>
-                      <dt
-                        className={`font-mono text-[9px] uppercase tracking-[0.16em] ${tone.note}`}
-                      >
-                        Sleeps
-                      </dt>
-                      <dd className="mt-1 text-sm tracking-[-0.02em]">
-                        {day.sleeps === "—" ? "Dibrugarh drop" : day.sleeps}
-                      </dd>
-                    </div>
-                  </dl>
-                </header>
-
-                <div className="lg:col-span-8">
-                  <p
-                    className={`max-w-[34rem] font-serif text-[1.35rem] italic leading-[1.35] tracking-[-0.02em] sm:text-[1.55rem] ${tone.title}`}
-                  >
-                    {day.lede}
-                  </p>
-                  <div
-                    className={`mt-8 max-w-[40rem] space-y-5 text-[1.02rem] leading-8 ${tone.body}`}
-                  >
-                    <p>{day.story}</p>
-                    <p>{day.closing}</p>
-                  </div>
                 </div>
-              </div>
+
+                <dl
+                  className={`flex gap-10 border-t pt-4 lg:col-span-4 lg:justify-end lg:border-t-0 lg:pt-0 ${tone.rule}`}
+                >
+                  <div>
+                    <dt
+                      className={`font-mono text-[9px] uppercase tracking-[0.16em] ${tone.note}`}
+                    >
+                      From
+                    </dt>
+                    <dd className="mt-1 text-sm tracking-[-0.02em]">{day.from}</dd>
+                  </div>
+                  <div>
+                    <dt
+                      className={`font-mono text-[9px] uppercase tracking-[0.16em] ${tone.note}`}
+                    >
+                      Sleeps
+                    </dt>
+                    <dd className="mt-1 text-sm tracking-[-0.02em]">
+                      {day.sleeps === "—" ? "Dibrugarh drop" : day.sleeps}
+                    </dd>
+                  </div>
+                </dl>
+              </header>
 
               {!isSummit && (
-                <figure
-                  className={`relative mt-12 overflow-hidden sm:mt-16 ${
-                    plateLeft ? "lg:mr-[8%]" : "lg:ml-[8%]"
-                  }`}
-                >
-                  <div className="relative aspect-[16/10] w-full sm:aspect-[21/9]">
-                    <Image
-                      src={day.image}
-                      alt={day.imageAlt}
-                      fill
-                      sizes="(min-width: 1024px) 80vw, 100vw"
-                      className="object-cover"
+                <figure className="mt-9">
+                  <div
+                    className={`relative overflow-hidden rounded-[18px] ${tone.frame}`}
+                    style={{ aspectRatio: RATIO.wide }}
+                  >
+                    <PlateImage
+                      frame={lead}
+                      sizes="(min-width: 1600px) 1520px, 100vw"
+                      quality={80}
                     />
                   </div>
                   <figcaption
-                    className={`mt-3 flex items-baseline justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.16em] ${tone.note}`}
+                    className={`mt-2.5 flex items-baseline justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.16em] ${tone.note}`}
                   >
-                    <span>{day.imageAlt}</span>
-                    <span className="flex-none">Plate {day.n}</span>
+                    <span>{lead.place}</span>
+                    <span className="flex-none opacity-70">Plate {day.n}</span>
                   </figcaption>
                 </figure>
               )}
 
+              {/* Reading column: the prose sits in one measure, not wrapped
+                  around a picture. */}
+              <div className="mt-12 grid gap-8 lg:grid-cols-12 lg:gap-12">
+                <p
+                  className={`max-w-[24ch] font-serif text-[clamp(1.5rem,2.6vw,2.1rem)] italic leading-[1.22] tracking-[-0.02em] lg:col-span-5 ${tone.title}`}
+                >
+                  {day.lede}
+                </p>
+                <div
+                  className={`max-w-[38rem] space-y-5 text-[1rem] leading-8 lg:col-span-7 ${tone.body}`}
+                >
+                  <p>{day.story}</p>
+                  <p>{day.closing}</p>
+                </div>
+              </div>
+
+              {/* The rest of the day, in frames rather than sentences. */}
+              {strip.length > 0 && (
+                <div className="-mx-5 mt-12 flex gap-3 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:mx-0 sm:mt-14 sm:grid sm:grid-cols-3 sm:gap-4 sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
+                  {strip.slice(0, 3).map((frame, i) => (
+                    <Plate
+                      key={frame.src}
+                      frame={frame}
+                      sizes="(min-width: 640px) 31vw, 62vw"
+                      captionTone={tone.caption}
+                      figureClassName="w-[62vw] flex-none sm:w-auto"
+                      index={String(i + 1).padStart(2, "0")}
+                    />
+                  ))}
+                </div>
+              )}
+
               <ol
-                className={`mt-12 flex gap-0 overflow-x-auto border-t pt-8 [scrollbar-width:none] sm:mt-16 ${tone.rule} [&::-webkit-scrollbar]:hidden`}
+                className={`mt-12 flex gap-0 overflow-x-auto border-t pt-8 [scrollbar-width:none] sm:mt-14 ${tone.rule} [&::-webkit-scrollbar]:hidden`}
               >
                 {day.waypoints.map((point, i) => (
                   <li
@@ -202,7 +215,7 @@ export function SixDays() {
                       aria-hidden="true"
                       className={`absolute left-0 top-[5px] h-px ${
                         i === day.waypoints.length - 1 ? "w-0" : "w-full"
-                      } ${day.tone === "paper" ? "bg-[#111C18]/20" : "bg-[#F3EEE2]/20"}`}
+                      } ${tone.hair}`}
                     />
                     <span
                       aria-hidden="true"

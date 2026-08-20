@@ -32,7 +32,7 @@ export function SixClose() {
                   href={item.href}
                   className="group grid grid-cols-[5.5rem_1fr_auto] items-center gap-5 py-5 sm:grid-cols-[7rem_1fr_auto] sm:gap-8"
                 >
-                  <span className="relative block aspect-[5/4] overflow-hidden">
+                  <span className="relative block aspect-[3/4] overflow-hidden rounded-[12px]">
                     <Image
                       src={item.image}
                       alt=""
@@ -64,6 +64,7 @@ export function SixClose() {
       </section>
 
       <section
+        id="six-close"
         aria-labelledby="six-close-title"
         className="relative isolate overflow-hidden bg-[#070E0D] text-[#F3EEE2]"
       >

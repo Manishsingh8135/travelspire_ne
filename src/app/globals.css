@@ -299,3 +299,12 @@
 .six-edition .font-serif {
   font-family: var(--font-six-serif), "Iowan Old Style", Palatino, Georgia, serif;
 }
+
+/* The expedition page is navigated by anchor — from the overview into a day,
+   and from the booking bar down to the pricing desk. Scoped to this edition so
+   the rest of the site keeps its instant jumps. */
+@media (prefers-reduced-motion: no-preference) {
+  html:has(.six-edition) {
+    scroll-behavior: smooth;
+  }
+}

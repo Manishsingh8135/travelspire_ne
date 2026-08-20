@@ -55,7 +55,7 @@ export function SixSeason() {
         <div
           role="group"
           aria-label="Season calendar"
-          className="mt-14 grid grid-cols-6 gap-px overflow-hidden bg-[#F3EEE2]/10 sm:mt-16 sm:grid-cols-12"
+          className="mt-14 grid grid-cols-6 gap-px overflow-hidden rounded-[14px] bg-[#F3EEE2]/10 sm:mt-16 sm:grid-cols-12"
         >
           {sixSeason.months.map((entry, index) => {
             const selected = index === active;

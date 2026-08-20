@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import { SixArchive } from "@/components/expeditions/anini-six/six-archive";
+import { SixBookBar } from "@/components/expeditions/anini-six/six-book-bar";
+import { SixCarries } from "@/components/expeditions/anini-six/six-carries";
 import { SixClose } from "@/components/expeditions/anini-six/six-close";
 import { SixDays } from "@/components/expeditions/anini-six/six-days";
+import { SixDesk } from "@/components/expeditions/anini-six/six-desk";
 import { SixFaq } from "@/components/expeditions/anini-six/six-faq";
-import { SixGallery } from "@/components/expeditions/anini-six/six-gallery";
+import { SixGlance } from "@/components/expeditions/anini-six/six-glance";
 import { SixHero } from "@/components/expeditions/anini-six/six-hero";
 import { SixKit } from "@/components/expeditions/anini-six/six-kit";
-import { SixLedger } from "@/components/expeditions/anini-six/six-ledger";
+import { SixNights } from "@/components/expeditions/anini-six/six-nights";
 import { SixOverture } from "@/components/expeditions/anini-six/six-overture";
 import { SixProfile } from "@/components/expeditions/anini-six/six-profile";
 import { SixSeason } from "@/components/expeditions/anini-six/six-season";
@@ -243,18 +247,25 @@ export default function AniniPomoSixPage() {
   return (
     <div className="min-h-screen bg-[#070E0D]">
       <StructuredData data={sixGraph} />
+
+      {/* The page widens as it goes: see the week, then read it, then price it. */}
       <SixHero />
+      <SixGlance />
       <SixOverture />
       <SixProfile />
       <SixDays />
       <SixWater />
       <SixSummit />
-      <SixLedger />
+      <SixNights />
+      <SixDesk />
+      <SixCarries />
       <SixKit />
       <SixSeason />
-      <SixGallery />
+      <SixArchive />
       <SixFaq />
       <SixClose />
+
+      <SixBookBar />
     </div>
   );
 }
