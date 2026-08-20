@@ -150,7 +150,7 @@ export function CircuitFaq() {
             {circuitRelated.map((item) => (
               <Link key={item.href} href={item.href} className="group block">
                 <article>
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-[16px] bg-[#17261f] shadow-[0_26px_50px_-38px_rgba(20,35,27,0.78)]">
+                  <div className="relative aspect-[5/4] overflow-hidden rounded-[16px] bg-[#17261f] shadow-[0_26px_50px_-38px_rgba(20,35,27,0.78)]">
                     <Image
                       src={item.image}
                       alt={item.alt}
