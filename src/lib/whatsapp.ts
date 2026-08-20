@@ -184,6 +184,36 @@ export function createAniniSixInquiryURL(topic: AniniSixTopic = { kind: "general
   return createWhatsAppURL({ customMessage: message });
 }
 
+// Mechuka + Dong + Anini — the 12N/13D grand Arunachal circuit
+export type GrandCircuitTopic =
+  | { kind: "general" }
+  | { kind: "tier"; label: string; size: number; price: number }
+  | { kind: "dates" }
+  | { kind: "pomo-extension" };
+
+export function createGrandCircuitInquiryURL(
+  topic: GrandCircuitTopic = { kind: "general" },
+): string {
+  const trip = "*Mechuka + Dong + Anini* (12N/13D)";
+  let message: string;
+
+  switch (topic.kind) {
+    case "tier":
+      message = `Hi TravelSpire NE! 👋\n\nI'd like to enquire about ${trip} at the *${topic.label}* rate — ₹${topic.price.toLocaleString("en-IN")} per person.\n\n• Travellers: ${topic.size}\n• Preferred month:\n• Room preference:\n\nCould you confirm dates, availability and the exact booking inclusions?`;
+      break;
+    case "dates":
+      message = `Hi TravelSpire NE! 👋\n\nI'd like to check departure dates for ${trip}.\n\n• Number of travellers:\n• Preferred month / dates:\n• Flexible dates: Yes / No\n\nPlease share the available options and booking process.`;
+      break;
+    case "pomo-extension":
+      message = `Hi TravelSpire NE! 👋\n\nI'm interested in ${trip}, but I also want to add the *Pomo Grassland trek safely* with the necessary Chigu staging night and dedicated trek day.\n\n• Number of travellers:\n• Preferred month:\n• Recent trekking experience:\n\nCould you quote the extended itinerary separately?`;
+      break;
+    default:
+      message = `Hi TravelSpire NE! 👋\n\nI'm interested in ${trip}: Dibrugarh → Aalo → Mechuka → Namsai → Walong / Dong → Roing → Anini.\n\nCould you share:\n• Available dates\n• Group and private pricing\n• Stay and vehicle details\n• Permit process\n• Booking terms\n\nLooking forward to planning the circuit! 🏔️`;
+  }
+
+  return createWhatsAppURL({ customMessage: message });
+}
+
 // Permit assistance (unique value prop)
 export function createPermitAssistanceURL(): string {
   return createWhatsAppURL({

@@ -22,6 +22,7 @@ export const footerData = {
         title: "Experiences",
         links: [
           { text: "All Tours", href: "/all-tours" },
+          { text: "Mechuka · Dong · Anini", href: "/tours/mechuka-dong-anini-tour-package" },
           { text: "Six Days in the Dibang", href: "/tours/anini-pomo-grassland-expedition" },
           { text: "Anini Winter Fest 2026", href: "/anini-winter-fest-2026" },
           { text: "Ziro Festival 2026", href: "/ziro-music-festival-2026" },

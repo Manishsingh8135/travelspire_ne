@@ -1,5 +1,6 @@
 // data/tours/tour-data.ts
 import { Tour } from "@/types/tours/tour";
+import { mechukaDongAniniTour } from "@/data/expeditions/mechuka-dong-anini";
 
 
 export const tawangExpedition: Tour = {
@@ -1253,6 +1254,7 @@ export const aniniPomoSixExpedition: Tour = {
 };
 
 export const regularTours = [
+  mechukaDongAniniTour,
   aniniPomoSixExpedition,
   tawangExpedition,
   dongValleyExpedition,
@@ -1263,6 +1265,5 @@ export const regularTours = [
   pomoTrekExpedition,
   mechukaExpedition
 ];
-
 
 

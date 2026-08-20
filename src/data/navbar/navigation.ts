@@ -39,6 +39,12 @@ import {
         icon: Compass,
         submenu: [
           {
+            name: "Mechuka · Dong · Anini",
+            href: "/tours/mechuka-dong-anini-tour-package",
+            icon: Car,
+            description: "The grand Arunachal circuit · 12N/13D"
+          },
+          {
             name: "Six Days in the Dibang",
             href: "/tours/anini-pomo-grassland-expedition",
             icon: Tent,
