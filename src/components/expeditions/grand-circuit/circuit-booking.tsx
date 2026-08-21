@@ -1,9 +1,12 @@
 import Link from "next/link";
 import {
   ArrowUpRight,
+  BadgeCheck,
   BedDouble,
   Check,
+  CreditCard,
   Footprints,
+  KeyRound,
   MessageCircle,
   ShieldCheck,
   X,
@@ -133,6 +136,78 @@ export function CircuitBooking() {
             Read booking, cancellation and refund terms before paying
             <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
           </Link>
+
+          <div className="mt-10 grid overflow-hidden rounded-[14px] bg-[#10251d] shadow-[0_34px_64px_-46px_rgba(0,0,0,1)] lg:grid-cols-12">
+            <div className="border-b border-white/[0.08] p-6 sm:p-7 lg:col-span-4 lg:border-b-0 lg:border-r">
+              <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#d6b473]">
+                Secure online payment
+              </p>
+              <h3 className="mt-3 max-w-[15ch] text-2xl font-semibold leading-tight tracking-[-0.035em] sm:text-3xl">
+                Confirm the road before you pay for it.
+              </h3>
+              <p className="mt-4 text-sm leading-6 text-white/[0.48]">
+                No open-ended Pay Now button. We first confirm your exact date,
+                room plan, vehicle and written quote.
+              </p>
+            </div>
+
+            <ol className="divide-y divide-white/[0.08] border-b border-white/[0.08] sm:grid sm:grid-cols-3 sm:divide-x sm:divide-y-0 lg:col-span-5 lg:border-b-0 lg:border-r">
+              {[
+                {
+                  icon: BadgeCheck,
+                  number: "01",
+                  title: "Trip confirmed",
+                  text: "Final quote locked",
+                },
+                {
+                  icon: KeyRound,
+                  number: "02",
+                  title: "Private access",
+                  text: "Reference + code",
+                },
+                {
+                  icon: CreditCard,
+                  number: "03",
+                  title: "Pay on PayU",
+                  text: "50% advance",
+                },
+              ].map((step) => (
+                <li key={step.number} className="p-5 sm:p-6">
+                  <div className="flex items-center justify-between gap-3">
+                    <step.icon
+                      aria-hidden="true"
+                      className="h-4 w-4 text-[#d6b473]"
+                    />
+                    <span className="font-mono text-[9px] text-white/[0.28]">
+                      {step.number}
+                    </span>
+                  </div>
+                  <p className="mt-6 text-xs font-semibold text-white/[0.82]">
+                    {step.title}
+                  </p>
+                  <p className="mt-1 text-[11px] leading-5 text-white/[0.38]">
+                    {step.text}
+                  </p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="flex flex-col justify-center p-6 sm:p-7 lg:col-span-3">
+              <p className="text-xs leading-5 text-white/[0.45]">
+                Already received both details from Travelspire?
+              </p>
+              <Link
+                href="/pay"
+                className="mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-[#e8d9bb] px-5 text-xs font-bold text-[#102019] shadow-[0_18px_28px_-21px_rgba(0,0,0,0.95)] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                Open secure payment
+                <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+              </Link>
+              <p className="mt-3 text-center text-[9px] uppercase tracking-[0.12em] text-white/[0.28]">
+                PayU Hosted Checkout
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
