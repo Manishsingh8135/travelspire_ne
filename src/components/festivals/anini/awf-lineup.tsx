@@ -53,7 +53,7 @@ export function AwfLineup() {
           <div
             role="tablist"
             aria-label="Filter artists by day"
-            className="flex flex-wrap gap-2"
+            className="-mx-5 flex snap-x snap-mandatory gap-2 overflow-x-auto px-5 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0"
           >
             {dayTabs.map((tab) => (
               <button
@@ -62,7 +62,7 @@ export function AwfLineup() {
                 aria-selected={day === tab.value}
                 onClick={() => setDay(tab.value)}
                 className={cn(
-                  "min-h-11 rounded-full border px-5 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e6d8b8]",
+                  "min-h-11 shrink-0 snap-start rounded-full border px-5 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e6d8b8]",
                   day === tab.value
                     ? "border-[#eadfc8] bg-[#eadfc8] text-[#07100d]"
                     : "border-white/[0.22] text-white/[0.72] hover:border-white/50 hover:text-white",
@@ -75,12 +75,12 @@ export function AwfLineup() {
         </div>
 
         {/* Image-led artist grid — official festival media, locally optimized. */}
-        <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-2 gap-2.5 sm:gap-3 lg:mt-14 lg:grid-cols-3">
           {artists.map((artist) => (
             <article
               key={`${artist.name}-${artist.day}`}
               className={cn(
-                "group relative min-h-[25rem] overflow-hidden rounded-[14px] bg-[#101814] shadow-[0_30px_54px_-38px_rgba(0,0,0,0.95)] sm:min-h-[28rem]",
+                "group relative min-h-[17.5rem] overflow-hidden rounded-[12px] bg-[#101814] shadow-[0_30px_54px_-38px_rgba(0,0,0,0.95)] sm:min-h-[28rem] sm:rounded-[14px]",
                 artist.headliner &&
                   "sm:col-span-2 sm:min-h-[31rem] lg:min-h-[34rem]",
               )}
@@ -92,41 +92,41 @@ export function AwfLineup() {
                 sizes={
                   artist.headliner
                     ? "(min-width: 1024px) 60vw, 100vw"
-                    : "(min-width: 1024px) 32vw, (min-width: 640px) 50vw, 100vw"
+                    : "(min-width: 1024px) 32vw, 50vw"
                 }
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                className="object-cover"
                 style={{ objectPosition: artist.imagePosition ?? "center" }}
               />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,10,9,0.08)_0%,rgba(4,10,9,0.08)_38%,rgba(4,10,9,0.94)_100%)]" />
               <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/55 to-transparent" />
 
-              <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-5 sm:p-6">
+              <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-1.5 p-3 sm:gap-4 sm:p-6">
                 <p
                   className={cn(
-                    "rounded-full bg-[#07100d]/75 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.18em] backdrop-blur-md",
+                    "max-w-[70%] rounded-full bg-[#07100d]/75 px-2.5 py-1.5 text-[7px] font-bold uppercase tracking-[0.12em] backdrop-blur-md sm:px-3 sm:text-[9px] sm:tracking-[0.18em]",
                     artist.headliner ? "text-[#ead7a5]" : "text-white/75",
                   )}
                 >
                   {artist.headliner ? "Headliner" : artist.genre}
                 </p>
-                <span className="rounded-full bg-[#07100d]/75 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-white/75 backdrop-blur-md">
+                <span className="shrink-0 rounded-full bg-[#07100d]/75 px-2 py-1.5 text-[7px] font-bold uppercase tracking-[0.1em] text-white/75 backdrop-blur-md sm:px-3 sm:text-[9px] sm:tracking-[0.14em]">
                   Day {artist.day}
                 </span>
               </div>
 
-              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
-                <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.2em] text-[#d8c59d]">
+              <div className="absolute inset-x-0 bottom-0 p-4 sm:p-7">
+                <p className="mb-2 text-[7px] font-bold uppercase tracking-[0.14em] text-[#d8c59d] sm:mb-3 sm:text-[9px] sm:tracking-[0.2em]">
                   {artist.genre}
                 </p>
                 <h3
                   className={cn(
-                    "max-w-[13ch] text-[2.35rem] font-medium leading-[0.96] tracking-[-0.045em] text-[#f7f4ec]",
+                    "max-w-[13ch] text-[1.4rem] font-medium leading-[0.98] tracking-[-0.04em] text-[#f7f4ec] sm:text-[2.35rem]",
                     artist.headliner && "sm:text-[3.7rem]",
                   )}
                 >
                   {artist.name}
                 </h3>
-                <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.14em] text-white/[0.5]">
+                <p className="mt-1.5 text-[8px] font-medium uppercase tracking-[0.11em] text-white/[0.58] sm:mt-2 sm:text-[11px] sm:tracking-[0.14em]">
                   {artist.origin}
                 </p>
               </div>
@@ -145,7 +145,7 @@ export function AwfLineup() {
             href={awfMeta.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex min-h-[25rem] flex-col justify-between overflow-hidden rounded-[14px] bg-[#101a14] p-6 shadow-[0_30px_54px_-38px_rgba(0,0,0,0.95)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e6d8b8] sm:min-h-[28rem] sm:p-7"
+            className="group relative flex min-h-[17.5rem] flex-col justify-between overflow-hidden rounded-[12px] bg-[#101a14] p-4 shadow-[0_30px_54px_-38px_rgba(0,0,0,0.95)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#e6d8b8] sm:min-h-[28rem] sm:rounded-[14px] sm:p-7"
           >
             <div className="absolute -right-16 -top-14 h-64 w-64 rounded-full bg-[#d8c59d]/10 blur-3xl" />
             <p className="inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] text-[#d8c59d]">
@@ -153,7 +153,7 @@ export function AwfLineup() {
               Lineup growing
             </p>
             <div className="relative mt-8">
-              <p className="max-w-[24ch] text-[1.25rem] font-medium leading-6 tracking-[-0.02em] text-[#f7f4ec]">
+              <p className="max-w-[24ch] text-[1rem] font-medium leading-5 tracking-[-0.02em] text-[#f7f4ec] sm:text-[1.25rem] sm:leading-6">
                 More artists announced soon — follow{" "}
                 <span className="font-serif italic text-[#dfcfab]">
                   @anini_winter_fest
@@ -185,14 +185,14 @@ export function AwfLineup() {
         </p>
 
         {/* Genre strip */}
-        <div className="mt-10 flex flex-wrap items-center gap-2">
-          <span className="mr-2 text-[9px] font-bold uppercase tracking-[0.2em] text-white/[0.4]">
+        <div className="-mx-5 mt-10 flex items-center gap-2 overflow-x-auto px-5 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0">
+          <span className="mr-2 shrink-0 text-[9px] font-bold uppercase tracking-[0.2em] text-white/[0.4]">
             Sounds of the valley
           </span>
           {awfGenres.map((genre) => (
             <span
               key={genre}
-              className="rounded-full border border-white/[0.14] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/[0.66]"
+              className="shrink-0 rounded-full border border-white/[0.14] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/[0.66]"
             >
               {genre}
             </span>

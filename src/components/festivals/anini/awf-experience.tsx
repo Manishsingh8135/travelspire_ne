@@ -11,7 +11,9 @@ export function AwfTrustStrip() {
       <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-6 px-5 py-8 sm:px-8 md:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-16 xl:px-24">
         <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/[0.45]">
           Supported by{" "}
-          <span className="text-white/[0.8]">{awfMeta.supporters.join(" · ")}</span>
+          <span className="text-white/[0.8]">
+            {awfMeta.supporters.join(" · ")}
+          </span>
         </p>
         <div className="flex flex-wrap gap-2.5">
           {awfMeta.awards.map((award) => (
@@ -19,7 +21,10 @@ export function AwfTrustStrip() {
               key={award.title}
               className="inline-flex items-center gap-2.5 rounded-full border border-[#d8c59d]/25 bg-[#d8c59d]/[0.06] px-4 py-2"
             >
-              <Award aria-hidden="true" className="h-3.5 w-3.5 flex-none text-[#d8c59d]" />
+              <Award
+                aria-hidden="true"
+                className="h-3.5 w-3.5 flex-none text-[#d8c59d]"
+              />
               <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#e7d9b8]">
                 {award.title}
               </span>
@@ -61,19 +66,22 @@ export function AwfExperience() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:mt-16">
+        <p className="mt-10 text-[9px] font-bold uppercase tracking-[0.18em] text-[#87543a] sm:hidden">
+          Swipe to explore <span aria-hidden="true">→</span>
+        </p>
+        <div className="-mx-5 mt-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:mt-14 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:mt-16">
           {awfExperiences.map((experience) => (
             <article
               key={experience.index}
-              className="group overflow-hidden rounded-[18px] bg-[#e7dece] shadow-[7px_14px_30px_-24px_rgba(35,47,39,0.45)]"
+              className="group w-[84vw] max-w-[22rem] shrink-0 snap-start overflow-hidden rounded-[16px] bg-[#e7dece] shadow-[7px_14px_30px_-24px_rgba(35,47,39,0.45)] sm:w-auto sm:max-w-none sm:rounded-[18px]"
             >
               <div className="relative aspect-[16/9] overflow-hidden">
                 <Image
                   src={experience.image}
                   alt={experience.imageAlt}
                   fill
-                  sizes="(min-width: 1024px) 44vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                  sizes="(min-width: 640px) 50vw, 84vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(23,34,27,0.35)_100%)]" />
               </div>

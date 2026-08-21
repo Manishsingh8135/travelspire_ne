@@ -84,7 +84,7 @@ export const awfHeroImages = {
     height: 2250,
   },
   mobile: {
-    src: "/images/places/anini-new/anini-new-portrait-7.jpg",
+    src: "/images/places/anini-new/anini-new-portrait-9.jpg",
     width: 1340,
     height: 1600,
   },

@@ -40,7 +40,11 @@ export function AwfHero() {
       className="relative isolate min-h-[100svh] overflow-hidden bg-[#050d0f] text-white"
     >
       <picture className="absolute inset-0">
-        <source media="(min-width: 768px)" srcSet={desktopSrcSet} sizes="100vw" />
+        <source
+          media="(min-width: 768px)"
+          srcSet={desktopSrcSet}
+          sizes="100vw"
+        />
         <img
           {...mobileImageProps}
           alt={awfHeroImages.alt}
@@ -49,25 +53,30 @@ export function AwfHero() {
         />
       </picture>
 
-      {/* Light maps — keep the valley visible, protect the type */}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,11,13,0.62)_0%,rgba(4,11,13,0.12)_30%,rgba(4,11,13,0.55)_62%,rgba(4,11,13,0.97)_100%)]" />
+      {/* Mobile and desktop need different contrast maps for their crops. */}
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,10,11,0.72)_0%,rgba(3,10,11,0.22)_28%,rgba(3,10,11,0.74)_52%,rgba(3,10,11,0.98)_100%)] md:hidden" />
+      <div className="absolute inset-0 hidden bg-[linear-gradient(180deg,rgba(4,11,13,0.62)_0%,rgba(4,11,13,0.12)_30%,rgba(4,11,13,0.55)_62%,rgba(4,11,13,0.97)_100%)] md:block" />
       <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(4,11,13,0.55)_0%,rgba(4,11,13,0.15)_45%,transparent_75%)] md:block" />
 
       {/* Top-left partner mark */}
       <div className="absolute left-5 top-24 z-10 sm:left-8 md:left-10 md:top-28 lg:left-16 xl:left-24">
         <p className="inline-flex items-center gap-2 rounded-full border border-[#d8c59d]/30 bg-black/25 px-4 py-2 text-[9px] font-bold uppercase tracking-[0.2em] text-[#e7d9b8] backdrop-blur-sm sm:text-[10px]">
-          <ShieldCheck aria-hidden="true" className="h-3.5 w-3.5 text-[#d8c59d]" />
+          <ShieldCheck
+            aria-hidden="true"
+            className="h-3.5 w-3.5 text-[#d8c59d]"
+          />
           Official Travel &amp; Taxi Partner — Travelspire NE
         </p>
       </div>
 
       {/* Top-right coordinates */}
-      <div className="absolute right-6 top-24 z-10 text-right sm:right-10 md:right-12 md:top-28 lg:right-20 xl:right-28">
+      <div className="absolute right-6 top-24 z-10 hidden text-right md:right-12 md:top-28 md:block lg:right-20 xl:right-28">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/90">
           {awfMeta.location}
         </p>
         <p className="mt-1 text-[9px] uppercase tracking-[0.18em] text-white/[0.55]">
-          {awfMeta.coordinates.lat}°N · {awfMeta.coordinates.lng}°E · Elev {awfMeta.elevation}
+          {awfMeta.coordinates.lat}°N · {awfMeta.coordinates.lng}°E · Elev{" "}
+          {awfMeta.elevation}
         </p>
       </div>
 
@@ -80,18 +89,18 @@ export function AwfHero() {
 
             <h1
               id="awf-hero-title"
-              className="text-[clamp(2.9rem,12vw,5.4rem)] font-medium leading-[0.92] tracking-[-0.055em] text-[#f7f4ec] md:text-[clamp(4.5rem,7vw,7.5rem)]"
+              className="text-[clamp(2.9rem,12vw,5.4rem)] font-semibold leading-[0.92] tracking-[-0.055em] text-[#fffdf7] [text-shadow:0_3px_32px_rgba(0,0,0,0.7)] md:text-[clamp(4.5rem,7vw,7.5rem)] md:font-medium"
             >
               <span className="block">Anini Winter Fest</span>
-              <span className="mt-1 block font-serif text-[0.62em] font-normal italic tracking-[-0.03em] text-[#dfcfab] md:mt-2">
+              <span className="mt-1 block font-serif text-[0.62em] font-normal italic tracking-[-0.03em] text-[#f0dfb8] md:mt-2 md:text-[#dfcfab]">
                 where the road ends, the music begins
               </span>
             </h1>
 
-            <p className="mt-5 max-w-[38rem] text-[0.95rem] leading-6 text-white/[0.74] sm:mt-6 sm:text-base sm:leading-7 md:text-lg md:leading-8">
-              Two days of indie, folk and tribal-fusion under Dibang Valley&apos;s
-              unpolluted skies — and the journey there, handled by the team that
-              knows every bend of NH-313.
+            <p className="mt-5 max-w-[38rem] text-[0.95rem] font-medium leading-6 text-white/[0.88] [text-shadow:0_2px_18px_rgba(0,0,0,0.85)] sm:mt-6 sm:text-base sm:leading-7 md:text-lg md:font-normal md:leading-8 md:text-white/[0.74]">
+              Two days of indie, folk and tribal-fusion under Dibang
+              Valley&apos;s unpolluted skies — and the journey there, handled by
+              the team that knows every bend of NH-313.
             </p>
 
             <div className="mt-6 sm:mt-8">
