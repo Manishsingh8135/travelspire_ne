@@ -19,12 +19,14 @@ export function AwfValley() {
             className="text-[clamp(2.75rem,6vw,4.75rem)] font-medium leading-[0.94] tracking-[-0.055em]"
           >
             Dibang{" "}
-            <span className="font-serif font-normal italic text-[#76533e]">in frames</span>
+            <span className="font-serif font-normal italic text-[#76533e]">
+              in frames
+            </span>
           </h2>
           <p className="mt-6 max-w-[36rem] text-base leading-7 text-[#5a655e] sm:text-lg sm:leading-8">
-            Arunachal&apos;s largest district. Forests over 80% of its land, rivers
-            that have never seen a dam, skies that have never known smog — and fewer
-            than one person per square kilometre.
+            Arunachal&apos;s largest district. Forests over 80% of its land,
+            rivers that have never seen a dam, skies that have never known smog
+            — and fewer than one person per square kilometre.
           </p>
         </div>
 
@@ -54,22 +56,25 @@ export function AwfValley() {
           ))}
         </div>
 
-        {/* Reasons to stay longer */}
-        <div className="mt-16 grid gap-10 lg:mt-24 lg:grid-cols-12 lg:gap-14">
-          <div className="lg:col-span-4">
-            <h3 className="text-[clamp(2rem,4vw,3.25rem)] font-medium leading-[0.98] tracking-[-0.045em]">
-              Reasons to{" "}
-              <span className="font-serif font-normal italic text-[#76533e]">
-                stay longer
-              </span>
-            </h3>
-            <p className="mt-5 max-w-[30rem] text-base leading-7 text-[#5a655e]">
-              The festival is two days. Dibang Valley is a lifetime. Most of these
-              need 3–5 extra days — we recommend arriving by 17 September.
-            </p>
+        {/* Reasons to stay longer — decisions start with seeing the place. */}
+        <div className="mt-16 lg:mt-24">
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <h3 className="text-[clamp(2rem,4vw,3.25rem)] font-medium leading-[0.98] tracking-[-0.045em]">
+                Reasons to{" "}
+                <span className="font-serif font-normal italic text-[#76533e]">
+                  stay longer
+                </span>
+              </h3>
+              <p className="mt-5 max-w-[30rem] text-base leading-7 text-[#5a655e]">
+                The festival is two days. Dibang Valley is a lifetime. Most of
+                these need 3–5 extra days — we recommend arriving by 17
+                September.
+              </p>
+            </div>
             <Link
               href="/tours/anini-pomo-grassland-expedition"
-              className="group mt-7 inline-flex items-center gap-3 rounded-[12px] bg-[#17241d] px-5 py-4 text-[#f5efe2] transition-colors duration-200 hover:bg-[#24352b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#87543a]"
+              className="group inline-flex items-center justify-between gap-5 rounded-[12px] bg-[#17241d] px-5 py-4 text-[#f5efe2] transition-colors duration-200 hover:bg-[#24352b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#87543a] lg:col-span-5"
             >
               <span>
                 <span className="block text-[9px] font-bold uppercase tracking-[0.18em] text-[#cdb783]">
@@ -86,44 +91,73 @@ export function AwfValley() {
             </Link>
           </div>
 
-          <ol className="grid gap-2.5 sm:grid-cols-2 lg:col-span-8">
+          <ol className="mt-10 grid gap-3 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
             {awfStayLonger.map((reason) => (
               <li
                 key={reason.index}
-                className="rounded-[14px] bg-[#e7dece] p-6 shadow-[6px_12px_26px_-24px_rgba(37,46,39,0.5)]"
+                className="group relative min-h-[28rem] overflow-hidden rounded-[14px] bg-[#17241d] shadow-[8px_22px_44px_-28px_rgba(23,36,29,0.75)]"
               >
-                <div className="flex items-baseline gap-3">
-                  <span className="text-[10px] font-bold tracking-[0.14em] text-[#8b5a40]">
-                    {reason.index}
-                  </span>
-                  <h4 className="text-[17px] font-semibold tracking-[-0.02em] text-[#17221b]">
+                <Image
+                  src={reason.images[0].src}
+                  alt={reason.images[0].alt}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                  style={{
+                    objectPosition: reason.images[0].position ?? "center",
+                  }}
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,17,13,0.04)_0%,rgba(10,17,13,0.12)_42%,rgba(10,17,13,0.96)_100%)]" />
+
+                <div className="absolute right-4 top-4 h-24 w-28 overflow-hidden rounded-[10px] border border-white/25 bg-[#29372f] shadow-[0_14px_28px_-12px_rgba(0,0,0,0.75)] sm:h-28 sm:w-32">
+                  <Image
+                    src={reason.images[1].src}
+                    alt={reason.images[1].alt}
+                    fill
+                    sizes="128px"
+                    className="object-cover"
+                    style={{
+                      objectPosition: reason.images[1].position ?? "center",
+                    }}
+                  />
+                </div>
+
+                <div className="absolute inset-x-0 bottom-0 p-6 text-[#f6f0e5] sm:p-7">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[10px] font-bold tracking-[0.16em] text-[#d8bd84]">
+                      {reason.index}
+                    </span>
+                    <span className="h-px w-7 bg-[#d8bd84]/50" />
+                    <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-white/60">
+                      {reason.tier}
+                    </p>
+                  </div>
+                  <h4 className="mt-3 max-w-[16ch] text-[1.65rem] font-semibold leading-[1.02] tracking-[-0.035em]">
                     {reason.title}
                   </h4>
+                  <p className="mt-4 flex flex-wrap gap-x-3 gap-y-1.5">
+                    {reason.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-[9px] font-semibold uppercase tracking-[0.1em] text-white/58"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </p>
                 </div>
-                <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.16em] text-[#8b5a40]/90">
-                  {reason.tier}
-                </p>
-                <p className="mt-3 flex flex-wrap gap-1.5">
-                  {reason.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-[#17241d]/[0.14] px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#5a655e]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </p>
               </li>
             ))}
           </ol>
         </div>
 
         <p className="mt-8 max-w-[52rem] text-xs leading-5 text-[#7a7263]">
-          Honest tiers: samplers bolt onto the festival weekend; the Roing buffer is a
-          single extra day before the climb; expeditions like Seven Lakes, the Dri
-          Valley trek and Athu Popu run 7–11 days with guides, fitness requirements,
-          permits and cultural protocols — they are journeys in their own right, and
-          Athu Popu is a sacred route, not a sightseeing add-on.
+          Honest tiers: samplers bolt onto the festival weekend; the Roing
+          buffer is a single extra day before the climb; expeditions like Seven
+          Lakes, the Dri Valley trek and Athu Popu run 7–11 days with guides,
+          fitness requirements, permits and cultural protocols — they are
+          journeys in their own right, and Athu Popu is a sacred route, not a
+          sightseeing add-on.
         </p>
       </div>
     </section>

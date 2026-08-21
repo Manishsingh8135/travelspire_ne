@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Check,
   Clock3,
@@ -166,9 +167,19 @@ export function AwfTransport() {
               {awfFleet.map((vehicle) => (
                 <article
                   key={vehicle.name}
-                  className="group flex flex-col justify-between rounded-[14px] bg-[#e7dece] p-6 shadow-[6px_12px_26px_-22px_rgba(37,46,39,0.45)] transition-shadow duration-300 hover:shadow-[9px_16px_32px_-20px_rgba(37,46,39,0.6)]"
+                  className="group overflow-hidden rounded-[14px] bg-[#e7dece] shadow-[7px_18px_34px_-25px_rgba(37,46,39,0.62)] transition-shadow duration-300 hover:shadow-[10px_22px_40px_-23px_rgba(37,46,39,0.72)]"
                 >
-                  <div>
+                  <div className="relative h-32 overflow-hidden bg-[radial-gradient(circle_at_50%_65%,#f7f0e2_0%,#ded3c1_72%)] sm:h-36">
+                    <Image
+                      src={vehicle.image}
+                      alt={vehicle.imageAlt}
+                      fill
+                      sizes="(min-width: 1024px) 28vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-contain px-4 py-3 transition-transform duration-500 ease-out group-hover:scale-[1.025] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                    />
+                    <div className="absolute inset-x-8 bottom-2 h-5 rounded-full bg-black/15 blur-xl" />
+                  </div>
+                  <div className="p-5 sm:p-6">
                     <div className="flex items-baseline justify-between gap-3">
                       <h3 className="text-lg font-semibold tracking-[-0.02em] text-[#17221b]">
                         {vehicle.name}
@@ -183,20 +194,20 @@ export function AwfTransport() {
                     <p className="mt-1.5 font-serif text-[15px] italic leading-6 text-[#6a5c49]">
                       {vehicle.character}
                     </p>
+                    <a
+                      href={createAwfInquiryURL({
+                        kind: "vehicle",
+                        vehicleName: vehicle.name,
+                        pricePerDay: vehicle.pricePerDay,
+                      })}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Reserve the ${vehicle.name} for Anini Winter Fest on WhatsApp`}
+                      className="mt-5 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-[9px] bg-[#17241d] px-4 text-[10px] font-bold uppercase tracking-[0.13em] text-[#f5efe2] transition-colors duration-200 hover:bg-[#294035] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#87543a]"
+                    >
+                      Reserve this vehicle
+                    </a>
                   </div>
-                  <a
-                    href={createAwfInquiryURL({
-                      kind: "vehicle",
-                      vehicleName: vehicle.name,
-                      pricePerDay: vehicle.pricePerDay,
-                    })}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Reserve the ${vehicle.name} for Anini Winter Fest on WhatsApp`}
-                    className="mt-5 inline-flex min-h-10 items-center justify-center gap-2 rounded-[9px] border border-[#17241d]/25 px-4 text-[10px] font-bold uppercase tracking-[0.13em] text-[#17241d] transition-colors duration-200 hover:bg-[#17241d] hover:text-[#f5efe2] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#87543a]"
-                  >
-                    Reserve this vehicle
-                  </a>
                 </article>
               ))}
             </div>
@@ -209,6 +220,10 @@ export function AwfTransport() {
                 {awfFleetInclusions.join(" · ")}. One price, no surprise charges
                 at the end of the trip. Bookings and availability are handled
                 directly by Travelspire Northeast.
+              </p>
+              <p className="mt-2 text-[10px] leading-4 text-[#7a7263]">
+                Manufacturer imagery shows the representative model. Assigned
+                colour and registration may vary with availability.
               </p>
               <p className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
                 <a

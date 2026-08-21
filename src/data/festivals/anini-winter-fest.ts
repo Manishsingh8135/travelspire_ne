@@ -4,6 +4,9 @@ import type { FAQSection } from "@/types/faqs/faq";
 // Travelspire NE is the Official Travel & Taxi Partner — festival passes are
 // sold by the festival's booking partners (Zaatio, Baahi); Travelspire sells
 // the journey: shared transfers, private fleet, stays and valley extensions.
+// Media provenance (verified 21 Aug 2026): artist and Dibang experience media
+// mirrors the live official festival site; Alo uses its Spotify artist image;
+// fleet cutouts come from Toyota India and Mahindra's official model pages.
 
 export const awfMeta = {
   name: "Anini Winter Fest",
@@ -20,7 +23,7 @@ export const awfMeta = {
   elevation: "1,970 m",
   instagram: "https://instagram.com/anini_winter_fest",
   officialSite: "https://www.aniniwinterfest.com",
-  lineupVerified: "19 August 2026",
+  lineupVerified: "21 August 2026",
   organizer: "Anini Winter Fest",
   supporters: [
     "Arunachal Tourism",
@@ -93,35 +96,94 @@ export interface AwfArtist {
   day: 1 | 2;
   genre: string;
   origin: string;
+  image: string;
+  imageAlt: string;
+  imagePosition?: string;
   headliner?: boolean;
   tba?: boolean;
 }
 
 export const awfArtists: AwfArtist[] = [
   {
-    name: "Revealing Soon",
+    name: "UNB",
     day: 1,
-    genre: "Headliner",
-    origin: "TBA",
+    genre: "Revealing Soon",
+    origin: "Day 1 headliner",
+    image: "/images/festivals/anini-winter-fest-2026/artists/unb.webp",
+    imageAlt: "UNB, the Day 1 headliner at Anini Winter Fest 2026",
     headliner: true,
-    tba: true,
   },
-  { name: "Anurag Dutta", day: 1, genre: "Bollywood", origin: "Assam" },
-  { name: "Alo The Band", day: 1, genre: "Bollywood", origin: "Kolkata" },
-  { name: "Khaali Frame", day: 1, genre: "Indie · Pop", origin: "Assam" },
+  {
+    name: "Anurag Dutta",
+    day: 1,
+    genre: "Bollywood",
+    origin: "Assam",
+    image: "/images/festivals/anini-winter-fest-2026/artists/anurag-dutta.webp",
+    imageAlt: "Assam singer Anurag Dutta",
+    imagePosition: "center 28%",
+  },
+  {
+    name: "Alo The Band",
+    day: 1,
+    genre: "Bollywood · Rock",
+    origin: "Kolkata",
+    image: "/images/festivals/anini-winter-fest-2026/artists/alo-the-band.webp",
+    imageAlt: "Kolkata-based Alo The Band",
+  },
+  {
+    name: "Rageshree Rai",
+    day: 1,
+    genre: "Indie · Pop",
+    origin: "Darjeeling",
+    image:
+      "/images/festivals/anini-winter-fest-2026/artists/rageshree-rai.webp",
+    imageAlt: "Darjeeling indie pop artist Rageshree Rai",
+    imagePosition: "center 20%",
+  },
+  {
+    name: "AIOM",
+    day: 1,
+    genre: "DJ · Trance",
+    origin: "Shillong",
+    image: "/images/festivals/anini-winter-fest-2026/artists/aiom.webp",
+    imageAlt: "Shillong DJ and trance artist AIOM",
+    imagePosition: "center 24%",
+  },
   {
     name: "Kunal Ganjawala",
     day: 2,
     genre: "Bollywood · Playback · Pop",
     origin: "Maharashtra",
+    image:
+      "/images/festivals/anini-winter-fest-2026/artists/kunal-ganjawala.webp",
+    imageAlt: "Bollywood playback singer Kunal Ganjawala performing live",
+    imagePosition: "center 24%",
     headliner: true,
   },
-  { name: "Moko Kaza", day: 2, genre: "Rap · Hip-Hop", origin: "Nagaland" },
+  {
+    name: "Moko Kaza",
+    day: 2,
+    genre: "Rap · Hip-Hop",
+    origin: "Nagaland",
+    image: "/images/festivals/anini-winter-fest-2026/artists/moko-kaza.webp",
+    imageAlt: "Nagaland rapper Moko Kaza",
+  },
+  {
+    name: "Khaali Frame",
+    day: 2,
+    genre: "Indie · Pop",
+    origin: "Assam",
+    image: "/images/festivals/anini-winter-fest-2026/artists/khaali-frame.webp",
+    imageAlt: "Assam indie pop act Khaali Frame",
+  },
   {
     name: "Mihir Chandan",
     day: 2,
     genre: "DJ · Folktronica",
     origin: "Maharashtra",
+    image:
+      "/images/festivals/anini-winter-fest-2026/artists/mihir-chandan.webp",
+    imageAlt: "Maharashtra folktronica artist Mihir Chandan",
   },
 ];
 
@@ -294,31 +356,49 @@ export const awfFleet = [
     name: "Fortuner Sigma 4",
     pricePerDay: 14999,
     character: "Top of the line — glides over the rough patches",
+    image:
+      "/images/festivals/anini-winter-fest-2026/fleet/toyota-fortuner.webp",
+    imageAlt: "Toyota Fortuner SUV, representative vehicle model",
   },
   {
     name: "Scorpio N",
     pricePerDay: 7999,
     character: "Festival favourite for groups of 5–6",
+    image:
+      "/images/festivals/anini-winter-fest-2026/fleet/mahindra-scorpio-n.webp",
+    imageAlt: "Mahindra Scorpio N SUV, representative vehicle model",
   },
   {
     name: "Innova Crysta",
     pricePerDay: 7499,
     character: "The most comfortable ride for families",
+    image:
+      "/images/festivals/anini-winter-fest-2026/fleet/toyota-innova-crysta.webp",
+    imageAlt: "Toyota Innova Crysta MPV, representative vehicle model",
   },
   {
     name: "Scorpio Classic",
     pricePerDay: 6999,
     character: "The trusted NH-313 workhorse",
+    image:
+      "/images/festivals/anini-winter-fest-2026/fleet/mahindra-scorpio-classic.webp",
+    imageAlt: "Mahindra Scorpio Classic SUV, representative vehicle model",
   },
   {
     name: "Bolero Neo",
     pricePerDay: 5999,
     character: "Compact, capable, easy on the pocket",
+    image:
+      "/images/festivals/anini-winter-fest-2026/fleet/mahindra-bolero-neo.webp",
+    imageAlt: "Mahindra Bolero Neo SUV, representative vehicle model",
   },
   {
     name: "Bolero Classic",
     pricePerDay: 5599,
     character: "Simple and dependable",
+    image:
+      "/images/festivals/anini-winter-fest-2026/fleet/mahindra-bolero.webp",
+    imageAlt: "Mahindra Bolero SUV, representative vehicle model",
   },
 ] as const;
 
@@ -453,6 +533,7 @@ export interface AwfStayLongerItem {
     | "Roing buffer · +1 day"
     | "Expedition · +7–11 days";
   tags: string[];
+  images: Array<{ src: string; alt: string; position?: string }>;
 }
 
 export const awfStayLonger: AwfStayLongerItem[] = [
@@ -461,36 +542,96 @@ export const awfStayLonger: AwfStayLongerItem[] = [
     title: "Waterfalls Around Anini",
     tier: "Valley sampler · +2–4 days",
     tags: ["Half-day spots", "Route hints", "Natural Pools"],
+    images: [
+      {
+        src: "/images/festivals/anini-winter-fest-2026/experiences/anini-waterfall.webp",
+        alt: "A mountain waterfall in Dibang Valley",
+      },
+      {
+        src: "/images/festivals/anini-winter-fest-2026/experiences/karo-valley-waterfall.webp",
+        alt: "Waterfall and river country in Karo Valley",
+      },
+    ],
   },
   {
     index: "02",
     title: "Viewpoints & Photography",
     tier: "Valley sampler · +2–4 days",
     tags: ["Sunrise Points", "Valley Overlooks", "Cloud Seas"],
+    images: [
+      {
+        src: "/images/festivals/anini-winter-fest-2026/experiences/dibang-viewpoints.webp",
+        alt: "A mountain viewpoint above Dibang Valley",
+      },
+      {
+        src: "/images/places/anini-new/anini-new-landscape-13.jpeg",
+        alt: "Cloud and layered ridgelines around Anini",
+      },
+    ],
   },
   {
     index: "03",
     title: "Kiwi Orchards & Farm Stays",
     tier: "Valley sampler · +2–4 days",
     tags: ["Orchard Visits", "Harvest Season", "Local Produce"],
+    images: [
+      {
+        src: "/images/festivals/anini-winter-fest-2026/experiences/anini-kiwi.webp",
+        alt: "Fresh kiwi fruit grown in the high valleys around Anini",
+      },
+      {
+        src: "/images/places/anini-new/anini-new-portrait-5.jpg",
+        alt: "Orchard and farm slopes around Anini",
+      },
+    ],
   },
   {
     index: "04",
     title: "Dri & Aeyo Valleys",
     tier: "Valley sampler · +2–4 days",
     tags: ["Guided Walks", "Village Stays", "River Crossings"],
+    images: [
+      {
+        src: "/images/festivals/anini-winter-fest-2026/experiences/dri-valley.webp",
+        alt: "The mountain and river landscape of Dri Valley",
+      },
+      {
+        src: "/images/festivals/anini-winter-fest-2026/experiences/aeyo-valley.webp",
+        alt: "The ridgeline and open country of Aeyo Valley",
+      },
+    ],
   },
   {
     index: "05",
     title: "Roing Buffer Day",
     tier: "Roing buffer · +1 day",
     tags: ["Sally Lake", "Mehao Lake", "Bhismaknagar Fort"],
+    images: [
+      {
+        src: "/images/places/anini/Anini_3.jpg",
+        alt: "Still water and forest in the foothills near Roing",
+      },
+      {
+        src: "/images/places/anini/Anini_8.jpg",
+        alt: "Evening light over the Lower Dibang foothills near Roing",
+      },
+    ],
   },
   {
     index: "06",
     title: "Seven Lakes · Dri Trek · Athu Popu",
     tier: "Expedition · +7–11 days",
     tags: ["Guided Only", "Fitness Required", "Sacred Route"],
+    images: [
+      {
+        src: "/images/festivals/anini-winter-fest-2026/experiences/seven-lakes-trek.webp",
+        alt: "High-altitude terrain on the Seven Lakes trek in Dibang Valley",
+      },
+      {
+        src: "/images/festivals/anini-winter-fest-2026/experiences/athu-popu.webp",
+        alt: "The sacred Athu Popu landscape in Dibang Valley",
+      },
+    ],
   },
 ];
 
