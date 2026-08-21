@@ -3,6 +3,7 @@ import {
   PayUNotificationError,
   processPayUNotification,
 } from "@/lib/payments/payu/notification";
+import { sendVerifiedPaymentEmails } from "@/lib/payments/email";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,7 +17,10 @@ export async function POST(request: Request) {
   }
 
   try {
-    await processPayUNotification(formData, "webhook");
+    const result = await processPayUNotification(formData, "webhook");
+    if (result.outcome === "success") {
+      await sendVerifiedPaymentEmails(result.transactionId);
+    }
     return new NextResponse("OK", {
       status: 200,
       headers: { "Cache-Control": "no-store, max-age=0" },

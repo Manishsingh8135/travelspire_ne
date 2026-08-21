@@ -8,47 +8,10 @@ import {
   LockKeyhole,
   ShieldCheck,
 } from "lucide-react";
-
-type CheckoutResponse = {
-  action?: string;
-  method?: string;
-  transactionId?: string;
-  fields?: Record<string, string>;
-  error?: string;
-};
-
-const PAYU_ENDPOINTS = new Set([
-  "https://test.payu.in/_payment",
-  "https://secure.payu.in/_payment",
-]);
-
-function postToPayU(payload: CheckoutResponse) {
-  if (
-    !payload.action ||
-    payload.method !== "POST" ||
-    !payload.fields ||
-    !PAYU_ENDPOINTS.has(payload.action)
-  ) {
-    throw new Error("The secure checkout response was not valid.");
-  }
-
-  const form = document.createElement("form");
-  form.method = "POST";
-  form.action = payload.action;
-  form.style.display = "none";
-  form.setAttribute("aria-hidden", "true");
-
-  Object.entries(payload.fields).forEach(([name, value]) => {
-    const input = document.createElement("input");
-    input.type = "hidden";
-    input.name = name;
-    input.value = value;
-    form.appendChild(input);
-  });
-
-  document.body.appendChild(form);
-  form.submit();
-}
+import {
+  postToPayU,
+  type HostedCheckoutResponse,
+} from "@/lib/payments/payu/browser";
 
 export function PaymentAccessForm() {
   const [reference, setReference] = useState("");
@@ -68,7 +31,7 @@ export function PaymentAccessForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ reference, paymentCode, termsAccepted }),
       });
-      const payload = (await response.json()) as CheckoutResponse;
+      const payload = (await response.json()) as HostedCheckoutResponse;
 
       if (!response.ok) {
         throw new Error(payload.error || "We could not open secure checkout.");
@@ -117,7 +80,7 @@ export function PaymentAccessForm() {
             autoCapitalize="characters"
             autoComplete="off"
             spellCheck={false}
-            placeholder="TSMDA-8F2C14A90D7B"
+            placeholder="TSBK-8F2C14A90D7B"
             className="mt-2 min-h-[3.25rem] w-full rounded-[10px] border border-[#17372b]/15 bg-[#fffaf0] px-4 font-mono text-sm uppercase tracking-[0.035em] text-[#14221c] outline-none transition-[border-color,box-shadow] placeholder:text-[#718078]/60 focus:border-[#38644f] focus:ring-4 focus:ring-[#38644f]/10"
           />
         </label>

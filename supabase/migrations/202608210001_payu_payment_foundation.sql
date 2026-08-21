@@ -216,7 +216,7 @@ begin
     raise exception 'INVALID_CUSTOMER_DETAILS';
   end if;
 
-  v_reference := 'TSMDA-' || upper(substr(
+  v_reference := 'TSBK-' || upper(substr(
     encode(extensions.gen_random_bytes(8), 'hex'),
     1,
     12
@@ -355,7 +355,7 @@ begin
     where booking_id = v_booking.id
       and status in ('created', 'redirected');
 
-    v_product_info := left(v_booking.tour_name || ' advance', 100);
+    v_product_info := left(v_booking.tour_name || ' full payment', 100);
 
     insert into public.payment_attempts (
       booking_id,

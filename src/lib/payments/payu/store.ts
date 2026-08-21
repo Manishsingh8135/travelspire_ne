@@ -46,14 +46,39 @@ export type PaymentReceipt = {
   tour_bookings:
     | {
         reference: string;
+        tour_slug: string;
         tour_name: string;
+        package_tier_id: string;
+        travellers: number;
+        departure_date: string;
+        customer_first_name: string;
+        customer_email: string;
+        customer_phone: string;
+        total_amount_paise: number;
+        paid_amount_paise: number;
+        payment_due_paise: number;
         status: string;
       }
     | Array<{
         reference: string;
+        tour_slug: string;
         tour_name: string;
+        package_tier_id: string;
+        travellers: number;
+        departure_date: string;
+        customer_first_name: string;
+        customer_email: string;
+        customer_phone: string;
+        total_amount_paise: number;
+        paid_amount_paise: number;
+        payment_due_paise: number;
         status: string;
       }>;
+};
+
+export type IssuedTourBooking = {
+  booking_reference: string;
+  payment_code: string;
 };
 
 export class PaymentStoreError extends Error {
@@ -133,6 +158,41 @@ async function callPaymentRpc<T>(name: string, body: Record<string, unknown>) {
     method: "POST",
     body: JSON.stringify(body),
   });
+}
+
+export async function issueTourBooking(input: {
+  tourSlug: string;
+  tourName: string;
+  packageTierId: string;
+  travellers: number;
+  departureDate: string;
+  customerFirstName: string;
+  customerEmail: string;
+  customerPhone: string;
+  totalAmountPaise: number;
+}) {
+  const rows = await callPaymentRpc<IssuedTourBooking[]>("issue_tour_booking", {
+    p_tour_slug: input.tourSlug,
+    p_tour_name: input.tourName,
+    p_package_tier_id: input.packageTierId,
+    p_travellers: input.travellers,
+    p_departure_date: input.departureDate,
+    p_customer_first_name: input.customerFirstName,
+    p_customer_email: input.customerEmail,
+    p_customer_phone: input.customerPhone,
+    p_total_amount_paise: input.totalAmountPaise,
+    p_payment_due_paise: input.totalAmountPaise,
+  });
+
+  const booking = rows[0];
+  if (!booking) {
+    throw new PaymentStoreError(
+      "BOOKING_NOT_CREATED",
+      "The booking was not created",
+    );
+  }
+
+  return booking;
 }
 
 export async function startPayUPayment(input: {
@@ -217,7 +277,7 @@ export async function getPaymentReceipt(transactionId: string) {
   const params = new URLSearchParams({
     txnid: `eq.${transactionId}`,
     select:
-      "txnid,status,expected_amount_paise,currency,provider_status,provider_unmapped_status,updated_at,tour_bookings!inner(reference,tour_name,status)",
+      "txnid,status,expected_amount_paise,currency,provider_status,provider_unmapped_status,updated_at,tour_bookings!inner(reference,tour_slug,tour_name,package_tier_id,travellers,departure_date,customer_first_name,customer_email,customer_phone,total_amount_paise,paid_amount_paise,payment_due_paise,status)",
     limit: "1",
   });
 

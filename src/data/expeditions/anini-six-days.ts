@@ -90,16 +90,56 @@ export const sixProfile = {
   note: "385 km from tea flats to plateau. The first 150 are flat and fast; everything after Roing is mountain.",
   maxElev: 2655,
   nodes: [
-    { km: 0, name: "Dibrugarh", elev: 108, note: "Pickup 05:00–06:30. Dark start, deliberately." },
-    { km: 40, name: "Bhupen Hazarika Setu", elev: 110, note: "9.15 km of bridge over the Lohit. India's longest." },
-    { km: 150, name: "Roing", elev: 390, note: "Mile zero of NH-313. Fuel, ATM, last reliable network." },
-    { km: 172, name: "Tiwarigaon", elev: 700, note: "Tea before the road stands up." },
-    { km: 198, name: "Coffee House", elev: 2200, note: "Last comfortable halt below the pass." },
-    { km: 206, name: "Mayodia Pass", elev: 2655, note: "The weather line. We cross before noon — afternoons belong to fog." },
+    {
+      km: 0,
+      name: "Dibrugarh",
+      elev: 108,
+      note: "Pickup 05:00–06:30. Dark start, deliberately.",
+    },
+    {
+      km: 40,
+      name: "Bhupen Hazarika Setu",
+      elev: 110,
+      note: "9.15 km of bridge over the Lohit. India's longest.",
+    },
+    {
+      km: 150,
+      name: "Roing",
+      elev: 390,
+      note: "Mile zero of NH-313. Fuel, ATM, last reliable network.",
+    },
+    {
+      km: 172,
+      name: "Tiwarigaon",
+      elev: 700,
+      note: "Tea before the road stands up.",
+    },
+    {
+      km: 198,
+      name: "Coffee House",
+      elev: 2200,
+      note: "Last comfortable halt below the pass.",
+    },
+    {
+      km: 206,
+      name: "Mayodia Pass",
+      elev: 2655,
+      note: "The weather line. We cross before noon — afternoons belong to fog.",
+    },
     { km: 240, name: "Hunli", elev: 1240, note: "First town on the far side." },
-    { km: 290, name: "Angolin", elev: 1050, note: "Slide-zone corridor. Driver's country, not passenger's." },
+    {
+      km: 290,
+      name: "Angolin",
+      elev: 1050,
+      note: "Slide-zone corridor. Driver's country, not passenger's.",
+    },
     { km: 325, name: "Etalin", elev: 800, note: "The designated lunch stop." },
-    { km: 385, name: "Anini", elev: 1968, note: "The plateau reveal, usually at dusk." },
+    {
+      km: 385,
+      name: "Anini",
+      elev: 1968,
+      note: "The plateau reveal, usually at dusk.",
+    },
   ],
 } as const;
 
@@ -121,13 +161,20 @@ export const sixDays = [
     closing:
       "Then it all falls away — Hunli, the slide corridor, Etalin for lunch — and the last hour opens onto the Anini plateau. Most guests go quiet here. We let them.",
     waypoints: [
-      { name: "Dr. Bhupen Hazarika Setu", note: "9.15 km over the Lohit — India's longest bridge" },
+      {
+        name: "Dr. Bhupen Hazarika Setu",
+        note: "9.15 km over the Lohit — India's longest bridge",
+      },
       { name: "Roing", note: "Fuel, permits checked, last dependable signal" },
-      { name: "Mayodia Pass", note: "2,655 m · the route's high point and its weather line" },
+      {
+        name: "Mayodia Pass",
+        note: "2,655 m · the route's high point and its weather line",
+      },
       { name: "Etalin", note: "Lunch halt on the far side" },
     ],
     image: "/images/places/anini/Anini_10.JPG",
-    imageAlt: "Cloud rolling across the ridgelines at Mayodia Pass on the road to Anini",
+    imageAlt:
+      "Cloud rolling across the ridgelines at Mayodia Pass on the road to Anini",
   },
   {
     n: "02",
@@ -198,7 +245,8 @@ export const sixDays = [
       { name: "Valley viewpoints", note: "Unhurried, weather permitting" },
     ],
     image: "/images/places/anini-new/anini-new-portrait-1.jpg",
-    imageAlt: "Montane forest and valley road in the Gipulin side valley near Anini",
+    imageAlt:
+      "Montane forest and valley road in the Gipulin side valley near Anini",
   },
   {
     n: "05",
@@ -427,7 +475,7 @@ export const sixPricing = {
   ],
   fineprint: [
     "Prices are per person for the full 5N/6D expedition, ex-Dibrugarh.",
-    "50% confirms the booking; the balance is due before departure.",
+    "The complete package amount is paid securely at booking.",
     "Inner Line Permit and forest pass are arranged by us and included.",
     "October to April only. We do not run this route in monsoon.",
   ],
@@ -436,11 +484,23 @@ export const sixPricing = {
 // ── Carried / not carried ───────────────────────────────────────────────────
 
 export const sixIncluded = [
-  { name: "Accommodation", note: "Five nights — Anini homestay ×4, Chigu camp ×1" },
-  { name: "Private transportation", note: "Dedicated vehicle and driver for the full six days" },
+  {
+    name: "Accommodation",
+    note: "Five nights — Anini homestay ×4, Chigu camp ×1",
+  },
+  {
+    name: "Private transportation",
+    note: "Dedicated vehicle and driver for the full six days",
+  },
   { name: "Expedition guide", note: "With you from Dibrugarh to Dibrugarh" },
-  { name: "Pomo grassland trek", note: "Dedicated trek guide for the summit day" },
-  { name: "Pomo trek transport", note: "The vehicle leg to and from the trailhead" },
+  {
+    name: "Pomo grassland trek",
+    note: "Dedicated trek guide for the summit day",
+  },
+  {
+    name: "Pomo trek transport",
+    note: "The vehicle leg to and from the trailhead",
+  },
   { name: "Breakfast & dinner", note: "Every day of the expedition" },
   { name: "Inner Line Permit", note: "Applied for and carried on your behalf" },
   { name: "Forest pass", note: "Required beyond Anini — handled by us" },
@@ -450,7 +510,10 @@ export const sixExcluded = [
   { name: "Lunch", note: "Dhaba and roadside stops, paid as you go" },
   { name: "Flights & trains", note: "To and from Dibrugarh" },
   { name: "Personal expenses", note: "Shopping, laundry, extra beverages" },
-  { name: "Anything not listed", note: "If it is not written above, assume it is not included" },
+  {
+    name: "Anything not listed",
+    note: "If it is not written above, assume it is not included",
+  },
 ] as const;
 
 export const sixCarry = [
@@ -472,18 +535,46 @@ export const sixSeason = {
   standfirst:
     "This route runs October to April. The rest of the year the mountain makes the decision for us.",
   months: [
-    { month: "Oct", tone: "best", note: "Post-monsoon clarity, road at its most reliable" },
-    { month: "Nov", tone: "best", note: "Golden light, harvest season, the sweet spot" },
-    { month: "Dec", tone: "good", note: "Cold and very quiet; snow possible on Mayodia" },
-    { month: "Jan", tone: "good", note: "Hardest cold, emptiest valley, clearest skies" },
-    { month: "Feb", tone: "good", note: "Cold easing, visibility still excellent" },
-    { month: "Mar", tone: "best", note: "Peak visibility and comfortable trekking" },
+    {
+      month: "Oct",
+      tone: "best",
+      note: "Post-monsoon clarity, road at its most reliable",
+    },
+    {
+      month: "Nov",
+      tone: "best",
+      note: "Golden light, harvest season, the sweet spot",
+    },
+    {
+      month: "Dec",
+      tone: "good",
+      note: "Cold and very quiet; snow possible on Mayodia",
+    },
+    {
+      month: "Jan",
+      tone: "good",
+      note: "Hardest cold, emptiest valley, clearest skies",
+    },
+    {
+      month: "Feb",
+      tone: "good",
+      note: "Cold easing, visibility still excellent",
+    },
+    {
+      month: "Mar",
+      tone: "best",
+      note: "Peak visibility and comfortable trekking",
+    },
     { month: "Apr", tone: "good", note: "Warming fast; last dependable month" },
     { month: "May", tone: "closed", note: "Pre-monsoon instability begins" },
     { month: "Jun", tone: "closed", note: "Monsoon. Slides on the corridor" },
     { month: "Jul", tone: "closed", note: "Monsoon. We do not run this route" },
     { month: "Aug", tone: "closed", note: "Monsoon. We do not run this route" },
-    { month: "Sep", tone: "closed", note: "Late monsoon; road unreliable for a trek schedule" },
+    {
+      month: "Sep",
+      tone: "closed",
+      note: "Late monsoon; road unreliable for a trek schedule",
+    },
   ],
 } as const;
 
@@ -562,12 +653,36 @@ export const sixFaqSection: FAQSection = {
 // pomo = Pomo Grassland · anini-new = Anini plateau & surroundings.
 
 export const sixGallery = [
-  { src: "/images/places/pomo/pomo1.JPG", alt: "The open horizon of Pomo grassland above Anini", caption: "Pomo Grassland" },
-  { src: "/images/places/anini-new/anini-new-landscape-13.jpeg", alt: "The high plateau at Anini in Dibang Valley", caption: "Anini Plateau" },
-  { src: "/images/places/pomo/pomo4.jpg", alt: "Rolling hills of the Pomo grassland", caption: "Horizon Country" },
-  { src: "/images/places/anini-new/anini-new-portrait-7.jpg", alt: "Village hills around Anini", caption: "Above the Town" },
-  { src: "/images/places/pomo/pomo6.jpg", alt: "Alpine meadow light at Pomo", caption: "The Meadows" },
-  { src: "/images/places/anini-new/anini-new-portrait-3.jpg", alt: "Cloud and ridgeline in Dibang Valley", caption: "Mishmi Ridges" },
+  {
+    src: "/images/places/pomo/pomo1.JPG",
+    alt: "The open horizon of Pomo grassland above Anini",
+    caption: "Pomo Grassland",
+  },
+  {
+    src: "/images/places/anini-new/anini-new-landscape-13.jpeg",
+    alt: "The high plateau at Anini in Dibang Valley",
+    caption: "Anini Plateau",
+  },
+  {
+    src: "/images/places/pomo/pomo4.jpg",
+    alt: "Rolling hills of the Pomo grassland",
+    caption: "Horizon Country",
+  },
+  {
+    src: "/images/places/anini-new/anini-new-portrait-7.jpg",
+    alt: "Village hills around Anini",
+    caption: "Above the Town",
+  },
+  {
+    src: "/images/places/pomo/pomo6.jpg",
+    alt: "Alpine meadow light at Pomo",
+    caption: "The Meadows",
+  },
+  {
+    src: "/images/places/anini-new/anini-new-portrait-3.jpg",
+    alt: "Cloud and ridgeline in Dibang Valley",
+    caption: "Mishmi Ridges",
+  },
 ] as const;
 
 // ── Cross-links ─────────────────────────────────────────────────────────────
@@ -590,7 +705,8 @@ export const sixRelated = [
   {
     name: "Dibang Valley",
     kind: "Region hub",
-    blurb: "India's largest district, and fewer than one person per square kilometre.",
+    blurb:
+      "India's largest district, and fewer than one person per square kilometre.",
     href: "/places/dibang-valley",
     image: "/images/places/pomo/pomo1.JPG",
   },

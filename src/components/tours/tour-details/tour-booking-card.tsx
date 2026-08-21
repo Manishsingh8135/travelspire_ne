@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { CalendarCheck, MessageCircle, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import {
+  CalendarCheck,
+  CreditCard,
+  MessageCircle,
+  ShieldCheck,
+} from "lucide-react";
 import { createTourWhatsAppURL } from "@/lib/whatsapp";
 import { getTourPrice, isRegularTour, type Tour } from "@/types/tours/tour";
 import { cn } from "@/lib/utils";
@@ -70,13 +76,20 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
         />
       </div>
 
+      <Link
+        href={`/book/${tour.slug}`}
+        className="mt-3 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-[#eadfc8] px-5 text-[10px] font-bold uppercase tracking-[0.13em] text-[#09110d] shadow-[7px_12px_26px_-16px_rgba(0,0,0,0.9)] transition-colors duration-200 hover:bg-[#f8f1e4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#eadfc8] focus-visible:ring-offset-3 focus-visible:ring-offset-[#111c16]"
+      >
+        <CreditCard aria-hidden="true" className="h-4 w-4" />
+        Book and pay securely
+      </Link>
       <button
         type="button"
         onClick={handleInquiry}
-        className="mt-3 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-[#eadfc8] px-5 text-[10px] font-bold uppercase tracking-[0.13em] text-[#09110d] shadow-[7px_12px_26px_-16px_rgba(0,0,0,0.9)] transition-colors duration-200 hover:bg-[#f8f1e4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#eadfc8] focus-visible:ring-offset-3 focus-visible:ring-offset-[#111c16]"
+        className="mt-2 inline-flex h-11 w-full items-center justify-center gap-2 rounded-[9px] text-[10px] font-bold uppercase tracking-[0.12em] text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white"
       >
         <MessageCircle aria-hidden="true" className="h-4 w-4" />
-        Check availability
+        Ask before booking
       </button>
 
       <div className="mt-6 grid gap-3 text-[10px] font-semibold uppercase tracking-[0.1em] text-white/[0.46]">
@@ -85,7 +98,7 @@ export function TourBookingCard({ tour, className }: TourBookingCardProps) {
             aria-hidden="true"
             className="h-4 w-4 text-[#cdb783]"
           />
-          Dates confirmed personally
+          Complete package payment
         </p>
         <p className="flex items-center gap-2.5">
           <ShieldCheck aria-hidden="true" className="h-4 w-4 text-[#cdb783]" />

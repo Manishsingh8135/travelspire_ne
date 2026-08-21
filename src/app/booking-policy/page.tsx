@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { 
-  CalendarCheck, 
+import {
+  CalendarCheck,
   CreditCard,
   ClipboardCheck,
   PackageCheck,
@@ -12,7 +12,7 @@ import {
   Cloud,
   Backpack,
   MessageSquare,
-  FileCheck
+  FileCheck,
 } from "lucide-react";
 import { DotPattern, GlowEffect } from "@/components/ui/background-patterns";
 
@@ -20,23 +20,24 @@ const bookingSteps = [
   {
     icon: CalendarCheck,
     title: "Select Your Tour",
-    description: "Browse our curated tours and choose your preferred dates."
+    description: "Browse our curated tours and choose your preferred dates.",
   },
   {
     icon: CreditCard,
-    title: "Pay 50% Advance",
-    description: "Secure your booking with an advance payment."
+    title: "Pay Complete Amount",
+    description:
+      "Pay the server-confirmed package total securely through PayU.",
   },
   {
     icon: ClipboardCheck,
     title: "Submit Documents",
-    description: "Provide necessary documents for permits and verification."
+    description: "Provide necessary documents for permits and verification.",
   },
   {
     icon: PackageCheck,
     title: "Confirmation",
-    description: "Receive your booking confirmation and tour details."
-  }
+    description: "Receive your booking confirmation and tour details.",
+  },
 ];
 
 const policyCards = [
@@ -49,8 +50,8 @@ const policyCards = [
       "Transportation during tour",
       "Meals as specified",
       "Inner Line Permit processing",
-      "Basic first aid support"
-    ]
+      "Basic first aid support",
+    ],
   },
   {
     title: "Group Bookings",
@@ -61,8 +62,8 @@ const policyCards = [
       "Customization options",
       "Exclusive vehicle arrangements",
       "Coordinated logistics",
-      "Group-specific amenities"
-    ]
+      "Group-specific amenities",
+    ],
   },
   {
     title: "Special Requirements",
@@ -73,32 +74,36 @@ const policyCards = [
       "Accessibility needs",
       "Special equipment requests",
       "Language preferences",
-      "Cultural accommodations"
-    ]
-  }
+      "Cultural accommodations",
+    ],
+  },
 ];
 
 const additionalInfo = [
   {
     title: "Camping & Equipment",
-    content: "We provide essential camping gear for adventure tours. Personal items and specialized equipment requirements will be communicated in advance.",
-    icon: Tent
+    content:
+      "We provide essential camping gear for adventure tours. Personal items and specialized equipment requirements will be communicated in advance.",
+    icon: Tent,
   },
   {
     title: "Weather Considerations",
-    content: "Tours may be modified based on weather conditions. Safety is our priority, and alternative arrangements will be made when necessary.",
-    icon: Cloud
+    content:
+      "Tours may be modified based on weather conditions. Safety is our priority, and alternative arrangements will be made when necessary.",
+    icon: Cloud,
   },
   {
     title: "Required Gear",
-    content: "A detailed packing list will be provided. Some items may be available for rent, subject to availability.",
-    icon: Backpack
+    content:
+      "A detailed packing list will be provided. Some items may be available for rent, subject to availability.",
+    icon: Backpack,
   },
   {
     title: "Communication",
-    content: "Stay updated with pre-tour briefings and daily updates during the tour. Emergency contacts are provided upon booking.",
-    icon: MessageSquare
-  }
+    content:
+      "Stay updated with pre-tour briefings and daily updates during the tour. Emergency contacts are provided upon booking.",
+    icon: MessageSquare,
+  },
 ];
 
 export default function BookingPolicyPage() {
@@ -107,7 +112,7 @@ export default function BookingPolicyPage() {
       {/* Background Elements */}
       <div className="absolute inset-0">
         <DotPattern className="opacity-20" />
-        <GlowEffect 
+        <GlowEffect
           color="primary"
           size="lg"
           opacity="low"
@@ -123,7 +128,7 @@ export default function BookingPolicyPage() {
 
       <div className="relative max-w-4xl mx-auto px-4 py-20">
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -141,14 +146,14 @@ export default function BookingPolicyPage() {
         </motion.div>
 
         {/* Booking Steps */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           {bookingSteps.map((step, index) => (
-            <div 
+            <div
               key={index}
               className="relative p-6 rounded-2xl bg-white/50 dark:bg-accent-900/50 border border-primary-100/20 dark:border-primary-900/20 backdrop-blur-sm"
             >
@@ -166,14 +171,14 @@ export default function BookingPolicyPage() {
         </motion.div>
 
         {/* Policy Cards */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           {policyCards.map((card, index) => (
-            <div 
+            <div
               key={index}
               className="p-6 rounded-2xl bg-white/50 dark:bg-accent-900/50 border border-primary-100/20 dark:border-primary-900/20 backdrop-blur-sm"
             >
@@ -185,7 +190,7 @@ export default function BookingPolicyPage() {
               </div>
               <ul className="space-y-2">
                 {card.items.map((item, itemIndex) => (
-                  <li 
+                  <li
                     key={itemIndex}
                     className="flex items-start gap-2 text-sm text-muted-foreground dark:text-neutral-300"
                   >
@@ -199,14 +204,14 @@ export default function BookingPolicyPage() {
         </motion.div>
 
         {/* Additional Information */}
-        <motion.div 
+        <motion.div
           className="space-y-6 mb-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
           {additionalInfo.map((info, index) => (
-            <div 
+            <div
               key={index}
               className="p-6 rounded-2xl bg-white/50 dark:bg-accent-900/50 border border-primary-100/20 dark:border-primary-900/20 backdrop-blur-sm"
             >
@@ -246,7 +251,7 @@ export default function BookingPolicyPage() {
         </motion.div> */}
 
         {/* Last Updated */}
-        <motion.div 
+        <motion.div
           className="text-center mt-16 text-sm text-muted-foreground dark:text-neutral-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

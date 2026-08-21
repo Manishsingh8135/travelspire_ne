@@ -6,10 +6,9 @@ import {
 } from "@/lib/payments/payu/config";
 import {
   createPaymentAccessTokenHash,
-  createPayURequestHash,
   createPayUTransactionId,
-  formatPayUAmount,
 } from "@/lib/payments/payu/crypto";
+import { createHostedCheckoutPayload } from "@/lib/payments/payu/hosted-checkout";
 import { PaymentStoreError, startPayUPayment } from "@/lib/payments/payu/store";
 
 export const runtime = "nodejs";
@@ -58,46 +57,14 @@ export async function POST(request: Request) {
   }
 
   try {
-    const config = getPayUConfig();
+    getPayUConfig();
     const attempt = await startPayUPayment({
       reference: parsed.data.reference,
       accessTokenHash: createPaymentAccessTokenHash(parsed.data.paymentCode),
       transactionId: createPayUTransactionId(),
       termsVersion: PAYMENT_TERMS_VERSION,
     });
-    const callbackUrl = new URL(
-      "/api/payments/payu/return",
-      config.publicBaseUrl,
-    ).toString();
-    const amount = formatPayUAmount(attempt.amount_paise);
-    const hashFields = {
-      key: config.merchantKey,
-      txnid: attempt.payment_txnid,
-      amount,
-      productinfo: attempt.product_info,
-      firstname: attempt.customer_first_name,
-      email: attempt.customer_email,
-      udf1: attempt.udf1,
-      udf2: attempt.udf2,
-      udf3: attempt.udf3,
-      udf4: attempt.udf4,
-      udf5: attempt.udf5,
-    };
-
-    return noStoreJson({
-      action: config.paymentEndpoint,
-      method: "POST",
-      environment: config.environment,
-      transactionId: attempt.payment_txnid,
-      fields: {
-        ...hashFields,
-        phone: attempt.customer_phone,
-        surl: callbackUrl,
-        furl: callbackUrl,
-        curl: callbackUrl,
-        hash: createPayURequestHash(hashFields, config.merchantSalt),
-      },
-    });
+    return noStoreJson(createHostedCheckoutPayload(attempt));
   } catch (error) {
     if (error instanceof PayUConfigurationError) {
       return noStoreJson(

@@ -1,16 +1,16 @@
-"use client"
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { 
-  Scale, 
-  MapPin, 
-  CreditCard, 
-  AlertCircle, 
+import {
+  Scale,
+  MapPin,
+  CreditCard,
+  AlertCircle,
   FileCheck,
   Mountain,
   Camera,
   Users,
-  Landmark
+  Landmark,
 } from "lucide-react";
 import { DotPattern, GlowEffect } from "@/components/ui/background-patterns";
 
@@ -22,28 +22,23 @@ const termsData = [
       "Customized Northeast India tours",
       "Adventure treks and expeditions",
       "Cultural and photography tours",
-      "Local experiences and homestays"
-    ]
+      "Local experiences and homestays",
+    ],
   },
   {
     icon: MapPin,
     title: "Service Areas",
-    items: [
-      "Arunachal Pradesh",
-      "Assam",
-      "Meghalaya",
-      "Nagaland"
-    ]
+    items: ["Arunachal Pradesh", "Assam", "Meghalaya", "Nagaland"],
   },
   {
     icon: CreditCard,
     title: "Payment Terms",
     items: [
-      "50% advance payment required",
+      "Complete package payment required at checkout",
       "Secure payment processing",
       "Multiple payment options",
-      "Transparent pricing"
-    ]
+      "Transparent pricing",
+    ],
   },
   {
     icon: AlertCircle,
@@ -52,32 +47,36 @@ const termsData = [
       "90% refund: 30+ days before",
       "50% refund: 15-29 days before",
       "25% refund: 7-14 days before",
-      "No refund: Less than 7 days"
-    ]
-  }
+      "No refund: Less than 7 days",
+    ],
+  },
 ];
 
 const additionalSections = [
   {
     title: "Documentation Requirements",
-    content: "Valid government ID, Inner Line Permits, and travel insurance are required for all tours. Medical declarations may be necessary for high-altitude treks.",
-    icon: FileCheck
+    content:
+      "Valid government ID, Inner Line Permits, and travel insurance are required for all tours. Medical declarations may be necessary for high-altitude treks.",
+    icon: FileCheck,
   },
   {
     title: "Photography Guidelines",
-    content: "Respect local photography restrictions. Commercial photography requires special permission. We retain rights to use tour photos for promotion.",
-    icon: Camera
+    content:
+      "Respect local photography restrictions. Commercial photography requires special permission. We retain rights to use tour photos for promotion.",
+    icon: Camera,
   },
   {
     title: "Group Conduct",
-    content: "Participants must follow guide instructions, respect local customs, and maintain punctuality. We reserve the right to modify itineraries for safety.",
-    icon: Users
+    content:
+      "Participants must follow guide instructions, respect local customs, and maintain punctuality. We reserve the right to modify itineraries for safety.",
+    icon: Users,
   },
   {
     title: "Legal Compliance",
-    content: "All tours operate under Indian tourism regulations. Disputes are subject to jurisdiction in Assam courts.",
-    icon: Landmark
-  }
+    content:
+      "All tours operate under Indian tourism regulations. Disputes are subject to jurisdiction in Assam courts.",
+    icon: Landmark,
+  },
 ];
 
 export default function TermsAndConditionsPage() {
@@ -86,7 +85,7 @@ export default function TermsAndConditionsPage() {
       {/* Background Elements */}
       <div className="absolute inset-0">
         <DotPattern className="opacity-20" />
-        <GlowEffect 
+        <GlowEffect
           color="primary"
           size="lg"
           opacity="low"
@@ -102,7 +101,7 @@ export default function TermsAndConditionsPage() {
 
       <div className="relative max-w-4xl mx-auto px-4 py-20">
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -120,14 +119,14 @@ export default function TermsAndConditionsPage() {
         </motion.div>
 
         {/* Main Terms Grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           {termsData.map((section, index) => (
-            <div 
+            <div
               key={index}
               className="relative p-8 rounded-2xl bg-white/50 dark:bg-accent-900/50 border border-primary-100/20 dark:border-primary-900/20 backdrop-blur-sm"
             >
@@ -136,10 +135,12 @@ export default function TermsAndConditionsPage() {
                   <section.icon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold mb-4">{section.title}</h3>
+                  <h3 className="text-lg font-semibold mb-4">
+                    {section.title}
+                  </h3>
                   <ul className="space-y-2">
                     {section.items.map((item, itemIndex) => (
-                      <li 
+                      <li
                         key={itemIndex}
                         className="flex items-start gap-2 text-muted-foreground dark:text-neutral-300"
                       >
@@ -155,14 +156,14 @@ export default function TermsAndConditionsPage() {
         </motion.div>
 
         {/* Additional Sections */}
-        <motion.div 
+        <motion.div
           className="space-y-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           {additionalSections.map((section, index) => (
-            <div 
+            <div
               key={index}
               className="p-8 rounded-2xl bg-white/50 dark:bg-accent-900/50 border border-primary-100/20 dark:border-primary-900/20 backdrop-blur-sm"
             >
@@ -171,7 +172,9 @@ export default function TermsAndConditionsPage() {
                   <section.icon className="w-6 h-6 text-primary-600 dark:text-primary-400" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">{section.title}</h3>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {section.title}
+                  </h3>
                   <p className="text-muted-foreground dark:text-neutral-300">
                     {section.content}
                   </p>
@@ -197,7 +200,7 @@ export default function TermsAndConditionsPage() {
         </motion.div> */}
 
         {/* Last Updated */}
-        <motion.div 
+        <motion.div
           className="text-center mt-16 text-sm text-muted-foreground dark:text-neutral-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

@@ -81,6 +81,13 @@ const paymentSqlTest = readFileSync(
   new URL("../supabase/tests/payu_payment_foundation.sql", import.meta.url),
   "utf8",
 );
+const fullPaymentMigration = readFileSync(
+  new URL(
+    "../supabase/migrations/202608210002_full_payment_product_info.sql",
+    import.meta.url,
+  ),
+  "utf8",
+);
 
 assert.match(paymentMigration, /PAYU_PGCRYPTO_SCHEMA_MISMATCH/);
 assert.equal(
@@ -97,6 +104,16 @@ assert.equal(
   (paymentSqlTest.match(/extensions\.digest\(/g) ?? []).length,
   4,
   "SQL fixtures must exercise the same Supabase pgcrypto schema",
+);
+assert.match(
+  paymentMigration,
+  /tour_name \|\| ' full payment'/,
+  "fresh payment databases must describe the complete package payment",
+);
+assert.match(
+  fullPaymentMigration,
+  /payment_attempts_normalize_product_info/,
+  "existing payment databases must normalize the PayU product label",
 );
 
 console.log("PayU foundation checks passed");

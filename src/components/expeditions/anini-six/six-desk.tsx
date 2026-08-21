@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
+import { CreditCard } from "lucide-react";
 import { sixPricing } from "@/data/expeditions/anini-six-days";
 import {
   partyTotal,
@@ -10,7 +11,6 @@ import {
   sixTierDetail,
   type TierDetail,
 } from "@/data/expeditions/anini-six-atlas";
-import { createAniniSixInquiryURL } from "@/lib/whatsapp";
 import { PlateImage } from "./plate";
 
 const inr = new Intl.NumberFormat("en-IN");
@@ -34,7 +34,8 @@ export function SixDesk() {
     sixPricing.tiers[0].id,
   );
 
-  const tier = sixPricing.tiers.find((t) => t.id === activeId) ?? sixPricing.tiers[0];
+  const tier =
+    sixPricing.tiers.find((t) => t.id === activeId) ?? sixPricing.tiers[0];
   const detail =
     sixTierDetail.find((d) => d.id === activeId) ?? sixTierDetail[0];
 
@@ -43,7 +44,10 @@ export function SixDesk() {
 
   const matrix = [
     { label: "Vehicle", value: detail.vehicle },
-    { label: "Seats used", value: `${detail.seatsFilled} of ${detail.seatsTotal}` },
+    {
+      label: "Seats used",
+      value: `${detail.seatsFilled} of ${detail.seatsTotal}`,
+    },
     { label: "Room on the long days", value: detail.space },
     { label: "Rooms", value: detail.room },
     { label: "Schedule", value: detail.schedule },
@@ -92,9 +96,7 @@ export function SixDesk() {
                 onClick={() => setActiveId(option.id)}
                 aria-pressed={selected}
                 className={`group relative flex flex-col gap-3 px-4 py-5 text-left transition-colors duration-200 sm:px-6 sm:py-7 ${
-                  selected
-                    ? "bg-[#16211D]"
-                    : "bg-[#070E0D] hover:bg-[#0E1815]"
+                  selected ? "bg-[#16211D]" : "bg-[#070E0D] hover:bg-[#0E1815]"
                 }`}
               >
                 <span className="flex items-baseline justify-between gap-2">
@@ -208,21 +210,14 @@ export function SixDesk() {
                 </div>
               </dl>
 
-              <a
-                href={createAniniSixInquiryURL({
-                  kind: "tier",
-                  label: tier.label,
-                  size: detail.size,
-                  price: tier.price,
-                })}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Enquire about the ${tier.label} rate on WhatsApp (opens in a new tab)`}
+              <Link
+                href={`/book/anini-pomo-grassland-expedition?tier=${tier.id}`}
+                aria-label={`Book the ${tier.label} rate`}
                 className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-[#F2EAD8] px-5 text-[13px] font-semibold text-[#07100D] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F2EAD8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0E1815]"
               >
-                <MessageCircle aria-hidden="true" className="h-4 w-4" />
-                Hold this rate
-              </a>
+                <CreditCard aria-hidden="true" className="h-4 w-4" />
+                Book and pay in full
+              </Link>
             </div>
 
             {/* Seat map + what changes. */}

@@ -95,25 +95,18 @@ export function CircuitBooking() {
                   {tier.note}
                 </p>
 
-                <a
-                  href={createGrandCircuitInquiryURL({
-                    kind: "tier",
-                    label: tier.label,
-                    size: tier.size,
-                    price: tier.price,
-                  })}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Enquire about ${tier.label} pricing on WhatsApp (opens in a new tab)`}
+                <Link
+                  href={`/book/mechuka-dong-anini-tour-package?tier=${tier.id}`}
+                  aria-label={`Book the ${tier.label} package`}
                   className={`mt-auto inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] px-4 pt-0 text-[12px] font-bold transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 ${
                     index === 0
                       ? "bg-[#19352a] text-white shadow-[0_16px_28px_-20px_rgba(0,0,0,0.9)] hover:bg-[#25493a] focus-visible:ring-[#19352a]"
                       : "bg-[#e8d9bb] text-[#102019] shadow-[0_16px_28px_-20px_rgba(0,0,0,0.95)] hover:bg-white focus-visible:ring-white"
                   }`}
                 >
-                  <MessageCircle aria-hidden="true" className="h-4 w-4" />
-                  Enquire for {tier.size === 2 ? "two" : tier.size}
-                </a>
+                  <CreditCard aria-hidden="true" className="h-4 w-4" />
+                  Book for {tier.size === 2 ? "two" : tier.size}
+                </Link>
               </article>
             ))}
           </div>
@@ -146,8 +139,8 @@ export function CircuitBooking() {
                 Confirm the road before you pay for it.
               </h3>
               <p className="mt-4 text-sm leading-6 text-white/[0.48]">
-                No open-ended Pay Now button. We first confirm your exact date,
-                room plan, vehicle and written quote.
+                Choose the correct party tier and departure date. Your complete
+                package total is calculated and fixed securely by our server.
               </p>
             </div>
 
@@ -156,20 +149,20 @@ export function CircuitBooking() {
                 {
                   icon: BadgeCheck,
                   number: "01",
-                  title: "Trip confirmed",
-                  text: "Final quote locked",
+                  title: "Choose package",
+                  text: "Live tour price",
                 },
                 {
                   icon: KeyRound,
                   number: "02",
-                  title: "Private access",
-                  text: "Reference + code",
+                  title: "Enter details",
+                  text: "Date + travellers",
                 },
                 {
                   icon: CreditCard,
                   number: "03",
                   title: "Pay on PayU",
-                  text: "50% advance",
+                  text: "Complete amount",
                 },
               ].map((step) => (
                 <li key={step.number} className="p-5 sm:p-6">
@@ -194,13 +187,13 @@ export function CircuitBooking() {
 
             <div className="flex flex-col justify-center p-6 sm:p-7 lg:col-span-3">
               <p className="text-xs leading-5 text-white/[0.45]">
-                Already received both details from Travelspire?
+                Ready to reserve the complete circuit?
               </p>
               <Link
-                href="/pay"
+                href="/book/mechuka-dong-anini-tour-package"
                 className="mt-4 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-[#e8d9bb] px-5 text-xs font-bold text-[#102019] shadow-[0_18px_28px_-21px_rgba(0,0,0,0.95)] transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
-                Open secure payment
+                Book and pay securely
                 <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
               </Link>
               <p className="mt-3 text-center text-[9px] uppercase tracking-[0.12em] text-white/[0.28]">

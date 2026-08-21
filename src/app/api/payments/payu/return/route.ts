@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { processPayUNotification } from "@/lib/payments/payu/notification";
+import { sendVerifiedPaymentEmails } from "@/lib/payments/email";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -31,6 +32,13 @@ export async function POST(request: Request) {
 
   try {
     const result = await processPayUNotification(formData, "return");
+    if (result.outcome === "success") {
+      try {
+        await sendVerifiedPaymentEmails(result.transactionId);
+      } catch (error) {
+        console.error("Verified payment receipt email was not sent", error);
+      }
+    }
     const publicResult =
       result.outcome === "success"
         ? "received"

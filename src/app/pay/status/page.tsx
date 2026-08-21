@@ -46,8 +46,8 @@ function formatAmount(amountPaise: number) {
 const statusCopy = {
   success: {
     eyebrow: "Verified by PayU",
-    title: "Advance received.",
-    body: "PayU and our server agree on the transaction ID, signed amount and captured status. Travelspire will now share the updated booking receipt and next steps.",
+    title: "Payment received.",
+    body: "PayU and our server agree on the transaction ID, signed amount and captured status. Your receipt is being sent by email, and Travelspire will share the next steps.",
     icon: CircleCheck,
     iconClass: "bg-[#315f4b] text-[#eff8ef]",
   },
