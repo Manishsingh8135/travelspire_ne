@@ -466,7 +466,7 @@ export const ziroFestival2026: FestivalTour = {
         days: 5,
         nights: 4,
       },
-      price: 15699,
+      price: 22999,
       description:
         "4N/5D complete package with travel, safari, village tour, and dome tent stay",
       inclusions: [
@@ -485,7 +485,7 @@ export const ziroFestival2026: FestivalTour = {
         days: 5,
         nights: 4,
       },
-      price: 17699,
+      price: 23999,
       description:
         "4N/5D premium package with travel, safari, village tour, and alpine tent stay",
       inclusions: [

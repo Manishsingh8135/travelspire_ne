@@ -48,7 +48,7 @@ const accommodationOptions = [
   },
   {
     name: "All Inclusive - Dome",
-    price: "₹15,699",
+    price: "₹22,999",
     duration: "4 Nights",
     features: ["Round-trip train tickets", "Pickup/drop transport", "4 nights dome tent", "Safari & village tour", "Inner Line Permit"],
     type: "Complete Package",
@@ -58,7 +58,7 @@ const accommodationOptions = [
   },
   {
     name: "All Inclusive - Alpine",
-    price: "₹17,699",
+    price: "₹23,999",
     duration: "4 Nights",
     features: ["Round-trip train tickets", "Pickup/drop transport", "4 nights alpine tent", "Safari & village tour", "Inner Line Permit"],
     type: "Premium Package",

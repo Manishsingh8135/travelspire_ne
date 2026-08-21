@@ -387,13 +387,23 @@ export const generateZiroFestival2026Schema = () => ({
     },
     {
       "@type": "Offer",
-      "name": "All Inclusive Package",
-      "price": "17699",
+      "name": "All Inclusive Package - Dome Tent",
+      "price": "22999",
       "priceCurrency": "INR",
       "availability": "https://schema.org/InStock",
       "validFrom": "2025-12-01",
       "validThrough": "2026-09-20",
-      "description": "Complete 4N/5D package with train tickets, alpine tent, safari, and village tour"
+      "description": "Complete 4N/5D package with train tickets, dome tent, safari, and village tour"
+    },
+    {
+      "@type": "Offer",
+      "name": "All Inclusive Package - Alpine Tent",
+      "price": "23999",
+      "priceCurrency": "INR",
+      "availability": "https://schema.org/InStock",
+      "validFrom": "2025-12-01",
+      "validThrough": "2026-09-20",
+      "description": "Complete 4N/5D premium package with train tickets, alpine tent, safari, and village tour"
     }
   ],
   "image": [

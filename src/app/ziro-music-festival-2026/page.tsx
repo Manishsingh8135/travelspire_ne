@@ -12,7 +12,7 @@ import { ImageSEO } from "@/components/seo/image-seo";
 
 export const metadata: Metadata = {
   title: { absolute: "Ziro Festival 2026 — Packages & Tickets | Travelspire NE" },
-  description: "Book Ziro Festival of Music 2026 packages (Sep 25–28). 35+ artists, eco-friendly camping in the UNESCO-tentative Apatani valley. All-inclusive from ₹1,999.",
+  description: "Book Ziro Festival of Music 2026 packages (Sep 25–28). Eco-friendly camping from ₹1,999; complete 4N/5D all-inclusive packages from ₹22,999.",
   keywords: "Ziro Music Festival 2026, Ziro Festival tickets, Ziro Festival packages, Ziro Festival 2026 booking, Arunachal Pradesh music festival, eco-friendly festival camping, Ziro Valley festival, indie music festival India, UNESCO heritage music festival, Apatani tribe festival",
   openGraph: {
     title: "Ziro Festival 2026 — Packages & Tickets | Travelspire NE",
