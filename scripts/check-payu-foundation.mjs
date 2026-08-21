@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import {
   createPaymentAccessTokenHash,
   createPayURequestHash,
@@ -68,5 +69,34 @@ for (let index = 0; index < 100; index += 1) {
   assert.match(transactionId, /^TS[A-Z0-9]{23}$/);
   assert.equal(transactionId.length, 25);
 }
+
+const paymentMigration = readFileSync(
+  new URL(
+    "../supabase/migrations/202608210001_payu_payment_foundation.sql",
+    import.meta.url,
+  ),
+  "utf8",
+);
+const paymentSqlTest = readFileSync(
+  new URL("../supabase/tests/payu_payment_foundation.sql", import.meta.url),
+  "utf8",
+);
+
+assert.match(paymentMigration, /PAYU_PGCRYPTO_SCHEMA_MISMATCH/);
+assert.equal(
+  (paymentMigration.match(/extensions\.gen_random_bytes\(/g) ?? []).length,
+  2,
+  "booking codes must use Supabase's schema-qualified pgcrypto generator",
+);
+assert.equal(
+  (paymentMigration.match(/extensions\.digest\(/g) ?? []).length,
+  1,
+  "booking access hashes must use Supabase's schema-qualified pgcrypto digest",
+);
+assert.equal(
+  (paymentSqlTest.match(/extensions\.digest\(/g) ?? []).length,
+  4,
+  "SQL fixtures must exercise the same Supabase pgcrypto schema",
+);
 
 console.log("PayU foundation checks passed");

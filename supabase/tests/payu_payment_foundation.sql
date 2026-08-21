@@ -3,6 +3,85 @@
 
 begin;
 
+do $payu_security_test$
+declare
+  v_table text;
+  v_function text;
+  v_privilege text;
+begin
+  foreach v_table in array array[
+    'tour_bookings',
+    'payment_attempts',
+    'payment_events'
+  ] loop
+    if not exists (
+      select 1
+      from pg_catalog.pg_class relation
+      join pg_catalog.pg_namespace namespace
+        on namespace.oid = relation.relnamespace
+      where namespace.nspname = 'public'
+        and relation.relname = v_table
+        and relation.relrowsecurity
+    ) then
+      raise exception 'PAYMENT_RLS_NOT_ENABLED:%', v_table;
+    end if;
+
+    if exists (
+      select 1
+      from pg_catalog.pg_policy policy
+      where policy.polrelid = format('public.%I', v_table)::regclass
+    ) then
+      raise exception 'PAYMENT_PUBLIC_POLICY_PRESENT:%', v_table;
+    end if;
+
+    foreach v_privilege in array array[
+      'SELECT',
+      'INSERT',
+      'UPDATE',
+      'DELETE'
+    ] loop
+      if has_table_privilege('anon', format('public.%I', v_table), v_privilege)
+        or has_table_privilege(
+          'authenticated',
+          format('public.%I', v_table),
+          v_privilege
+        ) then
+        raise exception
+          'PAYMENT_BROWSER_PRIVILEGE_PRESENT:%:%',
+          v_table,
+          v_privilege;
+      end if;
+
+      if not has_table_privilege(
+        'service_role',
+        format('public.%I', v_table),
+        v_privilege
+      ) then
+        raise exception
+          'PAYMENT_SERVICE_PRIVILEGE_MISSING:%:%',
+          v_table,
+          v_privilege;
+      end if;
+    end loop;
+  end loop;
+
+  foreach v_function in array array[
+    'public.issue_tour_booking(text,text,text,smallint,date,text,text,text,bigint,bigint,timestamp with time zone)',
+    'public.start_payu_payment(text,text,text,text)',
+    'public.record_payu_result(text,text,text,text,boolean,boolean,text,text,text,text,jsonb)'
+  ] loop
+    if has_function_privilege('anon', v_function, 'EXECUTE')
+      or has_function_privilege('authenticated', v_function, 'EXECUTE') then
+      raise exception 'PAYMENT_BROWSER_FUNCTION_EXECUTE_PRESENT:%', v_function;
+    end if;
+
+    if not has_function_privilege('service_role', v_function, 'EXECUTE') then
+      raise exception 'PAYMENT_SERVICE_FUNCTION_EXECUTE_MISSING:%', v_function;
+    end if;
+  end loop;
+end;
+$payu_security_test$;
+
 do $payu_test$
 declare
   v_issued record;
@@ -34,7 +113,7 @@ begin
   select * into v_attempt
   from public.start_payu_payment(
     v_issued.booking_reference,
-    encode(digest(v_issued.payment_code, 'sha256'), 'hex'),
+    encode(extensions.digest(v_issued.payment_code, 'sha256'), 'hex'),
     'TSTSUCCESS0000000000001',
     'booking-and-terms-test'
   );
@@ -110,7 +189,7 @@ begin
   select * into v_pending_attempt
   from public.start_payu_payment(
     v_pending_issued.booking_reference,
-    encode(digest(v_pending_issued.payment_code, 'sha256'), 'hex'),
+    encode(extensions.digest(v_pending_issued.payment_code, 'sha256'), 'hex'),
     'TSTPENDING0000000000001',
     'booking-and-terms-test'
   );
@@ -134,7 +213,7 @@ begin
     perform *
     from public.start_payu_payment(
       v_pending_issued.booking_reference,
-      encode(digest(v_pending_issued.payment_code, 'sha256'), 'hex'),
+      encode(extensions.digest(v_pending_issued.payment_code, 'sha256'), 'hex'),
       'TSTDUPLICATE00000000001',
       'booking-and-terms-test'
     );
@@ -165,7 +244,7 @@ begin
     perform *
     from public.start_payu_payment(
       v_pending_issued.booking_reference,
-      encode(digest(v_pending_issued.payment_code, 'sha256'), 'hex'),
+      encode(extensions.digest(v_pending_issued.payment_code, 'sha256'), 'hex'),
       'TSTREVIEW00000000000001',
       'booking-and-terms-test'
     );

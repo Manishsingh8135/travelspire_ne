@@ -28,6 +28,12 @@ Apply:
 
 `supabase/migrations/202608210001_payu_payment_foundation.sql`
 
+The migration installs or reuses `pgcrypto` in Supabase's `extensions` schema
+and schema-qualifies every cryptographic call. If an existing project has
+`pgcrypto` in a different schema, the migration stops with
+`PAYU_PGCRYPTO_SCHEMA_MISMATCH` before creating payment tables; inspect and
+resolve that extension layout instead of weakening the function search path.
+
 It creates:
 
 - `tour_bookings`: confirmed commercial/customer snapshot and payment access

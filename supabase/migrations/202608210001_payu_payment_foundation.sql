@@ -4,7 +4,29 @@
 -- booking must be confirmed by the operator before a payment attempt can be
 -- created. All tables are server-only: RLS is enabled with no public policies.
 
-create extension if not exists pgcrypto;
+-- Supabase keeps extensions outside public. Pinning pgcrypto to that schema
+-- prevents SECURITY DEFINER functions from depending on a mutable search path.
+do $$
+declare
+  v_pgcrypto_schema text;
+begin
+  select namespace.nspname
+  into v_pgcrypto_schema
+  from pg_catalog.pg_extension extension
+  join pg_catalog.pg_namespace namespace
+    on namespace.oid = extension.extnamespace
+  where extension.extname = 'pgcrypto'
+  limit 1;
+
+  if v_pgcrypto_schema is not null
+    and v_pgcrypto_schema <> 'extensions' then
+    raise exception 'PAYU_PGCRYPTO_SCHEMA_MISMATCH';
+  end if;
+end;
+$$;
+
+create schema if not exists extensions;
+create extension if not exists pgcrypto with schema extensions;
 
 create table if not exists public.tour_bookings (
   id uuid primary key default gen_random_uuid(),
@@ -194,8 +216,12 @@ begin
     raise exception 'INVALID_CUSTOMER_DETAILS';
   end if;
 
-  v_reference := 'TSMDA-' || upper(substr(encode(gen_random_bytes(8), 'hex'), 1, 12));
-  v_payment_code := upper(encode(gen_random_bytes(16), 'hex'));
+  v_reference := 'TSMDA-' || upper(substr(
+    encode(extensions.gen_random_bytes(8), 'hex'),
+    1,
+    12
+  ));
+  v_payment_code := upper(encode(extensions.gen_random_bytes(16), 'hex'));
 
   insert into public.tour_bookings (
     reference,
@@ -215,7 +241,7 @@ begin
     payment_link_expires_at
   ) values (
     v_reference,
-    encode(digest(v_payment_code, 'sha256'), 'hex'),
+    encode(extensions.digest(v_payment_code, 'sha256'), 'hex'),
     trim(p_tour_slug),
     trim(p_tour_name),
     trim(p_package_tier_id),
