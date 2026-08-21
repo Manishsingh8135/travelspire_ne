@@ -24,10 +24,17 @@ export default async function BookTourPage({
   const product = getBookingProduct(slug);
   if (!product) notFound();
   const initialTierId = typeof query.tier === "string" ? query.tier : undefined;
+  const isTestMode = process.env.PAYU_ENVIRONMENT !== "production";
 
   return (
     <div className="min-h-screen bg-[#07110f] px-5 pb-24 pt-32 text-[#f6efe2] sm:px-8 sm:pt-36 lg:px-16 xl:px-24">
       <main className="mx-auto w-full max-w-[1380px]">
+        {isTestMode && (
+          <div className="mb-8 rounded-[10px] border border-[#d7b978]/35 bg-[#d7b978]/10 px-4 py-3 text-xs font-semibold leading-5 text-[#f0d99f]">
+            PayU sandbox preview — use test payment details only. No real money
+            will be charged.
+          </div>
+        )}
         <Link
           href={product.sourceUrl}
           className="inline-flex items-center gap-2 text-xs font-semibold text-white/55 transition-colors hover:text-white"
@@ -88,6 +95,7 @@ export default async function BookTourPage({
             <BookingCheckoutForm
               product={product}
               initialTierId={initialTierId}
+              isTestMode={isTestMode}
             />
           </div>
         </div>

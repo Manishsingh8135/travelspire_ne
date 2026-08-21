@@ -3,6 +3,7 @@ import {
   circuitPricing,
 } from "@/data/expeditions/mechuka-dong-anini";
 import { sixMeta, sixPricing } from "@/data/expeditions/anini-six-days";
+import { awfSharedTransfer } from "@/data/festivals/anini-winter-fest";
 import { upcomingTours } from "@/data/tours";
 import { isRegularTour } from "@/types/tours/tour";
 
@@ -20,6 +21,7 @@ export type BookingProduct = {
   name: string;
   sourceUrl: string;
   defaultDepartureDate: string | null;
+  fixedDepartureDate: string | null;
   tiers: BookingTier[];
 };
 
@@ -50,6 +52,7 @@ function regularProducts(): BookingProduct[] {
       name: tour.title,
       sourceUrl: `/tours/${tour.slug}`,
       defaultDepartureDate: "eventDates" in tour ? tour.eventDates.start : null,
+      fixedDepartureDate: null,
       tiers,
     };
   });
@@ -61,6 +64,7 @@ const expeditionProducts: BookingProduct[] = [
     name: circuitMeta.shortTitle,
     sourceUrl: `/tours/${circuitMeta.slug}`,
     defaultDepartureDate: null,
+    fixedDepartureDate: null,
     tiers: circuitPricing.tiers.map((tier) => ({
       id: tier.id,
       name: tier.label,
@@ -75,6 +79,7 @@ const expeditionProducts: BookingProduct[] = [
     name: sixMeta.title,
     sourceUrl: `/tours/${sixMeta.slug}`,
     defaultDepartureDate: null,
+    fixedDepartureDate: null,
     tiers: sixPricing.tiers.map((tier) => ({
       id: tier.id,
       name: tier.label,
@@ -86,11 +91,32 @@ const expeditionProducts: BookingProduct[] = [
   },
 ];
 
+const festivalTravelProducts: BookingProduct[] = [
+  {
+    slug: awfSharedTransfer.slug,
+    name: `Anini Winter Fest 2026 · ${awfSharedTransfer.name}`,
+    sourceUrl: "/#transport",
+    defaultDepartureDate: awfSharedTransfer.departureDate,
+    fixedDepartureDate: awfSharedTransfer.departureDate,
+    tiers: [
+      {
+        id: "shared-convoy",
+        name: "Return shared convoy · 18–21 September",
+        unitPrice: awfSharedTransfer.price,
+        minTravellers: 1,
+        maxTravellers: awfSharedTransfer.maxTravellersPerBooking,
+        fixedTravellers: null,
+      },
+    ],
+  },
+];
+
 const expeditionSlugs = new Set(
   expeditionProducts.map((product) => product.slug),
 );
 
 export const bookingProducts = [
+  ...festivalTravelProducts,
   ...expeditionProducts,
   ...regularProducts().filter((product) => !expeditionSlugs.has(product.slug)),
 ];

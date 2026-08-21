@@ -28,9 +28,11 @@ function localDateString(date = new Date()) {
 export function BookingCheckoutForm({
   product,
   initialTierId,
+  isTestMode = false,
 }: {
   product: BookingProduct;
   initialTierId?: string;
+  isTestMode?: boolean;
 }) {
   const firstTier =
     product.tiers.find((tier) => tier.id === initialTierId) ?? product.tiers[0];
@@ -151,8 +153,9 @@ export function BookingCheckoutForm({
                 required
                 min={localDateString()}
                 value={departureDate}
+                disabled={product.fixedDepartureDate !== null}
                 onChange={(event) => setDepartureDate(event.target.value)}
-                className="field-control"
+                className="field-control disabled:cursor-not-allowed disabled:bg-[#e4d9c5]"
               />
             </Field>
           </div>
@@ -264,6 +267,11 @@ export function BookingCheckoutForm({
           <ShieldCheck aria-hidden="true" className="h-4 w-4 text-[#315f4b]" />
           Price verified on our server · PayU hosted checkout
         </p>
+        {isTestMode && (
+          <p className="mt-2 text-center text-[10px] font-bold uppercase tracking-[0.12em] text-[#965136]">
+            Sandbox payment · no real charge
+          </p>
+        )}
       </div>
       <style jsx>{`
         .field-control {

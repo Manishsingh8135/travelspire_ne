@@ -76,6 +76,16 @@ export async function POST(request: Request) {
     );
   }
 
+  if (
+    resolved.product.fixedDepartureDate !== null &&
+    parsed.data.departureDate !== resolved.product.fixedDepartureDate
+  ) {
+    return noStoreJson(
+      { error: "That departure date is not available for this package." },
+      409,
+    );
+  }
+
   try {
     const booking = await issueTourBooking({
       tourSlug: resolved.product.slug,

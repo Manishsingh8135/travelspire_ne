@@ -1,4 +1,12 @@
-import { Check, Clock3, MessageCircle, Phone, UtensilsCrossed } from "lucide-react";
+import Link from "next/link";
+import {
+  Check,
+  Clock3,
+  CreditCard,
+  MessageCircle,
+  Phone,
+  UtensilsCrossed,
+} from "lucide-react";
 import {
   awfContact,
   awfFleet,
@@ -33,9 +41,9 @@ export function AwfTransport() {
             </span>
           </h2>
           <p className="mt-6 max-w-[36rem] text-base leading-7 text-[#5a655e] sm:text-lg sm:leading-8">
-            Travelspire has run the Dibrugarh–Anini stretch for years. Tell us you&apos;re
-            coming for the fest and we sort the rest — seats, SUVs, permits and
-            exactly when to leave so you cross Mayodia in daylight.
+            Travelspire has run the Dibrugarh–Anini stretch for years. Tell us
+            you&apos;re coming for the fest and we sort the rest — seats, SUVs,
+            permits and exactly when to leave so you cross Mayodia in daylight.
           </p>
         </div>
 
@@ -60,7 +68,9 @@ export function AwfTransport() {
                 <span className="text-[2.6rem] font-medium leading-none tracking-[-0.04em] text-white">
                   ₹{priceFormatter.format(shared.price)}
                 </span>
-                <span className="ml-2 text-sm text-white/[0.55]">{shared.unit}</span>
+                <span className="ml-2 text-sm text-white/[0.55]">
+                  {shared.unit}
+                </span>
               </p>
               <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/[0.5]">
                 {shared.window}
@@ -81,7 +91,9 @@ export function AwfTransport() {
                       className="flex items-center justify-between rounded-[10px] bg-white/[0.05] px-4 py-3"
                     >
                       <span className="flex items-center gap-3 text-sm font-medium">
-                        <span className="text-[10px] font-bold text-[#cdb783]">{index + 1}</span>
+                        <span className="text-[10px] font-bold text-[#cdb783]">
+                          {index + 1}
+                        </span>
                         {pickup.point}
                       </span>
                       <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-white/[0.65]">
@@ -95,8 +107,13 @@ export function AwfTransport() {
 
               {/* Meal stops */}
               <p className="mt-6 inline-flex items-center gap-2 text-[11px] leading-5 text-white/[0.55]">
-                <UtensilsCrossed aria-hidden="true" className="h-4 w-4 flex-none text-[#cdb783]" />
-                {shared.meals.map((meal) => `${meal.meal} at ${meal.where}`).join(" · ")}
+                <UtensilsCrossed
+                  aria-hidden="true"
+                  className="h-4 w-4 flex-none text-[#cdb783]"
+                />
+                {shared.meals
+                  .map((meal) => `${meal.meal} at ${meal.where}`)
+                  .join(" · ")}
               </p>
 
               {/* Inclusions */}
@@ -106,7 +123,10 @@ export function AwfTransport() {
                     key={inclusion}
                     className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.14] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-white/[0.66]"
                   >
-                    <Check aria-hidden="true" className="h-3 w-3 text-[#cdb783]" />
+                    <Check
+                      aria-hidden="true"
+                      className="h-3 w-3 text-[#cdb783]"
+                    />
                     {inclusion}
                   </li>
                 ))}
@@ -115,14 +135,21 @@ export function AwfTransport() {
                 At actuals, not bundled: {shared.atActuals.join(" · ")}
               </p>
 
+              <Link
+                href={`/book/${shared.slug}`}
+                className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-[#eadfc8] px-5 text-[11px] font-bold uppercase tracking-[0.13em] text-[#09110d] transition-colors duration-200 hover:bg-[#f8f1e4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#eadfc8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#17241d]"
+              >
+                <CreditCard aria-hidden="true" className="h-4 w-4" />
+                Book &amp; pay securely
+              </Link>
               <a
                 href={createAwfInquiryURL({ kind: "shared-transfer" })}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-[#eadfc8] px-5 text-[11px] font-bold uppercase tracking-[0.13em] text-[#09110d] transition-colors duration-200 hover:bg-[#f8f1e4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#eadfc8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#17241d]"
+                className="mt-3 inline-flex min-h-10 w-full items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-white/60 transition-colors hover:text-white"
               >
                 <MessageCircle aria-hidden="true" className="h-4 w-4" />
-                Reserve a seat
+                Ask before booking
               </a>
               <p className="mt-4 text-center text-[10px] leading-4 tracking-[0.06em] text-white/[0.4]">
                 {shared.pickupNote}
@@ -148,7 +175,9 @@ export function AwfTransport() {
                       </h3>
                       <p className="text-[15px] font-semibold text-[#6b4a2f]">
                         ₹{priceFormatter.format(vehicle.pricePerDay)}
-                        <span className="text-[11px] font-medium text-[#7a7263]">/day</span>
+                        <span className="text-[11px] font-medium text-[#7a7263]">
+                          /day
+                        </span>
                       </p>
                     </div>
                     <p className="mt-1.5 font-serif text-[15px] italic leading-6 text-[#6a5c49]">
@@ -177,23 +206,29 @@ export function AwfTransport() {
                 Per vehicle, per day — all included
               </p>
               <p className="mt-2 text-sm leading-6 text-[#526057]">
-                {awfFleetInclusions.join(" · ")}. One price, no surprise charges at the
-                end of the trip. Bookings and availability are handled directly by
-                Travelspire Northeast.
+                {awfFleetInclusions.join(" · ")}. One price, no surprise charges
+                at the end of the trip. Bookings and availability are handled
+                directly by Travelspire Northeast.
               </p>
               <p className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2">
                 <a
                   href={awfContact.phonePrimaryHref}
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#17241d] underline-offset-4 hover:underline"
                 >
-                  <Phone aria-hidden="true" className="h-4 w-4 text-[#87543a]" />
+                  <Phone
+                    aria-hidden="true"
+                    className="h-4 w-4 text-[#87543a]"
+                  />
                   {awfContact.phonePrimary}
                 </a>
                 <a
                   href={awfContact.phoneSecondaryHref}
                   className="inline-flex items-center gap-2 text-sm font-semibold text-[#17241d] underline-offset-4 hover:underline"
                 >
-                  <Phone aria-hidden="true" className="h-4 w-4 text-[#87543a]" />
+                  <Phone
+                    aria-hidden="true"
+                    className="h-4 w-4 text-[#87543a]"
+                  />
                   {awfContact.phoneSecondary}
                 </a>
               </p>
