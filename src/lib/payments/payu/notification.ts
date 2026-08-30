@@ -53,6 +53,13 @@ function requiredValue(values: Record<string, string>, key: string) {
   return value;
 }
 
+function normalizePayUProductInfo(value: string) {
+  // PayU may canonicalize plus signs and repeated whitespace in productinfo
+  // while preserving the signed transaction. Compare its display label in a
+  // canonical form rather than rejecting an otherwise valid callback.
+  return value.replaceAll("+", " ").replace(/\s+/g, " ").trim();
+}
+
 function sanitizeProviderPayload(values: Record<string, string>) {
   const allowedKeys = [
     "txnid",
@@ -89,7 +96,8 @@ function snapshotMatchesNotification(
     values.key === merchantKey &&
     amountPaise === attempt.expected_amount_paise &&
     values.txnid === attempt.txnid &&
-    values.productinfo === attempt.product_info &&
+    normalizePayUProductInfo(values.productinfo ?? "") ===
+      normalizePayUProductInfo(attempt.product_info) &&
     values.firstname === attempt.customer_first_name &&
     values.email === attempt.customer_email &&
     (values.udf1 ?? "") === attempt.udf1 &&

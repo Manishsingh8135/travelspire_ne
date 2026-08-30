@@ -10,7 +10,8 @@ function statusRedirect(
   transactionId: string,
   result: string,
 ) {
-  const url = new URL("/pay/status", request.url);
+  const baseUrl = process.env.PAYU_PUBLIC_BASE_URL?.trim() || request.url;
+  const url = new URL("/pay/status", baseUrl);
   if (transactionId) url.searchParams.set("txnid", transactionId);
   url.searchParams.set("result", result);
 
