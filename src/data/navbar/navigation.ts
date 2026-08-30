@@ -166,25 +166,25 @@ import {
             name: "Arunachal Pradesh ILP",
             href: "/permits/arunachal-pradesh-ilp",
             icon: Mountain,
-            description: "₹100 • 24hr processing • Land of Rising Sun"
+            description: "24hr processing • Land of Rising Sun"
           },
           {
             name: "Nagaland ILP",
             href: "/permits/nagaland-ilp",
             icon: Music,
-            description: "₹200 • Hornbill Festival • Land of Festivals"
+            description: "Hornbill Festival • Land of Festivals"
           },
           {
             name: "Mizoram ILP",
             href: "/permits/mizoram-ilp",
             icon: TreePine,
-            description: "₹120 • On Arrival at Airport • Land of Blue Mountains"
+            description: "On Arrival at Airport • Land of Blue Mountains"
           },
           {
             name: "Manipur ILP",
             href: "/permits/manipur-ilp",
             icon: Bird,
-            description: "₹100 • Sangai Festival • Jewel of India"
+            description: "Sangai Festival • Jewel of India"
           },
           {
             name: "Sikkim Permit",
