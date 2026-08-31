@@ -16,40 +16,23 @@ import {
     TreePine,
     Footprints,
     Hotel,
-    Car,
+    MapPin,
     Music,
     Shield
   } from "lucide-react";
   
   export const navigationData: NavigationData = {
     primary: [
-      { 
-        name: "All Tours", 
+      {
+        name: "All Tours",
         href: "/all-tours",
-        icon: Map 
-      },
-      { 
-        name: "Festivals", 
-        href: "/all-tours?category=Festival",
-        icon: Music 
+        icon: Map
       },
       {
         name: "Destinations",
         href: "/places/dibang-valley",
         icon: Compass,
         submenu: [
-          {
-            name: "Mechuka · Dong · Anini",
-            href: "/tours/mechuka-dong-anini-tour-package",
-            icon: Car,
-            description: "The grand Arunachal circuit · 12N/13D"
-          },
-          {
-            name: "Six Days in the Dibang",
-            href: "/tours/anini-pomo-grassland-expedition",
-            icon: Tent,
-            description: "Anini + Pomo Grassland · 5N/6D"
-          },
           {
             name: "Anini",
             href: "/places/anini",
@@ -63,6 +46,18 @@ import {
             description: "The whole region, one hub"
           },
           {
+            name: "Mechuka",
+            href: "/tours/mechuka-expedition",
+            icon: Tent,
+            description: "Monastery valley, old bridges"
+          },
+          {
+            name: "Dong & Walong",
+            href: "/tours/dong-valley-expedition",
+            icon: Footprints,
+            description: "India's first light"
+          },
+          {
             name: "Dambuk",
             href: "/places/dambuk",
             icon: TreePine,
@@ -71,8 +66,14 @@ import {
           {
             name: "Roing",
             href: "/places/roing",
-            icon: Footprints,
+            icon: MapPin,
             description: "The gateway — NH-313 mile zero"
+          },
+          {
+            name: "Tawang",
+            href: "/tours/tawang-expedition",
+            icon: Mountain,
+            description: "The great monastery road west"
           },
           {
             name: "The Way to Anini",
@@ -81,6 +82,11 @@ import {
             description: "The road, in nine chapters"
           },
         ],
+      },
+      {
+        name: "Festivals",
+        href: "/all-tours?category=Festival",
+        icon: Music
       },
       /* Temporarily hidden - Destinations
       {
@@ -194,10 +200,10 @@ import {
           },
         ]
       },
-      { 
-        name: "About Us", 
+      {
+        name: "About",
         href: "/about",
-        icon: Info 
+        icon: Info
       },
       { 
         name: "Contact", 

@@ -1,34 +1,35 @@
 import type { Metadata } from "next";
-import { AwfPageExperience } from "@/components/festivals/anini/awf-page-experience";
-import { awfEdition, awfHeroImages } from "@/data/festivals/anini-winter-fest";
+import { HomeExperience } from "@/components/home/home-experience";
+import { homeHero } from "@/data/home/homepage";
 
 const pageUrl = "https://travelspirene.com";
-const heroImageUrl = `${pageUrl}${awfHeroImages.desktop.src}`;
-const isPast = awfEdition.status === "past";
+const heroImageUrl = `${pageUrl}${homeHero.images.desktop.src}`;
 
 export const metadata: Metadata = {
   title: {
-    absolute: isPast
-      ? `Anini Winter Fest ${awfEdition.nextYear} — Dates Soon | Travelspire NE`
-      : "Anini Winter Fest 2026 — Official Travel & Taxi Partner | Travelspire NE",
+    absolute: "Northeast India Tours & Local Travel Experiences | Travelspire NE",
   },
-  description: isPast
-    ? "Plan the next Anini Winter Fest with Travelspire Northeast, and explore the complete Anini and Dibang Valley travel guides."
-    : "Travel to Anini Winter Fest 2026 with the Official Travel & Taxi Partner. Shared Dibrugarh–Anini convoy ₹5,499/person, private SUVs, ILP assistance and stays.",
+  description:
+    "Explore Northeast India with locally guided tours, Arunachal expeditions, festival journeys, permit assistance and custom travel planning from Travelspire North-East.",
   keywords: [
-    "Anini Winter Fest 2026",
-    "Anini Winter Festival",
-    "Anini Winter Fest travel partner",
-    "Dibrugarh to Anini festival transport",
-    "Anini shared cab",
-    "Dibang Valley music festival",
-    "Arunachal Pradesh festival September 2026",
+    "Northeast India tours",
+    "Arunachal Pradesh tour packages",
+    "Northeast India travel agency",
+    "Assam to Arunachal tours",
+    "offbeat Northeast India travel",
+    "Arunachal adventure tours",
+    "Northeast India festival tours",
+    "Dibrugarh travel agency",
+    "Anini and Dibang Valley tours",
+    "Mechuka tour packages",
+    "Dong Valley sunrise tours",
+    "Travelspire NE",
   ],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Anini Winter Fest 2026 | Official Travel Partner — Travelspire NE",
+    title: "Northeast India Tours & Local Travel Experiences | Travelspire NE",
     description:
-      "Music at the edge of the map. Shared convoy, private SUVs, ILP assistance and stays for 19–20 September in Dibang Valley.",
+      "Locally guided tours, remote expeditions, festival journeys and permit assistance across Arunachal Pradesh, Assam and the wider Northeast.",
     url: pageUrl,
     siteName: "Travelspire NE",
     images: [
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
         url: heroImageUrl,
         width: 1200,
         height: 675,
-        alt: "Dibang Valley mountains around Anini — venue of Anini Winter Fest 2026",
+        alt: "A journey vehicle on a mountain road through Mechuka, Arunachal Pradesh",
       },
     ],
     locale: "en_IN",
@@ -44,14 +45,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anini Winter Fest 2026 · Official Travel & Taxi Partner",
+    title: "Northeast India Tours & Local Travel Experiences | Travelspire NE",
     description:
-      "Shared convoy ₹5,499, private SUVs, ILP assistance and stays for Anini Winter Fest 2026.",
+      "Locally guided tours, Arunachal expeditions, festival journeys and permit assistance — from a Dibrugarh-based team.",
     images: [heroImageUrl],
     site: "@TravelSpireNE",
   },
 };
 
 export default function Home() {
-  return <AwfPageExperience pageUrl={pageUrl} isHomepage />;
+  return <HomeExperience />;
 }
