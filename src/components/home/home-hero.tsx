@@ -49,7 +49,7 @@ export function HomeHero() {
           gradient bands visibly. Contrast lands only where type sits. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,26,21,0.90)_0%,rgba(14,26,21,0.78)_12%,rgba(14,26,21,0.54)_28%,rgba(14,26,21,0.28)_44%,rgba(14,26,21,0.10)_60%,rgba(14,26,21,0.14)_82%,rgba(14,26,21,0.42)_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,26,21,0.90)_0%,rgba(14,26,21,0.78)_12%,rgba(14,26,21,0.54)_28%,rgba(14,26,21,0.28)_44%,rgba(14,26,21,0.10)_60%,rgba(14,26,21,0.22)_82%,rgba(14,26,21,0.55)_100%)]"
       />
       <div
         aria-hidden="true"

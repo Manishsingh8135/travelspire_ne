@@ -19,13 +19,12 @@ export const AdvancedNavbar = () => {
   const { scrollY } = useScroll();
   const pathname = usePathname();
 
-  // The homepage hero runs full-bleed underneath the navbar, so the bar has
-  // to stay light-on-dark while it sits over the photograph and only flip to
-  // cream once the page has scrolled onto paper. Every other route is dark
-  // throughout. The tone is published as a data attribute and the nav
-  // internals read it through CSS variables, so no child branches on markup.
-  const isHome = pathname === "/";
-  const tone = isHome && isScrolled ? "light" : "dark";
+  // Always the dark nav: white type, brass accent, ink panels. At the top of
+  // the page the bar itself is empty so full-bleed heroes show through; once
+  // the page has moved — or the mobile drawer is open — it fills with the
+  // ink scrolled colour. Tone is published as a data attribute so children
+  // read CSS variables and never branch on markup.
+  const isSolid = isScrolled || isOpen;
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 20);
@@ -42,21 +41,22 @@ export const AdvancedNavbar = () => {
     };
   }, [isMobile, isOpen]);
 
-  // A route change while the drawer is open would otherwise leave the body
-  // scroll-locked.
+  // Close the drawer on navigation, and match the bar to the new page's
+  // scroll position (Next.js usually resets to top, but not always).
   useEffect(() => {
     setIsOpen(false);
     setActive(null);
+    setIsScrolled(window.scrollY > 20);
   }, [pathname]);
 
   return (
     <header
-      data-nav-tone={tone}
+      data-nav-tone="dark"
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
-        isScrolled
+        "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300",
+        isSolid
           ? "border-[color:var(--nav-border)] bg-[color:var(--nav-scrolled-bg)] shadow-[var(--nav-scrolled-shadow)] backdrop-blur-xl"
-          : "border-transparent bg-gradient-to-b from-black/[0.65] via-black/25 to-transparent",
+          : "border-transparent bg-transparent",
       )}
     >
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24">

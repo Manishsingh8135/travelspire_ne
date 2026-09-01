@@ -120,10 +120,10 @@
   }
 
   /* ── Navbar tone ──────────────────────────────────────────────────────
-     The navbar is fixed and shared by every route, but the homepage is a
-     light page while the destination and expedition pages are dark. Rather
-     than branching markup in three components, the header publishes a tone
-     and the nav internals read these variables. */
+     The navbar is always dark — white type over an ink bar — on every
+     route, including the cream homepage. The header publishes the tone
+     and the nav internals read these variables, so no child branches.
+     Light tokens stay for a possible future invert; nothing reads them. */
   [data-nav-tone="dark"] {
     --nav-fg: rgba(255, 255, 255, 0.72);
     --nav-fg-strong: #ffffff;
