@@ -37,7 +37,7 @@ export const metadata: Metadata = {
         url: heroImageUrl,
         width: 1200,
         height: 675,
-        alt: "A journey vehicle on a mountain road through Mechuka, Arunachal Pradesh",
+        alt: "Mountain valley and high road through Mechuka, Arunachal Pradesh",
       },
     ],
     locale: "en_IN",

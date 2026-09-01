@@ -4,7 +4,9 @@ import { StructuredData } from "@/components/seo/structured-data";
 import { ValleyChapters, ValleyHero, ValleyRiver } from "@/components/places/dibang-valley/valley-sections";
 import { ValleyGo } from "@/components/places/dibang-valley/valley-plan";
 import { ValleySeasons } from "@/components/places/dibang-valley/valley-seasons";
-import { valleyFaqSection } from "@/data/places/dibang-valley";
+import { valleyFaqSection, valleyHeroImages } from "@/data/places/dibang-valley";
+import { ImageSEO } from "@/components/seo/image-seo";
+import { anini2026Images } from "@/data/seo/image-seo-data";
 
 export const metadata: Metadata = {
   title: {
@@ -17,6 +19,9 @@ export const metadata: Metadata = {
     "dibang valley travel guide",
     "dibang valley arunachal pradesh",
     "anini dambuk roing",
+    "pomo grassland trek",
+    "seven lakes trek anini",
+    "emuli grassland",
     "lower dibang valley",
     "nh-313 road trip",
     "mayodia pass",
@@ -33,10 +38,10 @@ export const metadata: Metadata = {
     type: "article",
     images: [
       {
-        url: "/images/places/pomo/pomo1.JPG",
-        width: 3024,
-        height: 4032,
-        alt: "Vast grasslands and ridgelines of the Dibang region",
+        url: valleyHeroImages.desktop.src,
+        width: valleyHeroImages.desktop.width,
+        height: valleyHeroImages.desktop.height,
+        alt: valleyHeroImages.alt,
       },
     ],
   },
@@ -54,7 +59,7 @@ const placeSchema = {
   description:
     "Two districts sharing one river in eastern Arunachal Pradesh: Lower Dibang Valley (Roing, Dambuk) in the foothills and Dibang Valley district (Anini and beyond) in the high mountains. India's largest district by area, with fewer than one person per square kilometre.",
   url: "https://travelspirene.com/places/dibang-valley",
-  image: ["https://travelspirene.com/images/places/pomo/pomo1.JPG"],
+  image: [`https://travelspirene.com${valleyHeroImages.desktop.src}`],
   sameAs: [
     "https://en.wikipedia.org/wiki/Dibang_Valley_district",
     "https://en.wikipedia.org/wiki/Lower_Dibang_Valley_district",
@@ -128,6 +133,7 @@ export default function DibangValleyPlacePage() {
   return (
     <div className="min-h-screen bg-[#050d0f]">
       <StructuredData data={valleyGraph} />
+      <ImageSEO images={anini2026Images} limit={14} />
 
       <ValleyHero />
       <ValleyChapters />

@@ -6,7 +6,9 @@ import { AniniHero, AniniManifesto } from "@/components/places/anini/anini-hero"
 import { AniniGo, AniniSeasons } from "@/components/places/anini/anini-plan";
 import { AniniRoute } from "@/components/places/anini/anini-route";
 import { StructuredData } from "@/components/seo/structured-data";
+import { ImageSEO } from "@/components/seo/image-seo";
 import { aniniFaqSection, aniniHeroImages, aniniMeta } from "@/data/places/anini";
+import { anini2026Images } from "@/data/seo/image-seo-data";
 
 const pageUrl = "https://travelspirene.com/places/anini";
 const heroImageUrl = `https://travelspirene.com${aniniHeroImages.desktop.src}`;
@@ -33,6 +35,9 @@ export const metadata: Metadata = {
     "places to visit in Anini",
     "Dri Valley",
     "Pomo Grassland",
+    "Seven Lakes Trek Anini",
+    "Emuli Grassland",
+    "Anini waterfalls",
     "Idu Mishmi",
     "Dibang Valley travel guide",
     "Anini homestay",
@@ -46,9 +51,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: heroImageUrl,
-        width: 1200,
-        height: 675,
-        alt: "Cloud over the Anini plateau in Dibang Valley, Arunachal Pradesh",
+        width: 4032,
+        height: 3024,
+        alt: "Double rainbow over mountains and glamping tents at Anini, Dibang Valley",
       },
     ],
     locale: "en_IN",
@@ -143,6 +148,7 @@ export default function AniniPlacePage() {
   return (
     <div className="min-h-screen bg-[#050d0f]">
       <StructuredData data={aniniGraph} />
+      <ImageSEO images={anini2026Images} limit={14} />
 
       <AniniHero />
       <AniniManifesto />

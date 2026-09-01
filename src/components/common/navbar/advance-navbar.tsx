@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useScroll, useMotionValueEvent } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Menu, X } from "lucide-react";
@@ -16,6 +17,15 @@ export const AdvancedNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const { scrollY } = useScroll();
+  const pathname = usePathname();
+
+  // The homepage hero runs full-bleed underneath the navbar, so the bar has
+  // to stay light-on-dark while it sits over the photograph and only flip to
+  // cream once the page has scrolled onto paper. Every other route is dark
+  // throughout. The tone is published as a data attribute and the nav
+  // internals read it through CSS variables, so no child branches on markup.
+  const isHome = pathname === "/";
+  const tone = isHome && isScrolled ? "light" : "dark";
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 20);
@@ -32,12 +42,20 @@ export const AdvancedNavbar = () => {
     };
   }, [isMobile, isOpen]);
 
+  // A route change while the drawer is open would otherwise leave the body
+  // scroll-locked.
+  useEffect(() => {
+    setIsOpen(false);
+    setActive(null);
+  }, [pathname]);
+
   return (
     <header
+      data-nav-tone={tone}
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
         isScrolled
-          ? "border-white/10 bg-[#06100e]/95 shadow-[0_12px_40px_rgba(0,0,0,0.18)] backdrop-blur-xl"
+          ? "border-[color:var(--nav-border)] bg-[color:var(--nav-scrolled-bg)] shadow-[var(--nav-scrolled-shadow)] backdrop-blur-xl"
           : "border-transparent bg-gradient-to-b from-black/[0.65] via-black/25 to-transparent",
       )}
     >
@@ -66,9 +84,9 @@ export const AdvancedNavbar = () => {
                   }
                   aria-expanded={isOpen}
                   className={cn(
-                    "grid h-10 w-10 place-items-center rounded-[10px] border border-white/20",
-                    "text-white/[0.85] hover:border-white/[0.45] hover:text-white",
-                    "transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8]",
+                    "grid h-10 w-10 place-items-center rounded-[10px] border border-[color:var(--nav-border-strong)]",
+                    "text-[color:var(--nav-fg)] hover:border-[color:var(--nav-fg-strong)] hover:text-[color:var(--nav-fg-strong)]",
+                    "transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--nav-ring)]",
                   )}
                 >
                   {isOpen ? (

@@ -1,3 +1,4 @@
+import { HomeAniniFest } from "@/components/home/home-anini-fest";
 import { HomeBooking } from "@/components/home/home-booking";
 import { HomeDepartures } from "@/components/home/home-departures";
 import { HomeDestinationAtlas } from "@/components/home/home-destination-atlas";
@@ -8,6 +9,7 @@ import { HomeHero } from "@/components/home/home-hero";
 import { HomeJourneyTypes } from "@/components/home/home-journey-types";
 import { HomePermits } from "@/components/home/home-permits";
 import { HomeSeasonalFeature } from "@/components/home/home-seasonal-feature";
+import { HomeStatesRail } from "@/components/home/home-states-rail";
 import { HomeStories } from "@/components/home/home-stories";
 import { HomeTrustStrip } from "@/components/home/home-trust-strip";
 import { HomeWhyTravelspire } from "@/components/home/home-why-travelspire";
@@ -42,18 +44,29 @@ export function HomeExperience() {
   return (
     <>
       <StructuredData data={buildStructuredData()} />
+      {/* Ordered as an argument rather than a list: where can I go → what is
+          the trip and what does it cost → when, and am I allowed in → can I
+          trust you with the money. Section grounds alternate paper / soft /
+          deep, with ink bands at the festival and at the point the page asks
+          to be paid.
+
+          The festival sits this high because it expires: it is three weeks
+          out and it is the one thing on the page with a deadline. It removes
+          itself once the edition is past, and the catalogue closes back up. */}
       <HomeHero />
       <HomeTrustStrip />
+      <HomeStatesRail />
+      <HomeDestinationAtlas />
+      <HomeAniniFest />
       <HomeJourneyTypes />
       <HomeFeaturedJourneys />
-      <HomeDestinationAtlas />
       <HomeSeasonalFeature />
-      <HomeWhyTravelspire />
-      <HomeBooking />
+      <HomeDepartures />
       <HomePermits />
       <HomeGuides />
+      <HomeWhyTravelspire />
+      <HomeBooking />
       <HomeStories />
-      <HomeDepartures />
       <HomeFinalCta />
     </>
   );

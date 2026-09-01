@@ -11,28 +11,34 @@
 import { regularTours } from "@/data/tours/tour-data";
 import { testimonialData } from "@/data/testimonials/testimonial-data";
 import { isRegularTour, type RegularTour, type Tour } from "@/types/tours/tour";
+import { mechuka2026Src, anini2026Src, getPlaceImageAlt } from "@/data/seo/image-seo-data";
 
 // ─── Hero ───────────────────────────────────────────────────────────────────
 
 export const homeHero = {
   eyebrow: "A local travel company · Dibrugarh, Assam",
-  title: "Northeast India,",
+  // The H1 carries both the state that owns every product and the category
+  // term people actually search. Neither alone is enough.
+  title: "Arunachal & Northeast India,",
   highlightedTitle: "travelled properly.",
   description:
-    "Locally guided tours, remote expeditions, cultural encounters and festival journeys across Arunachal Pradesh, Assam and the wider Northeast.",
+    "Locally guided tours, remote expeditions and festival journeys — run from Dibrugarh by people who have driven these roads themselves.",
   images: {
-    alt: "A journey vehicle on a mountain road through a valley in Mechuka, Arunachal Pradesh",
+    alt: "Mechuka Valley in Shi Yomi district, Arunachal Pradesh — river, hills and high-road country",
     desktop: {
       src: "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
       width: 3664,
       height: 2061,
     },
     mobile: {
-      src: "/images/places/mechuka-new/mechuka-new-portrait-2.jpg",
+      src: mechuka2026Src.riverViewpoint,
       width: 3024,
       height: 4032,
     },
   },
+  // Sits below the frame as a plate caption. Describes the photograph; the
+  // coordinates alongside it describe the company.
+  imageCaption: "Mechuka Valley · Shi Yomi, Arunachal Pradesh",
   coordinates: "27.47°N · 95.01°E · Dibrugarh, Assam",
 } as const;
 
@@ -65,24 +71,27 @@ export const homeJourneyTypes: HomeJourneyType[] = [
     description: "Long-form circuits that join the far east of India properly.",
     href: "/tours/mechuka-dong-anini-tour-package",
     linkLabel: "See the grand circuit",
-    image: "/images/tours/mechuka-dong-anini/mechuka-dong-anini-tour-hero.jpg",
-    imageAlt: "A valley road journey through Mechuka on the grand Arunachal circuit",
+    image: mechuka2026Src.ridgeViewpoint,
+    imageAlt:
+      "Travellers on a mountain ridge overlooking Mechuka town on the grand Arunachal circuit",
   },
   {
     title: "Adventure & trekking",
     description: "Pomo Grassland, Dong sunrise, waterfall country and remote valleys.",
     href: "/all-tours?category=Adventure",
     linkLabel: "Browse adventures",
-    image: "/images/places/pomo/pomo3.JPG",
-    imageAlt: "Trekkers on the high Pomo Grassland above the Dri valley",
+    image: anini2026Src.pomoRidgeTrail,
+    imageAlt:
+      "Trekkers descending a grassy ridge trail on the Pomo route near Anini, Dibang Valley",
   },
   {
     title: "Culture & slow travel",
     description: "Monasteries, village stays, local markets, food and community.",
     href: "/places/dibang-valley",
     linkLabel: "Explore Dibang Valley",
-    image: "/images/places/mechuka-new/mechuka-new-portrait-8.jpg",
-    imageAlt: "Wooden homes and prayer flags in a Mechuka village",
+    image: mechuka2026Src.goldenBuddha,
+    imageAlt:
+      "Golden seated Buddha statue on an ornate red and gold pedestal at dusk in Mechuka, Arunachal Pradesh",
   },
   {
     title: "Festivals & music",
@@ -138,7 +147,10 @@ function toFeaturedJourney(tour: RegularTour): HomeFeaturedJourney {
     fromPrice: tour.price,
     href: `/tours/${tour.slug}`,
     image: tour.heroImage,
-    imageAlt: `${tour.title} — ${tour.location}`,
+    imageAlt: getPlaceImageAlt(
+      tour.heroImage,
+      `${tour.title} — ${tour.location}`,
+    ),
   };
 }
 
@@ -163,38 +175,30 @@ export interface HomeAtlasDestination {
   linkLabel: string;
 }
 
-export const homeAtlas: HomeAtlasDestination[] = [
-  {
-    name: "Anini",
-    whyGo: "High plateau, waterfalls and Idu Mishmi country.",
-    href: "/places/anini",
-    image: "/images/places/anini-new/anini-new-portrait-4.jpg",
-    imageAlt: "Cloud-covered ridges above Anini in Dibang Valley",
-    linkLabel: "Anini travel guide",
-  },
+// The atlas is grouped rather than listed, because the grouping is the
+// argument: Dibang Valley is the specialism, the rest of Arunachal is the
+// wider catalogue, and the remaining states are reach — not product hubs.
+
+/** The anchor tile. Landscape source, since it runs full width. */
+export const homeAtlasAnchor = {
+  name: "Anini",
+  region: "Dibang Valley, Arunachal Pradesh",
+  whyGo:
+    "A high plateau at 1,970 m reached by one road and a great deal of patience — waterfalls, grasslands and Idu Mishmi country at the far end of NH-313.",
+  href: "/places/anini",
+  image: anini2026Src.rainbowGlamping,
+  imageAlt: "Double rainbow over forested mountains and glamping tents at Anini, Dibang Valley",
+  linkLabel: "Anini travel guide",
+} as const;
+
+export const homeAtlasCluster: HomeAtlasDestination[] = [
   {
     name: "Dibang Valley",
     whyGo: "One river, two worlds — the whole region in one hub.",
     href: "/places/dibang-valley",
-    image: "/images/places/pomo/pomo1.JPG",
-    imageAlt: "The open grasslands and ridges of Dibang Valley",
+    image: anini2026Src.emuliSign,
+    imageAlt: "Emuli Grassland sign above Anini in Dibang Valley",
     linkLabel: "Dibang Valley hub",
-  },
-  {
-    name: "Mechuka",
-    whyGo: "Monastery valley, old bridges and long-road silence.",
-    href: "/tours/mechuka-expedition",
-    image: "/images/places/mechuka-new/mechuka-new-portrait-3.jpg",
-    imageAlt: "A quiet corner of Mechuka Valley, West Siang",
-    linkLabel: "Mechuka expedition",
-  },
-  {
-    name: "Dong & Walong",
-    whyGo: "India's first light and the eastern mountain villages.",
-    href: "/tours/dong-valley-expedition",
-    image: "/images/places/dong-new/dong-new-portrait-3.jpg",
-    imageAlt: "Dawn over the far-eastern ridges of Dong Valley",
-    linkLabel: "Dong Valley expedition",
   },
   {
     name: "Dambuk",
@@ -212,6 +216,26 @@ export const homeAtlas: HomeAtlasDestination[] = [
     imageAlt: "The road out of Roing towards Mayodia Pass",
     linkLabel: "Roing travel guide",
   },
+];
+
+export const homeAtlasArunachal: HomeAtlasDestination[] = [
+  {
+    name: "Mechuka",
+    whyGo: "Monastery valley, old bridges and long-road silence.",
+    href: "/tours/mechuka-expedition",
+    image: mechuka2026Src.ridgeViewpoint,
+    imageAlt:
+      "Travellers on a mountain ridge overlooking Mechuka town and the Yargyap Chu valley in Arunachal Pradesh",
+    linkLabel: "Mechuka expedition",
+  },
+  {
+    name: "Dong & Walong",
+    whyGo: "India's first light and the eastern mountain villages.",
+    href: "/tours/dong-valley-expedition",
+    image: "/images/places/dong-new/dong-new-portrait-3.jpg",
+    imageAlt: "Dawn over the far-eastern ridges of Dong Valley",
+    linkLabel: "Dong Valley expedition",
+  },
   {
     name: "Tawang",
     whyGo: "The great monastery road of the west.",
@@ -222,15 +246,118 @@ export const homeAtlas: HomeAtlasDestination[] = [
   },
 ];
 
+/** Flat list, kept for structured data and any consumer that wants all of it. */
+export const homeAtlas: HomeAtlasDestination[] = [
+  {
+    name: homeAtlasAnchor.name,
+    whyGo: homeAtlasAnchor.whyGo,
+    href: homeAtlasAnchor.href,
+    image: homeAtlasAnchor.image,
+    imageAlt: homeAtlasAnchor.imageAlt,
+    linkLabel: homeAtlasAnchor.linkLabel,
+  },
+  ...homeAtlasCluster,
+  ...homeAtlasArunachal,
+];
+
 // The wider Northeast, honestly framed: festival reach and permit guidance,
 // not fully developed product hubs.
-export const homeWiderNortheast = [
-  { name: "Assam", note: "our home base", href: "/guides/dibrugarh-to-anini" },
-  { name: "Nagaland", note: "Hornbill Festival & ILP", href: "/permits/nagaland-ilp" },
-  { name: "Mizoram", note: "ILP guidance", href: "/permits/mizoram-ilp" },
-  { name: "Manipur", note: "ILP guidance", href: "/permits/manipur-ilp" },
-  { name: "Sikkim", note: "PAP guidance", href: "/permits/sikkim-permit" },
-] as const;
+export interface HomeWiderState {
+  name: string;
+  note: string;
+  whyGo: string;
+  href: string;
+  linkLabel: string;
+  image: string;
+  imageAlt: string;
+}
+
+// The seven sisters plus Sikkim, in the order our involvement runs: home
+// base, the specialism, the states we actively sell or permit-guide, then the
+// ones people simply ask us about. Frames are matched to each card's label as
+// closely as the library allows — these are reach rows, not completed product
+// hubs, so they take the wider-Northeast imagery the place pages don't use.
+export const homeWiderNortheast: HomeWiderState[] = [
+  {
+    name: "Assam",
+    note: "Our home base",
+    whyGo:
+      "Where every journey starts — the Brahmaputra, tea country and the road north.",
+    href: "/guides/dibrugarh-to-anini",
+    linkLabel: "Start here",
+    image: "/images/places/dambuk/Dambuk_6.JPG",
+    imageAlt:
+      "The wide Dibang river plains at the Assam–Arunachal frontier, our home ground",
+  },
+  {
+    name: "Arunachal Pradesh",
+    note: "Our home ground",
+    whyGo:
+      "The high frontier — Dibang, Mechuka, Tawang, Ziro. Where we run everything.",
+    href: "/permits/arunachal-pradesh-ilp",
+    linkLabel: "Explore Arunachal",
+    image: "/images/places/anini-new/anini-new-portrait-2.jpg",
+    imageAlt:
+      "Mist rolling over the high ridges of Arunachal Pradesh, our specialism",
+  },
+  {
+    name: "Nagaland",
+    note: "Hornbill Festival & ILP",
+    whyGo: "The festival of festivals, and a permit we arrange in your name.",
+    href: "/permits/nagaland-ilp",
+    linkLabel: "Nagaland ILP",
+    image: "/images/places/hornbill/Hornbill_1.PNG",
+    imageAlt:
+      "Naga tribal dancers at the Hornbill Festival in Kisama, Nagaland",
+  },
+  {
+    name: "Sikkim",
+    note: "PAP guidance",
+    whyGo: "High monasteries and the eastern Himalaya, with the PAP handled.",
+    href: "/permits/sikkim-permit",
+    linkLabel: "Sikkim permit",
+    image: "/images/places/tawang/Tawang_1.PNG",
+    imageAlt: "A high Himalayan monastery road through the eastern ranges",
+  },
+  {
+    name: "Mizoram",
+    note: "ILP guidance",
+    whyGo: "Blue hills and slow towns — we'll sort the Inner Line Permit.",
+    href: "/permits/mizoram-ilp",
+    linkLabel: "Mizoram ILP",
+    image: "/images/places/ziro-new/ziro-new-portrait-5.JPG",
+    imageAlt: "Terraced hills and forested ridges of the eastern highlands",
+  },
+  {
+    name: "Manipur",
+    note: "ILP guidance",
+    whyGo: "The valley and its lakes, behind a permit we handle for you.",
+    href: "/permits/manipur-ilp",
+    linkLabel: "Manipur ILP",
+    image: "/images/places/dong-new/dong-new-portrait-1.jpg",
+    imageAlt: "Dawn over the far-eastern mountain ridges of the Northeast",
+  },
+  {
+    name: "Meghalaya",
+    note: "Plan with us",
+    whyGo:
+      "The abode of clouds — living-root bridges and the wettest hills on earth.",
+    href: "/contact",
+    linkLabel: "Plan a trip",
+    image: "/images/places/dong-new/dong-new-portrait-2.jpg",
+    imageAlt: "Cloud moving through the forested hills of the Northeast",
+  },
+  {
+    name: "Tripura",
+    note: "Plan with us",
+    whyGo:
+      "A quieter sister — palaces, lakes and borderland history, on request.",
+    href: "/contact",
+    linkLabel: "Plan a trip",
+    image: "/images/places/dambuk/Dambuk_4.JPG",
+    imageAlt: "Green riverine lowlands of the eastern plains",
+  },
+];
 
 // ─── Why Travelspire ────────────────────────────────────────────────────────
 
@@ -314,14 +441,52 @@ export const homeBooking = {
 
 // ─── Permits & planning ─────────────────────────────────────────────────────
 
-export const homePermitLinks = [
-  { name: "Arunachal Pradesh ILP", href: "/permits/arunachal-pradesh-ilp" },
-  { name: "Nagaland ILP", href: "/permits/nagaland-ilp" },
-  { name: "Mizoram ILP", href: "/permits/mizoram-ilp" },
-  { name: "Manipur ILP", href: "/permits/manipur-ilp" },
-  { name: "Sikkim PAP", href: "/permits/sikkim-permit" },
-  { name: "Dibrugarh to Anini route guide", href: "/guides/dibrugarh-to-anini" },
-] as const;
+export interface HomePermitLink {
+  name: string;
+  /** Short badge — the permit instrument, or "Route" for the road guide. */
+  kind: "ILP" | "PAP" | "Route";
+  note: string;
+  href: string;
+}
+
+export const homePermitLinks: HomePermitLink[] = [
+  {
+    name: "Arunachal Pradesh",
+    kind: "ILP",
+    note: "Required for every non-resident, Indian citizens included.",
+    href: "/permits/arunachal-pradesh-ilp",
+  },
+  {
+    name: "Nagaland",
+    kind: "ILP",
+    note: "Required year-round, and in heavy demand in Hornbill season.",
+    href: "/permits/nagaland-ilp",
+  },
+  {
+    name: "Mizoram",
+    kind: "ILP",
+    note: "The one state that issues on arrival, at Lengpui Airport.",
+    href: "/permits/mizoram-ilp",
+  },
+  {
+    name: "Manipur",
+    kind: "ILP",
+    note: "Required for all non-residents, applied for online.",
+    href: "/permits/manipur-ilp",
+  },
+  {
+    name: "Sikkim",
+    kind: "PAP",
+    note: "Zone-based rather than state-wide — Nathula, North Sikkim.",
+    href: "/permits/sikkim-permit",
+  },
+  {
+    name: "Dibrugarh to Anini",
+    kind: "Route",
+    note: "The NH-313 road guide, in nine chapters.",
+    href: "/guides/dibrugarh-to-anini",
+  },
+];
 
 // ─── Field notes & travel guides ────────────────────────────────────────────
 
@@ -337,15 +502,15 @@ export const homeGuides = [
     title: "Planning Anini",
     value: "Stays, seasons, experiences and permits for the high plateau.",
     href: "/places/anini",
-    image: "/images/places/anini-new/anini-new-portrait-1.jpg",
-    imageAlt: "A quiet morning in Anini, Dibang Valley",
+    image: anini2026Src.benchBoardwalk,
+    imageAlt: "A traveler on a wooden bench overlooking meadows at Anini, Dibang Valley",
   },
   {
     title: "Understanding Dibang Valley",
     value: "Anini, Dambuk, Roing, Mayodia and how the region fits together.",
     href: "/places/dibang-valley",
-    image: "/images/places/pomo/pomo5.jpg",
-    imageAlt: "The high grassland country of Dibang Valley",
+    image: anini2026Src.mistyFalls,
+    imageAlt: "A misty mountain waterfall in Dibang Valley near Anini",
   },
   {
     title: "The Arunachal ILP, plainly",

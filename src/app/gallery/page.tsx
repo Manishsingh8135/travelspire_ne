@@ -75,8 +75,8 @@ export default function GalleryPage() {
         {aniniImages.length > 0 && (
           <SEOImageGallery
             images={aniniImages}
-            galleryTitle="Anini - Remote Himalayan Paradise"
-            galleryDescription="Discover the untouched wilderness of Anini in Dibang Valley, one of India's most remote and pristine destinations"
+            galleryTitle="Anini & Dibang Valley"
+            galleryDescription="Field photographs from Anini: the Seven Lakes trek, Emuli Grassland, the Pomo ridge trail, waterfall country, A-frame stays and a double rainbow over the plateau."
             className="mt-16"
           />
         )}
@@ -84,8 +84,8 @@ export default function GalleryPage() {
         {mechukImages.length > 0 && (
           <SEOImageGallery
             images={mechukImages}
-            galleryTitle="Mechuka - India's Last Village"
-            galleryDescription="Journey to Mechuka, India's last village near the China border, where traditional culture meets stunning natural beauty"
+            galleryTitle="Mechuka Valley, Shi Yomi"
+            galleryDescription="Photographs from Mechuka: the Yargyap Chu river, the golden Buddha, Dorjeeling selfie point, the helicopter landmark, winter snow and the high ridge above town."
             className="mt-16"
           />
         )}

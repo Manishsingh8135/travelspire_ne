@@ -1,4 +1,9 @@
 import type { Frame } from "@/lib/media";
+import {
+  anini2026Size,
+  anini2026Src,
+  getPlaceImageAlt,
+} from "@/data/seo/image-seo-data";
 
 // The media atlas for "Six Days in the Dibang".
 //
@@ -203,6 +208,64 @@ export const FRAMES = {
     height: 1600,
     place: "Dibang Valley",
     tone: "moss",
+  },
+
+  // ── 2026 field photographs ──────────────────────────────────────────────
+  pomoRidgeTrail: {
+    src: anini2026Src.pomoRidgeTrail,
+    alt: getPlaceImageAlt(anini2026Src.pomoRidgeTrail),
+    ...anini2026Size[anini2026Src.pomoRidgeTrail],
+    place: "Pomo ridge trail",
+    tone: "moss",
+  },
+  emuliSign: {
+    src: anini2026Src.emuliSign,
+    alt: getPlaceImageAlt(anini2026Src.emuliSign),
+    ...anini2026Size[anini2026Src.emuliSign],
+    place: "Emuli Grassland",
+    tone: "brass",
+  },
+  cascadeFalls: {
+    src: anini2026Src.cascadeFalls,
+    alt: getPlaceImageAlt(anini2026Src.cascadeFalls),
+    ...anini2026Size[anini2026Src.cascadeFalls],
+    place: "Anini waterfall circuit",
+    tone: "moss",
+  },
+  mistyFalls: {
+    src: anini2026Src.mistyFalls,
+    alt: getPlaceImageAlt(anini2026Src.mistyFalls),
+    ...anini2026Size[anini2026Src.mistyFalls],
+    place: "Anini waterfall country",
+    tone: "ink",
+  },
+  riverbankFalls: {
+    src: anini2026Src.riverbankFalls,
+    alt: getPlaceImageAlt(anini2026Src.riverbankFalls),
+    ...anini2026Size[anini2026Src.riverbankFalls],
+    place: "Anini river falls",
+    tone: "stone",
+  },
+  aFrameCabins: {
+    src: anini2026Src.aFrameCabins,
+    alt: getPlaceImageAlt(anini2026Src.aFrameCabins),
+    ...anini2026Size[anini2026Src.aFrameCabins],
+    place: "Anini",
+    tone: "moss",
+  },
+  rainbowGlamping: {
+    src: anini2026Src.rainbowGlamping,
+    alt: getPlaceImageAlt(anini2026Src.rainbowGlamping),
+    ...anini2026Size[anini2026Src.rainbowGlamping],
+    place: "Anini plateau",
+    tone: "brass",
+  },
+  meadowRest: {
+    src: anini2026Src.meadowRest,
+    alt: getPlaceImageAlt(anini2026Src.meadowRest),
+    ...anini2026Size[anini2026Src.meadowRest],
+    place: "Anini meadow",
+    tone: "brass",
   },
 } as const satisfies Record<string, Frame>;
 
@@ -421,7 +484,7 @@ export const sixWaterFrames: Frame[] = [
 export const sixSequenceFrames: Frame[] = [
   FRAMES.pomoHills,
   FRAMES.gipulinForest,
-  FRAMES.ridgeCloud,
+  FRAMES.pomoRidgeTrail,
   FRAMES.pomoLight,
   FRAMES.pomoWide,
   FRAMES.pomoMeadow,
@@ -432,19 +495,19 @@ export const sixSequenceFrames: Frame[] = [
 
 export const sixDayLead: Record<number, Frame> = {
   1: FRAMES.mayodiaCloud,
-  2: FRAMES.deccanFalls,
+  2: FRAMES.cascadeFalls,
   3: FRAMES.pomoWide,
   4: FRAMES.gipulinForest,
-  5: FRAMES.pomoMeadow,
+  5: FRAMES.emuliSign,
   6: FRAMES.mistDescent,
 };
 
 export const sixDayStrips: Record<number, Frame[]> = {
   1: [FRAMES.roadRidge, FRAMES.roadValley, FRAMES.plateau],
-  2: [FRAMES.dreeAfra, FRAMES.mawuando, FRAMES.driRiver, FRAMES.ahiFalls],
-  3: [FRAMES.pomoHills, FRAMES.pomoHorizon, FRAMES.pomoLight],
+  2: [FRAMES.mistyFalls, FRAMES.riverbankFalls, FRAMES.driRiver, FRAMES.cascadeFalls],
+  3: [FRAMES.pomoRidgeTrail, FRAMES.pomoHorizon, FRAMES.pomoLight],
   4: [FRAMES.ridgeCloud, FRAMES.cottage, FRAMES.forestFloor],
-  5: [FRAMES.pomoLight, FRAMES.villageHills, FRAMES.plateau],
+  5: [FRAMES.emuliSign, FRAMES.meadowRest, FRAMES.rainbowGlamping],
   6: [FRAMES.mistDescent, FRAMES.roadValley, FRAMES.mawuando],
 };
 
@@ -452,16 +515,16 @@ export const sixDayStrips: Record<number, Frame[]> = {
 // Everything we can stand behind, in one place, shaped by its real geometry.
 
 export const sixArchive: Frame[] = [
+  FRAMES.rainbowGlamping,
+  FRAMES.pomoRidgeTrail,
+  FRAMES.emuliSign,
+  FRAMES.cascadeFalls,
   FRAMES.pomoHorizon,
+  FRAMES.mistyFalls,
   FRAMES.plateau,
   FRAMES.pomoWide,
-  FRAMES.driRiver,
-  FRAMES.mawuando,
+  FRAMES.riverbankFalls,
+  FRAMES.aFrameCabins,
   FRAMES.pomoMeadow,
-  FRAMES.villageHills,
-  FRAMES.deccanFalls,
-  FRAMES.pomoLight,
-  FRAMES.mayodiaCloud,
-  FRAMES.chiguFlats,
-  FRAMES.cottage,
+  FRAMES.meadowRest,
 ];

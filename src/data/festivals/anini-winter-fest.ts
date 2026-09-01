@@ -1,4 +1,5 @@
 import type { FAQSection } from "@/types/faqs/faq";
+import { anini2026Src } from "@/data/seo/image-seo-data";
 
 // Content model for Anini Winter Fest 5.0 (19–20 Sep 2026)
 // Travelspire NE is the Official Travel & Taxi Partner — festival passes are
@@ -60,7 +61,7 @@ export const awfEvergreen = [
     name: "Anini",
     blurb: "The full destination guide — stays, seasons, experiences, permits.",
     href: "/places/anini",
-    image: "/images/places/anini-new/anini-new-portrait-4.jpg",
+    image: anini2026Src.emuliSign,
   },
   {
     name: "The Way to Anini",
@@ -483,14 +484,14 @@ export const awfBookingSteps = [
 // dambuk = Dambuk riverbanks, Lower Dibang Valley. Captions name the real place.
 export const awfGallery = [
   {
-    src: "/images/places/anini-new/anini-new-landscape-13.jpeg",
-    alt: "The high plateau at Anini, headquarters of Dibang Valley",
-    caption: "Anini Plateau",
+    src: anini2026Src.rainbowGlamping,
+    alt: "Double rainbow over mountains and glamping tents at Anini, Dibang Valley",
+    caption: "Anini after rain",
   },
   {
-    src: "/images/places/pomo/pomo1.JPG",
-    alt: "Pomo grassland horizon under a wide sky",
-    caption: "Pomo Grassland",
+    src: anini2026Src.emuliSign,
+    alt: "Emuli Grassland sign above Anini in Dibang Valley",
+    caption: "Emuli Grassland",
   },
   {
     src: "/images/places/anini-new/anini-new-portrait-2.jpg",
@@ -624,12 +625,12 @@ export const awfStayLonger: AwfStayLongerItem[] = [
     tags: ["Guided Only", "Fitness Required", "Sacred Route"],
     images: [
       {
-        src: "/images/festivals/anini-winter-fest-2026/experiences/seven-lakes-trek.webp",
-        alt: "High-altitude terrain on the Seven Lakes trek in Dibang Valley",
+        src: anini2026Src.sevenLakesSign,
+        alt: "Travellers at the official Anini Seven Lakes Trek trailhead sign in Dibang Valley",
       },
       {
-        src: "/images/festivals/anini-winter-fest-2026/experiences/athu-popu.webp",
-        alt: "The sacred Athu Popu landscape in Dibang Valley",
+        src: anini2026Src.sevenLakesTarn,
+        alt: "Trekkers beside an alpine tarn on the Seven Lakes route near Anini, Dibang Valley",
       },
     ],
   },

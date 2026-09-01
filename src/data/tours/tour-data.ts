@@ -1,6 +1,7 @@
 // data/tours/tour-data.ts
 import { Tour } from "@/types/tours/tour";
 import { mechukaDongAniniTour } from "@/data/expeditions/mechuka-dong-anini";
+import { mechuka2026Src, anini2026Src } from "@/data/seo/image-seo-data";
 
 export const tawangExpedition: Tour = {
   id: "tawang-expedition",
@@ -314,18 +315,19 @@ export const aniniExpedition: Tour = {
   featured: false,
 
   // We'll need proper images later, using placeholders for now
-  heroImage: "/images/places/anini-new/anini-new-landscape-11.jpeg", // Replace with actual Anini images
-  thumbnail: "/images/places/anini-new/anini-new-landscape-11.jpeg",
+  heroImage: anini2026Src.emuliSign,
+  thumbnail: anini2026Src.emuliSign,
   gallery: [
-    "/images/places/anini-new/anini-new-portrait-1.jpg",
-    "/images/places/anini-new/anini-new-portrait-2.jpg",
-    "/images/places/anini-new/anini-new-portrait-3.jpg",
+    anini2026Src.emuliSign,
+    anini2026Src.rainbowGlamping,
+    anini2026Src.cascadeFalls,
+    anini2026Src.mistyFalls,
+    anini2026Src.aFrameCabins,
+    anini2026Src.bambooWalk,
+    anini2026Src.benchBoardwalk,
+    anini2026Src.sevenLakesSign,
+    "/images/places/anini-new/anini-new-landscape-13.jpeg",
     "/images/places/anini-new/anini-new-portrait-4.jpg",
-    "/images/places/anini-new/anini-new-portrait-5.jpg",
-    "/images/places/anini-new/anini-new-portrait-6.jpg",
-    "/images/places/anini-new/anini-new-portrait-7.jpg",
-    "/images/places/anini-new/anini-new-portrait-8.jpg",
-    "/images/places/anini-new/anini-new-portrait-9.jpg",
   ],
 
   highlights: [
@@ -828,15 +830,17 @@ export const pomoTrekExpedition: Tour = {
   price: 19999,
   featured: false,
 
-  heroImage: "/images/places/pomo/pomo1.JPG",
-  thumbnail: "/images/places/pomo/pomo1.JPG",
+  heroImage: anini2026Src.pomoRidgeTrail,
+  thumbnail: anini2026Src.pomoRidgeTrail,
   gallery: [
+    anini2026Src.pomoRidgeTrail,
     "/images/places/pomo/pomo1.JPG",
-    "/images/places/pomo/pomo2.JPG",
     "/images/places/pomo/pomo3.JPG",
-    "/images/places/pomo/pomo4.jpg",
+    anini2026Src.meadowRest,
+    anini2026Src.cascadeFalls,
+    anini2026Src.mistyFalls,
     "/images/places/pomo/pomo5.jpg",
-    "/images/places/pomo/pomo6.jpg",
+    anini2026Src.riverbankFalls,
   ],
 
   highlights: [
@@ -964,6 +968,10 @@ export const mechukaExpedition: Tour = {
   trending: true,
   upcoming: false,
   tags: [
+    "mechuka",
+    "mechukha",
+    "menchuka",
+    "shi-yomi",
     "tribal-culture",
     "hidden-gem",
     "monasteries",
@@ -971,15 +979,21 @@ export const mechukaExpedition: Tour = {
     "valley-tour",
   ],
 
-  heroImage: "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
-  thumbnail: "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
+  heroImage: mechuka2026Src.ridgeViewpoint,
+  thumbnail: mechuka2026Src.ridgeViewpoint,
   gallery: [
+    mechuka2026Src.ridgeViewpoint,
+    mechuka2026Src.goldenBuddha,
+    mechuka2026Src.winterSnow,
+    mechuka2026Src.riverViewpoint,
+    mechuka2026Src.helicopterLandmark,
+    mechuka2026Src.homestayCabins,
+    mechuka2026Src.dorjeelingSignpost,
+    mechuka2026Src.salmanPoint,
     "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
-    "/images/places/mechuka-new/mechuka-new-portrait-2.jpg",
-    "/images/places/mechuka-new/mechuka-new-portrait-3.jpg",
     "/images/places/mechuka-new/mechuka-new-portrait-8.jpg",
-    "/images/places/mechuka-new/mechuka-new-portrait-15.jpg",
-    "/images/places/mechuka-new/mechuka-new-portrait-21.jpg",
+    "/images/places/mechuka-new/mechuka-new-portrait-3.jpg",
+    "/images/places/mechuka-new/mechuka-new-portrait-2.jpg",
   ],
 
   highlights: [
@@ -1136,12 +1150,15 @@ export const aniniPomoSixExpedition: Tour = {
   heroImage: "/images/places/pomo/pomo1.JPG",
   thumbnail: "/images/places/pomo/pomo1.JPG",
   gallery: [
+    anini2026Src.pomoRidgeTrail,
+    anini2026Src.emuliSign,
+    anini2026Src.cascadeFalls,
+    anini2026Src.rainbowGlamping,
     "/images/places/pomo/pomo1.JPG",
     "/images/places/pomo/pomo3.JPG",
+    anini2026Src.mistyFalls,
+    anini2026Src.aFrameCabins,
     "/images/places/anini-new/anini-new-landscape-13.jpeg",
-    "/images/places/pomo/pomo4.jpg",
-    "/images/places/anini-new/anini-new-portrait-8.jpg",
-    "/images/places/pomo/pomo5.jpg",
   ],
 
   highlights: [

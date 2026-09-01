@@ -1,129 +1,203 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { homeAtlas, homeWiderNortheast } from "@/data/home/homepage";
-import { cn } from "@/lib/utils";
+import {
+  homeAtlasAnchor,
+  homeAtlasArunachal,
+  homeAtlasCluster,
+  type HomeAtlasDestination,
+} from "@/data/home/homepage";
+
+// Rails bleed to the screen edge so the next card peeks past it — that peek
+// is the affordance, which is why there is no arrow and no scrollbar. The
+// first card still lines up with the page gutter via scroll-padding.
+const railClass =
+  "rail -mx-5 gap-5 px-5 pb-1 scroll-pl-5 sm:-mx-8 sm:px-8 sm:scroll-pl-8 md:-mx-10 md:px-10 md:scroll-pl-10 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-6 lg:px-0";
+
+const railItemClass =
+  "w-[78vw] shrink-0 snap-start sm:w-[54vw] md:w-[38vw] lg:w-auto lg:shrink";
+
+function TierLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <h3 className="mb-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-faint">
+      <span aria-hidden="true" className="h-px w-6 bg-ink/20" />
+      {children}
+    </h3>
+  );
+}
+
+// ─── Atlas card ────────────────────────────────────────────────────────────
+// The image IS the card — edge to edge, no mat, no ring, no paper body.
+// Resting state shows only the name over a soft scrim. On hover or keyboard
+// focus the deeper scrim rises and the copy opens in two beats: the blurb
+// first, then a filled call-to-action button — not a bare text link — because
+// this is a place we want people to actually go. The reveal is a CSS grid
+// 0fr→1fr expand so the copy grows smoothly instead of jumping, and it keys
+// off group-focus-visible so keyboard and (via the first tap) touch users get
+// the same reveal as the mouse.
+function AtlasCard({
+  place,
+  aspect,
+  sizes,
+}: {
+  place: HomeAtlasDestination;
+  aspect: string;
+  sizes: string;
+}) {
+  return (
+    <Link
+      href={place.href}
+      aria-label={`${place.name} — ${place.linkLabel}`}
+      className={`group relative block overflow-hidden rounded-[16px] bg-ink-band shadow-card transition-[box-shadow] duration-300 ease-out hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-paper ${aspect}`}
+    >
+      <Image
+        src={place.image}
+        alt={place.imageAlt}
+        fill
+        sizes={sizes}
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05] group-focus-visible:scale-[1.05]"
+        loading="lazy"
+      />
+
+      {/* Resting scrim — just enough to hold the name. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,26,21,0.74)_0%,rgba(14,26,21,0.42)_24%,rgba(14,26,21,0.10)_46%,transparent_66%)]"
+      />
+      {/* Hover scrim — slides up to carry the description and the button. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,26,21,0.95)_0%,rgba(14,26,21,0.84)_38%,rgba(14,26,21,0.54)_64%,rgba(14,26,21,0.16)_100%)] opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
+      />
+
+      <div className="absolute inset-x-0 bottom-0 flex flex-col justify-end p-5 sm:p-6">
+        <h4 className="text-[1.25rem] font-medium leading-tight tracking-[-0.025em] text-paper sm:text-[1.375rem]">
+          {place.name}
+        </h4>
+
+        <div className="grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-500 ease-out group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-visible:grid-rows-[1fr] group-focus-visible:opacity-100">
+          <div className="overflow-hidden">
+            <p className="pt-3 text-[13px] leading-6 text-paper/[0.88]">
+              {place.whyGo}
+            </p>
+            <span className="mt-4 inline-flex min-h-10 items-center gap-2 rounded-[8px] bg-paper px-4 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-colors duration-200 group-hover:bg-white">
+              {place.linkLabel}
+              <ArrowUpRight
+                aria-hidden="true"
+                className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 export function HomeDestinationAtlas() {
-  const [anchor, ...rest] = homeAtlas;
-
   return (
     <section
+      id="destinations"
       aria-labelledby="destinations-heading"
-      className="bg-[#050d0f] py-20 text-white sm:py-24 lg:py-32"
+      className="scroll-mt-24 bg-paper py-24 sm:py-28 lg:py-36"
     >
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24">
-        <header className="mb-10 flex flex-wrap items-end justify-between gap-6 sm:mb-14">
-          <div>
-            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-[#d8c59d]">
-              The destination atlas
-            </p>
-            <h2
-              id="destinations-heading"
-              className="max-w-[18ch] text-[clamp(2.5rem,5vw,4.5rem)] font-medium leading-[0.94] tracking-[-0.05em] text-[#fffdf7]"
-            >
-              Know the ground{" "}
-              <span className="font-serif font-normal italic text-[#dfcfab]">
-                before you go.
-              </span>
-            </h2>
-          </div>
-          <p className="max-w-[26rem] text-sm leading-6 text-white/[0.62]">
-            Real destination guides written from the field — strongest on
-            Arunachal Pradesh, our home ground.
+        <header className="max-w-[46rem]">
+          <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.22em] text-clay">
+            The atlas
+          </p>
+          <h2
+            id="destinations-heading"
+            className="text-[clamp(2.25rem,4.5vw,3.75rem)] font-medium leading-[0.98] tracking-[-0.04em] text-ink"
+          >
+            The valleys we{" "}
+            <span className="font-display font-normal italic text-clay">
+              come back to.
+            </span>
+          </h2>
+          <p className="mt-6 max-w-[34rem] text-[15px] leading-7 text-ink-soft">
+            Our work is concentrated in Arunachal Pradesh — the Dibang Valley
+            above all — and reaches the wider Northeast through festivals and
+            permit guidance.
           </p>
         </header>
 
-        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:auto-rows-[250px]">
-          {/* Anchor tile */}
+        {/* ── The anchor ─────────────────────────────────────────────── */}
+        <div className="mt-14 sm:mt-16">
+          <TierLabel>Dibang Valley · our home ground</TierLabel>
+
           <Link
-            href={anchor.href}
-            aria-label={anchor.linkLabel}
-            className="group relative col-span-2 block overflow-hidden rounded-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8c59d] lg:row-span-2"
+            href={homeAtlasAnchor.href}
+            aria-label={`${homeAtlasAnchor.name} — ${homeAtlasAnchor.linkLabel}`}
+            className="group relative block aspect-[4/3] overflow-hidden rounded-[20px] bg-ink-band shadow-card transition-[box-shadow] duration-300 ease-out hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:aspect-[16/9] lg:aspect-[16/7]"
           >
-            <div className="relative aspect-[4/3] h-full lg:aspect-auto">
-              <Image
-                src={anchor.image}
-                alt={anchor.imageAlt}
-                fill
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,13,15,0.05)_35%,rgba(5,13,15,0.85)_100%)]" />
-              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
-                <h3 className="text-2xl font-semibold tracking-[-0.02em] text-[#fffdf7] sm:text-3xl">
-                  {anchor.name}
-                </h3>
-                <p className="mt-1.5 max-w-[24rem] font-serif text-sm italic leading-6 text-white/[0.7] sm:text-base">
-                  {anchor.whyGo}
-                </p>
+            <Image
+              src={homeAtlasAnchor.image}
+              alt={homeAtlasAnchor.imageAlt}
+              fill
+              sizes="(min-width: 1600px) 1504px, 100vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] group-focus-visible:scale-[1.03]"
+              loading="lazy"
+            />
+
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,26,21,0.78)_0%,rgba(14,26,21,0.5)_22%,rgba(14,26,21,0.18)_46%,transparent_70%)]"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,26,21,0.95)_0%,rgba(14,26,21,0.84)_36%,rgba(14,26,21,0.52)_62%,rgba(14,26,21,0.16)_100%)] opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus-visible:opacity-100"
+            />
+
+            <div className="absolute inset-x-0 bottom-0 flex flex-col justify-end p-6 sm:p-8 lg:p-12">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#E4D3AC]">
+                {homeAtlasAnchor.region}
+              </p>
+              <h4 className="mt-2.5 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[0.98] tracking-[-0.04em] text-paper">
+                {homeAtlasAnchor.name}
+              </h4>
+
+              <div className="grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity] duration-500 ease-out group-hover:grid-rows-[1fr] group-hover:opacity-100 group-focus-visible:grid-rows-[1fr] group-focus-visible:opacity-100">
+                <div className="overflow-hidden">
+                  <p className="max-w-[34rem] pt-4 text-[14px] leading-6 text-paper/[0.88] sm:text-[15px] sm:leading-7">
+                    {homeAtlasAnchor.whyGo}
+                  </p>
+                  <span className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-[8px] bg-paper px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-ink transition-colors duration-200 group-hover:bg-white">
+                    {homeAtlasAnchor.linkLabel}
+                    <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
+                  </span>
+                </div>
               </div>
             </div>
           </Link>
 
-          {rest.map((destination) => (
-            <Link
-              key={destination.name}
-              href={destination.href}
-              aria-label={destination.linkLabel}
-              className="group relative block overflow-hidden rounded-[14px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8c59d]"
-            >
-              <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full">
-                <Image
-                  src={destination.image}
-                  alt={destination.imageAlt}
-                  fill
-                  sizes="(min-width: 1024px) 25vw, 50vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+          <div className={`mt-6 ${railClass}`}>
+            {homeAtlasCluster.map((place) => (
+              <div key={place.name} className={railItemClass}>
+                <AtlasCard
+                  place={place}
+                  aspect="aspect-[4/3]"
+                  sizes="(min-width: 1024px) 30vw, (min-width: 768px) 38vw, 78vw"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,13,15,0.05)_35%,rgba(5,13,15,0.85)_100%)]" />
-                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 sm:p-5">
-                  <div>
-                    <h3 className="text-base font-semibold tracking-[-0.015em] text-[#fffdf7] sm:text-lg">
-                      {destination.name}
-                    </h3>
-                    <p className="mt-1 hidden font-serif text-[13px] italic leading-5 text-white/[0.62] sm:block">
-                      {destination.whyGo}
-                    </p>
-                  </div>
-                  <ArrowUpRight
-                    aria-hidden="true"
-                    className="mb-0.5 h-4 w-4 flex-none text-white/50 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#f2ead8]"
-                  />
-                </div>
               </div>
-            </Link>
-          ))}
+            ))}
+          </div>
+        </div>
 
-          {/* The wider Northeast — honest, quiet framing */}
-          <div className="col-span-2 flex flex-col justify-center rounded-[14px] border border-white/[0.09] bg-[#0b1714] p-5 sm:p-6">
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#d8c59d]">
-              The wider Northeast
-            </p>
-            <p className="mt-2 text-[13px] leading-5 text-white/[0.55]">
-              Festival reach and permit guidance — while our destination
-              coverage keeps growing honestly.
-            </p>
-            <ul className="mt-4 space-y-2.5">
-              {homeWiderNortheast.map((region) => (
-                <li key={region.name}>
-                  <Link
-                    href={region.href}
-                    className="group/link inline-flex items-baseline gap-2 text-sm text-white/[0.82] transition-colors duration-200 hover:text-[#f2ead8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8c59d]"
-                  >
-                    <span className="font-medium">{region.name}</span>
-                    <span
-                      className={cn(
-                        "font-mono text-[10px] uppercase tracking-[0.12em] text-white/[0.4]",
-                        "group-hover/link:text-white/[0.6]",
-                      )}
-                    >
-                      {region.note}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        {/* ── The wider Arunachal catalogue ──────────────────────────── */}
+        <div className="mt-20 sm:mt-24">
+          <TierLabel>Across Arunachal</TierLabel>
+
+          <div className={railClass}>
+            {homeAtlasArunachal.map((place) => (
+              <div key={place.name} className={railItemClass}>
+                <AtlasCard
+                  place={place}
+                  aspect="aspect-[3/4]"
+                  sizes="(min-width: 1024px) 30vw, (min-width: 768px) 38vw, 78vw"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

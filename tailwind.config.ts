@@ -62,6 +62,34 @@ const config = {
           900: "rgb(var(--accent-900) / <alpha-value>)",
           950: "rgb(var(--accent-950) / <alpha-value>)",
         },
+        // ── Light editorial system ────────────────────────────────────────
+        // Warm neutrals. Never pure white, never pure black: on cream grounds
+        // both read as cheap, and hairlines do the structural work instead.
+        paper: {
+          DEFAULT: "#FBF8F1",
+          soft: "#F4EFE4",
+          deep: "#EBE4D5",
+        },
+        ink: {
+          DEFAULT: "#14201A",
+          soft: "#3D4A43",
+          muted: "#6B766E",
+          faint: "#949D96",
+          band: "#0E1A15",
+        },
+        moss: {
+          DEFAULT: "#2F4A3A",
+          deep: "#253C2F",
+        },
+        clay: {
+          DEFAULT: "#9A5A38",
+          soft: "#B0714E",
+        },
+        brass: "#B08A4F",
+        tide: "#2C5B72",
+        // Pulled from the logo mark; reserved for festival + seasonal items.
+        ember: "#E2762B",
+
         // UI Colors
         background: "rgb(var(--background) / <alpha-value>)",
         foreground: "rgb(var(--foreground) / <alpha-value>)",
@@ -83,6 +111,12 @@ const config = {
         "2xl": "var(--radius-2xl)",
       },
       boxShadow: {
+        // Warm-tinted and very low opacity. Grey shadows on cream look dirty.
+        card: '0 2px 4px rgba(20,32,26,0.03), 0 12px 28px -12px rgba(20,32,26,0.10)',
+        lift: '0 4px 8px rgba(20,32,26,0.04), 0 24px 48px -20px rgba(20,32,26,0.16)',
+        cta: '0 8px 20px -10px rgba(47,74,58,0.5)',
+        nav: '0 8px 24px -16px rgba(20,32,26,0.25)',
+        frame: '0 30px 80px -40px rgba(20,32,26,0.45)',
         'glow-sm': '0 2px 8px -1px rgba(var(--primary-500), 0.15)',
         'glow': '0 4px 12px -2px rgba(var(--primary-500), 0.2)',
         'glow-lg': '0 8px 20px -4px rgba(var(--primary-500), 0.25)',
@@ -104,6 +138,7 @@ const config = {
       fontFamily: {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
         mono: ["var(--font-geist-mono)", ...fontFamily.mono],
+        display: ["var(--font-display)", ...fontFamily.serif],
       },
       keyframes: {
         // Existing keyframes

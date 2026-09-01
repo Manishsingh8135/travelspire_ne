@@ -16,6 +16,8 @@ import { SixSeason } from "@/components/expeditions/anini-six/six-season";
 import { SixSummit } from "@/components/expeditions/anini-six/six-summit";
 import { SixWater } from "@/components/expeditions/anini-six/six-water";
 import { StructuredData } from "@/components/seo/structured-data";
+import { ImageSEO } from "@/components/seo/image-seo";
+import { anini2026Images, anini2026Src } from "@/data/seo/image-seo-data";
 import {
   sixDays,
   sixFaqSection,
@@ -48,6 +50,7 @@ export const metadata: Metadata = {
     "Chigu camp Anini",
     "Gipulin glass bridge",
     "Emuli grassland Anini",
+    "Anini waterfall tour",
     "Karu viewpoint Anini",
     "Anini homestay package",
     "Inner Line Permit Anini",
@@ -243,10 +246,26 @@ const sixGraph = {
   ],
 };
 
+const sixFieldSrcs = new Set<string>([
+  anini2026Src.pomoRidgeTrail,
+  anini2026Src.emuliSign,
+  anini2026Src.cascadeFalls,
+  anini2026Src.mistyFalls,
+  anini2026Src.riverbankFalls,
+  anini2026Src.aFrameCabins,
+  anini2026Src.rainbowGlamping,
+  anini2026Src.meadowRest,
+]);
+
+const sixFieldImages = anini2026Images.filter((image) =>
+  sixFieldSrcs.has(image.src),
+);
+
 export default function AniniPomoSixPage() {
   return (
     <div className="min-h-screen bg-[#070E0D]">
       <StructuredData data={sixGraph} />
+      <ImageSEO images={sixFieldImages} limit={8} />
 
       {/* The page widens as it goes: see the week, then read it, then price it. */}
       <SixHero />

@@ -1,3 +1,5 @@
+import { anini2026Src } from "@/data/seo/image-seo-data";
+
 // Seasonal system for the homepage.
 //
 // Two exports:
@@ -26,19 +28,8 @@ export interface SeasonalFeature {
 }
 
 export const seasonalFeatures: SeasonalFeature[] = [
-  {
-    id: "anini-winter-fest-2026",
-    label: "This season · 19–20 September 2026",
-    headline: "Music at the edge",
-    highlightedHeadline: "of the map.",
-    body: "Travel to Anini Winter Fest with shared transfers, private vehicles, stays and local route support — from the festival's Official Travel & Taxi Partner.",
-    ctaLabel: "Plan the festival",
-    href: "/anini-winter-fest-2026",
-    image: "/images/festivals/anini-winter-fest-2026/experiences/dri-valley.webp",
-    imageAlt: "The Dri valley outside Anini, venue region of Anini Winter Fest",
-    featureFrom: "2026-01-01",
-    featureUntil: "2026-09-21",
-  },
+  // Anini Winter Fest is deliberately absent here: it has its own dedicated
+  // homepage section, and running it in both places was the same offer twice.
   {
     id: "ziro-festival-2026",
     label: "This season · 25–28 September 2026",
@@ -49,7 +40,7 @@ export const seasonalFeatures: SeasonalFeature[] = [
     href: "/ziro-music-festival-2026",
     image: "/images/places/ziro-new/ziro-new-landscape-1.jpeg",
     imageAlt: "Rice fields and pine ridges of Ziro Valley during festival season",
-    featureFrom: "2026-09-22",
+    featureFrom: "2026-01-01",
     featureUntil: "2026-09-29",
   },
   {
@@ -86,8 +77,8 @@ export const seasonalFeatures: SeasonalFeature[] = [
     body: "Clear skies over Dibang — the season for the Pomo Grassland trek, Dong sunrises and the long Mechuka road.",
     ctaLabel: "Explore expeditions",
     href: "/all-tours",
-    image: "/images/places/pomo/pomo1.JPG",
-    imageAlt: "The open Pomo Grassland in trekking season, Dibang Valley",
+    image: anini2026Src.rainbowGlamping,
+    imageAlt: "Double rainbow over forested mountains and glamping tents at Anini, Dibang Valley",
     featureFrom: "2026-12-17",
     featureUntil: "2026-12-31",
   },
@@ -113,6 +104,8 @@ export interface HomeDeparture {
   duration: string;
   priceHook: string;
   href: string;
+  image: string;
+  imageAlt: string;
   /** "booking" = bookable online · "enquiry" = WhatsApp-first */
   state: "booking" | "enquiry";
   /** ISO date after which the item leaves the rail. Null = evergreen. */
@@ -128,6 +121,8 @@ export const homeDepartures: HomeDeparture[] = [
     duration: "Return transfer",
     priceHook: "₹5,499 / person",
     href: "/anini-winter-fest-2026",
+    image: "/images/festivals/anini-winter-fest-2026/experiences/dri-valley.webp",
+    imageAlt: "The Dri valley outside Anini, venue region of Anini Winter Fest",
     state: "booking",
     expiresOn: "2026-09-18",
   },
@@ -139,6 +134,8 @@ export const homeDepartures: HomeDeparture[] = [
     duration: "4 days",
     priceHook: "from ₹1,999",
     href: "/ziro-music-festival-2026",
+    image: "/images/places/ziro-new/ziro-new-landscape-1.jpeg",
+    imageAlt: "Rice fields and pine ridges of Ziro Valley during festival season",
     state: "booking",
     expiresOn: "2026-09-25",
   },
@@ -150,6 +147,8 @@ export const homeDepartures: HomeDeparture[] = [
     duration: "2–4 days",
     priceHook: "from ₹1,799",
     href: "/tours/hornbill-festival-2026",
+    image: "/images/places/hornbill/Hornbill_3.PNG",
+    imageAlt: "Traditional Naga performers at the Hornbill Festival, Kisama",
     state: "booking",
     expiresOn: "2026-12-01",
   },
@@ -161,6 +160,8 @@ export const homeDepartures: HomeDeparture[] = [
     duration: "3 days",
     priceHook: "from ₹1,899",
     href: "/tours/orange-festival-2026",
+    image: "/images/places/dambuk/Dambuk_4.JPG",
+    imageAlt: "Orange orchards along the riverine plains of Dambuk",
     state: "booking",
     expiresOn: "2026-12-13",
   },
@@ -172,6 +173,8 @@ export const homeDepartures: HomeDeparture[] = [
     duration: "5N / 6D",
     priceHook: "from ₹18,999",
     href: "/tours/anini-pomo-grassland-expedition",
+    image: anini2026Src.pomoRidgeTrail,
+    imageAlt: "Trekkers on a grassy ridge trail on the Pomo route near Anini, Dibang Valley",
     state: "enquiry",
     expiresOn: null,
   },
@@ -183,6 +186,8 @@ export const homeDepartures: HomeDeparture[] = [
     duration: "12N / 13D",
     priceHook: "from ₹37,499",
     href: "/tours/mechuka-dong-anini-tour-package",
+    image: "/images/places/mechuka-new/Mechuka2026/mechuka-valley-winter-snow-pine-forest.jpg",
+    imageAlt: "Snow-covered pine forest and misty mountain slopes in Mechuka Valley during winter, Arunachal Pradesh",
     state: "enquiry",
     expiresOn: null,
   },

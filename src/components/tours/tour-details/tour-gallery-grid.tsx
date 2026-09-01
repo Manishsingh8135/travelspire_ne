@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Maximize2 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getPlaceImageAlt } from "@/data/seo/image-seo-data";
 
 interface TourGalleryGridProps {
   images: string[];
@@ -26,7 +27,10 @@ export function TourGalleryGrid({
         >
           <Image
             src={image}
-            alt={`Landscape from this journey, photograph ${index + 1}`}
+            alt={getPlaceImageAlt(
+              image,
+              `Photograph ${index + 1} from this journey`,
+            )}
             fill
             sizes={
               index === 0

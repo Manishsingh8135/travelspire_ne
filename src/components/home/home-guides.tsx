@@ -1,70 +1,75 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { homeGuides } from "@/data/home/homepage";
 
+// Two big plates rather than four small ones. These guides are the strongest
+// editorial work on the site and were being shown at thumbnail scale.
 export function HomeGuides() {
   return (
     <section
       aria-labelledby="guides-heading"
-      className="bg-[#050d0f] py-20 text-white sm:py-24 lg:py-32"
+      className="bg-paper py-24 sm:py-28 lg:py-36"
     >
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24">
-        <header className="mb-10 flex flex-wrap items-end justify-between gap-6 sm:mb-14">
+        <header className="mb-12 flex flex-wrap items-end justify-between gap-6 sm:mb-16">
           <div>
-            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-[#d8c59d]">
+            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.22em] text-clay">
               Field notes &amp; travel guides
             </p>
             <h2
               id="guides-heading"
-              className="max-w-[18ch] text-[clamp(2.5rem,5vw,4.5rem)] font-medium leading-[0.94] tracking-[-0.05em] text-[#fffdf7]"
+              className="max-w-[16ch] text-[clamp(2.25rem,4.5vw,3.75rem)] font-medium leading-[0.98] tracking-[-0.04em] text-ink"
             >
               Useful long before{" "}
-              <span className="font-serif font-normal italic text-[#dfcfab]">
+              <span className="font-display font-normal italic text-clay">
                 you book.
               </span>
             </h2>
           </div>
-          <p className="max-w-[26rem] text-sm leading-6 text-white/[0.62]">
-            Practical guides written from our own journeys — routes, seasons,
-            permits and planning.
+          <p className="max-w-[26rem] text-[15px] leading-7 text-ink-soft">
+            Written from our own journeys — routes, seasons, permits and the
+            practical detail nobody else publishes.
           </p>
         </header>
 
-        <ul className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [scrollbar-width:none] lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
+        <ul className="rail -mx-5 gap-5 px-5 pb-1 scroll-pl-5 sm:mx-0 sm:grid sm:grid-cols-2 sm:px-0 sm:gap-6 lg:gap-8">
           {homeGuides.map((guide) => (
             <li
               key={guide.href}
-              className="w-[76vw] flex-none snap-start sm:w-[46vw] lg:w-auto"
+              className="w-[86vw] shrink-0 snap-start sm:w-auto sm:shrink"
             >
               <Link
                 href={guide.href}
-                className="group flex h-full flex-col overflow-hidden rounded-[14px] bg-[#0b1714] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8c59d]"
+                className="group relative block aspect-[4/3] overflow-hidden rounded-[20px] bg-paper-deep ring-1 ring-ink/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss"
               >
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  <Image
-                    src={guide.image}
-                    alt={guide.imageAlt}
-                    fill
-                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 46vw, 76vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-lg font-semibold leading-6 tracking-[-0.015em] text-[#fffdf7]">
+                <Image
+                  src={guide.image}
+                  alt={guide.imageAlt}
+                  fill
+                  sizes="(min-width: 640px) 48vw, 86vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  loading="lazy"
+                />
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,26,21,0.92)_0%,rgba(14,26,21,0.76)_18%,rgba(14,26,21,0.44)_38%,rgba(14,26,21,0.14)_58%,transparent_80%)]"
+                />
+
+                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7 lg:p-9">
+                  <h3 className="text-[1.5rem] font-medium leading-tight tracking-[-0.03em] text-paper sm:text-[1.75rem] lg:text-[2.125rem]">
                     {guide.title}
                   </h3>
-                  <p className="mt-2 flex-1 text-[13px] leading-5 text-white/[0.58]">
+                  <p className="mt-2.5 max-w-[32rem] text-[13.5px] leading-6 text-paper/[0.74] sm:text-[15px] sm:leading-7">
                     {guide.value}
                   </p>
-                  <p className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white/70 transition-colors duration-200 group-hover:text-[#f2ead8]">
-                    Read guide
-                    <ArrowRight
+                  <span className="mt-5 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-[#E4D3AC] transition-colors duration-200 group-hover:text-paper">
+                    Read the guide
+                    <ArrowUpRight
                       aria-hidden="true"
-                      className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+                      className="h-3 w-3 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     />
-                  </p>
+                  </span>
                 </div>
               </Link>
             </li>

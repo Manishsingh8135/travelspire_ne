@@ -4,6 +4,9 @@ import { ArrowDown, ArrowRight, MessageCircle } from "lucide-react";
 import { homeHero } from "@/data/home/homepage";
 import { createTripPlanningURL } from "@/lib/whatsapp";
 
+// Full-bleed and full-height, running underneath the navbar. These valleys
+// only read as vast at this scale, so nothing is inset and nothing frames it —
+// the photograph is the page until you scroll off it.
 export function HomeHero() {
   const {
     props: { srcSet: desktopSrcSet },
@@ -30,14 +33,10 @@ export function HomeHero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative isolate min-h-[100svh] overflow-hidden bg-[#050d0f] text-white"
+      className="relative isolate min-h-[100svh] overflow-hidden bg-ink-band text-paper"
     >
       <picture className="absolute inset-0">
-        <source
-          media="(min-width: 768px)"
-          srcSet={desktopSrcSet}
-          sizes="100vw"
-        />
+        <source media="(min-width: 768px)" srcSet={desktopSrcSet} sizes="100vw" />
         <img
           {...mobileImageProps}
           alt={homeHero.images.alt}
@@ -46,74 +45,83 @@ export function HomeHero() {
         />
       </picture>
 
-      {/* Contrast only where the text needs it. */}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(3,10,11,0.55)_0%,rgba(3,10,11,0.08)_30%,rgba(3,10,11,0.45)_58%,rgba(3,10,11,0.96)_100%)] md:hidden" />
-      <div className="absolute inset-0 hidden bg-[linear-gradient(180deg,rgba(4,11,13,0.45)_0%,rgba(4,11,13,0.05)_32%,rgba(4,11,13,0.42)_64%,rgba(4,11,13,0.95)_100%)] md:block" />
-      <div className="absolute inset-0 hidden bg-[linear-gradient(90deg,rgba(4,11,13,0.45)_0%,rgba(4,11,13,0.1)_45%,transparent_72%)] md:block" />
+      {/* Many stops rather than two: across a full viewport a two-stop
+          gradient bands visibly. Contrast lands only where type sits. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,26,21,0.90)_0%,rgba(14,26,21,0.78)_12%,rgba(14,26,21,0.54)_28%,rgba(14,26,21,0.28)_44%,rgba(14,26,21,0.10)_60%,rgba(14,26,21,0.14)_82%,rgba(14,26,21,0.42)_100%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 hidden bg-[linear-gradient(to_right,rgba(14,26,21,0.52)_0%,rgba(14,26,21,0.18)_40%,transparent_70%)] md:block"
+      />
 
-      {/* Top-right coordinates */}
-      <div className="absolute right-6 top-24 z-10 hidden text-right md:right-12 md:top-28 md:block lg:right-20 xl:right-28">
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/85">
+      <div className="absolute right-5 top-24 z-10 hidden text-right sm:right-8 md:right-10 md:top-28 md:block lg:right-16 xl:right-24">
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-paper/85">
           Home base
         </p>
-        <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-white/[0.5]">
+        <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-paper/50">
           {homeHero.coordinates}
         </p>
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1600px] flex-col px-5 pb-8 pt-32 sm:px-8 md:px-10 lg:px-16 xl:px-24">
-        <div className="flex flex-1 items-end pb-6 md:pb-8">
-          <div className="max-w-[980px]">
-            <p className="mb-4 flex items-center gap-2.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-[#eee6d3] sm:mb-5 sm:text-[11px]">
-              <span aria-hidden="true" className="h-1.5 w-1.5 bg-[#d8c59d]" />
+        <div className="flex flex-1 items-end pb-4 md:pb-6">
+          <div className="max-w-[62rem]">
+            <p className="mb-4 flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.22em] text-paper/85 sm:mb-5 sm:text-[11px]">
+              <span aria-hidden="true" className="h-1 w-1 rounded-full bg-brass" />
               {homeHero.eyebrow}
             </p>
 
             <h1
               id="hero-heading"
-              className="text-[clamp(2.9rem,12vw,5.4rem)] font-semibold leading-[0.92] tracking-[-0.055em] text-[#fffdf7] [text-shadow:0_3px_32px_rgba(0,0,0,0.7)] md:text-[clamp(4.5rem,7vw,7.5rem)] md:font-medium"
+              className="text-[clamp(2.6rem,10.5vw,4.6rem)] font-medium leading-[0.93] tracking-[-0.05em] text-paper [text-shadow:0_3px_34px_rgba(14,26,21,0.72)] md:text-[clamp(4rem,6.6vw,7rem)]"
             >
               <span className="block">{homeHero.title}</span>
-              <span className="mt-1 block font-serif text-[0.62em] font-normal italic tracking-[-0.03em] text-[#f0dfb8] md:mt-2 md:text-[#dfcfab]">
+              <span className="mt-1 block font-display text-[0.95em] font-normal italic tracking-[-0.02em] text-[#F2E5C8] md:mt-2">
                 {homeHero.highlightedTitle}
               </span>
             </h1>
 
-            <p className="mt-5 max-w-[36rem] text-[0.95rem] font-medium leading-6 text-white/[0.88] [text-shadow:0_2px_18px_rgba(0,0,0,0.85)] sm:mt-6 sm:text-base sm:leading-7 md:text-lg md:font-normal md:leading-8 md:text-white/[0.74]">
+            <p className="mt-5 max-w-[36rem] text-[0.95rem] leading-7 text-paper/[0.88] [text-shadow:0_2px_18px_rgba(14,26,21,0.85)] sm:mt-6 md:text-lg md:leading-8 md:text-paper/[0.8]">
               {homeHero.description}
             </p>
 
-            <div className="mt-6 sm:mt-8">
-              <div className="grid max-w-[31rem] grid-cols-2 gap-2.5 sm:flex sm:gap-3">
-                <Link
-                  href="/all-tours"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-[10px] bg-[#f2ead8] px-3 text-[13px] font-semibold text-[#07100d] transition-colors duration-200 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d0f] sm:px-6 sm:text-sm"
-                >
-                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
-                  Explore all tours
-                </Link>
-
-                <a
-                  href={createTripPlanningURL()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Plan your trip with Travelspire NE on WhatsApp (opens in a new tab)"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-[10px] border border-white/[0.38] bg-black/10 px-3 text-[13px] font-medium text-white backdrop-blur-[2px] transition-colors duration-200 hover:border-white/70 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d0f] sm:px-6 sm:text-sm"
-                >
-                  <MessageCircle aria-hidden="true" className="h-4 w-4" />
-                  Plan my trip
-                </a>
-              </div>
-
+            <div className="mt-7 grid max-w-[31rem] grid-cols-2 gap-2.5 sm:flex sm:gap-3 md:mt-9">
               <Link
-                href="#destinations-heading"
-                className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#eee6d3] transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8]"
+                href="/all-tours"
+                className="inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-[8px] bg-paper px-4 text-[13px] font-semibold text-ink transition-colors duration-200 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink-band sm:px-6 sm:text-sm"
               >
-                <ArrowDown aria-hidden="true" className="h-3.5 w-3.5" />
-                Explore destinations
+                <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                Explore all tours
               </Link>
+
+              <a
+                href={createTripPlanningURL()}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Plan your trip with Travelspire NE on WhatsApp (opens in a new tab)"
+                className="inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-[8px] border border-paper/40 bg-ink/10 px-4 text-[13px] font-medium text-paper backdrop-blur-[2px] transition-colors duration-200 hover:border-paper/80 hover:bg-paper/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink-band sm:px-6 sm:text-sm"
+              >
+                <MessageCircle aria-hidden="true" className="h-4 w-4" />
+                Plan my trip
+              </a>
             </div>
           </div>
+        </div>
+
+        <div className="flex items-end justify-between gap-6 border-t border-paper/[0.14] pt-4">
+          <Link
+            href="#destinations"
+            className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-paper/80 transition-colors duration-200 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+          >
+            <ArrowDown aria-hidden="true" className="h-3.5 w-3.5" />
+            Explore destinations
+          </Link>
+
+          <p className="hidden text-right font-mono text-[10px] uppercase tracking-[0.18em] text-paper/45 sm:block">
+            {homeHero.imageCaption}
+          </p>
         </div>
       </div>
     </section>

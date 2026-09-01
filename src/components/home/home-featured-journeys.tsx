@@ -1,101 +1,105 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { homeFeaturedJourneys } from "@/data/home/homepage";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import {
+  homeFeaturedJourneys,
+  type HomeFeaturedJourney,
+} from "@/data/home/homepage";
+
+function formatPrice(value: number) {
+  return `₹${value.toLocaleString("en-IN")}`;
+}
+
+function JourneyCard({ journey }: { journey: HomeFeaturedJourney }) {
+  return (
+    <Link
+      href={journey.href}
+      className="group relative block aspect-[4/5] overflow-hidden rounded-[16px] bg-paper-deep ring-1 ring-ink/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss"
+    >
+      <Image
+        src={journey.image}
+        alt={journey.imageAlt}
+        fill
+        sizes="(min-width: 1024px) 32vw, (min-width: 640px) 46vw, 80vw"
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+        loading="lazy"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(14,26,21,0.92)_0%,rgba(14,26,21,0.78)_18%,rgba(14,26,21,0.46)_38%,rgba(14,26,21,0.16)_56%,rgba(14,26,21,0.02)_74%,transparent_88%)]"
+      />
+
+      <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+        <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#E4D3AC]">
+          {journey.location}
+        </p>
+        <h3 className="mt-2.5 text-[1.35rem] font-medium leading-tight tracking-[-0.025em] text-paper sm:text-[1.5rem]">
+          {journey.title}
+        </h3>
+        <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-paper/60">
+          {journey.duration}
+          <span aria-hidden="true"> · </span>
+          {journey.difficulty}
+        </p>
+
+        <div className="mt-4 flex items-end justify-between gap-4 border-t border-paper/[0.16] pt-3.5">
+          <p className="text-[15px] font-semibold text-paper">
+            <span className="font-mono text-[10px] font-normal uppercase tracking-[0.14em] text-paper/55">
+              from{" "}
+            </span>
+            {formatPrice(journey.fromPrice)}
+          </p>
+          <ArrowUpRight
+            aria-hidden="true"
+            className="h-4 w-4 flex-none text-paper/70 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          />
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 export function HomeFeaturedJourneys() {
   return (
     <section
-      aria-labelledby="featured-tours-heading"
-      className="bg-[#07100d] py-20 text-white sm:py-24 lg:py-32"
+      aria-labelledby="featured-journeys-heading"
+      className="bg-paper py-24 sm:py-28 lg:py-36"
     >
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24">
-        <header className="mb-10 flex flex-wrap items-end justify-between gap-6 sm:mb-14">
+        <header className="mb-12 flex flex-wrap items-end justify-between gap-6 sm:mb-16">
           <div>
-            <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.22em] text-[#d8c59d]">
+            <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.22em] text-clay">
               Featured journeys
             </p>
             <h2
-              id="featured-tours-heading"
-              className="max-w-[18ch] text-[clamp(2.5rem,5vw,4.5rem)] font-medium leading-[0.94] tracking-[-0.05em] text-[#fffdf7]"
+              id="featured-journeys-heading"
+              className="max-w-[16ch] text-[clamp(2.25rem,4.5vw,3.75rem)] font-medium leading-[0.98] tracking-[-0.04em] text-ink"
             >
-              The trips that{" "}
-              <span className="font-serif font-normal italic text-[#dfcfab]">
-                book out first.
+              The six we would{" "}
+              <span className="font-display font-normal italic text-clay">
+                put you on first.
               </span>
             </h2>
           </div>
           <Link
             href="/all-tours"
-            className="inline-flex min-h-11 items-center gap-2 rounded-[10px] border border-white/[0.22] px-5 text-[11px] font-bold uppercase tracking-[0.15em] text-white/85 transition-colors duration-200 hover:border-[#d8c59d]/60 hover:text-[#f2ead8] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8c59d]"
+            className="inline-flex min-h-11 items-center gap-2 rounded-[8px] border border-ink/15 px-5 text-[13px] font-medium text-ink transition-colors duration-200 hover:border-ink/35 hover:bg-ink/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-moss"
           >
-            Explore Northeast India tour packages
+            See all tours
             <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </Link>
         </header>
 
-        {/* Mobile: one card at a time · Desktop: 3-column grid */}
-        <ul className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [scrollbar-width:none] lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
+        <div className="rail -mx-5 gap-5 px-5 pb-1 scroll-pl-5 sm:mx-0 sm:grid sm:grid-cols-2 sm:px-0 lg:grid-cols-3 lg:gap-6">
           {homeFeaturedJourneys.map((journey) => (
-            <li
+            <div
               key={journey.slug}
-              className="w-[86vw] flex-none snap-start sm:w-[62vw] lg:w-auto"
+              className="w-[80vw] shrink-0 snap-start sm:w-auto sm:shrink"
             >
-              <Link
-                href={journey.href}
-                className="group flex h-full flex-col overflow-hidden rounded-[14px] bg-[#0b1714] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8c59d]"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={journey.image}
-                    alt={journey.imageAlt}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 62vw, 86vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                  />
-                </div>
-
-                <div className="flex flex-1 flex-col p-5 sm:p-6">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#d8c59d]/90">
-                    {journey.location}
-                  </p>
-                  <h3 className="mt-2 text-xl font-semibold leading-7 tracking-[-0.02em] text-[#fffdf7]">
-                    {journey.title}
-                  </h3>
-                  <p className="mt-2.5 font-mono text-[11px] uppercase tracking-[0.1em] text-white/[0.5]">
-                    {journey.duration}
-                    <span aria-hidden="true"> · </span>
-                    {journey.difficulty}
-                    <span aria-hidden="true"> · </span>
-                    {journey.startDate}
-                  </p>
-
-                  <div className="mt-5 flex items-end justify-between gap-4 border-t border-white/[0.08] pt-4">
-                    <p className="text-sm text-white/[0.72]">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/[0.45]">
-                        from{" "}
-                      </span>
-                      <span className="text-base font-semibold text-[#f2ead8]">
-                        ₹{journey.fromPrice.toLocaleString("en-IN")}
-                      </span>
-                      <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/[0.45]">
-                        {" "}
-                        / person
-                      </span>
-                    </p>
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white/70 transition-colors duration-200 group-hover:text-[#f2ead8]">
-                      View journey
-                      <ArrowRight
-                        aria-hidden="true"
-                        className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
-                      />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </li>
+              <JourneyCard journey={journey} />
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
