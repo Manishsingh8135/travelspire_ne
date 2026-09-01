@@ -9,7 +9,6 @@ import { HomeHero } from "@/components/home/home-hero";
 import { HomeJourneyTypes } from "@/components/home/home-journey-types";
 import { HomePermits } from "@/components/home/home-permits";
 import { HomeSeasonalFeature } from "@/components/home/home-seasonal-feature";
-import { HomeStatesRail } from "@/components/home/home-states-rail";
 import { HomeStories } from "@/components/home/home-stories";
 import { HomeTrustStrip } from "@/components/home/home-trust-strip";
 import { HomeWhyTravelspire } from "@/components/home/home-why-travelspire";
@@ -55,7 +54,6 @@ export function HomeExperience() {
           itself once the edition is past, and the catalogue closes back up. */}
       <HomeHero />
       <HomeTrustStrip />
-      <HomeStatesRail />
       <HomeDestinationAtlas />
       <HomeAniniFest />
       <HomeJourneyTypes />
