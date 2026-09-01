@@ -35,6 +35,7 @@ import { TourBookingCard } from "./tour-booking-card";
 import { TourGallery } from "./tour-gallery";
 import { TourItineraryDay } from "./tour-itinerary-day";
 import { TourSection } from "./tour-section";
+import { getPlaceImageAlt } from "@/data/seo/image-seo-data";
 
 interface TourDetailProps {
   tour: Tour;
@@ -292,7 +293,7 @@ function TourHero({
     <section className="relative isolate flex min-h-[94svh] overflow-hidden bg-[#07100d] text-white md:min-h-[86svh]">
       <Image
         src={tour.heroImage}
-        alt={tour.title}
+        alt={getPlaceImageAlt(tour.heroImage, `${tour.title} in ${tour.location}`)}
         fill
         priority
         sizes="100vw"

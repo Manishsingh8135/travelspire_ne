@@ -9,6 +9,7 @@ import {
   MessageCircle,
   Phone,
 } from "lucide-react";
+import { Logo } from "@/components/common/logo/logo";
 import { cn } from "@/lib/utils";
 
 interface FooterProps {
@@ -111,19 +112,22 @@ export function Footer({ data, className }: FooterProps) {
         </div>
 
         <div className="mt-16 flex flex-col gap-8 border-t border-white/[0.09] pt-8 text-xs text-white/[0.4] md:flex-row md:items-center md:justify-between lg:mt-20">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-7">
-            <p>{data.bottomSection.copyright}</p>
-            <nav aria-label="Legal" className="flex flex-wrap gap-x-6 gap-y-3">
-              {data.bottomSection.legalLinks.map((link) => (
-                <Link
-                  key={link.text}
-                  href={link.href}
-                  className="transition-colors duration-200 hover:text-white"
-                >
-                  {link.text}
-                </Link>
-              ))}
-            </nav>
+          <div className="flex flex-col gap-6">
+            <Logo className="text-[#f5f0e5]" />
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-7">
+              <p>{data.bottomSection.copyright}</p>
+              <nav aria-label="Legal" className="flex flex-wrap gap-x-6 gap-y-3">
+                {data.bottomSection.legalLinks.map((link) => (
+                  <Link
+                    key={link.text}
+                    href={link.href}
+                    className="transition-colors duration-200 hover:text-white"
+                  >
+                    {link.text}
+                  </Link>
+                ))}
+              </nav>
+            </div>
           </div>
 
           <div className="flex gap-2">

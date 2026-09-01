@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import { CircuitBookBar } from "@/components/expeditions/grand-circuit/circuit-book-bar";
 import { CircuitBooking } from "@/components/expeditions/grand-circuit/circuit-booking";
 import { CircuitFaq } from "@/components/expeditions/grand-circuit/circuit-faq";
+import { CircuitGallery } from "@/components/expeditions/grand-circuit/circuit-gallery";
 import { CircuitHero } from "@/components/expeditions/grand-circuit/circuit-hero";
 import { CircuitItinerary } from "@/components/expeditions/grand-circuit/circuit-itinerary";
 import { CircuitStory } from "@/components/expeditions/grand-circuit/circuit-story";
 import { StructuredData } from "@/components/seo/structured-data";
+import { ImageSEO } from "@/components/seo/image-seo";
+import { mechuka2026Images } from "@/data/seo/image-seo-data";
 import {
   circuitChapters,
   circuitDays,
@@ -44,6 +47,10 @@ export const metadata: Metadata = {
     "Arunachal Pradesh grand circuit",
     "Dibrugarh to Mechuka Dong Anini",
     "Aalo Mechuka road trip",
+    "Mechuka golden Buddha",
+    "Yargyap Chu Mechuka",
+    "Dorjeeling Mechuka",
+    "Mechuka helicopter landmark",
     "Golden Pagoda Namsai tour",
     "Mayodia Pass Anini tour",
     "Arunachal Pradesh ILP tour",
@@ -168,8 +175,10 @@ const circuitGraph = {
       image: [
         ogImageUrl,
         `${siteUrl}${circuitHero.desktop.src}`,
+        `${siteUrl}${circuitHero.mobile.src}`,
         ...circuitChapters.map((chapter) => `${siteUrl}${chapter.frame.src}`),
-      ],
+        ...mechuka2026Images.map((image) => `${siteUrl}${image.src}`),
+      ].filter((url, index, list) => list.indexOf(url) === index),
       sku: "TSNE-MDA-13D",
       category: "Guided multi-day tour",
       provider: { "@id": `${siteUrl}/#organization` },
@@ -292,8 +301,10 @@ export default function MechukaDongAniniTourPage() {
   return (
     <article className="min-h-screen bg-[#07110f]">
       <StructuredData data={circuitGraph} />
+      <ImageSEO images={mechuka2026Images} limit={8} />
       <CircuitHero />
       <CircuitStory />
+      <CircuitGallery />
       <CircuitItinerary />
       <CircuitBooking />
       <CircuitFaq />

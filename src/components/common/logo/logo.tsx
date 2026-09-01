@@ -1,7 +1,15 @@
 // components/common/logo/logo.tsx
-"use client";
+//
+// The globe mark comes from the brand PNG; the wordmark is typeset alongside
+// it. The PNG is a full lockup with "NORTHEAST" set in light grey, which is
+// invisible on the cream navbar — so the mark is windowed out of it and the
+// words are set in currentColor instead. One component then serves the dark
+// and light navbars at any size.
+//
+// In the 500×500 source the globe sits at x 112–386, y 109–333, with the
+// wordmark starting immediately below it — hence the exact offsets below.
+// A mark-only asset (ideally SVG) would let all of this go away.
 
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -16,21 +24,40 @@ export function Logo({ className }: LogoProps) {
       href="/"
       aria-label="Travelspire North-East home"
       className={cn(
-        "flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8]",
+        "inline-flex shrink-0 items-center gap-2.5 text-[color:var(--nav-fg-strong)]",
+        "transition-opacity duration-200 hover:opacity-80",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--nav-ring)] focus-visible:ring-offset-4 focus-visible:ring-offset-transparent",
         className,
       )}
     >
-      <div className="relative flex items-center">
-        <div className="relative h-[72px] w-24 md:h-20">
-          <Image
-            src="/images/logo/Travelspire_ne_logo_new.png"
-            alt="Travelspire NE Logo"
-            fill
-            className="object-contain"
-            priority
+      <span className="relative block h-[37px] w-12 shrink-0 overflow-hidden">
+        <Image
+          src="/images/logo/Travelspire_ne_logo_new.png"
+          alt=""
+          aria-hidden="true"
+          width={83}
+          height={83}
+          priority
+          className="absolute left-[-18px] top-[-18px] max-w-none"
+        />
+      </span>
+
+      <span className="flex flex-col gap-[5px]">
+        <span className="text-[15px] font-semibold uppercase leading-none tracking-[0.18em] sm:text-base">
+          Travelspire
+        </span>
+        {/* The rule flexes to fill the remaining width, so the second line
+            always ends flush with the first without forced letter-spacing. */}
+        <span className="flex items-center gap-2">
+          <span
+            aria-hidden="true"
+            className="h-px flex-1 bg-current opacity-30"
           />
-        </div>
-      </div>
+          <span className="font-mono text-[8.5px] uppercase leading-none tracking-[0.3em] opacity-65 sm:text-[9px]">
+            Northeast
+          </span>
+        </span>
+      </span>
     </Link>
   );
 }

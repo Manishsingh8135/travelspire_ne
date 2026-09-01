@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { TourGalleryGrid } from "./tour-gallery-grid";
 import { cn } from "@/lib/utils";
+import { getPlaceImageAlt } from "@/data/seo/image-seo-data";
 
 interface TourGalleryProps {
   images: string[];
@@ -70,7 +71,10 @@ export function TourGallery({
             >
               <Image
                 src={images[selectedIndex]}
-                alt={`Landscape from this journey, photograph ${selectedIndex + 1}`}
+                alt={getPlaceImageAlt(
+                  images[selectedIndex],
+                  `Photograph ${selectedIndex + 1} from this journey`,
+                )}
                 fill
                 priority
                 sizes="100vw"

@@ -1,4 +1,5 @@
 import type { FAQSection } from "@/types/faqs/faq";
+import { anini2026Src } from "@/data/seo/image-seo-data";
 
 // Evergreen destination hub: Anini, Dibang Valley.
 // Every fact here should be verifiable on the ground — this page outlives the festival.
@@ -19,9 +20,17 @@ export const aniniMeta = {
 } as const;
 
 export const aniniHeroImages = {
-  desktop: { src: "/images/places/anini-new/anini-new-landscape-13.jpeg", width: 4000, height: 2250 },
-  mobile: { src: "/images/places/anini-new/anini-new-portrait-2.jpg", width: 1340, height: 1600 },
-  alt: "Cloud moving over the Anini plateau between the Dri and Mathun rivers, Dibang Valley",
+  desktop: {
+    src: anini2026Src.rainbowGlamping,
+    width: 4032,
+    height: 3024,
+  },
+  mobile: {
+    src: anini2026Src.benchBoardwalk,
+    width: 3024,
+    height: 4032,
+  },
+  alt: "Anini plateau in Dibang Valley — meadows, boardwalks and a Himalayan sky after rain",
 } as const;
 
 export const aniniHeroFacts = [
@@ -72,8 +81,8 @@ export const aniniExperiences: AniniExperience[] = [
     story:
       "A string of roadside and short-trail falls around the plateau — easy half-day spots with route hints from people who actually drive past them weekly.",
     meta: "Half day · monsoon-fed, fullest Sep–Nov",
-    image: "/images/places/anini-new/anini-new-portrait-8.jpg",
-    imageAlt: "Seasonal waterfall country around the Anini plateau",
+    image: anini2026Src.mistyFalls,
+    imageAlt: "Multi-tiered waterfall dropping through mist and forest near Anini, Dibang Valley",
   },
   {
     index: "04",
@@ -101,6 +110,16 @@ export const aniniExperiences: AniniExperience[] = [
     meta: "Half day · always with a community guide",
     image: "/images/places/anini-new/anini-new-portrait-7.jpg",
     imageAlt: "Village country in the hills around Anini",
+  },
+  {
+    index: "07",
+    title: "Seven Lakes Trek",
+    story:
+      "A guided walk to the tarns above Anini — flooded meadows, pine forest and still alpine water. A proper trek day, not a viewpoint stop. Fitness required; we only run it with a local guide.",
+    meta: "Full day · guided only · weather-dependent",
+    image: anini2026Src.sevenLakesSign,
+    imageAlt:
+      "Travellers at the official Anini Seven Lakes Trek trailhead sign in Dibang Valley",
   },
 ];
 
@@ -161,14 +180,14 @@ export const aniniPractical = [
 
 // Gallery: anini-new (Anini plateau) + pomo (Pomo Grassland) only — captions name real places.
 export const aniniFrames = [
-  { src: "/images/places/anini-new/anini-new-portrait-4.jpg", alt: "The Dri river valley near Anini", caption: "Dri Valley" },
-  { src: "/images/places/pomo/pomo2.JPG", alt: "Open grassland at Pomo", caption: "Pomo Grassland" },
-  { src: "/images/places/anini-new/anini-new-portrait-8.jpg", alt: "Waterfall country around Anini", caption: "Above Anini" },
-  { src: "/images/places/anini-new/anini-new-portrait-5.jpg", alt: "Orchard slopes near Anini", caption: "Orchard Country" },
-  { src: "/images/places/pomo/pomo5.jpg", alt: "High meadow light at Pomo", caption: "Pomo" },
-  { src: "/images/places/anini-new/anini-new-portrait-1.jpg", alt: "Montane forest in Dibang Valley", caption: "Dibang Forest" },
-  { src: "/images/places/pomo/pomo3.JPG", alt: "The horizon at Pomo grassland", caption: "Horizon Country" },
-  { src: "/images/places/anini-new/anini-new-portrait-7.jpg", alt: "Village hills around Anini", caption: "Village Hills" },
+  { src: anini2026Src.sevenLakesSign, alt: "Travellers at the Anini Seven Lakes Trek trailhead sign in Dibang Valley", caption: "Seven Lakes Trek" },
+  { src: anini2026Src.emuliSign, alt: "Emuli Grassland sign above Anini with mountain ridges behind", caption: "Emuli Grassland" },
+  { src: anini2026Src.rainbowGlamping, alt: "Double rainbow over mountains, sunflowers and glamping tents at Anini", caption: "After the rain" },
+  { src: anini2026Src.pomoRidgeTrail, alt: "Trekkers on a grassy ridge trail on the Pomo route near Anini", caption: "Pomo trail" },
+  { src: anini2026Src.sevenLakesTarn, alt: "Alpine tarn on the Seven Lakes trek near Anini, Dibang Valley", caption: "Seven Lakes" },
+  { src: "/images/places/anini-new/anini-new-landscape-13.jpeg", alt: "The high plateau at Anini between the Dri and Mathun rivers", caption: "Anini Plateau" },
+  { src: anini2026Src.cascadeFalls, alt: "Wide cascade waterfall on the Anini waterfall circuit, Dibang Valley", caption: "Waterfall circuit" },
+  { src: anini2026Src.aFrameCabins, alt: "A-frame cabins under mist and a mountainside waterfall at Anini", caption: "Valley stays" },
 ] as const;
 
 export const aniniFaqSection: FAQSection = {
@@ -238,7 +257,7 @@ export const aniniNextPlaces = [
     name: "Mechuka",
     blurb: "Meadows, monasteries and the Siyom river in West Siang.",
     href: "/tours/mechuka-expedition",
-    image: "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
+    image: "/images/places/mechuka-new/Mechuka2026/mechuka-valley-ridge-viewpoint-town.jpg",
   },
   {
     name: "Ziro Valley",

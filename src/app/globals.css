@@ -118,9 +118,61 @@
     --input: 51 65 85;
     --ring: 14 165 233;
   }
+
+  /* ── Navbar tone ──────────────────────────────────────────────────────
+     The navbar is fixed and shared by every route, but the homepage is a
+     light page while the destination and expedition pages are dark. Rather
+     than branching markup in three components, the header publishes a tone
+     and the nav internals read these variables. */
+  [data-nav-tone="dark"] {
+    --nav-fg: rgba(255, 255, 255, 0.72);
+    --nav-fg-strong: #ffffff;
+    --nav-fg-muted: rgba(255, 255, 255, 0.45);
+    --nav-accent: #d8c59d;
+    --nav-border: rgba(255, 255, 255, 0.1);
+    --nav-border-strong: rgba(255, 255, 255, 0.2);
+    --nav-hover-bg: rgba(255, 255, 255, 0.05);
+    --nav-chip-bg: rgba(255, 255, 255, 0.04);
+    --nav-panel-bg: rgba(7, 17, 15, 0.98);
+    --nav-panel-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+    --nav-scrolled-bg: rgba(6, 16, 14, 0.95);
+    --nav-scrolled-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    --nav-overlay: rgba(0, 0, 0, 0.65);
+    --nav-ring: #f2ead8;
+  }
+
+  [data-nav-tone="light"] {
+    --nav-fg: #3d4a43;
+    --nav-fg-strong: #14201a;
+    --nav-fg-muted: #6b766e;
+    --nav-accent: #9a5a38;
+    --nav-border: rgba(20, 32, 26, 0.1);
+    --nav-border-strong: rgba(20, 32, 26, 0.18);
+    --nav-hover-bg: rgba(20, 32, 26, 0.04);
+    --nav-chip-bg: rgba(20, 32, 26, 0.04);
+    --nav-panel-bg: rgba(251, 248, 241, 0.98);
+    --nav-panel-shadow: 0 30px 70px -30px rgba(20, 32, 26, 0.28);
+    --nav-scrolled-bg: rgba(251, 248, 241, 0.92);
+    --nav-scrolled-shadow: 0 8px 24px -16px rgba(20, 32, 26, 0.25);
+    --nav-overlay: rgba(20, 32, 26, 0.35);
+    --nav-ring: #2f4a3a;
+  }
 }
 
 @layer utilities {
+  /* Horizontal rails: cards bleed to the screen edge while the first card
+     still lines up with the page gutter. The scrollbar is hidden because the
+     next card peeking past the edge is the affordance. */
+  .rail {
+    @apply flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Gradient Utilities */
   .gradient-primary {
     @apply bg-gradient-to-r from-primary-500 to-secondary-500;

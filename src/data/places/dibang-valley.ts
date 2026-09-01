@@ -1,4 +1,5 @@
 import type { FAQSection } from "@/types/faqs/faq";
+import { anini2026Src } from "@/data/seo/image-seo-data";
 
 // Dibang Valley regional hub — the umbrella page that ties the whole cluster together.
 // Covers the Dibang region broadly: Dibang Valley district (Anini side) + Lower Dibang (Roing/Dambuk side).
@@ -11,9 +12,17 @@ export const valleyMeta = {
 } as const;
 
 export const valleyHeroImages = {
-  desktop: { src: "/images/places/pomo/pomo1.JPG", width: 3024, height: 4032 },
-  mobile: { src: "/images/places/anini-new/anini-new-portrait-4.jpg", width: 3024, height: 4032 },
-  alt: "Vast grasslands and ridgelines of the Dibang region, Arunachal Pradesh",
+  desktop: {
+    src: anini2026Src.rainbowGlamping,
+    width: 4032,
+    height: 3024,
+  },
+  mobile: {
+    src: anini2026Src.pomoRidgeTrail,
+    width: 3120,
+    height: 4160,
+  },
+  alt: "Dibang Valley after rain — a double rainbow over the mountains above Anini, Arunachal Pradesh",
 } as const;
 
 export const valleyHeroFacts = [
@@ -33,8 +42,8 @@ export const valleyChapters = [
       "The quietest district headquarters in India, at 1,970 m. Clouds below, ridges above, and a night sky with no competition.",
     meta: "235 km from Roing · via Mayodia Pass",
     href: "/places/anini",
-    image: "/images/places/anini-new/anini-new-landscape-13.jpeg",
-    imageAlt: "The high plateau at Anini",
+    image: anini2026Src.emuliSign,
+    imageAlt: "Emuli Grassland above Anini in Dibang Valley",
   },
   {
     index: "02",
@@ -77,8 +86,8 @@ export const valleyChapters = [
       "Beyond Anini the road thins to a line. Dri Valley's river flats and Pomo's high grasslands are the far edge of the map.",
     meta: "Permit territory · guided only",
     href: "/places/anini",
-    image: "/images/places/pomo/pomo1.JPG",
-    imageAlt: "Pomo grasslands beyond Anini",
+    image: anini2026Src.pomoRidgeTrail,
+    imageAlt: "Trekkers on a grassy ridge trail on the Pomo route above Anini",
   },
   {
     index: "06",
@@ -250,7 +259,7 @@ export const valleyNextPlaces = [
     name: "Anini",
     blurb: "The flagship guide — everything about the high plateau.",
     href: "/places/anini",
-    image: "/images/places/anini-new/anini-new-portrait-4.jpg",
+    image: anini2026Src.benchBoardwalk,
   },
   {
     name: "Dambuk",

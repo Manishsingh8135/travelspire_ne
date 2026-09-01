@@ -173,7 +173,7 @@ export function AniniGo() {
                 >
                   <Image
                     src={place.image}
-                    alt=""
+                    alt={`${place.name}, Arunachal Pradesh`}
                     fill
                     sizes="(min-width: 1024px) 30vw, 50vw"
                     className="object-cover opacity-55 transition-all duration-500 group-hover:scale-[1.03] group-hover:opacity-70 motion-reduce:transition-none"

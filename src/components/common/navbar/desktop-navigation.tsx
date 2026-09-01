@@ -19,22 +19,22 @@ const SubMenuItem = ({ item }: { item: NavigationItem }) => (
     className={cn(
       "mx-2 my-1 block border-l-2 border-transparent px-4 py-3",
       "text-sm group cursor-pointer",
-      "text-white/70 hover:border-[#d8c59d] hover:bg-white/[0.05] hover:text-white",
-      "transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8]",
+      "text-[color:var(--nav-fg)] hover:border-[color:var(--nav-accent)] hover:bg-[color:var(--nav-hover-bg)] hover:text-[color:var(--nav-fg-strong)]",
+      "transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--nav-ring)]",
     )}
   >
     <div className="flex items-start gap-3">
       {item.icon && (
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-[10px] border border-white/10 bg-white/[0.04]">
-          <item.icon className="h-5 w-5 text-[#d8c59d]" />
+        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-[10px] border border-[color:var(--nav-border)] bg-[color:var(--nav-chip-bg)]">
+          <item.icon className="h-5 w-5 text-[color:var(--nav-accent)]" />
         </div>
       )}
       <div className="flex-1 min-w-0 overflow-hidden">
-        <div className="truncate font-semibold text-white transition-colors">
+        <div className="truncate font-semibold text-[color:var(--nav-fg-strong)] transition-colors">
           {item.name}
         </div>
         {item.description && (
-          <div className="mt-0.5 line-clamp-2 break-words text-xs text-white/[0.45]">
+          <div className="mt-0.5 line-clamp-2 break-words text-xs text-[color:var(--nav-fg-muted)]">
             {item.description}
           </div>
         )}
@@ -54,16 +54,18 @@ const NavItem = ({
     <span className="flex items-center gap-2">
       {item.icon && <item.icon className="h-4 w-4" />}
       {item.name}
-      {item.submenu && <ChevronDown className="h-4 w-4 text-white/[0.45]" />}
+      {item.submenu && (
+        <ChevronDown className="h-4 w-4 text-[color:var(--nav-fg-muted)]" />
+      )}
     </span>
   );
 
   const buttonClassName = cn(
     "border-b border-transparent px-3 py-2 text-sm font-medium lg:px-4",
     "transition-colors duration-200",
-    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8]",
+    "focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--nav-ring)]",
     "inline-flex items-center justify-center",
-    "text-white/[0.72] hover:border-[#d8c59d]/75 hover:text-white",
+    "text-[color:var(--nav-fg)] hover:border-[color:var(--nav-accent)] hover:text-[color:var(--nav-fg-strong)]",
   );
 
   // If there's a submenu, render as a button
@@ -127,21 +129,21 @@ export const DesktopNavigation = ({
                   className={cn(
                     "absolute top-full left-0 mt-2",
                     item.name === "Permits" ? "w-80" : "w-64",
-                    "rounded-[14px] bg-[#07110f]/[0.98]",
-                    "border border-white/10 shadow-[0_24px_70px_rgba(0,0,0,0.42)] backdrop-blur-xl",
+                    "rounded-[14px] bg-[color:var(--nav-panel-bg)]",
+                    "border border-[color:var(--nav-border)] shadow-[var(--nav-panel-shadow)] backdrop-blur-xl",
                     "overflow-hidden",
                   )}
                 >
                   {/* Permit navigation header */}
                   {item.name === "Permits" && (
-                    <div className="border-b border-white/10 bg-white/[0.03] px-4 py-3">
-                      <h3 className="flex items-center gap-2 text-sm font-bold text-white">
+                    <div className="border-b border-[color:var(--nav-border)] bg-[color:var(--nav-chip-bg)] px-4 py-3">
+                      <h3 className="flex items-center gap-2 text-sm font-bold text-[color:var(--nav-fg-strong)]">
                         {item.icon && (
-                          <item.icon className="h-4 w-4 text-[#d8c59d]" />
+                          <item.icon className="h-4 w-4 text-[color:var(--nav-accent)]" />
                         )}
                         State Permit Guides
                       </h3>
-                      <p className="mt-0.5 text-xs text-white/[0.45]">
+                      <p className="mt-0.5 text-xs text-[color:var(--nav-fg-muted)]">
                         Complete information for each state
                       </p>
                     </div>
@@ -157,10 +159,10 @@ export const DesktopNavigation = ({
 
                   {/* Footer for Permits */}
                   {item.name === "Permits" && (
-                    <div className="border-t border-white/10 bg-white/[0.03] px-4 py-3">
+                    <div className="border-t border-[color:var(--nav-border)] bg-[color:var(--nav-chip-bg)] px-4 py-3">
                       <Link
                         href="/permits"
-                        className="group flex items-center gap-1 text-xs font-medium text-[#d8c59d] hover:text-white"
+                        className="group flex items-center gap-1 text-xs font-medium text-[color:var(--nav-accent)] hover:text-[color:var(--nav-fg-strong)]"
                       >
                         View All Permit Information
                         <ChevronDown className="h-3 w-3 rotate-[-90deg]" />
@@ -175,22 +177,24 @@ export const DesktopNavigation = ({
       ))}
 
       {/* Secondary Navigation */}
-      <div className="ml-4 flex items-center border-l border-white/[0.15] pl-4">
-        {navigationData.secondary.map((item) => (
-          <Link
-            key={item.name}
-            href={item.href}
-            aria-label={item.name}
-            className={cn(
-              "mx-0.5 grid h-9 w-9 place-items-center rounded-[10px]",
-              "text-white/70 hover:bg-white/[0.08] hover:text-white",
-              "transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8]",
-            )}
-          >
-            {item.icon && <item.icon className="h-5 w-5" />}
-          </Link>
-        ))}
-      </div>
+      {navigationData.secondary.length > 0 && (
+        <div className="ml-4 flex items-center border-l border-[color:var(--nav-border-strong)] pl-4">
+          {navigationData.secondary.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              aria-label={item.name}
+              className={cn(
+                "mx-0.5 grid h-9 w-9 place-items-center rounded-[10px]",
+                "text-[color:var(--nav-fg)] hover:bg-[color:var(--nav-hover-bg)] hover:text-[color:var(--nav-fg-strong)]",
+                "transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--nav-ring)]",
+              )}
+            >
+              {item.icon && <item.icon className="h-5 w-5" />}
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -25,7 +25,7 @@ export function AniniExperiences() {
             </h2>
           </div>
           <p className="max-w-[26rem] text-base leading-7 text-[#5a655e]">
-            Six ways in. None of them are checklists — each one is half a day to
+            Seven ways in. None of them are checklists — each one is half a day to
             a full day of being somewhere that doesn&apos;t feel like anywhere else.
           </p>
         </div>

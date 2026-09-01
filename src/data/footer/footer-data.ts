@@ -10,32 +10,31 @@ export const footerData = {
     },
     quickLinks: [
       {
-        title: "Destinations",
-        links: [
-          { text: "Anini", href: "/places/anini" },
-          { text: "Dibang Valley", href: "/places/dibang-valley" },
-          { text: "Dambuk", href: "/places/dambuk" },
-          { text: "Roing", href: "/places/roing" }
-        ]
-      },
-      {
-        title: "Experiences",
+        title: "Explore",
         links: [
           { text: "All Tours", href: "/all-tours" },
-          { text: "Mechuka · Dong · Anini", href: "/tours/mechuka-dong-anini-tour-package" },
-          { text: "Six Days in the Dibang", href: "/tours/anini-pomo-grassland-expedition" },
-          { text: "Anini Winter Fest 2026", href: "/anini-winter-fest-2026" },
-          { text: "Ziro Festival 2026", href: "/ziro-music-festival-2026" },
+          { text: "Festivals", href: "/all-tours?category=Festival" },
+          { text: "Destinations", href: "/places/dibang-valley" },
           { text: "Gallery", href: "/gallery" }
         ]
       },
       {
-        title: "Travel Info",
+        title: "Plan",
         links: [
+          { text: "Permit Guides", href: "/permits" },
           { text: "The Way to Anini", href: "/guides/dibrugarh-to-anini" },
-          { text: "ILP/PAP Permits", href: "/permits" },
-          { text: "About Us", href: "/about" },
-          { text: "Contact", href: "/contact" }
+          { text: "Anini Winter Fest 2026", href: "/anini-winter-fest-2026" },
+          { text: "Ziro Festival 2026", href: "/ziro-music-festival-2026" },
+          { text: "Booking Policy", href: "/booking-policy" }
+        ]
+      },
+      {
+        title: "Company",
+        links: [
+          { text: "About", href: "/about" },
+          { text: "Contact", href: "/contact" },
+          { text: "Instagram", href: "https://instagram.com/travelspire_ne" },
+          { text: "WhatsApp", href: "https://wa.me/919864141211" }
         ]
       }
     ],

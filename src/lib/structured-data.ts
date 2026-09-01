@@ -114,10 +114,15 @@ interface TourSchemaInput {
   duration: string;
   difficulty?: string;
   heroImage: string;
+  gallery?: string[];
   itinerary?: Array<{
     title: string;
     description: string;
   }>;
+}
+
+function toAbsoluteImageUrl(src: string): string {
+  return src.startsWith("http") ? src : `https://travelspirene.com${src}`;
 }
 
 export const generateTourPackageSchema = (tour: TourSchemaInput) => ({
@@ -138,7 +143,10 @@ export const generateTourPackageSchema = (tour: TourSchemaInput) => ({
   },
   "duration": tour.duration,
   "touristType": tour.difficulty,
-  "image": tour.heroImage,
+  "image": [
+    toAbsoluteImageUrl(tour.heroImage),
+    ...(tour.gallery ?? []).map(toAbsoluteImageUrl),
+  ].filter((url, index, list) => list.indexOf(url) === index),
   "itinerary": tour.itinerary?.map((day, index: number) => ({
     "@type": "Action",
     "name": `Day ${index + 1}: ${day.title}`,

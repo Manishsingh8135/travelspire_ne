@@ -1,6 +1,11 @@
 import type { FAQSection } from "@/types/faqs/faq";
 import type { Tour } from "@/types/tours/tour";
-import type { Frame } from "@/lib/media";
+import type { Frame, FrameTone } from "@/lib/media";
+import {
+  mechuka2026Images,
+  mechuka2026Src,
+  anini2026Src,
+} from "@/data/seo/image-seo-data";
 
 /**
  * Canonical product record for the 12N/13D circuit.
@@ -28,7 +33,6 @@ export const circuitMeta = {
 } as const;
 
 export const circuitHero = {
-  alt: "Mountain scenery along the road through Mechuka, Arunachal Pradesh",
   desktop: {
     src: "/images/tours/mechuka-dong-anini/mechuka-dong-anini-tour-hero.jpg",
     width: 1600,
@@ -36,10 +40,10 @@ export const circuitHero = {
     alt: "Mountain valley, cottages and a journey vehicle in Mechuka, Arunachal Pradesh",
   },
   mobile: {
-    src: "/images/tours/mechuka-dong-anini/mechuka-dong-anini-tour-mobile.jpg",
-    width: 1200,
-    height: 1600,
-    alt: "Roadside waterfall and expedition vehicle in the mountains around Mechuka",
+    src: mechuka2026Src.riverViewpoint,
+    width: 3024,
+    height: 4032,
+    alt: "Traveller at a riverside railing overlooking the Yargyap Chu river and mist-covered mountains in Mechuka Valley, Arunachal Pradesh",
   },
 } as const;
 
@@ -84,8 +88,8 @@ export const circuitChapters: Array<{
     description:
       "Reach Mechuka through Aalo, keep two complete exploration days, then return without compressing the valley into a rushed turnaround.",
     frame: {
-      src: "/images/tours/mechuka-dong-anini/mechuka-buddhist-prayer-structure.jpg",
-      alt: "Colourful Buddhist prayer structure in Mechuka, Arunachal Pradesh",
+      src: mechuka2026Src.goldenBuddha,
+      alt: "Golden seated Buddha statue on an ornate red and gold pedestal at dusk in Mechuka, Arunachal Pradesh",
       width: 3024,
       height: 4032,
       place: "Mechuka",
@@ -118,15 +122,42 @@ export const circuitChapters: Array<{
     description:
       "Climb from Roing over Mayodia, then use Anini as a base for the Dri-side country, Matu, Emuli, Karu and a final homestay bonfire.",
     frame: {
-      src: "/images/tours/mechuka-dong-anini/anini-dibang-valley-waterfall.jpg",
-      alt: "Waterfall and forest scenery in the mountain valleys around Anini",
-      width: 3024,
-      height: 4032,
+      src: anini2026Src.mistyFalls,
+      alt: "Multi-tiered waterfall dropping through mist and forest near Anini in Dibang Valley",
+      width: 4284,
+      height: 5712,
       place: "Anini",
       tone: "moss",
     },
   },
 ];
+
+const mechukaArchiveTones: FrameTone[] = [
+  "moss",
+  "ink",
+  "stone",
+  "brass",
+  "ember",
+  "moss",
+  "brass",
+  "ink",
+];
+
+const mechukaFrameSize: Record<string, { width: number; height: number }> = {
+  [mechuka2026Src.winterSnow]: { width: 5712, height: 4284 },
+  [mechuka2026Src.homestayCabins]: { width: 3072, height: 4780 },
+};
+
+export const circuitMechukaArchive: Frame[] = mechuka2026Images.map(
+  (image, index) => ({
+    src: image.src,
+    alt: image.alt,
+    width: mechukaFrameSize[image.src]?.width ?? 3024,
+    height: mechukaFrameSize[image.src]?.height ?? 4032,
+    place: "Mechuka",
+    tone: mechukaArchiveTones[index] ?? "moss",
+  }),
+);
 
 export type CircuitDay = {
   day: number;
@@ -547,9 +578,8 @@ export const circuitRelated = [
     title: "Arunachal Pradesh ILP",
     label: "Permit guide",
     href: "/permits/arunachal-pradesh-ilp",
-    image:
-      "/images/tours/mechuka-dong-anini/mechuka-buddhist-prayer-structure.jpg",
-    alt: "Colourful Buddhist prayer structure in Mechuka, Arunachal Pradesh",
+    image: mechuka2026Src.goldenBuddha,
+    alt: "Golden seated Buddha statue on an ornate red and gold pedestal at dusk in Mechuka, Arunachal Pradesh",
   },
 ] as const;
 
@@ -561,7 +591,7 @@ export const circuitSeoImages = [
   },
   {
     src: circuitHero.mobile.src,
-    title: "Mountain waterfall on the Mechuka road",
+    title: "Yargyap Chu river viewpoint on the Mechuka Dong Anini tour",
     alt: circuitHero.mobile.alt,
   },
   ...circuitChapters.map((chapter) => ({
@@ -569,7 +599,15 @@ export const circuitSeoImages = [
     title: `${chapter.place} on the 13-day Arunachal circuit`,
     alt: chapter.frame.alt,
   })),
-];
+  ...mechuka2026Images.map((image) => ({
+    src: image.src,
+    title: image.title,
+    alt: image.alt,
+  })),
+].filter(
+  (image, index, list) =>
+    list.findIndex((item) => item.src === image.src) === index,
+);
 
 const routeStops = [
   {
@@ -637,7 +675,18 @@ export const mechukaDongAniniTour: Tour = {
   ],
   heroImage: circuitHero.desktop.src,
   thumbnail: circuitHero.desktop.src,
-  gallery: circuitChapters.map((chapter) => chapter.frame.src),
+  gallery: [
+    mechuka2026Src.ridgeViewpoint,
+    mechuka2026Src.goldenBuddha,
+    mechuka2026Src.winterSnow,
+    mechuka2026Src.riverViewpoint,
+    mechuka2026Src.helicopterLandmark,
+    mechuka2026Src.homestayCabins,
+    mechuka2026Src.dorjeelingSignpost,
+    mechuka2026Src.salmanPoint,
+    circuitChapters[1].frame.src,
+    circuitChapters[2].frame.src,
+  ],
   highlights: [
     "Two full exploration days in Mechuka",
     "Pre-dawn guided Dong Valley experience",

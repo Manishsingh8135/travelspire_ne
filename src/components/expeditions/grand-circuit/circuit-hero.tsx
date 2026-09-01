@@ -13,7 +13,7 @@ export function CircuitHero() {
     props: { srcSet: desktopSrcSet },
   } = getImageProps({
     src: circuitHero.desktop.src,
-    alt: circuitHero.alt,
+    alt: circuitHero.desktop.alt,
     width: circuitHero.desktop.width,
     height: circuitHero.desktop.height,
     quality: 82,
@@ -23,7 +23,7 @@ export function CircuitHero() {
 
   const { props: mobileImageProps } = getImageProps({
     src: circuitHero.mobile.src,
-    alt: circuitHero.alt,
+    alt: circuitHero.mobile.alt,
     width: circuitHero.mobile.width,
     height: circuitHero.mobile.height,
     quality: 80,
@@ -44,7 +44,7 @@ export function CircuitHero() {
         />
         <img
           {...mobileImageProps}
-          alt={circuitHero.alt}
+          alt={circuitHero.mobile.alt}
           fetchPriority="high"
           className="absolute inset-0 h-full w-full object-cover object-[50%_54%] md:object-center"
         />

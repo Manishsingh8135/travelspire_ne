@@ -1,4 +1,5 @@
 import type { FAQSection } from "@/types/faqs/faq";
+import { anini2026Src } from "@/data/seo/image-seo-data";
 
 // "Six Days in the Dibang" — the signature Anini + Pomo Grassland expedition.
 // 5 nights / 6 days, Dibrugarh → Mayodia → Anini → Pomo → Gipulin → Dibrugarh.
@@ -31,11 +32,11 @@ export const sixHeroImages = {
     height: 3024,
   },
   mobile: {
-    src: "/images/places/anini-new/anini-new-portrait-4.jpg",
-    width: 3024,
-    height: 4032,
+    src: anini2026Src.pomoRidgeTrail,
+    width: 3120,
+    height: 4160,
   },
-  alt: "The rolling high grassland horizon at Pomo, above Anini in Dibang Valley",
+  alt: "Trekkers on a grassy ridge trail above a river valley on the Pomo route near Anini, Dibang Valley",
 } as const;
 
 // The vitals strip under the hero. Mono figures, no adjectives.
@@ -197,8 +198,8 @@ export const sixDays = [
       { name: "Deccan · Ahi · Bruni", note: "Three falls, three moods" },
       { name: "Chigu Camp", note: "Overnight on the river flats" },
     ],
-    image: "/images/places/anini-new/anini-new-portrait-8.jpg",
-    imageAlt: "Waterfall country in the valley below Anini, Dibang Valley",
+    image: anini2026Src.cascadeFalls,
+    imageAlt: "Trekkers in raincoats posing in front of a wide cascade waterfall near Anini in Dibang Valley, Arunachal Pradesh",
   },
   {
     n: "03",
@@ -269,8 +270,8 @@ export const sixDays = [
       { name: "Anini Market", note: "Evening walk through town" },
       { name: "Bonfire", note: "Last night at the homestay" },
     ],
-    image: "/images/places/pomo/pomo5.jpg",
-    imageAlt: "High meadow light on the grasslands above Anini",
+    image: anini2026Src.emuliSign,
+    imageAlt: "Travellers at the red Emuli Grassland sign above Anini, with green mountain ridges in Dibang Valley",
   },
   {
     n: "06",
