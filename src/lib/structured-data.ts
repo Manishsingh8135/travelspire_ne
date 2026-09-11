@@ -304,8 +304,8 @@ export const generateZiroFestival2026Schema = () => ({
   "name": "Ziro Festival of Music 2026",
   "alternateName": "Ziro Music Festival 2026",
   "description": "India's premier eco-friendly outdoor music festival featuring 35+ international and Indian artists in the UNESCO Tentative World Heritage Site of Ziro Valley, Arunachal Pradesh.",
-  "startDate": "2026-09-25T15:00:00+05:30",
-  "endDate": "2026-09-28T23:00:00+05:30",
+  "startDate": "2026-09-24T15:00:00+05:30",
+  "endDate": "2026-09-27T23:00:00+05:30",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": {
@@ -432,7 +432,7 @@ export const generateZiroFestival2026Schema = () => ({
     {
       "@type": "MusicEvent",
       "name": "Opening Concert",
-      "startDate": "2026-09-25T15:00:00+05:30"
+      "startDate": "2026-09-24T15:00:00+05:30"
     },
     {
       "@type": "Event", 

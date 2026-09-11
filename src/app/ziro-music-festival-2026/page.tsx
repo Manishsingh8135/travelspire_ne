@@ -12,11 +12,11 @@ import { ImageSEO } from "@/components/seo/image-seo";
 
 export const metadata: Metadata = {
   title: { absolute: "Ziro Festival 2026 — Packages & Tickets | Travelspire NE" },
-  description: "Book Ziro Festival of Music 2026 packages (Sep 25–28). Eco-friendly camping from ₹1,999; complete 4N/5D all-inclusive packages from ₹22,999.",
+  description: "Book Ziro Festival of Music 2026 packages (Sep 24–27). Eco-friendly camping from ₹1,999; complete 4N/5D all-inclusive packages from ₹22,999.",
   keywords: "Ziro Music Festival 2026, Ziro Festival tickets, Ziro Festival packages, Ziro Festival 2026 booking, Arunachal Pradesh music festival, eco-friendly festival camping, Ziro Valley festival, indie music festival India, UNESCO heritage music festival, Apatani tribe festival",
   openGraph: {
     title: "Ziro Festival 2026 — Packages & Tickets | Travelspire NE",
-    description: "Book official Ziro Music Festival 2026 packages (Sep 25-28). 35+ artists, eco-friendly camping in UNESCO valley.",
+    description: "Book official Ziro Music Festival 2026 packages (Sep 24-27). 35+ artists, eco-friendly camping in UNESCO valley.",
     images: ["/images/og/travelspire-ne-og.png"],
     url: "https://travelspirene.com/ziro-music-festival-2026",
     siteName: "TravelSpire NE",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ziro Music Festival 2026 | Official Packages & Tickets",
-    description: "Book official Ziro Music Festival 2026 packages (Sep 25-28). 35+ artists, eco-friendly camping in UNESCO valley.",
+    description: "Book official Ziro Music Festival 2026 packages (Sep 24-27). 35+ artists, eco-friendly camping in UNESCO valley.",
     images: ["/images/og/travelspire-ne-og.png"],
     site: "@TravelSpireNE",
   },
