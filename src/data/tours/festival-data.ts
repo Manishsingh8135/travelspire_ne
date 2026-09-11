@@ -322,8 +322,8 @@ export const ziroFestival2026: FestivalTour = {
   ],
 
   eventDates: {
-    start: "2026-09-25",
-    end: "2026-09-28",
+    start: "2026-09-24",
+    end: "2026-09-27",
     year: 2026,
   },
 

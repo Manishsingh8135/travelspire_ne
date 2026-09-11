@@ -8,7 +8,7 @@ export const ziroFestivalFAQData: FAQSection = {
     {
       id: "zf1",
       question: "When and where is Ziro Festival 2026?",
-      answer: "Ziro Festival of Music 2026 will be held from September 26-29, 2026, in the beautiful Ziro Valley, Arunachal Pradesh. The festival takes place in the heart of the valley surrounded by pine forests and rice fields, creating a magical natural amphitheater.",
+      answer: "Ziro Festival of Music 2026 will be held from September 24-27, 2026, in the beautiful Ziro Valley, Arunachal Pradesh. The festival takes place in the heart of the valley surrounded by pine forests and rice fields, creating a magical natural amphitheater.",
       category: "general"
     },
     {

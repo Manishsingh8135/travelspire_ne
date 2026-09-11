@@ -32,7 +32,7 @@ export const seasonalFeatures: SeasonalFeature[] = [
   // homepage section, and running it in both places was the same offer twice.
   {
     id: "ziro-festival-2026",
-    label: "This season · 25–28 September 2026",
+    label: "This season · 24–27 September 2026",
     headline: "Four days in the",
     highlightedHeadline: "rice fields.",
     body: "The Ziro Festival of Music in Apatani country — camping, all-inclusive packages and transfers into the valley.",
@@ -41,7 +41,7 @@ export const seasonalFeatures: SeasonalFeature[] = [
     image: "/images/places/ziro-new/ziro-new-landscape-1.jpeg",
     imageAlt: "Rice fields and pine ridges of Ziro Valley during festival season",
     featureFrom: "2026-01-01",
-    featureUntil: "2026-09-29",
+    featureUntil: "2026-09-27",
   },
   {
     id: "hornbill-festival-2026",
@@ -53,7 +53,7 @@ export const seasonalFeatures: SeasonalFeature[] = [
     href: "/tours/hornbill-festival-2026",
     image: "/images/places/hornbill/Hornbill_3.PNG",
     imageAlt: "Traditional Naga performers at the Hornbill Festival, Kisama",
-    featureFrom: "2026-09-30",
+    featureFrom: "2026-09-28",
     featureUntil: "2026-12-11",
   },
   {
@@ -129,7 +129,7 @@ export const homeDepartures: HomeDeparture[] = [
   {
     id: "ziro-2026",
     title: "Ziro Festival of Music",
-    windowLabel: "25–28 Sep 2026",
+    windowLabel: "24–27 Sep 2026",
     location: "Ziro Valley",
     duration: "4 days",
     priceHook: "from ₹1,999",
@@ -137,7 +137,7 @@ export const homeDepartures: HomeDeparture[] = [
     image: "/images/places/ziro-new/ziro-new-landscape-1.jpeg",
     imageAlt: "Rice fields and pine ridges of Ziro Valley during festival season",
     state: "booking",
-    expiresOn: "2026-09-25",
+    expiresOn: "2026-09-24",
   },
   {
     id: "hornbill-2026",

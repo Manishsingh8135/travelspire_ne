@@ -42,7 +42,7 @@ export function ZiroHeroSSR() {
                 LIVE NOW
               </span>
               <span className="mx-2 text-amber-300">•</span>
-              <span className="text-amber-100">Sep 25-28, 2026</span>
+              <span className="text-amber-100">Sep 24-27, 2026</span>
               <div className="ml-3 w-2 h-2 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full inline-block" />
             </Badge>
           </div>
@@ -96,7 +96,7 @@ export function ZiroHeroSSR() {
 
         <div className="mt-16 flex flex-wrap justify-center gap-8 text-center">
           <div className="text-white">
-            <div className="text-3xl font-bold text-amber-300">Sep 25-28</div>
+            <div className="text-3xl font-bold text-amber-300">Sep 24-27</div>
             <div className="text-sm text-gray-300">2026</div>
           </div>
           <div className="text-white">
