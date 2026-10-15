@@ -1,5 +1,6 @@
 // app/all-tours/page.tsx
 import { UnifiedToursPage } from "@/components/tours/unified-tours-page";
+import { getActiveTours } from "@/data/tours";
 import type { TourCategory, TourFilters } from "@/types/tours/tour";
 
 const validCategories: readonly TourCategory[] = [
@@ -24,7 +25,9 @@ export default async function AllToursPage({
       ? { category: category as TourCategory }
       : {};
 
-  return <UnifiedToursPage initialFilters={initialFilters} />;
+  return (
+    <UnifiedToursPage tours={getActiveTours()} initialFilters={initialFilters} />
+  );
 }
 
 export const metadata = {

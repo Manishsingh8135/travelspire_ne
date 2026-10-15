@@ -12,7 +12,7 @@ import {
   isFestivalTour,
   isSpecialActivityTour
 } from "@/types/tours/tour";
-import { upcomingTours } from "@/data/tours";
+import { getActiveTours } from "@/data/tours";
 
 // Filter tours based on provided criteria
 export function filterTours(tours: Tour[], filters: TourFilters): Tour[] {
@@ -151,24 +151,24 @@ export function sortTours(tours: Tour[], criteria: SortCriteria): Tour[] {
 }
 
 // Get tours by specific criteria (convenience functions)
-export function getFeaturedTours(tours: Tour[] = upcomingTours): Tour[] {
+export function getFeaturedTours(tours: Tour[] = getActiveTours()): Tour[] {
   return tours.filter(tour => tour.featured);
 }
 
-export function getUpcomingTours(tours: Tour[] = upcomingTours): Tour[] {
+export function getUpcomingTours(tours: Tour[] = getActiveTours()): Tour[] {
   return tours.filter(tour => tour.upcoming);
 }
 
-export function getTrendingTours(tours: Tour[] = upcomingTours): Tour[] {
+export function getTrendingTours(tours: Tour[] = getActiveTours()): Tour[] {
   return tours.filter(tour => tour.trending);
 }
 
-export function getToursByCategory(category: TourCategory, tours: Tour[] = upcomingTours): Tour[] {
+export function getToursByCategory(category: TourCategory, tours: Tour[] = getActiveTours()): Tour[] {
   return tours.filter(tour => getTourCategory(tour) === category);
 }
 
 // Get tour statistics for dashboard/admin purposes
-export function getTourStatistics(tours: Tour[] = upcomingTours) {
+export function getTourStatistics(tours: Tour[] = getActiveTours()) {
   const categories = getTourCategories(tours);
   const statuses = getTourStatuses(tours);
   const priceRange = getPriceRange(tours);
@@ -197,7 +197,7 @@ export function getTourStatistics(tours: Tour[] = upcomingTours) {
 }
 
 // Search suggestions based on tour data
-export function getSearchSuggestions(query: string, tours: Tour[] = upcomingTours): string[] {
+export function getSearchSuggestions(query: string, tours: Tour[] = getActiveTours()): string[] {
   if (!query || query.length < 2) return [];
   
   const suggestions = new Set<string>();

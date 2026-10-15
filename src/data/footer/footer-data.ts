@@ -23,8 +23,8 @@ export const footerData = {
         links: [
           { text: "Permit Guides", href: "/permits" },
           { text: "The Way to Anini", href: "/guides/dibrugarh-to-anini" },
-          { text: "Anini Winter Fest 2026", href: "/anini-winter-fest-2026" },
-          { text: "Ziro Festival 2026", href: "/ziro-music-festival-2026" },
+          { text: "Arunachal ILP Guide", href: "/permits/arunachal-pradesh-ilp" },
+          { text: "Hornbill Festival 2026", href: "/tours/hornbill-festival-2026" },
           { text: "Booking Policy", href: "/booking-policy" }
         ]
       },

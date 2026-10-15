@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, BadgeCheck, MailCheck, ShieldCheck } from "lucide-react";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { BookingCheckoutForm } from "@/components/bookings/booking-checkout-form";
-import { getBookingProduct } from "@/lib/bookings/catalog";
+import {
+  earliestSellableDate,
+  getBookingProduct,
+  isOnSale,
+} from "@/lib/bookings/catalog";
 
 export const metadata: Metadata = {
   title: "Book Your Tour Securely",
@@ -23,6 +27,9 @@ export default async function BookTourPage({
   const [{ slug }, query] = await Promise.all([params, searchParams]);
   const product = getBookingProduct(slug);
   if (!product) notFound();
+  // Off-sale products (a finished festival) send people back to the tour page,
+  // which explains what happened and what's open instead.
+  if (!isOnSale(product)) redirect(product.sourceUrl);
   const initialTierId = typeof query.tier === "string" ? query.tier : undefined;
   const isTestMode = process.env.PAYU_ENVIRONMENT !== "production";
 
@@ -94,6 +101,7 @@ export default async function BookTourPage({
           <div className="lg:col-span-5">
             <BookingCheckoutForm
               product={product}
+              minDepartureDate={earliestSellableDate(product)}
               initialTierId={initialTierId}
               isTestMode={isTestMode}
             />

@@ -6,9 +6,9 @@ import { Music, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ziroFestival2026 } from "@/data/tours/festival-data";
-import { createFestivalBookingURL } from "@/lib/whatsapp";
+import { createFestivalBookingURL, createTripPlanningURL } from "@/lib/whatsapp";
 
-export function ZiroHeroSSR() {
+export function ZiroHeroSSR({ isPast = false }: { isPast?: boolean }) {
   return (
     <section className="relative h-[90vh] flex items-center justify-center overflow-hidden rounded-b-[4rem] shadow-2xl shadow-black/30 pt-20 pb-8">
       {/* Background Image */}
@@ -39,7 +39,7 @@ export function ZiroHeroSSR() {
                 <Music className="w-5 h-5 text-amber-400 inline" />
               </div>
               <span className="bg-gradient-to-r from-amber-200 via-orange-200 to-red-200 bg-clip-text text-transparent font-bold">
-                LIVE NOW
+                {isPast ? "2026 EDITION · WRAPPED" : "UPCOMING"}
               </span>
               <span className="mx-2 text-amber-300">•</span>
               <span className="text-amber-100">Sep 24-27, 2026</span>
@@ -77,10 +77,17 @@ export function ZiroHeroSSR() {
           <Button 
             size="lg" 
             className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 text-white px-12 py-6 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 border border-green-500/30"
-            onClick={() => window.open(createFestivalBookingURL("Ziro Festival 2026"), '_blank')}
+            onClick={() =>
+              window.open(
+                isPast
+                  ? createTripPlanningURL({ destination: "Ziro Valley" })
+                  : createFestivalBookingURL("Ziro Festival 2026"),
+                "_blank",
+              )
+            }
           >
             <MessageCircle className="w-5 h-5 mr-3" />
-            Book via WhatsApp
+            {isPast ? "Plan a Ziro Trip" : "Book via WhatsApp"}
           </Button>
           
           {/* View Lineup Button - Elegant Hover */}

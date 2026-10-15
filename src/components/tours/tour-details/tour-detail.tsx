@@ -14,7 +14,6 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { upcomingTours } from "@/data/tours";
 import { createTourWhatsAppURL } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 import {
@@ -39,6 +38,8 @@ import { getPlaceImageAlt } from "@/data/seo/image-seo-data";
 
 interface TourDetailProps {
   tour: Tour;
+  isOver: boolean;
+  relatedPool: Tour[];
   className?: string;
 }
 
@@ -49,11 +50,16 @@ const dateFormatter = new Intl.DateTimeFormat("en-IN", {
   year: "numeric",
 });
 
-export function TourDetail({ tour, className }: TourDetailProps) {
+export function TourDetail({
+  tour,
+  isOver,
+  relatedPool,
+  className,
+}: TourDetailProps) {
   const category = getTourCategory(tour);
   const price = getTourPrice(tour).min;
   const duration = getTourDuration(tour);
-  const relatedTours = upcomingTours
+  const relatedTours = relatedPool
     .filter((candidate) => candidate.id !== tour.id)
     .sort((a, b) => {
       const aMatch = getTourCategory(a) === category ? 1 : 0;
@@ -150,7 +156,7 @@ export function TourDetail({ tour, className }: TourDetailProps) {
               </TourSection>
             )}
 
-            {!isRegularTour(tour) && (
+            {!isRegularTour(tour) && !isOver && (
               <TourSection
                 id="packages"
                 eyebrow="Choose your stay"
@@ -212,7 +218,7 @@ export function TourDetail({ tour, className }: TourDetailProps) {
 
           <div id="booking" className="lg:col-span-4">
             <div className="space-y-4 lg:sticky lg:top-24">
-              <TourBookingCard tour={tour} />
+              <TourBookingCard tour={tour} isOver={isOver} />
               <QuickFacts tour={tour} duration={durationLabel} />
             </div>
           </div>
@@ -262,11 +268,13 @@ export function TourDetail({ tour, className }: TourDetailProps) {
         </section>
       )}
 
-      <MobileBookingBar
-        price={price}
-        regular={isRegularTour(tour)}
-        inquiryUrl={inquiryUrl}
-      />
+      {!isOver && (
+        <MobileBookingBar
+          price={price}
+          regular={isRegularTour(tour)}
+          inquiryUrl={inquiryUrl}
+        />
+      )}
     </div>
   );
 }

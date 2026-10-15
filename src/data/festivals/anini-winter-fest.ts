@@ -51,7 +51,7 @@ export const awfMeta = {
 // into the evergreen cluster. Until then it stays "upcoming" and nothing
 // below renders.
 export const awfEdition = {
-  status: "upcoming" as "upcoming" | "live" | "past",
+  status: "past" as "upcoming" | "live" | "past",
   nextYear: "2027",
 } as const;
 

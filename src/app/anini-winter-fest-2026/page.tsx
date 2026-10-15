@@ -16,20 +16,22 @@ export const metadata: Metadata = {
     ? `Anini Winter Fest 2026 has wrapped — ${awfEdition.nextYear} dates will be announced on the festival's official channels. Explore Anini, the road through Dibang Valley, and year-round journeys.`
     : "Official Travel & Taxi Partner of Anini Winter Fest 2026 (19–20 Sep, Dibang Valley). Shared convoy ₹5,499/person, private SUVs from ₹5,599/day, ILP help and stays.",
   keywords: [
+    "Anini Winter Fest",
+    `Anini Winter Fest ${awfEdition.nextYear}`,
     "Anini Winter Fest 2026",
     "Anini Winter Festival",
-    "Anini festival September 2026",
     "Dibang Valley music festival",
     "Dibrugarh to Anini taxi",
-    "Anini festival transport",
-    "Anini shared cab",
+    "Anini tour package",
     "Anini Winter Fest official travel partner",
   ],
   openGraph: {
-    title:
-      "Anini Winter Fest 2026 (Sep 19–20) | Official Travel Partner — Travelspire NE",
-    description:
-      "Two days of music in Dibang Valley. Shared convoy ₹5,499, private SUVs, ILP help and stays from the Official Travel & Taxi Partner.",
+    title: isPast
+      ? `Anini Winter Fest 2026 recap · ${awfEdition.nextYear} dates soon — Travelspire NE`
+      : "Anini Winter Fest 2026 (Sep 19–20) | Official Travel Partner — Travelspire NE",
+    description: isPast
+      ? "AWF 5.0 played to Dibang Valley in September 2026. Plan Anini any season — the road, the stays and the valleys beyond — with the team that drives it."
+      : "Two days of music in Dibang Valley. Shared convoy ₹5,499, private SUVs, ILP help and stays from the Official Travel & Taxi Partner.",
     url: pageUrl,
     siteName: "Travelspire NE",
     images: [
@@ -45,9 +47,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anini Winter Fest 2026 · Sep 19–20 · Official Travel Partner",
-    description:
-      "Shared convoy ₹5,499, private SUVs, ILP assistance and stays for Anini Winter Fest 2026.",
+    title: isPast
+      ? `Anini Winter Fest 2026 recap · ${awfEdition.nextYear} dates soon`
+      : "Anini Winter Fest 2026 · Sep 19–20 · Official Travel Partner",
+    description: isPast
+      ? "AWF 5.0 has wrapped. Plan Anini and Dibang Valley any season with Travelspire NE."
+      : "Shared convoy ₹5,499, private SUVs, ILP assistance and stays for Anini Winter Fest 2026.",
     images: [heroImageUrl],
     site: "@TravelSpireNE",
   },

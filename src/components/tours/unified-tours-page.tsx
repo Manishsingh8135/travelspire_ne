@@ -23,7 +23,6 @@ import {
   sortTours,
   type SortCriteria,
 } from "@/lib/tour-filters";
-import { upcomingTours } from "@/data/tours";
 import {
   getTourCategory,
   getTourDuration,
@@ -42,6 +41,8 @@ import { FestivalTourCard } from "./tour-showcase/festival-tour-card";
 import { TourCard } from "./tour-showcase/tour-card";
 
 interface UnifiedToursPageProps {
+  /** Tours on sale today — resolved on the server so dates use India time. */
+  tours: Tour[];
   initialFilters?: Partial<TourFilters>;
   className?: string;
 }
@@ -69,6 +70,7 @@ const dateFormatter = new Intl.DateTimeFormat("en-IN", {
 });
 
 export function UnifiedToursPage({
+  tours: activeTours,
   initialFilters = {},
   className,
 }: UnifiedToursPageProps) {
@@ -84,14 +86,14 @@ export function UnifiedToursPage({
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const statistics = useMemo(() => getTourStatistics(upcomingTours), []);
+  const statistics = useMemo(() => getTourStatistics(activeTours), [activeTours]);
   const categories = useMemo(
-    () => Array.from(new Set(upcomingTours.map(getTourCategory))).sort(),
-    [],
+    () => Array.from(new Set(activeTours.map(getTourCategory))).sort(),
+    [activeTours],
   );
   const tours = useMemo(
-    () => sortTours(filterTours(upcomingTours, filters), sortBy),
-    [filters, sortBy],
+    () => sortTours(filterTours(activeTours, filters), sortBy),
+    [activeTours, filters, sortBy],
   );
 
   const hasActiveFilters =
@@ -107,7 +109,7 @@ export function UnifiedToursPage({
 
   const handleSearch = (query: string) => {
     updateFilter("searchQuery", query);
-    const nextSuggestions = getSearchSuggestions(query, upcomingTours);
+    const nextSuggestions = getSearchSuggestions(query, activeTours);
     setSuggestions(nextSuggestions);
     setShowSuggestions(query.length >= 2 && nextSuggestions.length > 0);
   };

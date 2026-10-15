@@ -158,10 +158,30 @@ export function AwfPageExperience({
   pageUrl: string;
   isHomepage?: boolean;
 }) {
+  // After the edition wraps, the page becomes a recap: nothing on it can be
+  // booked any more, and the evergreen guides move up to carry the traffic.
+  if (awfEdition.status === "past") {
+    return (
+      <div className="min-h-screen bg-[#050d0f]">
+        <StructuredData data={buildStructuredData(pageUrl, isHomepage)} />
+        <AwfWrappedBanner />
+        <AwfHero />
+        <AwfEvergreen />
+        <AwfRouteRibbon />
+        <AwfLineup />
+        <AwfExperience />
+        <AwfJourney />
+        <AwfValley />
+        <AwfPeople />
+        <AdvancedFAQ section={awfFaqSection} />
+        <AwfFinalCta />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#050d0f]">
       <StructuredData data={buildStructuredData(pageUrl, isHomepage)} />
-      <AwfWrappedBanner />
       <AwfHero />
       <AwfTrustStrip />
       <AwfRouteRibbon />

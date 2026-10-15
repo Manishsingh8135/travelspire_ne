@@ -1,7 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      // /tours was an older duplicate of the catalogue; /all-tours is the one
+      // in the nav and the sitemap. Tour pages stay at /tours/[slug].
+      { source: "/tours", destination: "/all-tours", permanent: true },
+      // Legacy festival URL. Permanent so search engines move its signals.
+      {
+        source: "/ziro-festival",
+        destination: "/ziro-music-festival-2026",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     // The photography is shot at 3–12 MP; AVIF roughly halves WebP again on
     // these large landscape frames.

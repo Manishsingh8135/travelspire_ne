@@ -4,7 +4,8 @@ import {
 } from "@/data/expeditions/mechuka-dong-anini";
 import { sixMeta, sixPricing } from "@/data/expeditions/anini-six-days";
 import { awfSharedTransfer } from "@/data/festivals/anini-winter-fest";
-import { upcomingTours } from "@/data/tours";
+import { allTours } from "@/data/tours";
+import { indiaToday } from "@/lib/dates";
 import { isRegularTour } from "@/types/tours/tour";
 
 export type BookingTier = {
@@ -22,11 +23,19 @@ export type BookingProduct = {
   sourceUrl: string;
   defaultDepartureDate: string | null;
   fixedDepartureDate: string | null;
+  /**
+   * Inclusive range of departure dates we sell, as ISO dates. A null end is
+   * open. Once `latest` has passed the product is off sale everywhere — the
+   * booking page and the checkout API both enforce it.
+   */
+  departureWindow: { earliest: string | null; latest: string | null };
   tiers: BookingTier[];
 };
 
+const OPEN_WINDOW = { earliest: null, latest: null } as const;
+
 function regularProducts(): BookingProduct[] {
-  return upcomingTours.map((tour) => {
+  return allTours.map((tour) => {
     const tiers: BookingTier[] = isRegularTour(tour)
       ? [
           {
@@ -53,6 +62,12 @@ function regularProducts(): BookingProduct[] {
       sourceUrl: `/tours/${tour.slug}`,
       defaultDepartureDate: "eventDates" in tour ? tour.eventDates.start : null,
       fixedDepartureDate: null,
+      // Festival packages run inside the festival; everything else departs
+      // whenever the traveller chooses.
+      departureWindow:
+        "eventDates" in tour
+          ? { earliest: tour.eventDates.start, latest: tour.eventDates.end }
+          : OPEN_WINDOW,
       tiers,
     };
   });
@@ -65,6 +80,7 @@ const expeditionProducts: BookingProduct[] = [
     sourceUrl: `/tours/${circuitMeta.slug}`,
     defaultDepartureDate: null,
     fixedDepartureDate: null,
+    departureWindow: OPEN_WINDOW,
     tiers: circuitPricing.tiers.map((tier) => ({
       id: tier.id,
       name: tier.label,
@@ -80,6 +96,7 @@ const expeditionProducts: BookingProduct[] = [
     sourceUrl: `/tours/${sixMeta.slug}`,
     defaultDepartureDate: null,
     fixedDepartureDate: null,
+    departureWindow: OPEN_WINDOW,
     tiers: sixPricing.tiers.map((tier) => ({
       id: tier.id,
       name: tier.label,
@@ -95,9 +112,13 @@ const festivalTravelProducts: BookingProduct[] = [
   {
     slug: awfSharedTransfer.slug,
     name: `Anini Winter Fest 2026 · ${awfSharedTransfer.name}`,
-    sourceUrl: "/#transport",
+    sourceUrl: "/anini-winter-fest-2026",
     defaultDepartureDate: awfSharedTransfer.departureDate,
     fixedDepartureDate: awfSharedTransfer.departureDate,
+    departureWindow: {
+      earliest: awfSharedTransfer.departureDate,
+      latest: awfSharedTransfer.departureDate,
+    },
     tiers: [
       {
         id: "shared-convoy",
@@ -125,13 +146,54 @@ export function getBookingProduct(slug: string) {
   return bookingProducts.find((product) => product.slug === slug) ?? null;
 }
 
+/** False once the last sellable departure date is behind us. */
+export function isOnSale(product: BookingProduct, today: string = indiaToday()) {
+  const { latest } = product.departureWindow;
+  return latest === null || latest >= today;
+}
+
+/** The earliest date the date picker should offer today. */
+export function earliestSellableDate(
+  product: BookingProduct,
+  today: string = indiaToday(),
+) {
+  const { earliest } = product.departureWindow;
+  return earliest !== null && earliest > today ? earliest : today;
+}
+
+/**
+ * Why a departure date can't be sold, or null when it can. Shared by the
+ * checkout API so the rules live in one place.
+ */
+export function departureDateProblem(
+  product: BookingProduct,
+  departureDate: string,
+  today: string = indiaToday(),
+): string | null {
+  if (departureDate < today) return "Choose a valid future departure date.";
+  if (
+    product.fixedDepartureDate !== null &&
+    departureDate !== product.fixedDepartureDate
+  ) {
+    return "That departure date is not available for this package.";
+  }
+  const { earliest, latest } = product.departureWindow;
+  if (
+    (earliest !== null && departureDate < earliest) ||
+    (latest !== null && departureDate > latest)
+  ) {
+    return "That departure date is outside this package's dates.";
+  }
+  return null;
+}
+
 export function resolveBookingPrice(input: {
   slug: string;
   tierId: string;
   travellers: number;
 }) {
   const product = getBookingProduct(input.slug);
-  if (!product) return null;
+  if (!product || !isOnSale(product)) return null;
 
   const tier = product.tiers.find((candidate) => candidate.id === input.tierId);
   if (!tier) return null;

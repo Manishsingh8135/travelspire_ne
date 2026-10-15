@@ -8,18 +8,81 @@ import {
   MessageCircle,
   ShieldCheck,
 } from "lucide-react";
-import { createTourWhatsAppURL } from "@/lib/whatsapp";
+import { createTourWhatsAppURL, createTripPlanningURL } from "@/lib/whatsapp";
 import { getTourPrice, isRegularTour, type Tour } from "@/types/tours/tour";
 import { cn } from "@/lib/utils";
 
 interface TourBookingCardProps {
   tour: Tour;
+  /** The festival edition has ended — nothing here can be booked. */
+  isOver?: boolean;
   className?: string;
 }
 
 const priceFormatter = new Intl.NumberFormat("en-IN");
 
-export function TourBookingCard({ tour, className }: TourBookingCardProps) {
+export function TourBookingCard({
+  tour,
+  isOver = false,
+  className,
+}: TourBookingCardProps) {
+  if (isOver) return <EditionEndedCard tour={tour} className={className} />;
+  return <OpenBookingCard tour={tour} className={className} />;
+}
+
+function EditionEndedCard({
+  tour,
+  className,
+}: {
+  tour: Tour;
+  className?: string;
+}) {
+  return (
+    <aside
+      aria-label={`${tour.title} has ended`}
+      className={cn(
+        "overflow-hidden rounded-[16px] bg-[#111c16] p-6 text-[#f5f0e5] shadow-[12px_22px_48px_-27px_rgba(8,16,11,0.9)] sm:p-7",
+        className,
+      )}
+    >
+      <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#cdb783]">
+        This edition has ended
+      </p>
+      <p className="mt-3 text-[1.65rem] font-medium leading-tight tracking-[-0.04em] text-white">
+        See you at the next one.
+      </p>
+      <p className="mt-4 text-sm leading-6 text-white/[0.52]">
+        New dates come from the festival&apos;s official channels. Until then,
+        the valleys are open — tell us when you can travel and we&apos;ll plan
+        the rest.
+      </p>
+      <Link
+        href="/all-tours"
+        className="mt-6 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[10px] bg-[#eadfc8] px-5 text-[10px] font-bold uppercase tracking-[0.13em] text-[#09110d] shadow-[7px_12px_26px_-16px_rgba(0,0,0,0.9)] transition-colors duration-200 hover:bg-[#f8f1e4] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#eadfc8] focus-visible:ring-offset-3 focus-visible:ring-offset-[#111c16]"
+      >
+        <CalendarCheck aria-hidden="true" className="h-4 w-4" />
+        See journeys open now
+      </Link>
+      <a
+        href={createTripPlanningURL({ destination: tour.location })}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-2 inline-flex h-11 w-full items-center justify-center gap-2 rounded-[9px] text-[10px] font-bold uppercase tracking-[0.12em] text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white"
+      >
+        <MessageCircle aria-hidden="true" className="h-4 w-4" />
+        Plan a trip with us
+      </a>
+    </aside>
+  );
+}
+
+function OpenBookingCard({
+  tour,
+  className,
+}: {
+  tour: Tour;
+  className?: string;
+}) {
   const [customerName, setCustomerName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");

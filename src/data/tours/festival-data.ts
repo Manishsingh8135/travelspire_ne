@@ -308,9 +308,10 @@ export const ziroFestival2026: FestivalTour = {
   overview:
     "Experience India's premier eco-friendly outdoor music festival in the UNESCO Tentative World Heritage Site of Ziro Valley. Founded in 2012, this 4-day celebration features 33+ artists from India and around the world, hosted by the indigenous Apatani tribe with sustainable bamboo infrastructure and zero-waste practices.",
   location: "Ziro Valley, Arunachal Pradesh",
-  featured: true,
-  upcoming: true,
-  trending: true,
+  // The 2026 edition is over (Sep 24–27).
+  featured: false,
+  upcoming: false,
+  trending: false,
   tags: [
     "festival",
     "music",

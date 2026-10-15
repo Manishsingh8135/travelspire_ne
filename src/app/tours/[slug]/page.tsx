@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { TourWrapper } from "@/components/tours/tour-details/tour-wrapper";
 import { getTourBySlug } from "@/data/tours/tour-helper";
+import { getActiveTours, isTourOver } from "@/data/tours";
 import { notFound } from "next/navigation";
 import { StructuredData } from "@/components/seo/structured-data";
 import { PageSEO } from "@/components/seo/page-seo";
@@ -15,6 +16,9 @@ import { Tour } from "@/types/tours/tour";
 interface Params {
   slug: string;
 }
+
+// Festival editions end; re-render a few times a day so the page notices.
+export const revalidate = 21600; // DATE_DRIVEN_REVALIDATE_SECONDS — must be a literal
 
 // Helper functions to handle different tour types
 const getDuration = (tour: Tour): string => {
@@ -150,7 +154,11 @@ export default async function TourPage({
 
       {/* Main Tour Content */}
       <div className="min-h-screen overflow-x-hidden">
-        <TourWrapper tour={tour} />
+        <TourWrapper
+          tour={tour}
+          isOver={isTourOver(tour)}
+          relatedPool={getActiveTours()}
+        />
       </div>
     </>
   );
