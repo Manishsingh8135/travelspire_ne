@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import { Send } from "lucide-react";
 import { ContactFormData } from "@/types/contact/contact";
 import { createTripPlanningURL } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is too short").max(50),
@@ -54,6 +55,7 @@ export function ContactForm() {
         return;
       }
 
+      trackEvent("generate_lead", { method: "contact_form" });
       setIsSuccess(true);
       reset();
       setTimeout(() => setIsSuccess(false), 6000);

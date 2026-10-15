@@ -1,36 +1,24 @@
 // app/robots.ts
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
+// Search engines need /_next/ (CSS, JS and every optimised /_next/image), so
+// it is never blocked. AI assistants that fetch pages to answer travellers —
+// ChatGPT search, Perplexity, Claude search — fall under "*" and are welcome;
+// only crawlers that collect training data are turned away.
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://travelspirene.com'
-  
   return {
     rules: [
       {
-        userAgent: '*',
-        allow: '/',
-        disallow: [
-          '/private/',
-          '/admin/',
-          '/_next/',
-          '/api/',
-          '*.json',
-          '/temp/'
-        ],
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/", "/admin/", "/private/", "/temp/"],
       },
       {
-        userAgent: 'GPTBot',
-        disallow: '/',
+        userAgent: ["GPTBot", "CCBot", "ClaudeBot"],
+        disallow: "/",
       },
-      {
-        userAgent: 'ChatGPT-User',
-        disallow: '/',
-      },
-      {
-        userAgent: 'CCBot',
-        disallow: '/',
-      }
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
-  }
+    sitemap: [`${SITE_URL}/sitemap.xml`, `${SITE_URL}/image-sitemap.xml`],
+  };
 }

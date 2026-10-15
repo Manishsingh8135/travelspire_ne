@@ -9,6 +9,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import type { BookingProduct } from "@/lib/bookings/catalog";
+import { trackEvent } from "@/lib/analytics";
 import {
   postToPayU,
   type HostedCheckoutResponse,
@@ -89,6 +90,18 @@ export function BookingCheckoutForm({
       if (!response.ok) {
         throw new Error(payload.error || "We could not open secure checkout.");
       }
+      trackEvent("begin_checkout", {
+        currency: "INR",
+        value: total,
+        items: [
+          {
+            item_id: product.slug,
+            item_name: product.name,
+            item_variant: tierId,
+            quantity: travellers,
+          },
+        ],
+      });
       postToPayU(payload);
     } catch (caughtError) {
       setError(
