@@ -169,6 +169,10 @@ pricing-matrix models are its backbone.
   submitted and read. Image sitemap fixed to one entry per page (8 pages,
   123 images). Still open: `mail.` host redirect, GA4 ID, PayU/Resend env
   check, Bing import, merge PR #7.
+- 2026-10-15 — PR #7 merged and live (merge a7ec720). Vercel had retired
+  Node 20, so every deploy failed until `engines.node` was pinned to 24.x.
+  Production smoke-tested: redirects, recaps, robots, both sitemaps, ILP page,
+  contact validation.
 - Not yet verified (outside Phase 0):
   - Manipur, Mizoram and Sikkim permit fees. Nagaland is verified in Phase 1.
   - The privacy policy is still dated Nov 2024 and doesn't mention PayU.
