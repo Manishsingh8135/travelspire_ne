@@ -151,3 +151,19 @@ pricing-matrix models are its backbone.
 
 - 2026-10-15 — Plan approved. v2 pushed to origin. Phase 0 started on
   `feat/evergreen-seo-pivot`.
+- 2026-10-15 — Phase 0 code complete:
+  - festivals retired by date (AWF/Ziro recaps; booking windows; listings)
+  - homepage revalidates every 6 hours; season calendar runs into 2027
+  - contact form delivers through Resend
+  - Arunachal ILP facts corrected to ₹300/₹500, 14 days
+  - robots/sitemap/metadata pass; GA4 + events
+  - checkout checks PayU config before writing; per-IP rate limits
+  - **Founder actions still open:**
+    - Vercel: make the apex domain primary, with www redirecting to it.
+    - Vercel: confirm the `PAYU_LIVE_ENABLED` value.
+    - Set `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
+    - Search Console (DNS Domain property) and Bing; submit both sitemaps.
+    - Confirm `RESEND_API_KEY` is set in production (contact form uses it).
+- Not yet verified (outside Phase 0):
+  - Manipur, Mizoram and Sikkim permit fees. Nagaland is verified in Phase 1.
+  - The privacy policy is still dated Nov 2024 and doesn't mention PayU.
