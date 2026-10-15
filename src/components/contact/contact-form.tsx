@@ -1,7 +1,7 @@
 // components/contact/contact-form.tsx
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,6 +9,7 @@ import { z } from "zod";
 import { cn } from "@/lib/utils";
 import { Send } from "lucide-react";
 import { ContactFormData } from "@/types/contact/contact";
+import { createTripPlanningURL } from "@/lib/whatsapp";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is too short").max(50),
@@ -21,6 +22,8 @@ const formSchema = z.object({
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm<ContactFormData>({
     resolver: zodResolver(formSchema)
@@ -28,20 +31,39 @@ export function ContactForm() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    
-    // Log form data (in production, this would be sent to an API)
-    console.log('Contact form submitted:', data);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    reset();
+    setSubmitError(null);
 
-    setTimeout(() => {
-      setIsSuccess(false);
-    }, 3000);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+          website: honeypotRef.current?.value ?? "",
+        }),
+      });
+      const result = (await response.json().catch(() => null)) as
+        | { ok?: boolean; error?: string }
+        | null;
+
+      if (!response.ok || !result?.ok) {
+        setSubmitError(
+          result?.error ??
+            "We couldn't send your message right now. Please WhatsApp or call us.",
+        );
+        return;
+      }
+
+      setIsSuccess(true);
+      reset();
+      setTimeout(() => setIsSuccess(false), 6000);
+    } catch {
+      setSubmitError(
+        "You seem to be offline. Please try again, or WhatsApp us instead.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -64,7 +86,20 @@ export function ContactForm() {
               Send us a message
             </h2>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+              {/* Honeypot: invisible to people, tempting to bots. */}
+              <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+                <label htmlFor="contact-website">Website</label>
+                <input
+                  id="contact-website"
+                  ref={honeypotRef}
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  defaultValue=""
+                />
+              </div>
               {/* Name Field */}
               <div>
                 <label className="block text-sm font-medium text-foreground dark:text-white mb-2">
@@ -210,10 +245,25 @@ export function ContactForm() {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-center text-green-500 font-medium"
+                  role="status"
+                  className="text-center text-green-600 dark:text-green-400 font-medium"
                 >
-                  Message sent successfully!
+                  Message sent — we&apos;ll reply by email, usually within a day.
                 </motion.div>
+              )}
+
+              {submitError && (
+                <p role="alert" className="text-center text-sm font-medium text-red-600 dark:text-red-400">
+                  {submitError}{" "}
+                  <a
+                    href={createTripPlanningURL()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-4"
+                  >
+                    WhatsApp us
+                  </a>
+                </p>
               )}
             </form>
           </motion.div>
