@@ -1,7 +1,97 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
+/* ── Field Guide design system ─────────────────────────────────────────
+   Semantic tokens, one light and one dark value each (see
+   planning/2026-q4-design-system.md). Components read only these names, so a
+   mode switch is a single attribute: data-theme="dark" on any ancestor.
+   Channels are bare "R G B" so Tailwind can apply alpha (bg-fg/10). */
+@layer base {
+  :root,
+  [data-theme="light"] {
+    color-scheme: light;
+    --c-canvas: 250 247 240;
+    --c-canvas-subtle: 242 237 226;
+    --c-surface: 255 253 249;
+    --c-surface-raised: 255 255 255;
+    --c-inverse: 19 27 22;
+    --c-on-inverse: 241 236 225;
+    --c-fg: 23 33 27;
+    --c-fg-muted: 74 85 78;
+    --c-fg-subtle: 97 107 101;
+    --c-line: 226 218 203;
+    --c-line-strong: 203 194 175;
+    --c-brand: 46 75 59;
+    --c-brand-hover: 36 61 48;
+    --c-on-brand: 247 244 236;
+    --c-brand-soft: 228 235 227;
+    --c-terra: 154 85 54;
+    --c-terra-soft: 244 230 220;
+    --c-marigold: 156 90 18;
+    --c-marigold-soft: 247 232 210;
+    --c-positive: 47 107 71;
+    --c-positive-soft: 226 238 228;
+    --c-caution: 138 90 18;
+    --c-caution-soft: 246 235 214;
+    --c-critical: 162 55 43;
+    --c-critical-soft: 246 225 221;
+    --c-notice: 45 93 120;
+    --c-notice-soft: 224 235 241;
+    --c-focus: 59 122 87;
+
+    /* Warm-tinted, low-opacity shadows: grey shadows on cream look dirty. */
+    --e1: 0 1px 2px rgb(23 33 27 / 0.05), 0 2px 8px -2px rgb(23 33 27 / 0.06);
+    --e2: 0 1px 2px rgb(23 33 27 / 0.05), 0 12px 28px -12px rgb(23 33 27 / 0.18);
+    --e3: 0 2px 4px rgb(23 33 27 / 0.06), 0 28px 56px -24px rgb(23 33 27 / 0.28);
+  }
+
+  /* "Ink Night": blue-black ground, parchment text. Depth comes from lighter
+     surfaces and a faint top rim rather than shadows, which vanish on dark. */
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --c-canvas: 14 17 23;
+    --c-canvas-subtle: 19 23 32;
+    --c-surface: 24 29 39;
+    --c-surface-raised: 30 36 48;
+    --c-inverse: 7 9 13;
+    --c-on-inverse: 238 233 222;
+    --c-fg: 238 233 222;
+    --c-fg-muted: 189 183 171;
+    --c-fg-subtle: 150 145 136;
+    --c-line: 39 46 59;
+    --c-line-strong: 58 67 82;
+    --c-brand: 169 205 179;
+    --c-brand-hover: 192 220 200;
+    --c-on-brand: 15 34 25;
+    --c-brand-soft: 26 42 36;
+    --c-terra: 226 162 124;
+    --c-terra-soft: 46 34 32;
+    --c-marigold: 237 176 92;
+    --c-marigold-soft: 46 38 23;
+    --c-positive: 134 201 160;
+    --c-positive-soft: 22 39 31;
+    --c-caution: 230 184 101;
+    --c-caution-soft: 43 36 22;
+    --c-critical: 240 149 138;
+    --c-critical-soft: 47 28 28;
+    --c-notice: 147 192 218;
+    --c-notice-soft: 22 35 46;
+    --c-focus: 169 205 179;
+
+    --e1: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 1px 2px rgb(0 0 0 / 0.4);
+    --e2: inset 0 1px 0 rgb(255 255 255 / 0.05), 0 16px 32px -16px rgb(0 0 0 / 0.7);
+    --e3: inset 0 1px 0 rgb(255 255 255 / 0.06), 0 28px 56px -20px rgb(0 0 0 / 0.8);
+  }
+
+  /* Any themed subtree paints its own ground and text, so a dark island can
+     sit on a light page (the specimen does exactly that). */
+  [data-theme] {
+    background-color: rgb(var(--c-canvas));
+    color: rgb(var(--c-fg));
+  }
+}
+
 @layer base {
   :root {
     /* Main Brand Colors - Ocean and Forest Theme */

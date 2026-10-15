@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Instrument_Serif } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider/theme-provider";
 import AdvancedNavbar from "@/components/common/navbar/advance-navbar";
@@ -26,6 +26,13 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+  display: "swap",
+});
+
+// Field Guide body + UI face. Variable weight; the width axis is not loaded.
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-ui",
   display: "swap",
 });
 
@@ -153,7 +160,7 @@ export default function RootLayout({
     <html 
       lang="en" 
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSans.variable} ${instrumentSerif.variable}`}
     >
       <head>
         <link rel="manifest" href="/manifest.json" />

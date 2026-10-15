@@ -90,6 +90,60 @@ const config = {
         // Pulled from the logo mark; reserved for festival + seasonal items.
         ember: "#E2762B",
 
+        // ── Field Guide semantic tokens (globals.css) ────────────────────
+        // Light/dark values swap under data-theme; never use raw hex in
+        // components that are built on these.
+        canvas: {
+          DEFAULT: "rgb(var(--c-canvas) / <alpha-value>)",
+          subtle: "rgb(var(--c-canvas-subtle) / <alpha-value>)",
+        },
+        surface: {
+          DEFAULT: "rgb(var(--c-surface) / <alpha-value>)",
+          raised: "rgb(var(--c-surface-raised) / <alpha-value>)",
+        },
+        inverse: "rgb(var(--c-inverse) / <alpha-value>)",
+        "on-inverse": "rgb(var(--c-on-inverse) / <alpha-value>)",
+        fg: {
+          DEFAULT: "rgb(var(--c-fg) / <alpha-value>)",
+          muted: "rgb(var(--c-fg-muted) / <alpha-value>)",
+          subtle: "rgb(var(--c-fg-subtle) / <alpha-value>)",
+        },
+        line: {
+          DEFAULT: "rgb(var(--c-line) / <alpha-value>)",
+          strong: "rgb(var(--c-line-strong) / <alpha-value>)",
+        },
+        brand: {
+          DEFAULT: "rgb(var(--c-brand) / <alpha-value>)",
+          hover: "rgb(var(--c-brand-hover) / <alpha-value>)",
+          soft: "rgb(var(--c-brand-soft) / <alpha-value>)",
+        },
+        "on-brand": "rgb(var(--c-on-brand) / <alpha-value>)",
+        terra: {
+          DEFAULT: "rgb(var(--c-terra) / <alpha-value>)",
+          soft: "rgb(var(--c-terra-soft) / <alpha-value>)",
+        },
+        marigold: {
+          DEFAULT: "rgb(var(--c-marigold) / <alpha-value>)",
+          soft: "rgb(var(--c-marigold-soft) / <alpha-value>)",
+        },
+        positive: {
+          DEFAULT: "rgb(var(--c-positive) / <alpha-value>)",
+          soft: "rgb(var(--c-positive-soft) / <alpha-value>)",
+        },
+        caution: {
+          DEFAULT: "rgb(var(--c-caution) / <alpha-value>)",
+          soft: "rgb(var(--c-caution-soft) / <alpha-value>)",
+        },
+        critical: {
+          DEFAULT: "rgb(var(--c-critical) / <alpha-value>)",
+          soft: "rgb(var(--c-critical-soft) / <alpha-value>)",
+        },
+        notice: {
+          DEFAULT: "rgb(var(--c-notice) / <alpha-value>)",
+          soft: "rgb(var(--c-notice-soft) / <alpha-value>)",
+        },
+        focus: "rgb(var(--c-focus) / <alpha-value>)",
+
         // UI Colors
         background: "rgb(var(--background) / <alpha-value>)",
         foreground: "rgb(var(--foreground) / <alpha-value>)",
@@ -109,6 +163,15 @@ const config = {
         lg: "var(--radius-lg)",
         xl: "var(--radius-xl)",
         "2xl": "var(--radius-2xl)",
+        // Field Guide: three radii, named by what they round.
+        control: "0.5rem",
+        card: "0.75rem",
+        panel: "1rem",
+      },
+      maxWidth: {
+        page: "80rem",
+        wide: "90rem",
+        prose: "42.5rem",
       },
       boxShadow: {
         // Warm-tinted and very low opacity. Grey shadows on cream look dirty.
@@ -117,6 +180,10 @@ const config = {
         cta: '0 8px 20px -10px rgba(47,74,58,0.5)',
         nav: '0 8px 24px -16px rgba(20,32,26,0.25)',
         frame: '0 30px 80px -40px rgba(20,32,26,0.45)',
+        // Field Guide elevation; values swap per theme in globals.css.
+        e1: 'var(--e1)',
+        e2: 'var(--e2)',
+        e3: 'var(--e3)',
         'glow-sm': '0 2px 8px -1px rgba(var(--primary-500), 0.15)',
         'glow': '0 4px 12px -2px rgba(var(--primary-500), 0.2)',
         'glow-lg': '0 8px 20px -4px rgba(var(--primary-500), 0.25)',
@@ -134,11 +201,29 @@ const config = {
         "4xl": "var(--font-size-4xl)",
         "5xl": "var(--font-size-5xl)",
         "6xl": "var(--font-size-6xl)",
+
+        // ── Field Guide type scale ───────────────────────────────────────
+        // Named by role, not size, so they never collide with the legacy
+        // sm/base overrides above. Headings interpolate linearly between a
+        // 360px phone and a 1280px desktop. Nothing renders below 12px.
+        display: ["clamp(2.5rem, 1.717rem + 3.478vw, 4.5rem)", { lineHeight: "1.02", letterSpacing: "-0.025em", fontWeight: "600" }],
+        h1: ["clamp(2.125rem, 1.587rem + 2.391vw, 3.5rem)", { lineHeight: "1.06", letterSpacing: "-0.022em", fontWeight: "600" }],
+        h2: ["clamp(1.75rem, 1.457rem + 1.304vw, 2.5rem)", { lineHeight: "1.1", letterSpacing: "-0.018em", fontWeight: "600" }],
+        h3: ["clamp(1.25rem, 1.152rem + 0.435vw, 1.5rem)", { lineHeight: "1.25", letterSpacing: "-0.01em", fontWeight: "600" }],
+        h4: ["1.125rem", { lineHeight: "1.35", letterSpacing: "-0.005em", fontWeight: "600" }],
+        lead: ["clamp(1.0625rem, 0.989rem + 0.326vw, 1.25rem)", { lineHeight: "1.55" }],
+        "body-lg": ["1.0625rem", { lineHeight: "1.65" }],
+        body: ["1rem", { lineHeight: "1.6" }],
+        small: ["0.875rem", { lineHeight: "1.5" }],
+        caption: ["0.8125rem", { lineHeight: "1.45" }],
+        eyebrow: ["0.75rem", { lineHeight: "1.3", letterSpacing: "0.1em", fontWeight: "600" }],
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
         mono: ["var(--font-geist-mono)", ...fontFamily.mono],
         display: ["var(--font-display)", ...fontFamily.serif],
+        // Field Guide body + UI face (Instrument Sans).
+        ui: ["var(--font-ui)", ...fontFamily.sans],
       },
       keyframes: {
         // Existing keyframes
