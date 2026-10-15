@@ -164,6 +164,11 @@ pricing-matrix models are its backbone.
     - Set `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
     - Search Console (DNS Domain property) and Bing; submit both sitemaps.
     - Confirm `RESEND_API_KEY` is set in production (contact form uses it).
+- 2026-10-15 — Apex is primary in Vercel (www and testing 308 to it).
+  Search Console Domain property verified by DNS (Hostinger); both sitemaps
+  submitted and read. Image sitemap fixed to one entry per page (8 pages,
+  123 images). Still open: `mail.` host redirect, GA4 ID, PayU/Resend env
+  check, Bing import, merge PR #7.
 - Not yet verified (outside Phase 0):
   - Manipur, Mizoram and Sikkim permit fees. Nagaland is verified in Phase 1.
   - The privacy policy is still dated Nov 2024 and doesn't mention PayU.
