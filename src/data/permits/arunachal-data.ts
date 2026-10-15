@@ -1,5 +1,11 @@
 // Arunachal Pradesh ILP/PAP Complete Data
 // SEO-optimized content for state-specific permit page
+//
+// Facts verified against the live official sources (eilp.arunachal.gov.in
+// tourist application page, arunachaltourism.com ILP/PAP pages, MHA PAP FAQ)
+// in July 2026 and re-checked in October 2026. The ₹100 15/30-day tiers and
+// the ₹400 "instant" option that older guides quote no longer exist.
+// Never link arunachalilp.com — it is a parked domain now.
 
 export const arunachalPermitData = {
   // Basic Info
@@ -10,8 +16,8 @@ export const arunachalPermitData = {
   
   // SEO Meta
   seo: {
-    title: "Arunachal Pradesh ILP 2026: Online Apply, Fee ₹100, Documents | Complete Guide",
-    description: "Apply for Arunachal Pradesh Inner Line Permit (ILP) online in 2026. Fee ₹100-₹400, processing 24 hours. Step-by-step guide, required documents, official portal link. Get expert assistance.",
+    title: "Arunachal Pradesh ILP 2026: Fee ₹300/₹500, Apply Online, Documents",
+    description: "Arunachal Pradesh Inner Line Permit 2026: ₹300 for up to 3 days, ₹500 for 4–14 days, applied online at eilp.arunachal.gov.in. Documents, processing time, PAP for foreigners and Bum La permits — checked October 2026.",
     keywords: [
       "arunachal pradesh ilp",
       "arunachal ilp online apply",
@@ -32,26 +38,22 @@ export const arunachalPermitData = {
   // Quick Stats
   quickStats: {
     fee: {
-      tourist15Days: "₹100",
-      tourist30Days: "₹100", 
-      instantTourist: "₹400",
-      oneYear: "₹200",
-      workers: "₹500 (1 year)",
+      touristUpTo3Days: "₹300",
+      tourist4To14Days: "₹500",
     },
     processingTime: {
-      online: "Few hours to 24 hours",
-      offline: "Same day (if applied before 12 PM)",
-      instant: "Immediate (₹400)",
+      online: "Usually approved within a day",
     },
     validity: {
-      tourist: "15 or 30 days",
-      extendable: "Up to 1 year for workers/students",
+      tourist: "Up to 14 days (Tourist eILP)",
+      provisional: "Up to 30 days (Provisional eILP, for longer stays)",
+      regular: "Up to 365 days (Regular, non-tourist)",
     },
     onArrival: false,
     onArrivalNote: "Must apply online BEFORE entering Arunachal Pradesh",
     officialPortal: "https://eilp.arunachal.gov.in",
     helpline: "1800 345 3605 (Toll Free)",
-    lastUpdated: "August 2026",
+    lastUpdated: "October 2026",
   },
 
   // Who Needs ILP
@@ -66,7 +68,7 @@ export const arunachalPermitData = {
       "Central government employees on official duty (with valid ID)",
       "Armed forces personnel with movement orders",
     ],
-    foreigners: "Foreign nationals require Protected Area Permit (PAP) instead of ILP. Apply through e-FRRO portal at least 30 days in advance.",
+    foreigners: "Foreign nationals need a Protected Area Permit (PAP), issued online through e-FRRO: groups of two or more through a registered tour operator, USD 30 royalty per head. Apply about 15 days ahead from within India, 30 days from abroad. NRI, PIO and OCI holders also need a PAP, not an ILP.",
   },
 
   // Entry Points
@@ -102,10 +104,10 @@ export const arunachalPermitData = {
       note: "Entry to East Arunachal",
     },
     {
-      name: "Hollongi Airport",
+      name: "Donyi Polo Airport (Hollongi)",
       type: "Air",
-      from: "Donyi Polo Airport",
-      note: "New airport near Itanagar",
+      from: "Itanagar",
+      note: "Nonstop flights from Delhi and Kolkata",
     },
   ],
 
@@ -142,10 +144,10 @@ export const arunachalPermitData = {
       title: "Pay Online Fee",
       description: "Complete payment through secure gateway",
       details: [
-        "₹100 for 15/30 days tourist permit",
-        "₹400 for instant processing",
-        "Payment via UPI, Net Banking, Cards",
-        "Keep payment receipt safe",
+        "₹300 for a stay of up to 3 days",
+        "₹500 for 4 to 14 days (the tourist maximum)",
+        "Payment via UPI, net banking or card",
+        "Keep the payment receipt",
       ],
       duration: "2 minutes",
       icon: "CreditCard",
@@ -155,12 +157,11 @@ export const arunachalPermitData = {
       title: "Download ILP",
       description: "Receive approved ILP via email and portal",
       details: [
-        "Regular: ILP approved within 24 hours",
-        "Instant: ILP available immediately after payment",
-        "Download PDF from portal",
-        "Print colored copy for travel",
+        "Usually approved within a day",
+        "Download the PDF from the portal",
+        "Keep a copy offline and a colour printout — every gate checks it",
       ],
-      duration: "Few hours to 24 hours",
+      duration: "Usually within a day",
       icon: "Download",
     },
   ],
@@ -211,66 +212,58 @@ export const arunachalPermitData = {
 
   // Special Permits (RAP)
   specialPermits: {
-    title: "Restricted Area Permits (RAP)",
-    description: "Some border areas require additional RAP from District Commissioner's office",
+    title: "Border day-permits",
+    description: "A few points near the border need one more permission on top of your ILP. They are issued locally, for Indian citizens only.",
     areas: [
       {
         name: "Bum La Pass",
         location: "Tawang District",
         nearBorder: "China (Tibet)",
-        note: "Famous Indo-China border point",
+        note: "DC day-permit, army-countersigned. Tawang-registered taxis only",
         indiansAllowed: true,
         foreignersAllowed: false,
       },
       {
-        name: "PTSO Lake",
-        location: "Tawang District", 
-        nearBorder: "Near Bum La",
-        note: "Sacred lake near China border",
+        name: "PT Tso Lake",
+        location: "Tawang District",
+        nearBorder: "On the Bum La road",
+        note: "Covered by the same DC day-permit as Bum La",
         indiansAllowed: true,
         foreignersAllowed: false,
       },
       {
-        name: "Kibithoo",
-        location: "Anjaw District",
+        name: "Sangetsar (Madhuri) Lake",
+        location: "Tawang District",
+        nearBorder: "On the Bum La road",
+        note: "Covered by the same DC day-permit as Bum La",
+        indiansAllowed: true,
+        foreignersAllowed: false,
+      },
+      {
+        name: "Lamang, beyond Mechuka",
+        location: "Shi-Yomi District",
         nearBorder: "China (Tibet)",
-        note: "India's easternmost village",
-        indiansAllowed: true,
-        foreignersAllowed: false,
-      },
-      {
-        name: "Pangsau Pass",
-        location: "Changlang District",
-        nearBorder: "Myanmar",
-        note: "Historic WWII route",
-        indiansAllowed: true,
-        foreignersAllowed: false,
-      },
-      {
-        name: "Dong Valley",
-        location: "Anjaw District",
-        nearBorder: "Near China border",
-        note: "India's first sunrise point",
+        note: "Same-day Army/ITBP permit, arranged in Mechuka",
         indiansAllowed: true,
         foreignersAllowed: false,
       },
     ],
-    howToApply: "Apply at respective District Commissioner's office or through registered tour operator. Processing takes 2-7 working days.",
+    howToApply: "Arranged a day ahead in Tawang (or on the day in Mechuka) through your hotel, homestay or driver — on our trips we handle it. Carry your ILP and original ID; the Bum La road closes by early afternoon. Dong and Walong need no extra civilian permit — just your ILP, checked at the Dirak gate.",
   },
 
   // Popular Destinations
   destinations: [
     {
       name: "Tawang",
-      highlight: "Tawang Monastery - 2nd largest in Asia",
+      highlight: "India's largest monastery, over the Sela Tunnel road",
       district: "Tawang",
-      permitRequired: "ILP",
+      permitRequired: "ILP (+ DC day-permit for Bum La)",
       bestTime: "March to October",
       altitude: "3,048m",
     },
     {
       name: "Ziro Valley",
-      highlight: "UNESCO World Heritage Site, Apatani Tribe",
+      highlight: "Apatani country, on UNESCO's tentative list",
       district: "Lower Subansiri",
       permitRequired: "ILP",
       bestTime: "March to October, September (Ziro Festival)",
@@ -312,7 +305,7 @@ export const arunachalPermitData = {
       name: "Dong Valley",
       highlight: "India's first sunrise point",
       district: "Anjaw",
-      permitRequired: "ILP + RAP",
+      permitRequired: "ILP (checked at Dirak gate)",
       bestTime: "October to April",
       altitude: "1,240m",
     },
@@ -330,15 +323,15 @@ export const arunachalPermitData = {
   faqs: [
     {
       question: "How to apply for Arunachal Pradesh ILP online?",
-      answer: "Visit the official e-ILP portal at eilp.arunachal.gov.in, register with your details, fill the application form, upload required documents (ID proof and photo), pay ₹100 fee online, and download your approved ILP within 24 hours. For instant processing, pay ₹400.",
+      answer: "Apply on the official portal, eilp.arunachal.gov.in: choose the Tourist eILP, enter your details and trip dates, upload a photo ID and a passport-size photo, and pay ₹300 (up to 3 days) or ₹500 (4–14 days) online. Approval usually comes within a day; download the PDF and keep a printout. Avoid look-alike sites — arunachalilp.com is no longer an official portal.",
     },
     {
       question: "What is the fee for Arunachal Pradesh ILP in 2026?",
-      answer: "The ILP fee for Arunachal Pradesh is ₹100 for 15 or 30 days tourist permit. For instant/immediate processing, the fee is ₹400. For 1-year permits (workers/students), the fee is ₹200-500 depending on category.",
+      answer: "The Tourist eILP costs ₹300 for a stay of up to 3 days and ₹500 for 4 to 14 days. Fourteen days is the tourist maximum; longer stays need a Provisional eILP (up to 30 days). The ₹100 15/30-day fee that older guides quote is out of date.",
     },
     {
       question: "How long does it take to get Arunachal Pradesh ILP?",
-      answer: "Online applications are typically processed within a few hours to 24 hours. If you opt for instant processing (₹400), you receive the ILP immediately after payment. Offline applications at Arunachal Bhawan are processed same day if submitted before 12 PM.",
+      answer: "Online applications are usually approved within a day. Apply two or three days before you travel anyway, in case the portal is slow — there is no permit on arrival.",
     },
     {
       question: "Can I get Arunachal Pradesh ILP on arrival?",
@@ -350,19 +343,19 @@ export const arunachalPermitData = {
     },
     {
       question: "Is ILP required for Tawang?",
-      answer: "Yes, Inner Line Permit (ILP) is mandatory for visiting Tawang and all other places in Arunachal Pradesh. For border areas like Bum La Pass and PTSO Lake, you also need an additional Restricted Area Permit (RAP) from the DC office.",
+      answer: "Yes. The ILP covers Tawang town and the monastery. Bum La, PT Tso and Sangetsar (Madhuri) Lake need one extra day-permit from the DC office in Tawang, countersigned by the Army — for Indian citizens only, arranged a day ahead through your hotel or driver.",
     },
     {
       question: "Can foreigners visit Arunachal Pradesh?",
-      answer: "Yes, foreign nationals can visit Arunachal Pradesh but they need a Protected Area Permit (PAP) instead of ILP. PAP must be applied through the e-FRRO portal at least 30 days in advance. Foreigners must travel in a group of 2+ with a registered tour operator. Some border areas are completely restricted for foreigners.",
+      answer: "Yes. Foreign nationals need a Protected Area Permit (PAP), issued online through e-FRRO, travelling in a group of two or more through a registered tour operator, with a royalty of USD 30 per person. Apply about 15 days ahead from within India or 30 days from abroad. Solo travel needs prior Home Ministry clearance, and some border points stay closed to foreigners.",
     },
     {
       question: "How long is Arunachal Pradesh ILP valid?",
-      answer: "Tourist ILP is valid for 15 or 30 days as per your application. It can be extended at the District Commissioner's office within Arunachal Pradesh. For workers and students, ILP can be issued for up to 1 year.",
+      answer: "The Tourist eILP covers up to 14 days, matching the dates you apply for. For a longer stay, apply for a Provisional eILP (up to 30 days). Work and study permits (Regular ILP) run up to a year.",
     },
     {
       question: "Where can I apply for Arunachal Pradesh ILP offline?",
-      answer: "Offline ILP can be applied at Arunachal Bhawan offices in: 1) New Delhi, 2) Kolkata, 3) Guwahati, 4) Shillong. Carry original ID proof and 2 passport photos. Apply before 12 PM for same-day processing.",
+      answer: "The online eILP is the standard route for tourists. If you get stuck, the Arunachal Bhawan offices in New Delhi, Kolkata, Guwahati and Shillong can help — call ahead, and carry your original ID and two passport photos.",
     },
     {
       question: "Do children need ILP for Arunachal Pradesh?",
@@ -370,11 +363,11 @@ export const arunachalPermitData = {
     },
     {
       question: "What is the difference between ILP and PAP?",
-      answer: "ILP (Inner Line Permit) is for Indian citizens to enter protected areas like Arunachal Pradesh. PAP (Protected Area Permit) is for foreign nationals to visit the same areas. ILP costs ₹100-400, while PAP costs around $50 and requires applying through e-FRRO portal.",
+      answer: "The ILP is for Indian citizens: ₹300–₹500 online at eilp.arunachal.gov.in. The PAP is for foreign nationals (and NRI, PIO and OCI holders): issued through e-FRRO for groups of two or more via a registered operator, with a USD 30 royalty per person.",
     },
     {
       question: "Can I extend my Arunachal Pradesh ILP?",
-      answer: "Yes, you can extend your ILP at the District Commissioner's (DC) office in any district of Arunachal Pradesh. Visit before your permit expires with your original ILP, ID proof, and extension request. Extension fees may apply.",
+      answer: "Plan the full stay up front: the Tourist eILP caps at 14 days, and a stay longer than that needs a Provisional eILP (up to 30 days). If plans change mid-trip, visit the Deputy Commissioner's office in the district you're in before your permit expires.",
     },
     {
       question: "Is ILP required for Itanagar?",
@@ -457,7 +450,7 @@ export const arunachalPermitData = {
         description: "Cold, snowfall in high areas, Tawang can be snow-covered",
         temperature: "-5 to 10°C",
         ideal: false,
-        note: "Sela Pass may be closed due to snow",
+        note: "Tawang stays reachable through the Sela Tunnel; pass-top viewpoints can snow out",
       },
     ],
   },
