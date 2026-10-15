@@ -7,6 +7,7 @@ import AdvancedNavbar from "@/components/common/navbar/advance-navbar";
 import FooterHome from "@/components/common/footer/footer-home";
 import { StructuredData } from "@/components/seo/structured-data";
 import { WhatsAppWidget } from "@/components/whatsapp-widget";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { 
   generateOrganizationSchema, 
   generateLocalBusinessSchema,
@@ -111,7 +112,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    nocache: true,
     googleBot: {
       index: true,
       follow: true,
@@ -121,9 +121,15 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code", // Replace with actual verification code
-  },
+  // Search Console: prefer a DNS-verified Domain property; this HTML tag is
+  // the fallback and only renders when the env var is set.
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
   other: {
     "contact:phone": "+91-9864141211",
     "contact:email": "info@travelspirene.com",
@@ -155,6 +161,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">
+        <GoogleAnalytics />
         {/* Enhanced Structured Data — all blocks share @id #organization so
             search engines merge them into one entity */}
         <StructuredData data={generateOrganizationSchema()} />

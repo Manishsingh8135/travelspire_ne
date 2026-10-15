@@ -5,15 +5,20 @@ import { homeHero } from "@/data/home/homepage";
 const pageUrl = "https://travelspirene.com";
 const heroImageUrl = `${pageUrl}${homeHero.images.desktop.src}`;
 
+// Seasonal blocks and the departures rail are date-driven; re-render a few
+// times a day so they rotate without a redeploy.
+export const revalidate = 21600; // DATE_DRIVEN_REVALIDATE_SECONDS — must be a literal
+
 export const metadata: Metadata = {
   title: {
-    absolute: "Northeast India Tours & Local Travel Experiences | Travelspire NE",
+    absolute: "Arunachal Pradesh & Northeast India Tours | Travelspire NE",
   },
   description:
-    "Explore Northeast India with locally guided tours, Arunachal expeditions, festival journeys, permit assistance and custom travel planning from Travelspire North-East.",
+    "Arunachal Pradesh tours run by a local team from Dibrugarh — Tawang, Mechuka, Anini, Dong Valley and Ziro — plus Hornbill Festival journeys, permit help and custom trips across Northeast India.",
   keywords: [
-    "Northeast India tours",
     "Arunachal Pradesh tour packages",
+    "Northeast India tours",
+    "Tawang tour package",
     "Northeast India travel agency",
     "Assam to Arunachal tours",
     "offbeat Northeast India travel",
@@ -27,7 +32,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Northeast India Tours & Local Travel Experiences | Travelspire NE",
+    title: "Arunachal Pradesh & Northeast India Tours | Travelspire NE",
     description:
       "Locally guided tours, remote expeditions, festival journeys and permit assistance across Arunachal Pradesh, Assam and the wider Northeast.",
     url: pageUrl,
@@ -45,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Northeast India Tours & Local Travel Experiences | Travelspire NE",
+    title: "Arunachal Pradesh & Northeast India Tours | Travelspire NE",
     description:
       "Locally guided tours, Arunachal expeditions, festival journeys and permit assistance — from a Dibrugarh-based team.",
     images: [heroImageUrl],

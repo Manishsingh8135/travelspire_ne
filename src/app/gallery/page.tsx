@@ -110,7 +110,7 @@ export default function GalleryPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/tours"
+              href="/all-tours"
               className="inline-flex items-center justify-center px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-medium transition-colors"
             >
               Explore Tours

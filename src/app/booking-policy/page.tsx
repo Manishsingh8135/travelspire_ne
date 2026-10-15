@@ -257,7 +257,7 @@ export default function BookingPolicyPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 1 }}
         >
-          Last Updated: November 27, 2024
+          Last Updated: August 21, 2026
         </motion.div>
       </div>
     </div>

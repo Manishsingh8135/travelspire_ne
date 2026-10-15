@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PurchaseEvent } from "@/components/analytics/purchase-event";
 import {
   ArrowLeft,
   CircleCheck,
@@ -109,6 +110,14 @@ export default async function PaymentStatusPage({
   return (
     <div className="min-h-screen bg-[#07110f] px-5 pb-24 pt-32 text-[#f6efe2] sm:px-8 sm:pt-36">
       <main className="mx-auto w-full max-w-3xl">
+        {kind === "success" && receipt && booking && (
+          <PurchaseEvent
+            transactionId={transactionId}
+            value={receipt.expected_amount_paise / 100}
+            itemId={booking.tour_slug}
+            itemName={booking.tour_name}
+          />
+        )}
         <Link
           href="/pay"
           className="inline-flex items-center gap-2 text-xs font-semibold text-white/55 transition-colors hover:text-white"

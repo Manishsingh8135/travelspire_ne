@@ -288,13 +288,9 @@ export const generateServiceSchema = () => ({
     "Sikkim",
     "Tripura"
   ],
-  "serviceType": "Travel Planning",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-    "priceCurrency": "INR",
-    "priceRange": "₹10,999-₹19,999"
-  }
+  "serviceType": "Travel Planning"
+  // No offers here: prices live on each tour's own schema, where they are
+  // read from the tour data and can't drift.
 });
 
 // Enhanced Ziro Festival 2026 Event Schema

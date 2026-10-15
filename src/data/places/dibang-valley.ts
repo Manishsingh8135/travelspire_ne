@@ -268,9 +268,9 @@ export const valleyNextPlaces = [
     image: "/images/places/dambuk/Dambuk_1.jpg",
   },
   {
-    name: "Anini Winter Fest",
-    blurb: "Two days of music at 1,970 m — we're the official travel partner.",
-    href: "/anini-winter-fest-2026",
+    name: "The Way to Anini",
+    blurb: "The road itself, in nine chapters — Roing, Mayodia and the climb to the plateau.",
+    href: "/guides/dibrugarh-to-anini",
     image: "/images/places/anini-new/anini-new-landscape-13.jpeg",
   },
 ] as const;

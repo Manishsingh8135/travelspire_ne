@@ -9,6 +9,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import type { BookingProduct } from "@/lib/bookings/catalog";
+import { trackEvent } from "@/lib/analytics";
 import {
   postToPayU,
   type HostedCheckoutResponse,
@@ -20,17 +21,15 @@ const inr = new Intl.NumberFormat("en-IN", {
   maximumFractionDigits: 0,
 });
 
-function localDateString(date = new Date()) {
-  const offset = date.getTimezoneOffset();
-  return new Date(date.getTime() - offset * 60_000).toISOString().slice(0, 10);
-}
-
 export function BookingCheckoutForm({
   product,
+  minDepartureDate,
   initialTierId,
   isTestMode = false,
 }: {
   product: BookingProduct;
+  /** Earliest sellable departure today (India time), resolved on the server. */
+  minDepartureDate: string;
   initialTierId?: string;
   isTestMode?: boolean;
 }) {
@@ -41,9 +40,12 @@ export function BookingCheckoutForm({
   const [travellers, setTravellers] = useState(
     tier.fixedTravellers ?? tier.minTravellers,
   );
-  const [departureDate, setDepartureDate] = useState(
-    product.defaultDepartureDate ?? "",
-  );
+  const [departureDate, setDepartureDate] = useState(() => {
+    const preset = product.defaultDepartureDate;
+    if (preset === null) return "";
+    // A festival's first day may already be behind us mid-festival.
+    return preset >= minDepartureDate ? preset : minDepartureDate;
+  });
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -88,6 +90,18 @@ export function BookingCheckoutForm({
       if (!response.ok) {
         throw new Error(payload.error || "We could not open secure checkout.");
       }
+      trackEvent("begin_checkout", {
+        currency: "INR",
+        value: total,
+        items: [
+          {
+            item_id: product.slug,
+            item_name: product.name,
+            item_variant: tierId,
+            quantity: travellers,
+          },
+        ],
+      });
       postToPayU(payload);
     } catch (caughtError) {
       setError(
@@ -151,7 +165,8 @@ export function BookingCheckoutForm({
               <input
                 type="date"
                 required
-                min={localDateString()}
+                min={minDepartureDate}
+                max={product.departureWindow.latest ?? undefined}
                 value={departureDate}
                 disabled={product.fixedDepartureDate !== null}
                 onChange={(event) => setDepartureDate(event.target.value)}

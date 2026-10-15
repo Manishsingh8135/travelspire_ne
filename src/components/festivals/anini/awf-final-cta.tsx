@@ -1,6 +1,8 @@
 import { Mail, MessageCircle, Phone } from "lucide-react";
-import { awfContact } from "@/data/festivals/anini-winter-fest";
-import { createAwfInquiryURL } from "@/lib/whatsapp";
+import { awfContact, awfEdition } from "@/data/festivals/anini-winter-fest";
+import { createAwfInquiryURL, createTripPlanningURL } from "@/lib/whatsapp";
+
+const isPast = awfEdition.status === "past";
 
 export function AwfFinalCta() {
   return (
@@ -22,19 +24,24 @@ export function AwfFinalCta() {
           </span>
         </h2>
         <p className="mt-7 max-w-[34rem] text-base leading-7 text-white/[0.62] sm:text-lg sm:leading-8">
-          Seats on the convoy and the fleet go fast around festival weekend.
-          One message is all it takes — we&apos;ve driven this road for years.
+          {isPast
+            ? "The festival is done for this year; the valley isn't. Send us your dates and we'll plan the road, the stays and the valleys beyond Anini."
+            : "Seats on the convoy and the fleet go fast around festival weekend. One message is all it takes — we've driven this road for years."}
         </p>
 
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
           <a
-            href={createAwfInquiryURL()}
+            href={
+              isPast
+                ? createTripPlanningURL({ destination: "Anini, Dibang Valley" })
+                : createAwfInquiryURL()
+            }
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-[10px] bg-[#f2ead8] px-7 text-[12px] font-bold uppercase tracking-[0.13em] text-[#07100d] transition-colors duration-200 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d0f]"
           >
             <MessageCircle aria-hidden="true" className="h-4 w-4" />
-            Plan my festival journey
+            {isPast ? "Plan my Anini trip" : "Plan my festival journey"}
           </a>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2 sm:pl-4">
             <a

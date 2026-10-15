@@ -86,7 +86,27 @@ import {
       {
         name: "Festivals",
         href: "/all-tours?category=Festival",
-        icon: Music
+        icon: Music,
+        submenu: [
+          {
+            name: "Hornbill Festival",
+            href: "/tours/hornbill-festival-2026",
+            icon: Music,
+            description: "Kisama, Nagaland · early December"
+          },
+          {
+            name: "Orange Festival, Dambuk",
+            href: "/tours/orange-festival-2026",
+            icon: TreePine,
+            description: "Music in orange country · mid-December"
+          },
+          {
+            name: "All festival journeys",
+            href: "/all-tours?category=Festival",
+            icon: Map,
+            description: "Every festival departure we run"
+          },
+        ],
       },
       /* Temporarily hidden - Destinations
       {

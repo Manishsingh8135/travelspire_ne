@@ -416,21 +416,21 @@ export default function ArunachalPradeshILPPage() {
             <QuickStatCard 
               icon={IndianRupee} 
               label="Application Fee" 
-              value={data.quickStats.fee.tourist15Days}
+              value={`${data.quickStats.fee.touristUpTo3Days} / ${data.quickStats.fee.tourist4To14Days}`}
               highlight={true}
-              subtext="15/30 days tourist permit"
+              subtext="Up to 3 days / 4–14 days"
             />
             <QuickStatCard 
               icon={Clock} 
               label="Processing Time" 
-              value="24 Hours"
-              subtext="Instant: ₹400"
+              value="Within a day"
+              subtext="Usually — apply 2–3 days ahead"
             />
             <QuickStatCard 
               icon={Calendar} 
               label="Validity" 
-              value="15-30 Days"
-              subtext="Extendable at DC office"
+              value="Up to 14 Days"
+              subtext="Longer stays: provisional eILP"
             />
             <QuickStatCard 
               icon={Plane} 
@@ -737,7 +737,7 @@ export default function ArunachalPradeshILPPage() {
         </div>
       </section>
 
-      {/* Special Permits (RAP) */}
+      {/* Border day-permits */}
       <section className="relative py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
@@ -747,7 +747,7 @@ export default function ArunachalPradeshILPPage() {
             className="text-center mb-10"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground dark:text-white mb-4">
-              Restricted Area Permits (RAP)
+              {data.specialPermits.title}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               {data.specialPermits.description}
@@ -798,7 +798,7 @@ export default function ArunachalPradeshILPPage() {
             viewport={{ once: true }}
             className="mt-8 p-6 rounded-2xl bg-white/80 dark:bg-accent-800/80 border border-primary-100/30 dark:border-primary-900/30"
           >
-            <h3 className="font-bold text-lg text-foreground dark:text-white mb-2">How to Get RAP?</h3>
+            <h3 className="font-bold text-lg text-foreground dark:text-white mb-2">How do you get one?</h3>
             <p className="text-muted-foreground">{data.specialPermits.howToApply}</p>
           </motion.div>
         </div>
@@ -968,7 +968,7 @@ export default function ArunachalPradeshILPPage() {
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5" />
-                  RAP arrangement for border areas
+                  Bum La and border day-permits arranged
                 </li>
                 <li className="flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5" />

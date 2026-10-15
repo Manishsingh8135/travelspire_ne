@@ -14,11 +14,11 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       <ContactHero />
       <ContactMethods />
       <ContactForm />
       <OfficeLocations />
-    </main>
+    </div>
   );
 }

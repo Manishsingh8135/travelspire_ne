@@ -153,8 +153,8 @@ export function AniniGo() {
                 3 days in Anini →
               </Link>
               {" · "}
-              <Link href="/anini-winter-fest-2026" className="text-[#d8c59d] underline-offset-4 hover:underline">
-                Winter Fest 2026 →
+              <Link href="/tours/pomo-trek-expedition" className="text-[#d8c59d] underline-offset-4 hover:underline">
+                The Pomo trek in 4 days →
               </Link>
             </p>
           </div>

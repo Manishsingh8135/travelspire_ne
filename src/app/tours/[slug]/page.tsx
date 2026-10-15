@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import { TourWrapper } from "@/components/tours/tour-details/tour-wrapper";
 import { getTourBySlug } from "@/data/tours/tour-helper";
+import { getActiveTours, isTourOver } from "@/data/tours";
 import { notFound } from "next/navigation";
 import { StructuredData } from "@/components/seo/structured-data";
-import { PageSEO } from "@/components/seo/page-seo";
 import { ImageSEO } from "@/components/seo/image-seo";
 import {
   generateTourPackageSchema,
@@ -16,11 +16,15 @@ interface Params {
   slug: string;
 }
 
+// Festival editions end; re-render a few times a day so the page notices.
+export const revalidate = 21600; // DATE_DRIVEN_REVALIDATE_SECONDS — must be a literal
+
 // Helper functions to handle different tour types
 const getDuration = (tour: Tour): string => {
   if ("duration" in tour) return tour.duration;
   if ("variants" in tour && tour.variants?.length > 0) {
-    return `${tour.variants[0].duration.days} Days / ${tour.variants[0].duration.nights} Nights`;
+    const { days, nights } = tour.variants[0].duration;
+    return `${days} ${days === 1 ? "Day" : "Days"} / ${nights} ${nights === 1 ? "Night" : "Nights"}`;
   }
   return "6 Days";
 };
@@ -143,14 +147,17 @@ export default async function TourPage({
       {/* SEO Components */}
       <StructuredData data={tourSchema} />
       <StructuredData data={breadcrumbSchema} />
-      <PageSEO breadcrumbs={breadcrumbs} />
       {gallerySeoImages.length > 0 && (
         <ImageSEO images={gallerySeoImages} limit={12} />
       )}
 
       {/* Main Tour Content */}
       <div className="min-h-screen overflow-x-hidden">
-        <TourWrapper tour={tour} />
+        <TourWrapper
+          tour={tour}
+          isOver={isTourOver(tour)}
+          relatedPool={getActiveTours()}
+        />
       </div>
     </>
   );

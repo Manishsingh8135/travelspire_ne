@@ -1,4 +1,5 @@
-import { anini2026Src } from "@/data/seo/image-seo-data";
+import { anini2026Src, mechuka2026Src } from "@/data/seo/image-seo-data";
+import { indiaToday } from "@/lib/dates";
 
 // Seasonal system for the homepage.
 //
@@ -10,8 +11,8 @@ import { anini2026Src } from "@/data/seo/image-seo-data";
 //  2. `getActiveDepartures` — the compact departures rail. Items carry an
 //     `expiresOn` date and automatically disappear once past it.
 //
-// Same operational pattern as `awfEdition`: windows are evaluated at render
-// time, so a redeploy refreshes what is in season.
+// Windows are evaluated at render time in India time. The homepage
+// revalidates every few hours, so nothing here needs a redeploy to rotate.
 
 export interface SeasonalFeature {
   id: string;
@@ -82,15 +83,55 @@ export const seasonalFeatures: SeasonalFeature[] = [
     featureFrom: "2026-12-17",
     featureUntil: "2026-12-31",
   },
+  {
+    id: "winter-tawang-2027",
+    label: "This season · January to February",
+    headline: "Tawang under",
+    highlightedHeadline: "snow.",
+    body: "Since the Sela Tunnel opened in 2024, the Tawang road stays open all winter — the monastery in snow, frozen lakes when the passes allow, and a buffer day built in.",
+    ctaLabel: "See the Tawang journey",
+    href: "/tours/tawang-expedition",
+    image: "/images/places/tawang/Tawang_2.JPG",
+    imageAlt: "Tawang Valley panoramic view with snow-capped Himalayan mountains",
+    featureFrom: "2027-01-01",
+    featureUntil: "2027-02-28",
+  },
+  {
+    id: "spring-mechuka-2027",
+    label: "This season · March to mid-April",
+    headline: "Spring in the",
+    highlightedHeadline: "high valleys.",
+    body: "The thaw, the rhododendrons and the clearest skies of the year — the season for Mechuka's meadows and the long road through Aalo.",
+    ctaLabel: "See the Mechuka journey",
+    href: "/tours/mechuka-expedition",
+    image: mechuka2026Src.ridgeViewpoint,
+    imageAlt: "Mechuka town and valley seen from a ridge viewpoint, Arunachal Pradesh",
+    featureFrom: "2027-03-01",
+    featureUntil: "2027-04-15",
+  },
 ];
 
-export function getSeasonalFeature(now: Date = new Date()): SeasonalFeature {
-  const today = now.toISOString().slice(0, 10);
+// Shown whenever no dated window is open — the brand, not a season.
+export const evergreenSeasonalFeature: SeasonalFeature = {
+  id: "arunachal-year-round",
+  label: "Planned around the season",
+  headline: "Arunachal, by the team",
+  highlightedHeadline: "that drives it.",
+  body: "Tawang, Mechuka, Anini, Dong and the valleys beyond — routes, permits, stays and the right month for each, from our base in Dibrugarh.",
+  ctaLabel: "Explore all journeys",
+  href: "/all-tours",
+  image: mechuka2026Src.ridgeViewpoint,
+  imageAlt: "Mechuka town and valley seen from a ridge viewpoint, Arunachal Pradesh",
+  featureFrom: "2026-01-01",
+  featureUntil: "9999-12-31",
+};
+
+export function getSeasonalFeature(today: string = indiaToday()): SeasonalFeature {
   return (
     seasonalFeatures.find(
       (feature) =>
         today >= feature.featureFrom && today <= feature.featureUntil,
-    ) ?? seasonalFeatures[seasonalFeatures.length - 1]
+    ) ?? evergreenSeasonalFeature
   );
 }
 
@@ -150,7 +191,8 @@ export const homeDepartures: HomeDeparture[] = [
     image: "/images/places/hornbill/Hornbill_3.PNG",
     imageAlt: "Traditional Naga performers at the Hornbill Festival, Kisama",
     state: "booking",
-    expiresOn: "2026-12-01",
+    // Last sensible start for a 2–4 day package inside the 1–10 Dec window.
+    expiresOn: "2026-12-08",
   },
   {
     id: "ofam-2026",
@@ -163,7 +205,7 @@ export const homeDepartures: HomeDeparture[] = [
     image: "/images/places/dambuk/Dambuk_4.JPG",
     imageAlt: "Orange orchards along the riverine plains of Dambuk",
     state: "booking",
-    expiresOn: "2026-12-13",
+    expiresOn: "2026-12-14",
   },
   {
     id: "six-days-dibang",
@@ -191,10 +233,35 @@ export const homeDepartures: HomeDeparture[] = [
     state: "enquiry",
     expiresOn: null,
   },
+  {
+    id: "tawang",
+    title: "Tawang Expedition",
+    windowLabel: "Year-round",
+    location: "Tawang · via the Sela Tunnel",
+    duration: "4N / 5D",
+    priceHook: "from ₹16,499",
+    href: "/tours/tawang-expedition",
+    image: "/images/places/tawang/Tawang_1.PNG",
+    imageAlt: "Tawang Monastery - Largest Buddhist monastery in India, Arunachal Pradesh",
+    state: "booking",
+    expiresOn: null,
+  },
+  {
+    id: "mechuka",
+    title: "Mechuka Expedition",
+    windowLabel: "Oct – May",
+    location: "Mechuka · from Dibrugarh",
+    duration: "5N / 6D",
+    priceHook: "from ₹19,999",
+    href: "/tours/mechuka-expedition",
+    image: mechuka2026Src.winterSnow,
+    imageAlt: "Snow-covered pine forest and misty mountain slopes in Mechuka Valley during winter, Arunachal Pradesh",
+    state: "booking",
+    expiresOn: null,
+  },
 ];
 
-export function getActiveDepartures(now: Date = new Date()): HomeDeparture[] {
-  const today = now.toISOString().slice(0, 10);
+export function getActiveDepartures(today: string = indiaToday()): HomeDeparture[] {
   return homeDepartures.filter(
     (departure) => departure.expiresOn === null || today <= departure.expiresOn,
   );

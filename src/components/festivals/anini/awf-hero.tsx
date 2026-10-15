@@ -1,8 +1,14 @@
 import { getImageProps } from "next/image";
 import Link from "next/link";
-import { ArrowDown, MessageCircle, ShieldCheck } from "lucide-react";
-import { awfHeroImages, awfMeta } from "@/data/festivals/anini-winter-fest";
-import { createAwfInquiryURL } from "@/lib/whatsapp";
+import { ArrowDown, ArrowRight, MessageCircle, ShieldCheck } from "lucide-react";
+import {
+  awfEdition,
+  awfHeroImages,
+  awfMeta,
+} from "@/data/festivals/anini-winter-fest";
+import { createAwfInquiryURL, createTripPlanningURL } from "@/lib/whatsapp";
+
+const isPast = awfEdition.status === "past";
 
 const heroStats = [
   { value: "19–20 Sep", label: "Two days · 2026" },
@@ -98,38 +104,63 @@ export function AwfHero() {
             </h1>
 
             <p className="mt-5 max-w-[38rem] text-[0.95rem] font-medium leading-6 text-white/[0.88] [text-shadow:0_2px_18px_rgba(0,0,0,0.85)] sm:mt-6 sm:text-base sm:leading-7 md:text-lg md:font-normal md:leading-8 md:text-white/[0.74]">
-              Two days of indie, folk and tribal-fusion under Dibang
-              Valley&apos;s unpolluted skies — and the journey there, handled by
-              the team that knows every bend of NH-313.
+              {isPast ? (
+                <>
+                  AWF {awfMeta.edition} played to Dibang Valley on{" "}
+                  {awfMeta.dates.label}. The {awfEdition.nextYear} dates will
+                  come from the festival&apos;s own channels — the valley, the
+                  road and our journeys run all year.
+                </>
+              ) : (
+                <>
+                  Two days of indie, folk and tribal-fusion under Dibang
+                  Valley&apos;s unpolluted skies — and the journey there, handled
+                  by the team that knows every bend of NH-313.
+                </>
+              )}
             </p>
 
             <div className="mt-6 sm:mt-8">
               <div className="grid max-w-[31rem] grid-cols-2 gap-2.5 sm:flex sm:gap-3">
                 <a
-                  href={createAwfInquiryURL()}
+                  href={
+                    isPast
+                      ? createTripPlanningURL({ destination: "Anini, Dibang Valley" })
+                      : createAwfInquiryURL()
+                  }
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Plan your Anini Winter Fest journey on WhatsApp (opens in a new tab)"
+                  aria-label={
+                    isPast
+                      ? "Plan an Anini trip on WhatsApp (opens in a new tab)"
+                      : "Plan your Anini Winter Fest journey on WhatsApp (opens in a new tab)"
+                  }
                   className="inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-[10px] bg-[#f2ead8] px-3 text-[13px] font-semibold text-[#07100d] transition-colors duration-200 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d0f] sm:px-6 sm:text-sm"
                 >
                   <MessageCircle aria-hidden="true" className="h-4 w-4" />
-                  Plan Your Journey
+                  {isPast ? "Plan an Anini Trip" : "Plan Your Journey"}
                 </a>
 
                 <Link
-                  href="#lineup"
+                  href={isPast ? "/places/anini" : "#lineup"}
                   className="inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-[10px] border border-white/[0.38] bg-black/10 px-3 text-[13px] font-medium text-white backdrop-blur-[2px] transition-colors duration-200 hover:border-white/70 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#050d0f] sm:px-6 sm:text-sm"
                 >
-                  <ArrowDown aria-hidden="true" className="h-4 w-4" />
-                  Explore the Festival
+                  {isPast ? (
+                    <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                  ) : (
+                    <ArrowDown aria-hidden="true" className="h-4 w-4" />
+                  )}
+                  {isPast ? "Explore Anini" : "Explore the Festival"}
                 </Link>
               </div>
 
               <Link
-                href="#transport"
+                href={isPast ? "/guides/dibrugarh-to-anini" : "#transport"}
                 className="mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#eee6d3] transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2ead8]"
               >
-                Festival transport from ₹5,499 · shared convoy
+                {isPast
+                  ? "The road to Anini · nine chapters"
+                  : "Festival transport from ₹5,499 · shared convoy"}
                 <span aria-hidden="true">→</span>
               </Link>
             </div>

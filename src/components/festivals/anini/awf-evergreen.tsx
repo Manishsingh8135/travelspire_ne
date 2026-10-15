@@ -12,7 +12,7 @@ export function AwfWrappedBanner() {
   return (
     <section
       aria-label="Festival edition notice"
-      className="border-b border-[#d8c59d]/20 bg-[#101a14] px-5 py-4 text-white sm:px-8"
+      className="relative z-20 border-b border-[#d8c59d]/20 bg-[#101a14] px-5 pb-4 pt-24 text-white sm:px-8 sm:pt-28"
     >
       <div className="mx-auto flex w-full max-w-[1600px] flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm leading-6 text-white/[0.85]">

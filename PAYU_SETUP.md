@@ -1,32 +1,57 @@
-# PayU payment foundation
+# PayU payments
 
-This branch contains a production-shaped PayU Hosted Checkout foundation. It is
-**not live and cannot collect money until the database migration, test merchant
-credentials, a public HTTPS callback origin, and the PayU dashboard webhook are
-configured**.
+PayU Hosted Checkout for full package payments. Updated October 2026.
 
-## Customer flow
+**Live status:** production runs with `PAYU_ENVIRONMENT=production` (the booking
+page shows no sandbox banner). Real money moves only when
+`PAYU_LIVE_ENABLED=true` is also set in Vercel. Check both before relying on
+either assumption.
 
-1. Travelspire confirms the departure date, group size, room plan, vehicle,
-   inclusions and final price.
-2. An operator issues a booking reference and a private payment code.
-3. The customer opens `/pay`, accepts the booking terms and enters both values.
-4. The server loads the confirmed amount from the database, creates a PayU
-   transaction ID, signs the request with the server-only salt and sends the
-   browser to PayU Hosted Checkout.
-5. PayU POSTs the customer return and the server-to-server webhook. Both are
-   reverse-hash checked and compared with the original immutable snapshot.
-6. The Verify Payment API is called before a result can update the booking.
-   Repeated or out-of-order events are deduplicated in the database.
+## Two ways to pay
 
-The browser never sends a price. A valid public tour tier is not enough to pay:
-the booking must already be operator-confirmed and have a private access code.
+### Self-serve: `/book/[slug]` (the "Book and pay" buttons)
+
+1. The customer picks a package tier, traveller count and departure date.
+2. `POST /api/bookings/checkout`:
+   - validates the input
+   - rate-limits per IP
+   - checks the date against the product's departure window
+     (`src/lib/bookings/catalog.ts`)
+   - checks the PayU configuration **before** writing anything
+3. The price comes from the static tour data on the server (unit price ×
+   travellers; fixed group sizes for the expeditions). The browser never sends
+   a price.
+4. `issue_tour_booking` and `start_payu_payment` snapshot the booking and the
+   signed attempt, and the browser is sent to PayU.
+
+Off-sale products, such as a festival whose dates have passed, redirect from
+`/book` back to their tour page, and the API rejects them.
+
+### Operator-issued: `/pay`
+
+For custom quotes:
+
+1. Travelspire confirms the departure, group, stays, vehicle, inclusions and
+   final price.
+2. An operator issues a booking reference and a private payment code (see §4).
+3. The customer enters both values at `/pay`.
+
+### Both flows, after checkout
+
+- PayU POSTs the customer return and the server-to-server webhook. Both are
+  reverse-hash checked and compared with the immutable request snapshot.
+- The Verify Payment API must agree before a result updates the booking.
+- Repeated or out-of-order events are deduplicated in the database.
+- On verified success, receipts go to the customer and the team through Resend
+  (`src/lib/email/resend.ts`).
 
 ## 1. Apply the database migration
 
-Apply:
+Apply, in order:
 
-`supabase/migrations/202608210001_payu_payment_foundation.sql`
+- `supabase/migrations/202608210001_payu_payment_foundation.sql`
+- `supabase/migrations/202608210002_full_payment_product_info.sql` (labels
+  attempts as full payment instead of advance)
 
 The migration installs or reuses `pgcrypto` in Supabase's `extensions` schema
 and schema-qualifies every cryptographic call. If an existing project has
@@ -100,13 +125,13 @@ from public.issue_tour_booking(
   p_customer_email => 'guest@example.com',
   p_customer_phone => '+91 90000 00000',
   p_total_amount_paise => 22499400,
-  p_payment_due_paise => 11249700
+  p_payment_due_paise => 22499400
 );
 ```
 
-This example snapshots ₹224,994 total and ₹112,497 as the 50% advance. Always
-calculate from the operator-confirmed quote, including any approved adjustment,
-instead of trusting values copied from the public page.
+This example snapshots ₹224,994 as the full amount due; we take complete
+package payments. Always calculate from the operator-confirmed quote, including
+any approved adjustment, instead of trusting values copied from the public page.
 
 The function returns `booking_reference` and `payment_code`. The raw payment
 code is shown only once; the database stores its SHA-256 digest. Send both to the
@@ -138,8 +163,9 @@ Do not set `PAYU_ENVIRONMENT=production` or `PAYU_LIVE_ENABLED=true` until all o
 these are complete:
 
 - PayU merchant onboarding/KYC and production key/salt are active.
-- The November 2024 booking, cancellation, privacy and payment wording is
-  reviewed for the current business, refund timelines, taxes and chargebacks.
+- The booking and terms pages (updated 21 Aug 2026 for full payment) and the
+  privacy policy (still dated Nov 2024) are reviewed for refund timelines,
+  taxes, chargebacks and payment data.
 - The operator has a documented process for issuing, expiring and revoking
   payment access, sending receipts, collecting the balance and reconciling daily.
 - Refund and dispute events have an operational owner. This foundation records
@@ -154,6 +180,23 @@ these are complete:
 
 The explicit `PAYU_LIVE_ENABLED=true` gate is intentional. Production mode stays
 blocked even if someone accidentally adds production credentials.
+
+## Known gaps (October 2026 audit)
+
+- **No reconciliation job.** Attempts left `pending` or `verification_required`
+  rely on the webhook or a manual SQL check. There is no cron and no admin view.
+- **Late success after expiry.** An attempt expires after 30 minutes and a
+  retry opens a new one. If PayU later reports success on the expired attempt,
+  it is still credited, so a customer who paid twice needs a manual refund.
+- **Forged callbacks.** A junk POST that carries a real `txnid` marks the
+  attempt `tampered`, which blocks that booking until an operator clears it.
+  The ID has about 80 bits of randomness, so the risk is low.
+- **Duplicate receipts.** Return and webhook both send receipts; only Resend's
+  idempotency key (about 24 hours) prevents duplicates. Nothing in the
+  database records that a receipt went out.
+- **No availability.** The self-serve flow checks the date window but not
+  capacity or blackout dates.
+- **Refunds and disputes** are handled outside the system.
 
 ## Official integration references
 

@@ -1,6 +1,6 @@
 import { Tour } from "@/types/tours/tour";
-import { upcomingTours } from "./index";
+import { allTours } from "./index";
 
 export function getTourBySlug(slug: string): Tour | null {
-  return upcomingTours.find((tour) => tour.slug === slug) || null;
+  return allTours.find((tour) => tour.slug === slug) || null;
 }

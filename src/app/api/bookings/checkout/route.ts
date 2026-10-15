@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { resolveBookingPrice } from "@/lib/bookings/catalog";
+import {
+  departureDateProblem,
+  resolveBookingPrice,
+} from "@/lib/bookings/catalog";
+import { clientIp, rateLimit } from "@/lib/rate-limit";
 import {
   createPaymentAccessTokenHash,
   createPayUTransactionId,
@@ -11,7 +15,10 @@ import {
   PaymentStoreError,
   startPayUPayment,
 } from "@/lib/payments/payu/store";
-import { PayUConfigurationError } from "@/lib/payments/payu/config";
+import {
+  getPayUConfig,
+  PayUConfigurationError,
+} from "@/lib/payments/payu/config";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -38,7 +45,33 @@ function noStoreJson(body: unknown, status = 200) {
   });
 }
 
+// Each accepted request writes a booking and a payment attempt, so cap how
+// fast one client can create them.
+const CHECKOUT_LIMIT = { limit: 8, windowMs: 10 * 60 * 1000 };
+
+function isRealCalendarDate(isoDate: string) {
+  const parsed = new Date(`${isoDate}T00:00:00Z`);
+  return (
+    !Number.isNaN(parsed.getTime()) &&
+    parsed.toISOString().slice(0, 10) === isoDate
+  );
+}
+
 export async function POST(request: Request) {
+  const limited = rateLimit(`checkout:${clientIp(request)}`, CHECKOUT_LIMIT);
+  if (!limited.ok) {
+    return NextResponse.json(
+      { error: "Too many booking attempts. Please wait a few minutes." },
+      {
+        status: 429,
+        headers: {
+          "Cache-Control": "no-store, max-age=0",
+          "Retry-After": String(limited.retryAfterSeconds),
+        },
+      },
+    );
+  }
+
   let json: unknown;
   try {
     json = await request.json();
@@ -57,10 +90,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const departureDate = new Date(`${parsed.data.departureDate}T00:00:00Z`);
-  const today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
-  if (Number.isNaN(departureDate.getTime()) || departureDate < today) {
+  if (!isRealCalendarDate(parsed.data.departureDate)) {
     return noStoreJson({ error: "Choose a valid future departure date." }, 400);
   }
 
@@ -76,17 +106,16 @@ export async function POST(request: Request) {
     );
   }
 
-  if (
-    resolved.product.fixedDepartureDate !== null &&
-    parsed.data.departureDate !== resolved.product.fixedDepartureDate
-  ) {
-    return noStoreJson(
-      { error: "That departure date is not available for this package." },
-      409,
-    );
-  }
+  const dateProblem = departureDateProblem(
+    resolved.product,
+    parsed.data.departureDate,
+  );
+  if (dateProblem) return noStoreJson({ error: dateProblem }, 409);
 
   try {
+    // Fail on a misconfigured or locked gateway before anything is written,
+    // so a 503 never leaves an orphan booking behind.
+    getPayUConfig();
     const booking = await issueTourBooking({
       tourSlug: resolved.product.slug,
       tourName: resolved.product.name,

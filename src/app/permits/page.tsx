@@ -45,9 +45,9 @@ const permitTypes = [
     color: "primary",
     applicableFor: "Indian Citizens",
     states: ["Arunachal Pradesh", "Nagaland", "Mizoram", "Manipur"],
-    validity: "15-30 days (extendable up to 1 year for workers)",
-    processingTime: "Instant to 24 hours online",
-    cost: "₹100 (Tourist) | ₹400 (Instant)",
+    validity: "Varies by state (Arunachal tourist eILP: up to 14 days)",
+    processingTime: "Usually within a day online",
+    cost: "Varies by state (Arunachal: ₹300–₹500)",
     onlineAvailable: true,
     onArrival: "Mizoram only (at Lengpui Airport)",
     officialPortal: "State-specific portals",
@@ -76,7 +76,7 @@ const permitTypes = [
     states: ["Arunachal Pradesh", "Nagaland", "Manipur", "Mizoram", "Parts of Sikkim"],
     validity: "30 days (non-extendable)",
     processingTime: "15-30 days (apply 30 days in advance)",
-    cost: "USD $50 (Arunachal) | $30 (Other states)",
+    cost: "Arunachal: USD 30 royalty per person | other states: check current rules",
     onlineAvailable: true,
     onArrival: "Not available - must apply in advance",
     officialPortal: "https://indianfrro.gov.in/eservices/",
@@ -135,9 +135,9 @@ const stateWiseRequirements = [
     indianPermit: "ILP (Mandatory)",
     foreignerPermit: "PAP (Mandatory)",
     keyDestinations: ["Tawang", "Ziro Valley", "Mechuka", "Dong Valley", "Anini", "Pasighat"],
-    fee: "₹100 (15/30 days) | ₹400 (Instant) | ₹200 (1 year)",
-    specialNotes: "India's most restricted state. All visitors need permits. Border areas (Bum La, PTSO, Kibithoo) need additional RAP from DC office.",
-    processingTime: "Online: Few hours to 24 hours | Offline: Same day if before 12 PM",
+    fee: "₹300 (up to 3 days) | ₹500 (4–14 days)",
+    specialNotes: "Every visitor needs a permit. Bum La, PT Tso and Sangetsar Lake in Tawang need an extra DC day-permit, for Indian citizens only.",
+    processingTime: "Online: usually within a day",
     entryPoints: ["Bhalukpong", "Banderdewa", "Gumto Railway Station", "Naharlagun Railway Station"],
     onArrival: "❌ Not Available - Must apply before travel",
     officialPortal: "https://eilp.arunachal.gov.in",
@@ -1012,7 +1012,7 @@ export default function PermitsPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {[
-              { state: "Arunachal Pradesh", slug: "arunachal-pradesh-ilp", type: "ILP", highlight: "₹100 fee, 24hr processing", color: "from-blue-500 to-indigo-600" },
+              { state: "Arunachal Pradesh", slug: "arunachal-pradesh-ilp", type: "ILP", highlight: "₹300–₹500 eILP, approved online", color: "from-blue-500 to-indigo-600" },
               { state: "Nagaland", slug: "nagaland-ilp", type: "ILP", highlight: "Hornbill Festival ready", color: "from-orange-500 to-red-600" },
               { state: "Mizoram", slug: "mizoram-ilp", type: "ILP", highlight: "On arrival at airport!", color: "from-green-500 to-emerald-600" },
               { state: "Manipur", slug: "manipur-ilp", type: "ILP", highlight: "Sangai Festival ready", color: "from-purple-500 to-pink-600" },
@@ -1062,7 +1062,7 @@ export default function PermitsPage() {
               { 
                 state: "Arunachal Pradesh", 
                 url: "https://eilp.arunachal.gov.in", 
-                fee: "₹100-400",
+                fee: "₹300-500",
                 helpline: "1800 345 3605"
               },
               { 

@@ -95,7 +95,7 @@ export const homeJourneyTypes: HomeJourneyType[] = [
   },
   {
     title: "Festivals & music",
-    description: "Anini Winter Fest, Ziro, Hornbill and the Orange Festival.",
+    description: "Hornbill, the Orange Festival in Dambuk, Ziro and the Arunachal festival calendar.",
     href: "/all-tours?category=Festival",
     linkLabel: "See festival journeys",
     image: "/images/places/hornbill/Hornbill_3.PNG",
