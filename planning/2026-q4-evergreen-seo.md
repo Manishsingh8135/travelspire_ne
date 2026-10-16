@@ -176,3 +176,17 @@ pricing-matrix models are its backbone.
 - Not yet verified (outside Phase 0):
   - Manipur, Mizoram and Sikkim permit fees. Nagaland is verified in Phase 1.
   - The privacy policy is still dated Nov 2024 and doesn't mention PayU.
+- 2026-10-16 — Evergreen redesign merged and live (PR #8). Phase 1 started on
+  `feat/hornbill-and-tour-years`:
+  - `/hornbill-festival` hub: dated "confirmed vs awaited" board, crowd
+    calendar from 2025 daily footfall, getting there, ILP and tickets, stays,
+    Dzükou rules, packages, 13-question FAQ. Festival + FAQPage + WebPage
+    JSON-LD; in the nav, sitemap and image sitemap. Facts sourced 16 Oct
+    (27th edition confirmed 1–10 Dec; ILP ₹200; 2025 ticket ₹150).
+  - Hornbill product page: own search title/description, links to the hub.
+  - Years removed from non-festival tour and guide titles; festivals keep them.
+  - Fact fixes: Mizoram ILP (≈₹300–350, 7 days), Nagaland fee categories,
+    Sikkim ₹50 fee and foreigners' RAP, Dibang dam location, OFAM 2026 dates
+    marked TBA. Privacy policy rewritten (PayU, Supabase, Resend, GA4).
+  - Re-check in late November: 2026 ticket price, programme, PAP waiver,
+    the Phesama road stretch, Dzükou status. Update `src/data/festivals/hornbill.ts`.

@@ -58,6 +58,12 @@ interface BaseTourProperties {
   upcoming?: boolean;
   trending?: boolean;
   
+  /** Search title and description written for this tour's real queries.
+   *  Without it the page falls back to the generated title. */
+  seo?: { title: string; description: string; keywords?: string[] };
+  /** The evergreen guide this product sits under, e.g. /hornbill-festival. */
+  guide?: { href: string; label: string };
+
   // Additional metadata
   tags?: string[];
   createdAt?: string;
@@ -110,6 +116,10 @@ interface EventBasedTourBase extends BaseTourProperties {
     start: string;
     end: string;
     year: number;
+    /** Shown instead of the dates while the organisers haven't announced
+     *  them, e.g. "Mid-Dec 2026 · dates TBA". start/end stay as placeholders
+     *  so the edition still expires on time. */
+    tentative?: string;
   };
   
   variants: TourPackageVariant[];

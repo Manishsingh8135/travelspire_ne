@@ -64,23 +64,9 @@ const groups = [
     key: "hornbill",
     title: "Hornbill Festival & Dzükou Valley",
     intro: "Nagaland in December: the Hornbill Festival at Kisama and the Dzükou Valley trek.",
-    link: { label: "Hornbill Festival 2026", href: "/tours/hornbill-festival-2026" },
+    link: { label: "Hornbill Festival guide", href: "/hornbill-festival" },
   },
 ] as const;
-
-/* Hornbill_1.PNG is a screenshot with carousel arrows baked in (the tour
-   data already comments it out); show the real festival photograph here. */
-const substitutes: Record<string, PlaceImage> = {
-  "/images/places/hornbill/Hornbill_1.PNG": {
-    src: "/images/places/hornbill/Hornbill_3.PNG",
-    alt: "Naga dancers in full regalia at the Hornbill Festival, Kisama, Nagaland",
-    title: "Hornbill Festival - Kisama, Nagaland",
-    caption: "Warriors of Nagaland's tribes dancing in the arena at Kisama Heritage Village during the Hornbill Festival",
-    location: { name: "Kisama", state: "Nagaland" },
-    keywords: ["hornbill festival", "naga dance", "kisama heritage village"],
-    category: "festival",
-  },
-};
 
 const toPhoto = (image: PlaceImage) => ({
   src: image.src,
@@ -93,7 +79,7 @@ const toPhoto = (image: PlaceImage) => ({
 export default function GalleryPage() {
   const allImages = getAllPlaceImages();
   const sections = groups
-    .map((g) => ({ ...g, images: (placeImagesData[g.key] ?? []).map((img) => substitutes[img.src] ?? img) }))
+    .map((g) => ({ ...g, images: placeImagesData[g.key] ?? [] }))
     .filter((g) => g.images.length > 0);
 
   return (

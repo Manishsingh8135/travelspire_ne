@@ -59,12 +59,17 @@ export async function generateMetadata({
     ? tour.heroImage
     : `https://travelspirene.com${tour.heroImage}`;
 
+  const description =
+    tour.seo?.description ||
+    tour.overview ||
+    `Experience ${tour.title} with Travelspire NE. ${duration} of authentic Northeast India adventure starting from ₹${price.toLocaleString("en-IN")}.`;
+
   return {
-    title: `${tour.title} | ${duration} Adventure ₹${price.toLocaleString("en-IN")}`,
-    description:
-      tour.overview ||
-      `Experience ${tour.title} with Travelspire NE. ${duration} of authentic Northeast India adventure starting from ₹${price.toLocaleString("en-IN")}.`,
-    keywords: [
+    title: tour.seo
+      ? { absolute: tour.seo.title }
+      : `${tour.title} | ${duration} Adventure ₹${price.toLocaleString("en-IN")}`,
+    description,
+    keywords: tour.seo?.keywords ?? [
       tour.title,
       `${tour.location} tour`,
       "Northeast India travel",
@@ -75,10 +80,8 @@ export async function generateMetadata({
       ...(tour.highlights?.slice(0, 5) || []),
     ],
     openGraph: {
-      title: `${tour.title} | ${duration} Adventure`,
-      description:
-        tour.overview ||
-        `Experience authentic ${tour.location} with expert local guides`,
+      title: tour.seo?.title ?? `${tour.title} | ${duration} Adventure`,
+      description,
       images: [
         {
           url: heroUrl,

@@ -3,6 +3,7 @@
 // image location is emitted; alt text on the page itself carries the meaning.
 import {
   getAllPlaceImages,
+  placeImagesData,
   mechuka2026Images,
   anini2026Images,
 } from "@/data/seo/image-seo-data";
@@ -53,6 +54,7 @@ export function generateImageSitemap() {
     ["/tours/pomo-trek-expedition", anini2026Images],
     ["/tours/anini-expedition", anini2026Images],
     [circuitMeta.url, circuitSeoImages],
+    ["/hornbill-festival", placeImagesData.hornbill],
   ];
 
   return `<?xml version="1.0" encoding="UTF-8"?>
