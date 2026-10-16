@@ -66,3 +66,14 @@ default (`aria-hidden`); pass `title` to label.
   and homepage done on `feat/design-system`. Remaining page groups run in
   parallel worktrees: permits · places+guide · bespoke tours · company pages ·
   booking/payment/festival recaps.
+- 2026-10-16 — All page groups rebuilt and merged (permits, places + road
+  guide, bespoke expeditions, company pages, booking/payment/404/festival
+  recaps). Legacy layer deleted (components, CSS, fonts, lucide,
+  framer-motion, Radix, Leaflet). Production-build audit of all 34 sitemap
+  URLs at 1440 and 390: no text under 12px, no broken images, one h1, no
+  horizontal overflow, valid JSON-LD, no console errors. Branch ready for a
+  Vercel preview; not merged to `main`.
+- Open for the founder: authenticity of testimonials; real photos for Roing,
+  Mehao Lake, Dambuk riverbanks/bridge, Anini orchards/villages and the road
+  stretches; verify 235 km / Mayodia 2,655 m / Dibang hydro note and the
+  Kibithoo & Pangsau Pass permit rows; sign-off on the redrawn logo mark.
