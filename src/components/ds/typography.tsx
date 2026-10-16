@@ -24,7 +24,7 @@ export function Heading({ as: Tag = "h2", size, className, ...props }: HeadingPr
   const resolved = size ?? (Tag === "p" ? "h3" : Tag);
   return (
     <Tag
-      className={cn("font-ui text-balance text-fg", headingSizes[resolved], className)}
+      className={cn("ds-heading font-ui text-balance text-fg", headingSizes[resolved], className)}
       {...props}
     />
   );
@@ -35,7 +35,7 @@ export function Heading({ as: Tag = "h2", size, className, ...props }: HeadingPr
 export function Accent({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
-      className={cn("font-display text-[1.08em] font-normal italic tracking-normal text-highlight", className)}
+      className={cn("ds-accent font-display text-[1.08em] font-normal italic tracking-normal text-highlight", className)}
       {...props}
     />
   );

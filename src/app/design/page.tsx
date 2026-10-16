@@ -21,6 +21,7 @@ import {
   Textarea,
   TourCard,
 } from "@/components/ds";
+import { isOptionId, optionFontVariables, options, optionsCss, type OptionId } from "./options";
 
 /* Field Guide specimen. Renders the whole system in one mode per request:
    /design (light) and /design?theme=dark. Internal; noindex via layout. */
@@ -358,37 +359,73 @@ function Specimen() {
   );
 }
 
+function Switcher({ items }: { items: { label: string; href: string; active: boolean }[] }) {
+  return (
+    <div className="flex rounded-control border border-line p-0.5 text-small">
+      {items.map(({ label, href, active }) => (
+        <a
+          key={label}
+          href={href}
+          aria-current={active ? "page" : undefined}
+          className={
+            active
+              ? "rounded-[0.375rem] bg-fg px-3 py-1 font-medium text-canvas"
+              : "rounded-[0.375rem] px-3 py-1 text-fg-muted transition-colors hover:text-fg"
+          }
+        >
+          {label}
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export default async function DesignPage({
   searchParams,
 }: {
-  searchParams: Promise<{ theme?: string }>;
+  searchParams: Promise<{ theme?: string; option?: string }>;
 }) {
-  const { theme } = await searchParams;
-  const dark = theme === "dark";
+  const params = await searchParams;
+  const dark = params.theme === "dark";
+  const option: OptionId = isOptionId(params.option) ? params.option : "evergreen";
+  const current = options.find((o) => o.id === option)!;
+  const href = (next: { option?: OptionId; dark?: boolean }) => {
+    const q = new URLSearchParams();
+    const o = next.option ?? option;
+    const d = next.dark ?? dark;
+    if (o !== "evergreen") q.set("option", o);
+    if (d) q.set("theme", "dark");
+    const qs = q.toString();
+    return qs ? `/design?${qs}` : "/design";
+  };
+
   return (
-    <div data-ds-specimen data-theme={dark ? "dark" : "light"} className="min-h-screen">
+    <div
+      data-ds-specimen
+      data-palette={option}
+      data-theme={dark ? "dark" : "light"}
+      className={`${optionFontVariables} min-h-screen`}
+    >
+      <style dangerouslySetInnerHTML={{ __html: optionsCss }} />
       <div className="sticky top-0 z-30 border-b border-line bg-canvas/85 backdrop-blur">
-        <Container className="flex h-14 items-center justify-between font-ui">
-          <p className="text-small font-semibold text-fg">Travelspire · Field Guide</p>
-          <nav aria-label="Theme" className="flex rounded-control border border-line p-0.5 text-small">
-            {[
-              ["Light", "/design", !dark],
-              ["Dark", "/design?theme=dark", dark],
-            ].map(([label, href, active]) => (
-              <a
-                key={label as string}
-                href={href as string}
-                aria-current={active ? "page" : undefined}
-                className={
-                  active
-                    ? "rounded-[0.375rem] bg-fg px-3 py-1 font-medium text-canvas"
-                    : "rounded-[0.375rem] px-3 py-1 text-fg-muted hover:text-fg"
-                }
-              >
-                {label}
-              </a>
-            ))}
+        <Container className="flex min-h-14 flex-wrap items-center justify-between gap-3 py-2 font-ui">
+          <p className="text-small font-semibold text-fg">Travelspire · design options</p>
+          <nav aria-label="Design options" className="flex flex-wrap items-center gap-2">
+            <Switcher
+              items={options.map((o) => ({ label: o.name, href: href({ option: o.id }), active: o.id === option }))}
+            />
+            <Switcher
+              items={[
+                { label: "Light", href: href({ dark: false }), active: !dark },
+                { label: "Dark", href: href({ dark: true }), active: dark },
+              ]}
+            />
           </nav>
+        </Container>
+      </div>
+      <div className="border-b border-line bg-canvas-subtle">
+        <Container className="py-3 font-ui text-small text-fg-muted">
+          <span className="font-semibold text-fg">{current.name}.</span> {current.note}
         </Container>
       </div>
       <Specimen />
