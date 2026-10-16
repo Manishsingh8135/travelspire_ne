@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PurchaseEvent } from "@/components/analytics/purchase-event";
+import { ButtonLink, Container, Heading, Section, buttonVariants } from "@/components/ds";
 import {
-  ArrowLeft,
-  CircleCheck,
-  CircleX,
-  Clock3,
-  MessageCircle,
-  ShieldAlert,
-} from "lucide-react";
-import {
-  getPaymentReceipt,
-  type PaymentReceipt,
-} from "@/lib/payments/payu/store";
+  IconAlert,
+  IconArrowLeft,
+  IconCheckCircle,
+  IconClock,
+  IconClose,
+  IconWhatsApp,
+  type Icon,
+} from "@/components/icons";
+import { getPaymentReceipt, type PaymentReceipt } from "@/lib/payments/payu/store";
 import { createWhatsAppURL } from "@/lib/whatsapp";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Payment Status",
@@ -44,47 +44,58 @@ function formatAmount(amountPaise: number) {
   }).format(amountPaise / 100);
 }
 
-const statusCopy = {
+const statusCopy: Record<
+  StatusKind,
+  { label: string; title: string; body: string; next: string[]; Icon: Icon; tone: string }
+> = {
   success: {
-    eyebrow: "Verified by PayU",
-    title: "Payment received.",
-    body: "PayU and our server agree on the transaction ID, signed amount and captured status. Your receipt is being sent by email, and Travelspire will share the next steps.",
-    icon: CircleCheck,
-    iconClass: "bg-[#315f4b] text-[#eff8ef]",
+    label: "Payment confirmed",
+    title: "You're booked. Thank you.",
+    body: "PayU has confirmed the payment and it matches your booking. Your receipt is on its way to your email.",
+    next: [
+      "Check your inbox (and spam) for the receipt.",
+      "We'll message you on WhatsApp within a day with your trip plan and permit steps.",
+      "Keep the booking reference below for anything you ask us.",
+    ],
+    Icon: IconCheckCircle,
+    tone: "bg-positive-soft text-positive",
   },
   failed: {
-    eyebrow: "Payment not completed",
-    title: "No payment was recorded.",
-    body: "The verified gateway response says this attempt did not complete. Your confirmed booking remains with Travelspire; ask us to reopen payment when you are ready.",
-    icon: CircleX,
-    iconClass: "bg-[#9d4934] text-[#fff4e8]",
+    label: "Payment not completed",
+    title: "No money was taken.",
+    body: "PayU tells us this attempt didn't go through. Your booking details are safe with us — you can try again whenever you're ready.",
+    next: [
+      "If money left your account, it is usually reversed automatically within 5–7 working days.",
+      "Ask us on WhatsApp and we'll reopen payment for you.",
+    ],
+    Icon: IconClose,
+    tone: "bg-critical-soft text-critical",
   },
   processing: {
-    eyebrow: "Verification in progress",
-    title: "We are confirming the payment.",
-    body: "The gateway response is not final yet. Please do not make a second payment. Refresh this page shortly or contact Travelspire with the transaction ID below.",
-    icon: Clock3,
-    iconClass: "bg-[#b58a48] text-[#21180b]",
+    label: "Still confirming",
+    title: "We're confirming your payment.",
+    body: "PayU hasn't sent a final answer yet. This usually takes a few minutes.",
+    next: [
+      "Please don't pay a second time.",
+      "Refresh this page in a few minutes.",
+      "Still unsure after an hour? Send us the transaction ID below.",
+    ],
+    Icon: IconClock,
+    tone: "bg-caution-soft text-caution",
   },
   review: {
-    eyebrow: "Manual review",
-    title: "This payment needs a check.",
-    body: "We could not safely confirm a final result from the stored gateway record. Do not pay again until Travelspire checks the transaction ID with PayU.",
-    icon: ShieldAlert,
-    iconClass: "bg-[#7d5b39] text-[#fff5df]",
+    label: "Needs a quick check",
+    title: "We need to check this one by hand.",
+    body: "We couldn't read a final result for this payment. Our team will confirm it with PayU.",
+    next: ["Please don't pay again until we've checked.", "Send us the transaction ID below on WhatsApp — we'll reply the same day."],
+    Icon: IconAlert,
+    tone: "bg-caution-soft text-caution",
   },
-} as const;
+};
 
-export default async function PaymentStatusPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ txnid?: string | string[] }>;
-}) {
+export default async function PaymentStatusPage({ searchParams }: { searchParams: Promise<{ txnid?: string | string[] }> }) {
   const query = await searchParams;
-  const transactionId =
-    typeof query.txnid === "string" && /^[A-Z0-9-]{8,25}$/i.test(query.txnid)
-      ? query.txnid
-      : "";
+  const transactionId = typeof query.txnid === "string" && /^[A-Z0-9-]{8,25}$/i.test(query.txnid) ? query.txnid : "";
 
   let receipt: PaymentReceipt | null = null;
   if (transactionId) {
@@ -97,103 +108,90 @@ export default async function PaymentStatusPage({
 
   const kind = getStatusKind(receipt);
   const copy = statusCopy[kind];
-  const Icon = copy.icon;
-  const booking = receipt
-    ? Array.isArray(receipt.tour_bookings)
-      ? receipt.tour_bookings[0]
-      : receipt.tour_bookings
-    : null;
+  const booking = receipt ? (Array.isArray(receipt.tour_bookings) ? receipt.tour_bookings[0] : receipt.tour_bookings) : null;
   const supportUrl = createWhatsAppURL({
     customMessage: `Hi Travelspire, please check my PayU payment.\n\nTransaction ID: ${transactionId || "not available"}${booking?.reference ? `\nBooking reference: ${booking.reference}` : ""}`,
   });
 
   return (
-    <div className="min-h-screen bg-[#07110f] px-5 pb-24 pt-32 text-[#f6efe2] sm:px-8 sm:pt-36">
-      <main className="mx-auto w-full max-w-3xl">
-        {kind === "success" && receipt && booking && (
+    <Section spacing="none" className="pb-20 pt-10 md:pb-28 md:pt-14">
+      <Container size="prose" className="font-ui">
+        {kind === "success" && receipt && booking ? (
           <PurchaseEvent
             transactionId={transactionId}
             value={receipt.expected_amount_paise / 100}
             itemId={booking.tour_slug}
             itemName={booking.tour_name}
           />
-        )}
-        <Link
-          href="/pay"
-          className="inline-flex items-center gap-2 text-xs font-semibold text-white/55 transition-colors hover:text-white"
-        >
-          <ArrowLeft aria-hidden="true" className="h-4 w-4" />
-          Secure payment
+        ) : null}
+        <Link href="/all-tours" className="inline-flex items-center gap-2 text-small font-medium text-fg-muted hover:text-fg">
+          <IconArrowLeft size={18} />
+          All tours
         </Link>
 
-        <section className="mt-9 overflow-hidden rounded-[16px] bg-[#f3ead9] text-[#14221c] shadow-[0_42px_90px_-52px_rgba(0,0,0,1)]">
-          <div className="p-6 sm:p-9 lg:p-11">
-            <span
-              className={`flex h-12 w-12 items-center justify-center rounded-[11px] shadow-[0_15px_24px_-18px_rgba(0,0,0,0.85)] ${copy.iconClass}`}
-            >
-              <Icon aria-hidden="true" className="h-6 w-6" />
+        <div className="mt-8 rounded-panel border border-line bg-surface shadow-e2">
+          <div className="p-6 sm:p-8">
+            <span className={cn("inline-grid size-12 place-items-center rounded-card", copy.tone)}>
+              <copy.Icon size={26} />
             </span>
-            <p className="mt-8 text-[10px] font-bold uppercase tracking-[0.19em] text-[#965136]">
-              {copy.eyebrow}
-            </p>
-            <h1 className="mt-3 text-[clamp(2.7rem,8vw,5.2rem)] font-medium leading-[0.92] tracking-[-0.055em]">
+            <p className="mt-6 text-eyebrow uppercase text-fg-subtle">{copy.label}</p>
+            <Heading as="h1" size="h2" className="mt-2">
               {copy.title}
-            </h1>
-            <p className="mt-6 max-w-[38rem] text-sm leading-7 text-[#5c6b63] sm:text-base">
-              {copy.body}
-            </p>
+            </Heading>
+            <p className="mt-3 text-body text-fg-muted">{copy.body}</p>
+
+            <h2 className="mt-8 text-h4 text-fg">What happens next</h2>
+            <ul className="mt-3 space-y-2.5">
+              {copy.next.map((line) => (
+                <li key={line} className="flex gap-3 text-body text-fg-muted">
+                  <span aria-hidden className="mt-[0.6em] size-1.5 shrink-0 rounded-full bg-brand" />
+                  {line}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <dl className="grid border-t border-[#17372b]/10 bg-[#e8ddc9] sm:grid-cols-2">
-            <div className="p-5 sm:p-7">
-              <dt className="text-[9px] font-bold uppercase tracking-[0.16em] text-[#69766f]">
-                Transaction ID
-              </dt>
-              <dd className="mt-2 break-all font-mono text-sm text-[#20352b]">
-                {transactionId || "Not available"}
+          <dl className="grid border-t border-line bg-canvas-subtle sm:grid-cols-2">
+            <div className="p-5 sm:p-6">
+              <dt className="text-small text-fg-subtle">Transaction ID</dt>
+              <dd className="mt-1 break-all text-body font-medium text-fg tabular-nums">{transactionId || "Not available"}</dd>
+            </div>
+            <div className="border-t border-line p-5 sm:border-l sm:border-t-0 sm:p-6">
+              <dt className="text-small text-fg-subtle">Amount</dt>
+              <dd className="mt-1 text-body font-medium text-fg tabular-nums">
+                {receipt ? formatAmount(receipt.expected_amount_paise) : "Being confirmed"}
               </dd>
             </div>
-            <div className="border-t border-[#17372b]/10 p-5 sm:border-l sm:border-t-0 sm:p-7">
-              <dt className="text-[9px] font-bold uppercase tracking-[0.16em] text-[#69766f]">
-                Signed amount
-              </dt>
-              <dd className="mt-2 font-mono text-sm text-[#20352b]">
-                {receipt
-                  ? formatAmount(receipt.expected_amount_paise)
-                  : "Pending verification"}
-              </dd>
-            </div>
-            {booking && (
-              <div className="border-t border-[#17372b]/10 p-5 sm:col-span-2 sm:p-7">
-                <dt className="text-[9px] font-bold uppercase tracking-[0.16em] text-[#69766f]">
-                  Booking
-                </dt>
-                <dd className="mt-2 text-sm text-[#20352b]">
+            {booking ? (
+              <div className="border-t border-line p-5 sm:col-span-2 sm:p-6">
+                <dt className="text-small text-fg-subtle">Booking</dt>
+                <dd className="mt-1 text-body text-fg">
                   <span className="font-semibold">{booking.reference}</span>
-                  <span className="mx-2 text-[#879087]">·</span>
+                  <span className="text-fg-subtle"> · </span>
                   {booking.tour_name}
                 </dd>
               </div>
-            )}
+            ) : null}
           </dl>
 
-          <div className="flex flex-col gap-3 border-t border-[#17372b]/10 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-7">
-            <p className="max-w-md text-xs leading-5 text-[#68756e]">
-              Keep the transaction ID. It lets our team reconcile the payment
-              without asking for card or bank credentials.
+          <div className="flex flex-col gap-3 border-t border-line p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+            <p className="max-w-sm text-small text-fg-subtle">
+              Keep the transaction ID — it lets us check your payment without ever asking for card or bank details.
             </p>
-            <a
-              href={supportUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-[9px] bg-[#17372b] px-4 text-xs font-bold text-white transition-colors hover:bg-[#254c3c]"
-            >
-              <MessageCircle aria-hidden="true" className="h-4 w-4" />
-              Ask Travelspire
-            </a>
+            <div className="flex flex-wrap gap-2">
+              <a href={supportUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ className: "shrink-0" })}>
+                <IconWhatsApp />
+                Message us
+              </a>
+              {kind === "success" ? (
+                <ButtonLink href="/permits" variant="secondary">
+                  Permit guide
+                </ButtonLink>
+              ) : null}
+            </div>
           </div>
-        </section>
-      </main>
-    </div>
+        </div>
+      </Container>
+    </Section>
   );
 }

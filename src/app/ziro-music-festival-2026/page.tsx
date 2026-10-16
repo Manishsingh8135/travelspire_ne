@@ -1,215 +1,160 @@
 // app/ziro-music-festival-2026/page.tsx
-import { Metadata } from "next";
-import { ZiroHeroSSR } from "@/components/festivals/hero";
-import { FestivalFeaturesSSRV3 } from "@/components/festivals/features/festival-features-ssr-v3";
-import { FestivalLineupCompact } from "@/components/festivals/lineup/festival-lineup-compact";
-import { FestivalFAQFast } from "@/components/festivals/faqs/festival-faq-fast";
-import { ZiroFestivalClientSections } from "@/components/festivals/ziro-festival-client-sections";
-import { ziroFestivalFAQData } from "@/data/faqs/ziro-festival-faq-data";
-import { StructuredData } from "@/components/seo/structured-data";
-import { generateZiroFestival2026Schema } from "@/lib/structured-data";
+import type { Metadata } from "next";
+import { Accordion, Container, Eyebrow, Heading, Section, SectionHeader } from "@/components/ds";
+import { IconCalendar, IconLeaf, IconMusic, IconPin } from "@/components/icons";
+import { EndedNotice, Lineup, OpenNow, RecapHero } from "@/components/festivals/festival-recap";
 import { ImageSEO } from "@/components/seo/image-seo";
-import { FestivalWrappedBanner } from "@/components/festivals/common/festival-wrapped-banner";
+import { StructuredData } from "@/components/seo/structured-data";
+import { CheckList, PlanCta } from "@/components/site/content-blocks";
+import { PhotoGallery } from "@/components/site/photo-gallery";
+import { ziro2026, ziro2026Lineup, ziro2026Scenes, ziroAbout, ziroRecapFaqs } from "@/data/festivals/ziro-2026";
+import { getPlaceImageAlt } from "@/data/seo/image-seo-data";
 import { ziroFestival2026 } from "@/data/tours/festival-data";
-import { isPastDate } from "@/lib/dates";
-
-export const revalidate = 21600; // DATE_DRIVEN_REVALIDATE_SECONDS — must be a literal
+import { generateZiroFestival2026Schema } from "@/lib/structured-data";
+import { createTripPlanningURL } from "@/lib/whatsapp";
 
 const pageUrl = "https://travelspirene.com/ziro-music-festival-2026";
+const title = "Ziro Festival of Music 2027 — Dates Soon · 2026 Recap | Travelspire NE";
+const description =
+  "The 2026 Ziro Festival of Music (24–27 Sep) has wrapped. The 2026 line-up, photos of Ziro Valley, and how to plan Ziro and Arunachal any season — 2027 dates come from the festival's official channels.";
 
-function isEditionOver() {
-  return isPastDate(ziroFestival2026.eventDates.end);
-}
+export const metadata: Metadata = {
+  title: { absolute: title },
+  description,
+  keywords: [
+    "Ziro Festival of Music",
+    "Ziro Festival 2027",
+    "Ziro Festival 2026",
+    "Ziro Valley",
+    "Apatani",
+    "Arunachal Pradesh music festival",
+  ],
+  openGraph: {
+    title,
+    description,
+    images: [{ url: `https://travelspirene.com${ziroFestival2026.heroImage}`, alt: "Rice fields and pine ridges of Ziro Valley" }],
+    url: pageUrl,
+    siteName: "Travelspire NE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [`https://travelspirene.com${ziroFestival2026.heroImage}`],
+    site: "@TravelSpireNE",
+  },
+  alternates: { canonical: pageUrl },
+};
 
-export async function generateMetadata(): Promise<Metadata> {
-  if (isEditionOver()) {
-    const title = "Ziro Festival of Music 2027 — Dates Soon · 2026 Recap | Travelspire NE";
-    const description =
-      "The 2026 Ziro Festival of Music (Sep 24–27) has wrapped. 2027 dates come from the festival's official channels — plan Ziro Valley and Arunachal journeys any season with Travelspire NE.";
-    return {
-      title: { absolute: title },
-      description,
-      keywords:
-        "Ziro Festival of Music, Ziro Festival 2027, Ziro Festival 2026, Ziro Valley, Apatani, Arunachal Pradesh music festival",
-      openGraph: {
-        title,
-        description,
-        images: ["/images/og/travelspire-ne-og.png"],
-        url: pageUrl,
-        siteName: "Travelspire NE",
-        type: "website",
-      },
-      twitter: {
-        card: "summary_large_image",
-        title,
-        description,
-        images: ["/images/og/travelspire-ne-og.png"],
-        site: "@TravelSpireNE",
-      },
-      alternates: { canonical: pageUrl },
-    };
-  }
-
-  return {
-    title: { absolute: "Ziro Festival 2026 — Packages & Tickets | Travelspire NE" },
-    description: "Book Ziro Festival of Music 2026 packages (Sep 24–27). Eco-friendly camping from ₹1,999; complete 4N/5D all-inclusive packages from ₹22,999.",
-    keywords: "Ziro Music Festival 2026, Ziro Festival tickets, Ziro Festival packages, Ziro Festival 2026 booking, Arunachal Pradesh music festival, eco-friendly festival camping, Ziro Valley festival, indie music festival India, UNESCO heritage music festival, Apatani tribe festival",
-    openGraph: {
-      title: "Ziro Festival 2026 — Packages & Tickets | Travelspire NE",
-      description: "Book official Ziro Music Festival 2026 packages (Sep 24-27). 35+ artists, eco-friendly camping in UNESCO valley.",
-      images: ["/images/og/travelspire-ne-og.png"],
-      url: pageUrl,
-      siteName: "TravelSpire NE",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Ziro Music Festival 2026 | Official Packages & Tickets",
-      description: "Book official Ziro Music Festival 2026 packages (Sep 24-27). 35+ artists, eco-friendly camping in UNESCO valley.",
-      images: ["/images/og/travelspire-ne-og.png"],
-      site: "@TravelSpireNE",
-    },
-    alternates: { canonical: pageUrl },
-  };
-}
-
-// Enhanced artist lineup data with more artists for 2026
-const lineup2026 = [
-  { 
-    name: "Shilpa Rao", 
-    origin: "Mumbai", 
-    type: "Bollywood/Mainstream",
-    genre: "Bollywood, Playback"
-  },
-  { 
-    name: "Anna Erhard", 
-    origin: "Switzerland", 
-    type: "International",
-    genre: "Folk, Indie"
-  },
-  { 
-    name: "Soumik Datta", 
-    origin: "UK", 
-    type: "International",
-    genre: "World Music, Sarod"
-  },
-  { 
-    name: "Susheela Raman", 
-    origin: "UK", 
-    type: "International",
-    genre: "World Music, Tamil"
-  },
-  { 
-    name: "Buried Treasures", 
-    origin: "France/Delhi", 
-    type: "International",
-    genre: "Electronic, Indie"
-  },
-  { 
-    name: "Guitar Prasanna", 
-    origin: "USA", 
-    type: "International",
-    genre: "Jazz Fusion, Guitar"
-  },
-  { 
-    name: "Swarathma", 
-    origin: "Bengaluru", 
-    type: "Indian Indie",
-    genre: "Folk Rock, Indie"
-  },
-  { 
-    name: "Parvaaz", 
-    origin: "Bengaluru", 
-    type: "Indian Indie",
-    genre: "Progressive Rock"
-  },
-  { 
-    name: "Chorun Mugli", 
-    origin: "Arunachal Pradesh", 
-    type: "Northeast",
-    genre: "Traditional, Folk"
-  },
-  { 
-    name: "Da Minot", 
-    origin: "Meghalaya", 
-    type: "Northeast",
-    genre: "Blues, Rock"
-  },
-  { 
-    name: "Pink Eye", 
-    origin: "Nagaland", 
-    type: "Northeast",
-    genre: "Punk, Alternative"
-  },
-  { 
-    name: "Remi Remi", 
-    origin: "Arunachal Pradesh", 
-    type: "Northeast",
-    genre: "Folk, Traditional"
-  },
-  // Additional artists for enhanced SEO
-  { 
-    name: "The Local Train", 
-    origin: "New Delhi", 
-    type: "Indian Indie",
-    genre: "Indie Rock, Hindi"
-  },
-  { 
-    name: "Dualist Inquiry", 
-    origin: "New Delhi", 
-    type: "Indian Indie",
-    genre: "Electronic, Ambient"
-  },
-  { 
-    name: "Menwhopause", 
-    origin: "Shillong", 
-    type: "Northeast",
-    genre: "Alternative Rock"
-  }
-];
-
-export default function ZiroMusicFestival2026PageRoute() {
-  const isPast = isEditionOver();
-  // A finished edition sells nothing, so its event schema carries no offers.
-  const { offers, ...eventSchema } = generateZiroFestival2026Schema();
+export default function ZiroMusicFestival2026Page() {
+  // The edition is over, so its event schema carries no offers (undefined
+  // keys are dropped when the JSON-LD is serialised).
+  const eventSchema = { ...generateZiroFestival2026Schema(), offers: undefined };
+  const planUrl = createTripPlanningURL({ destination: "Ziro Valley" });
+  const heroAlt = getPlaceImageAlt(ziroFestival2026.heroImage, "Rice fields and pine ridges of Ziro Valley, Arunachal Pradesh");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      {/* Enhanced Structured Data for 2026 Festival */}
-      <StructuredData data={isPast ? eventSchema : { ...eventSchema, offers }} />
-      
-      {/* Ziro Valley Images SEO */}
+    <>
+      <StructuredData data={eventSchema} />
       <ImageSEO location="ziro-new" limit={5} />
 
-      {isPast && (
-        <FestivalWrappedBanner
-          festivalName="Ziro Festival of Music"
-          edition="2026"
-          nextEdition="2027"
-          nextStep={{ href: "/all-tours", label: "Explore Arunachal journeys" }}
-        />
-      )}
-      
-      {/* SSR Hero Section - Lightning Fast */}
-      <ZiroHeroSSR isPast={isPast} />
-      
-      {/* SSR Festival Features V3 - Simple Card Layout */}
-      <FestivalFeaturesSSRV3 />
-
-      {/* Client-side sections: packages and stays, only while bookable */}
-      {!isPast && <ZiroFestivalClientSections />}
-
-      {/* SSR Artist Lineup - Compact Version Without Images */}
-      <FestivalLineupCompact 
-        artists={lineup2026}
-        year="2026"
-        totalArtists="35+"
+      <RecapHero
+        crumbs={[
+          { label: "Home", href: "/" },
+          { label: "Ziro Festival of Music 2026", href: "/ziro-music-festival-2026" },
+        ]}
+        eyebrow={`${ziro2026.dates.label} · Ziro Valley`}
+        title="Ziro Festival of Music 2026,"
+        accent="in review."
+        lead="Four days of music in the rice fields of the Apatani plateau. The 2026 edition has wrapped — the valley, and the rest of Arunachal, are open year-round."
+        image={ziroFestival2026.heroImage}
+        imageAlt={heroAlt}
+        primary={{ label: "See tours open now", href: "/all-tours" }}
+        whatsappHref={planUrl}
       />
 
-      {/* FAQ Section - Lightning Fast Client */}
-      <FestivalFAQFast section={ziroFestivalFAQData} />
-      
-      
-    </div>
+      <EndedNotice
+        title="This edition has ended"
+        facts={[
+          { label: "Dates", value: "24–27 Sep 2026", icon: IconCalendar },
+          { label: "Where", value: "Ziro Valley", icon: IconPin },
+          { label: "Line-up", value: `${ziro2026.artistCount} artists`, icon: IconMusic },
+          { label: "Running since", value: ziro2026.since, icon: IconLeaf },
+        ]}
+      >
+        The 2027 dates will be announced on the festival&apos;s{" "}
+        <a href={ziro2026.officialSite} target="_blank" rel="noopener noreferrer" className="font-medium text-brand underline underline-offset-4">
+          official website
+        </a>
+        . We sold camping and travel packages for 2026; we&apos;ll update this page when the next edition opens.
+      </EndedNotice>
+
+      <Section tone="subtle">
+        <Container className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:gap-16">
+          <div>
+            <Eyebrow>The festival</Eyebrow>
+            <Heading className="mt-3 max-w-[18ch]">Music in the Apatani valley</Heading>
+            <p className="mt-4 max-w-[48ch] font-ui text-body text-fg-muted">{ziro2026.intro}</p>
+          </div>
+          <CheckList items={[...ziroAbout]} tone="neutral" className="self-center" />
+        </Container>
+      </Section>
+
+      <Section>
+        <Container>
+          <SectionHeader
+            eyebrow="The 2026 line-up"
+            title="Who played Ziro this year"
+            intro="Highlights from the 2026 bill, grouped by where the music came from."
+          />
+          <div className="mt-10">
+            <Lineup
+              artists={ziro2026Lineup.map((a) => ({ name: a.name, detail: `${a.genre} · ${a.origin}`, group: a.scene }))}
+              groups={[...ziro2026Scenes]}
+            />
+          </div>
+        </Container>
+      </Section>
+
+      <Section tone="subtle">
+        <Container>
+          <SectionHeader
+            eyebrow="Ziro Valley"
+            title="The valley around the stage"
+            intro="Paddy fields, pine ridges and Apatani villages — photographed on our trips to Ziro."
+          />
+          <PhotoGallery
+            className="mt-10"
+            limit={5}
+            photos={ziroFestival2026.gallery.map((src) => ({
+              src,
+              alt: getPlaceImageAlt(src, "Ziro Valley, Arunachal Pradesh"),
+            }))}
+          />
+        </Container>
+      </Section>
+
+      <OpenNow
+        title="Ziro is over for 2026."
+        accent="Arunachal isn't."
+        intro="October to April is the clearest season across Arunachal. These journeys run all season, with permits and transport handled."
+        tourSlugs={["tawang-expedition", "mechuka-expedition", "anini-pomo-grassland-expedition", "mechuka-dong-anini-tour-package"]}
+      />
+
+      <Section tone="subtle">
+        <Container size="prose">
+          <SectionHeader title="Questions after the festival" size="h2" className="md:grid-cols-1" />
+          <Accordion className="mt-8" items={[...ziroRecapFaqs]} schema />
+        </Container>
+      </Section>
+
+      <PlanCta
+        title="Plan Ziro around your own dates."
+        body="The rice terraces, the Apatani villages and Talley Valley don't need a festival. Tell us when you can travel."
+        whatsappHref={planUrl}
+        secondary={{ label: "Arunachal permit guide", href: "/permits/arunachal-pradesh-ilp" }}
+      />
+    </>
   );
 }
