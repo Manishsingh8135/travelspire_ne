@@ -38,7 +38,7 @@ export const tawangExpedition: Tour = {
     "Discover Jung Waterfall",
     "Traditional homestay experience",
     "Walk across historic Chakzam Bridge",
-    "Visit the world's longest Sela Tunnel",
+    "Drive through the Sela Tunnel — the world's longest twin-lane tunnel above 13,000 ft",
   ],
 
   itinerary: [
@@ -431,7 +431,7 @@ export const dambukAniniOfamTour: Tour = {
   title: "Dambuk to Anini Tour",
   subtitle: "Orange Festival weekend in Dambuk, then up to Anini",
   overview:
-    "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with the pristine landscapes of Anini. Journey through orange orchards, witness the Mawu ando & Mathu waterfalls, and explore the remote Dibang Valley with its stunning Mayodia Pass.",
+    "Experience the vibrant Orange Festival of Adventure and Music (OFAM) in Dambuk combined with the pristine landscapes of Anini. Journey through orange orchards, witness the Mawu ando & Mathu waterfalls, and explore the remote Dibang Valley with its stunning Mayodia Pass.",
   duration: "4 Days / 3 Nights",
   location: "Dambuk & Anini, Arunachal Pradesh",
   startDate: "December 2026", // During OFAM festival
@@ -564,7 +564,7 @@ export const dambukGoldenPagodaTour: Tour = {
   title: "Dambuk to Golden Pagoda Tour",
   subtitle: "Orange Festival weekend in Dambuk, with the Golden Pagoda at Namsai",
   overview:
-    "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with a spiritual journey to the majestic Golden Pagoda in Namsai. Enjoy riverside camping, explore sacred Buddhist sites, and immerse yourself in the cultural heritage of Arunachal Pradesh.",
+    "Experience the vibrant Orange Festival of Adventure and Music (OFAM) in Dambuk combined with a spiritual journey to the majestic Golden Pagoda in Namsai. Enjoy riverside camping, explore sacred Buddhist sites, and immerse yourself in the cultural heritage of Arunachal Pradesh.",
   duration: "3 Days / 2 Nights",
   location: "Dambuk & Namsai, Arunachal Pradesh",
   startDate: "December 2026", // During OFAM festival
@@ -688,7 +688,7 @@ export const dambukDongValleyTour: Tour = {
   title: "Dambuk to Dong Valley Tour",
   subtitle: "Orange Festival weekend in Dambuk, then east to Walong and Dong",
   overview:
-    "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with an expedition to India's easternmost valley. Journey from the orange orchards of Dambuk to the historic Dong Valley, enjoying hot springs, trek experiences, and visiting India's easternmost villages.",
+    "Experience the vibrant Orange Festival of Adventure and Music (OFAM) in Dambuk combined with an expedition to India's easternmost valley. Journey from the orange orchards of Dambuk to the historic Dong Valley, enjoying hot springs, trek experiences, and visiting India's easternmost villages.",
   duration: "4 Days / 3 Nights",
   location: "Dambuk & Dong Valley, Arunachal Pradesh",
   startDate: "December 2026", // During OFAM festival
@@ -1179,7 +1179,7 @@ export const aniniPomoSixExpedition: Tour = {
         "05:00–06:30 pickup. 385 km over the Bhupen Hazarika Setu, Roing and Mayodia Pass (2,655 m). Overnight Anini.",
       activities: [
         "Morning pickup from Dibrugarh or Tinsukia",
-        "Dr. Bhupen Hazarika Setu — India's longest bridge",
+        "Dr. Bhupen Hazarika Setu — India's longest river bridge",
         "Mayodia Pass at 2,655 m",
         "Overnight stay at Anini",
       ],

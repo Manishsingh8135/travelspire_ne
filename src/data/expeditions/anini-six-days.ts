@@ -92,7 +92,7 @@ export const sixProfile = {
       km: 40,
       name: "Bhupen Hazarika Setu",
       elev: 110,
-      note: "9.15 km of bridge over the Lohit. India's longest.",
+      note: "9.15 km of bridge over the Lohit. India's longest river bridge.",
     },
     {
       km: 150,
@@ -155,7 +155,7 @@ export const sixDays = [
     waypoints: [
       {
         name: "Dr. Bhupen Hazarika Setu",
-        note: "9.15 km over the Lohit — India's longest bridge",
+        note: "9.15 km over the Lohit — India's longest river bridge",
       },
       { name: "Roing", note: "Fuel, permits checked, last dependable signal" },
       {

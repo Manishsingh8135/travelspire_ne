@@ -11,7 +11,7 @@ export const nagalandPermitData = {
   // SEO Meta
   seo: {
     title: "Nagaland ILP 2026: Online Apply, Fee ₹200, Hornbill Festival Permit | Complete Guide",
-    description: "Apply for Nagaland Inner Line Permit (ILP) online in 2026. Fee ₹200-₹5000, processing 1-2 days. Step-by-step guide for Hornbill Festival, Kohima, Mon. Official portal link.",
+    description: "Apply for Nagaland Inner Line Permit (ILP) online in 2026. Tourist fee ₹200 for 30 days, processing 1-2 days. Step-by-step guide for Hornbill Festival, Kohima, Mon. Official portal link.",
     keywords: [
       "nagaland ilp",
       "nagaland ilp online apply",
@@ -31,11 +31,14 @@ export const nagalandPermitData = {
 
   // Quick Stats
   quickStats: {
+    // Per the official table at ilp.nagaland.gov.in/fees. Gateway charge extra.
+    // Key names are read by the page, so only the values change.
     fee: {
       tourist30Days: "₹200",
-      student5Years: "₹300",
-      business: "₹5000",
-      employment: "₹500",
+      student5Years: "Free",
+      business: "Trader ₹300 (90 days) or ₹1,000 (1 year) · Partner in Business ₹5,000",
+      employment: "Professional / Consultant ₹1,000 · Labourer ₹300",
+      foreigner30Days: "₹500",
     },
     processingTime: {
       online: "1-2 working days",
@@ -43,8 +46,8 @@ export const nagalandPermitData = {
     },
     validity: {
       tourist: "30 days",
-      student: "5 years",
-      business: "1 year",
+      student: "5 years or the length of the course",
+      business: "Trader 90 days or 1 year · Partner 3 years",
     },
     onArrival: false,
     onArrivalNote: "Online application mandatory from Dec 31, 2024. No offline applications accepted.",
@@ -66,7 +69,7 @@ export const nagalandPermitData = {
       "Persons with valid employment in Nagaland (different category)",
       "Central government employees on official duty",
     ],
-    foreigners: "Foreign nationals require Protected Area Permit (PAP) instead of ILP. Apply through e-FRRO portal at least 30 days in advance. Must travel in group of 2+ with registered tour operator.",
+    foreigners: "Foreign nationals need a Protected Area Permit (PAP). Apply through e-FRRO portal at least 30 days in advance. Must travel in group of 2+ with registered tour operator. The Nagaland ILP portal also lists a Foreigner ILP category (₹500, 30 days).",
   },
 
   // Entry Points
@@ -117,7 +120,7 @@ export const nagalandPermitData = {
       title: "Fill in the online application",
       description: "Complete the ILP application form with all required details",
       details: [
-        "Select category: Tourist / Student / Business / Employment",
+        "Select category: Domestic (tourist) / Student / Trader / Professional / Labourer / Partner in Business",
         "Enter personal details exactly as per ID proof",
         "Upload passport-size photo (JPEG, max 50KB)",
         "Upload ID proof (Aadhaar/Voter ID/Passport)",
@@ -133,8 +136,11 @@ export const nagalandPermitData = {
       description: "Complete online payment through secure gateway",
       details: [
         "Tourist (30 days): ₹200",
-        "Student (5 years): ₹300",
-        "Business (1 year): ₹5000",
+        "Student: free",
+        "Trader: ₹300 (90 days) or ₹1,000 (1 year)",
+        "Professional / Consultant (1 year): ₹1,000",
+        "Partner in Business (3 years): ₹5,000",
+        "Gateway charge extra",
         "Payment via UPI, Net Banking, Debit/Credit Cards",
         "Download payment receipt",
       ],
@@ -291,14 +297,13 @@ export const nagalandPermitData = {
       "High volume of applications during November - expect slight delays",
       "Choose the Tourist category and give your festival dates — there is no separate festival fast track",
       "Book accommodation in advance - gets fully booked",
-      "ILP valid for festival period is sufficient (10-15 days)",
+      "A tourist ILP is valid for 30 days — enough for the whole festival",
     ],
     highlights: [
       "Traditional Naga music and dance performances",
       "Indigenous games and sports",
       "Local handicrafts and food stalls",
-      "Night carnival and rock concerts",
-      "Tribal fashion shows",
+      "Kohima Night Carnival and the Hornbill Music Festival",
     ],
   },
 
@@ -310,7 +315,7 @@ export const nagalandPermitData = {
     },
     {
       question: "What is the fee for Nagaland ILP in 2026?",
-      answer: "The Nagaland ILP fee varies by category: Tourist (30 days) - ₹200, Student (5 years) - ₹300, Business (1 year) - ₹5000, Employment - ₹500. All payments are made online through the official portal.",
+      answer: "A tourist (Domestic) ILP costs ₹200 for 30 days. Other categories: Student free; Trader ₹300 (90 days) or ₹1,000 (1 year); Professional/Consultant ₹1,000 (1 year); Labourer ₹300; Partner in Business ₹5,000 (3 years). Gateway charges are extra, and all payments are made online through the official portal.",
     },
     {
       question: "How long does it take to get Nagaland ILP?",
@@ -334,11 +339,11 @@ export const nagalandPermitData = {
     },
     {
       question: "Can foreigners visit Nagaland?",
-      answer: "Yes, foreign nationals can visit Nagaland but need a Protected Area Permit (PAP) instead of ILP. Apply through e-FRRO portal (indianfrro.gov.in) at least 30 days in advance. Must travel in a group of 2+ with a registered tour operator.",
+      answer: "Yes, foreign nationals can visit Nagaland but need a Protected Area Permit (PAP). Apply through e-FRRO portal (indianfrro.gov.in) at least 30 days in advance. Must travel in a group of 2+ with a registered tour operator. The Nagaland ILP portal also lists a Foreigner ILP category (₹500, 30 days).",
     },
     {
       question: "How long is Nagaland ILP valid?",
-      answer: "Tourist ILP is valid for 30 days. Student ILP is valid for 5 years. Business ILP is valid for 1 year. Extensions can be requested at the appropriate government office before expiry.",
+      answer: "Tourist ILP is valid for 30 days. Student ILP runs up to 5 years or the length of the course. Trader ILP is 90 days or 1 year, Professional/Consultant 1 year, and Partner in Business 3 years. Extensions can be requested at the appropriate government office before expiry.",
     },
     {
       question: "Do I need special permit for Mon district?",

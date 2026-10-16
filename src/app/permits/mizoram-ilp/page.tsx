@@ -11,7 +11,7 @@ const model: PermitGuideModel = {
   shortName: "ILP",
   lastChecked: q.lastUpdated,
   summary:
-    "Indian visitors from outside Mizoram need an Inner Line Permit. It costs ₹120 in all, lasts 15 days for tourists, and is the one ILP in the Northeast you can also get on arrival — at Lengpui Airport.",
+    "Indian visitors from outside Mizoram need an Inner Line Permit. It costs about ₹300–350, lasts 7 days for tourists, is approved after a document check, and is the one ILP in the Northeast you can also get on arrival — at Lengpui Airport.",
   facts: [
     { label: "Fee", value: q.fee.total, icon: IconRupee },
     { label: "Online approval", value: q.processingTime.online, icon: IconClock },
@@ -24,8 +24,6 @@ const model: PermitGuideModel = {
   steps: data.applicationSteps,
   documents: { mandatory: data.documents.mandatory, tips: data.documents.tips },
   fees: [
-    { category: "Form fee", fee: q.fee.formFee, validity: "—" },
-    { category: "Processing fee", fee: q.fee.processingFee, validity: "—" },
     { category: "Temporary ILP, total", fee: q.fee.total, validity: q.validity.temporary },
     { category: "Regular ILP (workers)", fee: "As listed on the portal", validity: q.validity.regular },
   ],

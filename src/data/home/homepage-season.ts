@@ -59,7 +59,7 @@ export const seasonalFeatures: SeasonalFeature[] = [
   },
   {
     id: "orange-festival-2026",
-    label: "This season · 13–15 December 2026",
+    label: "This season · mid-December 2026, dates TBA",
     headline: "Music in the",
     highlightedHeadline: "orange country.",
     body: "The Orange Festival in Dambuk — pair it with Anini, the Golden Pagoda or Dong Valley on our OFAM circuits.",
@@ -197,7 +197,7 @@ export const homeDepartures: HomeDeparture[] = [
   {
     id: "ofam-2026",
     title: "Orange Festival, Dambuk",
-    windowLabel: "13–15 Dec 2026",
+    windowLabel: "Mid-Dec 2026 · TBA",
     location: "Dambuk",
     duration: "3 days",
     priceHook: "from ₹1,899",
