@@ -35,14 +35,14 @@ export function Heading({ as: Tag = "h2", size, className, ...props }: HeadingPr
 export function Accent({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
   return (
     <span
-      className={cn("font-display text-[1.08em] font-normal italic tracking-normal text-terra", className)}
+      className={cn("font-display text-[1.08em] font-normal italic tracking-normal text-highlight", className)}
       {...props}
     />
   );
 }
 
 export function Eyebrow({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
-  return <p className={cn("font-ui text-eyebrow uppercase text-terra", className)} {...props} />;
+  return <p className={cn("font-ui text-eyebrow uppercase text-highlight", className)} {...props} />;
 }
 
 export function Lead({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {

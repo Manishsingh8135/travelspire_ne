@@ -118,13 +118,13 @@ const config = {
           soft: "rgb(var(--c-brand-soft) / <alpha-value>)",
         },
         "on-brand": "rgb(var(--c-on-brand) / <alpha-value>)",
-        terra: {
-          DEFAULT: "rgb(var(--c-terra) / <alpha-value>)",
-          soft: "rgb(var(--c-terra-soft) / <alpha-value>)",
+        highlight: {
+          DEFAULT: "rgb(var(--c-highlight) / <alpha-value>)",
+          soft: "rgb(var(--c-highlight-soft) / <alpha-value>)",
         },
-        marigold: {
-          DEFAULT: "rgb(var(--c-marigold) / <alpha-value>)",
-          soft: "rgb(var(--c-marigold-soft) / <alpha-value>)",
+        seasonal: {
+          DEFAULT: "rgb(var(--c-seasonal) / <alpha-value>)",
+          soft: "rgb(var(--c-seasonal-soft) / <alpha-value>)",
         },
         positive: {
           DEFAULT: "rgb(var(--c-positive) / <alpha-value>)",

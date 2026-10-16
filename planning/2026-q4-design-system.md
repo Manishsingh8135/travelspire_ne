@@ -63,24 +63,24 @@ pass WCAG AA (4.5:1) on `canvas`, `canvas-subtle` and `surface` in both modes.
 
 | Token | Light | Dark | Role |
 |---|---|---|---|
-| `canvas` | #FAF7F0 | #0E1117 | Page |
-| `canvas-subtle` | #F2EDE2 | #131720 | Alternate section |
-| `surface` | #FFFDF9 | #181D27 | Cards, inputs |
-| `surface-raised` | #FFFFFF | #1E2430 | Menus, popovers |
-| `inverse` / `on-inverse` | #131B16 / #F1ECE1 | #07090D / #EEE9DE | Feature band |
-| `fg` | #17211B | #EEE9DE | Primary text |
-| `fg-muted` | #4A554E | #BDB7AB | Secondary text |
-| `fg-subtle` | #616B65 | #969188 | Meta, captions |
-| `line` / `line-strong` | #E2DACB / #CBC2AF | #272E3B / #3A4352 | Hairlines |
-| `brand` | #2E4B3B (moss) | #A9CDB3 (sage) | Primary action, links |
-| `on-brand` | #F7F4EC | #0F2219 | Text on brand |
-| `terra` | #9A5536 | #E2A27C | Accent italics, kickers |
-| `marigold` | #9C5A12 | #EDB05C | Seasonal / festival only |
-| `positive` · `caution` · `critical` · `notice` | earthy | lifted | Status (permits, availability) |
+| `canvas` | #FFFFFF | #0A0B0D | Page |
+| `canvas-subtle` | #F6F7F9 | #111215 | Alternate section |
+| `surface` / `surface-raised` | #FFFFFF | #16181B / #1C1E22 | Cards, inputs, menus |
+| `inverse` / `on-inverse` | #0B0D10 / #EDEEF0 | #050506 / #EDEEF0 | Feature band |
+| `fg` | #0B0D10 | #EDEEF0 | Primary text |
+| `fg-muted` | #4B5260 | #A9AEB7 | Secondary text |
+| `fg-subtle` | #656C78 | #858B95 | Meta, captions |
+| `line` / `line-strong` | #E6E8EC / #D2D6DD | #24262B / #33363D | Hairlines |
+| `brand` | #0F6B4B (evergreen) | #4CC38A | Primary action, links |
+| `on-brand` | #FFFFFF | #04140C | Text on brand |
+| `highlight` | = brand | = brand | Eyebrows, serif accents |
+| `seasonal` | #B45309 | #F5B544 | Festival / seasonal only |
+| `positive` · `caution` · `critical` · `notice` | crisp | lifted | Status (permits, availability) |
 
 Each status and brand colour has a `-soft` background tint for callouts.
-Dark mode is "Ink Night" — blue-black, with warm parchment text — the direction
-recommended in the v2 work; it is a draft until the founder signs off.
+Founder direction (2026-10-16): clean and cool, no warm or greyish tints —
+light is true white with cool neutral greys; dark is a neutral near-black
+with no colour cast.
 
 ## Space, shape, depth
 
@@ -127,7 +127,6 @@ Each step ships behind a screenshot check at 1440 and 390, light and dark.
 
 ## Open decisions
 
-- Dark mode palette sign-off (Ink Night vs a warmer near-black).
 - Navbar: dark bar on light pages, or follow the page theme? (Proposed: follow.)
 - Unverified claims ("100% success", "1000+ travelers", 2022 award) — keep only
   if documented.

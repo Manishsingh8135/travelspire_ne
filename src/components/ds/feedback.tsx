@@ -12,7 +12,7 @@ const badgeVariants = cva(
       tone: {
         neutral: "bg-fg/[0.06] text-fg-muted",
         brand: "bg-brand-soft text-brand",
-        seasonal: "bg-marigold-soft text-marigold",
+        seasonal: "bg-seasonal-soft text-seasonal",
         positive: "bg-positive-soft text-positive",
         caution: "bg-caution-soft text-caution",
         critical: "bg-critical-soft text-critical",

@@ -35,8 +35,8 @@ const swatches = [
   ["fg-subtle", "bg-fg-subtle"],
   ["line-strong", "bg-line-strong"],
   ["brand", "bg-brand"],
-  ["terra", "bg-terra"],
-  ["marigold", "bg-marigold"],
+  ["highlight", "bg-highlight"],
+  ["seasonal", "bg-seasonal"],
   ["positive", "bg-positive"],
   ["caution", "bg-caution"],
   ["critical", "bg-critical"],
@@ -53,7 +53,7 @@ const typeScale = [
   ["body", "16", "text-body text-fg-muted", "Leave Roing by 6 AM. The Mayodia road is slow after rain, and the driver decides the pace on the slide zones."],
   ["small", "14", "text-small text-fg-muted", "Prices are per person on twin sharing."],
   ["caption", "13", "text-caption text-fg-subtle", "Photographed on the Seven Lakes trail, October 2025."],
-  ["eyebrow", "12", "text-eyebrow uppercase text-terra", "Seasonal departures"],
+  ["eyebrow", "12", "text-eyebrow uppercase text-highlight", "Seasonal departures"],
 ] as const;
 
 const tours = [
@@ -283,7 +283,7 @@ function Specimen() {
             <ol className="mt-8 border-t border-line">
               {days.map(([n, title, text]) => (
                 <li key={n} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-line py-6">
-                  <span className="font-display text-h3 italic text-terra tabular-nums">{n}</span>
+                  <span className="font-display text-h3 italic text-highlight tabular-nums">{n}</span>
                   <div className="space-y-1.5">
                     <h3 className="text-h4 text-fg">{title}</h3>
                     <p className="text-body text-fg-muted">{text}</p>
@@ -364,8 +364,33 @@ export default async function DesignPage({
   searchParams: Promise<{ theme?: string }>;
 }) {
   const { theme } = await searchParams;
+  const dark = theme === "dark";
   return (
-    <div data-theme={theme === "dark" ? "dark" : "light"} className="pt-20">
+    <div data-ds-specimen data-theme={dark ? "dark" : "light"} className="min-h-screen">
+      <div className="sticky top-0 z-30 border-b border-line bg-canvas/85 backdrop-blur">
+        <Container className="flex h-14 items-center justify-between font-ui">
+          <p className="text-small font-semibold text-fg">Travelspire · Field Guide</p>
+          <nav aria-label="Theme" className="flex rounded-control border border-line p-0.5 text-small">
+            {[
+              ["Light", "/design", !dark],
+              ["Dark", "/design?theme=dark", dark],
+            ].map(([label, href, active]) => (
+              <a
+                key={label as string}
+                href={href as string}
+                aria-current={active ? "page" : undefined}
+                className={
+                  active
+                    ? "rounded-[0.375rem] bg-fg px-3 py-1 font-medium text-canvas"
+                    : "rounded-[0.375rem] px-3 py-1 text-fg-muted hover:text-fg"
+                }
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+        </Container>
+      </div>
       <Specimen />
     </div>
   );

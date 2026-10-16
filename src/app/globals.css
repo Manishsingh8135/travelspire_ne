@@ -11,73 +11,73 @@
   :root,
   [data-theme="light"] {
     color-scheme: light;
-    --c-canvas: 250 247 240;
-    --c-canvas-subtle: 242 237 226;
-    --c-surface: 255 253 249;
+    --c-canvas: 255 255 255;
+    --c-canvas-subtle: 246 247 249;
+    --c-surface: 255 255 255;
     --c-surface-raised: 255 255 255;
-    --c-inverse: 19 27 22;
-    --c-on-inverse: 241 236 225;
-    --c-fg: 23 33 27;
-    --c-fg-muted: 74 85 78;
-    --c-fg-subtle: 97 107 101;
-    --c-line: 226 218 203;
-    --c-line-strong: 203 194 175;
-    --c-brand: 46 75 59;
-    --c-brand-hover: 36 61 48;
-    --c-on-brand: 247 244 236;
-    --c-brand-soft: 228 235 227;
-    --c-terra: 154 85 54;
-    --c-terra-soft: 244 230 220;
-    --c-marigold: 156 90 18;
-    --c-marigold-soft: 247 232 210;
-    --c-positive: 47 107 71;
-    --c-positive-soft: 226 238 228;
-    --c-caution: 138 90 18;
-    --c-caution-soft: 246 235 214;
-    --c-critical: 162 55 43;
-    --c-critical-soft: 246 225 221;
-    --c-notice: 45 93 120;
-    --c-notice-soft: 224 235 241;
-    --c-focus: 59 122 87;
+    --c-inverse: 11 13 16;
+    --c-on-inverse: 237 238 240;
+    --c-fg: 11 13 16;
+    --c-fg-muted: 75 82 96;
+    --c-fg-subtle: 101 108 120;
+    --c-line: 230 232 236;
+    --c-line-strong: 210 214 221;
+    --c-brand: 15 107 75;
+    --c-brand-hover: 11 90 62;
+    --c-on-brand: 255 255 255;
+    --c-brand-soft: 233 245 239;
+    --c-highlight: 15 107 75;
+    --c-highlight-soft: 233 245 239;
+    --c-seasonal: 180 83 9;
+    --c-seasonal-soft: 254 243 226;
+    --c-positive: 21 128 61;
+    --c-positive-soft: 234 247 238;
+    --c-caution: 161 98 7;
+    --c-caution-soft: 253 245 225;
+    --c-critical: 201 58 46;
+    --c-critical-soft: 253 236 234;
+    --c-notice: 37 99 235;
+    --c-notice-soft: 235 242 254;
+    --c-focus: 15 107 75;
 
-    /* Warm-tinted, low-opacity shadows: grey shadows on cream look dirty. */
-    --e1: 0 1px 2px rgb(23 33 27 / 0.05), 0 2px 8px -2px rgb(23 33 27 / 0.06);
-    --e2: 0 1px 2px rgb(23 33 27 / 0.05), 0 12px 28px -12px rgb(23 33 27 / 0.18);
-    --e3: 0 2px 4px rgb(23 33 27 / 0.06), 0 28px 56px -24px rgb(23 33 27 / 0.28);
+    /* Crisp, cool, low-opacity shadows: depth without haze. */
+    --e1: 0 1px 2px rgb(16 24 40 / 0.06), 0 1px 3px rgb(16 24 40 / 0.04);
+    --e2: 0 1px 2px rgb(16 24 40 / 0.05), 0 12px 24px -8px rgb(16 24 40 / 0.12);
+    --e3: 0 2px 4px rgb(16 24 40 / 0.05), 0 24px 48px -16px rgb(16 24 40 / 0.2);
   }
 
-  /* "Ink Night": blue-black ground, parchment text. Depth comes from lighter
-     surfaces and a faint top rim rather than shadows, which vanish on dark. */
+  /* Neutral near-black, no colour cast. Depth comes from lighter surfaces
+     and a faint top rim rather than shadows, which vanish on dark. */
   [data-theme="dark"] {
     color-scheme: dark;
-    --c-canvas: 14 17 23;
-    --c-canvas-subtle: 19 23 32;
-    --c-surface: 24 29 39;
-    --c-surface-raised: 30 36 48;
-    --c-inverse: 7 9 13;
-    --c-on-inverse: 238 233 222;
-    --c-fg: 238 233 222;
-    --c-fg-muted: 189 183 171;
-    --c-fg-subtle: 150 145 136;
-    --c-line: 39 46 59;
-    --c-line-strong: 58 67 82;
-    --c-brand: 169 205 179;
-    --c-brand-hover: 192 220 200;
-    --c-on-brand: 15 34 25;
-    --c-brand-soft: 26 42 36;
-    --c-terra: 226 162 124;
-    --c-terra-soft: 46 34 32;
-    --c-marigold: 237 176 92;
-    --c-marigold-soft: 46 38 23;
-    --c-positive: 134 201 160;
-    --c-positive-soft: 22 39 31;
-    --c-caution: 230 184 101;
-    --c-caution-soft: 43 36 22;
-    --c-critical: 240 149 138;
-    --c-critical-soft: 47 28 28;
-    --c-notice: 147 192 218;
-    --c-notice-soft: 22 35 46;
-    --c-focus: 169 205 179;
+    --c-canvas: 10 11 13;
+    --c-canvas-subtle: 17 18 21;
+    --c-surface: 22 24 27;
+    --c-surface-raised: 28 30 34;
+    --c-inverse: 5 5 6;
+    --c-on-inverse: 237 238 240;
+    --c-fg: 237 238 240;
+    --c-fg-muted: 169 174 183;
+    --c-fg-subtle: 133 139 149;
+    --c-line: 36 38 43;
+    --c-line-strong: 51 54 61;
+    --c-brand: 76 195 138;
+    --c-brand-hover: 107 211 161;
+    --c-on-brand: 4 20 12;
+    --c-brand-soft: 15 36 26;
+    --c-highlight: 76 195 138;
+    --c-highlight-soft: 15 36 26;
+    --c-seasonal: 245 181 68;
+    --c-seasonal-soft: 42 33 17;
+    --c-positive: 76 195 138;
+    --c-positive-soft: 15 36 26;
+    --c-caution: 245 181 68;
+    --c-caution-soft: 42 33 17;
+    --c-critical: 244 124 114;
+    --c-critical-soft: 44 22 21;
+    --c-notice: 110 168 254;
+    --c-notice-soft: 17 28 46;
+    --c-focus: 107 211 161;
 
     --e1: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 1px 2px rgb(0 0 0 / 0.4);
     --e2: inset 0 1px 0 rgb(255 255 255 / 0.05), 0 16px 32px -16px rgb(0 0 0 / 0.7);
