@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
    trap and Escape for free) with arrow-key and swipe navigation. */
 export type GalleryPhoto = { src: string; alt: string; caption?: string };
 
-export function PhotoGallery({ photos, limit = 7, className }: { photos: GalleryPhoto[]; limit?: number; className?: string }) {
+export function PhotoGallery({ photos, limit = 5, className }: { photos: GalleryPhoto[]; limit?: number; className?: string }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [index, setIndex] = useState(0);
   const touchX = useRef<number | null>(null);

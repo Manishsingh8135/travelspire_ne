@@ -5,10 +5,7 @@ import { getActiveTours, isTourOver } from "@/data/tours";
 import { notFound } from "next/navigation";
 import { StructuredData } from "@/components/seo/structured-data";
 import { ImageSEO } from "@/components/seo/image-seo";
-import {
-  generateTourPackageSchema,
-  generateBreadcrumbSchema,
-} from "@/lib/structured-data";
+import { generateTourPackageSchema } from "@/lib/structured-data";
 import { getPlaceImageAlt, getPlaceImageBySrc } from "@/data/seo/image-seo-data";
 import { Tour } from "@/types/tours/tour";
 
@@ -134,19 +131,12 @@ export default async function TourPage({
     itinerary: "itinerary" in tour ? tour.itinerary : undefined,
   });
 
-  const breadcrumbs = [
-    { name: "Home", url: "https://travelspirene.com" },
-    { name: "Tours", url: "https://travelspirene.com/all-tours" },
-    { name: tour.title, url: `https://travelspirene.com/tours/${tour.slug}` },
-  ];
-
-  const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbs);
+  // BreadcrumbList comes from the visible <Breadcrumbs> in the template.
 
   return (
     <>
       {/* SEO Components */}
       <StructuredData data={tourSchema} />
-      <StructuredData data={breadcrumbSchema} />
       {gallerySeoImages.length > 0 && (
         <ImageSEO images={gallerySeoImages} limit={12} />
       )}

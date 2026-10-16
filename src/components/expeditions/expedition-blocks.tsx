@@ -72,7 +72,9 @@ export function ExpeditionHero({
   return (
     <section className="pb-10 pt-6 md:pb-14 md:pt-8">
       <div className="mx-auto w-full max-w-page px-5 sm:px-8 lg:px-10">
+        {/* The page's JSON-LD graph already carries the BreadcrumbList. */}
         <Breadcrumbs
+          schema={false}
           items={[
             { label: "Home", href: "/" },
             { label: "Tours", href: "/all-tours" },
