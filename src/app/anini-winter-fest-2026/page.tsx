@@ -248,7 +248,7 @@ export default function AniniWinterFest2026Page() {
 
       <Section>
         <Container size="prose">
-          <SectionHeader title="Questions after the festival" size="h2" className="md:grid-cols-1" />
+          <SectionHeader title="Questions after the festival" size="h2" stacked />
           <Accordion className="mt-8" items={[...awfRecapFaqs]} schema />
         </Container>
       </Section>

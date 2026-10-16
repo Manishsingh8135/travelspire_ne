@@ -75,6 +75,9 @@ type SectionHeaderProps = {
   action?: React.ReactNode;
   as?: HeadingLevel;
   size?: HeadingSize;
+  /** One column: title, then intro, all left-aligned. For headers that sit
+   *  in a side column or above a narrow block. */
+  stacked?: boolean;
   className?: string;
 };
 
@@ -85,12 +88,14 @@ export function SectionHeader({
   action,
   as = "h2",
   size = "h2",
+  stacked = false,
   className,
 }: SectionHeaderProps) {
   return (
     <header
       className={cn(
-        "grid gap-5 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:items-end md:gap-12",
+        "grid gap-5",
+        !stacked && "md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:items-end md:gap-12",
         className,
       )}
     >
@@ -101,7 +106,7 @@ export function SectionHeader({
         </Heading>
       </div>
       {intro || action ? (
-        <div className="space-y-5 md:justify-self-end md:pb-1">
+        <div className={cn("space-y-5", !stacked && "md:justify-self-end md:pb-1")}>
           {intro ? <p className="max-w-[46ch] text-body text-fg-muted text-pretty">{intro}</p> : null}
           {action}
         </div>

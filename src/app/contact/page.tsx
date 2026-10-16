@@ -178,7 +178,7 @@ export default function ContactPage() {
       <Section>
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] lg:gap-16">
           <SectionHeader
-            className="md:grid-cols-1 md:gap-5"
+            stacked
             eyebrow="Before you write"
             title="Common questions"
             intro={

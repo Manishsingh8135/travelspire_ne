@@ -144,7 +144,7 @@ export default function ZiroMusicFestival2026Page() {
 
       <Section tone="subtle">
         <Container size="prose">
-          <SectionHeader title="Questions after the festival" size="h2" className="md:grid-cols-1" />
+          <SectionHeader title="Questions after the festival" size="h2" stacked />
           <Accordion className="mt-8" items={[...ziroRecapFaqs]} schema />
         </Container>
       </Section>

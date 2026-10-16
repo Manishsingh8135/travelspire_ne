@@ -19,7 +19,7 @@ const pageUrl = "https://travelspirene.com/places/roing";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Roing Travel Guide 2026 — Gateway to Anini & NH-313 Mile Zero",
+    absolute: "Roing Travel Guide — Gateway to Anini & NH-313 Mile Zero",
   },
   description:
     "The Roing guide by the team that stages here every week. Mehao Lake, the Bhishmaknagar ruins, the last fuel and network before the 235 km climb to Anini, ILP permits and honest seasons.",
@@ -79,7 +79,7 @@ const webPageSchema = {
   "@type": "WebPage",
   "@id": `${pageUrl}#webpage`,
   url: pageUrl,
-  name: "Roing Travel Guide 2026 — Gateway to Anini, Mehao Lake & NH-313 Mile Zero",
+  name: "Roing Travel Guide — Gateway to Anini, Mehao Lake & NH-313 Mile Zero",
   isPartOf: { "@id": "https://travelspirene.com/#website" },
   about: { "@id": `${pageUrl}#place` },
   primaryImageOfPage: "https://travelspirene.com/images/places/anini-new/anini-new-portrait-2.jpg",
@@ -182,7 +182,7 @@ export default function RoingPlacePage() {
 
       <Section id="faq" className="scroll-mt-32">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-          <SectionHeader className="md:grid-cols-1 lg:self-start" eyebrow="FAQ" title={roingFaqSection.title} intro={roingFaqSection.description} />
+          <SectionHeader stacked className="lg:self-start" eyebrow="FAQ" title={roingFaqSection.title} intro={roingFaqSection.description} />
           <Accordion items={roingFaqSection.faqs} />
         </Container>
       </Section>

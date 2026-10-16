@@ -30,7 +30,7 @@ const pageUrl = "https://travelspirene.com/places/dibang-valley";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Dibang Valley Travel Guide 2026 — Anini, Dambuk, Roing & More",
+    absolute: "Dibang Valley Travel Guide — Anini, Dambuk, Roing & More",
   },
   description:
     "The Dibang Valley guide by the team that drives NH-313 every week. Anini's plateau, Dambuk's orange orchards, Roing the gateway, the Mayodia pass — permits, seasons and how it fits into one journey.",
@@ -96,7 +96,7 @@ const webPageSchema = {
   "@type": "WebPage",
   "@id": `${pageUrl}#webpage`,
   url: pageUrl,
-  name: "Dibang Valley Travel Guide 2026 — Anini, Dambuk, Roing & the Whole Valley",
+  name: "Dibang Valley Travel Guide — Anini, Dambuk, Roing & the Whole Valley",
   isPartOf: { "@id": "https://travelspirene.com/#website" },
   about: { "@id": `${pageUrl}#place` },
   primaryImageOfPage: `https://travelspirene.com${valleyHeroImages.desktop.src}`,
@@ -237,7 +237,7 @@ export default function DibangValleyPlacePage() {
 
       <Section id="faq" tone="subtle" className="scroll-mt-32">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-          <SectionHeader className="md:grid-cols-1 lg:self-start" eyebrow="FAQ" title={valleyFaqSection.title} intro={valleyFaqSection.description} />
+          <SectionHeader stacked className="lg:self-start" eyebrow="FAQ" title={valleyFaqSection.title} intro={valleyFaqSection.description} />
           <Accordion items={valleyFaqSection.faqs} />
         </Container>
       </Section>

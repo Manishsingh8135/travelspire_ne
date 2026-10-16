@@ -20,7 +20,7 @@ const description =
 export const metadata: Metadata = {
   title: {
     absolute:
-      "Anini 6 Days / 5 Nights — Pomo Grassland Trek Expedition 2026 | Travelspire NE",
+      "Anini 6 Days / 5 Nights — Pomo Grassland Trek Expedition | Travelspire NE",
   },
   description,
   keywords: [

@@ -21,7 +21,7 @@ const pageUrl = "https://travelspirene.com/places/dambuk";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Dambuk Travel Guide 2026 — Orange Orchards & the Dibang",
+    absolute: "Dambuk Travel Guide — Orange Orchards & the Dibang",
   },
   description:
     "The Dambuk guide by the team that drives this road every week. Orange harvest (Nov–Jan), the Dibang riverbanks, the bridge that ended the ferry era, and pairing Dambuk with Roing and Anini.",
@@ -80,7 +80,7 @@ const webPageSchema = {
   "@type": "WebPage",
   "@id": `${pageUrl}#webpage`,
   url: pageUrl,
-  name: "Dambuk Travel Guide 2026 — Orange Orchards, Dibang Riverbanks & How to Reach",
+  name: "Dambuk Travel Guide — Orange Orchards, Dibang Riverbanks & How to Reach",
   isPartOf: { "@id": "https://travelspirene.com/#website" },
   about: { "@id": `${pageUrl}#place` },
   primaryImageOfPage: "https://travelspirene.com/images/places/dambuk/Dambuk_7.jpg",
@@ -185,7 +185,7 @@ export default function DambukPlacePage() {
 
       <Section id="faq" tone="subtle" className="scroll-mt-32">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-          <SectionHeader className="md:grid-cols-1 lg:self-start" eyebrow="FAQ" title={dambukFaqSection.title} intro={dambukFaqSection.description} />
+          <SectionHeader stacked className="lg:self-start" eyebrow="FAQ" title={dambukFaqSection.title} intro={dambukFaqSection.description} />
           <Accordion items={dambukFaqSection.faqs} />
         </Container>
       </Section>
