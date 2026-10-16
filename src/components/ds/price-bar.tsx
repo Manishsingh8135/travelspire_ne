@@ -30,7 +30,7 @@ export function PriceBar({
 }: PriceBarProps) {
   return (
     <div
-      data-price-bar
+      data-price-bar={floating ? "floating" : ""}
       className={cn(
         "flex items-center justify-between gap-4 rounded-panel border border-line bg-surface-raised/95 p-3 pl-5 font-ui shadow-e3 backdrop-blur",
         floating && "fixed inset-x-3 bottom-3 z-40 md:hidden",

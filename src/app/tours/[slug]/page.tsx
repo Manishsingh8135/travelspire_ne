@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { TourWrapper } from "@/components/tours/tour-details/tour-wrapper";
+import { TourPage as TourTemplate } from "@/components/tours/tour-page";
 import { getTourBySlug } from "@/data/tours/tour-helper";
 import { getActiveTours, isTourOver } from "@/data/tours";
 import { notFound } from "next/navigation";
@@ -151,14 +151,7 @@ export default async function TourPage({
         <ImageSEO images={gallerySeoImages} limit={12} />
       )}
 
-      {/* Main Tour Content */}
-      <div className="min-h-screen overflow-x-hidden">
-        <TourWrapper
-          tour={tour}
-          isOver={isTourOver(tour)}
-          relatedPool={getActiveTours()}
-        />
-      </div>
+      <TourTemplate tour={tour} isOver={isTourOver(tour)} pool={getActiveTours()} />
     </>
   );
 }

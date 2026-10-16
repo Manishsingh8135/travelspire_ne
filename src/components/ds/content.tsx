@@ -11,16 +11,26 @@ import { Badge, type BadgeProps } from "./feedback";
    never boxed. */
 export type KeyFact = { label: string; value: React.ReactNode; icon?: React.ComponentType<{ className?: string }> };
 
-export function KeyFacts({ items, className }: { items: KeyFact[]; className?: string }) {
+export function KeyFacts({
+  items,
+  layout = "row",
+  className,
+}: {
+  items: KeyFact[];
+  /** `row`: one line of four on desktop. `grid`: two columns at every size, for narrow columns. */
+  layout?: "row" | "grid";
+  className?: string;
+}) {
   return (
     <dl
       className={cn(
-        "grid grid-cols-2 gap-x-6 gap-y-5 border-y border-line py-5 font-ui md:grid-cols-4 md:gap-0 md:divide-x md:divide-line",
+        "grid grid-cols-2 gap-x-6 gap-y-5 border-y border-line py-5 font-ui",
+        layout === "row" && "md:grid-cols-4 md:gap-0 md:divide-x md:divide-line",
         className,
       )}
     >
       {items.map(({ label, value, icon: Icon }) => (
-        <div key={label} className="space-y-1 md:px-6 md:first:pl-0 md:last:pr-0">
+        <div key={label} className={cn("space-y-1", layout === "row" && "md:px-6 md:first:pl-0 md:last:pr-0")}>
           <dt className="flex items-center gap-1.5 text-small text-fg-subtle">
             {Icon ? <Icon aria-hidden className="size-4" /> : null}
             {label}
