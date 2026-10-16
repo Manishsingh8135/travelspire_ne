@@ -21,7 +21,7 @@ import {
   Textarea,
   TourCard,
 } from "@/components/ds";
-import { isOptionId, optionFontVariables, options, optionsCss, type OptionId } from "./options";
+import { icons } from "@/components/icons";
 
 /* Field Guide specimen. Renders the whole system in one mode per request:
    /design (light) and /design?theme=dark. Internal; noindex via layout. */
@@ -138,6 +138,26 @@ function Specimen() {
               <li key={name} className="space-y-2">
                 <div className={`h-14 rounded-control border border-line ${cls}`} />
                 <p className="text-caption text-fg-muted">{name}</p>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
+      {/* Icons */}
+      <Section spacing="compact">
+        <Container>
+          <SectionHeader
+            eyebrow="Iconography"
+            title="Our own icons"
+            intro="Drawn for Travelspire on a 24px grid: 1.6 stroke, round joins, no fills. Travel glyphs carry the region — monastery, prayer flags, first sunrise, the 4×4."
+            size="h3"
+          />
+          <ul className="mt-8 grid grid-cols-3 gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-6 lg:grid-cols-10">
+            {Object.entries(icons).map(([name, Glyph]) => (
+              <li key={name} className="flex flex-col items-center gap-2 bg-canvas px-2 py-5">
+                <Glyph size={28} className="text-fg" />
+                <span className="text-caption text-fg-subtle">{name}</span>
               </li>
             ))}
           </ul>
@@ -383,49 +403,21 @@ function Switcher({ items }: { items: { label: string; href: string; active: boo
 export default async function DesignPage({
   searchParams,
 }: {
-  searchParams: Promise<{ theme?: string; option?: string }>;
+  searchParams: Promise<{ theme?: string }>;
 }) {
-  const params = await searchParams;
-  const dark = params.theme === "dark";
-  const option: OptionId = isOptionId(params.option) ? params.option : "evergreen";
-  const current = options.find((o) => o.id === option)!;
-  const href = (next: { option?: OptionId; dark?: boolean }) => {
-    const q = new URLSearchParams();
-    const o = next.option ?? option;
-    const d = next.dark ?? dark;
-    if (o !== "evergreen") q.set("option", o);
-    if (d) q.set("theme", "dark");
-    const qs = q.toString();
-    return qs ? `/design?${qs}` : "/design";
-  };
-
+  const { theme } = await searchParams;
+  const dark = theme === "dark";
   return (
-    <div
-      data-ds-specimen
-      data-palette={option}
-      data-theme={dark ? "dark" : "light"}
-      className={`${optionFontVariables} min-h-screen`}
-    >
-      <style dangerouslySetInnerHTML={{ __html: optionsCss }} />
-      <div className="sticky top-0 z-30 border-b border-line bg-canvas/85 backdrop-blur">
-        <Container className="flex min-h-14 flex-wrap items-center justify-between gap-3 py-2 font-ui">
-          <p className="text-small font-semibold text-fg">Travelspire · design options</p>
-          <nav aria-label="Design options" className="flex flex-wrap items-center gap-2">
-            <Switcher
-              items={options.map((o) => ({ label: o.name, href: href({ option: o.id }), active: o.id === option }))}
-            />
-            <Switcher
-              items={[
-                { label: "Light", href: href({ dark: false }), active: !dark },
-                { label: "Dark", href: href({ dark: true }), active: dark },
-              ]}
-            />
-          </nav>
-        </Container>
-      </div>
-      <div className="border-b border-line bg-canvas-subtle">
-        <Container className="py-3 font-ui text-small text-fg-muted">
-          <span className="font-semibold text-fg">{current.name}.</span> {current.note}
+    <div data-ds-specimen data-theme={dark ? "dark" : "light"} className="min-h-screen">
+      <div className="sticky top-16 z-30 border-b border-line bg-canvas/85 backdrop-blur">
+        <Container className="flex h-14 items-center justify-between font-ui">
+          <p className="text-small font-semibold text-fg">Travelspire · Evergreen design system</p>
+          <Switcher
+            items={[
+              { label: "Light", href: "/design", active: !dark },
+              { label: "Dark", href: "/design?theme=dark", active: dark },
+            ]}
+          />
         </Container>
       </div>
       <Specimen />

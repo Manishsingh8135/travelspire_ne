@@ -2,7 +2,9 @@ import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config = {
-  darkMode: ["class"],
+  // Dark styles key off next-themes' data-theme, so a data-theme="dark" island
+  // (inverse sections) gets them too.
+  darkMode: ["selector", '[data-theme="dark"]'],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",

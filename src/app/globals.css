@@ -90,6 +90,17 @@
     background-color: rgb(var(--c-canvas));
     color: rgb(var(--c-fg));
   }
+
+  /* One WhatsApp action per screen: product pages carry it in their PriceBar,
+     and the open mobile menu has its own buttons. */
+  body:has([data-price-bar]) [data-whatsapp-float],
+  html[data-menu-open] [data-whatsapp-float] {
+    display: none;
+  }
+
+  ::selection {
+    background-color: rgb(var(--c-brand) / 0.18);
+  }
 }
 
 @layer base {

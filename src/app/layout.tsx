@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider/theme-provider";
-import AdvancedNavbar from "@/components/common/navbar/advance-navbar";
-import FooterHome from "@/components/common/footer/footer-home";
+import { SiteFooter, SiteHeader, WhatsAppFloat } from "@/components/site";
+import { getSiteNav } from "@/data/site-nav";
 import { StructuredData } from "@/components/seo/structured-data";
-import { WhatsAppWidget } from "@/components/whatsapp-widget";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { 
   generateOrganizationSchema, 
@@ -151,23 +150,30 @@ export const metadata: Metadata = {
   }
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0B0D" },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const nav = getSiteNav();
   return (
-    <html 
-      lang="en" 
+    <html
+      lang="en"
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSans.variable} ${instrumentSerif.variable}`}
     >
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#000000" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className="min-h-screen bg-background font-sans antialiased">
+      <body className="min-h-screen bg-canvas font-ui text-fg antialiased">
         <GoogleAnalytics />
         {/* Enhanced Structured Data — all blocks share @id #organization so
             search engines merge them into one entity */}
@@ -175,25 +181,21 @@ export default function RootLayout({
         <StructuredData data={generateLocalBusinessSchema()} />
         <StructuredData data={generateWebSiteSchema()} />
         <StructuredData data={generateServiceSchema()} />
-        
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-          forcedTheme="dark"
-        >
-          <div className="relative flex min-h-screen flex-col">
-            <AdvancedNavbar />
-            <main className="flex-1">
-              {children}
-            </main>
-            
-            {/* WhatsApp Widget - Available on all pages */}
-            <WhatsAppWidget />
-          </div>
+
+        <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <a
+            href="#main"
+            className="sr-only z-[60] rounded-control bg-brand px-4 py-2 font-ui text-small font-semibold text-on-brand focus:not-sr-only focus:fixed focus:left-4 focus:top-3"
+          >
+            Skip to content
+          </a>
+          <SiteHeader nav={nav} />
+          <main id="main" className="min-h-[60vh]">
+            {children}
+          </main>
+          <SiteFooter nav={nav} />
+          <WhatsAppFloat href={nav.contact.whatsapp} />
         </ThemeProvider>
-        <FooterHome/>
       </body>
     </html>
   );
