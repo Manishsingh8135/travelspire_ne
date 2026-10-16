@@ -1,493 +1,278 @@
-"use client"
-import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
+import Image from "next/image";
 import {
-    Mountain,
-    MapPin,
-    HandHeart,
-    TreePine,
-    ScrollText,
-    Star,
-    Instagram
-} from 'lucide-react';
-import { DotPattern, GlowEffect } from '@/components/ui/background-patterns';
-import { teamSectionData } from '@/data/team/team-data';
-import type { TeamMember } from '@/types/team/team';
-import { cn } from '@/lib/utils';
+  Accent,
+  Breadcrumbs,
+  ButtonLink,
+  Container,
+  Eyebrow,
+  Heading,
+  KeyFacts,
+  Lead,
+  Section,
+  SectionHeader,
+} from "@/components/ds";
+import { IconArrowRight, IconClock, IconInstagram, IconPermit, IconPin, IconVehicle } from "@/components/icons";
+import { Testimonials } from "@/components/company/testimonials";
+import { PlanCta } from "@/components/site/content-blocks";
+import { homeWhyPoints } from "@/data/home/homepage";
+import { anini2026Src, mechuka2026Src } from "@/data/seo/image-seo-data";
+import { teamMembers } from "@/data/team/team-data";
+import { createTripPlanningURL } from "@/lib/whatsapp";
 
-// Reusable Components
+/* About: who we are, how we work, the founder, what travellers say. Only
+   things we can stand behind — no milestones we can't document. */
 
-interface FloatingCardProps {
-    children: React.ReactNode;
-    className?: string;
-  }
-  
-  const FloatingCard = ({ children, className = "" }: FloatingCardProps) => (
-      <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          whileHover={{ y: -5, boxShadow: "0 10px 30px -10px rgba(var(--primary-500), 0.3)" }}
-          className={cn(
-              "relative p-8 rounded-2xl",
-              "bg-white/80 dark:bg-accent-800/80",
-              "backdrop-blur-sm",
-              "border border-primary-100/20 dark:border-primary-900/20",
-              "transition-shadow duration-500",
-              className
-          )}
-      >
-          {children}
-      </motion.div>
-  );
+const values = [
+  {
+    title: "Adventure, with judgement",
+    body: "Remote roads and high passes are the point of travelling here. We plan them so the journey stretches you without putting you at risk.",
+  },
+  {
+    title: "The valleys should gain from your visit",
+    body: "We work with local homestays, drivers and guides, so the money a trip brings stays with the people who live along the route.",
+  },
+  {
+    title: "Care for the land",
+    body: "Responsible, sustainable travel that keeps the Northeast's landscapes the way we found them.",
+  },
+  {
+    title: "Real places, real people",
+    body: "Time in villages and homes rather than staged stops — the region as it is, met on its own terms.",
+  },
+];
 
-  interface SectionHeaderProps {
-    title: string;
-    subtitle?: string;
-    description?: string;
-    align?: 'center' | 'left' | 'right';
-  }
-  
-  const SectionHeader = ({ 
-    title, 
-    subtitle, 
-    description, 
-    align = "center" 
-  }: SectionHeaderProps) => (
-      <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className={cn(
-              "max-w-3xl mb-16",
-              align === "center" ? "mx-auto text-center" : "text-left"
-          )}
-      >
-          {subtitle && (
-              <span className="inline-block mb-4 text-sm font-semibold tracking-wider uppercase text-primary-600 dark:text-primary-400">
-                  {subtitle}
-              </span>
-          )}
-          <h2 className="heading-2 mb-6">
-              <span className="block text-foreground dark:text-white">
-                  {title}
-              </span>
-          </h2>
-          {description && (
-              <p className="text-lg md:text-xl text-muted-foreground dark:text-neutral-300">
-                  {description}
+const photos = [
+  {
+    src: mechuka2026Src.ridgeViewpoint,
+    alt: "Travellers on a ridge above Mechuka town, Arunachal Pradesh",
+    label: "Mechuka, from the ridge above town",
+  },
+  {
+    src: anini2026Src.pomoRidgeTrail,
+    alt: "Trekkers on the Pomo ridge trail near Anini, Dibang Valley",
+    label: "The Pomo ridge trail, Anini",
+  },
+  {
+    src: "/images/places/anini/Anini_10.JPG",
+    alt: "The mountain road between Roing and Anini",
+    label: "The NH-313 towards Anini",
+  },
+];
+
+export default function AboutPage() {
+  const founder = teamMembers[0];
+  const planUrl = createTripPlanningURL();
+
+  return (
+    <>
+      <Section spacing="none" className="pb-14 pt-6 md:pb-20 md:pt-8">
+        <Container>
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "About", href: "/about" },
+            ]}
+          />
+          <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
+            <div className="space-y-6">
+              <Eyebrow>About Travelspire</Eyebrow>
+              <Heading as="h1" size="h1" className="max-w-[15ch]">
+                A local team, on roads <Accent>we drive ourselves.</Accent>
+              </Heading>
+              <Lead className="max-w-[48ch]">
+                Travelspire North-East is a small travel company in Dibrugarh, Assam. We plan and run tours across
+                Arunachal Pradesh and the wider Northeast — in our own vehicles, with drivers who know the roads, and
+                with your permits arranged before you arrive.
+              </Lead>
+              <KeyFacts
+                layout="grid"
+                items={[
+                  { label: "Based in", value: "Dibrugarh, Assam", icon: IconPin },
+                  { label: "On these roads", value: `${founder.yearsOfExperience}+ years`, icon: IconClock },
+                  { label: "Vehicles", value: "Our own fleet", icon: IconVehicle },
+                  { label: "Permits", value: "Arranged for you", icon: IconPermit },
+                ]}
+              />
+            </div>
+            <div className="relative -mx-5 aspect-[4/3] overflow-hidden bg-canvas-subtle sm:mx-0 sm:rounded-panel">
+              <Image
+                src={anini2026Src.rainbowGlamping}
+                alt="Double rainbow over forested mountains and tents at Anini, Dibang Valley"
+                fill
+                priority
+                sizes="(min-width: 1024px) 600px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section tone="subtle">
+        <Container className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+          <div>
+            <SectionHeader
+              className="md:grid-cols-1 md:gap-5"
+              eyebrow="Our story"
+              title={
+                <>
+                  Why a company <Accent>from Dibrugarh</Accent>
+                </>
+              }
+            />
+            <div className="mt-6 max-w-prose space-y-5 font-ui text-body-lg text-fg-muted">
+              <p>
+                Dibrugarh sits where the Brahmaputra plains meet the roads into eastern Arunachal. From here it is a
+                day&apos;s drive to Dambuk, Roing, Anini or Walong, and two days to Mechuka. We know these routes
+                first-hand, and Travelspire began as a way to share them properly — with the right vehicle, the right
+                season and the paperwork done.
               </p>
-          )}
-      </motion.div>
-  );
-
-const TeamMemberCard = ({ member }: { member: TeamMember }) => {
-    const [isHovered, setIsHovered] = React.useState(false);
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            whileHover={{ y: -5 }}
-            onHoverStart={() => setIsHovered(true)}
-            onHoverEnd={() => setIsHovered(false)}
-            className="group relative overflow-hidden rounded-2xl h-full bg-gradient-to-b from-white/90 via-white/80 to-white/90 dark:from-accent-800/90 dark:via-accent-800/80 dark:to-accent-800/90 backdrop-blur-sm border border-primary-100/20 dark:border-primary-900/20"
-        >
-            {/* Image Section */}
-            <div className="relative h-72 overflow-hidden">
-                <Image
-                    src={member.image}
-                    alt={member.name}
+              <p>
+                One of our first group trips, in 2019, went to Dong Valley to watch India&apos;s first sunrise. We still
+                run that journey, alongside the Dibang Valley circuit, Mechuka and the long road west to Tawang.
+              </p>
+              <p>
+                We are not a marketplace or a reseller. When you book, the people who answer your messages are the
+                people who plan your route and send the car.
+              </p>
+            </div>
+          </div>
+          <ul className="grid grid-cols-2 gap-3 self-center sm:gap-4">
+            {photos.map((photo, i) => (
+              <li key={photo.src} className={i === 0 ? "col-span-2" : undefined}>
+                <div className={`relative overflow-hidden rounded-card bg-canvas ${i === 0 ? "aspect-[16/9]" : "aspect-[4/5]"}`}>
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+                    sizes={i === 0 ? "(min-width: 1024px) 640px, 100vw" : "(min-width: 1024px) 320px, 50vw"}
+                    className="object-cover"
+                  />
+                </div>
+                <p className="mt-2 font-ui text-caption text-fg-subtle">{photo.label}</p>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
 
-                {/* Gradient Overlay */}
-                <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isHovered ? 1 : 0 }}
-                    transition={{ duration: 0.3 }}
-                />
+      <Section>
+        <Container>
+          <SectionHeader
+            eyebrow="How we work"
+            title={
+              <>
+                What you can <Accent>count on.</Accent>
+              </>
+            }
+            intro="The practical promises behind every trip we run."
+          />
+          <ol className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+            {homeWhyPoints.map((point, i) => (
+              <li key={point.title} className="border-t border-line pt-5 font-ui">
+                <span className="text-small font-semibold text-highlight tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="mt-2 text-h4 text-fg">{point.title}</h3>
+                <p className="mt-1.5 text-body text-fg-muted">{point.body}</p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </Section>
 
-                {/* Quick Info Overlay */}
-                <motion.div
-                    className="absolute inset-x-0 bottom-0 p-4 text-white"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    {member.achievements && member.achievements[0] && (
-                        <div className="text-sm">
-                            <span className="text-primary-300">Latest Achievement:</span>
-                            <p className="mt-1 text-white/90">{member.achievements[0].title}</p>
-                        </div>
-                    )}
-                </motion.div>
-            </div>
+      <Section tone="subtle">
+        <Container className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:items-center lg:gap-16">
+          <div className="relative mx-auto aspect-[1/1] w-full max-w-lg overflow-hidden rounded-panel bg-canvas lg:mx-0">
+            <Image
+              src={founder.image}
+              alt={`${founder.name}, founder of Travelspire North-East, beside one of our vehicles`}
+              fill
+              sizes="(min-width: 1024px) 448px, 90vw"
+              className="object-cover"
+            />
+          </div>
+          <div>
+            <Eyebrow>The founder</Eyebrow>
+            <Heading className="mt-3">{founder.name}</Heading>
+            <p className="mt-1 font-ui text-body text-fg-subtle">
+              {founder.roles.join(" · ")} · {founder.location.city}, {founder.location.state}
+            </p>
+            <p className="mt-6 max-w-prose font-ui text-body-lg text-fg-muted">
+              Native to Assam, Sandeep has more than {founder.yearsOfExperience} years of experience leading
+              expeditions across Northeast India. He started Travelspire to show travellers the region properly, and
+              to help keep its local traditions alive.
+            </p>
+            <dl className="mt-8 grid gap-x-8 gap-y-4 border-t border-line pt-6 font-ui sm:grid-cols-2">
+              <div>
+                <dt className="text-small text-fg-subtle">Languages</dt>
+                <dd className="mt-0.5 text-body text-fg">{founder.languages.join(", ")}</dd>
+              </div>
+              <div>
+                <dt className="text-small text-fg-subtle">Knows best</dt>
+                <dd className="mt-0.5 text-body text-fg">{founder.expertise.join(", ")}</dd>
+              </div>
+            </dl>
+            {founder.social?.[0] ? (
+              <a
+                href={founder.social[0].url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-2 font-ui text-small font-medium text-brand hover:underline hover:underline-offset-4"
+              >
+                <IconInstagram size={18} />
+                {founder.social[0].handle}
+              </a>
+            ) : null}
+          </div>
+        </Container>
+      </Section>
 
-            {/* Content Section */}
-            <div className="p-6 space-y-6">
-                {/* Header */}
+      <Section>
+        <Container>
+          <SectionHeader
+            eyebrow="What we care about"
+            title={
+              <>
+                Four things <Accent>we won&apos;t trade.</Accent>
+              </>
+            }
+          />
+          <ol className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+            {values.map((value, i) => (
+              <li key={value.title} className="grid grid-cols-[2.5rem_1fr] gap-3 border-t border-line pt-5 font-ui">
+                <span className="text-h4 font-semibold text-highlight tabular-nums">{i + 1}</span>
                 <div>
-                    <h3 className="text-xl font-semibold text-foreground dark:text-white">
-                        {member.name}
-                    </h3>
-                    <div className="flex flex-wrap gap-2 mt-1">
-                        {member.roles.map((role) => (
-                            <span
-                                key={role}
-                                className="text-sm text-primary-600 dark:text-primary-400"
-                            >
-                                {role}
-                            </span>
-                        ))}
-                    </div>
+                  <h3 className="text-h4 text-fg">{value.title}</h3>
+                  <p className="mt-1.5 text-body text-fg-muted">{value.body}</p>
                 </div>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </Section>
 
-                {/* Details */}
-                <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-muted-foreground dark:text-neutral-300">
-                        <MapPin className="w-4 h-4 text-primary-500" />
-                        <span>{member.location.city}, {member.location.state}</span>
-                    </div>
+      <Section tone="subtle">
+        <Container>
+          <SectionHeader
+            eyebrow="Traveller stories"
+            title={
+              <>
+                Told by the people <Accent>who went.</Accent>
+              </>
+            }
+            action={
+              <ButtonLink href="/all-tours" variant="secondary" size="sm">
+                See the tours
+                <IconArrowRight />
+              </ButtonLink>
+            }
+          />
+        </Container>
+        <div className="mt-10">
+          <Testimonials />
+        </div>
+      </Section>
 
-                    <div className="flex items-center gap-2 text-muted-foreground dark:text-neutral-300">
-                        <ScrollText className="w-4 h-4 text-primary-500" />
-                        <span>{member.yearsOfExperience}+ years of experience</span>
-                    </div>
-
-                    {/* Languages */}
-                    <div className="space-y-2">
-                        <h4 className="text-sm font-medium text-foreground dark:text-white">
-                            Languages
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                            {member.languages.map((lang) => (
-                                <span
-                                    key={lang}
-                                    className="px-2 py-1 text-xs rounded-full bg-primary-100/50 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300"
-                                >
-                                    {lang}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Social Media Section */}
-                {member.social && (
-                    <div className="pt-4 border-t border-primary-100/20 dark:border-primary-900/20">
-                        <h4 className="text-sm font-medium text-foreground dark:text-white mb-3">
-                            Connect
-                        </h4>
-                        <div className="flex gap-3">
-                            {member.social.map((social) => (
-                                <motion.a
-                                    key={social.platform}
-                                    href={social.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group relative inline-flex items-center gap-2 px-4 py-2 rounded-full 
-                             bg-primary-100/50 dark:bg-primary-900/50 
-                             hover:bg-primary-200/50 dark:hover:bg-primary-800/50 
-                             text-primary-600 dark:text-primary-300
-                             transition-all duration-300 cursor-pointer"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    <Instagram className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
-                                    <span className="text-xs font-medium">{social.handle}</span>
-                                </motion.a>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {/* Expertise */}
-                <div className="pt-4 border-t border-primary-100/20 dark:border-primary-900/20">
-                    <h4 className="text-sm font-medium text-foreground dark:text-white mb-2">
-                        Expertise
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                        {member.expertise.map((exp) => (
-                            <span
-                                key={exp}
-                                className="px-2 py-1 text-xs rounded-full bg-secondary-100/50 dark:bg-secondary-900/50 text-secondary-700 dark:text-secondary-300"
-                            >
-                                {exp}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </motion.div>
-    );
-};
-// Data
-const valuesData = [
-    {
-        icon: Mountain,
-        title: "Adventure & Discovery",
-        description: "We believe every journey should be an adventure that pushes boundaries and creates unforgettable memories."
-    },
-    {
-        icon: HandHeart,
-        title: "Community Impact",
-        description: "Supporting local communities through sustainable tourism, ensuring your travels benefit the region's people."
-    },
-    {
-        icon: TreePine,
-        title: "Environmental Care",
-        description: "Preserving Northeast India's pristine landscapes through responsible and sustainable travel practices."
-    },
-    {
-        icon: Star,
-        title: "Authentic Experiences",
-        description: "Creating genuine connections with local cultures, traditions, and people beyond tourist facades."
-    }
-];
-
-const milestones = [
-    {
-        year: "2018",
-        title: "The Beginning",
-        description: "Started with a dream to showcase Northeast India's hidden treasures"
-    },
-    {
-        year: "2019",
-        title: "First Expedition",
-        description: "Led our first group to witness India's first sunrise in Dong Valley"
-    },
-    {
-        year: "2020",
-        title: "Community Focus",
-        description: "Launched initiatives to support local artisans and homestays"
-    },
-    {
-        year: "2021",
-        title: "Expansion",
-        description: "Extended operations to all Seven Sister States"
-    },
-    {
-        year: "2022",
-        title: "Recognition",
-        description: "Received award for sustainable tourism practices"
-    },
-    {
-        year: "2023",
-        title: "Digital Growth",
-        description: "Launched our digital platform for seamless travel experiences"
-    }
-];
-
-export default function AboutUs() {
-    const { scrollYProgress } = useScroll();
-    const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-    const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
-
-    return (
-        <main className="relative w-full overflow-hidden">
-            {/* Hero Section with Parallax */}
-            <section className="relative min-h-[80vh] flex items-center">
-                <DotPattern className="opacity-10" />
-                <motion.div
-                    style={{
-                        scale: scaleProgress,
-                        opacity: opacityProgress
-                    }}
-                    className="absolute inset-0 flex items-center justify-center"
-                >
-                    <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-32 text-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1 }}
-                            className="space-y-6"
-                        >
-                            <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-                                <span className="block text-foreground dark:text-white">
-                                    Your Gateway to
-                                </span>
-                                <span className="block text-gradient-primary">
-                                    Northeast India
-                                </span>
-                            </h1>
-                            <p className="max-w-2xl mx-auto text-xl md:text-2xl text-muted-foreground dark:text-neutral-300">
-                                Founded by local explorers, we curate authentic experiences that showcase
-                                the untold stories of India&apos;s most enchanting region.
-                            </p>
-                        </motion.div>
-                    </div>
-                </motion.div>
-
-                {/* Floating Elements */}
-                <GlowEffect
-                    color="primary"
-                    size="lg"
-                    className="absolute -top-40 -right-40 opacity-20"
-                />
-                <GlowEffect
-                    color="secondary"
-                    size="lg"
-                    className="absolute -bottom-40 -left-40 opacity-20"
-                />
-            </section>
-
-
-
-            {/* Journey Timeline Section */}
-            <section className="relative py-20 overflow-hidden">
-                <div className="max-w-7xl mx-auto px-4">
-                    <SectionHeader
-                        title="Our Journey"
-                        subtitle="The Story So Far"
-                        description="From humble beginnings to becoming Northeast India's trusted travel curator"
-                    />
-
-                    <div className="relative">
-                        {/* Timeline Line */}
-                        <div className="absolute left-[50%] top-0 bottom-0 w-px bg-primary-200/50 dark:bg-primary-800/50" />
-
-                        {/* Timeline Events */}
-                        <div className="space-y-24">
-                            {milestones.map((milestone, index) => (
-                                <motion.div
-                                    key={milestone.year}
-                                    initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.8 }}
-                                    className={cn(
-                                        "relative grid grid-cols-1 md:grid-cols-2 gap-8 items-center",
-                                        index % 2 === 0 ? "md:text-right" : "md:text-left"
-                                    )}
-                                >
-                                    <div className={index % 2 === 0 ? "md:order-1" : "md:order-2"}>
-                                        <div className="space-y-2">
-                                            <div className="text-4xl font-bold text-primary-500 dark:text-primary-400">
-                                                {milestone.year}
-                                            </div>
-                                            <h3 className="text-xl font-semibold text-foreground dark:text-white">
-                                                {milestone.title}
-                                            </h3>
-                                            <p className="text-muted-foreground dark:text-neutral-300">
-                                                {milestone.description}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    {/* Timeline Point */}
-                                    <div className="absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2">
-                                        <div className="w-4 h-4 rounded-full bg-primary-500 dark:bg-primary-400" />
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Values Section */}
-            <section className="relative py-20 bg-primary-50/50 dark:bg-accent-900/50">
-                <div className="max-w-7xl mx-auto px-4">
-                    <SectionHeader
-                        title="Our Values"
-                        subtitle="What Drives Us"
-                        description="Core principles that guide every journey we create"
-                    />
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {valuesData.map((value, index) => (
-                            <FloatingCard key={value.title}>
-                                <motion.div
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="relative z-10 space-y-4"
-                                >
-                                    <div className="inline-flex p-3 rounded-xl bg-primary-100/50 dark:bg-primary-900/50">
-                                        <value.icon className="w-6 h-6 text-primary-500" />
-                                    </div>
-                                    <h3 className="text-xl font-semibold text-foreground dark:text-white">
-                                        {value.title}
-                                    </h3>
-                                    <p className="text-muted-foreground dark:text-neutral-300">
-                                        {value.description}
-                                    </p>
-                                </motion.div>
-                            </FloatingCard>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Team Section */}
-            <section className="relative py-20">
-                <div className="max-w-7xl mx-auto px-4">
-                    <SectionHeader
-                        title={teamSectionData.title}
-                        subtitle={teamSectionData.subtitle}
-                        description={teamSectionData.description}
-                    />
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {teamSectionData.members.map((member) => (
-                            <TeamMemberCard key={member.id} member={member} />
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Part 2 continues with Team Section and Call to Action... */}
-            {/* Call to Action Section */}
-            <section className="relative py-20">
-                <div className="max-w-7xl mx-auto px-4">
-                    <div className="relative rounded-[2.5rem] overflow-hidden">
-                        <div className="absolute inset-0">
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-secondary-500 opacity-90" />
-                            <Image
-                                src="/api/placeholder/1920/600"
-                                alt="Northeast India landscape"
-                                fill
-                                className="object-cover"
-                            />
-                        </div>
-
-                        <div className="relative px-8 py-20 md:px-16 md:py-32 text-center">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                className="max-w-3xl mx-auto space-y-8"
-                            >
-                                <h2 className="text-4xl md:text-5xl font-bold text-white">
-                                    Ready to Explore Northeast India?
-                                </h2>
-                                <p className="text-xl text-white/90">
-                                    Join us on a journey of discovery through the enchanting landscapes and rich cultures of the Seven Sisters.
-                                </p>
-                                <motion.div
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    <a
-                                        href="/contact"
-                                        className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-primary-600 hover:bg-primary-50 text-lg font-medium transition-colors shadow-xl"
-                                    >
-                                        Start Planning Your Journey
-                                        <Mountain className="w-5 h-5" />
-                                    </a>
-                                </motion.div>
-                            </motion.div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-    );
+      <PlanCta whatsappHref={planUrl} />
+    </>
+  );
 }

@@ -72,13 +72,4 @@ import {
     // }
   ];
   
-  export const officeLocation = {
-    title: "Dibrugarh Office",
-    address: "HSR Layout, Dibrugarh, Assam, India",
-    phone: "+91-9864141211",
-    email: "info@travelspirene.com",
-    coordinates: {
-      lat: 27.4728,
-      lng: 95.0170
-    }
-  };
+  export { officeLocation } from "./office";
