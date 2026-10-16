@@ -1,45 +1,66 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState, type FormEvent } from "react";
+import { Button, Field, Input, Select, formatInr } from "@/components/ds";
 import {
-  ArrowUpRight,
-  LoaderCircle,
-  LockKeyhole,
-  ShieldCheck,
-} from "lucide-react";
+  IconAlert,
+  IconCalendar,
+  IconLock,
+  IconMail,
+  IconShield,
+  IconSpinner,
+  IconUsers,
+  IconWhatsApp,
+} from "@/components/icons";
 import type { BookingProduct } from "@/lib/bookings/catalog";
 import { trackEvent } from "@/lib/analytics";
-import {
-  postToPayU,
-  type HostedCheckoutResponse,
-} from "@/lib/payments/payu/browser";
+import { postToPayU, type HostedCheckoutResponse } from "@/lib/payments/payu/browser";
+import { cn } from "@/lib/utils";
 
-const inr = new Intl.NumberFormat("en-IN", {
-  style: "currency",
-  currency: "INR",
-  maximumFractionDigits: 0,
+/* Checkout: the form on the left, a live order summary on the right. The
+   request payload, field rules and PayU hand-off are unchanged — only the
+   presentation is Evergreen. */
+
+const dateLabel = new Intl.DateTimeFormat("en-IN", {
+  weekday: "short",
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+  timeZone: "Asia/Kolkata",
 });
+
+function formatDeparture(iso: string) {
+  if (!iso) return "Choose a date";
+  const date = new Date(`${iso}T00:00:00+05:30`);
+  return Number.isNaN(date.getTime()) ? iso : dateLabel.format(date);
+}
 
 export function BookingCheckoutForm({
   product,
   minDepartureDate,
   initialTierId,
   isTestMode = false,
+  image,
+  imageAlt,
+  whatsappHref,
+  className,
 }: {
   product: BookingProduct;
   /** Earliest sellable departure today (India time), resolved on the server. */
   minDepartureDate: string;
   initialTierId?: string;
   isTestMode?: boolean;
+  image?: string;
+  imageAlt?: string;
+  whatsappHref: string;
+  className?: string;
 }) {
-  const firstTier =
-    product.tiers.find((tier) => tier.id === initialTierId) ?? product.tiers[0];
+  const firstTier = product.tiers.find((tier) => tier.id === initialTierId) ?? product.tiers[0];
   const [tierId, setTierId] = useState(firstTier.id);
   const tier = product.tiers.find((item) => item.id === tierId) ?? firstTier;
-  const [travellers, setTravellers] = useState(
-    tier.fixedTravellers ?? tier.minTravellers,
-  );
+  const [travellers, setTravellers] = useState(tier.fixedTravellers ?? tier.minTravellers);
   const [departureDate, setDepartureDate] = useState(() => {
     const preset = product.defaultDepartureDate;
     if (preset === null) return "";
@@ -53,10 +74,9 @@ export function BookingCheckoutForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const total = useMemo(
-    () => tier.unitPrice * travellers,
-    [tier.unitPrice, travellers],
-  );
+  const total = useMemo(() => tier.unitPrice * travellers, [tier.unitPrice, travellers]);
+  const groupPriced = tier.fixedTravellers !== null;
+  const dateFixed = product.fixedDepartureDate !== null;
 
   function selectTier(nextTierId: string) {
     const nextTier = product.tiers.find((item) => item.id === nextTierId);
@@ -104,11 +124,7 @@ export function BookingCheckoutForm({
       });
       postToPayU(payload);
     } catch (caughtError) {
-      setError(
-        caughtError instanceof Error
-          ? caughtError.message
-          : "We could not create this booking.",
-      );
+      setError(caughtError instanceof Error ? caughtError.message : "We could not create this booking.");
       setIsSubmitting(false);
     }
   }
@@ -116,211 +132,232 @@ export function BookingCheckoutForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="overflow-hidden rounded-[16px] bg-[#f3ead9] text-[#14221c] shadow-[0_38px_80px_-48px_rgba(0,0,0,0.95)]"
+      className={cn("grid gap-10 font-ui lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start lg:gap-14", className)}
     >
-      <div className="border-b border-[#17372b]/10 p-5 sm:p-7">
-        <div className="flex items-start justify-between gap-5">
-          <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#965136]">
-              Full package payment
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold tracking-[-0.035em] sm:text-3xl">
-              Your booking details
-            </h2>
-          </div>
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px] bg-[#17372b] text-[#f4ead7]">
-            <LockKeyhole aria-hidden="true" className="h-5 w-5" />
-          </span>
-        </div>
+      <div className="order-2 space-y-10 lg:order-1">
+        <fieldset className="space-y-5">
+          <legend className="text-h3 text-fg">Your trip</legend>
+          {product.tiers.length > 1 ? (
+            <Field label="Package" htmlFor="booking-tier">
+              <Select id="booking-tier" value={tierId} onChange={(event) => selectTier(event.target.value)}>
+                {product.tiers.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.name} · {formatInr(item.unitPrice)} per person
+                  </option>
+                ))}
+              </Select>
+            </Field>
+          ) : (
+            <div className="space-y-1.5">
+              <p className="text-small font-medium text-fg">Package</p>
+              <p className="rounded-control border border-line bg-canvas-subtle px-3.5 py-2.5 text-body text-fg">
+                {tier.name} · {formatInr(tier.unitPrice)} per person
+              </p>
+            </div>
+          )}
 
-        <div className="mt-6 grid gap-4">
-          <Field label="Package">
-            <select
-              value={tierId}
-              onChange={(event) => selectTier(event.target.value)}
-              className="field-control"
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Field
+              label="Travellers"
+              htmlFor="booking-travellers"
+              hint={
+                groupPriced
+                  ? `This price is for a group of exactly ${tier.fixedTravellers}.`
+                  : `Between ${tier.minTravellers} and ${tier.maxTravellers} people.`
+              }
             >
-              {product.tiers.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.name} · {inr.format(item.unitPrice)} per person
-                </option>
-              ))}
-            </select>
-          </Field>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="Travellers">
-              <input
+              <Input
+                id="booking-travellers"
                 type="number"
+                inputMode="numeric"
                 required
                 min={tier.minTravellers}
                 max={tier.maxTravellers}
                 value={travellers}
-                disabled={tier.fixedTravellers !== null}
+                disabled={groupPriced}
                 onChange={(event) => setTravellers(Number(event.target.value))}
-                className="field-control disabled:cursor-not-allowed disabled:bg-[#e4d9c5]"
+                aria-describedby="booking-travellers-hint"
               />
             </Field>
-            <Field label="Departure date">
-              <input
+            <Field
+              label="Departure date"
+              htmlFor="booking-date"
+              hint={dateFixed ? "This departure runs on a fixed date." : "The day you leave from the starting point."}
+            >
+              <Input
+                id="booking-date"
                 type="date"
                 required
                 min={minDepartureDate}
                 max={product.departureWindow.latest ?? undefined}
                 value={departureDate}
-                disabled={product.fixedDepartureDate !== null}
+                disabled={dateFixed}
                 onChange={(event) => setDepartureDate(event.target.value)}
-                className="field-control disabled:cursor-not-allowed disabled:bg-[#e4d9c5]"
+                aria-describedby="booking-date-hint"
               />
             </Field>
           </div>
+        </fieldset>
 
-          <Field label="First name">
-            <input
+        <fieldset className="space-y-5 border-t border-line pt-10">
+          <legend className="sr-only">Your details</legend>
+          <div aria-hidden className="text-h3 text-fg">
+            Your details
+          </div>
+          <p className="-mt-2 text-small text-fg-muted">
+            We use these for your receipt and to reach you about the trip — nothing else.
+          </p>
+          <Field label="First name" htmlFor="booking-name">
+            <Input
+              id="booking-name"
               required
               minLength={2}
               maxLength={60}
               autoComplete="given-name"
               value={firstName}
               onChange={(event) => setFirstName(event.target.value)}
-              className="field-control"
             />
           </Field>
-          <Field label="Email address">
-            <input
-              type="email"
-              required
-              maxLength={50}
-              autoComplete="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              className="field-control"
-            />
-          </Field>
-          <Field label="Phone number">
-            <input
-              type="tel"
-              required
-              minLength={10}
-              maxLength={20}
-              autoComplete="tel"
-              value={phone}
-              onChange={(event) => setPhone(event.target.value)}
-              className="field-control"
-            />
-          </Field>
-        </div>
-      </div>
-
-      <div className="bg-[#e6dbc7] p-5 sm:p-7">
-        <div className="flex items-end justify-between gap-4 border-b border-[#17372b]/10 pb-5">
-          <div>
-            <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-[#68756e]">
-              Total due now
-            </p>
-            <p className="mt-2 text-3xl font-semibold tracking-[-0.04em]">
-              {inr.format(total)}
-            </p>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <Field label="Email" htmlFor="booking-email" hint="Your receipt goes here.">
+              <Input
+                id="booking-email"
+                type="email"
+                required
+                maxLength={50}
+                autoComplete="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                aria-describedby="booking-email-hint"
+              />
+            </Field>
+            <Field label="Phone" htmlFor="booking-phone" hint="Ideally the number you use on WhatsApp.">
+              <Input
+                id="booking-phone"
+                type="tel"
+                required
+                minLength={10}
+                maxLength={20}
+                autoComplete="tel"
+                value={phone}
+                onChange={(event) => setPhone(event.target.value)}
+                aria-describedby="booking-phone-hint"
+              />
+            </Field>
           </div>
-          <p className="max-w-[12rem] text-right text-xs leading-5 text-[#68756e]">
-            {inr.format(tier.unitPrice)} × {travellers} traveller
-            {travellers === 1 ? "" : "s"}
+        </fieldset>
+
+        <div className="space-y-5 border-t border-line pt-8">
+          <label className="flex cursor-pointer items-start gap-3 text-small text-fg-muted">
+            <input
+              type="checkbox"
+              required
+              checked={termsAccepted}
+              onChange={(event) => setTermsAccepted(event.target.checked)}
+              className="mt-0.5 size-5 shrink-0 rounded-[0.3rem] border-line-strong bg-surface text-brand focus:ring-2 focus:ring-focus focus:ring-offset-0"
+            />
+            <span>
+              I confirm the package and date above and accept the{" "}
+              <Link href="/booking-policy" target="_blank" className="font-medium text-brand underline underline-offset-4">
+                booking and refund policy
+              </Link>{" "}
+              and{" "}
+              <Link href="/terms-and-conditions" target="_blank" className="font-medium text-brand underline underline-offset-4">
+                terms
+              </Link>
+              .
+            </span>
+          </label>
+
+          {error ? (
+            <p
+              role="alert"
+              className="flex gap-3 rounded-r-card border-l-[3px] border-critical bg-critical-soft px-4 py-3 text-small text-fg"
+            >
+              <IconAlert size={18} className="mt-0.5 shrink-0 text-critical" />
+              {error}
+            </p>
+          ) : null}
+
+          <Button type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-auto">
+            {isSubmitting ? <IconSpinner className="animate-spin" /> : <IconLock />}
+            {isSubmitting ? "Opening PayU…" : `Pay ${formatInr(total)} securely`}
+          </Button>
+          <p className="text-small text-fg-subtle">
+            You&apos;ll finish on PayU&apos;s secure page and come straight back here.
+            {isTestMode ? " Test mode: no real charge." : null}
           </p>
         </div>
-
-        <label className="mt-5 flex cursor-pointer items-start gap-3 text-xs leading-5 text-[#526158]">
-          <input
-            type="checkbox"
-            required
-            checked={termsAccepted}
-            onChange={(event) => setTermsAccepted(event.target.checked)}
-            className="mt-0.5 h-4 w-4 rounded-[4px] border-[#17372b]/30 text-[#17372b] focus:ring-[#38644f]"
-          />
-          <span>
-            I confirm the selected package and date and accept the{" "}
-            <Link
-              href="/booking-policy"
-              target="_blank"
-              className="font-semibold underline underline-offset-2"
-            >
-              booking and refund policy
-            </Link>{" "}
-            and{" "}
-            <Link
-              href="/terms-and-conditions"
-              target="_blank"
-              className="font-semibold underline underline-offset-2"
-            >
-              terms
-            </Link>
-            .
-          </span>
-        </label>
-
-        {error && (
-          <p
-            role="alert"
-            className="mt-4 rounded-[9px] bg-[#a34d35]/10 p-3 text-xs font-medium text-[#8c3f2b]"
-          >
-            {error}
-          </p>
-        )}
-
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="mt-5 inline-flex min-h-[3.25rem] w-full items-center justify-center gap-2 rounded-[10px] bg-[#17372b] px-5 py-3.5 text-xs font-bold text-white shadow-[0_18px_30px_-22px_rgba(0,0,0,0.9)] transition-colors hover:bg-[#254c3c] disabled:cursor-wait disabled:opacity-65"
-        >
-          {isSubmitting ? (
-            <LoaderCircle aria-hidden="true" className="h-4 w-4 animate-spin" />
-          ) : (
-            <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
-          )}
-          {isSubmitting ? "Opening PayU…" : `Pay ${inr.format(total)} securely`}
-        </button>
-        <p className="mt-4 flex items-center justify-center gap-2 text-[10px] font-semibold uppercase tracking-[0.11em] text-[#68756e]">
-          <ShieldCheck aria-hidden="true" className="h-4 w-4 text-[#315f4b]" />
-          Price verified on our server · PayU hosted checkout
-        </p>
-        {isTestMode && (
-          <p className="mt-2 text-center text-[10px] font-bold uppercase tracking-[0.12em] text-[#965136]">
-            Sandbox payment · no real charge
-          </p>
-        )}
       </div>
-      <style jsx>{`
-        .field-control {
-          min-height: 3.15rem;
-          width: 100%;
-          border-radius: 10px;
-          border: 1px solid rgba(23, 55, 43, 0.15);
-          background: #fffaf0;
-          padding: 0 1rem;
-          color: #14221c;
-          outline: none;
-        }
-        .field-control:focus {
-          border-color: #38644f;
-          box-shadow: 0 0 0 4px rgba(56, 100, 79, 0.1);
-        }
-      `}</style>
-    </form>
-  );
-}
 
-function Field({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <label className="block">
-      <span className="mb-2 block text-[10px] font-bold uppercase tracking-[0.13em] text-[#59685f]">
-        {label}
-      </span>
-      {children}
-    </label>
+      <aside aria-label="Order summary" className="order-1 lg:sticky lg:top-24 lg:order-2">
+        <div className="overflow-hidden rounded-panel border border-line bg-surface shadow-e2">
+          {image ? (
+            <div className="relative hidden aspect-[16/9] bg-canvas-subtle lg:block">
+              <Image src={image} alt={imageAlt ?? ""} fill sizes="(min-width: 1024px) 384px, 100vw" className="object-cover" />
+            </div>
+          ) : null}
+          <div className="p-5 sm:p-6">
+            <p className="text-eyebrow uppercase text-fg-subtle">Order summary</p>
+            <p className="mt-2 text-h4 text-fg">{product.name}</p>
+            <dl className="mt-5 space-y-3 border-t border-line pt-5 text-small">
+              <div className="flex items-start justify-between gap-4">
+                <dt className="text-fg-subtle">Package</dt>
+                <dd className="text-right font-medium text-fg">{tier.name}</dd>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <dt className="flex items-center gap-2 text-fg-subtle">
+                  <IconCalendar size={16} />
+                  Departure
+                </dt>
+                <dd className={cn("text-right font-medium", departureDate ? "text-fg" : "text-fg-subtle")}>
+                  {formatDeparture(departureDate)}
+                </dd>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <dt className="flex items-center gap-2 text-fg-subtle">
+                  <IconUsers size={16} />
+                  Travellers
+                </dt>
+                <dd className="font-medium text-fg tabular-nums">{travellers}</dd>
+              </div>
+              <div className="flex items-center justify-between gap-4">
+                <dt className="text-fg-subtle">Price per person</dt>
+                <dd className="font-medium text-fg tabular-nums">{formatInr(tier.unitPrice)}</dd>
+              </div>
+            </dl>
+            <div className="mt-5 flex items-end justify-between gap-4 border-t border-line pt-5">
+              <p className="text-small text-fg-muted">Total to pay now</p>
+              <p className="text-h2 font-semibold text-fg tabular-nums" aria-live="polite">
+                {formatInr(total)}
+              </p>
+            </div>
+          </div>
+          <ul className="hidden space-y-3 border-t border-line bg-canvas-subtle px-5 py-5 text-small text-fg-muted sm:px-6 lg:block">
+            <li className="flex gap-2.5">
+              <IconShield size={18} className="mt-px shrink-0 text-positive" />
+              The price you see is the price you pay — no extras at checkout.
+            </li>
+            <li className="flex gap-2.5">
+              <IconLock size={18} className="mt-px shrink-0 text-positive" />
+              Card and UPI details go only to PayU. We never see them.
+            </li>
+            <li className="flex gap-2.5">
+              <IconMail size={18} className="mt-px shrink-0 text-positive" />
+              Your receipt arrives by email as soon as the payment clears.
+            </li>
+          </ul>
+        </div>
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-4 hidden items-center gap-2 text-small font-medium text-fg-muted transition-colors hover:text-fg lg:inline-flex"
+        >
+          <IconWhatsApp size={18} />
+          A question before you pay? Ask us on WhatsApp
+        </a>
+      </aside>
+    </form>
   );
 }

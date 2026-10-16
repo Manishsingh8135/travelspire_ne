@@ -673,8 +673,8 @@ export const awfLegacy: AwfLegacyChapter[] = [
   },
   {
     edition: "5.0",
-    title: "The Next Chapter",
-    note: "September 2026 — the wildest edition yet.",
+    title: "Two Days at 1,970 m",
+    note: "September 2026 — the fifth edition, with national headliners on the plateau.",
     current: true,
   },
 ];
@@ -994,3 +994,34 @@ export const awfRouteGems: AwfRouteGem[] = [
 export const awfRoutePath: [number, number][] = awfMilestones.map(
   (m) => m.coords,
 );
+
+// ─── Recap FAQ (after the 2026 edition) ─────────────────────────────────────
+// The pre-event FAQ above stays for the record; the recap page answers what
+// people search once the festival is over.
+export const awfRecapFaqs = [
+  {
+    question: "When is Anini Winter Fest 2027?",
+    answer:
+      "The 2027 dates have not been announced yet. They come from the festival's official channels — its website and Instagram. We update this page as soon as they are public.",
+  },
+  {
+    question: "Can I visit Anini outside the festival?",
+    answer:
+      "Yes. October to April is the best window: clear skies, cold nights and the Pomo grassland at its best. We run Anini road trips, the Six Days in the Dibang expedition and private journeys all season.",
+  },
+  {
+    question: "Do I need an Inner Line Permit for Anini?",
+    answer:
+      "Yes. Every visitor from outside Arunachal Pradesh needs an ILP with 'Dibang Valley' named on it, checked at several posts on NH-313. Foreign nationals need a Protected Area Permit instead. Permit help is included on every trip we run.",
+  },
+  {
+    question: "How do I reach Anini from Dibrugarh?",
+    answer:
+      "Dibrugarh to Roing is about 180 km (5–6 hours); Roing to Anini is 235 km over Mayodia Pass on NH-313 — plan 8–10 hours and travel in daylight. Most travellers break the drive at Roing.",
+  },
+  {
+    question: "Is Anini safe for solo travellers and women?",
+    answer:
+      "Yes. Dibang Valley is one of the most close-knit regions in India. The real risk is the road, not the people — travel in daylight, in a proper SUV, with a driver who knows NH-313.",
+  },
+] as const;

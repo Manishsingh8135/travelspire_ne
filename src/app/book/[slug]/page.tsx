@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, BadgeCheck, MailCheck, ShieldCheck } from "lucide-react";
 import { notFound, redirect } from "next/navigation";
+import { Callout, Container, Eyebrow, Heading, Lead, Section } from "@/components/ds";
+import { IconArrowLeft } from "@/components/icons";
 import { BookingCheckoutForm } from "@/components/bookings/booking-checkout-form";
-import {
-  earliestSellableDate,
-  getBookingProduct,
-  isOnSale,
-} from "@/lib/bookings/catalog";
+import { getPlaceImageAlt } from "@/data/seo/image-seo-data";
+import { awfHeroImages } from "@/data/festivals/anini-winter-fest";
+import { allTours } from "@/data/tours";
+import { earliestSellableDate, getBookingProduct, isOnSale } from "@/lib/bookings/catalog";
+import { createWhatsAppURL } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Book Your Tour Securely",
-  description:
-    "Choose your Travelspire package and continue to PayU secure checkout.",
+  description: "Choose your Travelspire package and continue to PayU secure checkout.",
   robots: { index: false, follow: false, nocache: true },
   referrer: "no-referrer",
 };
@@ -33,81 +33,50 @@ export default async function BookTourPage({
   const initialTierId = typeof query.tier === "string" ? query.tier : undefined;
   const isTestMode = process.env.PAYU_ENVIRONMENT !== "production";
 
+  const tour = allTours.find((t) => t.slug === slug);
+  const image = tour?.heroImage ?? (product.sourceUrl === "/anini-winter-fest-2026" ? awfHeroImages.desktop.src : undefined);
+  const imageAlt = tour ? getPlaceImageAlt(tour.heroImage, `${tour.title}, ${tour.location}`) : product.name;
+  const whatsappHref = createWhatsAppURL({
+    customMessage: `Hi Travelspire, I have a question before booking ${product.name}.`,
+  });
+
   return (
-    <div className="min-h-screen bg-[#07110f] px-5 pb-24 pt-32 text-[#f6efe2] sm:px-8 sm:pt-36 lg:px-16 xl:px-24">
-      <main className="mx-auto w-full max-w-[1380px]">
-        {isTestMode && (
-          <div className="mb-8 rounded-[10px] border border-[#d7b978]/35 bg-[#d7b978]/10 px-4 py-3 text-xs font-semibold leading-5 text-[#f0d99f]">
-            PayU sandbox preview — use test payment details only. No real money
-            will be charged.
-          </div>
-        )}
+    <Section spacing="none" className="pb-20 pt-6 md:pb-28 md:pt-8">
+      <Container>
         <Link
           href={product.sourceUrl}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-white/55 transition-colors hover:text-white"
+          className="inline-flex items-center gap-2 font-ui text-small font-medium text-fg-muted transition-colors hover:text-fg"
         >
-          <ArrowLeft aria-hidden="true" className="h-4 w-4" />
+          <IconArrowLeft size={18} />
           Back to {product.name}
         </Link>
 
-        <div className="mt-9 grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-16">
-          <section className="lg:col-span-7 lg:pt-5">
-            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#e59a67]">
-              Book directly
-            </p>
-            <h1 className="mt-5 max-w-[11ch] text-[clamp(3.1rem,7vw,6.7rem)] font-medium leading-[0.89] tracking-[-0.06em]">
-              {product.name}
-            </h1>
-            <p className="mt-7 max-w-[40rem] text-base leading-7 text-white/58 sm:text-lg sm:leading-8">
-              Select the package and departure date, pay the complete amount on
-              PayU, and receive your verified booking receipt by email.
-            </p>
+        {isTestMode ? (
+          <Callout tone="caution" title="Test mode — no real money moves" className="mt-6 max-w-3xl">
+            This site is connected to the PayU sandbox. Use PayU&apos;s test card or UPI details; nothing will be
+            charged.
+          </Callout>
+        ) : null}
 
-            <div className="mt-12 grid gap-px overflow-hidden rounded-[14px] bg-white/10 sm:grid-cols-3">
-              {[
-                {
-                  icon: BadgeCheck,
-                  title: "Live package price",
-                  text: "Read directly from the tour data",
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Server-verified total",
-                  text: "Customers cannot alter the amount",
-                },
-                {
-                  icon: MailCheck,
-                  title: "Receipt by email",
-                  text: "Sent after verified PayU success",
-                },
-              ].map((item) => (
-                <article
-                  key={item.title}
-                  className="bg-[#0d1915] p-5 sm:min-h-40 sm:p-6"
-                >
-                  <item.icon
-                    aria-hidden="true"
-                    className="h-5 w-5 text-[#d7b978]"
-                  />
-                  <h2 className="mt-7 text-sm font-semibold">{item.title}</h2>
-                  <p className="mt-2 text-xs leading-5 text-white/42">
-                    {item.text}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </section>
+        <header className="mt-8 max-w-3xl space-y-3">
+          <Eyebrow>Book directly</Eyebrow>
+          <Heading as="h1" size="h1">
+            {product.name}
+          </Heading>
+          <Lead>Choose your package and date, pay the full amount on PayU, and your receipt arrives by email.</Lead>
+        </header>
 
-          <div className="lg:col-span-5">
-            <BookingCheckoutForm
-              product={product}
-              minDepartureDate={earliestSellableDate(product)}
-              initialTierId={initialTierId}
-              isTestMode={isTestMode}
-            />
-          </div>
-        </div>
-      </main>
-    </div>
+        <BookingCheckoutForm
+          className="mt-10 md:mt-12"
+          product={product}
+          minDepartureDate={earliestSellableDate(product)}
+          initialTierId={initialTierId}
+          isTestMode={isTestMode}
+          image={image}
+          imageAlt={imageAlt}
+          whatsappHref={whatsappHref}
+        />
+      </Container>
+    </Section>
   );
 }
