@@ -7,8 +7,8 @@ export const tawangExpedition: Tour = {
   id: "tawang-expedition",
   slug: "tawang-expedition",
   type: "Adventure",
-  title: "Explore Tawang",
-  subtitle: "5 Days in the Land of Monasteries",
+  title: "Tawang & Sela Pass",
+  subtitle: "Five days over the Sela Pass to the great monastery town",
   overview:
     "Experience the breathtaking beauty of Tawang, from mystical monasteries to snow-capped peaks. Journey through Bomdila pass, witness the majesty of Sela Pass, and immerse yourself in Buddhist culture.",
   duration: "5 Days / 4 Nights",
@@ -155,7 +155,7 @@ export const dongValleyExpedition: Tour = {
   slug: "dong-valley-expedition",
   type: "Adventure",
   title: "Dong Valley Expedition",
-  subtitle: "The Land of India's First Sunlight",
+  subtitle: "Walong and the Dong sunrise — India's first light",
   overview:
     "Journey to the easternmost point of India where the sun rises first. Experience the untouched beauty of Dong Valley with its pristine landscapes and rich cultural heritage.",
   duration: "4 Days / 3 Nights",
@@ -304,8 +304,8 @@ export const aniniExpedition: Tour = {
   id: "anini-expedition",
   slug: "anini-expedition",
   type: "Adventure",
-  title: "Anini Dibang Valley",
-  subtitle: "3 Days in the Heart of Dibang Valley",
+  title: "Anini & Dibang Valley",
+  subtitle: "A short road trip to the high plateau at the end of NH-313",
   overview:
     "Experience the untouched beauty of Dibang Valley, featuring stunning waterfalls, the scenic Mayodia Pass, and pristine landscapes. Explore Acheso, witness the majestic Mawu ando & Mathu waterfalls, and immerse yourself in the natural splendor of Anini.",
   duration: "3 Days / 2 Nights",
@@ -429,7 +429,7 @@ export const dambukAniniOfamTour: Tour = {
   slug: "dambuk-anini-ofam",
   type: "Adventure",
   title: "Dambuk to Anini Tour",
-  subtitle: "Lets explore DAMBUK & ANINI",
+  subtitle: "Orange Festival weekend in Dambuk, then up to Anini",
   overview:
     "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with the pristine landscapes of Anini. Journey through orange orchards, witness the Mawu ando & Mathu waterfalls, and explore the remote Dibang Valley with its stunning Mayodia Pass.",
   duration: "4 Days / 3 Nights",
@@ -562,7 +562,7 @@ export const dambukGoldenPagodaTour: Tour = {
   slug: "dambuk-golden-pagoda-ofam",
   type: "Adventure",
   title: "Dambuk to Golden Pagoda Tour",
-  subtitle: "Lets explore DAMBUK & GOLDEN PAGODA",
+  subtitle: "Orange Festival weekend in Dambuk, with the Golden Pagoda at Namsai",
   overview:
     "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with a spiritual journey to the majestic Golden Pagoda in Namsai. Enjoy riverside camping, explore sacred Buddhist sites, and immerse yourself in the cultural heritage of Arunachal Pradesh.",
   duration: "3 Days / 2 Nights",
@@ -686,7 +686,7 @@ export const dambukDongValleyTour: Tour = {
   slug: "dambuk-dong-valley-ofam",
   type: "Adventure",
   title: "Dambuk to Dong Valley Tour",
-  subtitle: "Lets explore DAMBUK & DONG VALLEY",
+  subtitle: "Orange Festival weekend in Dambuk, then east to Walong and Dong",
   overview:
     "Experience the vibrant Orange Festival of Arunachal Meshes (OFAM) in Dambuk combined with an expedition to India's easternmost valley. Journey from the orange orchards of Dambuk to the historic Dong Valley, enjoying hot springs, trek experiences, and visiting India's easternmost villages.",
   duration: "4 Days / 3 Nights",
@@ -821,7 +821,7 @@ export const pomoTrekExpedition: Tour = {
   slug: "pomo-trek-expedition",
   type: "Adventure",
   title: "Anini Pomo Trek Expedition",
-  subtitle: "3 Nights / 4 Days Trekking Adventure",
+  subtitle: "Four days to the Pomo grasslands above Anini",
   overview:
     "Embark on a thrilling trek to Pomo, near Anini, in the heart of Dibang Valley.  Experience stunning waterfalls, pristine landscapes, and the unique culture of the region. This trek includes visits to Mayudia Pass, Mawu Ando & Mathu waterfalls, and Chigu and Dree-afra camps.",
   duration: "4 Days / 3 Nights",
@@ -957,7 +957,7 @@ export const mechukaExpedition: Tour = {
   slug: "mechuka-expedition",
   type: "Adventure",
   title: "Mechuka Expedition",
-  subtitle: "5 Nights 6 Days in the Hidden Valley of Arunachal",
+  subtitle: "Six days to the valley at the end of the Aalo road",
   overview:
     "Discover the untouched charm of Mechuka Valley — a serene land of scenic beauty, exotic tribes, gentle hills, and snow-capped mountains. Journey through Aalo, cross the Bogibeel and Yorlung bridges, and immerse yourself in a mix of spirituality, nature, and thrill.",
   duration: "6 Days / 5 Nights",

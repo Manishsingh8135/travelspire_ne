@@ -13,20 +13,20 @@ export const valleyMeta = {
 
 export const valleyHeroImages = {
   desktop: {
-    src: anini2026Src.rainbowGlamping,
-    width: 4032,
-    height: 3024,
+    src: anini2026Src.benchBoardwalk,
+    width: 3024,
+    height: 4032,
   },
   mobile: {
     src: anini2026Src.pomoRidgeTrail,
     width: 3120,
     height: 4160,
   },
-  alt: "Dibang Valley after rain — a double rainbow over the mountains above Anini, Arunachal Pradesh",
+  alt: "A boardwalk across the meadows below the grassy ridges of Dibang Valley, Arunachal Pradesh",
 } as const;
 
 export const valleyHeroFacts = [
-  { value: "9,129", label: "km² — India's largest district" },
+  { value: "9,129", label: "km² — Arunachal's largest district" },
   { value: "< 1", label: "person per km²" },
   { value: "2,655 m", label: "Mayodia Pass" },
   { value: "Oct–Apr", label: "Best window" },
@@ -39,7 +39,7 @@ export const valleyChapters = [
     name: "Anini",
     tag: "The high plateau",
     story:
-      "The quietest district headquarters in India, at 1,970 m. Clouds below, ridges above, and a night sky with no competition.",
+      "One of the quietest district headquarters in India, at 1,970 m. Clouds below, ridges above, and a night sky with no competition.",
     meta: "235 km from Roing · via Mayodia Pass",
     href: "/places/anini",
     image: anini2026Src.emuliSign,
@@ -53,8 +53,8 @@ export const valleyChapters = [
       "Riverside orchards on the Dibang's banks. Harvest season turns the whole town into a citrus market under golden light.",
     meta: "Lower Dibang · Nov–Jan harvest",
     href: "/places/dambuk",
-    image: "/images/places/dambuk/Dambuk_1.jpg",
-    imageAlt: "The Dibang riverbanks at Dambuk",
+    image: "/images/places/dambuk/Dambuk_7.jpg",
+    imageAlt: "Fresh oranges packed in net bags for sale in Dambuk",
   },
   {
     index: "03",
@@ -64,8 +64,8 @@ export const valleyChapters = [
       "Last fuel, last full network, first checkpoint. Every Dibang journey starts here — and the best ones linger a day.",
     meta: "NH-313 begins · lake, falls, forest",
     href: "/places/roing",
-    image: "/images/places/anini/Anini_2.JPG",
-    imageAlt: "The road through the hills of the Dibang foothills",
+    image: "/images/places/anini-new/anini-new-portrait-2.jpg",
+    imageAlt: "Morning mist over a river and bare trees in Dibang country",
   },
   {
     index: "04",
@@ -74,9 +74,9 @@ export const valleyChapters = [
     story:
       "2,655 m of ridge between the low valley and the high one. Snow in winter, cloud in monsoon, prayer flags all year.",
     meta: "56 km above Roing · the hinge of NH-313",
-    href: "/places/anini#route",
-    image: "/images/places/anini/Anini_10.JPG",
-    imageAlt: "Cloud-wrapped ridgelines on the way to Mayodia Pass",
+    href: "/places/anini#getting-there",
+    image: "/images/places/anini/Anini_2.JPG",
+    imageAlt: "Snow on the forest above a river in Dibang Valley in winter",
   },
   {
     index: "05",
@@ -98,7 +98,7 @@ export const valleyChapters = [
     meta: "Homestays · woven textiles · tiger taboo",
     href: "/places/anini",
     image: "/images/places/anini-new/anini-new-landscape-11.jpeg",
-    imageAlt: "Idu Mishmi country in Dibang Valley",
+    imageAlt: "A river valley with a waterfall and a riverside campsite in Dibang Valley",
   },
 ] as const;
 
@@ -106,10 +106,10 @@ export const valleyRiver = {
   title: "The river that draws the map",
   body: [
     "The Dibang begins in snow near the China border and falls two and a half vertical kilometres through the valley that carries its name. Everything here — every road, orchard, village and bridge — is arranged around where the river allows.",
-    "It is one of the last great undammed rivers in India. In Dambuk it is wide, pale and slow. Above Roing it narrows to white water. At Anini it is a mountain stream you can hear from the ridge. Follow it upstream and you have understood the whole region.",
+    "For now it runs free — a large hydropower project is being built downstream near Roing. In Dambuk it is wide, pale and slow. Above Roing it narrows to white water. At Anini it is a mountain stream you can hear from the ridge. Follow it upstream and you have understood the whole region.",
   ],
-  image: "/images/places/dambuk/Dambuk_3.jpg",
-  imageAlt: "The Dibang river flowing through the valley",
+  image: "/images/places/anini-new/anini-new-landscape-13.jpeg",
+  imageAlt: "Aerial view of a braided riverbed winding through Dibang Valley",
 } as const;
 
 export const valleySeasons = [
@@ -219,7 +219,7 @@ export const valleyFaqSection: FAQSection = {
       id: "valley-what",
       question: "What exactly is Dibang Valley?",
       answer:
-        "Two districts sharing one river: Lower Dibang Valley (Roing, Dambuk) in the foothills, and Dibang Valley district (Anini and beyond) in the high mountains. Dibang Valley district is India's largest by area and emptiest by population — fewer than one person per square kilometre. Together they make one of the last genuinely wild corners of the country.",
+        "Two districts sharing one river: Lower Dibang Valley (Roing, Dambuk) in the foothills, and Dibang Valley district (Anini and beyond) in the high mountains. Dibang Valley district is Arunachal's largest by area and India's least densely populated — fewer than one person per square kilometre. Together they make one of the last genuinely wild corners of the country.",
     },
     {
       id: "valley-days",

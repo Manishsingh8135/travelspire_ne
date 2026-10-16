@@ -11,10 +11,13 @@ export const roingMeta = {
   heroLine: "where every Anini journey begins",
 } as const;
 
+// There is no photograph of Roing itself on file yet. The hero uses a misty
+// Dibang river scene, described as exactly that; the experiences render as
+// text and the page has no gallery until real Roing photos exist.
 export const roingHeroImages = {
-  desktop: { src: "/images/places/anini/Anini_2.JPG", width: 3024, height: 4032 },
-  mobile: { src: "/images/places/anini-new/anini-new-portrait-6.jpg", width: 3024, height: 4032 },
-  alt: "Foothill road through Lower Dibang Valley near Roing",
+  desktop: { src: "/images/places/anini-new/anini-new-portrait-2.jpg", width: 3024, height: 4032 },
+  mobile: { src: "/images/places/anini-new/anini-new-portrait-2.jpg", width: 3024, height: 4032 },
+  alt: "Morning mist over a river and bare trees in Dibang country, Arunachal Pradesh",
 } as const;
 
 export const roingHeroFacts = [

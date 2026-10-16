@@ -115,7 +115,7 @@ export const arunachalPermitData = {
   applicationSteps: [
     {
       step: 1,
-      title: "Visit Official Portal",
+      title: "Open the official portal",
       description: "Go to the official e-ILP portal: eilp.arunachal.gov.in",
       details: [
         "Click on 'Apply for ILP' button",
@@ -127,7 +127,7 @@ export const arunachalPermitData = {
     },
     {
       step: 2,
-      title: "Register & Fill Application",
+      title: "Register and fill in the form",
       description: "Create account and fill the online application form",
       details: [
         "Enter personal details (name as per ID proof)",
@@ -141,7 +141,7 @@ export const arunachalPermitData = {
     },
     {
       step: 3,
-      title: "Pay Online Fee",
+      title: "Pay the fee online",
       description: "Complete payment through secure gateway",
       details: [
         "₹300 for a stay of up to 3 days",
@@ -154,7 +154,7 @@ export const arunachalPermitData = {
     },
     {
       step: 4,
-      title: "Download ILP",
+      title: "Download the ILP",
       description: "Receive approved ILP via email and portal",
       details: [
         "Usually approved within a day",
@@ -386,32 +386,32 @@ export const arunachalPermitData = {
   // Important Tips
   tips: [
     {
-      title: "Apply in Advance",
+      title: "Apply in advance",
       description: "Apply at least 2-3 days before travel to avoid last-minute issues. Though processing is fast, technical glitches can occur.",
       icon: "Clock",
     },
     {
-      title: "Print Colored Copy",
+      title: "Print a colour copy",
       description: "Always carry a colored printout of your ILP. Digital copies may not be accepted at all checkpoints, especially in remote areas with no internet.",
       icon: "Printer",
     },
     {
-      title: "Carry Original ID",
+      title: "Carry your original ID",
       description: "Keep your original ID proof (the one used in application) with you throughout the trip. Officials may verify it at checkpoints.",
       icon: "CreditCard",
     },
     {
-      title: "Check Validity",
+      title: "Check the validity",
       description: "Ensure your ILP covers your entire trip duration. If extending stay, visit DC office before ILP expires.",
       icon: "Calendar",
     },
     {
-      title: "Note Entry Points",
+      title: "Note your entry point",
       description: "Specify correct entry point in application. If plans change, it's usually accepted, but matching details is recommended.",
       icon: "MapPin",
     },
     {
-      title: "Group Applications",
+      title: "Group applications",
       description: "For family/group travel, you can add all members in one application. Each person still needs their ID proof uploaded.",
       icon: "Users",
     },

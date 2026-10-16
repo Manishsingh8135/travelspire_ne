@@ -101,7 +101,7 @@ export const nagalandPermitData = {
   applicationSteps: [
     {
       step: 1,
-      title: "Register on Official Portal",
+      title: "Register on the official portal",
       description: "Create account on the official Nagaland ILP portal",
       details: [
         "Visit ilp.nagaland.gov.in",
@@ -114,7 +114,7 @@ export const nagalandPermitData = {
     },
     {
       step: 2,
-      title: "Fill Online Application",
+      title: "Fill in the online application",
       description: "Complete the ILP application form with all required details",
       details: [
         "Select category: Tourist / Student / Business / Employment",
@@ -129,7 +129,7 @@ export const nagalandPermitData = {
     },
     {
       step: 3,
-      title: "Pay Application Fee",
+      title: "Pay the fee",
       description: "Complete online payment through secure gateway",
       details: [
         "Tourist (30 days): ₹200",
@@ -143,7 +143,7 @@ export const nagalandPermitData = {
     },
     {
       step: 4,
-      title: "Track & Download ILP",
+      title: "Track and download the ILP",
       description: "Wait for approval and download your e-ILP",
       details: [
         "Track application status on portal",
@@ -289,7 +289,7 @@ export const nagalandPermitData = {
     ilpTips: [
       "Apply for ILP at least 7-10 days before festival dates",
       "High volume of applications during November - expect slight delays",
-      "Mention 'Hornbill Festival' as purpose for quick processing",
+      "Choose the Tourist category and give your festival dates — there is no separate festival fast track",
       "Book accommodation in advance - gets fully booked",
       "ILP valid for festival period is sufficient (10-15 days)",
     ],
@@ -322,7 +322,7 @@ export const nagalandPermitData = {
     },
     {
       question: "Do I need ILP for Hornbill Festival?",
-      answer: "Yes, ILP is mandatory for visiting the Hornbill Festival in Kohima. Apply online at least 7-10 days before the festival (December 1-10). Mention 'Hornbill Festival' as your purpose of visit for potentially faster processing.",
+      answer: "Yes, ILP is mandatory for visiting the Hornbill Festival in Kohima. Apply online at least 7-10 days before the festival (December 1-10), as applications peak in November.",
     },
     {
       question: "What documents are required for Nagaland ILP?",
@@ -365,32 +365,32 @@ export const nagalandPermitData = {
   // Important Tips
   tips: [
     {
-      title: "Apply Online Only",
+      title: "Apply online only",
       description: "From Dec 31, 2024, offline applications are not accepted. Apply only through ilp.nagaland.gov.in",
       icon: "Globe",
     },
     {
-      title: "Plan Ahead for Hornbill",
+      title: "Plan ahead for Hornbill",
       description: "During Hornbill Festival (Dec 1-10), apply 7-10 days in advance due to high volume.",
       icon: "Calendar",
     },
     {
-      title: "Print Colored Copy",
+      title: "Print a colour copy",
       description: "Carry colored printout of your e-ILP. Some checkpoints may not accept digital copies.",
       icon: "Printer",
     },
     {
-      title: "Carry Original ID",
+      title: "Carry your original ID",
       description: "Keep your original ID proof (used in application) for verification at checkpoints.",
       icon: "CreditCard",
     },
     {
-      title: "Mon District Note",
+      title: "Mon district",
       description: "Register at local police station when visiting Mon district near Myanmar border.",
       icon: "MapPin",
     },
     {
-      title: "No Guarantor for Tourists",
+      title: "No guarantor for tourists",
       description: "Only tourists and students are exempt from guarantor requirement. Others need local guarantor.",
       icon: "Users",
     },

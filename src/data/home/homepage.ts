@@ -269,7 +269,7 @@ export const homeWhyPoints = [
   },
   {
     title: "Transparent package pricing",
-    body: "The price on the page is the price at checkout, verified on the server before you pay.",
+    body: "The price on the page is the price at checkout. No add-ons appear when you pay.",
   },
   {
     title: "Permit & paperwork assistance",
@@ -316,8 +316,8 @@ export const homeBooking = {
       steps: [
         "Choose a tour and package.",
         "Select travellers and date.",
-        "Pay the server-verified amount through PayU.",
-        "Receive a verified receipt by email.",
+        "Pay securely through PayU — the price you saw is the price you pay.",
+        "Get your booking receipt by email.",
       ],
       cta: { label: "Browse all tours", href: "/all-tours" },
     },
@@ -333,10 +333,10 @@ export const homeBooking = {
     },
   ],
   assurances: [
-    "Prices are verified on the server before payment",
-    "This site never sees or stores your card details",
-    "The payment screen is hosted by PayU",
-    "A verified receipt lands in your email",
+    "The price on the page is the price at checkout",
+    "We never see or store your card details",
+    "Payment happens on PayU’s secure page",
+    "Your receipt arrives by email straight away",
   ],
 } as const;
 

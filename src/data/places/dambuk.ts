@@ -12,9 +12,9 @@ export const dambukMeta = {
 } as const;
 
 export const dambukHeroImages = {
-  desktop: { src: "/images/places/dambuk/Dambuk_1.jpg", width: 3024, height: 4032 },
-  mobile: { src: "/images/places/dambuk/Dambuk_4.JPG", width: 3024, height: 4032 },
-  alt: "Golden light over the Dibang riverbanks at Dambuk, Lower Dibang Valley",
+  desktop: { src: "/images/places/dambuk/Dambuk_5.jpg", width: 3024, height: 4032 },
+  mobile: { src: "/images/places/dambuk/Dambuk_5.jpg", width: 3024, height: 4032 },
+  alt: "A view across the plains of Lower Dibang Valley to the hills, from a stay in Dambuk",
 } as const;
 
 export const dambukHeroFacts = [
@@ -31,17 +31,18 @@ export const dambukExperiences = [
     story:
       "Dambuk's orchards are the reason most people first hear its name. Walk the rows in harvest season, pick your own, and eat citrus that never saw a cold store.",
     meta: "Nov–Jan · orchard visits with local growers",
-    image: "/images/places/dambuk/Dambuk_5.jpg",
-    imageAlt: "Orange orchard rows at Dambuk",
+    image: "/images/places/dambuk/Dambuk_7.jpg",
+    imageAlt: "Fresh oranges packed in net bags for sale in Dambuk",
   },
   {
     index: "02",
     title: "The Dibang Riverbanks",
     story:
-      "Miles of pale shingle and driftwood along one of India's last undammed big rivers. Golden hour here is the photograph everyone takes home.",
+      "Miles of pale shingle and driftwood along the Dibang, one of the great rivers of the eastern Himalaya. Golden hour here is the photograph everyone takes home.",
     meta: "Sunrise & sunset · all season",
-    image: "/images/places/dambuk/Dambuk_3.jpg",
-    imageAlt: "The Dibang river flowing past Dambuk's banks",
+    // No riverbank photograph on file yet — the night sky over the plain stands in.
+    image: "/images/places/dambuk/Dambuk_1.jpg",
+    imageAlt: "Stars over the open plain at Dambuk at night",
   },
   {
     index: "03",
@@ -49,8 +50,9 @@ export const dambukExperiences = [
     story:
       "For decades Dambuk was cut off by the river — crossed by boat, when the boat ran. The bridge changed the valley's clock. Drive it at dusk.",
     meta: "On the Roing road · free",
-    image: "/images/places/dambuk/Dambuk_6.JPG",
-    imageAlt: "The Dibang bridge near Dambuk",
+    // No bridge photograph on file yet.
+    image: "/images/places/dambuk/Dambuk_2.jpg",
+    imageAlt: "A motorcyclist at a campsite gate in Dambuk",
   },
   {
     index: "04",
@@ -58,8 +60,8 @@ export const dambukExperiences = [
     story:
       "Dambuk lives with a river that redraws its own map. The story of how this town keeps rebuilding is told best by the people doing it — over orange juice.",
     meta: "Talk to locals · stay a night",
-    image: "/images/places/dambuk/Dambuk_7.jpg",
-    imageAlt: "Dambuk town and fields under big skies",
+    image: "/images/places/dambuk/Dambuk_5.jpg",
+    imageAlt: "A view across the plains to the hills from a pool at a stay in Dambuk",
   },
 ] as const;
 
@@ -79,12 +81,15 @@ export const dambukSeasons = [
 ] as const;
 
 export const dambukFrames = [
-  { src: "/images/places/dambuk/Dambuk_1.jpg", alt: "Dibang riverbanks at golden hour", caption: "The Banks" },
-  { src: "/images/places/dambuk/Dambuk_2.jpg", alt: "Open river plain at Dambuk", caption: "River Plain" },
-  { src: "/images/places/dambuk/Dambuk_4.JPG", alt: "Dambuk skies over the valley floor", caption: "Valley Floor" },
-  { src: "/images/places/dambuk/Dambuk_5.jpg", alt: "Orchard rows in Dambuk", caption: "Orchard Rows" },
-  { src: "/images/places/dambuk/Dambuk_6.JPG", alt: "The Dibang bridge approach", caption: "The Bridge" },
-  { src: "/images/places/dambuk/Dambuk_7.jpg", alt: "Fields and settlement at Dambuk", caption: "Dambuk Town" },
+  // Captions describe what each frame shows. The festival frames are from the
+  // Orange Festival grounds in Dambuk.
+  { src: "/images/places/dambuk/Dambuk_7.jpg", alt: "Fresh oranges packed in net bags for sale in Dambuk", caption: "Harvest oranges" },
+  { src: "/images/places/dambuk/Dambuk_3.jpg", alt: "The illuminated DAMBUK sign at the Orange Festival grounds at night", caption: "Orange Festival grounds" },
+  { src: "/images/places/dambuk/Dambuk_6.JPG", alt: "A band performing on stage at the Orange Festival in Dambuk", caption: "Orange Festival stage" },
+  { src: "/images/places/dambuk/Dambuk_4.JPG", alt: "Performers singing together on stage at the Orange Festival in Dambuk", caption: "Festival night" },
+  { src: "/images/places/dambuk/Dambuk_5.jpg", alt: "A view across the plains to the hills from a pool at a stay in Dambuk", caption: "Plains to hills" },
+  { src: "/images/places/dambuk/Dambuk_1.jpg", alt: "Stars over the open plain at Dambuk at night", caption: "Night sky" },
+  { src: "/images/places/dambuk/Dambuk_2.jpg", alt: "A motorcyclist at a campsite gate in Dambuk", caption: "Camp gate" },
 ] as const;
 
 export const dambukFaqSection: FAQSection = {
