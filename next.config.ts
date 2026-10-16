@@ -15,9 +15,12 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
-    // The photography is shot at 3–12 MP; AVIF roughly halves WebP again on
-    // these large landscape frames.
-    formats: ['image/avif', 'image/webp'],
+    // WebP only: AVIF is smaller but several times slower to encode, and on
+    // a cold cache that delay is what visitors see as "broken" photos. The
+    // source photographs are capped at 2560 px, and optimised copies are
+    // immutable, so they can be cached for a year.
+    formats: ['image/webp'],
+    minimumCacheTTL: 31536000,
     // domains: ['images.unsplash.com'],
     remotePatterns: [
       {
