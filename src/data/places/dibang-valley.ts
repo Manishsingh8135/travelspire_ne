@@ -13,16 +13,16 @@ export const valleyMeta = {
 
 export const valleyHeroImages = {
   desktop: {
-    src: anini2026Src.rainbowGlamping,
-    width: 4032,
-    height: 3024,
+    src: anini2026Src.benchBoardwalk,
+    width: 3024,
+    height: 4032,
   },
   mobile: {
     src: anini2026Src.pomoRidgeTrail,
     width: 3120,
     height: 4160,
   },
-  alt: "Dibang Valley after rain — a double rainbow over the mountains above Anini, Arunachal Pradesh",
+  alt: "A boardwalk across the meadows below the grassy ridges of Dibang Valley, Arunachal Pradesh",
 } as const;
 
 export const valleyHeroFacts = [

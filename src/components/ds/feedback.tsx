@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { Info, Lightbulb, TriangleAlert } from "lucide-react";
+import { IconAlert as TriangleAlert, IconInfo as Info, IconLightbulb as Lightbulb } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 /* Badges carry status — availability, permit requirement, a fixed date. They

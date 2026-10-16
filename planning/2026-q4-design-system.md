@@ -1,4 +1,4 @@
-# Q4 2026 — Design system ("Field Guide")
+# Q4 2026 — Design system (Evergreen)
 
 Drafted 2026-10-15 after the live-site UI audit. Lives in git next to the SEO
 plan. Status: **foundation in review** — tokens + primitives + the `/design`

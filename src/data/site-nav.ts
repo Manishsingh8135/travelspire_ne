@@ -61,7 +61,7 @@ export function getSiteNav(): SiteNav {
     },
   ];
   if (liveFestivals.length) {
-    tourGroups.push({ heading: "Festivals this season", links: liveFestivals.map(({ slug: _slug, ...link }) => link) });
+    tourGroups.push({ heading: "Festivals this season", links: liveFestivals.map(({ label, href, description, meta }) => ({ label, href, description, meta })) });
   }
 
   return {

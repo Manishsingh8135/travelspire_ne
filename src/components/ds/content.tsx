@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, ChevronRight, Plus } from "lucide-react";
+import { IconArrowUpRight as ArrowUpRight, IconChevronRight as ChevronRight, IconPlus as Plus } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { SITE_URL } from "@/lib/site";
 import { Badge, type BadgeProps } from "./feedback";

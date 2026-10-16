@@ -1,5 +1,5 @@
 import * as React from "react";
-import { MessageCircle } from "lucide-react";
+import { IconWhatsApp } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { ButtonLink, buttonVariants } from "./button";
 import { formatInr } from "./content";
@@ -51,7 +51,7 @@ export function PriceBar({
           aria-label="Ask on WhatsApp"
           className={buttonVariants({ variant: "secondary", size: "icon" })}
         >
-          <MessageCircle />
+          <IconWhatsApp />
         </a>
         <ButtonLink href={bookHref}>{bookLabel}</ButtonLink>
       </div>

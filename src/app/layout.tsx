@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider/theme-provider";
@@ -14,21 +13,7 @@ import {
   generateWebSiteSchema
 } from "@/lib/structured-data";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-  display: "swap",
-});
-
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-  display: "swap",
-});
-
-// Field Guide body + UI face. Variable weight; the width axis is not loaded.
+// Evergreen body + UI face. Variable weight; the width axis is not loaded.
 const instrumentSans = Instrument_Sans({
   subsets: ["latin", "latin-ext"],
   variable: "--font-ui",
@@ -47,10 +32,10 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: "Travelspire North-East | Explore the Unexplored Northeast India",
+    default: "Travelspire Northeast | Arunachal Pradesh & Northeast India Tours",
     template: "%s | Travelspire North-East",
   },
-  description: "Experience authentic Northeast India with Travelspire NE. Local guides, offbeat destinations, cultural immersion and responsible tourism across Arunachal, Assam, Meghalaya & beyond.",
+  description: "A local travel company from Dibrugarh running Arunachal Pradesh tours — Tawang, Mechuka, Anini, Dong and Ziro — plus festival journeys and Inner Line Permit help across Northeast India.",
   keywords: [
     "North East India travel",
     "Arunachal Pradesh tours",
@@ -96,24 +81,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "https://travelspirene.com",
-    title: "Travelspire North-East | Authentic Northeast India Travel Experiences",
-    description: "Experience authentic travel adventures in Northeast India with expert local guides. Discover hidden gems, rich tribal culture, and breathtaking landscapes across all 8 northeastern states.",
+    title: "Travelspire Northeast | Arunachal Pradesh & Northeast India Tours",
+    description: "Locally run tours, expeditions and festival journeys across Arunachal Pradesh and Northeast India, with permits arranged — from a Dibrugarh-based team.",
     siteName: "Travelspire North-East",
     images: [
       {
-        url: "/images/logo/Travelspire_ne_logo_new.png",
-        width: 1200,
-        height: 630,
-        alt: "Travelspire North-East - Authentic Northeast India Travel",
+        url: "/images/places/mechuka-new/mechuka-new-landscape-16.JPG",
+        alt: "Mechuka Valley, Arunachal Pradesh — a Travelspire Northeast route",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Travelspire North-East | Explore Northeast India",
-    description: "Authentic Northeast India travel experiences with expert local guides",
+    title: "Travelspire Northeast | Arunachal & Northeast India Tours",
+    description: "Locally run tours, expeditions and festival journeys across Arunachal Pradesh, with permits arranged.",
     creator: "@travelspire_ne",
-    images: ["/images/logo/Travelspire_ne_logo_new.png"],
+    images: ["/images/places/mechuka-new/mechuka-new-landscape-16.JPG"],
   },
   robots: {
     index: true,
@@ -167,7 +150,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSans.variable} ${instrumentSerif.variable}`}
+      className={`${instrumentSans.variable} ${instrumentSerif.variable}`}
     >
       <head>
         <link rel="manifest" href="/manifest.json" />

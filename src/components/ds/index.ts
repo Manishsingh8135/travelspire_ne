@@ -1,4 +1,4 @@
-// Field Guide design system — see planning/2026-q4-design-system.md.
+// Evergreen design system — see planning/2026-q4-design-system.md.
 export { Container, Section } from "./layout";
 export { Heading, Accent, Eyebrow, Lead, Prose, SectionHeader } from "./typography";
 export { Button, ButtonLink, buttonVariants, type ButtonProps } from "./button";

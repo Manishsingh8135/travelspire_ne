@@ -1,4 +1,4 @@
-import { CalendarDays, Clock, Mountain, Users } from "lucide-react";
+import { IconCalendar as CalendarDays, IconClock as Clock, IconMountain as Mountain, IconUsers as Users } from "@/components/icons";
 import {
   Accent,
   Accordion,
@@ -23,7 +23,7 @@ import {
 } from "@/components/ds";
 import { icons } from "@/components/icons";
 
-/* Field Guide specimen. Renders the whole system in one mode per request:
+/* Evergreen specimen. Renders the whole system in one mode per request:
    /design (light) and /design?theme=dark. Internal; noindex via layout. */
 
 const swatches = [
@@ -118,7 +118,7 @@ function Specimen() {
       {/* Intro */}
       <Section spacing="compact" className="border-b border-line">
         <Container className="space-y-5">
-          <Eyebrow>Field Guide · design system</Eyebrow>
+          <Eyebrow>Evergreen · design system</Eyebrow>
           <Heading as="h1" size="h1">
             One system, <Accent>two lights.</Accent>
           </Heading>
