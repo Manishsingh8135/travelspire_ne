@@ -7,7 +7,7 @@ export const hornbillFestival: FestivalTour = {
   type: "Festival",
   festivalName: "Hornbill Festival",
   title: "Hornbill Festival 2026",
-  subtitle: "The biggest festival of Nagaland",
+  subtitle: "The Festival of Festivals at Kisama, Nagaland",
   overview:
     "Experience the cultural extravaganza of Northeast India at the Hornbill Festival, combined with the breathtaking beauty of Dzukou Valley. This festival celebrates the rich heritage of Nagaland's 16 major tribes with traditional dances, music, local cuisine, and handicrafts.",
   location: "Kisama Heritage Village, Nagaland",
@@ -142,9 +142,9 @@ export const orangeFestival: FestivalTour = {
   id: "orange-festival-2026",
   slug: "orange-festival-2026",
   type: "Festival",
-  festivalName: "OFAM (DAMBUK) 2026",
-  title: "OFAM (DAMBUK) 2026",
-  subtitle: "Where Adventure Meets Music in the Land of Oranges",
+  festivalName: "Orange Festival of Adventure and Music (OFAM)",
+  title: "Orange Festival, Dambuk 2026",
+  subtitle: "Adventure and music in the orange orchards of Lower Dibang",
   overview:
     "Experience the unique blend of music, adventure, and nature at the Orange Festival of Adventure & Music in Dambuk. Set against the backdrop of orange orchards and mountains, this festival offers an unforgettable mix of live performances, adventure activities, and local culture.",
   location: "Dambuk, Arunachal Pradesh",
@@ -304,7 +304,7 @@ export const ziroFestival2026: FestivalTour = {
   type: "Festival",
   festivalName: "Ziro Festival of Music 2026",
   title: "Ziro Festival of Music 2026",
-  subtitle: "India's Greatest Eco-Friendly Outdoor Music Festival",
+  subtitle: "The outdoor music festival in Apatani country",
   overview:
     "Experience India's premier eco-friendly outdoor music festival in the UNESCO Tentative World Heritage Site of Ziro Valley. Founded in 2012, this 4-day celebration features 33+ artists from India and around the world, hosted by the indigenous Apatani tribe with sustainable bamboo infrastructure and zero-waste practices.",
   location: "Ziro Valley, Arunachal Pradesh",
