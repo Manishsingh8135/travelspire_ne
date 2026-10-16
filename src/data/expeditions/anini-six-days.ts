@@ -39,15 +39,6 @@ export const sixHeroImages = {
   alt: "Trekkers on a grassy ridge trail above a river valley on the Pomo route near Anini, Dibang Valley",
 } as const;
 
-// The vitals strip under the hero. Mono figures, no adjectives.
-export const sixVitals = [
-  { value: "6", unit: "days", label: "5 nights" },
-  { value: "385", unit: "km", label: "Dibrugarh to Anini" },
-  { value: "2,655", unit: "m", label: "Mayodia high point" },
-  { value: "03:00", unit: "start", label: "Pomo summit day" },
-  { value: "4–6", unit: "pax", label: "Group size" },
-] as const;
-
 // ── Overture ────────────────────────────────────────────────────────────────
 
 export const sixOverture = {

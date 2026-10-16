@@ -1,11 +1,5 @@
 import type { Metadata } from "next";
-import { CircuitBookBar } from "@/components/expeditions/grand-circuit/circuit-book-bar";
-import { CircuitBooking } from "@/components/expeditions/grand-circuit/circuit-booking";
-import { CircuitFaq } from "@/components/expeditions/grand-circuit/circuit-faq";
-import { CircuitGallery } from "@/components/expeditions/grand-circuit/circuit-gallery";
-import { CircuitHero } from "@/components/expeditions/grand-circuit/circuit-hero";
-import { CircuitItinerary } from "@/components/expeditions/grand-circuit/circuit-itinerary";
-import { CircuitStory } from "@/components/expeditions/grand-circuit/circuit-story";
+import { GrandCircuitPage } from "@/components/expeditions/grand-circuit-page";
 import { StructuredData } from "@/components/seo/structured-data";
 import { ImageSEO } from "@/components/seo/image-seo";
 import { mechuka2026Images } from "@/data/seo/image-seo-data";
@@ -299,16 +293,10 @@ const circuitGraph = {
 
 export default function MechukaDongAniniTourPage() {
   return (
-    <article className="min-h-screen bg-[#07110f]">
+    <>
       <StructuredData data={circuitGraph} />
       <ImageSEO images={mechuka2026Images} limit={8} />
-      <CircuitHero />
-      <CircuitStory />
-      <CircuitGallery />
-      <CircuitItinerary />
-      <CircuitBooking />
-      <CircuitFaq />
-      <CircuitBookBar />
-    </article>
+      <GrandCircuitPage />
+    </>
   );
 }

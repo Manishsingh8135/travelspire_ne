@@ -47,13 +47,6 @@ export const circuitHero = {
   },
 } as const;
 
-export const circuitFacts = [
-  { value: "13", unit: "days", label: "12 nights on the road" },
-  { value: "3", unit: "regions", label: "one continuous circuit" },
-  { value: "02:00", unit: "start", label: "Dong sunrise morning" },
-  { value: "4–6", unit: "pax", label: "group pricing" },
-] as const;
-
 export const circuitIntro = {
   kicker: "The grand circuit",
   title: "Three journeys, joined properly.",
@@ -558,30 +551,6 @@ export const circuitFaq: FAQSection = {
     },
   ],
 };
-
-export const circuitRelated = [
-  {
-    title: "Six Days in the Dibang",
-    label: "Pomo extension",
-    href: "/tours/anini-pomo-grassland-expedition",
-    image: "/images/places/pomo/pomo3.JPG",
-    alt: "Rolling Pomo grassland above Anini in Dibang Valley",
-  },
-  {
-    title: "The Way to Anini",
-    label: "Road guide",
-    href: "/guides/dibrugarh-to-anini",
-    image: "/images/places/anini-new/anini-new-landscape-13.jpeg",
-    alt: "Aerial view of a river bend and roadside camp in the Anini region",
-  },
-  {
-    title: "Arunachal Pradesh ILP",
-    label: "Permit guide",
-    href: "/permits/arunachal-pradesh-ilp",
-    image: mechuka2026Src.goldenBuddha,
-    alt: "Golden seated Buddha statue on an ornate red and gold pedestal at dusk in Mechuka, Arunachal Pradesh",
-  },
-] as const;
 
 export const circuitSeoImages = [
   {

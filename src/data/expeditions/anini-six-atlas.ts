@@ -271,18 +271,6 @@ export const FRAMES = {
 
 export type FrameKey = keyof typeof FRAMES;
 
-// ── Derived money ───────────────────────────────────────────────────────────
-// The only arithmetic on this page. Both figures are derived from the published
-// per-person rate, never entered by hand, so they cannot drift out of sync.
-
-export function perPersonPerDay(price: number, days = 6): number {
-  return Math.round(price / days);
-}
-
-export function partyTotal(price: number, size: number): number {
-  return price * size;
-}
-
 // ── The desk: what each party size actually changes ──────────────────────────
 
 export interface TierDetail {
@@ -407,109 +395,6 @@ export const sixNights: NightStay[] = [
     ],
   },
 ];
-
-// ── What the number carries ─────────────────────────────────────────────────
-// Each included line, given a photograph of the country it applies to. The
-// caption always names the place, never the service — we do not have staged
-// photographs of a guide or a dinner, so we do not pretend to.
-
-export interface CarryItem {
-  n: string;
-  name: string;
-  note: string;
-  frame: Frame;
-}
-
-export const sixCarries: CarryItem[] = [
-  {
-    n: "01",
-    name: "Five nights' accommodation",
-    note: "Four in an Anini homestay, one at Chigu camp on the river flats.",
-    frame: FRAMES.cottage,
-  },
-  {
-    n: "02",
-    name: "Private transportation",
-    note: "A dedicated vehicle and driver for all six days, Dibrugarh to Dibrugarh.",
-    frame: FRAMES.roadRidge,
-  },
-  {
-    n: "03",
-    name: "Expedition guide",
-    note: "With you from pickup to drop-off — not handed over at the district line.",
-    frame: FRAMES.mayodiaCloud,
-  },
-  {
-    n: "04",
-    name: "Pomo grassland trek",
-    note: "A dedicated trek guide for the summit day, and the transport to the trailhead.",
-    frame: FRAMES.pomoWide,
-  },
-  {
-    n: "05",
-    name: "Breakfast & dinner",
-    note: "Every day of the expedition. Lunch stays on you, which keeps the driving days flexible.",
-    frame: FRAMES.dreeAfra,
-  },
-  {
-    n: "06",
-    name: "Inner Line Permit",
-    note: "Applied for and carried on your behalf. We need clear photo ID well before departure.",
-    frame: FRAMES.forestFloor,
-  },
-  {
-    n: "07",
-    name: "Forest pass",
-    note: "Required beyond Anini for the valley and the trek. Handled by us.",
-    frame: FRAMES.gipulinForest,
-  },
-];
-
-// ── Day two's seven water stops, in driving order ───────────────────────────
-// Index-aligned with sixWater.entries in anini-six-days.ts.
-
-export const sixWaterFrames: Frame[] = [
-  FRAMES.dreeAfra,
-  FRAMES.chiguFlats,
-  FRAMES.mawuando,
-  FRAMES.driRiver,
-  FRAMES.deccanFalls,
-  FRAMES.ahiFalls,
-  FRAMES.bruniFalls,
-];
-
-// ── The summit day, as a photo sequence ─────────────────────────────────────
-// Paired one-to-one with the six beats in sixSummit.segments.
-
-export const sixSequenceFrames: Frame[] = [
-  FRAMES.pomoHills,
-  FRAMES.gipulinForest,
-  FRAMES.pomoRidgeTrail,
-  FRAMES.pomoLight,
-  FRAMES.pomoWide,
-  FRAMES.pomoMeadow,
-];
-
-// ── Frames for each day chapter ─────────────────────────────────────────────
-// Keyed by day number: one lead plate, then the strip beneath it.
-
-export const sixDayLead: Record<number, Frame> = {
-  1: FRAMES.mayodiaCloud,
-  2: FRAMES.cascadeFalls,
-  3: FRAMES.pomoWide,
-  4: FRAMES.gipulinForest,
-  5: FRAMES.emuliSign,
-  6: FRAMES.mistDescent,
-};
-
-export const sixDayStrips: Record<number, Frame[]> = {
-  1: [FRAMES.roadRidge, FRAMES.roadValley, FRAMES.plateau],
-  2: [FRAMES.mistyFalls, FRAMES.riverbankFalls, FRAMES.driRiver, FRAMES.cascadeFalls],
-  3: [FRAMES.pomoRidgeTrail, FRAMES.pomoHorizon, FRAMES.pomoLight],
-  4: [FRAMES.ridgeCloud, FRAMES.cottage, FRAMES.forestFloor],
-  5: [FRAMES.emuliSign, FRAMES.meadowRest, FRAMES.rainbowGlamping],
-  6: [FRAMES.mistDescent, FRAMES.roadValley, FRAMES.mawuando],
-};
 
 // ── The archive ─────────────────────────────────────────────────────────────
 // Everything we can stand behind, in one place, shaped by its real geometry.
