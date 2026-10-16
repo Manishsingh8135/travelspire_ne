@@ -17,13 +17,8 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
-    { "@type": "Article", headline: data.seo.title, description: data.seo.description, dateModified: new Date().toISOString(), author: { "@type": "Organization", name: "TravelSpire NE" } },
+    { "@type": "Article", headline: data.seo.title, description: data.seo.description, dateModified: "2026-08-01", author: { "@type": "Organization", name: "TravelSpire NE" } },
     { "@type": "FAQPage", mainEntity: data.faqs.map((faq) => ({ "@type": "Question", name: faq.question, acceptedAnswer: { "@type": "Answer", text: faq.answer } })) },
-    { "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://travelspirene.com" },
-      { "@type": "ListItem", position: 2, name: "Permits", item: "https://travelspirene.com/permits" },
-      { "@type": "ListItem", position: 3, name: "Sikkim Permit", item: data.seo.canonical },
-    ]},
   ],
 };
 

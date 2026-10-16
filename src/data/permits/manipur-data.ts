@@ -54,10 +54,10 @@ export const manipurPermitData = {
   ],
 
   applicationSteps: [
-    { step: 1, title: "Visit Official Portal", description: "Go to manipurilponline.mn.gov.in", details: ["Register with mobile and email", "Create login credentials", "Choose visitor category"], duration: "5 minutes", icon: "Globe" },
-    { step: 2, title: "Fill Application Form", description: "Complete online application", details: ["Enter personal details", "Upload photo and ID proof", "Specify travel dates and places", "Select permit type (Temporary/Regular/Special)"], duration: "15 minutes", icon: "FileText" },
-    { step: 3, title: "Pay Fee Online", description: "Complete payment", details: ["Temporary (30 days): ₹100", "Regular (3 months): ₹500", "Special (3 years): ₹5000", "UPI, Net Banking, Cards accepted"], duration: "2 minutes", icon: "CreditCard" },
-    { step: 4, title: "Download ILP", description: "Receive approved e-ILP", details: ["Processing: 1-2 working days", "Download from portal", "Print colored copy"], duration: "1-2 days", icon: "Download" },
+    { step: 1, title: "Open the official portal", description: "Go to manipurilponline.mn.gov.in", details: ["Register with mobile and email", "Create login credentials", "Choose visitor category"], duration: "5 minutes", icon: "Globe" },
+    { step: 2, title: "Fill in the application", description: "Complete online application", details: ["Enter personal details", "Upload photo and ID proof", "Specify travel dates and places", "Select permit type (Temporary/Regular/Special)"], duration: "15 minutes", icon: "FileText" },
+    { step: 3, title: "Pay the fee online", description: "Complete payment", details: ["Temporary (30 days): ₹100", "Regular (3 months): ₹500", "Special (3 years): ₹5000", "UPI, Net Banking, Cards accepted"], duration: "2 minutes", icon: "CreditCard" },
+    { step: 4, title: "Download the ILP", description: "Receive approved e-ILP", details: ["Processing: 1-2 working days", "Download from portal", "Print colored copy"], duration: "1-2 days", icon: "Download" },
   ],
 
   documents: {
@@ -94,10 +94,10 @@ export const manipurPermitData = {
   ],
 
   tips: [
-    { title: "Apply Early", description: "Apply 3-4 days before travel as processing takes 1-2 working days.", icon: "Clock" },
+    { title: "Apply early", description: "Apply 3-4 days before travel as processing takes 1-2 working days.", icon: "Clock" },
     { title: "Sangai Festival", description: "Book early for Nov 21-30 festival period. High demand for permits and accommodation.", icon: "Calendar" },
-    { title: "Print ILP", description: "Carry colored printout. Digital copies may not be accepted at all checkpoints.", icon: "Printer" },
-    { title: "Check Situation", description: "Check local situation before travel. Bandhs and blockades can occur.", icon: "AlertCircle" },
+    { title: "Print the ILP", description: "Carry colored printout. Digital copies may not be accepted at all checkpoints.", icon: "Printer" },
+    { title: "Check the local situation", description: "Check local situation before travel. Bandhs and blockades can occur.", icon: "AlertCircle" },
   ],
 
   contact: {

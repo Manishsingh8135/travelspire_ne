@@ -65,7 +65,7 @@ const jsonLd = {
       description: data.seo.description,
       image: "https://travelspirene.com/images/permits/arunachal-ilp-og.jpg",
       datePublished: "2025-01-01",
-      dateModified: new Date().toISOString(),
+      dateModified: "2026-10-15",
       author: {
         "@type": "Organization",
         name: "TravelSpire NE",
@@ -94,7 +94,7 @@ const jsonLd = {
       estimatedCost: {
         "@type": "MonetaryAmount",
         currency: "INR",
-        value: "100",
+        value: "300",
       },
       step: data.applicationSteps.map((step, index) => ({
         "@type": "HowToStep",
@@ -120,31 +120,6 @@ const jsonLd = {
           text: faq.answer,
         },
       })),
-    },
-    // BreadcrumbList Schema
-    {
-      "@type": "BreadcrumbList",
-      "@id": `${data.seo.canonical}#breadcrumb`,
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: "https://travelspirene.com",
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Permits",
-          item: "https://travelspirene.com/permits",
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: "Arunachal Pradesh ILP",
-          item: data.seo.canonical,
-        },
-      ],
     },
     // Government Service Schema
     {

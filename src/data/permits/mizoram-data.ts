@@ -41,7 +41,7 @@ export const mizoramPermitData = {
       regular: "6 months (for workers)",
     },
     onArrival: true,
-    onArrivalNote: "Available at Lengpui Airport from Security Officer. Only state offering on-arrival ILP!",
+    onArrivalNote: "Available at Lengpui Airport from the Security Officer — the only Northeast state that issues an ILP on arrival.",
     officialPortal: "https://ilp.mizoram.gov.in",
     helpline: "Liaison Officers in Guwahati, Kolkata, Shillong, Delhi",
     lastUpdated: "August 2026",
@@ -91,7 +91,7 @@ export const mizoramPermitData = {
   applicationSteps: [
     {
       step: 1,
-      title: "Visit Official Portal or Apply at Airport",
+      title: "Apply online or at the airport",
       description: "Choose online application or get ILP on arrival at Lengpui Airport",
       details: [
         "Online: Visit ilp.mizoram.gov.in",
@@ -104,7 +104,7 @@ export const mizoramPermitData = {
     },
     {
       step: 2,
-      title: "Fill Application Form",
+      title: "Fill in the application",
       description: "Complete the ILP application with personal details",
       details: [
         "Enter personal details as per ID proof",
@@ -118,7 +118,7 @@ export const mizoramPermitData = {
     },
     {
       step: 3,
-      title: "Pay Fee",
+      title: "Pay the fee",
       description: "Pay the ILP fee online or in person",
       details: [
         "Form fee: ₹20",
@@ -132,7 +132,7 @@ export const mizoramPermitData = {
     },
     {
       step: 4,
-      title: "Receive ILP",
+      title: "Receive the ILP",
       description: "Get your approved ILP instantly or same day",
       details: [
         "Online: Download from portal same day",
@@ -223,7 +223,7 @@ export const mizoramPermitData = {
   faqs: [
     {
       question: "Can I get Mizoram ILP on arrival at airport?",
-      answer: "Yes! Mizoram is the only northeastern state that offers ILP on arrival. You can get it at Lengpui Airport from the Security Officer immediately upon arrival. Carry 2 passport-size photos, ID proof, and ₹120 fee.",
+      answer: "Yes. Mizoram is the only northeastern state that offers ILP on arrival. You can get it at Lengpui Airport from the Security Officer immediately upon arrival. Carry 2 passport-size photos, ID proof, and ₹120 fee.",
     },
     {
       question: "What is the fee for Mizoram ILP?",
@@ -265,32 +265,32 @@ export const mizoramPermitData = {
 
   tips: [
     {
-      title: "Get ILP at Airport",
+      title: "Get the ILP at the airport",
       description: "Mizoram is the only NE state offering ILP on arrival at Lengpui Airport. Carry photos and cash.",
       icon: "Plane",
     },
     {
-      title: "Sunday Closure",
+      title: "Sunday closure",
       description: "Sunday is strictly observed in Mizoram. Most shops, restaurants, and services are closed. Plan accordingly.",
       icon: "Calendar",
     },
     {
-      title: "Carry Cash",
+      title: "Carry cash",
       description: "ATMs are limited outside Aizawl. Carry sufficient cash, especially for remote areas.",
       icon: "CreditCard",
     },
     {
-      title: "Respect Local Culture",
+      title: "Respect local custom",
       description: "Mizoram is predominantly Christian. Dress modestly and respect local customs and church timings.",
       icon: "Users",
     },
     {
-      title: "15-Day Validity",
+      title: "15-day validity",
       description: "Temporary ILP is valid for 15 days only. Plan your trip accordingly or apply for extension.",
       icon: "Clock",
     },
     {
-      title: "FRO Registration",
+      title: "FRO registration",
       description: "Foreigners must register with FRO within 24 hours of arrival. Carry copies of passport and visa.",
       icon: "FileText",
     },
