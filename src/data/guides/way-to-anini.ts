@@ -17,7 +17,7 @@ export const wayMeta = {
 export const wayHeroImages = {
   desktop: { src: "/images/places/anini/Anini_10.JPG", width: 3024, height: 4032 },
   mobile: { src: "/images/places/anini-new/anini-new-portrait-8.jpg", width: 3024, height: 4032 },
-  alt: "Cloud-wrapped ridgelines on the road to Anini, Dibang Valley",
+  alt: "Travellers on a hilltop above a forested valley in Dibang Valley",
 } as const;
 
 export const wayHeroFacts = [
@@ -34,8 +34,10 @@ export interface WayChapter {
   story: string;
   protocol: string;
   protocolLabel: string;
-  image: string;
-  imageAlt: string;
+  /** Only where we hold a photograph of that stretch. Borrowed pictures of
+   *  other places were removed — see the 2026-10 redesign notes. */
+  image?: string;
+  imageAlt?: string;
 }
 
 export const wayChapters: WayChapter[] = [
@@ -48,20 +50,16 @@ export const wayChapters: WayChapter[] = [
     protocol:
       "Airport and railway pickups with exact pins, a named coordinator, and feeder vehicles timed to your arrival — not a shared bus schedule.",
     protocolLabel: "What we do here",
-    image: "/images/places/dambuk/Dambuk_2.jpg",
-    imageAlt: "Open plains and river light at the start of the journey",
   },
   {
     index: "02",
     title: "The Crossing",
     where: "Bhupen Hazarika Setu · 9.15 km over the Lohit",
     story:
-      "India's longest bridge, and the moment the trip visibly becomes an expedition. Nine kilometres of water and sky, the far bank hazy with hills. Everyone in the vehicle goes quiet. They always do.",
+      "One of India's longest river bridges, and the moment the trip visibly becomes an expedition. Nine kilometres of water and sky, the far bank hazy with hills. Everyone in the vehicle goes quiet. They always do.",
     protocol:
-      "A timed photo stop when conditions allow, the bridge story told properly, and the first stamp in your road passport.",
+      "A timed photo stop when conditions allow, and the story of the bridge that replaced the old river ferries.",
     protocolLabel: "What we do here",
-    image: "/images/places/dambuk/Dambuk_6.JPG",
-    imageAlt: "The long bridge crossing into Arunachal's foothill country",
   },
   {
     index: "03",
@@ -72,8 +70,6 @@ export const wayChapters: WayChapter[] = [
     protocol:
       "Our document ritual runs before departure: ILP verified against the passenger list, offline copies on every phone, one folder per vehicle. The gate becomes a formality.",
     protocolLabel: "What we do here",
-    image: "/images/places/anini/Anini_1.JPG",
-    imageAlt: "The checkpoint road at the Arunachal border",
   },
   {
     index: "04",
@@ -84,8 +80,6 @@ export const wayChapters: WayChapter[] = [
     protocol:
       "Refuel, cash, supplies, and a live road-condition confirmation from our network up-route. If the mountain says wait, we have a buffer-day plan ready — Mehao Lake beats a landslide queue.",
     protocolLabel: "What we do here",
-    image: "/images/places/anini/Anini_2.JPG",
-    imageAlt: "Roing, the foothill staging town at the base of the climb",
   },
   {
     index: "05",
@@ -96,8 +90,6 @@ export const wayChapters: WayChapter[] = [
     protocol:
       "Paced climbing, a warm-drink checkpoint, a washroom stop that actually exists. Nobody is rushed on the bends — the schedule is built around the road, not against it.",
     protocolLabel: "What we do here",
-    image: "/images/places/anini/Anini_4.JPG",
-    imageAlt: "The climbing forest road toward Mayodia",
   },
   {
     index: "06",
@@ -108,8 +100,6 @@ export const wayChapters: WayChapter[] = [
     protocol:
       "A controlled photo stop only when visibility and parking allow. Warm layers ready in the cabin. No lingering on a wet ridgeline.",
     protocolLabel: "What we do here",
-    image: "/images/places/anini/Anini_10.JPG",
-    imageAlt: "Mayodia Pass wrapped in cloud",
   },
   {
     index: "07",
@@ -120,8 +110,6 @@ export const wayChapters: WayChapter[] = [
     protocol:
       "A pinned meal halt with a named vendor — and a named backup. If you want Kupunli, we build the extra hours into the plan instead of stealing them from the drive.",
     protocolLabel: "What we do here",
-    image: "/images/places/anini/Anini_9.jpg",
-    imageAlt: "The forest valley road beyond Mayodia",
   },
   {
     index: "08",
@@ -132,8 +120,6 @@ export const wayChapters: WayChapter[] = [
     protocol:
       "Status checks 72 and 24 hours out, meal and toilet backups mapped, a recovery protocol if the road closes: wait points, contacts, and a plan B you hear about before you need it.",
     protocolLabel: "What we do here",
-    image: "/images/places/anini/Anini_8.jpg",
-    imageAlt: "The construction corridor between Hunli and Etalin",
   },
   {
     index: "09",
@@ -144,8 +130,8 @@ export const wayChapters: WayChapter[] = [
     protocol:
       "Stay allocation confirmed before arrival, dinner waiting, reporting time set, and the next morning's plan already agreed. The arrival is an ending and a beginning.",
     protocolLabel: "What we do here",
-    image: "/images/places/anini-new/anini-new-landscape-13.jpeg",
-    imageAlt: "The Anini plateau at arrival",
+    image: "/images/places/anini/anini2026/anini-double-rainbow-glamping-tents.jpg",
+    imageAlt: "A double rainbow over forested mountains and tents at Anini",
   },
 ];
 
