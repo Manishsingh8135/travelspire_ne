@@ -438,7 +438,7 @@ export const placeImagesData: Record<string, PlaceImage[]> = {
     {
       src: '/images/places/tawang/Tawang_2.JPG',
       alt: 'Tawang Valley panoramic view with snow-capped Himalayan mountains',
-      title: 'Tawang Valley - Breathtaking Himalayan Landscape',
+      title: 'Tawang Valley - Snow country above the monastery town',
       caption: 'Panoramic view of the pristine Tawang Valley surrounded by majestic Himalayan peaks',
       location: {
         name: 'Tawang Valley',
@@ -468,9 +468,9 @@ export const placeImagesData: Record<string, PlaceImage[]> = {
   'ziro-new': [
     {
       src: '/images/places/ziro-new/ziro-new-landscape-1.jpeg',
-      alt: 'Ziro Valley UNESCO World Heritage Site - Pristine rice fields and tribal villages',
-      title: 'Ziro Valley - UNESCO World Heritage Site in Arunachal Pradesh',
-      caption: 'The stunning Ziro Valley, home to the Apatani tribe and famous Ziro Music Festival',
+      alt: 'Ziro Valley - Apatani rice fields and villages, on the UNESCO tentative list',
+      title: 'Ziro Valley - Apatani cultural landscape, Arunachal Pradesh',
+      caption: 'Ziro Valley, home of the Apatani people and the Ziro Festival of Music',
       location: {
         name: 'Ziro Valley',
         state: 'Arunachal Pradesh',
@@ -498,7 +498,7 @@ export const placeImagesData: Record<string, PlaceImage[]> = {
       src: '/images/places/ziro-new/ziro-new-portrait-5.JPG',
       alt: 'Ziro Music Festival 2026 venue - Open-air amphitheater surrounded by pine forests',
       title: 'Ziro Music Festival Venue - Natural Amphitheater',
-      caption: 'The iconic Ziro Music Festival venue nestled in the heart of pine forests',
+      caption: 'The Ziro Festival of Music grounds, ringed by pine forest',
       location: {
         name: 'Ziro Valley',
         state: 'Arunachal Pradesh'
@@ -511,8 +511,8 @@ export const placeImagesData: Record<string, PlaceImage[]> = {
   'anini-new': [
     {
       src: '/images/places/anini-new/anini-new-landscape-11.jpeg',
-      alt: 'Anini Valley - Remote Himalayan paradise in Dibang Valley, Arunachal Pradesh',
-      title: 'Anini Valley - Hidden Gem of Dibang Valley',
+      alt: 'Anini plateau in Dibang Valley, Arunachal Pradesh',
+      title: 'Anini - the plateau at the end of NH-313',
       caption: 'The pristine and remote Anini Valley, one of the least explored destinations in Northeast India',
       location: {
         name: 'Anini',
@@ -529,7 +529,7 @@ export const placeImagesData: Record<string, PlaceImage[]> = {
       src: '/images/places/anini-new/anini-new-portrait-1.jpg',
       alt: 'Traditional Idu Mishmi tribal house in Anini with mountain backdrop',
       title: 'Idu Mishmi Tribal Heritage in Anini',
-      caption: 'Traditional Idu Mishmi tribal architecture against the stunning Himalayan backdrop',
+      caption: 'Traditional Idu Mishmi architecture below the Dibang ridges',
       location: {
         name: 'Anini',
         state: 'Arunachal Pradesh'
@@ -544,10 +544,10 @@ export const placeImagesData: Record<string, PlaceImage[]> = {
     {
       src: '/images/places/mechuka-new/mechuka-new-landscape-16.JPG',
       alt: 'Mechuka Valley - Last village of India near China border, Arunachal Pradesh',
-      title: 'Mechuka Valley - India\'s Last Village',
-      caption: 'The breathtaking Mechuka Valley, known as India\'s last village near the China border',
+      title: 'Mechuka Valley - near the McMahon Line',
+      caption: 'Mechuka Valley in Shi Yomi district, about 29 km from the border',
       location: mechukaLocation,
-      keywords: ['mechuka valley', 'last village india', 'china border', 'mechuka tourism', 'remote village', 'border tourism'],
+      keywords: ['mechuka valley', 'shi yomi', 'mechuka tourism', 'arunachal border valley', 'border tourism'],
       category: 'landscape'
     },
     {
