@@ -100,8 +100,8 @@ export function TourCatalogue({ items, initialKind = "all" }: { items: Catalogue
             </button>
           ))}
         </div>
-        <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto]">
-          <label className="relative block">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto]">
+          <label className="relative col-span-2 block sm:col-span-1">
             <span className="sr-only">Search tours</span>
             <IconSearch size={18} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-fg-subtle" />
             <input
