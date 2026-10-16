@@ -1,17 +1,22 @@
-// app/gallery/page.tsx - Main Image Gallery Page
-import { Metadata } from "next";
-import Link from "next/link";
-import { SEOImageGallery } from "@/components/gallery/seo-image-gallery";
-import { getAllPlaceImages, placeImagesData } from "@/data/seo/image-seo-data";
-import { ImageSEO } from "@/components/seo/image-seo";
+// app/gallery/page.tsx
+import type { Metadata } from "next";
+import { Accent, Breadcrumbs, ButtonLink, Container, Heading, Lead, Section, SectionHeader } from "@/components/ds";
+import { IconArrowRight } from "@/components/icons";
+import { GalleryGrid } from "@/components/company/gallery-grid";
+import { PlanCta } from "@/components/site/content-blocks";
+import { GalleryStructuredData, ImageSEO } from "@/components/seo/image-seo";
+import { getAllPlaceImages, placeImagesData, type PlaceImage } from "@/data/seo/image-seo-data";
+import { createTripPlanningURL } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
   title: "Northeast India Photo Gallery | TravelSpire NE - Stunning Destinations",
-  description: "Explore breathtaking photos of Northeast India's most beautiful destinations. Tawang Monastery, Ziro Valley, Anini, Mechuka, Hornbill Festival and more. Plan your Northeast adventure with authentic travel photography.",
-  keywords: "northeast india photos, travel photography, tawang monastery, ziro valley, anini valley, mechuka village, hornbill festival, arunachal pradesh images, nagaland photos, buddhist monasteries, himalayan valleys",
+  description:
+    "Explore breathtaking photos of Northeast India's most beautiful destinations. Tawang Monastery, Ziro Valley, Anini, Mechuka, Hornbill Festival and more. Plan your Northeast adventure with authentic travel photography.",
+  keywords:
+    "northeast india photos, travel photography, tawang monastery, ziro valley, anini valley, mechuka village, hornbill festival, arunachal pradesh images, nagaland photos, buddhist monasteries, himalayan valleys",
   openGraph: {
     title: "Northeast India Photo Gallery | TravelSpire NE",
-    description: "Stunning photography showcasing the untouched beauty of Northeast India's destinations",
+    description: "Photographs from our own trips across Arunachal Pradesh and Nagaland",
     images: ["/images/places/tawang/Tawang_1.PNG"],
     url: "https://travelspirene.com/gallery",
     type: "website",
@@ -21,111 +26,139 @@ export const metadata: Metadata = {
   },
 };
 
+/* Each photograph appears once, under its place. Groups run from the
+   valley we know best outwards; every group links to where you can go. */
+const groups = [
+  {
+    id: "anini",
+    key: "anini-new",
+    title: "Anini & Dibang Valley",
+    intro:
+      "The Seven Lakes trek, Emuli Grassland, the Pomo ridge trail, waterfall country, A-frame stays and a double rainbow over the plateau.",
+    link: { label: "Anini travel guide", href: "/places/anini" },
+  },
+  {
+    id: "mechuka",
+    key: "mechuka-new",
+    title: "Mechuka Valley, Shi Yomi",
+    intro:
+      "The Yargyap Chu river, Samten Yongcha monastery, the golden Buddha, the helicopter landmark, winter snow and the high ridge above town.",
+    link: { label: "Mechuka expedition", href: "/tours/mechuka-expedition" },
+  },
+  {
+    id: "tawang",
+    key: "tawang",
+    title: "Tawang",
+    intro: "Tawang Monastery, the valley under snow and Monpa architecture on the road west.",
+    link: { label: "Tawang & Sela Pass tour", href: "/tours/tawang-expedition" },
+  },
+  {
+    id: "ziro",
+    key: "ziro-new",
+    title: "Ziro Valley",
+    intro: "Apatani country — rice fields, pine ridges and the festival ground of the Ziro Festival of Music.",
+    link: { label: "Ziro Festival", href: "/ziro-music-festival-2026" },
+  },
+  {
+    id: "hornbill",
+    key: "hornbill",
+    title: "Hornbill Festival & Dzükou Valley",
+    intro: "Nagaland in December: the Hornbill Festival at Kisama and the Dzükou Valley trek.",
+    link: { label: "Hornbill Festival 2026", href: "/tours/hornbill-festival-2026" },
+  },
+] as const;
+
+/* Hornbill_1.PNG is a screenshot with carousel arrows baked in (the tour
+   data already comments it out); show the real festival photograph here. */
+const substitutes: Record<string, PlaceImage> = {
+  "/images/places/hornbill/Hornbill_1.PNG": {
+    src: "/images/places/hornbill/Hornbill_3.PNG",
+    alt: "Naga dancers in full regalia at the Hornbill Festival, Kisama, Nagaland",
+    title: "Hornbill Festival - Kisama, Nagaland",
+    caption: "Warriors of Nagaland's tribes dancing in the arena at Kisama Heritage Village during the Hornbill Festival",
+    location: { name: "Kisama", state: "Nagaland" },
+    keywords: ["hornbill festival", "naga dance", "kisama heritage village"],
+    category: "festival",
+  },
+};
+
+const toPhoto = (image: PlaceImage) => ({
+  src: image.src,
+  alt: image.alt,
+  // Data titles run "Place - Tagline"; the place is the useful part.
+  title: image.title.split(" - ")[0],
+  caption: image.caption,
+});
+
 export default function GalleryPage() {
   const allImages = getAllPlaceImages();
-  const tawangImages = placeImagesData.tawang || [];
-  const ziroImages = placeImagesData['ziro-new'] || [];
-  const aniniImages = placeImagesData['anini-new'] || [];
-  const mechukImages = placeImagesData['mechuka-new'] || [];
-  const hornbillImages = placeImagesData.hornbill || [];
+  const sections = groups
+    .map((g) => ({ ...g, images: (placeImagesData[g.key] ?? []).map((img) => substitutes[img.src] ?? img) }))
+    .filter((g) => g.images.length > 0);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* SEO for all gallery images */}
+    <>
       <ImageSEO images={allImages} limit={20} />
-      
-      <div className="container mx-auto px-4 py-16 space-y-16">
-        {/* Page Header */}
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-            Northeast India Photo Gallery
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Discover the untouched beauty of Northeast India through our curated collection of travel photography. 
-            From ancient monasteries to pristine valleys, experience the magic before you visit.
-          </p>
-        </div>
 
-        {/* Featured Gallery - All Destinations */}
-        <SEOImageGallery
-          images={allImages}
-          galleryTitle="Northeast India Highlights"
-          galleryDescription="A stunning collection showcasing the diverse beauty and rich culture of all eight Northeast Indian states"
-          className="mb-20"
-        />
-
-        {/* Individual Location Galleries */}
-        {tawangImages.length > 0 && (
-          <SEOImageGallery
-            images={tawangImages}
-            galleryTitle="Tawang - Sacred Himalayan Heritage"
-            galleryDescription="Explore Tawang Monastery, the largest Buddhist monastery in India, and the breathtaking Himalayan landscapes of Arunachal Pradesh"
+      <Section spacing="none" className="pb-10 pt-6 md:pb-12 md:pt-8">
+        <Container>
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Gallery", href: "/gallery" },
+            ]}
           />
-        )}
-
-        {ziroImages.length > 0 && (
-          <SEOImageGallery
-            images={ziroImages}
-            galleryTitle="Ziro Valley - UNESCO World Heritage Beauty"
-            galleryDescription="Immerse yourself in the pristine Ziro Valley, home to the Apatani tribe and the famous Ziro Music Festival"
-            className="mt-16"
-          />
-        )}
-
-        {aniniImages.length > 0 && (
-          <SEOImageGallery
-            images={aniniImages}
-            galleryTitle="Anini & Dibang Valley"
-            galleryDescription="Field photographs from Anini: the Seven Lakes trek, Emuli Grassland, the Pomo ridge trail, waterfall country, A-frame stays and a double rainbow over the plateau."
-            className="mt-16"
-          />
-        )}
-
-        {mechukImages.length > 0 && (
-          <SEOImageGallery
-            images={mechukImages}
-            galleryTitle="Mechuka Valley, Shi Yomi"
-            galleryDescription="Photographs from Mechuka: the Yargyap Chu river, the golden Buddha, Dorjeeling selfie point, the helicopter landmark, winter snow and the high ridge above town."
-            className="mt-16"
-          />
-        )}
-
-        {hornbillImages.length > 0 && (
-          <SEOImageGallery
-            images={hornbillImages}
-            galleryTitle="Hornbill Festival & Dzükou Valley"
-            galleryDescription="Experience Nagaland's vibrant Hornbill Festival and the enchanting Valley of Flowers - Dzükou Valley"
-            className="mt-16"
-          />
-        )}
-
-        {/* Call to Action */}
-        <div className="text-center bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8 mt-20">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Ready to Experience These Places?
-          </h2>
-          <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-            Let our expert local guides take you to these incredible destinations. 
-            Custom tours, authentic experiences, and unforgettable memories await.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/all-tours"
-              className="inline-flex items-center justify-center px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-full font-medium transition-colors"
-            >
-              Explore Tours
-            </Link>
-            <a
-              href="https://wa.me/919864141211?text=Hi! I'm interested in Northeast India tours after seeing your gallery"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-3 bg-green-600 hover:bg-green-700 text-white rounded-full font-medium transition-colors"
-            >
-              📱 WhatsApp Us
-            </a>
+          <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-end lg:gap-16">
+            <Heading as="h1" size="h1" className="max-w-[16ch]">
+              Photographs from <Accent>our own trips</Accent>
+            </Heading>
+            <Lead>
+              {allImages.length} frames from the roads we drive — Dibang Valley, Mechuka, Tawang, Ziro and Nagaland. Tap
+              any photo to see it full size.
+            </Lead>
           </div>
-        </div>
-      </div>
-    </div>
+          <nav aria-label="Jump to a place" className="mt-8 flex flex-wrap gap-2 border-t border-line pt-6">
+            {sections.map((g) => (
+              <a
+                key={g.id}
+                href={`#${g.id}`}
+                className="inline-flex h-10 items-center gap-2 rounded-full border border-line-strong px-4 font-ui text-small font-medium text-fg-muted transition-colors hover:border-fg/40 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus"
+              >
+                {g.title}
+                <span className="text-fg-subtle tabular-nums">{g.images.length}</span>
+              </a>
+            ))}
+          </nav>
+        </Container>
+      </Section>
+
+      {sections.map((g, i) => (
+        <Section key={g.id} id={g.id} tone={i % 2 === 0 ? "subtle" : "default"} spacing="compact" className="scroll-mt-20">
+          <GalleryStructuredData images={g.images} galleryName={g.title} galleryDescription={g.intro} />
+          <Container>
+            <SectionHeader
+              title={g.title}
+              intro={g.intro}
+              size="h3"
+              action={
+                <ButtonLink href={g.link.href} variant="link">
+                  {g.link.label}
+                  <IconArrowRight />
+                </ButtonLink>
+              }
+            />
+            <div className="mt-8">
+              <GalleryGrid photos={g.images.map(toPhoto)} label={g.title} />
+            </div>
+          </Container>
+        </Section>
+      ))}
+
+      <PlanCta
+        title="Want to stand in one of these frames?"
+        body="Tell us which places caught your eye and roughly when you can travel — we'll suggest the route."
+        whatsappHref={createTripPlanningURL()}
+      />
+    </>
   );
 }
