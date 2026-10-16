@@ -62,3 +62,7 @@ default (`aria-hidden`); pass `title` to label.
 ## Log
 
 - 2026-10-16 — Evergreen locked; plan written.
+- 2026-10-16 — Icons, shell (header/footer/theme), tour template, catalogue
+  and homepage done on `feat/design-system`. Remaining page groups run in
+  parallel worktrees: permits · places+guide · bespoke tours · company pages ·
+  booking/payment/festival recaps.
