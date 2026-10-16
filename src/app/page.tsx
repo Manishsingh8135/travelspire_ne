@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HomeExperience } from "@/components/home/home-experience";
+import { HomePage } from "@/components/home/home-page";
 import { homeHero } from "@/data/home/homepage";
 
 const pageUrl = "https://travelspirene.com";
@@ -59,5 +59,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomeExperience />;
+  return <HomePage />;
 }
