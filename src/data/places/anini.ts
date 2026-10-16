@@ -44,7 +44,6 @@ export const aniniStats = [
   { value: "9,129", unit: "km²", label: "District area — Arunachal's largest" },
   { value: "<1", unit: "person / km²", label: "Among the least-inhabited places on Earth" },
   { value: "~80%", unit: "forest", label: "Land under forest cover" },
-  { value: "0", unit: "dams", label: "On the rivers that run through it" },
 ] as const;
 
 export interface AniniExperience {
@@ -63,8 +62,8 @@ export const aniniExperiences: AniniExperience[] = [
     story:
       "The river Anini wakes up beside. A guided walk up the Dri is suspension bridges, cold green water and forests the Idu Mishmi have read for centuries.",
     meta: "Guided day walk · starts from town",
-    image: "/images/places/anini-new/anini-new-portrait-4.jpg",
-    imageAlt: "The Dri river valley near Anini",
+    image: anini2026Src.trekkerFalls,
+    imageAlt: "A trekker beside a riverside waterfall in the valley near Anini",
   },
   {
     index: "02",
@@ -73,7 +72,7 @@ export const aniniExperiences: AniniExperience[] = [
       "Horizon country. Rolling high meadows where the sky does most of the talking — the single most photogenic half-day out of Anini.",
     meta: "Half day · best at first light",
     image: "/images/places/pomo/pomo3.JPG",
-    imageAlt: "The rolling grassland horizon at Pomo",
+    imageAlt: "A still pond in the Pomo grassland reflecting the peaks above it",
   },
   {
     index: "03",
@@ -90,8 +89,9 @@ export const aniniExperiences: AniniExperience[] = [
     story:
       "India's hidden kiwi country. Mountain orchards framed by Himalayan ridgelines — visit a working orchard and taste what altitude does to fruit.",
     meta: "1–2 hrs · harvest visits in autumn",
-    image: "/images/places/anini-new/anini-new-portrait-5.jpg",
-    imageAlt: "Orchard slopes around Anini under high ridgelines",
+    // No orchard photograph on file yet — a meadow above Anini stands in.
+    image: anini2026Src.meadowRest,
+    imageAlt: "A traveller resting in a meadow under a blue sky near Anini",
   },
   {
     index: "05",
@@ -99,8 +99,8 @@ export const aniniExperiences: AniniExperience[] = [
     story:
       "One of India's least-disturbed wildernesses — clouded leopard, Mishmi takin, red panda country. Fringes are accessible with permits and a local guide.",
     meta: "Full day · permits + guide required",
-    image: "/images/places/anini-new/anini-new-portrait-1.jpg",
-    imageAlt: "Dense montane forest in Dibang Valley",
+    image: "/images/places/anini/Anini_6.jpg",
+    imageAlt: "Thick forest and a thin waterfall on the mountainside in Dibang Valley",
   },
   {
     index: "06",
@@ -108,8 +108,9 @@ export const aniniExperiences: AniniExperience[] = [
     story:
       "Slow, guide-accompanied walks through the villages of the valley's custodians — bamboo craft, forest knowledge, and food you'll think about for years.",
     meta: "Half day · always with a community guide",
-    image: "/images/places/anini-new/anini-new-portrait-7.jpg",
-    imageAlt: "Village country in the hills around Anini",
+    // No village photograph on file yet — the bamboo walkway stands in.
+    image: anini2026Src.bambooWalk,
+    imageAlt: "A bamboo walkway across green hills near Anini",
   },
   {
     index: "07",
@@ -185,7 +186,7 @@ export const aniniFrames = [
   { src: anini2026Src.rainbowGlamping, alt: "Double rainbow over mountains, sunflowers and glamping tents at Anini", caption: "After the rain" },
   { src: anini2026Src.pomoRidgeTrail, alt: "Trekkers on a grassy ridge trail on the Pomo route near Anini", caption: "Pomo trail" },
   { src: anini2026Src.sevenLakesTarn, alt: "Alpine tarn on the Seven Lakes trek near Anini, Dibang Valley", caption: "Seven Lakes" },
-  { src: "/images/places/anini-new/anini-new-landscape-13.jpeg", alt: "The high plateau at Anini between the Dri and Mathun rivers", caption: "Anini Plateau" },
+  { src: "/images/places/anini-new/anini-new-landscape-13.jpeg", alt: "Aerial view of a braided riverbed and a tented campsite near Anini", caption: "River camp from above" },
   { src: anini2026Src.cascadeFalls, alt: "Wide cascade waterfall on the Anini waterfall circuit, Dibang Valley", caption: "Waterfall circuit" },
   { src: anini2026Src.aFrameCabins, alt: "A-frame cabins under mist and a mountainside waterfall at Anini", caption: "Valley stays" },
 ] as const;
@@ -244,7 +245,7 @@ export const aniniNextPlaces = [
   {
     name: "Dambuk",
     blurb: "Orange orchards and the Dibang riverbanks — Lower Dibang's golden bowl.",
-    href: "/tours/dambuk-anini-ofam",
+    href: "/places/dambuk",
     image: "/images/places/dambuk/Dambuk_1.jpg",
   },
   {
