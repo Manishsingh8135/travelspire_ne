@@ -24,7 +24,7 @@ import {
   IconVehicle,
   IconWhatsApp,
 } from "@/components/icons";
-import { PlanCta, Steps } from "@/components/site/content-blocks";
+import { CardRail, PlanCta, Steps } from "@/components/site/content-blocks";
 import { StructuredData } from "@/components/seo/structured-data";
 import { tourCard } from "@/components/tours/tour-facts";
 import {
@@ -101,11 +101,13 @@ export function HomePage() {
               </ButtonLink>
             }
           />
-          <div className="mt-10 grid gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+          <CardRail className="mt-10">
             {featured.map((tour) => (
-              <TourCard key={tour.id} {...tourCard(tour)} />
+              <li key={tour.id}>
+                <TourCard {...tourCard(tour)} className="h-full" />
+              </li>
             ))}
-          </div>
+          </CardRail>
         </Container>
       </Section>
 
@@ -414,7 +416,7 @@ function PlanAhead() {
           </div>
           <div>
             <h3 className="font-ui text-h4 text-fg">Travel guides</h3>
-            <ul className="mt-4 grid gap-6 sm:grid-cols-2">
+            <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-6">
               {homeGuides.map((g) => (
                 <li key={g.href}>
                   <Link href={g.href} className="group block font-ui">
@@ -422,10 +424,10 @@ function PlanAhead() {
                       <Image src={g.image} alt={g.imageAlt} fill sizes="(min-width: 1024px) 320px, (min-width: 640px) 45vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
                     </span>
                     <span className="mt-3 flex items-start justify-between gap-3">
-                      <span className="text-h4 text-fg group-hover:text-brand">{g.title}</span>
+                      <span className="text-body font-semibold text-fg group-hover:text-brand sm:text-h4">{g.title}</span>
                       <IconArrowUpRight size={18} className="mt-1 shrink-0 text-fg-subtle" />
                     </span>
-                    <span className="mt-1 block text-small text-fg-muted">{g.value}</span>
+                    <span className="mt-1 hidden text-small text-fg-muted sm:block">{g.value}</span>
                   </Link>
                 </li>
               ))}

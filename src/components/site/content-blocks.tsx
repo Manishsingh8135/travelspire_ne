@@ -126,3 +126,22 @@ export function PlanCta({
     </Section>
   );
 }
+
+/* ── CardRail ──────────────────────────────────────────────────────────
+   A swipeable row of cards on phones (the next card peeks in as the cue),
+   a normal grid from tablet up. Keeps long card lists from turning into a
+   wall on mobile. */
+export function CardRail({ children, className }: { children: React.ReactNode; className?: string }) {
+  return (
+    <ul
+      className={cn(
+        "-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] sm:-mx-8 sm:px-8 [&::-webkit-scrollbar]:hidden",
+        "md:mx-0 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-12 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3",
+        "[&>li]:w-[82%] [&>li]:shrink-0 [&>li]:snap-start md:[&>li]:w-auto",
+        className,
+      )}
+    >
+      {children}
+    </ul>
+  );
+}

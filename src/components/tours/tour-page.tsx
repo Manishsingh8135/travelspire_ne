@@ -29,7 +29,7 @@ import {
   IconUsers,
   IconWhatsApp,
 } from "@/components/icons";
-import { CheckList, ContentSection, PlanCta } from "@/components/site/content-blocks";
+import { CardRail, CheckList, ContentSection, PlanCta } from "@/components/site/content-blocks";
 import { Itinerary } from "@/components/site/itinerary";
 import { PhotoGallery } from "@/components/site/photo-gallery";
 import { SectionNav } from "@/components/site/section-nav";
@@ -251,11 +251,13 @@ export function TourPage({ tour, isOver, pool }: { tour: Tour; isOver: boolean; 
                 </ButtonLink>
               }
             />
-            <div className="mt-10 grid gap-x-6 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+            <CardRail className="mt-10">
               {related.map((t) => (
-                <TourCard key={t.id} {...tourCard(t)} />
+                <li key={t.id}>
+                  <TourCard {...tourCard(t)} className="h-full" />
+                </li>
               ))}
-            </div>
+            </CardRail>
           </Container>
         </Section>
       ) : null}
