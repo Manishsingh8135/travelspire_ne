@@ -32,7 +32,7 @@ const jsonLd = {
       "@type": "Article",
       headline: data.seo.title,
       description: data.seo.description,
-      dateModified: new Date().toISOString(),
+      dateModified: "2026-08-01",
       author: { "@type": "Organization", name: "TravelSpire NE" },
     },
     {
@@ -42,14 +42,6 @@ const jsonLd = {
         name: faq.question,
         acceptedAnswer: { "@type": "Answer", text: faq.answer },
       })),
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://travelspirene.com" },
-        { "@type": "ListItem", position: 2, name: "Permits", item: "https://travelspirene.com/permits" },
-        { "@type": "ListItem", position: 3, name: "Mizoram ILP", item: data.seo.canonical },
-      ],
     },
   ],
 };
