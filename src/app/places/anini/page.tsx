@@ -38,7 +38,7 @@ const heroImageUrl = `https://travelspirene.com${aniniHeroImages.desktop.src}`;
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Anini Travel Guide 2026 — How to Reach, ILP, Stays & Things to Do",
+    absolute: "Anini Travel Guide — How to Reach, ILP, Stays & Things to Do",
   },
   description:
     "The Anini guide by the team that drives NH-313 every week: the Mayodia Pass road, ILP permits, honest seasons, stays, Dri Valley, Pomo Grassland and Idu Mishmi villages.",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anini, Dibang Valley — the complete 2026 guide",
+    title: "Anini, Dibang Valley — the complete guide",
     description:
       "How to reach, ILP permits, honest seasons, stays and the valley's best experiences — by the team that drives NH-313 every week.",
     images: [heroImageUrl],
@@ -127,7 +127,7 @@ const webPageSchema = {
   "@type": "WebPage",
   "@id": `${pageUrl}#webpage`,
   url: pageUrl,
-  name: "Anini, Dibang Valley: 2026 Travel Guide — How to Reach, ILP, Stays & Things to Do",
+  name: "Anini, Dibang Valley: Travel Guide — How to Reach, ILP, Stays & Things to Do",
   isPartOf: { "@id": "https://travelspirene.com/#website" },
   about: { "@id": `${pageUrl}#place` },
   primaryImageOfPage: heroImageUrl,
@@ -305,13 +305,13 @@ export default function AniniPlacePage() {
 
       <Section id="faq" tone="subtle" className="scroll-mt-32">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-          <SectionHeader className="md:grid-cols-1 lg:self-start" eyebrow="FAQ" title={aniniFaqSection.title} intro={aniniFaqSection.description} />
+          <SectionHeader stacked className="lg:self-start" eyebrow="FAQ" title={aniniFaqSection.title} intro={aniniFaqSection.description} />
           <Accordion items={aniniFaqSection.faqs} />
         </Container>
       </Section>
 
       <PlaceTours
-        slugs={["anini-pomo-grassland-expedition", "anini-expedition", "pomo-trek-expedition", "dambuk-anini-ofam"]}
+        slugs={["anini-pomo-grassland-expedition", "anini-expedition", "pomo-trek-expedition"]}
         title={
           <>
             We drive this road every week. <Accent>Ride with us.</Accent>

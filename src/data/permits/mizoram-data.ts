@@ -8,8 +8,8 @@ export const mizoramPermitData = {
   tagline: "Complete Guide to Inner Line Permit for the Land of Blue Mountains",
   
   seo: {
-    title: "Mizoram ILP 2026: Online Apply, Fee ₹120, On Arrival at Airport | Complete Guide",
-    description: "Apply for Mizoram Inner Line Permit (ILP) online or get it on arrival at Lengpui Airport. Fee ₹120, instant processing. Step-by-step guide, required documents, Aizawl travel tips.",
+    title: "Mizoram ILP 2026: Online Apply, Fees, On Arrival at Lengpui | Complete Guide",
+    description: "Apply for Mizoram Inner Line Permit (ILP) online or get it on arrival at Lengpui Airport. Temporary ILP about ₹300–350, valid 7 days, approved after document verification. Step-by-step guide, documents, Aizawl travel tips.",
     keywords: [
       "mizoram ilp",
       "mizoram ilp online apply",
@@ -28,16 +28,18 @@ export const mizoramPermitData = {
 
   quickStats: {
     fee: {
-      formFee: "₹20",
-      processingFee: "₹100",
-      total: "₹120",
+      // The portal works out the fee after verification (form fee + temporary
+      // ILP fee + administration fee); the old ₹20 + ₹100 split no longer applies.
+      formFee: "Included in the total",
+      processingFee: "Included in the total",
+      total: "About ₹300–350",
     },
     processingTime: {
-      online: "Same day to 24 hours",
-      airport: "Immediate (on arrival)",
+      online: "After verification, in office hours",
+      airport: "On arrival, at the counter",
     },
     validity: {
-      temporary: "15 days",
+      temporary: "7 days",
       regular: "6 months (for workers)",
     },
     onArrival: true,
@@ -119,11 +121,10 @@ export const mizoramPermitData = {
     {
       step: 3,
       title: "Pay the fee",
-      description: "Pay the ILP fee online or in person",
+      description: "Pay the ILP fee online once approved, or in person",
       details: [
-        "Form fee: ₹20",
-        "Processing fee: ₹100",
-        "Total: ₹120",
+        "Fee shown on the portal after verification (about ₹300–350)",
+        "Gateway charges extra; the fee is non-refundable",
         "Online: UPI, Net Banking, Cards",
         "At airport: Cash payment accepted",
       ],
@@ -133,14 +134,14 @@ export const mizoramPermitData = {
     {
       step: 4,
       title: "Receive the ILP",
-      description: "Get your approved ILP instantly or same day",
+      description: "Pay and download after verification (office hours)",
       details: [
-        "Online: Download from portal same day",
-        "Airport: Issued immediately on the spot",
+        "Online: download from the portal once paid",
+        "Airport: issued at the Security Officer's counter",
         "Print colored copy for checkpoints",
-        "Temporary ILP valid for 15 days",
+        "Temporary ILP valid for 7 days",
       ],
-      duration: "Instant to same day",
+      duration: "Within office hours",
       icon: "Download",
     },
   ],
@@ -162,7 +163,7 @@ export const mizoramPermitData = {
     ],
     tips: [
       "For airport application, carry 2 physical passport photos",
-      "Temporary ILP valid for 15 days only",
+      "Temporary ILP valid for 7 days only",
       "Register with FRO within 24 hours if foreigner",
       "Sunday is strictly observed - plan accordingly",
       "Keep original ID proof during entire trip",
@@ -223,19 +224,19 @@ export const mizoramPermitData = {
   faqs: [
     {
       question: "Can I get Mizoram ILP on arrival at airport?",
-      answer: "Yes. Mizoram is the only northeastern state that offers ILP on arrival. You can get it at Lengpui Airport from the Security Officer immediately upon arrival. Carry 2 passport-size photos, ID proof, and ₹120 fee.",
+      answer: "Yes. Mizoram is the only northeastern state that offers ILP on arrival. You can get it at Lengpui Airport from the Security Officer immediately upon arrival. Carry 2 passport-size photos, ID proof, and the fee in cash (about ₹300–350).",
     },
     {
       question: "What is the fee for Mizoram ILP?",
-      answer: "The total fee for Mizoram ILP is ₹120 (₹20 form fee + ₹100 processing fee). This applies to both online and airport applications. The fee is non-refundable.",
+      answer: "The Temporary ILP fee was raised from ₹120 to ₹300 in 2020. Online it now comes to about ₹300–350 including the administration fee, shown on ilp.mizoram.gov.in after your application is verified. Gateway charges are extra, and the fee is non-refundable.",
     },
     {
       question: "How long is Mizoram ILP valid?",
-      answer: "Temporary ILP for tourists is valid for 15 days. For workers and longer stays, regular ILP can be obtained for up to 6 months with proper documentation and local employment proof.",
+      answer: "The Temporary ILP for tourists is valid for 7 days. A 30-day Tourist ILP was announced in September 2026 but is not yet on the portal. For workers and longer stays, a Regular ILP of up to 6 months needs a local sponsor and supporting documents.",
     },
     {
       question: "How to apply for Mizoram ILP online?",
-      answer: "Visit the official portal ilp.mizoram.gov.in, register and fill the application form, upload ID proof and photo, pay ₹120 online, and download your approved ILP same day.",
+      answer: "Visit the official portal ilp.mizoram.gov.in, register and fill the application form, upload ID proof and photo, wait for verification (office hours), then pay the fee online and download the ILP.",
     },
     {
       question: "Do foreigners need ILP for Mizoram?",
@@ -243,7 +244,7 @@ export const mizoramPermitData = {
     },
     {
       question: "What documents are needed for Mizoram ILP at airport?",
-      answer: "For airport ILP, carry: Valid photo ID proof (original), 2 passport-size photographs, and ₹120 cash. The process takes just a few minutes at the Security Officer's desk.",
+      answer: "For airport ILP, carry: Valid photo ID proof (original), 2 passport-size photographs, and the fee in cash (about ₹300–350). The process takes just a few minutes at the Security Officer's desk.",
     },
     {
       question: "Is Mizoram safe for tourists?",
@@ -285,8 +286,8 @@ export const mizoramPermitData = {
       icon: "Users",
     },
     {
-      title: "15-day validity",
-      description: "Temporary ILP is valid for 15 days only. Plan your trip accordingly or apply for extension.",
+      title: "7-day validity",
+      description: "Temporary ILP is valid for 7 days only. Plan your trip accordingly or apply for extension.",
       icon: "Clock",
     },
     {

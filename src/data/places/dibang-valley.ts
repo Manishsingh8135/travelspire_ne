@@ -106,7 +106,7 @@ export const valleyRiver = {
   title: "The river that draws the map",
   body: [
     "The Dibang begins in snow near the China border and falls two and a half vertical kilometres through the valley that carries its name. Everything here — every road, orchard, village and bridge — is arranged around where the river allows.",
-    "For now it runs free — a large hydropower project is being built downstream near Roing. In Dambuk it is wide, pale and slow. Above Roing it narrows to white water. At Anini it is a mountain stream you can hear from the ridge. Follow it upstream and you have understood the whole region.",
+    "For now it runs free — NHPC's 2,880 MW Dibang dam is under construction at Munli, about 43 km upriver of Roing, and due around 2032. In Dambuk it is wide, pale and slow. Above Roing it narrows to white water. At Anini it is a mountain stream you can hear from the ridge. Follow it upstream and you have understood the whole region.",
   ],
   image: "/images/places/anini-new/anini-new-landscape-13.jpeg",
   imageAlt: "Aerial view of a braided riverbed winding through Dibang Valley",

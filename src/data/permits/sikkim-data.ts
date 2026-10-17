@@ -9,7 +9,7 @@ export const sikkimPermitData = {
   
   seo: {
     title: "Sikkim Permit 2026: Nathula Pass, Gurudongmar Lake, North Sikkim | Complete Guide",
-    description: "Sikkim permit guide 2026. General areas: No permit needed. Nathula Pass, North Sikkim, Gurudongmar require PAP. Indians only at Nathula. Foreigners restrictions apply.",
+    description: "Sikkim permit guide 2026. Indians need no permit for Gangtok or Pelling; every tourist pays a ₹50 fee via the hotel. Nathula, North Sikkim and Gurudongmar need a PAP. Foreigners need a free Sikkim RAP to enter.",
     keywords: [
       "sikkim permit", "nathula pass permit", "gurudongmar lake permit", "north sikkim permit",
       "sikkim pap", "sikkim protected area permit", "tsomgo lake permit", "gangtok permit",
@@ -19,23 +19,24 @@ export const sikkimPermitData = {
   },
 
   quickStats: {
-    generalAreas: "No Permit Required",
+    generalAreas: "No permit for Indians",
     protectedAreas: "PAP Required",
-    fee: { general: "Free", protectedAreas: "₹200-500 via Travel Agent" },
+    fee: { general: "No permit for Indians · ₹50 TSD fee per tourist (via hotel)", protectedAreas: "₹200-500 via Travel Agent" },
     processingTime: { protectedAreas: "1 day (through travel agent)" },
-    foreignersNote: "Nathula: no foreigners. Gurudongmar: foreigners only as far as Thangu.",
+    foreignersNote: "Foreigners need a free Sikkim Restricted Area Permit (RAP) to enter the state. Nathula: no foreigners. Gurudongmar: foreigners only as far as Thangu.",
     officialPortal: "https://sikkimtourism.gov.in",
     lastUpdated: "August 2026",
   },
 
   permitZones: [
     {
-      zone: "General Areas (No Permit)",
+      zone: "General Areas (No permit for Indians)",
       // Lachung is North Sikkim and needs a permit — listed under that zone.
       places: ["Gangtok", "Pelling", "Ravangla", "Namchi", "Yuksom"],
       indiansAllowed: true,
       foreignersAllowed: true,
       permitRequired: false,
+      note: "Foreigners need a free Sikkim RAP to enter the state",
     },
     {
       zone: "Tsomgo Lake & Baba Mandir",
@@ -65,8 +66,8 @@ export const sikkimPermitData = {
 
   whoNeeds: {
     noPermitRequired: [
-      "Gangtok, Pelling, Ravangla, Namchi - Open to all",
-      "Yuksom, Rinchenpong, Kaluk - No restrictions",
+      "Gangtok, Pelling, Ravangla, Namchi - No permit for Indians",
+      "Yuksom, Rinchenpong, Kaluk - No permit for Indians",
       "Most tourist areas in East and South Sikkim",
     ],
     permitRequired: [
@@ -76,6 +77,7 @@ export const sikkimPermitData = {
       "Gurudongmar Lake - Indians only (foreigners till Thangu only)",
     ],
     foreignerRestrictions: [
+      "A free Sikkim Restricted Area Permit (RAP) is needed to enter the state, Gangtok included — at Rangpo, Melli, Siliguri or online",
       "Nathula Pass - Completely restricted for foreigners",
       "Gurudongmar Lake - Foreigners allowed only till Thangu",
       "Some border areas have additional restrictions",
@@ -107,27 +109,27 @@ export const sikkimPermitData = {
   },
 
   destinations: [
-    { name: "Gangtok", highlight: "State capital, MG Marg, Rumtek Monastery", permitRequired: "None", foreignersAllowed: true, bestTime: "Mar-Jun, Sep-Dec", altitude: "1,650m" },
+    { name: "Gangtok", highlight: "State capital, MG Marg, Rumtek Monastery", permitRequired: "None for Indians", foreignersAllowed: true, bestTime: "Mar-Jun, Sep-Dec", altitude: "1,650m" },
     { name: "Tsomgo Lake", highlight: "Sacred glacial lake, yak rides", permitRequired: "PAP", foreignersAllowed: true, bestTime: "Mar-Jun, Oct-Dec", altitude: "3,753m" },
     { name: "Nathula Pass", highlight: "Indo-China border, historic Silk Route", permitRequired: "PAP", foreignersAllowed: false, bestTime: "Mar-Jun, Sep-Nov", altitude: "4,310m" },
     { name: "Yumthang Valley", highlight: "Valley of Flowers, hot springs", permitRequired: "PAP", foreignersAllowed: true, bestTime: "Mar-Jun", altitude: "3,564m" },
     { name: "Gurudongmar Lake", highlight: "One of highest lakes, sacred", permitRequired: "PAP", foreignersAllowed: false, bestTime: "Mar-Jun, Oct-Nov", altitude: "5,183m" },
-    { name: "Pelling", highlight: "Kanchenjunga views, monasteries", permitRequired: "None", foreignersAllowed: true, bestTime: "Mar-Jun, Sep-Dec", altitude: "2,150m" },
+    { name: "Pelling", highlight: "Kanchenjunga views, monasteries", permitRequired: "None for Indians", foreignersAllowed: true, bestTime: "Mar-Jun, Sep-Dec", altitude: "2,150m" },
     { name: "Zero Point", highlight: "Highest point tourists can visit", permitRequired: "PAP", foreignersAllowed: true, bestTime: "Mar-May", altitude: "4,572m" },
     { name: "Lachung", highlight: "Gateway to Yumthang, scenic village", permitRequired: "PAP", foreignersAllowed: true, bestTime: "Mar-Jun, Sep-Dec", altitude: "2,700m" },
   ],
 
   faqs: [
-    { question: "Do I need permit for Gangtok?", answer: "No, Gangtok and most general tourist areas in Sikkim do not require any permit for Indians or foreigners. You can freely visit Gangtok, Pelling, Namchi, Ravangla, and similar areas." },
+    { question: "Do I need permit for Gangtok?", answer: "Indians need no permit for Gangtok, Pelling, Namchi or Ravangla. Foreigners need a free Sikkim Restricted Area Permit (Sikkim ILP) to enter the state, issued at Rangpo, Melli, Siliguri or online. Since March 2025 every tourist also pays a ₹50 Tourism Sustainable Development fee, collected by the hotel or homestay." },
     { question: "How to get Nathula Pass permit?", answer: "Nathula permit must be obtained through a registered travel agent in Gangtok. Provide 2 photos and ID proof. Open Wednesday to Sunday only. Indians only — foreigners are not allowed." },
     { question: "Can foreigners visit Nathula Pass?", answer: "No, Nathula Pass is strictly restricted for foreigners. Only Indian citizens can visit Nathula Pass. Foreigners can visit Tsomgo Lake but not proceed to Nathula." },
     { question: "What is Sikkim PAP?", answer: "Sikkim Protected Area Permit (PAP) is required for visiting protected/restricted areas like Nathula, North Sikkim, Tsomgo Lake. It's obtained through travel agents, not directly by tourists." },
     { question: "Can foreigners visit Gurudongmar Lake?", answer: "Foreigners are allowed only till Thangu village. They cannot proceed to Gurudongmar Lake due to its proximity to the China border. Only Indian citizens can visit Gurudongmar Lake." },
-    { question: "How much does Sikkim permit cost?", answer: "General areas: Free. Protected areas: ₹200-500 through travel agent (often included in tour package). The permit fee varies by destination and agent." },
+    { question: "How much does Sikkim permit cost?", answer: "General areas: no permit for Indians, but every tourist pays a ₹50 Tourism Sustainable Development fee (valid 30 days, collected by your hotel or homestay; children under 5 are exempt). Protected areas: about ₹200 per person in government fees, usually ₹200-500 through a travel agent (often included in the tour package)." },
     { question: "How to get North Sikkim permit?", answer: "North Sikkim permit (for Lachung, Yumthang, Lachen, Gurudongmar) must be obtained through a registered travel agent. Provide ID proof and photos. Processing takes 1 day." },
     { question: "Is Tsomgo Lake permit available on the spot?", answer: "Yes, for Tsomgo Lake and Baba Mandir, your vehicle driver can get permit at the police check post. Carry original ID proof. Most convenient option." },
     { question: "When is Nathula Pass open?", answer: "Nathula Pass is open Wednesday to Sunday, closed Monday and Tuesday. It may also close during heavy snowfall (December-February) or for security reasons." },
-    { question: "Do I need ILP for Sikkim?", answer: "No, Sikkim does not require Inner Line Permit (ILP). It requires Protected Area Permit (PAP) only for specific restricted areas. General areas are permit-free." },
+    { question: "Do I need ILP for Sikkim?", answer: "Indians don't need an ILP for Sikkim. Foreigners need a free Sikkim Restricted Area Permit (also called the Sikkim ILP) to enter the state. Protected areas such as Tsomgo Lake, Nathula and North Sikkim need a PAP." },
   ],
 
   tips: [

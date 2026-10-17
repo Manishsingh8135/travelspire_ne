@@ -31,6 +31,7 @@ export function tourShortDuration(tour: Tour): string {
 /** "1–10 Dec 2026" for festival editions; null for open-dated tours. */
 export function tourDateRange(tour: Tour, withYear = true): string | null {
   if (isRegularTour(tour)) return null;
+  if (tour.eventDates.tentative) return tour.eventDates.tentative;
   const start = new Date(tour.eventDates.start);
   const end = new Date(tour.eventDates.end);
   const sameMonth = start.getMonth() === end.getMonth();

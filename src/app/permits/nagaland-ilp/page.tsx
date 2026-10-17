@@ -35,8 +35,9 @@ const model: PermitGuideModel = {
   fees: [
     { category: "Tourist", fee: q.fee.tourist30Days, validity: q.validity.tourist },
     { category: "Student", fee: q.fee.student5Years, validity: q.validity.student },
-    { category: "Business", fee: q.fee.business, validity: q.validity.business },
-    { category: "Employment", fee: q.fee.employment, validity: "As issued" },
+    { category: "Trader / partner in business", fee: q.fee.business, validity: q.validity.business },
+    { category: "Professional / labourer", fee: q.fee.employment, validity: "1 year / 165 days" },
+    { category: "Foreigner", fee: q.fee.foreigner30Days, validity: "30 days" },
   ],
   festival: {
     name: data.hornbillFestival.name,
@@ -45,7 +46,7 @@ const model: PermitGuideModel = {
     description: data.hornbillFestival.description,
     tips: data.hornbillFestival.ilpTips,
     highlights: data.hornbillFestival.highlights,
-    link: { label: "See our Hornbill Festival packages", href: "/tours/hornbill-festival-2026" },
+    link: { label: "Read our Hornbill Festival 2026 guide", href: "/hornbill-festival" },
   },
   entryPoints: data.entryPoints,
   destinations: data.destinations,

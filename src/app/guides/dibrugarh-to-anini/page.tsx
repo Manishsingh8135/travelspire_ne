@@ -18,7 +18,7 @@ const pageUrl = "https://travelspirene.com/guides/dibrugarh-to-anini";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Dibrugarh to Anini Road Guide 2026 — NH-313 in 9 Chapters",
+    absolute: "Dibrugarh to Anini Road Guide — NH-313 in 9 Chapters",
   },
   description:
     "The Dibrugarh to Anini road guide by the team that drives NH-313 every week: the Bhupen Hazarika Setu, the Shantipur ILP gate, staging in Roing, Mayodia Pass and the plateau — with honest timings.",
@@ -91,7 +91,7 @@ const webPageSchema = {
   "@type": "WebPage",
   "@id": `${pageUrl}#webpage`,
   url: pageUrl,
-  name: "Dibrugarh to Anini Road Guide 2026 — NH-313 in 9 Chapters",
+  name: "Dibrugarh to Anini Road Guide — NH-313 in 9 Chapters",
   isPartOf: { "@id": "https://travelspirene.com/#website" },
   primaryImageOfPage: "https://travelspirene.com/images/places/anini/Anini_10.JPG",
   datePublished: "2026-08-19",
@@ -241,7 +241,7 @@ export default function WayToAniniPage() {
       <Section id="rules" tone="subtle" className="scroll-mt-32">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
           <SectionHeader
-            className="md:grid-cols-1 lg:self-start"
+            stacked className="lg:self-start"
             eyebrow="Non-negotiable"
             title={
               <>
@@ -256,7 +256,7 @@ export default function WayToAniniPage() {
 
       <Section id="faq" className="scroll-mt-32">
         <Container className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
-          <SectionHeader className="md:grid-cols-1 lg:self-start" eyebrow="FAQ" title={wayFaqSection.title} intro={wayFaqSection.description} />
+          <SectionHeader stacked className="lg:self-start" eyebrow="FAQ" title={wayFaqSection.title} intro={wayFaqSection.description} />
           <Accordion items={wayFaqSection.faqs} />
         </Container>
       </Section>

@@ -1,26 +1,27 @@
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-/* The Travelspire mark, redrawn as vector in the icon language: the open
-   ring of the original logo, a ridgeline and the first sun. Ring and sun take
-   the brand colour; the ridge takes the text colour, so it works on any
-   ground in either theme. */
+/* The brand globe, windowed out of the original PNG lockup. The PNG sets
+   "NORTHEAST" in light grey, which disappears on a white header, so only the
+   globe is shown and the words are typeset beside it in the text colour.
+
+   In the 500×500 source the globe sits at x 112–386, y 109–333, with the
+   wordmark starting immediately below it — hence the exact offsets below.
+   Do not redraw this mark; it is the brand logo. */
 export function LogoMark({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 40 40"
-      fill="none"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className={cn("size-9 shrink-0", className)}
-    >
-      <path d="M5.3 28.5A17 17 0 1 1 34.7 28.5" className="stroke-brand" strokeWidth="2.4" />
-      <path d="M8 28.5 15.5 16.5l4.4 6.6 3.4-4.3 8.7 9.7" stroke="currentColor" strokeWidth="2.4" />
-      <path d="M12.6 21.2l1.8 1.3 1.7-1.1 1.6.9" stroke="currentColor" strokeWidth="1.6" />
-      <circle cx="26.5" cy="12.5" r="2.4" className="fill-brand" />
-      <path d="M6 32.5h28" stroke="currentColor" strokeWidth="2.4" />
-    </svg>
+    <span className={cn("relative block h-[37px] w-12 shrink-0 overflow-hidden", className)}>
+      <Image
+        src="/images/logo/Travelspire_ne_logo_new.png"
+        alt=""
+        aria-hidden="true"
+        width={83}
+        height={83}
+        priority
+        className="absolute left-[-18px] top-[-18px] max-w-none"
+      />
+    </span>
   );
 }
 
@@ -31,14 +32,24 @@ export function Logo({ className }: { className?: string }) {
       aria-label="Travelspire Northeast — home"
       className={cn(
         "inline-flex shrink-0 items-center gap-2.5 rounded-control text-fg",
+        "transition-opacity duration-200 hover:opacity-80",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus focus-visible:ring-offset-4 focus-visible:ring-offset-canvas",
         className,
       )}
     >
       <LogoMark />
-      <span className="flex flex-col font-ui leading-none">
-        <span className="text-[1.0625rem] font-semibold tracking-[-0.01em]">Travelspire</span>
-        <span className="mt-1 text-eyebrow uppercase text-fg-subtle">Northeast</span>
+      <span className="flex flex-col gap-[5px]">
+        <span className="text-[15px] font-semibold uppercase leading-none tracking-[0.18em] sm:text-base">
+          Travelspire
+        </span>
+        {/* The rule flexes to fill the remaining width, so the second line
+            always ends flush with the first without forced letter-spacing. */}
+        <span className="flex items-center gap-2">
+          <span aria-hidden="true" className="h-px flex-1 bg-current opacity-30" />
+          <span className="font-mono text-[8.5px] uppercase leading-none tracking-[0.3em] opacity-65 sm:text-[9px]">
+            Northeast
+          </span>
+        </span>
       </span>
     </Link>
   );

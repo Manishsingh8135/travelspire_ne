@@ -232,7 +232,7 @@ export const generateLocalBusinessSchema = () => ({
         "itemOffered": {
           "@type": "TourPackage", 
           "name": "Festival Tours",
-          "description": "Experience major Northeast India festivals like Hornbill, Ziro, and Orange Festival"
+          "description": "Experience major Northeast India festivals like Hornbill and Ziro"
         }
       }
     ]

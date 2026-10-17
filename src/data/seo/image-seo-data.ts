@@ -567,20 +567,43 @@ export const placeImagesData: Record<string, PlaceImage[]> = {
 
   hornbill: [
     {
-      src: '/images/places/hornbill/Hornbill_1.PNG',
-      alt: 'Hornbill Festival Nagaland - Festival of Festivals showcasing Naga tribal culture',
-      title: 'Hornbill Festival - Festival of Festivals, Nagaland',
-      caption: 'The spectacular Hornbill Festival celebrating the rich cultural heritage of Naga tribes',
+      src: '/images/places/hornbill/Hornbill_2.WEBP',
+      alt: 'Naga warriors in hornbill-feather headgear leaping mid-dance in the arena at Kisama, Hornbill Festival, Nagaland',
+      title: 'Hornbill Festival dance - Naga Heritage Village, Kisama',
+      caption: 'A warrior dance in the morung arena at the Naga Heritage Village, Kisama',
       location: {
-        name: 'Kohima',
+        name: 'Naga Heritage Village, Kisama',
         state: 'Nagaland',
-        coordinates: {
-          latitude: 25.6751,
-          longitude: 94.1086
-        }
+        coordinates: { latitude: 25.6236, longitude: 94.1186 }
       },
-      keywords: ['hornbill festival', 'nagaland festival', 'naga tribes', 'festival of festivals', 'tribal culture', 'northeast festivals'],
+      keywords: ['hornbill festival', 'naga warrior dance', 'kisama heritage village', 'nagaland festival'],
       category: 'festival'
+    },
+    {
+      src: '/images/places/hornbill/Hornbill_3.PNG',
+      alt: 'A Naga tribal troupe in red shawls and feathered headgear processing across the main arena at the Hornbill Festival, Kisama',
+      title: 'Hornbill Festival procession - Kisama, Nagaland',
+      caption: 'Tribal troupes cross the main arena at Kisama during the Hornbill Festival',
+      location: {
+        name: 'Naga Heritage Village, Kisama',
+        state: 'Nagaland',
+        coordinates: { latitude: 25.6236, longitude: 94.1186 }
+      },
+      keywords: ['hornbill festival', 'naga tribes', 'kisama', 'festival of festivals'],
+      category: 'festival'
+    },
+    {
+      src: '/images/places/hornbill/Dzoku_3.jpg',
+      alt: 'Tents pitched above the rolling green hills of Dzükou Valley at sunset, on the Nagaland–Manipur border',
+      title: 'Camping in Dzükou Valley, Nagaland',
+      caption: 'Camping on the rim of Dzükou Valley, the trek most people pair with the Hornbill Festival',
+      location: {
+        name: 'Dzükou Valley',
+        state: 'Nagaland',
+        coordinates: { latitude: 25.5506, longitude: 94.1375 }
+      },
+      keywords: ['dzukou valley', 'dzukou valley trek', 'dzukou camping', 'nagaland trekking'],
+      category: 'landscape'
     },
     {
       src: '/images/places/hornbill/Dzoku_1.webp',

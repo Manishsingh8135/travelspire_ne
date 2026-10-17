@@ -12,6 +12,19 @@ const nextConfig: NextConfig = {
         destination: "/ziro-music-festival-2026",
         permanent: true,
       },
+      // The Dambuk/OFAM packages are off sale for 2026 (no Orange Festival in
+      // Dambuk this year). Temporary, so the URLs keep their history for when
+      // the packages come back.
+      ...[
+        "orange-festival-2026",
+        "dambuk-anini-ofam",
+        "dambuk-golden-pagoda-ofam",
+        "dambuk-dong-valley-ofam",
+      ].map((slug) => ({
+        source: `/tours/${slug}`,
+        destination: "/places/dambuk",
+        permanent: false,
+      })),
     ];
   },
   images: {

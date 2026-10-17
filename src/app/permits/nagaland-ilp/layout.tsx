@@ -146,29 +146,7 @@ const jsonLd = {
         serviceType: "Online Application",
       },
     },
-    // Event Schema for Hornbill Festival
-    {
-      "@type": "Event",
-      "@id": `${data.seo.canonical}#hornbill`,
-      name: "Hornbill Festival 2025",
-      description: data.hornbillFestival.description,
-      startDate: "2025-12-01",
-      endDate: "2025-12-10",
-      location: {
-        "@type": "Place",
-        name: "Kisama Heritage Village",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Kohima",
-          addressRegion: "Nagaland",
-          addressCountry: "India",
-        },
-      },
-      organizer: {
-        "@type": "GovernmentOrganization",
-        name: "Government of Nagaland",
-      },
-    },
+    // The Hornbill Festival event is described once, on /hornbill-festival.
   ],
 };
 

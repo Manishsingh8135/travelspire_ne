@@ -1,7 +1,8 @@
 import type { FAQSection } from "@/types/faqs/faq";
 
 // Dambuk — Lower Dibang Valley. Orange country on the banks of the Dibang.
-// Commercially tied to the existing OFAM tour products.
+// The Dambuk/OFAM packages are off sale for 2026 (no Orange Festival in
+// Dambuk this year); the guide stays live and points to nearby routes.
 
 export const dambukMeta = {
   name: "Dambuk",

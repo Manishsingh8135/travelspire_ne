@@ -15,12 +15,12 @@ import {
 const pageUrl = sixMeta.url;
 const heroImageUrl = `https://travelspirene.com${sixHeroImages.desktop.src}`;
 const description =
-  "Six days in Dibang Valley: Mayodia Pass, Anini homestays, Chigu camp, a 12-hour Pomo Grassland trek, Gipulin & the glass bridge, Emuli and Karu. From ₹18,999 pp. ILP and forest pass included.";
+  "Six days in Dibang Valley: Mayodia Pass, Anini homestays, Chigu camp, a 12-hour Pomo Grassland trek, Gipulin & the glass bridge, Emuli and Karu. From ₹21,699 pp. ILP and forest pass included.";
 
 export const metadata: Metadata = {
   title: {
     absolute:
-      "Anini 6 Days / 5 Nights — Pomo Grassland Trek Expedition 2026 | Travelspire NE",
+      "Anini 6 Days / 5 Nights — Pomo Grassland Trek Expedition | Travelspire NE",
   },
   description,
   keywords: [
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Six Days in the Dibang — Anini + Pomo Grassland | Travelspire NE",
     description:
-      "Five nights inside India's emptiest district, built around one 3 AM start onto Pomo grassland. Group from ₹18,999 · private from ₹51,999.",
+      "Five nights inside India's emptiest district, built around one 3 AM start onto Pomo grassland. Group from ₹21,699 · private from ₹51,999.",
     url: pageUrl,
     siteName: "Travelspire NE",
     locale: "en_IN",
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Six Days in the Dibang — Anini + Pomo Grassland trek",
     description:
-      "5N/6D from Dibrugarh. Mayodia, Anini, Chigu camp, Pomo trek, Gipulin, Emuli & Karu. From ₹18,999 pp.",
+      "5N/6D from Dibrugarh. Mayodia, Anini, Chigu camp, Pomo trek, Gipulin, Emuli & Karu. From ₹21,699 pp.",
     images: [heroImageUrl],
     site: "@TravelSpireNE",
   },

@@ -53,8 +53,8 @@ export const stateRequirements: StateRequirement[] = [
     slug: "mizoram-ilp",
     indians: "ILP",
     foreigners: "Register with the FRO within 24 hours",
-    fee: "₹120 (15 days)",
-    apply: "Online the same day, or on arrival at Lengpui Airport",
+    fee: "About ₹300–350 (7 days)",
+    apply: "Online after verification in office hours, or on arrival at Lengpui Airport",
     portal: "https://ilp.mizoram.gov.in",
     note: "The only Northeast state that issues an ILP on arrival. Sundays are strictly observed.",
     needsPermit: true,
@@ -74,11 +74,11 @@ export const stateRequirements: StateRequirement[] = [
     state: "Sikkim",
     slug: "sikkim-permit",
     indians: "Permit for protected zones only",
-    foreigners: "PAP for protected zones; some closed",
-    fee: "Free · ₹200–500 for protected zones",
+    foreigners: "Free Sikkim RAP to enter; PAP for protected zones; some closed",
+    fee: "₹50 tourist fee via hotel · ₹200–500 for protected zones",
     apply: "Through a registered agent, about a day",
     portal: "https://sikkimtourism.gov.in",
-    note: "Gangtok and Pelling are open. Nathula is Indians only; foreigners stop at Thangu, short of Gurudongmar.",
+    note: "Gangtok and Pelling need no permit for Indians. Nathula is Indians only; foreigners stop at Thangu, short of Gurudongmar.",
     needsPermit: true,
   },
   {
@@ -221,7 +221,7 @@ export const permitsHubFaqs = [
   {
     question: "Which Northeast Indian states require travel permits?",
     answer:
-      "Arunachal Pradesh, Nagaland, Mizoram and Manipur need an Inner Line Permit for Indian citizens from outside the state. Meghalaya, Assam and Tripura need none. Sikkim has no ILP but requires a permit for protected zones like Tsomgo Lake, Nathula and North Sikkim.",
+      "Arunachal Pradesh, Nagaland, Mizoram and Manipur need an Inner Line Permit for Indian citizens from outside the state. Meghalaya, Assam and Tripura need none. Sikkim has no ILP for Indians (foreigners need a free Sikkim permit to enter) but requires a permit for protected zones like Tsomgo Lake, Nathula and North Sikkim.",
   },
   {
     question: "How early should I apply for permits?",

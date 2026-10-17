@@ -15,9 +15,9 @@ const model: PermitGuideModel = {
   shortName: "PAP",
   lastChecked: q.lastUpdated,
   summary:
-    "Sikkim has no Inner Line Permit. Gangtok, Pelling and most of East and South Sikkim are open to everyone; Tsomgo Lake, Nathula and North Sikkim need a protected-area permit, arranged through a registered travel agent in about a day.",
+    "Indians need no permit to enter Sikkim; foreigners need a free entry permit (RAP), issued at Rangpo, Melli or online. Every tourist pays a ₹50 sustainability fee through their hotel. Tsomgo Lake, Nathula and North Sikkim need a protected-area permit, arranged through a registered travel agent in about a day.",
   facts: [
-    { label: "General areas", value: "No permit", icon: IconPermit },
+    { label: "General areas", value: "No permit for Indians", icon: IconPermit },
     { label: "Protected areas", value: "PAP via an agent", icon: IconPermit },
     { label: "Fee", value: "₹200 – ₹500", icon: IconRupee },
     { label: "Processing", value: "About 1 day", icon: IconClock },

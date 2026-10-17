@@ -88,11 +88,11 @@ export function GrandCircuitPage() {
         facts={[
           { label: "Duration", value: "13 days · 12 nights", icon: IconClock },
           { label: "Season", value: "Oct – Apr", icon: IconCalendar },
-          { label: "Group", value: "2 – 6 travellers", icon: IconUsers },
+          { label: "Group", value: "2 – 5 travellers", icon: IconUsers },
           { label: "Highest point", value: "Mayodia, 2,655 m", icon: IconMountain },
         ]}
         from={circuitMeta.fromPrice}
-        fromNote="per person, group of 6"
+        fromNote="per person, group of 5"
         defaultTier={tiers[0].id}
         askHref={generalAsk}
         image={{ src: circuitHero.desktop.src, alt: circuitHero.desktop.alt }}

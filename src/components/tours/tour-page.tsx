@@ -170,6 +170,12 @@ export function TourPage({ tour, isOver, pool }: { tour: Tour; isOver: boolean; 
               items={highlights}
               className="mt-8 [&_ul]:grid [&_ul]:gap-x-8 [&_ul]:gap-y-3 [&_ul]:space-y-0 sm:[&_ul]:grid-cols-2"
             />
+            {tour.guide ? (
+              <ButtonLink href={tour.guide.href} variant="secondary" size="sm" className="mt-8">
+                {tour.guide.label}
+                <IconArrowRight />
+              </ButtonLink>
+            ) : null}
           </ContentSection>
 
           {regular ? (

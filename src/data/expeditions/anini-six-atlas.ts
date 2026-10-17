@@ -274,12 +274,13 @@ export type FrameKey = keyof typeof FRAMES;
 // ── The desk: what each party size actually changes ──────────────────────────
 
 export interface TierDetail {
-  id: "six" | "five" | "four" | "private";
+  id: "five" | "four" | "private";
   size: number;
   /** Guest seats occupied in the vehicle. Private runs its own vehicle. */
   seatsFilled: number;
   seatsTotal: number;
   vehicle: string;
+  meals: string;
   schedule: string;
   room: string;
   space: string;
@@ -290,11 +291,12 @@ export interface TierDetail {
 
 export const sixTierDetail: TierDetail[] = [
   {
-    id: "six",
-    size: 6,
-    seatsFilled: 6,
-    seatsTotal: 6,
-    vehicle: "One SUV, six seats",
+    id: "five",
+    size: 5,
+    seatsFilled: 5,
+    seatsTotal: 5,
+    vehicle: "One SUV, every seat taken",
+    meals: "Breakfast",
     schedule: "Fixed group departure",
     room: "Homestay rooms on twin share",
     space: "Full vehicle — every seat taken",
@@ -303,24 +305,12 @@ export const sixTierDetail: TierDetail[] = [
     frame: FRAMES.pomoHorizon,
   },
   {
-    id: "five",
-    size: 5,
-    seatsFilled: 5,
-    seatsTotal: 6,
-    vehicle: "One SUV, room to spare",
-    schedule: "Fixed group departure",
-    room: "Homestay rooms on twin share",
-    space: "A spare seat for bags and legs",
-    bestFor: "A group that would rather not fill the last seat",
-    headline: "One fewer person to split the fixed costs",
-    frame: FRAMES.pomoMeadow,
-  },
-  {
     id: "four",
     size: 4,
     seatsFilled: 4,
-    seatsTotal: 6,
-    vehicle: "One SUV, four seats used",
+    seatsTotal: 5,
+    vehicle: "One SUV, a seat to spare",
+    meals: "Breakfast",
     schedule: "Fixed group departure",
     room: "Homestay rooms on twin share",
     space: "Noticeably more room on the long days",
@@ -332,8 +322,9 @@ export const sixTierDetail: TierDetail[] = [
     id: "private",
     size: 2,
     seatsFilled: 2,
-    seatsTotal: 6,
+    seatsTotal: 5,
     vehicle: "Dedicated vehicle & guide",
+    meals: "Breakfast & dinner",
     schedule: "The week bends to you, not to a group",
     room: "Your own room, twin or double",
     space: "The whole vehicle, for two",
@@ -370,7 +361,7 @@ export const sixNights: NightStay[] = [
     support: FRAMES.villageHills,
     facts: [
       { label: "Bed", value: "Heavy blankets, hot water" },
-      { label: "Food", value: "Breakfast and dinner, cooked in the house" },
+      { label: "Food", value: "Breakfast included; dinner too on private trips" },
       { label: "Power", value: "Mains, with cuts" },
       { label: "Signal", value: "Intermittent" },
       { label: "Last night", value: "Bonfire in the yard" },
@@ -388,7 +379,7 @@ export const sixNights: NightStay[] = [
     support: FRAMES.driRiver,
     facts: [
       { label: "Bed", value: "Tents on the river flats" },
-      { label: "Food", value: "Cooked at camp" },
+      { label: "Food", value: "Breakfast at camp" },
       { label: "Power", value: "None" },
       { label: "Signal", value: "None at all" },
       { label: "Wake-up", value: "03:00, for Pomo" },

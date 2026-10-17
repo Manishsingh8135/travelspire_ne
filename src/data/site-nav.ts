@@ -28,16 +28,9 @@ const festivalLinks: Array<NavLink & { slug: string }> = [
   {
     slug: "hornbill-festival-2026",
     label: "Hornbill Festival",
-    href: "/tours/hornbill-festival-2026",
+    href: "/hornbill-festival",
     description: "Kisama, Nagaland — the festival of festivals",
     meta: "1–10 Dec",
-  },
-  {
-    slug: "orange-festival-2026",
-    label: "Orange Festival, Dambuk",
-    href: "/tours/orange-festival-2026",
-    description: "Music in the orange orchards of Lower Dibang",
-    meta: "13–15 Dec",
   },
 ];
 
@@ -70,7 +63,7 @@ export function getSiteNav(): SiteNav {
         id: "tours",
         label: "Tours",
         href: "/all-tours",
-        match: ["/all-tours", "/tours", "/book"],
+        match: ["/all-tours", "/tours", "/book", "/hornbill-festival"],
         groups: tourGroups,
         footer: { label: "Browse all tours", href: "/all-tours" },
         feature: liveFestivals.length
@@ -78,7 +71,7 @@ export function getSiteNav(): SiteNav {
               eyebrow: "Booking open",
               title: "Hornbill Festival 2026",
               description: "Camping, the Dzükou trek or the full festival — from ₹1,799.",
-              href: "/tours/hornbill-festival-2026",
+              href: "/hornbill-festival",
               image: "/images/places/hornbill/Hornbill_3.PNG",
               imageAlt: "Naga dancers in full regalia at the Hornbill Festival",
             }

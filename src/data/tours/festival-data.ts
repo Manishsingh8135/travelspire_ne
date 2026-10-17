@@ -9,7 +9,23 @@ export const hornbillFestival: FestivalTour = {
   title: "Hornbill Festival 2026",
   subtitle: "The Festival of Festivals at Kisama, Nagaland",
   overview:
-    "Experience the cultural extravaganza of Northeast India at the Hornbill Festival, combined with the breathtaking beauty of Dzukou Valley. This festival celebrates the rich heritage of Nagaland's 16 major tribes with traditional dances, music, local cuisine, and handicrafts.",
+    "Hornbill runs 1–10 December 2026 at the Naga Heritage Village, Kisama, with performances, food and crafts from all 17 of Nagaland's recognised tribes. Camp beside the festival, or add two days on the Dzükou Valley trek. Join at Dimapur or Kohima; stays, local transport, permits and a trip leader are arranged.",
+  seo: {
+    title: "Hornbill Festival 2026 Tour Packages — Camping from ₹1,799 · Dzükou Trek | Travelspire NE",
+    description:
+      "Hornbill Festival 2026 packages from a Northeast ground team: festival camping from ₹1,799, Hornbill with the Dzükou Valley trek from ₹7,299, and a four-day full experience. Join at Dimapur or Kohima, 1–10 December.",
+    keywords: [
+      "Hornbill Festival tour package",
+      "Hornbill Festival 2026 package",
+      "Hornbill Festival package price",
+      "Hornbill Festival camping",
+      "Hornbill Festival and Dzukou Valley package",
+      "Hornbill Festival package from Guwahati",
+      "Hornbill Festival package from Dimapur",
+      "Nagaland tour package December",
+    ],
+  },
+  guide: { href: "/hornbill-festival", label: "Read the Hornbill 2026 guide" },
   location: "Kisama Heritage Village, Nagaland",
   featured: true,
   upcoming: true,
@@ -37,14 +53,13 @@ export const hornbillFestival: FestivalTour = {
     "/images/places/hornbill/Hornbill_2.WEBP",
     "/images/places/hornbill/Dzoku_2.jpg",
     "/images/places/hornbill/Hornbill_3.PNG",
-    "/images/places/hornbill/Hornbill_4.PNG",
   ],
 
   highlights: [
-    "Hornbill Festival- The biggest festival of Nagaland",
-    "Dzukou Valley- The Valley of flower of Northeast",
-    "Explore & Experience the Naga lifestyle and culture",
-    "Local Naga Cuisines",
+    "Ten days of performances by all 17 Naga tribes",
+    "Camping near Kisama with bonfire evenings",
+    "The Dzükou Valley trek with a registered local guide",
+    "Naga food in the tribal morungs",
   ],
 
   culturalHighlights: [
@@ -63,21 +78,21 @@ export const hornbillFestival: FestivalTour = {
         nights: 1,
       },
       price: 1799,
-      description: "Basic camping experience at the festival",
-      inclusions: ["Camping stay", "Breakfast & Dinner", "Basic amenities"],
+      description: "A tent near Kisama with breakfast. You spend the festival days as you like.",
+      inclusions: ["Camping stay", "Breakfast", "Basic amenities"],
     },
     {
       id: "hornbill-dzukou-2d",
-      name: "Hornbill x Dzukou Valley",
+      name: "Hornbill + Dzükou Valley",
       duration: {
         days: 3,
         nights: 2,
       },
       price: 7299,
-      description: "Festival plus Dzukou Valley trek experience",
+      description: "Festival camping plus the Dzükou Valley trek with a local guide, and transport from Dimapur.",
       inclusions: [
         "Camping stays",
-        "Breakfast & Dinner",
+        "Breakfast",
         "Dzukou trek",
         "Ex-Dimapur transport",
         "Hornbill festival entry",
@@ -92,10 +107,10 @@ export const hornbillFestival: FestivalTour = {
         nights: 3,
       },
       price: 9299,
-      description: "Complete Hornbill and Dzukou Valley experience",
+      description: "Four days: longer at the festival, the Dzükou trek, daily breakfast and a cultural workshop.",
       inclusions: [
         "Camping stays",
-        "All meals",
+        "Breakfast",
         "Dzukou trek",
         "Ex-Dimapur transport",
         "Extended festival access",
@@ -107,7 +122,6 @@ export const hornbillFestival: FestivalTour = {
   baseInclusions: [
     "Stay on twin/triple sharing basis",
     "Breakfast",
-    "Dinner",
     "Trip leader and Local guide",
     "Tents & Blankets",
     "Guide fees",
@@ -118,7 +132,7 @@ export const hornbillFestival: FestivalTour = {
     "Flight/Train tickets",
     "Personal Expenses",
     "Camera fees",
-    "Lunch",
+    "Lunch and dinner",
     "Any other food or beverage charges not mentioned",
     "Festival entry fees",
     "Costs due to natural calamities",
@@ -154,6 +168,8 @@ export const orangeFestival: FestivalTour = {
     start: "2026-12-13",
     end: "2026-12-15",
     year: 2026,
+    // OFAM hasn't announced 2026 (2024 ran 13–15 Dec, 2025 ran 18–21 Dec).
+    tentative: "Mid-Dec 2026 · dates TBA",
   },
 
   heroImage: "/images/places/dambuk/Dambuk_3.jpg",

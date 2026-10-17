@@ -25,6 +25,8 @@ const staticPages: Entry[] = [
   { path: "/places/dambuk", changeFrequency: "monthly", priority: 0.8 },
   { path: "/places/roing", changeFrequency: "monthly", priority: 0.8 },
   { path: "/guides/dibrugarh-to-anini", changeFrequency: "monthly", priority: 0.9 },
+  // Evergreen festival hub: one URL that collects every year's searches.
+  { path: "/hornbill-festival", changeFrequency: "weekly", priority: 0.95 },
   // Festival pages stay indexed after their edition: they carry the
   // next-edition searches and hand visitors to the evergreen guides.
   { path: "/anini-winter-fest-2026", changeFrequency: "monthly", priority: 0.7 },

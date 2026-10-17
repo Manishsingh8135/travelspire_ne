@@ -25,7 +25,7 @@ export const circuitMeta = {
   duration: "12 Nights / 13 Days",
   season: "October – April",
   route: "Dibrugarh · Aalo · Mechuka · Namsai · Walong · Dong · Roing · Anini",
-  fromPrice: 37499,
+  fromPrice: 43299,
   updated: "2026-08-20",
   published: "2026-08-20",
   operator: "Travelspire North-East",
@@ -57,7 +57,7 @@ export const circuitIntro = {
   ],
   truths: [
     "A long overland expedition with several full driving days",
-    "Private transport, local stays, breakfast and dinner included",
+    "Own vehicle and local stays; breakfast daily, plus dinner on the private departure",
     "A guided pre-dawn Dong experience and permit handling",
     "Flexible sequencing when roads, weather or local access require it",
   ],
@@ -367,25 +367,17 @@ export const circuitDays: CircuitDay[] = [
 
 export const circuitPricing = {
   currency: "₹",
-  title: "One circuit. Four honest prices.",
+  title: "One circuit. Three honest prices.",
   standfirst:
     "The vehicle, driver and route logistics are fixed costs. The per-person rate changes only with the number of travellers sharing them.",
   tiers: [
-    {
-      id: "group-six",
-      size: 6,
-      label: "Group of 6",
-      price: 37499,
-      badge: "Best value",
-      note: "The complete 12N/13D circuit with all six seats priced together.",
-    },
     {
       id: "group-five",
       size: 5,
       label: "Group of 5",
       price: 43299,
-      badge: null,
-      note: "The same vehicle, route and inclusions shared between five travellers.",
+      badge: "Best value",
+      note: "The complete 12N/13D circuit with all five seats priced together. Breakfast included.",
     },
     {
       id: "group-four",
@@ -393,7 +385,7 @@ export const circuitPricing = {
       label: "Group of 4",
       price: 54399,
       badge: "More room",
-      note: "A smaller group with more cabin space on the long transfer days.",
+      note: "A smaller group with more cabin space on the long transfer days. Breakfast included.",
     },
     {
       id: "private",
@@ -401,11 +393,12 @@ export const circuitPricing = {
       label: "Private couple / twin",
       price: 69999,
       badge: "Private",
-      note: "A dedicated vehicle and itinerary for two travellers sharing a room.",
+      note: "A dedicated vehicle and itinerary for two travellers sharing a room. Breakfast and dinner included.",
     },
   ],
   fineprint: [
     "Every listed price is per person for the full 12-night / 13-day circuit, ex-Dibrugarh.",
+    "Group departures include breakfast; the private departure includes breakfast and dinner. Lunch is never included.",
     "Final departure dates, room mix and vehicle are confirmed before payment.",
     "Weather, road conditions and local access can change the order of sightseeing without reducing the trip length.",
   ],
@@ -421,8 +414,12 @@ export const circuitIncluded = [
     note: "Twelve nights in route-appropriate hotels, guesthouses or homestays",
   },
   {
-    name: "Breakfast & dinner",
-    note: "Two included meals on each stay day, subject to departure timing",
+    name: "Breakfast",
+    note: "On each stay day, subject to departure timing",
+  },
+  {
+    name: "Dinner — private only",
+    note: "Included on each stay day on the private departure",
   },
   {
     name: "Inner Line Permit",
@@ -442,6 +439,10 @@ export const circuitIncluded = [
 
 export const circuitExcluded = [
   { name: "Lunch", note: "Roadside and local meal stops, paid directly" },
+  {
+    name: "Dinner on group departures",
+    note: "Taken at the night's stay or nearby, paid directly",
+  },
   {
     name: "Room heater",
     note: "Charged separately where a property offers one",
@@ -523,7 +524,7 @@ export const circuitFaq: FAQSection = {
       id: "meals",
       question: "Which meals are included?",
       answer:
-        "Breakfast and dinner are included. Lunch is excluded and is taken at local restaurants or roadside stops so the driving schedule can remain flexible. Very early departures may require a packed or adjusted breakfast depending on the property.",
+        "On group departures breakfast is included. On the private departure breakfast and dinner are both included. Lunch is never included and is taken at local restaurants or roadside stops so the driving schedule can remain flexible. Very early departures may require a packed or adjusted breakfast depending on the property.",
     },
     {
       id: "stays",
@@ -679,7 +680,7 @@ export const mechukaDongAniniTour: Tour = {
   importantNote:
     "Pomo Grassland is not included in the base 13-day circuit because it requires additional staging and a dedicated trek day. Road, weather and local access may change the order of sightseeing.",
   thingsToCarry: [...circuitCarry],
-  maxGroupSize: 6,
+  maxGroupSize: 5,
   difficulty: "Moderate",
   bestTimeToVisit: [
     "October",
