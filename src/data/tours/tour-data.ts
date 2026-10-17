@@ -1141,7 +1141,7 @@ export const aniniPomoSixExpedition: Tour = {
   duration: "6 Days / 5 Nights",
   location: "Anini, Dibang Valley, Arunachal Pradesh",
   startDate: "October – April",
-  price: 21699,
+  price: 25999,
   featured: true,
   trending: true,
   upcoming: false,

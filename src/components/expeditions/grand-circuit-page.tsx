@@ -33,12 +33,13 @@ import {
   circuitIntro,
   circuitMechukaArchive,
   circuitMeta,
-  circuitPomoExtension,
+  circuitPomoDay,
   circuitPricing,
   circuitStay,
   mechukaDongAniniTour,
 } from "@/data/expeditions/mechuka-dong-anini";
 import { getActiveTours } from "@/data/tours";
+import { tierPriceText, tierTravellers } from "@/lib/expedition-tiers";
 import { createGrandCircuitInquiryURL } from "@/lib/whatsapp";
 import {
   ChapterHeader,
@@ -61,7 +62,7 @@ const sections = [
   { id: "photos", label: "Photos" },
 ];
 
-/* Mechuka · Dong · Anini — the 12N/13D grand circuit. */
+/* Mechuka · Dong · Anini — the 15N/16D grand circuit. */
 export function GrandCircuitPage() {
   const tiers: ExpeditionTier[] = circuitPricing.tiers.map((t) => ({ ...t }));
   const generalAsk = createGrandCircuitInquiryURL();
@@ -84,12 +85,12 @@ export function GrandCircuitPage() {
             Mechuka, Dong <Accent>&amp; Anini</Accent>
           </>
         }
-        lead="Thirteen days from Dibrugarh across Arunachal: Mechuka's monastery valley, the Dong sunrise in the far east, and three unhurried nights in Anini."
+        lead="Sixteen days from Dibrugarh across Arunachal: Mechuka's monastery valley, Anini and the Pomo grassland trek, then the Dong sunrise in the far east."
         facts={[
-          { label: "Duration", value: "13 days · 12 nights", icon: IconClock },
+          { label: "Duration", value: "16 days · 15 nights", icon: IconClock },
           { label: "Season", value: "Oct – Apr", icon: IconCalendar },
           { label: "Group", value: "2 – 5 travellers", icon: IconUsers },
-          { label: "Highest point", value: "Mayodia, 2,655 m", icon: IconMountain },
+          { label: "Treks", value: "Pomo, Dong, Mechuka La", icon: IconMountain },
         ]}
         from={circuitMeta.fromPrice}
         fromNote="per person, group of 5"
@@ -133,8 +134,8 @@ export function GrandCircuitPage() {
 
           <ContentSection
             id="itinerary"
-            title="Thirteen days, three regions"
-            intro="Aalo, Namsai, Roing and Walong are real staging nights, not invisible transfers — that keeps the drives readable and makes the 02:00 Dong start possible."
+            title="Sixteen days, three regions"
+            intro="Aalo, Roing, Namsai and Walong are real staging nights, not invisible transfers — that keeps the drives readable and makes the 03:30 Pomo and 02:00 Dong starts possible."
           >
             <div className="space-y-12">
               {circuitChapters.map((chapter) => (
@@ -173,8 +174,10 @@ export function GrandCircuitPage() {
             <PriceTiers
               slug={circuitMeta.slug}
               tiers={tiers}
-              days={13}
-              askHref={(t) => createGrandCircuitInquiryURL({ kind: "tier", label: t.label, size: t.size, price: t.price })}
+              days={16}
+              askHref={(t) =>
+                createGrandCircuitInquiryURL({ kind: "tier", label: t.label, travellers: tierTravellers(t), priceText: tierPriceText(t) })
+              }
               fineprint={circuitPricing.fineprint}
             />
           </ContentSection>
@@ -191,20 +194,20 @@ export function GrandCircuitPage() {
               <CheckList tone="neutral" items={[...circuitStay.items]} className="mt-5" />
             </div>
 
-            <Callout tone="caution" title={circuitPomoExtension.title} className="mt-10">
-              <p>{circuitPomoExtension.body}</p>
+            <Callout tone="caution" title={circuitPomoDay.title} className="mt-10">
+              <p>{circuitPomoDay.body}</p>
               <span className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
-                <ButtonLink href={circuitPomoExtension.href} variant="link" size="sm">
-                  {circuitPomoExtension.linkLabel}
+                <ButtonLink href={circuitPomoDay.href} variant="link" size="sm">
+                  {circuitPomoDay.linkLabel}
                   <IconArrowRight />
                 </ButtonLink>
                 <a
-                  href={createGrandCircuitInquiryURL({ kind: "pomo-extension" })}
+                  href={createGrandCircuitInquiryURL({ kind: "pomo" })}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={buttonVariants({ variant: "link", size: "sm" })}
                 >
-                  Ask for an extension quote
+                  Ask about the trek day
                 </a>
               </span>
             </Callout>
@@ -228,7 +231,7 @@ export function GrandCircuitPage() {
             <ExpeditionBookingPanel
               slug={circuitMeta.slug}
               tiers={tiers}
-              summary="12 nights · 13 days · ex-Dibrugarh"
+              summary="15 nights · 16 days · ex-Dibrugarh"
               askHref={datesAsk}
             />
           </div>
@@ -271,14 +274,14 @@ export function GrandCircuitPage() {
       ) : null}
 
       <PlanCta
-        title="Thirteen days is a big trip. Ask us anything first."
-        body="Dates, room mix, the vehicle, what the Dong morning really involves — a person in Dibrugarh answers before you pay anything."
+        title="Sixteen days is a big trip. Ask us anything first."
+        body="Dates, room mix, the vehicle, what the Pomo and Dong mornings really involve — a person in Dibrugarh answers before you pay anything."
         whatsappHref={datesAsk}
       />
 
       <PriceBar
         floating
-        title="Mechuka · Dong · Anini, 13 days"
+        title="Mechuka · Dong · Anini, 16 days"
         price={tiers[0].price}
         unit="per person"
         bookHref={`/book/${circuitMeta.slug}?tier=${tiers[0].id}`}

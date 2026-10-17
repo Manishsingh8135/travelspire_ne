@@ -14,7 +14,7 @@ import {
   IconUsers,
   IconWhatsApp,
 } from "@/components/icons";
-import type { BookingProduct } from "@/lib/bookings/catalog";
+import type { BookingProduct, BookingTier } from "@/lib/bookings/catalog";
 import { trackEvent } from "@/lib/analytics";
 import { postToPayU, type HostedCheckoutResponse } from "@/lib/payments/payu/browser";
 import { cn } from "@/lib/utils";
@@ -35,6 +35,13 @@ function formatDeparture(iso: string) {
   if (!iso) return "Choose a date";
   const date = new Date(`${iso}T00:00:00+05:30`);
   return Number.isNaN(date.getTime()) ? iso : dateLabel.format(date);
+}
+
+/** "₹25,999 per person", or "₹1,89,999 for 2" when the tier is one price for
+ *  the whole party. `short` drops "per person" where the row already says it. */
+function priceLabel(tier: BookingTier, short = false) {
+  if (tier.partyPrice !== null) return `${formatInr(tier.partyPrice)} for ${tier.fixedTravellers}`;
+  return short ? formatInr(tier.unitPrice) : `${formatInr(tier.unitPrice)} per person`;
 }
 
 export function BookingCheckoutForm({
@@ -74,7 +81,10 @@ export function BookingCheckoutForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const total = useMemo(() => tier.unitPrice * travellers, [tier.unitPrice, travellers]);
+  const total = useMemo(
+    () => tier.partyPrice ?? tier.unitPrice * travellers,
+    [tier.partyPrice, tier.unitPrice, travellers],
+  );
   const groupPriced = tier.fixedTravellers !== null;
   const dateFixed = product.fixedDepartureDate !== null;
 
@@ -142,7 +152,7 @@ export function BookingCheckoutForm({
               <Select id="booking-tier" value={tierId} onChange={(event) => selectTier(event.target.value)}>
                 {product.tiers.map((item) => (
                   <option key={item.id} value={item.id}>
-                    {item.name} · {formatInr(item.unitPrice)} per person
+                    {item.name} · {priceLabel(item)}
                   </option>
                 ))}
               </Select>
@@ -151,7 +161,7 @@ export function BookingCheckoutForm({
             <div className="space-y-1.5">
               <p className="text-small font-medium text-fg">Package</p>
               <p className="rounded-control border border-line bg-canvas-subtle px-3.5 py-2.5 text-body text-fg">
-                {tier.name} · {formatInr(tier.unitPrice)} per person
+                {tier.name} · {priceLabel(tier)}
               </p>
             </div>
           )}
@@ -322,8 +332,8 @@ export function BookingCheckoutForm({
                 <dd className="font-medium text-fg tabular-nums">{travellers}</dd>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <dt className="text-fg-subtle">Price per person</dt>
-                <dd className="font-medium text-fg tabular-nums">{formatInr(tier.unitPrice)}</dd>
+                <dt className="text-fg-subtle">{tier.partyPrice === null ? "Price per person" : "Price"}</dt>
+                <dd className="font-medium text-fg tabular-nums">{priceLabel(tier, true)}</dd>
               </div>
             </dl>
             <div className="mt-5 flex items-end justify-between gap-4 border-t border-line pt-5">

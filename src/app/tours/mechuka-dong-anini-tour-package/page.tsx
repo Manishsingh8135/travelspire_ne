@@ -12,6 +12,7 @@ import {
   circuitMeta,
   circuitPricing,
 } from "@/data/expeditions/mechuka-dong-anini";
+import { isPartyPriced, tierPerPerson } from "@/lib/expedition-tiers";
 
 const pageUrl = circuitMeta.url;
 const siteUrl = "https://travelspirene.com";
@@ -19,17 +20,17 @@ const ogPath =
   "/images/tours/mechuka-dong-anini/mechuka-dong-anini-tour-package-og.jpg";
 const ogImageUrl = `${siteUrl}${ogPath}`;
 const description =
-  "Book a 12N/13D Mechuka Dong Anini tour from Dibrugarh with Walong, Kaho, Dong sunrise, Mayodia, stays, transport, breakfast and permits across Arunachal Pradesh.";
+  "Book a 15N/16D Mechuka Dong Anini tour from Dibrugarh with Lamang Pass, the Pomo Grassland trek, the Dong sunrise and Kaho — stays, transport, breakfast and permits included.";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Mechuka Dong Anini Tour Package – 13 Days | Travelspire NE",
+    absolute: "Mechuka Dong Anini Tour Package – 16 Days | Travelspire NE",
   },
   description,
   keywords: [
     circuitMeta.focusKeyphrase,
     "Mechuka Dong Anini itinerary",
-    "Mechuka Dong Anini 12 nights 13 days",
+    "Mechuka Dong Anini 15 nights 16 days",
     "Mechuka Dong Anini tour from Dibrugarh",
     "Mechuka tour package",
     "Mechukha tour package",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
     "Dong Valley sunrise tour",
     "Walong Kaho tour",
     "Anini tour package",
-    "Arunachal Pradesh 13 day itinerary",
+    "Arunachal Pradesh 16 day itinerary",
     "Arunachal Pradesh grand circuit",
     "Dibrugarh to Mechuka Dong Anini",
     "Aalo Mechuka road trip",
@@ -45,7 +46,8 @@ export const metadata: Metadata = {
     "Yargyap Chu Mechuka",
     "Dorjeeling Mechuka",
     "Mechuka helicopter landmark",
-    "Golden Pagoda Namsai tour",
+    "Pomo Grassland trek",
+    "Lamang Pass Mechuka",
     "Mayodia Pass Anini tour",
     "Arunachal Pradesh ILP tour",
     "Travelspire Northeast",
@@ -69,9 +71,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Mechuka · Dong · Anini — 12N/13D Grand Arunachal Circuit",
+    title: "Mechuka · Dong · Anini — 15N/16D Grand Arunachal Circuit",
     description:
-      "One 13-day circuit from Dibrugarh: Mechuka, Walong, Dong sunrise, Kaho, Roing, Mayodia and three nights in Anini. From ₹43,299 pp.",
+      "One 16-day circuit from Dibrugarh: Mechuka and Lamang Pass, Anini and the Pomo Grassland trek, then Walong, the Dong sunrise and Kaho. From ₹58,999 pp.",
     url: pageUrl,
     siteName: "Travelspire North-East",
     locale: "en_IN",
@@ -84,16 +86,16 @@ export const metadata: Metadata = {
         url: ogImageUrl,
         width: 1200,
         height: 630,
-        alt: "Mechuka mountain valley — Mechuka, Dong and Anini 13-day Arunachal tour",
+        alt: "Mechuka mountain valley — Mechuka, Dong and Anini 16-day Arunachal tour",
         type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mechuka · Dong · Anini — 13 Days across Arunachal",
+    title: "Mechuka · Dong · Anini — 16 Days across Arunachal",
     description:
-      "Dibrugarh round trip with Mechuka, Dong sunrise, Kaho, Mayodia and Anini. 12 nights from ₹43,299 per person.",
+      "Dibrugarh round trip with Mechuka, Anini, the Pomo trek, the Dong sunrise and Kaho. 15 nights from ₹58,999 per person.",
     images: [ogImageUrl],
     creator: "@travelspire_ne",
   },
@@ -108,7 +110,7 @@ const circuitGraph = {
       "@type": "WebPage",
       "@id": `${pageUrl}#webpage`,
       url: pageUrl,
-      name: "Mechuka Dong Anini Tour Package – 12 Nights / 13 Days",
+      name: "Mechuka Dong Anini Tour Package – 15 Nights / 16 Days",
       description,
       inLanguage: "en-IN",
       isPartOf: { "@id": `${siteUrl}/#website` },
@@ -156,9 +158,9 @@ const circuitGraph = {
     {
       "@type": ["TouristTrip", "Product"],
       "@id": tripId,
-      name: "Mechuka Dong Anini Tour Package – 12 Nights / 13 Days",
+      name: "Mechuka Dong Anini Tour Package – 15 Nights / 16 Days",
       alternateName: [
-        "Mechuka + Dong + Anini 12N/13D",
+        "Mechuka + Anini + Dong 15N/16D",
         "Mechukha Dong Anini tour",
         "Menchuka Dong Anini tour",
         "Arunachal Pradesh grand circuit",
@@ -173,7 +175,7 @@ const circuitGraph = {
         ...circuitChapters.map((chapter) => `${siteUrl}${chapter.frame.src}`),
         ...mechuka2026Images.map((image) => `${siteUrl}${image.src}`),
       ].filter((url, index, list) => list.indexOf(url) === index),
-      sku: "TSNE-MDA-13D",
+      sku: "TSNE-MDA-16D",
       category: "Guided multi-day tour",
       provider: { "@id": `${siteUrl}/#organization` },
       brand: { "@id": `${siteUrl}/#organization` },
@@ -195,7 +197,7 @@ const circuitGraph = {
       },
       itinerary: {
         "@type": "ItemList",
-        name: "13-day Mechuka, Dong and Anini itinerary",
+        name: "16-day Mechuka, Anini and Dong itinerary",
         numberOfItems: circuitDays.length,
         itemListOrder: "https://schema.org/ItemListOrderAscending",
         itemListElement: circuitDays.map((day) => ({
@@ -209,8 +211,8 @@ const circuitGraph = {
         "@type": "AggregateOffer",
         url: pageUrl,
         priceCurrency: "INR",
-        lowPrice: circuitPricing.tiers[0].price,
-        highPrice: circuitPricing.tiers[circuitPricing.tiers.length - 1].price,
+        lowPrice: Math.min(...circuitPricing.tiers.map(tierPerPerson)),
+        highPrice: Math.max(...circuitPricing.tiers.map(tierPerPerson)),
         offerCount: circuitPricing.tiers.length,
         availability: "https://schema.org/LimitedAvailability",
         seller: { "@id": `${siteUrl}/#organization` },
@@ -240,7 +242,9 @@ const circuitGraph = {
         })),
         offers: circuitPricing.tiers.map((tier) => ({
           "@type": "Offer",
-          name: `${tier.label} — per-person tour price`,
+          name: isPartyPriced(tier)
+            ? `${tier.label} — total tour price for ${tier.size}`
+            : `${tier.label} — per-person tour price`,
           price: tier.price,
           priceCurrency: "INR",
           url: `${pageUrl}#pricing`,
@@ -272,7 +276,7 @@ const circuitGraph = {
         {
           "@type": "PropertyValue",
           name: "Pomo Grassland trek",
-          value: "Available only as a separately quoted extension",
+          value: "Included on Day 10",
         },
       ],
     },

@@ -11,11 +11,12 @@ import {
   sixMeta,
   sixPricing,
 } from "@/data/expeditions/anini-six-days";
+import { tierPerPerson } from "@/lib/expedition-tiers";
 
 const pageUrl = sixMeta.url;
 const heroImageUrl = `https://travelspirene.com${sixHeroImages.desktop.src}`;
 const description =
-  "Six days in Dibang Valley: Mayodia Pass, Anini homestays, Chigu camp, a 12-hour Pomo Grassland trek, Gipulin & the glass bridge, Emuli and Karu. From ₹21,699 pp. ILP and forest pass included.";
+  "Six days in Dibang Valley: Mayodia Pass, Anini homestays, Chigu camp, a 12-hour Pomo Grassland trek, Gipulin & the glass bridge, Emuli and Karu. From ₹25,999 pp. ILP and forest pass included.";
 
 export const metadata: Metadata = {
   title: {
@@ -68,7 +69,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Six Days in the Dibang — Anini + Pomo Grassland | Travelspire NE",
     description:
-      "Five nights inside India's emptiest district, built around one 3 AM start onto Pomo grassland. Group from ₹21,699 · private from ₹51,999.",
+      "Five nights inside India's emptiest district, built around one 3 AM start onto Pomo grassland. Group from ₹25,999 · private from ₹51,999.",
     url: pageUrl,
     siteName: "Travelspire NE",
     locale: "en_IN",
@@ -89,7 +90,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Six Days in the Dibang — Anini + Pomo Grassland trek",
     description:
-      "5N/6D from Dibrugarh. Mayodia, Anini, Chigu camp, Pomo trek, Gipulin, Emuli & Karu. From ₹21,699 pp.",
+      "5N/6D from Dibrugarh. Mayodia, Anini, Chigu camp, Pomo trek, Gipulin, Emuli & Karu. From ₹25,999 pp.",
     images: [heroImageUrl],
     site: "@TravelSpireNE",
   },
@@ -187,8 +188,8 @@ const sixGraph = {
         "@type": "AggregateOffer",
         url: pageUrl,
         priceCurrency: "INR",
-        lowPrice: sixPricing.tiers[0].price,
-        highPrice: sixPricing.tiers[sixPricing.tiers.length - 1].price,
+        lowPrice: Math.min(...sixPricing.tiers.map(tierPerPerson)),
+        highPrice: Math.max(...sixPricing.tiers.map(tierPerPerson)),
         offerCount: sixPricing.tiers.length,
         availability: "https://schema.org/InStock",
         offers: sixPricing.tiers.map((tier) => ({
@@ -200,7 +201,7 @@ const sixGraph = {
           url: pageUrl,
           eligibleQuantity: {
             "@type": "QuantitativeValue",
-            value: tier.size,
+            ...("minSize" in tier ? { minValue: tier.minSize, maxValue: tier.size } : { value: tier.size }),
             unitText: "travellers",
           },
         })),

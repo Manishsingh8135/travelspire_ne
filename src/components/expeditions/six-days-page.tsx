@@ -43,6 +43,7 @@ import {
   sixSummit,
   sixWater,
 } from "@/data/expeditions/anini-six-days";
+import { tierPriceText, tierTravellers } from "@/lib/expedition-tiers";
 import { createAniniSixInquiryURL } from "@/lib/whatsapp";
 import {
   ExpeditionBookingPanel,
@@ -79,6 +80,7 @@ export function SixDaysPage() {
       id: t.id,
       label: t.label,
       size: t.size,
+      minSize: "minSize" in t ? t.minSize : undefined,
       price: t.price,
       badge: t.badge,
       note: t.note,
@@ -138,7 +140,7 @@ export function SixDaysPage() {
           { label: "Highest road", value: "Mayodia, 2,655 m", icon: IconMountain },
         ]}
         from={sixMeta.fromPrice}
-        fromNote="per person, group of 5"
+        fromNote="per person, group of 4 or 5"
         defaultTier={tiers[0].id}
         askHref={generalAsk}
         image={{ src: sixHeroImages.desktop.src, alt: sixHeroImages.alt }}
@@ -261,7 +263,9 @@ export function SixDaysPage() {
               slug={sixMeta.slug}
               tiers={tiers}
               days={6}
-              askHref={(t) => createAniniSixInquiryURL({ kind: "tier", label: t.label, size: t.size, price: t.price })}
+              askHref={(t) =>
+                createAniniSixInquiryURL({ kind: "tier", label: t.label, travellers: tierTravellers(t), priceText: tierPriceText(t) })
+              }
               fineprint={sixPricing.fineprint}
             />
           </ContentSection>
