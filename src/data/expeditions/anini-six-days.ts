@@ -20,8 +20,8 @@ export const sixMeta = {
   duration: "5 Nights / 6 Days",
   edition: "Field Edition",
   season: "October – April",
-  updated: "2026-08-19",
-  fromPrice: 21699,
+  updated: "2026-10-17",
+  fromPrice: 25999,
   operator: "Travelspire Northeast",
 } as const;
 
@@ -417,30 +417,20 @@ export const sixPricing = {
   kicker: "The ledger",
   title: "What it costs",
   standfirst:
-    "One vehicle, one guide, one set of permits — so the price per person falls as the group fills. These are the real numbers, per person, all-in for what is listed below.",
+    "One vehicle, one guide, one set of permits. Join as a group of four or five at one flat rate, or take the whole expedition private. These are the real numbers, per person, all-in for what is listed below.",
   currency: "₹",
   tiers: [
     {
-      id: "five",
+      id: "group",
       size: 5,
-      label: "Group of 5",
-      shortLabel: "5 pax",
-      price: 21699,
+      minSize: 4,
+      label: "Group trip · 4 or 5 people",
+      shortLabel: "Group",
+      price: 25999,
       per: "per person",
       badge: "Best value",
-      note: "The vehicle is full and the fixed costs split five ways. Breakfast included every day.",
-      vehicle: "One SUV, every seat taken",
-    },
-    {
-      id: "four",
-      size: 4,
-      label: "Group of 4",
-      shortLabel: "4 pax",
-      price: 26699,
-      per: "per person",
-      badge: null,
-      note: "The smallest group we run as a shared departure, with a spare seat on the long days. Breakfast included every day.",
-      vehicle: "One SUV, a seat to spare",
+      note: "One vehicle and one guide for your group of four or five, at the same rate per person either way. Breakfast included every day.",
+      vehicle: "One SUV, four or five guests",
     },
     {
       id: "private",
@@ -613,9 +603,9 @@ export const sixFaqSection: FAQSection = {
     },
     {
       id: "group-size",
-      question: "Why does the price change with group size?",
+      question: "Does the price change with group size?",
       answer:
-        "Because the vehicle, the driver, the guide and the permits cost the same whether four people or five people share them. At five the vehicle is full and the fixed costs split furthest, which is why ₹21,699 is the best number on the page — we never put six people in one vehicle. Below four we run it as a private expedition with a dedicated vehicle and guide, which is a genuinely different product at ₹51,999 per person.",
+        "It doesn't, between four and five: the group trip is ₹25,999 per person whether you are four or five. Five is the most we take — one vehicle seats five guests, and we never put six people in it. Below four we run it as a private expedition with a dedicated vehicle and guide, which is a genuinely different product at ₹51,999 per person, with dinner included as well as breakfast.",
     },
     {
       id: "food",

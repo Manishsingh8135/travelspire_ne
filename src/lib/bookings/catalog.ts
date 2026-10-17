@@ -6,6 +6,7 @@ import { sixMeta, sixPricing } from "@/data/expeditions/anini-six-days";
 import { awfSharedTransfer } from "@/data/festivals/anini-winter-fest";
 import { allTours } from "@/data/tours";
 import { indiaToday } from "@/lib/dates";
+import { isPartyPriced, type ExpeditionTierPricing } from "@/lib/expedition-tiers";
 import { isRegularTour } from "@/types/tours/tour";
 
 export type BookingTier = {
@@ -15,6 +16,9 @@ export type BookingTier = {
   minTravellers: number;
   maxTravellers: number;
   fixedTravellers: number | null;
+  /** Set when the tier is one price for the whole party (fixedTravellers),
+   *  not a per-person rate. unitPrice is then only a per-head equivalent. */
+  partyPrice: number | null;
 };
 
 export type BookingProduct = {
@@ -48,6 +52,7 @@ function regularProducts(): BookingProduct[] {
             minTravellers: 1,
             maxTravellers: Math.min(tour.maxGroupSize, MAX_GROUP_SIZE),
             fixedTravellers: null,
+            partyPrice: null,
           },
         ]
       : tour.variants.map((variant) => ({
@@ -57,6 +62,7 @@ function regularProducts(): BookingProduct[] {
           minTravellers: 1,
           maxTravellers: Math.min(variant.maxGroupSize ?? MAX_GROUP_SIZE, MAX_GROUP_SIZE),
           fixedTravellers: null,
+          partyPrice: null,
         }));
 
     return {
@@ -76,6 +82,21 @@ function regularProducts(): BookingProduct[] {
   });
 }
 
+function expeditionTiers(tiers: readonly ExpeditionTierPricing[]): BookingTier[] {
+  return tiers.map((tier) => {
+    const party = isPartyPriced(tier);
+    return {
+      id: tier.id,
+      name: tier.label,
+      unitPrice: party ? Math.round(tier.price / tier.size) : tier.price,
+      minTravellers: tier.minSize ?? tier.size,
+      maxTravellers: tier.size,
+      fixedTravellers: tier.minSize ? null : tier.size,
+      partyPrice: party ? tier.price : null,
+    };
+  });
+}
+
 const expeditionProducts: BookingProduct[] = [
   {
     slug: circuitMeta.slug,
@@ -84,14 +105,7 @@ const expeditionProducts: BookingProduct[] = [
     defaultDepartureDate: null,
     fixedDepartureDate: null,
     departureWindow: OPEN_WINDOW,
-    tiers: circuitPricing.tiers.map((tier) => ({
-      id: tier.id,
-      name: tier.label,
-      unitPrice: tier.price,
-      minTravellers: tier.size,
-      maxTravellers: tier.size,
-      fixedTravellers: tier.size,
-    })),
+    tiers: expeditionTiers(circuitPricing.tiers),
   },
   {
     slug: sixMeta.slug,
@@ -100,14 +114,7 @@ const expeditionProducts: BookingProduct[] = [
     defaultDepartureDate: null,
     fixedDepartureDate: null,
     departureWindow: OPEN_WINDOW,
-    tiers: sixPricing.tiers.map((tier) => ({
-      id: tier.id,
-      name: tier.label,
-      unitPrice: tier.price,
-      minTravellers: tier.size,
-      maxTravellers: tier.size,
-      fixedTravellers: tier.size,
-    })),
+    tiers: expeditionTiers(sixPricing.tiers),
   },
 ];
 
@@ -130,6 +137,7 @@ const festivalTravelProducts: BookingProduct[] = [
         minTravellers: 1,
         maxTravellers: awfSharedTransfer.maxTravellersPerBooking,
         fixedTravellers: null,
+        partyPrice: null,
       },
     ],
   },
@@ -210,7 +218,7 @@ export function resolveBookingPrice(input: {
     return null;
   }
 
-  const totalAmount = tier.unitPrice * input.travellers;
+  const totalAmount = tier.partyPrice ?? tier.unitPrice * input.travellers;
   if (!Number.isSafeInteger(totalAmount) || totalAmount <= 0) return null;
 
   return { product, tier, totalAmount, totalAmountPaise: totalAmount * 100 };

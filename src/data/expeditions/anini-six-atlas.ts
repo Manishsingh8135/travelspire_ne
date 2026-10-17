@@ -274,7 +274,7 @@ export type FrameKey = keyof typeof FRAMES;
 // ── The desk: what each party size actually changes ──────────────────────────
 
 export interface TierDetail {
-  id: "five" | "four" | "private";
+  id: "group" | "private";
   size: number;
   /** Guest seats occupied in the vehicle. Private runs its own vehicle. */
   seatsFilled: number;
@@ -291,32 +291,18 @@ export interface TierDetail {
 
 export const sixTierDetail: TierDetail[] = [
   {
-    id: "five",
+    id: "group",
     size: 5,
     seatsFilled: 5,
     seatsTotal: 5,
-    vehicle: "One SUV, every seat taken",
+    vehicle: "One SUV, four or five guests",
     meals: "Breakfast",
     schedule: "Fixed group departure",
     room: "Homestay rooms on twin share",
-    space: "Full vehicle — every seat taken",
-    bestFor: "Friends filling their own departure",
-    headline: "The number most groups land on",
+    space: "Up to every seat taken",
+    bestFor: "Two couples, a family, or friends filling their own departure",
+    headline: "One flat rate for four or five",
     frame: FRAMES.pomoHorizon,
-  },
-  {
-    id: "four",
-    size: 4,
-    seatsFilled: 4,
-    seatsTotal: 5,
-    vehicle: "One SUV, a seat to spare",
-    meals: "Breakfast",
-    schedule: "Fixed group departure",
-    room: "Homestay rooms on twin share",
-    space: "Noticeably more room on the long days",
-    bestFor: "Two couples, or a family of four",
-    headline: "The smallest shared departure we run",
-    frame: FRAMES.pomoHills,
   },
   {
     id: "private",

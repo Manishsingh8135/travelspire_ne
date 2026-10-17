@@ -22,18 +22,15 @@ import {
   IconShield,
   IconWhatsApp,
 } from "@/components/icons";
+import { isPartyPriced, tierTravellers, type ExpeditionTierPricing } from "@/lib/expedition-tiers";
 import { cn } from "@/lib/utils";
 
-/* Building blocks for the two flagship expedition pages (the 13-day grand
+/* Building blocks for the two flagship expedition pages (the 16-day grand
    circuit and Six Days in the Dibang). Same grammar as the tour template —
    facts first, one clear action — with room for what only these products
    have: group-size pricing, region chapters, a summit-day timeline. */
 
-export type ExpeditionTier = {
-  id: string;
-  label: string;
-  size: number;
-  price: number;
+export type ExpeditionTier = ExpeditionTierPricing & {
   badge?: string | null;
   note: string;
   /** Short facts that change with the party size (vehicle, room, best for). */
@@ -305,10 +302,16 @@ export function PriceTiers({
             <div>
               <p className="text-h3 font-semibold text-fg tabular-nums">
                 {formatInr(tier.price)}
-                <span className="ml-1.5 text-small font-normal text-fg-subtle">per person</span>
+                <span className="ml-1.5 text-small font-normal text-fg-subtle">
+                  {isPartyPriced(tier) ? `total for ${tier.size}` : "per person"}
+                </span>
               </p>
               <p className="text-small text-fg-subtle tabular-nums">
-                {formatInr(tier.price * tier.size)} for {tier.size} · {formatInr(Math.round(tier.price / days))} a day
+                {isPartyPriced(tier)
+                  ? `${formatInr(Math.round(tier.price / days))} a day for ${tier.size === 2 ? "both" : `all ${tier.size}`}`
+                  : tier.minSize
+                    ? `For ${tierTravellers(tier)} travellers · ${formatInr(Math.round(tier.price / days))} a day`
+                    : `${formatInr(tier.price * tier.size)} for ${tier.size} · ${formatInr(Math.round(tier.price / days))} a day`}
               </p>
             </div>
             <div className="flex gap-2">
@@ -364,7 +367,10 @@ export function ExpeditionBookingPanel({
         {tiers.map((t) => (
           <div key={t.id} className="flex justify-between gap-3">
             <dt className="text-fg-muted">{t.label}</dt>
-            <dd className="font-medium text-fg tabular-nums">{formatInr(t.price)}</dd>
+            <dd className="font-medium text-fg tabular-nums">
+              {formatInr(t.price)}
+              {isPartyPriced(t) ? <span className="font-normal text-fg-subtle"> for {t.size}</span> : null}
+            </dd>
           </div>
         ))}
       </dl>

@@ -44,7 +44,7 @@ export function getSiteNav(): SiteNav {
     {
       heading: "Arunachal expeditions",
       links: [
-        { label: "Mechuka, Dong & Anini", href: "/tours/mechuka-dong-anini-tour-package", description: "The grand circuit, west to east", meta: "13 days" },
+        { label: "Mechuka, Dong & Anini", href: "/tours/mechuka-dong-anini-tour-package", description: "The grand circuit, west to east", meta: "16 days" },
         { label: "Six Days in the Dibang", href: "/tours/anini-pomo-grassland-expedition", description: "Anini and the Pomo grasslands", meta: "6 days" },
         { label: "Tawang & Sela Pass", href: "/tours/tawang-expedition", description: "Monasteries and the high pass", meta: "5 days" },
         { label: "Mechuka Expedition", href: "/tours/mechuka-expedition", description: "The valley at the end of the road", meta: "6 days" },

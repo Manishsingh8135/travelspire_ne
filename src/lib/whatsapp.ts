@@ -157,9 +157,13 @@ export function createAwfInquiryURL(topic: AwfInquiryTopic = { kind: "general" }
 }
 
 // Anini + Pomo Grassland — the 5N/6D expedition
+/** A price tier as the WhatsApp messages quote it, e.g. travellers "4–5",
+ *  priceText "₹25,999 per person" (see lib/expedition-tiers). */
+export type TierTopic = { kind: "tier"; label: string; travellers: string; priceText: string };
+
 export type AniniSixTopic =
   | { kind: "general" }
-  | { kind: "tier"; label: string; size: number; price: number }
+  | TierTopic
   | { kind: "trek" }
   | { kind: "dates" };
 
@@ -169,7 +173,7 @@ export function createAniniSixInquiryURL(topic: AniniSixTopic = { kind: "general
 
   switch (topic.kind) {
     case "tier":
-      message = `Hi TravelSpire NE! 👋\n\nI'd like to book ${trip} on the *${topic.label}* rate — ₹${topic.price.toLocaleString("en-IN")} per person.\n\n• Travellers: ${topic.size}\n• Preferred month:\n• Starting from (Dibrugarh / Tinsukia):\n\nCould you confirm availability and the booking process? 🏔️`;
+      message = `Hi TravelSpire NE! 👋\n\nI'd like to book ${trip} on the *${topic.label}* rate — ${topic.priceText}.\n\n• Travellers: ${topic.travellers}\n• Preferred month:\n• Starting from (Dibrugarh / Tinsukia):\n\nCould you confirm availability and the booking process? 🏔️`;
       break;
     case "trek":
       message = `Hi TravelSpire NE! 👋\n\nI have questions about the *Pomo Grassland trek day* on ${trip}.\n\n• My recent trekking experience:\n• Group size:\n• Preferred month:\n\nCould you tell me honestly whether this 12-hour day is right for us?`;
@@ -184,31 +188,31 @@ export function createAniniSixInquiryURL(topic: AniniSixTopic = { kind: "general
   return createWhatsAppURL({ customMessage: message });
 }
 
-// Mechuka + Dong + Anini — the 12N/13D grand Arunachal circuit
+// Mechuka + Dong + Anini — the 15N/16D grand Arunachal circuit
 export type GrandCircuitTopic =
   | { kind: "general" }
-  | { kind: "tier"; label: string; size: number; price: number }
+  | TierTopic
   | { kind: "dates" }
-  | { kind: "pomo-extension" };
+  | { kind: "pomo" };
 
 export function createGrandCircuitInquiryURL(
   topic: GrandCircuitTopic = { kind: "general" },
 ): string {
-  const trip = "*Mechuka + Dong + Anini* (12N/13D)";
+  const trip = "*Mechuka + Anini + Dong* (15N/16D)";
   let message: string;
 
   switch (topic.kind) {
     case "tier":
-      message = `Hi TravelSpire NE! 👋\n\nI'd like to enquire about ${trip} at the *${topic.label}* rate — ₹${topic.price.toLocaleString("en-IN")} per person.\n\n• Travellers: ${topic.size}\n• Preferred month:\n• Room preference:\n\nCould you confirm dates, availability and the exact booking inclusions?`;
+      message = `Hi TravelSpire NE! 👋\n\nI'd like to enquire about ${trip} at the *${topic.label}* rate — ${topic.priceText}.\n\n• Travellers: ${topic.travellers}\n• Preferred month:\n• Room preference:\n\nCould you confirm dates, availability and the exact booking inclusions?`;
       break;
     case "dates":
       message = `Hi TravelSpire NE! 👋\n\nI'd like to check departure dates for ${trip}.\n\n• Number of travellers:\n• Preferred month / dates:\n• Flexible dates: Yes / No\n\nPlease share the available options and booking process.`;
       break;
-    case "pomo-extension":
-      message = `Hi TravelSpire NE! 👋\n\nI'm interested in ${trip}, but I also want to add the *Pomo Grassland trek safely* with the necessary Chigu staging night and dedicated trek day.\n\n• Number of travellers:\n• Preferred month:\n• Recent trekking experience:\n\nCould you quote the extended itinerary separately?`;
+    case "pomo":
+      message = `Hi TravelSpire NE! 👋\n\nI have questions about the *Pomo Grassland trek day* (Day 10) on ${trip}.\n\n• Number of travellers:\n• Recent trekking experience:\n• Preferred month:\n\nCould you tell me honestly whether the 10–12 hour day is right for us?`;
       break;
     default:
-      message = `Hi TravelSpire NE! 👋\n\nI'm interested in ${trip}: Dibrugarh → Aalo → Mechuka → Namsai → Walong / Dong → Roing → Anini.\n\nCould you share:\n• Available dates\n• Group and private pricing\n• Stay and vehicle details\n• Permit process\n• Booking terms\n\nLooking forward to planning the circuit! 🏔️`;
+      message = `Hi TravelSpire NE! 👋\n\nI'm interested in ${trip}: Dibrugarh → Aalo → Mechuka → Roing → Anini → Pomo → Namsai → Walong / Dong → Dibrugarh.\n\nCould you share:\n• Available dates\n• Group and private pricing\n• Stay and vehicle details\n• Permit process\n• Booking terms\n\nLooking forward to planning the circuit! 🏔️`;
   }
 
   return createWhatsAppURL({ customMessage: message });
