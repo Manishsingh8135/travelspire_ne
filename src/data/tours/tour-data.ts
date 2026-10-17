@@ -144,7 +144,7 @@ export const tawangExpedition: Tour = {
     "Personal medications",
   ],
 
-  maxGroupSize: 12,
+  maxGroupSize: 5,
   difficulty: "Moderate",
   altitude: 13700,
   bestTimeToVisit: ["October", "November", "March", "April"],
@@ -294,7 +294,7 @@ export const dongValleyExpedition: Tour = {
     "Small backpack for essentials",
   ],
 
-  maxGroupSize: 10,
+  maxGroupSize: 5,
   difficulty: "Moderate",
   altitude: 2800,
   bestTimeToVisit: ["October", "November", "March", "April"],
@@ -418,7 +418,7 @@ export const aniniExpedition: Tour = {
     "Valid ID proof",
   ],
 
-  maxGroupSize: 10, // Setting a reasonable number since not specified
+  maxGroupSize: 5,
   difficulty: "Moderate",
   altitude: 2000, // Approximate, should be verified
   bestTimeToVisit: ["October", "November", "March", "April"], // Standard Northeast season
@@ -551,7 +551,7 @@ export const dambukAniniOfamTour: Tour = {
     "Light backpack for day trips",
   ],
 
-  maxGroupSize: 12,
+  maxGroupSize: 5,
   difficulty: "Moderate",
   altitude: 2500, // Approximate altitude for Anini area
   bestTimeToVisit: ["December"], // During OFAM festival
@@ -675,7 +675,7 @@ export const dambukGoldenPagodaTour: Tour = {
     "Light jacket or shawl",
   ],
 
-  maxGroupSize: 12,
+  maxGroupSize: 5,
   difficulty: "Easy",
   altitude: 500, // Approximate for Namsai region
   bestTimeToVisit: ["December"], // During OFAM festival
@@ -810,7 +810,7 @@ export const dambukDongValleyTour: Tour = {
     "Mini flask for water",
   ],
 
-  maxGroupSize: 12,
+  maxGroupSize: 5,
   difficulty: "Moderate",
   altitude: 3500, // Approximate for Dong Valley region
   bestTimeToVisit: ["December"], // During OFAM festival
@@ -946,7 +946,7 @@ export const pomoTrekExpedition: Tour = {
     "Small backpack for essential items during the Pomo trek",
   ],
 
-  maxGroupSize: 10,
+  maxGroupSize: 5,
   difficulty: "Moderate",
   altitude: 2200,
   bestTimeToVisit: ["October", "November", "March", "April"],
@@ -1124,7 +1124,7 @@ export const mechukaExpedition: Tour = {
     "Small backpack for essentials during sightseeing",
   ],
 
-  maxGroupSize: 12,
+  maxGroupSize: 5,
   difficulty: "Moderate",
   altitude: 1829, // Approx altitude of Mechuka in meters
   bestTimeToVisit: ["October", "November", "March", "April"],
@@ -1137,11 +1137,11 @@ export const aniniPomoSixExpedition: Tour = {
   title: "Six Days in the Dibang",
   subtitle: "Anini + Pomo Grassland · 5 Nights / 6 Days",
   overview:
-    "Five nights inside Dibang Valley, built around a 3 AM Pomo Grassland trek. Mayodia Pass, waterfall country and Chigu camp, Gipulin's glass bridge, Emuli and Karu meadows, a last-night bonfire in Anini. Small groups of 4–6, or private for two.",
+    "Five nights inside Dibang Valley, built around a 3 AM Pomo Grassland trek. Mayodia Pass, waterfall country and Chigu camp, Gipulin's glass bridge, Emuli and Karu meadows, a last-night bonfire in Anini. Small groups of 4–5, or private for two.",
   duration: "6 Days / 5 Nights",
   location: "Anini, Dibang Valley, Arunachal Pradesh",
   startDate: "October – April",
-  price: 18999,
+  price: 21699,
   featured: true,
   trending: true,
   upcoming: false,
@@ -1264,13 +1264,14 @@ export const aniniPomoSixExpedition: Tour = {
     "Private transportation",
     "Expedition guide",
     "Pomo grassland trek and trek transport",
-    "Breakfast and dinner",
+    "Breakfast (dinner too on the private departure)",
     "Inner Line Permit",
     "Forest pass",
   ],
 
   exclusions: [
     "Lunch",
+    "Dinner on group departures",
     "Flights and trains to Dibrugarh",
     "Personal expenses",
     "Anything not listed in inclusions",
@@ -1287,7 +1288,7 @@ export const aniniPomoSixExpedition: Tour = {
     "Government photo ID for the Inner Line Permit",
   ],
 
-  maxGroupSize: 6,
+  maxGroupSize: 5,
   difficulty: "Challenging",
   altitude: 2655,
   bestTimeToVisit: ["October", "November", "March", "April"],
@@ -1299,9 +1300,11 @@ export const regularTours = [
   tawangExpedition,
   dongValleyExpedition,
   aniniExpedition,
-  dambukAniniOfamTour,
-  dambukGoldenPagodaTour,
-  dambukDongValleyTour,
+  // Hidden for the 2026 season: the Orange Festival is not being held in
+  // Dambuk this year, so none of the Dambuk/OFAM routes are on sale.
+  // dambukAniniOfamTour,
+  // dambukGoldenPagodaTour,
+  // dambukDongValleyTour,
   pomoTrekExpedition,
   mechukaExpedition,
 ];

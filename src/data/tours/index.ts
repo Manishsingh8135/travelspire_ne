@@ -2,12 +2,14 @@
 import { Tour, isFestivalTour } from "@/types/tours/tour";
 import { indiaToday, isPastDate } from "@/lib/dates";
 import { regularTours } from "./tour-data";
-import { hornbillFestival, orangeFestival, ziroFestival2026 } from "./festival-data";
+import { hornbillFestival, ziroFestival2026 } from "./festival-data";
 // import { dambukOrangeFestival, dambukBikeTour } from "./special-activity-data";
 
 // Special tours categorization
 export const specialTours = {
-  festivals: [hornbillFestival, orangeFestival, ziroFestival2026],
+  // The Orange Festival (orangeFestival) is hidden for 2026: it is not being
+  // held in Dambuk this year.
+  festivals: [hornbillFestival, ziroFestival2026],
   // Temporarily hidden:
   // activities: [dambukOrangeFestival, dambukBikeTour]
   activities: []

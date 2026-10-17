@@ -364,7 +364,7 @@ export const awfFleet = [
   {
     name: "Scorpio N",
     pricePerDay: 7999,
-    character: "Festival favourite for groups of 5–6",
+    character: "Festival favourite for groups of up to 5",
     image:
       "/images/festivals/anini-winter-fest-2026/fleet/mahindra-scorpio-n.webp",
     imageAlt: "Mahindra Scorpio N SUV, representative vehicle model",

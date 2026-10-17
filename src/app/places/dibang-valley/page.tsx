@@ -243,7 +243,7 @@ export default function DibangValleyPlacePage() {
       </Section>
 
       <PlaceTours
-        slugs={["anini-pomo-grassland-expedition", "dambuk-anini-ofam", "anini-expedition", "dambuk-dong-valley-ofam"]}
+        slugs={["anini-pomo-grassland-expedition", "anini-expedition", "pomo-trek-expedition"]}
         title={
           <>
             The whole region, <Accent>one plan</Accent>

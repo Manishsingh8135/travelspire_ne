@@ -38,7 +38,7 @@ const PAGES = [
   "/places/roing",
   "/guides/dibrugarh-to-anini",
   "/tours/anini-expedition",
-  "/tours/dambuk-anini-ofam",
+  "/tours/pomo-trek-expedition",
 ];
 
 const REQUIRED = {

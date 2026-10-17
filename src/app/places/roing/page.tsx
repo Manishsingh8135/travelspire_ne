@@ -188,7 +188,7 @@ export default function RoingPlacePage() {
       </Section>
 
       <PlaceTours
-        slugs={["anini-pomo-grassland-expedition", "anini-expedition", "dambuk-anini-ofam"]}
+        slugs={["anini-pomo-grassland-expedition", "anini-expedition", "pomo-trek-expedition"]}
         title={
           <>
             Mile zero, <Accent>sorted</Accent>

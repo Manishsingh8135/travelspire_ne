@@ -19,7 +19,7 @@ const ogPath =
   "/images/tours/mechuka-dong-anini/mechuka-dong-anini-tour-package-og.jpg";
 const ogImageUrl = `${siteUrl}${ogPath}`;
 const description =
-  "Book a 12N/13D Mechuka Dong Anini tour from Dibrugarh with Walong, Kaho, Dong sunrise, Mayodia, stays, transport, meals and permits across Arunachal Pradesh.";
+  "Book a 12N/13D Mechuka Dong Anini tour from Dibrugarh with Walong, Kaho, Dong sunrise, Mayodia, stays, transport, breakfast and permits across Arunachal Pradesh.";
 
 export const metadata: Metadata = {
   title: {
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mechuka · Dong · Anini — 12N/13D Grand Arunachal Circuit",
     description:
-      "One 13-day circuit from Dibrugarh: Mechuka, Walong, Dong sunrise, Kaho, Roing, Mayodia and three nights in Anini. From ₹37,499 pp.",
+      "One 13-day circuit from Dibrugarh: Mechuka, Walong, Dong sunrise, Kaho, Roing, Mayodia and three nights in Anini. From ₹43,299 pp.",
     url: pageUrl,
     siteName: "Travelspire North-East",
     locale: "en_IN",
@@ -93,7 +93,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mechuka · Dong · Anini — 13 Days across Arunachal",
     description:
-      "Dibrugarh round trip with Mechuka, Dong sunrise, Kaho, Mayodia and Anini. 12 nights from ₹37,499 per person.",
+      "Dibrugarh round trip with Mechuka, Dong sunrise, Kaho, Mayodia and Anini. 12 nights from ₹43,299 per person.",
     images: [ogImageUrl],
     creator: "@travelspire_ne",
   },
@@ -267,7 +267,7 @@ const circuitGraph = {
         {
           "@type": "PropertyValue",
           name: "Included meals",
-          value: "Breakfast and dinner",
+          value: "Breakfast on group departures; breakfast and dinner on the private departure",
         },
         {
           "@type": "PropertyValue",

@@ -263,7 +263,7 @@ export const hornbillFaqs: { question: string; answer: string }[] = [
   {
     question: "Can I camp at the Hornbill Festival?",
     answer:
-      "Yes. Tented campsites open around Kisama and Kohima for the festival, with bonfires and shared meals. Our Hornbill camping package starts at ₹1,799 per person and includes the tent, breakfast and dinner.",
+      "Yes. Tented campsites open around Kisama and Kohima for the festival, with bonfires and shared meals. Our Hornbill camping package starts at ₹1,799 per person and includes the tent and breakfast.",
   },
   {
     question: "Is the Hornbill Festival safe, including for solo women?",

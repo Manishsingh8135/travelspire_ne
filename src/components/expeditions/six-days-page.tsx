@@ -85,6 +85,7 @@ export function SixDaysPage() {
       details: detail
         ? [
             { label: "Vehicle", value: detail.vehicle },
+            { label: "Meals", value: detail.meals },
             { label: "Rooms", value: detail.room },
             { label: "Best for", value: detail.bestFor },
           ]
@@ -133,11 +134,11 @@ export function SixDaysPage() {
         facts={[
           { label: "Duration", value: "6 days · 5 nights", icon: IconClock },
           { label: "Season", value: "Oct – Apr", icon: IconCalendar },
-          { label: "Group", value: "4 – 6, or private for 2", icon: IconUsers },
+          { label: "Group", value: "4 – 5, or private for 2", icon: IconUsers },
           { label: "Highest road", value: "Mayodia, 2,655 m", icon: IconMountain },
         ]}
         from={sixMeta.fromPrice}
-        fromNote="per person, group of 6"
+        fromNote="per person, group of 5"
         defaultTier={tiers[0].id}
         askHref={generalAsk}
         image={{ src: sixHeroImages.desktop.src, alt: sixHeroImages.alt }}

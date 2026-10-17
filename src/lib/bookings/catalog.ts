@@ -34,6 +34,9 @@ export type BookingProduct = {
 
 const OPEN_WINDOW = { earliest: null, latest: null } as const;
 
+/** One vehicle seats five guests, so no booking is ever larger than that. */
+export const MAX_GROUP_SIZE = 5;
+
 function regularProducts(): BookingProduct[] {
   return allTours.map((tour) => {
     const tiers: BookingTier[] = isRegularTour(tour)
@@ -43,7 +46,7 @@ function regularProducts(): BookingProduct[] {
             name: "Standard package",
             unitPrice: tour.price,
             minTravellers: 1,
-            maxTravellers: tour.maxGroupSize,
+            maxTravellers: Math.min(tour.maxGroupSize, MAX_GROUP_SIZE),
             fixedTravellers: null,
           },
         ]
@@ -52,7 +55,7 @@ function regularProducts(): BookingProduct[] {
           name: variant.name,
           unitPrice: variant.price,
           minTravellers: 1,
-          maxTravellers: variant.maxGroupSize ?? 30,
+          maxTravellers: Math.min(variant.maxGroupSize ?? MAX_GROUP_SIZE, MAX_GROUP_SIZE),
           fixedTravellers: null,
         }));
 

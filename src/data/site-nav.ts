@@ -32,13 +32,6 @@ const festivalLinks: Array<NavLink & { slug: string }> = [
     description: "Kisama, Nagaland — the festival of festivals",
     meta: "1–10 Dec",
   },
-  {
-    slug: "orange-festival-2026",
-    label: "Orange Festival, Dambuk",
-    href: "/tours/orange-festival-2026",
-    description: "Music in the orange orchards of Lower Dibang",
-    meta: "Mid-Dec",
-  },
 ];
 
 export function getSiteNav(): SiteNav {

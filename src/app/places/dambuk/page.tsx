@@ -140,7 +140,7 @@ export default function DambukPlacePage() {
         ]}
         image={dambukHeroImages.desktop.src}
         imageAlt={dambukHeroImages.alt}
-        primary={{ label: "See Dambuk tours", href: "#tours" }}
+        primary={{ label: "See tours nearby", href: "#tours" }}
         whatsappHref={planUrl}
       />
 
@@ -191,13 +191,13 @@ export default function DambukPlacePage() {
       </Section>
 
       <PlaceTours
-        slugs={["orange-festival-2026", "dambuk-anini-ofam", "dambuk-dong-valley-ofam", "dambuk-golden-pagoda-ofam"]}
+        slugs={["anini-pomo-grassland-expedition", "anini-expedition", "dong-valley-expedition"]}
         title={
           <>
-            Start the valley <Accent>in Dambuk</Accent>
+            Go on <Accent>from here</Accent>
           </>
         }
-        intro="Orchards, the bridge at dusk, then the long road onward to Anini or Dong. Every route is sequenced so each leg runs in daylight."
+        intro="Dambuk sits at the foot of the road to Anini and the far east. We can add a Dambuk stop to any of these routes — ask when you book."
       />
 
       <Section spacing="compact" tone="subtle">

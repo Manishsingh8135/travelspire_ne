@@ -311,7 +311,7 @@ export default function AniniPlacePage() {
       </Section>
 
       <PlaceTours
-        slugs={["anini-pomo-grassland-expedition", "anini-expedition", "pomo-trek-expedition", "dambuk-anini-ofam"]}
+        slugs={["anini-pomo-grassland-expedition", "anini-expedition", "pomo-trek-expedition"]}
         title={
           <>
             We drive this road every week. <Accent>Ride with us.</Accent>

@@ -128,7 +128,7 @@ export const wayChapters: WayChapter[] = [
     story:
       "The road climbs one last ridge and the world opens — a high plateau of grass and cloud, a town smaller than your neighbourhood, mountains stacked to the horizon. You have arrived at the quietest district headquarters in India.",
     protocol:
-      "Stay allocation confirmed before arrival, dinner waiting, reporting time set, and the next morning's plan already agreed. The arrival is an ending and a beginning.",
+      "Stay allocation confirmed before arrival, rooms ready, reporting time set, and the next morning's plan already agreed. The arrival is an ending and a beginning.",
     protocolLabel: "What we do here",
     image: "/images/places/anini/anini2026/anini-double-rainbow-glamping-tents.jpg",
     imageAlt: "A double rainbow over forested mountains and tents at Anini",

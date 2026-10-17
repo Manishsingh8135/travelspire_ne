@@ -60,7 +60,6 @@ export const metadata: Metadata = {
     "tribal culture tours",
     "Hornbill Festival",
     "Ziro Festival",
-    "Orange Festival",
     "Kaziranga National Park",
     "Tawang Monastery",
     "Cherrapunji",

@@ -15,7 +15,7 @@ export const revalidate = 21600; // DATE_DRIVEN_REVALIDATE_SECONDS — must be a
 export const metadata: Metadata = {
   title: "Arunachal Pradesh & Northeast India Tour Packages",
   description:
-    "Every Travelspire tour in one place: Arunachal expeditions to Mechuka, Dong, Anini and Tawang, plus Hornbill and Orange Festival journeys. Compare length and price, then book online.",
+    "Every Travelspire tour in one place: Arunachal expeditions to Mechuka, Dong, Anini and Tawang, plus Hornbill Festival journeys. Compare length and price, then book online.",
   alternates: { canonical: "/all-tours" },
 };
 

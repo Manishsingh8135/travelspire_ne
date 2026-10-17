@@ -214,7 +214,7 @@ export default function AniniWinterFest2026Page() {
         title="The festival's over."
         accent="The valley is open."
         intro="October to April is Anini's clearest season. These journeys run all season, with permits and the NH-313 drive handled."
-        tourSlugs={["anini-pomo-grassland-expedition", "anini-expedition", "pomo-trek-expedition", "dambuk-anini-ofam"]}
+        tourSlugs={["anini-pomo-grassland-expedition", "anini-expedition", "pomo-trek-expedition"]}
         guides={awfEvergreen.map((g) => ({ name: g.name, blurb: g.blurb, href: g.href, image: g.image }))}
       />
 

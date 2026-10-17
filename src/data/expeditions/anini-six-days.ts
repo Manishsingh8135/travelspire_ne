@@ -21,7 +21,7 @@ export const sixMeta = {
   edition: "Field Edition",
   season: "October – April",
   updated: "2026-08-19",
-  fromPrice: 18999,
+  fromPrice: 21699,
   operator: "Travelspire Northeast",
 } as const;
 
@@ -46,7 +46,7 @@ export const sixOverture = {
   lead: "Most people who reach Anini spend one night there and turn around. They see the pass, they photograph the plateau, and they drive back down having never met the country above the town.",
   body: [
     "This is the trip that goes above it. Six days built around a single hard morning — a 3 AM start onto Pomo grassland, twelve hours on foot, back before the light goes — with the rest of the week arranged around it like a properly planned expedition: two easing days before, two recovery days after, and every long drive taken in daylight.",
-    "You sleep five nights in Dibang Valley. One of them is in a camp on the river flats with no signal and no walls between you and the water. The other four are in Anini, in a homestay where dinner is whatever the kitchen is cooking and the last night ends at a bonfire.",
+    "You sleep five nights in Dibang Valley. One of them is in a camp on the river flats with no signal and no walls between you and the water. The other four are in Anini, in a family-run homestay where the last night ends at a bonfire.",
   ],
   // Honesty panel — the thing nobody else publishes.
   truths: [
@@ -55,7 +55,7 @@ export const sixOverture = {
       items: [
         "A real trek day — 12 hours, unsupported terrain, one shot at it",
         "Five nights inside the valley, not two nights and a lot of driving",
-        "Small groups only: four to six people, one vehicle, one guide",
+        "Small groups only: four or five people, one vehicle, one guide",
         "Camp on the Dri flats, homestay in Anini, bonfire on the last night",
       ],
     },
@@ -421,26 +421,15 @@ export const sixPricing = {
   currency: "₹",
   tiers: [
     {
-      id: "six",
-      size: 6,
-      label: "Group of 6",
-      shortLabel: "6 pax",
-      price: 18999,
-      per: "per person",
-      badge: "Best value",
-      note: "The vehicle is full and the fixed costs split six ways. This is the number most groups end up at.",
-      vehicle: "One SUV, six seats",
-    },
-    {
       id: "five",
       size: 5,
       label: "Group of 5",
       shortLabel: "5 pax",
       price: 21699,
       per: "per person",
-      badge: null,
-      note: "Same vehicle, same guide, one fewer person to divide the fixed costs between.",
-      vehicle: "One SUV, room to spare",
+      badge: "Best value",
+      note: "The vehicle is full and the fixed costs split five ways. Breakfast included every day.",
+      vehicle: "One SUV, every seat taken",
     },
     {
       id: "four",
@@ -450,8 +439,8 @@ export const sixPricing = {
       price: 26699,
       per: "per person",
       badge: null,
-      note: "The smallest group we run as a shared departure. Noticeably more space on the long days.",
-      vehicle: "One SUV, four seats used",
+      note: "The smallest group we run as a shared departure, with a spare seat on the long days. Breakfast included every day.",
+      vehicle: "One SUV, a seat to spare",
     },
     {
       id: "private",
@@ -461,7 +450,7 @@ export const sixPricing = {
       price: 51999,
       per: "per person",
       badge: "Private",
-      note: "The whole expedition run for two — your own vehicle, your own guide, and the schedule bends to you rather than to a group.",
+      note: "The whole expedition run for two — your own vehicle, your own guide, breakfast and dinner every day, and the schedule bends to you rather than to a group.",
       vehicle: "Dedicated vehicle & guide",
     },
   ],
@@ -469,6 +458,7 @@ export const sixPricing = {
     "Prices are per person for the full 5N/6D expedition, ex-Dibrugarh.",
     "The complete package amount is paid securely at booking.",
     "Inner Line Permit and forest pass are arranged by us and included.",
+    "Group departures include breakfast; the private departure includes breakfast and dinner. Lunch is never included.",
     "October to April only. We do not run this route in monsoon.",
   ],
 } as const;
@@ -493,13 +483,15 @@ export const sixIncluded = [
     name: "Pomo trek transport",
     note: "The vehicle leg to and from the trailhead",
   },
-  { name: "Breakfast & dinner", note: "Every day of the expedition" },
+  { name: "Breakfast", note: "Every day of the expedition" },
+  { name: "Dinner — private only", note: "Included every day on the private departure" },
   { name: "Inner Line Permit", note: "Applied for and carried on your behalf" },
   { name: "Forest pass", note: "Required beyond Anini — handled by us" },
 ] as const;
 
 export const sixExcluded = [
   { name: "Lunch", note: "Dhaba and roadside stops, paid as you go" },
+  { name: "Dinner on group departures", note: "Ordered at the homestay or camp, paid directly" },
   { name: "Flights & trains", note: "To and from Dibrugarh" },
   { name: "Personal expenses", note: "Shopping, laundry, extra beverages" },
   {
@@ -623,13 +615,13 @@ export const sixFaqSection: FAQSection = {
       id: "group-size",
       question: "Why does the price change with group size?",
       answer:
-        "Because the vehicle, the driver, the guide and the permits cost the same whether four people or six people share them. At six the fixed costs split furthest, which is why ₹18,999 is the best number on the page. Below four we run it as a private expedition with a dedicated vehicle and guide, which is a genuinely different product at ₹51,999 per person.",
+        "Because the vehicle, the driver, the guide and the permits cost the same whether four people or five people share them. At five the vehicle is full and the fixed costs split furthest, which is why ₹21,699 is the best number on the page — we never put six people in one vehicle. Below four we run it as a private expedition with a dedicated vehicle and guide, which is a genuinely different product at ₹51,999 per person.",
     },
     {
       id: "food",
       question: "What is the food like, and are meals included?",
       answer:
-        "Breakfast and dinner are included every day; lunch is on you at dhabas and roadside stops, which keeps the driving days flexible. Expect simple, hot, generous home cooking — rice, dal, local vegetables, meat if you eat it. Vegetarian and vegan travellers are easy to accommodate in Anini as long as you tell us at booking rather than at the table.",
+        "On group departures breakfast is included every day. On the private departure breakfast and dinner are both included. Lunch is never included — it is on you at dhabas and roadside stops, which keeps the driving days flexible. Group travellers order dinner at the homestay or camp and pay directly. Expect simple, hot, generous home cooking — rice, dal, local vegetables, meat if you eat it. Vegetarian and vegan travellers are easy to accommodate in Anini as long as you tell us at booking rather than at the table.",
     },
     {
       id: "connectivity",
