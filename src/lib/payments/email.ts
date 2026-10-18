@@ -10,6 +10,7 @@ import {
   supportWhatsAppURL,
 } from "@/lib/bookings/after-payment";
 import { getBookingProduct } from "@/lib/bookings/catalog";
+import { tripUrl } from "@/lib/bookings/signing";
 import { getPaymentReceipt, type PaymentReceipt } from "@/lib/payments/payu/store";
 import { escapeHtml, getEmailSettings, sendEmail } from "@/lib/email/resend";
 
@@ -99,6 +100,7 @@ export function buildPaymentEmails(receipt: PaymentReceipt) {
 
   const chatUrl = supportWhatsAppURL(summary);
   const tourUrl = product ? absoluteUrl(product.sourceUrl) : null;
+  const myTrip = tripUrl(booking.reference);
 
   const steps = nextSteps
     .map(
@@ -118,7 +120,8 @@ export function buildPaymentEmails(receipt: PaymentReceipt) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:22px;border-collapse:collapse;border-bottom:1px solid #E6E8EC">${detailRows(details)}</table>
 ${heading("What happens next")}
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${steps}</table>
-<div style="margin-top:8px">${button(chatUrl, "WhatsApp us")}${tourUrl ? button(tourUrl, "See the itinerary", false) : ""}</div>
+<div style="margin-top:8px">${myTrip ? `${button(myTrip, "Open your trip page")}${button(chatUrl, "WhatsApp us", false)}` : `${button(chatUrl, "WhatsApp us")}${tourUrl ? button(tourUrl, "See the itinerary", false) : ""}`}</div>
+${myTrip ? `<p style="margin:6px 0 0;font-size:13px;line-height:1.6;color:#656C78">Your trip page shows your progress, traveller details, driver and pickup. It's private to you: keep this link.</p>` : ""}
 ${heading("Questions? Talk to a person")}
 <p style="margin:0 0 10px;font-size:14px;line-height:1.6;color:#4B5260">Our team in Dibrugarh answers. Quote your booking reference, ${escapeHtml(booking.reference)}, and we'll find everything.</p>
 <table role="presentation" cellpadding="0" cellspacing="0">${contactRow("WhatsApp", support.phoneDisplay, chatUrl)}${contactRow("Call", support.phoneDisplay, support.phoneHref)}${contactRow("Email", support.email, `mailto:${support.email}`)}${contactRow("Instagram", support.instagramHandle, support.instagramUrl)}</table>`,
@@ -139,6 +142,7 @@ ${heading("Questions? Talk to a person")}
     `Call: ${support.phoneDisplay}`,
     `Email: ${support.email}`,
     `Instagram: ${support.instagramUrl}`,
+    ...(myTrip ? ["", `Your trip page (private to you): ${myTrip}`] : []),
     ...(tourUrl ? ["", `Itinerary: ${tourUrl}`] : []),
     "",
     "Travelspire Northeast",
@@ -157,7 +161,7 @@ ${heading("Questions? Talk to a person")}
     `<p style="margin:0;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#0F6B4B">New paid booking</p>
 <h1 style="margin:8px 0 0;font-size:24px;line-height:1.25;color:#0B0D10">${escapeHtml(booking.customer_first_name)} · ${escapeHtml(booking.tour_name)}</h1>
 <p style="margin:14px 0 0;font-size:15px;line-height:1.65;color:#4B5260">The customer was told we'll message them on WhatsApp ${escapeHtml(REPLY_WINDOW)}. The first button opens the chat with a greeting and the permit request already typed.</p>
-<div style="margin-top:20px">${button(customerChat, `WhatsApp ${booking.customer_first_name}`)}${button(`tel:+${internationalDigits(booking.customer_phone)}`, "Call", false)}${button(`mailto:${booking.customer_email}`, "Email", false)}</div>
+<div style="margin-top:20px">${button(customerChat, `WhatsApp ${booking.customer_first_name}`)}${button(`tel:+${internationalDigits(booking.customer_phone)}`, "Call", false)}${button(`mailto:${booking.customer_email}`, "Email", false)}${button(absoluteUrl(`/admin/bookings/${booking.reference}`), "Open in admin", false)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:14px;border-collapse:collapse;border-bottom:1px solid #E6E8EC">${detailRows(teamDetails)}</table>
 ${heading("To do")}
 <p style="margin:0;font-size:14px;line-height:1.9;color:#4B5260">☐ Message the customer on WhatsApp<br>☐ Collect name, age and photo ID for every traveller<br>☐ Apply for permits<br>☐ Assign the vehicle and driver<br>☐ Send driver details and the final plan before departure</p>`,
@@ -176,7 +180,7 @@ ${heading("To do")}
       subject: `PAID booking · ${booking.reference} · ${booking.tour_name}`,
       replyTo: booking.customer_email,
       html: teamHtml,
-      text: `New paid booking. Message the customer on WhatsApp ${REPLY_WINDOW}.\n\n${plainDetails}\nCustomer: ${booking.customer_first_name}\nEmail: ${booking.customer_email}\nPhone: ${booking.customer_phone}\n\nWhatsApp the customer: ${customerChat}`,
+      text: `New paid booking. Message the customer on WhatsApp ${REPLY_WINDOW}.\n\n${plainDetails}\nCustomer: ${booking.customer_first_name}\nEmail: ${booking.customer_email}\nPhone: ${booking.customer_phone}\n\nWhatsApp the customer: ${customerChat}\nOpen in admin: ${absoluteUrl(`/admin/bookings/${booking.reference}`)}`,
     },
   };
 }

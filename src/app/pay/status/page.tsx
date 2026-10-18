@@ -11,7 +11,9 @@ import {
   IconWhatsApp,
   type Icon,
 } from "@/components/icons";
-import { nextSteps, support } from "@/lib/bookings/after-payment";
+import { SupportContacts } from "@/components/bookings/support-contacts";
+import { nextSteps } from "@/lib/bookings/after-payment";
+import { tripUrl } from "@/lib/bookings/signing";
 import { getPaymentReceipt, type PaymentReceipt } from "@/lib/payments/payu/store";
 import { createWhatsAppURL } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
@@ -107,6 +109,7 @@ export default async function PaymentStatusPage({ searchParams }: { searchParams
   const kind = getStatusKind(receipt);
   const copy = statusCopy[kind];
   const booking = receipt ? (Array.isArray(receipt.tour_bookings) ? receipt.tour_bookings[0] : receipt.tour_bookings) : null;
+  const myTrip = kind === "success" && booking ? tripUrl(booking.reference) : null;
   const supportUrl = createWhatsAppURL({
     customMessage: `Hi Travelspire, please check my PayU payment.\n\nTransaction ID: ${transactionId || "not available"}${booking?.reference ? `\nBooking reference: ${booking.reference}` : ""}`,
   });
@@ -188,46 +191,23 @@ export default async function PaymentStatusPage({ searchParams }: { searchParams
             ) : null}
           </dl>
 
-          <div className="border-t border-line p-5 sm:p-6">
-            <h2 className="text-h4 text-fg">Talk to a person</h2>
-            <p className="mt-1 text-small text-fg-muted">Our team in Dibrugarh answers. Quote your booking reference.</p>
-            <dl className="mt-4 grid gap-x-6 gap-y-3 text-small sm:grid-cols-2">
-              {[
-                { label: "WhatsApp", value: support.phoneDisplay, href: supportUrl, external: true },
-                { label: "Call", value: support.phoneDisplay, href: support.phoneHref },
-                { label: "Email", value: support.email, href: `mailto:${support.email}` },
-                { label: "Instagram", value: support.instagramHandle, href: support.instagramUrl, external: true },
-              ].map((c) => (
-                <div key={c.label} className="flex justify-between gap-4 sm:block">
-                  <dt className="text-fg-subtle">{c.label}</dt>
-                  <dd className="font-medium text-fg">
-                    <a
-                      href={c.href}
-                      {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="rounded-control hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus"
-                    >
-                      {c.value}
-                    </a>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+          <SupportContacts whatsappHref={supportUrl} className="border-t border-line p-5 sm:p-6" />
 
           <div className="flex flex-col gap-3 border-t border-line p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <p className="max-w-sm text-small text-fg-subtle">
               Keep the transaction ID — it lets us check your payment without ever asking for card or bank details.
             </p>
             <div className="flex flex-wrap gap-2">
-              <a href={supportUrl} target="_blank" rel="noopener noreferrer" className={buttonVariants({ className: "shrink-0" })}>
+              {myTrip ? <ButtonLink href={myTrip}>Open your trip page</ButtonLink> : null}
+              <a
+                href={supportUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={buttonVariants({ variant: myTrip ? "secondary" : "primary", className: "shrink-0" })}
+              >
                 <IconWhatsApp />
                 Message us
               </a>
-              {kind === "success" ? (
-                <ButtonLink href="/permits" variant="secondary">
-                  Permit guide
-                </ButtonLink>
-              ) : null}
             </div>
           </div>
         </div>
