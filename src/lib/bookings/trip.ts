@@ -78,7 +78,11 @@ export type TripRecord = {
   detailsSubmittedAt?: string;
   driver?: TripDriver;
   notes?: TripNote[];
+  /** Automatic messages already sent, by key, so the daily job sends each once. */
+  sent?: Partial<Record<TripMessageKey, string>>;
 };
+
+export type TripMessageKey = "details-reminder" | "details-reminder-final" | "pre-trip" | "after-trip";
 
 export function currentStage(trip: TripRecord): TripStage {
   if (trip.stage) return trip.stage;

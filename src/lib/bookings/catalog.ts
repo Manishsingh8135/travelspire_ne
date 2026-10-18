@@ -7,7 +7,7 @@ import { awfSharedTransfer } from "@/data/festivals/anini-winter-fest";
 import { allTours } from "@/data/tours";
 import { indiaToday } from "@/lib/dates";
 import { isPartyPriced, type ExpeditionTierPricing } from "@/lib/expedition-tiers";
-import { isRegularTour } from "@/types/tours/tour";
+import { getTourDuration, isRegularTour } from "@/types/tours/tour";
 
 export type BookingTier = {
   id: string;
@@ -19,6 +19,8 @@ export type BookingTier = {
   /** Set when the tier is one price for the whole party (fixedTravellers),
    *  not a per-person rate. unitPrice is then only a per-head equivalent. */
   partyPrice: number | null;
+  /** Length of the trip in days, so after-trip messages know when it ends. */
+  days: number;
 };
 
 export type BookingProduct = {
@@ -53,6 +55,7 @@ function regularProducts(): BookingProduct[] {
             maxTravellers: Math.min(tour.maxGroupSize, MAX_GROUP_SIZE),
             fixedTravellers: null,
             partyPrice: null,
+            days: getTourDuration(tour).min,
           },
         ]
       : tour.variants.map((variant) => ({
@@ -63,6 +66,7 @@ function regularProducts(): BookingProduct[] {
           maxTravellers: Math.min(variant.maxGroupSize ?? MAX_GROUP_SIZE, MAX_GROUP_SIZE),
           fixedTravellers: null,
           partyPrice: null,
+          days: variant.duration.days,
         }));
 
     return {
@@ -82,7 +86,14 @@ function regularProducts(): BookingProduct[] {
   });
 }
 
-function expeditionTiers(tiers: readonly ExpeditionTierPricing[]): BookingTier[] {
+/** "15 Nights / 16 Days" → 16. */
+function daysIn(duration: string) {
+  const match = duration.match(/(\d+)\s*Days/i);
+  if (!match) throw new Error(`No day count in "${duration}"`);
+  return Number(match[1]);
+}
+
+function expeditionTiers(tiers: readonly ExpeditionTierPricing[], days: number): BookingTier[] {
   return tiers.map((tier) => {
     const party = isPartyPriced(tier);
     return {
@@ -93,6 +104,7 @@ function expeditionTiers(tiers: readonly ExpeditionTierPricing[]): BookingTier[]
       maxTravellers: tier.size,
       fixedTravellers: tier.minSize ? null : tier.size,
       partyPrice: party ? tier.price : null,
+      days,
     };
   });
 }
@@ -105,7 +117,7 @@ const expeditionProducts: BookingProduct[] = [
     defaultDepartureDate: null,
     fixedDepartureDate: null,
     departureWindow: OPEN_WINDOW,
-    tiers: expeditionTiers(circuitPricing.tiers),
+    tiers: expeditionTiers(circuitPricing.tiers, daysIn(circuitMeta.duration)),
   },
   {
     slug: sixMeta.slug,
@@ -114,7 +126,7 @@ const expeditionProducts: BookingProduct[] = [
     defaultDepartureDate: null,
     fixedDepartureDate: null,
     departureWindow: OPEN_WINDOW,
-    tiers: expeditionTiers(sixPricing.tiers),
+    tiers: expeditionTiers(sixPricing.tiers, daysIn(sixMeta.duration)),
   },
 ];
 
@@ -138,6 +150,7 @@ const festivalTravelProducts: BookingProduct[] = [
         maxTravellers: awfSharedTransfer.maxTravellersPerBooking,
         fixedTravellers: null,
         partyPrice: null,
+        days: 4,
       },
     ],
   },
