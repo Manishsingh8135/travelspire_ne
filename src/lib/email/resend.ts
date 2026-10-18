@@ -5,7 +5,7 @@ import "server-only";
 // consistent.
 
 const DEFAULT_FROM = "Travelspire North-East <info@travelspirene.com>";
-const DEFAULT_INTERNAL_RECIPIENTS = [
+export const DEFAULT_INTERNAL_RECIPIENTS = [
   "travelspirene82@gmail.com",
   "singhatwork55@gmail.com",
 ];

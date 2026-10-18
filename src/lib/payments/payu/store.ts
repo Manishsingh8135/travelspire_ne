@@ -116,7 +116,7 @@ function getDatabaseConfig() {
   return { baseUrl: baseUrl.replace(/\/$/, ""), secretKey };
 }
 
-async function paymentDatabaseFetch<T>(
+export async function paymentDatabaseFetch<T>(
   path: string,
   init: RequestInit = {},
 ): Promise<T> {

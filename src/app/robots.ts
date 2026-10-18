@@ -12,7 +12,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/admin/", "/private/", "/temp/"],
+        disallow: ["/api/", "/admin", "/trip/", "/pay/", "/private/", "/temp/"],
       },
       {
         userAgent: ["GPTBot", "CCBot", "ClaudeBot"],

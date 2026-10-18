@@ -22,8 +22,8 @@ export const nextSteps = [
     body: `From ${support.phoneDisplay}, ${REPLY_WINDOW}, to go over your arrival, pickup and the plan.`,
   },
   {
-    title: "Send traveller details for permits",
-    body: "Full name, age and a photo ID for each traveller. Reply in that WhatsApp chat and we apply for the permits your route needs.",
+    title: "Add traveller details for permits",
+    body: "Name, age and ID type for each traveller on your trip page, and their photo IDs on WhatsApp. We apply for the permits your route needs.",
   },
   {
     title: "Get your final plan before you go",
@@ -55,11 +55,24 @@ export function internationalDigits(phone: string) {
   return digits;
 }
 
+function chatWith(phone: string, message: string) {
+  return `https://wa.me/${internationalDigits(phone)}?text=${encodeURIComponent(message)}`;
+}
+
 /** Our chat to the customer, for the team's "PAID booking" email. */
 export function customerWhatsAppURL(phone: string, booking: BookingSummary) {
-  const international = internationalDigits(phone);
-  const message = `Hi ${booking.firstName}, this is Travelspire Northeast 👋\n\nThank you for booking ${booking.tourName} for ${booking.departure} (ref ${booking.reference}). We'll take you through the plan here.\n\nTo apply for your permits, please send the full name, age and a photo ID for each traveller.`;
-  return `https://wa.me/${international}?text=${encodeURIComponent(message)}`;
+  return chatWith(
+    phone,
+    `Hi ${booking.firstName}, this is Travelspire Northeast 👋\n\nThank you for booking ${booking.tourName} for ${booking.departure} (ref ${booking.reference}). We'll take you through the plan here.\n\nTo apply for your permits, please send the full name, age and a photo ID for each traveller.`,
+  );
+}
+
+/** Our chat to someone who started checkout but didn't pay. */
+export function followUpWhatsAppURL(phone: string, booking: BookingSummary) {
+  return chatWith(
+    phone,
+    `Hi ${booking.firstName}, this is Travelspire Northeast 👋\n\nWe saw you were booking ${booking.tourName} for ${booking.departure}. Can we help with anything, or answer a question before you go ahead?`,
+  );
 }
 
 export function absoluteUrl(path: string) {
