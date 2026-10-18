@@ -11,6 +11,7 @@ import {
   IconWhatsApp,
   type Icon,
 } from "@/components/icons";
+import { nextSteps, support } from "@/lib/bookings/after-payment";
 import { getPaymentReceipt, type PaymentReceipt } from "@/lib/payments/payu/store";
 import { createWhatsAppURL } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
@@ -51,12 +52,9 @@ const statusCopy: Record<
   success: {
     label: "Payment confirmed",
     title: "You're booked. Thank you.",
-    body: "PayU has confirmed the payment and it matches your booking. Your receipt is on its way to your email.",
-    next: [
-      "Check your inbox (and spam) for the receipt.",
-      "We'll message you on WhatsApp within a day with your trip plan and permit steps.",
-      "Keep the booking reference below for anything you ask us.",
-    ],
+    body: "PayU has confirmed the payment and it matches your booking. Your receipt is on its way to your email (check spam if it isn't there in a few minutes).",
+    // Success renders the shared numbered steps from after-payment instead.
+    next: [],
     Icon: IconCheckCircle,
     tone: "bg-positive-soft text-positive",
   },
@@ -141,14 +139,30 @@ export default async function PaymentStatusPage({ searchParams }: { searchParams
             <p className="mt-3 text-body text-fg-muted">{copy.body}</p>
 
             <h2 className="mt-8 text-h4 text-fg">What happens next</h2>
-            <ul className="mt-3 space-y-2.5">
-              {copy.next.map((line) => (
-                <li key={line} className="flex gap-3 text-body text-fg-muted">
-                  <span aria-hidden className="mt-[0.6em] size-1.5 shrink-0 rounded-full bg-brand" />
-                  {line}
-                </li>
-              ))}
-            </ul>
+            {kind === "success" ? (
+              <ol className="mt-4 space-y-4">
+                {nextSteps.map((step, i) => (
+                  <li key={step.title} className="flex gap-3.5">
+                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand-soft text-small font-semibold text-brand tabular-nums">
+                      {i + 1}
+                    </span>
+                    <span>
+                      <span className="block text-body font-medium text-fg">{step.title}</span>
+                      <span className="mt-0.5 block text-small text-fg-muted">{step.body}</span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <ul className="mt-3 space-y-2.5">
+                {copy.next.map((line) => (
+                  <li key={line} className="flex gap-3 text-body text-fg-muted">
+                    <span aria-hidden className="mt-[0.6em] size-1.5 shrink-0 rounded-full bg-brand" />
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <dl className="grid border-t border-line bg-canvas-subtle sm:grid-cols-2">
@@ -173,6 +187,32 @@ export default async function PaymentStatusPage({ searchParams }: { searchParams
               </div>
             ) : null}
           </dl>
+
+          <div className="border-t border-line p-5 sm:p-6">
+            <h2 className="text-h4 text-fg">Talk to a person</h2>
+            <p className="mt-1 text-small text-fg-muted">Our team in Dibrugarh answers. Quote your booking reference.</p>
+            <dl className="mt-4 grid gap-x-6 gap-y-3 text-small sm:grid-cols-2">
+              {[
+                { label: "WhatsApp", value: support.phoneDisplay, href: supportUrl, external: true },
+                { label: "Call", value: support.phoneDisplay, href: support.phoneHref },
+                { label: "Email", value: support.email, href: `mailto:${support.email}` },
+                { label: "Instagram", value: support.instagramHandle, href: support.instagramUrl, external: true },
+              ].map((c) => (
+                <div key={c.label} className="flex justify-between gap-4 sm:block">
+                  <dt className="text-fg-subtle">{c.label}</dt>
+                  <dd className="font-medium text-fg">
+                    <a
+                      href={c.href}
+                      {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      className="rounded-control hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus"
+                    >
+                      {c.value}
+                    </a>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
 
           <div className="flex flex-col gap-3 border-t border-line p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <p className="max-w-sm text-small text-fg-subtle">
