@@ -71,6 +71,30 @@ export async function listBookings(view: BookingView) {
   return paymentDatabaseFetch<BookingRow[]>(`/rest/v1/tour_bookings?${params}`);
 }
 
+/** Paid bookings departing on or after `fromDate`, for the daily job. */
+export async function listPaidDepartingFrom(fromDate: string) {
+  const params = new URLSearchParams({
+    select: COLUMNS,
+    status: "eq.paid",
+    departure_date: `gte.${fromDate}`,
+    order: "departure_date.asc",
+    limit: "500",
+  });
+  return paymentDatabaseFetch<BookingRow[]>(`/rest/v1/tour_bookings?${params}`);
+}
+
+/** Checkouts started since `since` (ISO time) that were never paid. */
+export async function listUnpaidSince(since: string) {
+  const params = new URLSearchParams({
+    select: COLUMNS,
+    status: "in.(confirmed,payment_pending)",
+    paid_amount_paise: "eq.0",
+    created_at: `gte.${since}`,
+    order: "created_at.desc",
+  });
+  return paymentDatabaseFetch<BookingRow[]>(`/rest/v1/tour_bookings?${params}`);
+}
+
 /**
  * Applies `change` to the booking's trip record. The write only lands if the
  * row is unchanged since it was read (its `updated_at` is bumped by a trigger

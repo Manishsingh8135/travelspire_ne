@@ -59,3 +59,11 @@ payment.
   email, notes). Tested locally against a stand-in database with headless
   Chrome. `BOOKING_LINK_SECRET` added to Vercel production. Admin list falls
   back to `PAYMENT_NOTIFICATION_EMAILS`.
+- 2026-10-18 — phase 2 merged (PR #12) and verified live against the real
+  database. Phase 3 built: `src/lib/bookings/trip-messages.ts` + `/api/cron/daily`
+  (Vercel Cron, 09:00 IST, `CRON_SECRET`). Customer emails: details reminder
+  (+2 days), final reminder (≤7 days out, 3+ days after the first), "N days to
+  go" (2–7 days out: status, packing, driver), thank-you (1–7 days after the
+  trip; marks it completed). Sent keys live in `metadata.trip.sent`, claimed
+  before sending. Team morning summary: leaving in 3 days, missing details,
+  didn't pay in 24 h, emails sent. `?dry=1` previews a run.
